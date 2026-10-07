@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "task": "A",
+  "identity": "large",
+  "basket_marker_id": 6,
+  "status": "BLOCKED_SAFETY_CONFIG",
+  "blocked_reasons": [
+    "T_B_W is missing or invalid",
+    "robot workspace XYZ limits are missing or invalid",
+    "pickup_z is not measured",
+    "approach_z is not measured",
+    "basket_drop_z is not measured",
+    "validated IK solver is not configured",
+    "joint limits are not configured",
+    "T_B_W is not calibrated",
+    "robot workspace limits are not defined",
+    "pickup/approach/drop heights are not measured",
+    "fixed pickup guides require bottles to be centered on the marked X positions",
+    "current YOLO model did not detect the bottles in the 2026-10-05 live frame"
+  ],
+  "waypoints": [],
+  "ik_solutions": [],
+  "execution": {
+    "authorized": false,
+    "token": null,
+    "endpoint": null
+  },
+  "source_scene": {
+    "image": "outputs/openclaw_aruco/openclaw_raw_vertical.jpg",
+    "image_sha256": "3c4da9db1097c57928115c583d3a0bd8e9b0488948774acd095a8fe45fc03ca1"
+  }
+}

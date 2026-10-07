@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "task": "A",
+  "identity": "large",
+  "basket_marker_id": 6,
+  "status": "BLOCKED_SAFETY_CONFIG",
+  "blocked_reasons": [
+    "T_B_W is missing or invalid",
+    "robot workspace XYZ limits are missing or invalid",
+    "pickup_z is not measured",
+    "approach_z is not measured",
+    "basket_drop_z is not measured",
+    "validated IK solver is not configured",
+    "joint limits are not configured",
+    "T_B_W is not calibrated",
+    "robot workspace limits are not defined",
+    "pickup/approach/drop heights are not measured",
+    "bottle identities currently require the fixed visible left-to-right order C, B, A",
+    "RGB cap centers are above the table plane; depth/TCP validation is required before using them as grasp coordinates",
+    "current YOLO model did not detect the bottles in the 2026-10-05 live frame"
+  ],
+  "waypoints": [],
+  "ik_solutions": [],
+  "execution": {
+    "authorized": false,
+    "token": null,
+    "endpoint": null
+  },
+  "source_scene": {
+    "image": "outputs/openclaw_aruco/openclaw_raw_batch_20261005/raw_02.jpg",
+    "image_sha256": "27b7dd37dd20bf2cc3d42e70d5e561f1588abc0b4e531b550694d6f9c521878d"
+  }
+}

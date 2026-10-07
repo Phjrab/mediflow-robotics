@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SO-101 VLM 데이터 촬영</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header><h1>SO-101 VLM 데이터 촬영</h1><p>카메라 상태를 확인하고 사진 또는 동작별 영상을 저장합니다. 이 페이지는 로봇을 제어하지 않습니다.</p></header>
+  <main>
+    <section class="camera-card"><h2>카메라 3대</h2><div id="camera-grid" class="camera-grid"></div><p id="camera-error" class="error"></p><div id="latest-card" class="latest"><strong>최근 저장 이미지</strong><span>없음</span></div><div id="latest-trial-card" class="latest"><strong>최근 저장 영상</strong><span>없음</span></div></section>
+    <section class="form-card">
+      <h2>촬영 라벨</h2><p class="intro-help">아래 항목은 화면 속 장면 설명입니다. 실제 로봇 동작은 실행하지 않습니다.</p>
+      <form id="capture-form"><div class="grid">
+        <label>촬영에 사용할 카메라<select name="camera_id" id="capture-camera"></select><small>저장할 영상 카메라를 고릅니다.</small></label>
+        <label>촬영 단계<select name="capture_phase"><option value="before_grasp">집기 전</option><option value="grasping">집는 중</option><option value="after_grasp">집은 후</option><option value="after_place">바구니에 놓은 후</option></select><small>로봇 동작은 별도로 수행하고, 현재 화면을 단계별로 기록합니다.</small></label>
+        <label>동작 결과<select name="action_result"><option value="running">실행 중</option><option value="success">성공</option><option value="failure">실패</option><option value="human_intervention">사람 개입 필요</option></select></label>
+        <label>약통 종류<select name="target_class"><option value="medicine_a">A 약통</option><option value="medicine_b">B 약통</option><option value="medicine_c">C 약통</option><option value="none">약통 없음</option><option value="multiple">여러 종류 함께 있음</option></select></label>
+        <label>약통 상태<select name="object_state"><option value="upright">세워짐</option><option value="fallen">쓰러짐</option><option value="tilted">기울어짐</option><option value="occluded">다른 물체에 가려짐</option><option value="not_visible">보이지 않음</option><option value="mixed">여러 상태가 섞임</option></select></label>
+        <label>가시성<select name="visibility"><option value="visible">전체가 보임</option><option value="partially_visible">일부만 보임</option><option value="not_visible">보이지 않음</option></select><small>약통이 화면에서 얼마나 보이는지입니다.</small></label>
+        <label>집기 가능성<select name="graspability"><option value="graspable">집을 수 있음</option><option value="difficult">집기 어려움</option><option value="unsafe">위험해서 집지 않음</option><option value="unknown">판단할 수 없음</option></select></label>
+        <label>권장 집기 방법<select name="grasp_strategy"><option value="lid_grasp">뚜껑 집기</option><option value="body_grasp">몸통 집기</option><option value="rescan">카메라로 다시 확인</option><option value="stop">중지하고 도움 요청</option></select></label>
+        <label>필요한 로봇 작업<select name="required_skill"><option value="pick_upright">세워진 약통 집기</option><option value="pick_fallen">쓰러진 약통 집기</option><option value="stop_and_request_help">정지 후 사람에게 도움 요청</option></select></label>
+        <label>작업 지시<select name="instruction"><option value="medicine_a를 알맞은 바구니에 넣어">A 약통을 알맞은 바구니에 넣어</option><option value="medicine_b를 알맞은 바구니에 넣어">B 약통을 알맞은 바구니에 넣어</option><option value="medicine_c를 알맞은 바구니에 넣어">C 약통을 알맞은 바구니에 넣어</option></select></label>
+        <label>넣을 바구니<select name="destination"><option value="basket_1">바구니 1</option><option value="basket_2">바구니 2</option><option value="basket_3">바구니 3</option><option value="none">정하지 않음</option></select></label>
+        <label>바구니가 화면에 보이나요?<select name="destination_visibility"><option value="visible">바구니가 보임</option><option value="partially_visible">일부만 보임</option><option value="not_visible">바구니가 안 보임</option></select></label>
+      </div><label class="checkbox"><input type="checkbox" name="needs_approval" checked> 사람 승인 필요</label></form>
+      <div id="help-alert" class="help-alert" hidden>⚠️ 사람에게 도움을 요청해야 하는 장면입니다. 촬영은 기록만 하며 로봇은 정지 상태를 유지해야 합니다.</div>
+      <div id="mapping" class="mapping"></div><div id="messages" role="alert"></div>
+      <section class="video-panel" aria-labelledby="video-title">
+        <div class="video-heading"><div><h2 id="video-title">동작 영상 촬영 <span class="recommend">권장</span></h2><p>한 번의 집기 동작을 영상 하나로 저장하고, 학습용 핵심 프레임 3장을 함께 만듭니다.</p></div><span id="video-state" class="recording-state idle">대기 중</span></div>
+        <ol class="video-guide"><li>위 라벨을 선택하고 녹화를 시작합니다.</li><li>접근·접촉·파지 완료 순간에 해당 표시 버튼을 누릅니다.</li><li>결과를 선택하고 녹화를 종료합니다. 누락된 표시는 영상에서 자동 보완됩니다.</li></ol>
+        <div class="video-buttons">
+          <button id="video-start" class="record-start">● 영상 녹화 시작</button>
+          <button class="video-mark" data-phase="before_grasp" disabled>접근 전 표시</button>
+          <button class="video-mark" data-phase="grasping" disabled>접촉 순간 표시</button>
+          <button class="video-mark" data-phase="after_grasp" disabled>파지 완료 표시</button>
+        </div>
+        <div class="video-stop-row"><label>영상의 최종 결과<select id="video-result"><option value="success">집기 성공</option><option value="failure">집기 실패</option><option value="human_intervention">사람 개입</option><option value="not_recorded">결과 미기록</option></select></label><button id="video-stop" class="record-stop" disabled>■ 녹화 종료 및 저장</button></div>
+        <div id="video-progress" class="video-progress">아직 녹화 중이 아닙니다.</div>
+      </section>
+      <div class="photo-divider"><span>또는 기존 사진 촬영</span></div>
+      <div class="buttons"><button id="capture" class="primary">사진 한 장 저장</button><button id="retake">다시 촬영</button><button id="delete" class="danger">마지막 사진 삭제</button><button id="stats">데이터 현황</button><button id="shutdown">촬영 종료</button></div>
+      <section class="recordings-panel" aria-labelledby="recordings-title">
+        <div class="recordings-heading"><div><h2 id="recordings-title">저장된 동작 영상</h2><p>영상을 재생하고 단계 표시 시각과 추출 프레임을 확인하세요.</p></div><button id="refresh-trials">목록 새로고침</button></div>
+        <p class="delete-help">잘못 촬영한 영상을 삭제하면 연결된 핵심 프레임 3장도 학습 목록에서 함께 빠집니다. 원본은 휴지통 폴더에 보관되어 복구할 수 있습니다.</p>
+        <div id="recordings-list" class="recordings-list"><p class="recordings-empty">영상 목록을 불러오는 중입니다.</p></div>
+      </section>
+    </section>
+  </main>
+  <dialog id="stats-dialog"><h2>데이터 현황</h2><div id="stats-content"></div><button onclick="this.closest('dialog').close()">닫기</button></dialog>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>

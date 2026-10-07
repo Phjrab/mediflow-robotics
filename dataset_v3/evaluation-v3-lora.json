@@ -1,0 +1,45 @@
+{
+  "confusion": {
+    "grasp_region": {
+      "body -> body": 39,
+      "lid -> body": 15,
+      "unknown -> body": 7
+    },
+    "medicine_id": {
+      "A -> B": 25,
+      "B -> B": 16,
+      "C -> B": 20
+    },
+    "orientation": {
+      "fallen -> fallen": 26,
+      "fallen -> upright": 12,
+      "upright -> fallen": 13,
+      "upright -> upright": 10
+    },
+    "target_bin": {
+      "BIN_A -> BIN_B": 25,
+      "BIN_B -> BIN_B": 16,
+      "BIN_C -> BIN_B": 20
+    }
+  },
+  "coverage": 1.0,
+  "covered_samples": 61,
+  "exact_match_accuracy": 0.08196721311475409,
+  "field_accuracy": {
+    "grasp_region": 0.639344262295082,
+    "medicine_id": 0.26229508196721313,
+    "orientation": 0.5901639344262295,
+    "target_bin": 0.26229508196721313
+  },
+  "full_test_field_accuracy": {
+    "grasp_region": 0.639344262295082,
+    "medicine_id": 0.26229508196721313,
+    "orientation": 0.5901639344262295,
+    "target_bin": 0.26229508196721313
+  },
+  "invalid_predictions": 0,
+  "missing_predictions": 0,
+  "prediction_records": 61,
+  "samples": 61,
+  "wrong_bin_rate": 0.7377049180327869
+}

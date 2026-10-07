@@ -1,0 +1,16 @@
+{
+  "invalid_decisions": 0,
+  "policy": "fail-closed; inference never authorizes robot motion",
+  "reason_counts": {
+    "Astra grasp predictions are blocked by held-out evaluation": 13,
+    "after_grasp is observation-only and cannot plan a new grasp": 33,
+    "grasp region is unknown": 4,
+    "human approval is required before any robot action": 68
+  },
+  "robot_motion_allowed": 0,
+  "samples": 111,
+  "status_counts": {
+    "blocked": 43,
+    "review_required": 68
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "motion_authorized": false,
+  "maximum_bottle_pixel_error": 8.0,
+  "maximum_start_pose_error": {
+    "shoulder_pan.pos": 3.0,
+    "shoulder_lift.pos": 3.0,
+    "elbow_flex.pos": 3.0,
+    "wrist_flex.pos": 5.0,
+    "wrist_roll.pos": 3.0,
+    "gripper.pos": 5.0
+  },
+  "reference_start_images": {
+    "A": "outputs/openclaw_aruco/dataset_checks/a_representative_start_raw.jpg",
+    "B": "outputs/openclaw_aruco/dataset_checks/b_representative_start_raw.jpg",
+    "C": "outputs/openclaw_aruco/dataset_checks/c_representative_start_raw.jpg"
+  }
+}

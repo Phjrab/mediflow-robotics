@@ -1,0 +1,11 @@
+{
+  "label": "ACT-C",
+  "ranges": {
+    "shoulder_pan.pos": [-20.0, 8.0],
+    "shoulder_lift.pos": [-101.0, -96.0],
+    "elbow_flex.pos": [86.5, 94.5],
+    "wrist_flex.pos": [62.0, 76.0],
+    "wrist_roll.pos": [-24.0, 1.0],
+    "gripper.pos": [0.0, 11.0]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "label": "ACT-A-V3-trim05-100k",
+  "ranges": {
+    "shoulder_pan.pos": [-10.5, -0.5],
+    "shoulder_lift.pos": [-100.8, -95.5],
+    "elbow_flex.pos": [91.0, 99.0],
+    "wrist_flex.pos": [39.5, 60.0],
+    "wrist_roll.pos": [-8.0, 5.5],
+    "gripper.pos": [0.0, 30.0]
+  }
+}

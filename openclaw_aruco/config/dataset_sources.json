@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "usage": "reference_only",
+  "motion_authorized": false,
+  "datasets": {
+    "A": {
+      "expected_identity": "large",
+      "path": "work/lerobot_datasets/Supermassive111/Supermassive111_medicine_a_to_basket_a_3cam_v2_20261002_173846",
+      "identity_verification": "verified_by_user_2026-10-05"
+    },
+    "B": {
+      "expected_identity": "medium",
+      "path": "work/lerobot_datasets/Supermassive111/Supermassive111_medicine_b_to_basket_b_3cam_v1_20260928_203749",
+      "identity_verification": "verified_by_user_2026-10-05"
+    },
+    "C": {
+      "expected_identity": "small",
+      "path": "work/lerobot_datasets/Supermassive111/medicine_c_to_basket_c_3cam_test_20260928_154245",
+      "identity_verification": "verified_by_user_2026-10-05"
+    }
+  }
+}

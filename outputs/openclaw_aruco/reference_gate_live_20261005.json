@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "status": "DRY_RUN_REFERENCE_GATE_COMPLETE",
+  "motion_authorized": false,
+  "tasks": {
+    "A": {
+      "status": "REFERENCE_GATE_BLOCKED",
+      "representative_episode": 41,
+      "bottle_pixel": {
+        "current": [
+          442.5,
+          211.5
+        ],
+        "recorded": [
+          439.5,
+          239.5
+        ],
+        "delta_current_minus_recorded": [
+          3.0,
+          -28.0
+        ],
+        "error_px": 28.16,
+        "limit_px": 8.0
+      },
+      "start_pose": {
+        "current": {
+          "shoulder_pan.pos": -1.8021978021978022,
+          "shoulder_lift.pos": -98.41758241758242,
+          "elbow_flex.pos": 91.91208791208791,
+          "wrist_flex.pos": 61.494505494505496,
+          "wrist_roll.pos": -8.571428571428571,
+          "gripper.pos": 7.894736842105263
+        },
+        "recorded": {
+          "shoulder_pan.pos": -4.2637,
+          "shoulder_lift.pos": -98.022,
+          "elbow_flex.pos": 97.5824,
+          "wrist_flex.pos": 42.6374,
+          "wrist_roll.pos": -0.4396,
+          "gripper.pos": 1.8377
+        },
+        "delta_current_minus_recorded": {
+          "shoulder_pan.pos": 2.4615,
+          "shoulder_lift.pos": -0.3956,
+          "elbow_flex.pos": -5.6703,
+          "wrist_flex.pos": 18.8571,
+          "wrist_roll.pos": -8.1318,
+          "gripper.pos": 6.057
+        },
+        "violations": {
+          "elbow_flex.pos": {
+            "delta": -5.6703,
+            "limit": 3.0
+          },
+          "wrist_flex.pos": {
+            "delta": 18.8571,
+            "limit": 5.0
+          },
+          "wrist_roll.pos": {
+            "delta": -8.1318,
+            "limit": 3.0
+          },
+          "gripper.pos": {
+            "delta": 6.057,
+            "limit": 5.0
+          }
+        }
+      },
+      "blocked_reasons": [
+        "A bottle pixel error 28.160px exceeds 8.000px",
+        "A start pose exceeds 4 joint limits"
+      ]
+    },
+    "B": {
+      "status": "REFERENCE_GATE_BLOCKED",
+      "representative_episode": 34,
+      "bottle_pixel": {
+        "current": [
+          382.5,
+          231.5
+        ],
+        "recorded": [
+          362.5,
+          214.5
+        ],
+        "delta_current_minus_recorded": [
+          20.0,
+          17.0
+        ],
+        "error_px": 26.249,
+        "limit_px": 8.0
+      },
+      "start_pose": {
+        "current": {
+          "shoulder_pan.pos": -1.8021978021978022,
+          "shoulder_lift.pos": -98.41758241758242,
+          "elbow_flex.pos": 91.91208791208791,
+          "wrist_flex.pos": 61.494505494505496,
+          "wrist_roll.pos": -8.571428571428571,
+          "gripper.pos": 7.894736842105263
+        },
+        "recorded": {
+          "shoulder_pan.pos": 2.2418,
+          "shoulder_lift.pos": -97.7582,
+          "elbow_flex.pos": 97.4945,
+          "wrist_flex.pos": 33.7582,
+          "wrist_roll.pos": -17.4945,
+          "gripper.pos": 29.0199
+        },
+        "delta_current_minus_recorded": {
+          "shoulder_pan.pos": -4.044,
+          "shoulder_lift.pos": -0.6594,
+          "elbow_flex.pos": -5.5824,
+          "wrist_flex.pos": 27.7363,
+          "wrist_roll.pos": 8.9231,
+          "gripper.pos": -21.1252
+        },
+        "violations": {
+          "shoulder_pan.pos": {
+            "delta": -4.044,
+            "limit": 3.0
+          },
+          "elbow_flex.pos": {
+            "delta": -5.5824,
+            "limit": 3.0
+          },
+          "wrist_flex.pos": {
+            "delta": 27.7363,
+            "limit": 5.0
+          },
+          "wrist_roll.pos": {
+            "delta": 8.9231,
+            "limit": 3.0
+          },
+          "gripper.pos": {
+            "delta": -21.1252,
+            "limit": 5.0
+          }
+        }
+      },
+      "blocked_reasons": [
+        "B bottle pixel error 26.249px exceeds 8.000px",
+        "B start pose exceeds 5 joint limits"
+      ]
+    },
+    "C": {
+      "status": "REFERENCE_GATE_BLOCKED",
+      "representative_episode": 30,
+      "bottle_pixel": {
+        "current": [
+          313.5,
+          224.5
+        ],
+        "recorded": [
+          317.5,
+          236.5
+        ],
+        "delta_current_minus_recorded": [
+          -4.0,
+          -12.0
+        ],
+        "error_px": 12.649,
+        "limit_px": 8.0
+      },
+      "start_pose": {
+        "current": {
+          "shoulder_pan.pos": -1.8021978021978022,
+          "shoulder_lift.pos": -98.41758241758242,
+          "elbow_flex.pos": 91.91208791208791,
+          "wrist_flex.pos": 61.494505494505496,
+          "wrist_roll.pos": -8.571428571428571,
+          "gripper.pos": 7.894736842105263
+        },
+        "recorded": {
+          "shoulder_pan.pos": -5.4945,
+          "shoulder_lift.pos": -98.022,
+          "elbow_flex.pos": 89.7582,
+          "wrist_flex.pos": 71.7363,
+          "wrist_roll.pos": -10.6374,
+          "gripper.pos": 1.5314
+        },
+        "delta_current_minus_recorded": {
+          "shoulder_pan.pos": 3.6923,
+          "shoulder_lift.pos": -0.3956,
+          "elbow_flex.pos": 2.1539,
+          "wrist_flex.pos": -10.2418,
+          "wrist_roll.pos": 2.066,
+          "gripper.pos": 6.3633
+        },
+        "violations": {
+          "shoulder_pan.pos": {
+            "delta": 3.6923,
+            "limit": 3.0
+          },
+          "wrist_flex.pos": {
+            "delta": -10.2418,
+            "limit": 5.0
+          },
+          "gripper.pos": {
+            "delta": 6.3633,
+            "limit": 5.0
+          }
+        }
+      },
+      "blocked_reasons": [
+        "C bottle pixel error 12.649px exceeds 8.000px",
+        "C start pose exceeds 3 joint limits"
+      ]
+    }
+  },
+  "execution": {
+    "authorized": false,
+    "endpoint": null,
+    "token": null
+  }
+}

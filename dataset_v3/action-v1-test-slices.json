@@ -1,0 +1,144 @@
+{
+  "overall": {
+    "exact_accuracy": 0.6216216216216216,
+    "expected_grasp": {
+      "body": 68,
+      "lid": 21,
+      "unknown": 22
+    },
+    "grasp_accuracy": 0.7297297297297297,
+    "orientation_accuracy": 0.8468468468468469,
+    "predicted_grasp": {
+      "body": 80,
+      "lid": 27,
+      "unknown": 4
+    },
+    "samples": 111
+  },
+  "slices": {
+    "camera": {
+      "astra": {
+        "exact_accuracy": 0.38461538461538464,
+        "expected_grasp": {
+          "body": 6,
+          "lid": 3,
+          "unknown": 4
+        },
+        "grasp_accuracy": 0.46153846153846156,
+        "orientation_accuracy": 0.9230769230769231,
+        "predicted_grasp": {
+          "body": 13
+        },
+        "samples": 13
+      },
+      "realsense": {
+        "exact_accuracy": 0.9166666666666666,
+        "expected_grasp": {
+          "body": 11,
+          "unknown": 1
+        },
+        "grasp_accuracy": 0.9166666666666666,
+        "orientation_accuracy": 0.9166666666666666,
+        "predicted_grasp": {
+          "body": 12
+        },
+        "samples": 12
+      },
+      "video4": {
+        "exact_accuracy": 1.0,
+        "expected_grasp": {
+          "lid": 1
+        },
+        "grasp_accuracy": 1.0,
+        "orientation_accuracy": 1.0,
+        "predicted_grasp": {
+          "lid": 1
+        },
+        "samples": 1
+      },
+      "video6": {
+        "exact_accuracy": 0.611764705882353,
+        "expected_grasp": {
+          "body": 51,
+          "lid": 17,
+          "unknown": 17
+        },
+        "grasp_accuracy": 0.7411764705882353,
+        "orientation_accuracy": 0.8235294117647058,
+        "predicted_grasp": {
+          "body": 55,
+          "lid": 26,
+          "unknown": 4
+        },
+        "samples": 85
+      }
+    },
+    "capture_phase": {
+      "after_grasp": {
+        "exact_accuracy": 0.696969696969697,
+        "expected_grasp": {
+          "body": 23,
+          "lid": 9,
+          "unknown": 1
+        },
+        "grasp_accuracy": 0.8787878787878788,
+        "orientation_accuracy": 0.7878787878787878,
+        "predicted_grasp": {
+          "body": 23,
+          "lid": 9,
+          "unknown": 1
+        },
+        "samples": 33
+      },
+      "before_grasp": {
+        "exact_accuracy": 0.5897435897435898,
+        "expected_grasp": {
+          "body": 45,
+          "lid": 12,
+          "unknown": 21
+        },
+        "grasp_accuracy": 0.6666666666666666,
+        "orientation_accuracy": 0.8717948717948718,
+        "predicted_grasp": {
+          "body": 57,
+          "lid": 18,
+          "unknown": 3
+        },
+        "samples": 78
+      }
+    },
+    "source": {
+      "imported": {
+        "exact_accuracy": 0.65,
+        "expected_grasp": {
+          "body": 36,
+          "lid": 15,
+          "unknown": 9
+        },
+        "grasp_accuracy": 0.8166666666666667,
+        "orientation_accuracy": 0.8,
+        "predicted_grasp": {
+          "body": 41,
+          "lid": 15,
+          "unknown": 4
+        },
+        "samples": 60
+      },
+      "pilot": {
+        "exact_accuracy": 0.5882352941176471,
+        "expected_grasp": {
+          "body": 32,
+          "lid": 6,
+          "unknown": 13
+        },
+        "grasp_accuracy": 0.6274509803921569,
+        "orientation_accuracy": 0.9019607843137255,
+        "predicted_grasp": {
+          "body": 39,
+          "lid": 12
+        },
+        "samples": 51
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "body_tolerance_deg": {
+    "shoulder_pan.pos": 3.0,
+    "shoulder_lift.pos": 3.0,
+    "elbow_flex.pos": 4.0,
+    "wrist_flex.pos": 3.0,
+    "wrist_roll.pos": 3.0
+  },
+  "max_target_wait_s": 2.0,
+  "measurement_margin_deg": 0.1
+}

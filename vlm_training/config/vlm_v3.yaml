@@ -1,0 +1,28 @@
+dataset:
+  output: dataset_v3
+  review_manifest: dataset_v2/review_manifest.jsonl
+  review_decisions: dataset_v2/review_decisions.jsonl
+  split_seed: 101
+  splits:
+    train: 0.70
+    validation: 0.15
+    test: 0.15
+  duplicate_hamming_distance: 2
+
+prompt: >-
+  이미지에서 로봇 그리퍼가 접근하거나 파지한 약통 하나를 판단하라.
+  약통 종류 medicine_id는 A, B, C, unknown 중 하나이고, 자세 orientation은 upright, fallen, unknown 중 하나이다.
+  그리퍼의 접근 또는 파지 부위 grasp_region은 뚜껑이면 lid, 몸통이면 body, 판단할 수 없으면 unknown이다.
+  반드시 영문 키 medicine_id, orientation, target_bin, grasp_region 네 개만 포함한 JSON 객체를 반환하라.
+  키를 번역하거나 추가·생략하지 마라.
+  target_bin은 A이면 BIN_A, B이면 BIN_B, C이면 BIN_C, unknown이면 NONE이다.
+  예: {"medicine_id":"A","orientation":"upright","target_bin":"BIN_A","grasp_region":"lid"}
+
+model:
+  id: Qwen/Qwen3-VL-2B-Instruct
+  cache_dir: work/hf-cache
+  max_new_tokens: 128
+  load_in_4bit: true
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.05

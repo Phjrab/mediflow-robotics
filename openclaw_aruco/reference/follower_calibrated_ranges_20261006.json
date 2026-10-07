@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "source": "Read-only copy of range_min/range_max from Jetson so_follower/so-101.json on 2026-10-06; homing offsets deliberately omitted",
+  "source_sha256_verified_20261006": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+  "range_ticks_reverified_20261006": true,
+  "resolution_ticks": 4095,
+  "physical_limits_validated": false,
+  "motion_authorized": false,
+  "body_range_ticks": {
+    "shoulder_pan.pos": [755, 3448],
+    "shoulder_lift.pos": [796, 3113],
+    "elbow_flex.pos": [880, 3087],
+    "wrist_flex.pos": [936, 3225],
+    "wrist_roll.pos": [86, 3643]
+  },
+  "gripper_range_ticks": [413, 2047]
+}

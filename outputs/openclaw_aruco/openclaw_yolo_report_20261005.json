@@ -1,0 +1,13 @@
+{
+  "status": "OFFLINE_DETECTION_ONLY",
+  "model": "best.onnx",
+  "confidence_threshold": 0.25,
+  "iou_threshold": 0.7,
+  "images": [
+    {
+      "image": "/tmp/openclaw_raw_vertical.jpg",
+      "detections": []
+    }
+  ],
+  "robot_enabled": false
+}

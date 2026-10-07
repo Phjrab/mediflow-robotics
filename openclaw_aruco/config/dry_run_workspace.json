@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "unit": "mm",
+  "mode": {
+    "dry_run": true,
+    "robot_enabled": false,
+    "motion_authorized": false
+  },
+  "camera": {
+    "name": "ceiling_vertical",
+    "device": "/dev/video8",
+    "width": 640,
+    "height": 480,
+    "source_requirement": "raw frame without LeLab alignment overlays"
+  },
+  "markers": {
+    "dictionary": "DICT_4X4_50",
+    "reference_centers_mm": {
+      "0": [0.0, 0.0],
+      "1": [403.5, 0.0],
+      "2": [401.375, 347.228],
+      "3": [3.708, 346.738]
+    }
+  },
+  "bottle_detector": {
+    "type": "hough_cap_circles",
+    "roi_xyxy": [270, 170, 500, 275],
+    "expected_count": 3,
+    "fixed_left_to_right_identity": ["C", "B", "A"],
+    "hough": {
+      "dp": 1.0,
+      "min_dist_px": 25.0,
+      "param1": 80.0,
+      "param2": 25.0,
+      "fallback_param2": 18.0,
+      "min_radius_px": 8,
+      "max_radius_px": 22
+    },
+    "fixed_identity_x_ranges_px": {
+      "C": [285, 345],
+      "B": [345, 415],
+      "A": [415, 480]
+    }
+  },
+  "tasks": {
+    "A": {
+      "identity": "large",
+      "pickup_source": "live_cap_detection_fixed_order_cba",
+      "basket_marker_id": 6
+    },
+    "B": {
+      "identity": "medium",
+      "pickup_source": "live_cap_detection_fixed_order_cba",
+      "basket_marker_id": 5
+    },
+    "C": {
+      "identity": "small",
+      "pickup_source": "live_cap_detection_fixed_order_cba",
+      "basket_marker_id": 4
+    }
+  },
+  "transforms": {
+    "convention": "T_B_W transforms a point from ArUco World into Robot Base",
+    "T_B_W": null
+  },
+  "robot_limits_mm": null,
+  "joint_calibration_reference": {
+    "path": "openclaw_aruco/reference/follower_calibrated_ranges_20261006.json",
+    "source_sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+    "physical_limits_validated": false,
+    "collision_clearance_validated": false,
+    "used_for_motion_authorization": false
+  },
+  "heights_mm": {
+    "pickup_z": null,
+    "approach_z": null,
+    "basket_drop_z": null
+  },
+  "ik": {
+    "solver": null,
+    "joint_limits_deg": null
+  },
+  "motion_blocked_reasons": [
+    "T_B_W is not calibrated",
+    "robot workspace limits are not defined",
+    "pickup/approach/drop heights are not measured",
+    "bottle identities currently require the fixed visible left-to-right order C, B, A",
+    "RGB cap centers are above the table plane; depth/TCP validation is required before using them as grasp coordinates",
+    "current YOLO model did not detect the bottles in the 2026-10-05 live frame"
+  ]
+}

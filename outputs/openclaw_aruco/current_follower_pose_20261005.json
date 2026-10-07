@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source": "read-only Present_Position from /dev/ttyACM0",
+  "unit": "degrees_or_gripper_units",
+  "joints": {
+    "shoulder_pan": -1.8021978021978022,
+    "shoulder_lift": -98.41758241758242,
+    "elbow_flex": 91.91208791208791,
+    "wrist_flex": 61.494505494505496,
+    "wrist_roll": -8.571428571428571,
+    "gripper": 7.894736842105263
+  },
+  "teleoperation_active": false,
+  "inference_active": false,
+  "motion_authorized": false
+}

@@ -1,0 +1,25 @@
+{
+  "source": "/home/USER/Documents/Codex/2026-09-22/so101-pilot-dataset-ready-tar-gz-2/work/lerobot_datasets/Supermassive111/Supermassive111_medicine_a_to_basket_a_3cam_v2_20261002_173846",
+  "derived": "/home/USER/Documents/Codex/2026-09-22/so101-pilot-dataset-ready-tar-gz-2/work/lerobot_datasets/Supermassive111/Supermassive111_medicine_a_to_basket_a_3cam_v3_48episodes_20261006",
+  "source_episodes": 60,
+  "retained_episodes": 48,
+  "excluded_source_episodes": [
+    0,
+    16,
+    17,
+    18,
+    21,
+    22,
+    27,
+    28,
+    43,
+    45,
+    54,
+    55
+  ],
+  "retained_frames": 24588,
+  "numeric_rows_verified": 24588,
+  "video_files_sha256_verified": 7,
+  "decoded_images_equal": 72,
+  "status": "passed"
+}

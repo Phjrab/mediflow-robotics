@@ -1,0 +1,30 @@
+[
+  {
+    "requested_relative_s": 0.0,
+    "decoded_relative_s": 0.0
+  },
+  {
+    "requested_relative_s": 2.0,
+    "decoded_relative_s": 2.0
+  },
+  {
+    "requested_relative_s": 4.0,
+    "decoded_relative_s": 4.0
+  },
+  {
+    "requested_relative_s": 6.0,
+    "decoded_relative_s": 6.0
+  },
+  {
+    "requested_relative_s": 8.0,
+    "decoded_relative_s": 8.0
+  },
+  {
+    "requested_relative_s": 10.0,
+    "decoded_relative_s": 10.0
+  },
+  {
+    "requested_relative_s": 12.0,
+    "decoded_relative_s": 12.0
+  }
+]

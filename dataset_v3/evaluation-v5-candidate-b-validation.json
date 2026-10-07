@@ -1,0 +1,106 @@
+{
+  "class_recall": {
+    "grasp_region": {
+      "body": 0.5833333333333334,
+      "lid": 0.7,
+      "unknown": 0.42105263157894735
+    },
+    "medicine_id": {
+      "A": 0.8918918918918919,
+      "B": 0.0,
+      "C": 0.3103448275862069
+    },
+    "orientation": {
+      "fallen": 0.6181818181818182,
+      "upright": 1.0
+    },
+    "target_bin": {
+      "BIN_A": 0.8918918918918919,
+      "BIN_B": 0.0,
+      "BIN_C": 0.3103448275862069
+    }
+  },
+  "confusion": {
+    "grasp_region": {
+      "body -> body": 35,
+      "body -> lid": 13,
+      "body -> unknown": 12,
+      "lid -> body": 2,
+      "lid -> lid": 14,
+      "lid -> unknown": 4,
+      "unknown -> body": 8,
+      "unknown -> lid": 3,
+      "unknown -> unknown": 8
+    },
+    "medicine_id": {
+      "A -> A": 33,
+      "A -> C": 4,
+      "B -> A": 32,
+      "B -> C": 1,
+      "C -> A": 19,
+      "C -> B": 1,
+      "C -> C": 9
+    },
+    "orientation": {
+      "fallen -> fallen": 34,
+      "fallen -> upright": 21,
+      "upright -> upright": 44
+    },
+    "target_bin": {
+      "BIN_A -> BIN_A": 33,
+      "BIN_A -> BIN_C": 4,
+      "BIN_B -> BIN_A": 32,
+      "BIN_B -> BIN_C": 1,
+      "BIN_C -> BIN_A": 19,
+      "BIN_C -> BIN_B": 1,
+      "BIN_C -> BIN_C": 9
+    }
+  },
+  "coverage": 1.0,
+  "covered_samples": 99,
+  "exact_match_accuracy": 0.15151515151515152,
+  "field_accuracy": {
+    "grasp_region": 0.5757575757575758,
+    "medicine_id": 0.42424242424242425,
+    "orientation": 0.7878787878787878,
+    "target_bin": 0.42424242424242425
+  },
+  "field_balanced_accuracy": {
+    "grasp_region": 0.5681286549707601,
+    "medicine_id": 0.40074557315936626,
+    "orientation": 0.8090909090909091,
+    "target_bin": 0.40074557315936626
+  },
+  "full_test_field_accuracy": {
+    "grasp_region": 0.5757575757575758,
+    "medicine_id": 0.42424242424242425,
+    "orientation": 0.7878787878787878,
+    "target_bin": 0.42424242424242425
+  },
+  "invalid_predictions": 0,
+  "missing_predictions": 0,
+  "predicted_distribution": {
+    "grasp_region": {
+      "body": 45,
+      "lid": 30,
+      "unknown": 24
+    },
+    "medicine_id": {
+      "A": 84,
+      "B": 1,
+      "C": 14
+    },
+    "orientation": {
+      "fallen": 34,
+      "upright": 65
+    },
+    "target_bin": {
+      "BIN_A": 84,
+      "BIN_B": 1,
+      "BIN_C": 14
+    }
+  },
+  "prediction_records": 99,
+  "samples": 99,
+  "wrong_bin_rate": 0.5757575757575758
+}

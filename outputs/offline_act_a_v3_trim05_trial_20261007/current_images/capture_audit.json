@@ -1,0 +1,43 @@
+{
+  "source": "http://127.0.0.1:8022",
+  "captured_at_unix": 1791345655.7430167,
+  "cameras": {
+    "ceiling_vertical": {
+      "size": [
+        640,
+        480
+      ],
+      "sha256": [
+        "c75aa4aa0fcedaf3b3eab0c6453cc1101c88db6079a99a9093fde3dcdae58c8e",
+        "82bc4c04f2612827c8e3f5365681488656da8ef55b1d99d982157b11168104fa"
+      ],
+      "fresh": true,
+      "sequence": [
+        1,
+        6
+      ]
+    },
+    "ceiling_oblique": {
+      "size": [
+        640,
+        480
+      ],
+      "sha256": [
+        "0467123c11522ac4502ffdd5fec8274edd2edeb36b18a51caa88fba4c623f381",
+        "ed16d456efeb72d79cc05df30b7930995bc3a89b2b9b641516490758ac7a8df1"
+      ],
+      "fresh": true
+    },
+    "end_effector": {
+      "size": [
+        640,
+        480
+      ],
+      "sha256": [
+        "cb753b3b2ccbe755e6145f9516a2e7d498f5d6902cdeb05a49eea31d8ca65a80",
+        "9e78c233a53fdb5829e6a402a4b94d78aabe5b06b46827e6dcb86294920128fc"
+      ],
+      "fresh": true
+    }
+  }
+}

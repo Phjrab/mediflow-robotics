@@ -1,0 +1,45 @@
+{
+  "class_recall": {
+    "grasp_region": {
+      "body": 0.8382352941176471,
+      "lid": 0.8571428571428571,
+      "unknown": 0.6818181818181818
+    }
+  },
+  "confusion": {
+    "grasp_region": {
+      "body -> body": 57,
+      "body -> unknown": 11,
+      "lid -> body": 1,
+      "lid -> lid": 18,
+      "lid -> unknown": 2,
+      "unknown -> body": 7,
+      "unknown -> unknown": 15
+    }
+  },
+  "coverage": 1.0,
+  "covered_samples": 111,
+  "exact_match_accuracy": 0.8108108108108109,
+  "field_accuracy": {
+    "grasp_region": 0.8108108108108109
+  },
+  "field_balanced_accuracy": {
+    "grasp_region": 0.7923987776928954
+  },
+  "full_test_field_accuracy": {
+    "grasp_region": 0.8108108108108109
+  },
+  "invalid_predictions": 0,
+  "missing_predictions": 0,
+  "predicted_distribution": {
+    "grasp_region": {
+      "body": 65,
+      "lid": 18,
+      "unknown": 28
+    }
+  },
+  "prediction_records": 111,
+  "samples": 111,
+  "task": "grasp",
+  "wrong_bin_rate": 0.0
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "status": "BLOCKED_FOR_MOTION",
+  "site_connected": true,
+  "configured_cameras": {
+    "ceiling_vertical": 8,
+    "ceiling_oblique": 4,
+    "end_effector": 6
+  },
+  "enumerated_camera_indices": [
+    2,
+    8
+  ],
+  "missing_camera_devices": {
+    "ceiling_oblique": 4,
+    "end_effector": 6
+  },
+  "active_flags": {
+    "teleoperation": false,
+    "inference": false,
+    "recording": false,
+    "calibration": false
+  },
+  "teleoperation_body_start_max_delta_deg": 15.0,
+  "endpoint_errors": {},
+  "blocked_reasons": [
+    "configured camera devices unavailable: {'ceiling_oblique': 4, 'end_effector': 6}",
+    "deployed teleoperation body start gate is looser than or unverified against the reviewed 3-degree gate",
+    "T_B_W is not calibrated",
+    "robot workspace limits are not defined",
+    "pickup/approach/drop heights are not measured",
+    "bottle identities currently require the fixed visible left-to-right order C, B, A",
+    "RGB cap centers are above the table plane; depth/TCP validation is required before using them as grasp coordinates",
+    "current YOLO model did not detect the bottles in the 2026-10-05 live frame",
+    "URDF gripper link origin is not a validated tool-center point",
+    "dataset motor calibration and URDF nominal joint limits must be reconciled before execution"
+  ],
+  "motion_authorized": false,
+  "robot_commands_sent": 0
+}

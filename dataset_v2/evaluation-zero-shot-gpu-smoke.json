@@ -1,0 +1,31 @@
+{
+  "confusion": {
+    "medicine_id": {
+      "A -> A": 3
+    },
+    "orientation": {
+      "fallen -> upright": 3
+    },
+    "target_bin": {
+      "BIN_A -> BIN_A": 3
+    }
+  },
+  "coverage": 0.03571428571428571,
+  "covered_samples": 3,
+  "exact_match_accuracy": 0.0,
+  "field_accuracy": {
+    "medicine_id": 1.0,
+    "orientation": 0.0,
+    "target_bin": 1.0
+  },
+  "full_test_field_accuracy": {
+    "medicine_id": 0.03571428571428571,
+    "orientation": 0.0,
+    "target_bin": 0.03571428571428571
+  },
+  "invalid_predictions": 0,
+  "missing_predictions": 81,
+  "prediction_records": 3,
+  "samples": 84,
+  "wrong_bin_rate": 0.0
+}

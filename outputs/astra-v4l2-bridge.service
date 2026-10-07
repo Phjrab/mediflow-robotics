@@ -1,0 +1,17 @@
+[Unit]
+Description=Orbbec Astra OpenNI to V4L2 bridge for LeLab
+After=systemd-modules-load.service
+Conflicts=so101-camera-preview.service
+
+[Service]
+Type=simple
+User=jetson3
+Group=video
+Environment=OPENNI2_REDIST=/opt/orbbec-openni2
+Environment=LD_LIBRARY_PATH=/opt/orbbec-openni2
+ExecStart=/bin/bash -lc 'set -o pipefail; /opt/orbbec-openni2/bin/orbbec-rgb-pipe | /usr/bin/gst-launch-1.0 -q fdsrc fd=0 ! rawvideoparse width=640 height=480 framerate=30/1 format=rgb ! videoconvert ! video/x-raw,format=YUY2 ! v4l2sink device=/dev/video8 sync=false'
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

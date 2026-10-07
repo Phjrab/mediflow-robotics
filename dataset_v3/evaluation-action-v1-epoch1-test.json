@@ -1,0 +1,61 @@
+{
+  "class_recall": {
+    "grasp_region": {
+      "body": 0.8676470588235294,
+      "lid": 0.8571428571428571,
+      "unknown": 0.18181818181818182
+    },
+    "orientation": {
+      "fallen": 0.9384615384615385,
+      "upright": 0.717391304347826
+    }
+  },
+  "confusion": {
+    "grasp_region": {
+      "body -> body": 59,
+      "body -> lid": 9,
+      "lid -> body": 3,
+      "lid -> lid": 18,
+      "unknown -> body": 18,
+      "unknown -> unknown": 4
+    },
+    "orientation": {
+      "fallen -> fallen": 61,
+      "fallen -> upright": 4,
+      "upright -> fallen": 13,
+      "upright -> upright": 33
+    }
+  },
+  "coverage": 1.0,
+  "covered_samples": 111,
+  "exact_match_accuracy": 0.6216216216216216,
+  "field_accuracy": {
+    "grasp_region": 0.7297297297297297,
+    "orientation": 0.8468468468468469
+  },
+  "field_balanced_accuracy": {
+    "grasp_region": 0.6355360325948561,
+    "orientation": 0.8279264214046822
+  },
+  "full_test_field_accuracy": {
+    "grasp_region": 0.7297297297297297,
+    "orientation": 0.8468468468468469
+  },
+  "invalid_predictions": 0,
+  "missing_predictions": 0,
+  "predicted_distribution": {
+    "grasp_region": {
+      "body": 80,
+      "lid": 27,
+      "unknown": 4
+    },
+    "orientation": {
+      "fallen": 74,
+      "upright": 37
+    }
+  },
+  "prediction_records": 111,
+  "samples": 111,
+  "task": "action",
+  "wrong_bin_rate": 0.0
+}

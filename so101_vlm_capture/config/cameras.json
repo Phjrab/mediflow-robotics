@@ -1,0 +1,19 @@
+{
+  "cameras": [
+    {
+      "id": "wrist",
+      "name": "손목 카메라",
+      "device": "/dev/video6"
+    },
+    {
+      "id": "ceiling_astra",
+      "name": "천장 카메라 1 · Astra",
+      "device": "http://127.0.0.1:8010/astra.mjpg"
+    },
+    {
+      "id": "ceiling_realsense",
+      "name": "천장 카메라 2 · RealSense",
+      "device": "http://127.0.0.1:8010/realsense.mjpg"
+    }
+  ]
+}

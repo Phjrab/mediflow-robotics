@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "FK_DIAGNOSTIC_BLOCKED_URDF_LIMIT_MISMATCH",
+  "motion_authorized": false,
+  "source_plan": "outputs/openclaw_aruco/plan_a_episode10_step_limited_dryrun_20261005.json",
+  "target_link": "gripper_link_origin_not_validated_tcp",
+  "cartesian_envelope_mm": {
+    "min": [
+      23.392,
+      -284.052,
+      128.903
+    ],
+    "max": [
+      98.22,
+      -78.133,
+      324.182
+    ]
+  },
+  "maximum_cartesian_step_mm": 2.5619,
+  "urdf_joint_limit_violations": {
+    "Elbow": {
+      "observed_min": -21.0989,
+      "observed_max": 93.1868,
+      "urdf_min": -100,
+      "urdf_max": 90
+    },
+    "Wrist_Pitch": {
+      "observed_min": 41.5824,
+      "observed_max": 102.7692,
+      "urdf_min": -95,
+      "urdf_max": 95
+    }
+  },
+  "blocking_reasons": [
+    "URDF gripper link origin is not a validated tool-center point",
+    "dataset motor calibration and URDF nominal joint limits must be reconciled before execution"
+  ]
+}

@@ -1,0 +1,17 @@
+[Unit]
+Description=LeLab Jetson CUDA-compatible web UI (Python 3.10)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/sg dialout -c "exec env LD_LIBRARY_PATH=/home/USER/venvs/lelab-jetson-py310/nvidia-deps/cusparselt-cuda12/usr/lib/aarch64-linux-gnu/libcusparseLt/12 /home/USER/venvs/lelab-jetson-py310/bin/python -m uvicorn lelab.server:app --host 0.0.0.0 --port 8022 --log-level info"
+Restart=on-failure
+RestartSec=3
+KillMode=mixed
+TimeoutStopSec=15
+LimitNOFILE=65536
+
+[Install]
+WantedBy=default.target

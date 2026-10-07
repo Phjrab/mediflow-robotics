@@ -1,0 +1,5 @@
+{
+  "label": "ACT-A-V3-trim05-100k (operator-disabled start-pose check)",
+  "ranges": {},
+  "note": "The operator requested that the model-specific start-pose envelope be disabled. Keep this file so rollout joint/timing telemetry remains enabled."
+}

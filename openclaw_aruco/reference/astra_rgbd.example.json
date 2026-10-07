@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "unit": "mm",
+  "camera": {
+    "type": "openni2",
+    "device": "Astra 2bc5:0401",
+    "rgb": {"width": 640, "height": 480, "fps": 30, "format": "RGB888"},
+    "depth": {"width": 640, "height": 480, "fps": 30, "format": "DEPTH_1_MM"},
+    "diagnostic_rgbd": {
+      "width": 320,
+      "height": 240,
+      "fps": 30,
+      "reason": "legacy Astra USB2 simultaneous 640x480 streams stall after first frame"
+    },
+    "registration": "depth_to_color",
+    "intrinsic_file": "astra_color_intrinsics.local.json"
+  },
+  "markers": {
+    "dictionary": "DICT_4X4_50",
+    "marker_size_mm": 70.0,
+    "marker_size_by_id_mm": {"0": 75.0},
+    "marker_size_measurement": {
+      "measured_black_square_width_mm": {"0": 75.0, "5": 70.0},
+      "assumed_black_square_width_mm": {"1": 70.0, "2": 70.0, "3": 70.0, "4": 70.0, "6": 70.0},
+      "note": "user reports ID0 is probably the only 75 mm marker"
+    },
+    "range_cross_check": {
+      "marker_id": 5,
+      "physical_straight_line_mm_approx": 810.0,
+      "registered_depth_mm": 769.0,
+      "marker_size_mm": 70.0,
+      "single_marker_pnp_z_mm": 867.696,
+      "source_frames": 300,
+      "depth_scale_applied": false,
+      "note": "single approximate range compared with a 300-frame live median; no scale applied"
+    },
+    "reference_ids": [0, 1, 2, 3],
+    "reference_centers_mm": {
+      "0": [0.0, 0.0, 0.0],
+      "1": [403.5, 0.0, 0.0],
+      "2": [401.375, 347.228, 0.0],
+      "3": [3.708, 346.738, 0.0]
+    },
+    "reference_center_status": "PROVISIONAL_EDGE_GAP_FIT_CENTER_DISTANCE_CROSS_CHECKED_CAMERA_NOT_RECHECKED",
+    "legacy_reference_centers_mm": {
+      "0": [0.0, 0.0, 0.0],
+      "1": [331.0, 0.0, 0.0],
+      "2": [326.807, 277.190, 0.0],
+      "3": [-0.861, 274.244, 0.0]
+    },
+    "reference_measurement_type": "nearest black-square edge gaps, including nearest corners for diagonals; NOT center-to-center",
+    "reference_measurements_mm": {
+      "0-1": 331.0,
+      "1-2": 275.0,
+      "2-3": 325.0,
+      "3-0": 272.0,
+      "0-2": 432.0,
+      "1-3": 434.0
+    },
+    "reference_center_cross_check_mm": {
+      "measured_approx_center_to_center": {"2-3": 400.0, "3-0": 346.0},
+      "fit_center_to_center": {"2-3": 397.667, "3-0": 346.758},
+      "note": "2026-09-30 user measurement; approximate ruler values, not a live camera reprojection check"
+    },
+    "reference_fit": {
+      "method": "equal-weight nonlinear least squares of shortest gaps between axis-aligned black marker squares; ID0 origin; ID1 on +X; ID0 size 75 mm, others assumed 70 mm",
+      "rms_residual_mm": 2.623,
+      "max_abs_residual_mm": 3.481,
+      "note": "legacy fit treated black-square edge gaps as center distances and is invalid"
+    },
+    "basket_ids": {"4": "red", "5": "green", "6": "blue"},
+    "object_ids": {}
+  },
+  "depth_filter": {
+    "roi_radius_px": 5,
+    "min_depth_mm": 200,
+    "max_depth_mm": 4000
+  },
+  "pickup_roi_table_mm": {
+    "x": [101.0, 273.0],
+    "y": [251.0, 379.0],
+    "note": "Conservative bounding box of legacy x=80..220/y=200..300 ROI transformed to corrected reference frame; camera-only and not revalidated live, does not authorize robot motion"
+  },
+  "pickup_candidate_filter": {
+    "min_area_px": 100,
+    "max_area_px": 500,
+    "min_height_median_mm": 70.0,
+    "max_height_median_mm": 120.0,
+    "note": "Whole-container bootstrap gate; rejects partial fragments and is not an identity classifier"
+  },
+  "depth_geometry_validation": {
+    "status": "FAIL_DIAGNOSTIC_ONLY",
+    "reference_frame_note": "Historic result used invalid legacy edge-gap-as-center scale; repeat before interpretation",
+    "frames": 300,
+    "depth_world_fit_rms_median_mm": 33.949,
+    "reference_plane_rms_median_mm": 1.994,
+    "camera_per_world_similarity_scale_diagnostic": 1.151915,
+    "similarity_fit_rms_mm_diagnostic": 9.387,
+    "scale_applied": false
+  },
+  "two_point_five_d_validation": {
+    "status": "STALE_LEGACY_REFERENCE_SCALE_RECHECK_REQUIRED",
+    "frames": 300,
+    "table_homography_frames": 300,
+    "depth_plane_frames": 300,
+    "reference_plane_rms_median_mm": 1.475,
+    "basket_markers": {
+      "4": {"table_xy_median_mm": [65.208, 168.614], "height_median_mm": 56.765},
+      "5": {"table_xy_median_mm": [145.608, 175.658], "height_median_mm": 56.217},
+      "6": {"table_xy_median_mm": [240.773, 179.759], "height_median_mm": 54.556}
+    },
+    "robot_target_authorized": false
+  },
+  "mode": {
+    "dry_run": true,
+    "robot_enabled": false,
+    "log_jsonl": true
+  },
+  "transforms": {
+    "convention": "T_A_B transforms a point from frame B into frame A",
+    "world_axes": "+X ID0 to ID1; +Y into the board; +Z above the board",
+    "T_B_W": null
+  },
+  "robot_limits_mm": null,
+  "motion_blocked_reasons": [
+    "object marker roles are not defined",
+    "T_B_W is not calibrated",
+    "robot workspace limits are not defined"
+  ]
+}

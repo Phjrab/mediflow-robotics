@@ -1,0 +1,289 @@
+{
+  "type": "depth_foreground_candidates",
+  "safety": "camera-only offline snapshot analysis; not robot targets",
+  "height_range_mm": [
+    15.0,
+    180.0
+  ],
+  "reference_plane_rms_mm": 2.2139264190724837,
+  "pickup_roi_table_mm": {
+    "x": [
+      101.0,
+      273.0
+    ],
+    "y": [
+      251.0,
+      379.0
+    ]
+  },
+  "pickup_candidate_filter": {
+    "min_area_px": 100.0,
+    "max_area_px": 500.0,
+    "min_height_median_mm": 70.0,
+    "max_height_median_mm": 120.0
+  },
+  "selected_candidate": null,
+  "selection_note": "foreground proposal only; identity and grasp pose are unverified",
+  "candidates": [
+    {
+      "bbox_xywh": [
+        46,
+        62,
+        66,
+        120
+      ],
+      "area_px": 4576,
+      "centroid_px": [
+        75.037,
+        117.047
+      ],
+      "table_xy_mm": [
+        772.612,
+        676.837
+      ],
+      "height_median_mm": 121.442,
+      "height_max_mm": 152.797,
+      "candidate_id": "C0"
+    },
+    {
+      "bbox_xywh": [
+        350,
+        60,
+        40,
+        70
+      ],
+      "area_px": 2004,
+      "centroid_px": [
+        369.53,
+        95.801
+      ],
+      "table_xy_mm": [
+        135.774,
+        714.475
+      ],
+      "height_median_mm": 147.65,
+      "height_max_mm": 165.381,
+      "candidate_id": "C1"
+    },
+    {
+      "bbox_xywh": [
+        332,
+        108,
+        64,
+        96
+      ],
+      "area_px": 1899,
+      "centroid_px": [
+        359.606,
+        161.444
+      ],
+      "table_xy_mm": [
+        161.899,
+        519.329
+      ],
+      "height_median_mm": 66.062,
+      "height_max_mm": 112.822,
+      "candidate_id": "C2"
+    },
+    {
+      "bbox_xywh": [
+        258,
+        60,
+        88,
+        34
+      ],
+      "area_px": 1539,
+      "centroid_px": [
+        293.994,
+        72.237
+      ],
+      "table_xy_mm": [
+        303.825,
+        805.505
+      ],
+      "height_median_mm": 29.661,
+      "height_max_mm": 49.551,
+      "candidate_id": "C3"
+    },
+    {
+      "bbox_xywh": [
+        390,
+        60,
+        62,
+        12
+      ],
+      "area_px": 479,
+      "centroid_px": [
+        424.603,
+        63.758
+      ],
+      "table_xy_mm": [
+        7.512,
+        819.517
+      ],
+      "height_median_mm": 21.215,
+      "height_max_mm": 33.09,
+      "candidate_id": "C4"
+    },
+    {
+      "bbox_xywh": [
+        410,
+        264,
+        36,
+        17
+      ],
+      "area_px": 386,
+      "centroid_px": [
+        427.935,
+        272.845
+      ],
+      "table_xy_mm": [
+        55.329,
+        260.094
+      ],
+      "height_median_mm": 36.509,
+      "height_max_mm": 54.05,
+      "candidate_id": "C5"
+    },
+    {
+      "bbox_xywh": [
+        256,
+        272,
+        39,
+        9
+      ],
+      "area_px": 260,
+      "centroid_px": [
+        275.5,
+        275.642
+      ],
+      "table_xy_mm": [
+        308.596,
+        260.986
+      ],
+      "height_median_mm": 26.744,
+      "height_max_mm": 38.861,
+      "candidate_id": "C6"
+    },
+    {
+      "bbox_xywh": [
+        350,
+        262,
+        22,
+        16
+      ],
+      "area_px": 229,
+      "centroid_px": [
+        362.319,
+        269.376
+      ],
+      "table_xy_mm": [
+        163.408,
+        269.697
+      ],
+      "height_median_mm": 38.646,
+      "height_max_mm": 54.831,
+      "candidate_id": "C7"
+    },
+    {
+      "bbox_xywh": [
+        398,
+        240,
+        18,
+        17
+      ],
+      "area_px": 213,
+      "centroid_px": [
+        406.69,
+        247.587
+      ],
+      "table_xy_mm": [
+        86.363,
+        312.066
+      ],
+      "height_median_mm": 35.696,
+      "height_max_mm": 57.302,
+      "candidate_id": "C8"
+    },
+    {
+      "bbox_xywh": [
+        104,
+        100,
+        22,
+        20
+      ],
+      "area_px": 205,
+      "centroid_px": [
+        115.985,
+        109.249
+      ],
+      "table_xy_mm": [
+        687.922,
+        698.018
+      ],
+      "height_median_mm": 21.818,
+      "height_max_mm": 43.953,
+      "candidate_id": "C9"
+    },
+    {
+      "bbox_xywh": [
+        100,
+        122,
+        9,
+        8
+      ],
+      "area_px": 55,
+      "centroid_px": [
+        103.964,
+        126.036
+      ],
+      "table_xy_mm": [
+        700.71,
+        645.076
+      ],
+      "height_median_mm": 23.805,
+      "height_max_mm": 36.592,
+      "candidate_id": "C10"
+    },
+    {
+      "bbox_xywh": [
+        399,
+        276,
+        8,
+        5
+      ],
+      "area_px": 32,
+      "centroid_px": [
+        402.25,
+        278.375
+      ],
+      "table_xy_mm": [
+        98.307,
+        250.416
+      ],
+      "height_median_mm": 18.975,
+      "height_max_mm": 23.54,
+      "candidate_id": "C11"
+    },
+    {
+      "bbox_xywh": [
+        338,
+        274,
+        4,
+        4
+      ],
+      "area_px": 16,
+      "centroid_px": [
+        339.5,
+        275.5
+      ],
+      "table_xy_mm": [
+        201.578,
+        258.584
+      ],
+      "height_median_mm": 17.98,
+      "height_max_mm": 27.466,
+      "candidate_id": "C12"
+    }
+  ]
+}

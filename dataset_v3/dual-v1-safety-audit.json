@@ -1,0 +1,18 @@
+{
+  "invalid_decisions": 0,
+  "policy": "fail-closed; inference never authorizes robot motion",
+  "reason_counts": {
+    "after_grasp is observation-only and cannot plan a new grasp": 33,
+    "camera 'astra' is blocked; held-out support is currently limited to video6": 13,
+    "camera 'realsense' is blocked; held-out support is currently limited to video6": 12,
+    "camera 'video4' is blocked; held-out support is currently limited to video6": 1,
+    "grasp region is unknown": 28,
+    "human approval is required before any robot action": 53
+  },
+  "robot_motion_allowed": 0,
+  "samples": 111,
+  "status_counts": {
+    "blocked": 58,
+    "review_required": 53
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "camera_counts": {
+    "/dev/video4": 57,
+    "/dev/video6": 155,
+    "http://127.0.0.1:8010/astra.mjpg": 139,
+    "http://127.0.0.1:8010/realsense.mjpg": 99
+  },
+  "candidate_records": 450,
+  "config": "vlm_training/config/vlm.yaml",
+  "medicine_counts": {
+    "A": 205,
+    "B": 112,
+    "C": 133
+  },
+  "near_duplicate_candidates": 275,
+  "orientation_counts": {
+    "fallen": 236,
+    "tilted": 4,
+    "unknown": 1,
+    "upright": 209
+  },
+  "phase": "before_grasp",
+  "review_status": {
+    "pending": 450
+  },
+  "session_count_all": 34,
+  "session_count_candidates": 32,
+  "source_annotations": "data/pilot/annotations.jsonl",
+  "source_annotations_sha256": "450c28ebffb8b85129b7af4a56ad15edc63010a3aec1e1b29f1110b7d26836a2",
+  "source_records": 1226,
+  "split_records": {
+    "test": 84,
+    "train": 278,
+    "validation": 88
+  },
+  "split_sessions": {
+    "test": 4,
+    "train": 23,
+    "validation": 5
+  },
+  "warnings": [
+    "All prepared labels remain pending manual review.",
+    "Ceiling-camera frames may contain multiple containers without a target bbox.",
+    "Near-duplicate candidates are kept but are grouped by session into one split.",
+    "graspable, required_action, confidence, and reason are intentionally not trained."
+  ]
+}

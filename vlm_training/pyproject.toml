@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mediflow-vlm-training"
+version = "0.1.0"
+description = "Training-only tooling for the MediFlow SO-ARM101 VLM dataset"
+requires-python = ">=3.11"
+dependencies = [
+  "Flask>=3.1,<4",
+  "Pillow>=10",
+  "PyYAML>=6",
+]
+
+[project.optional-dependencies]
+train = [
+  "accelerate==1.15.0",
+  "bitsandbytes==0.50.2",
+  "datasets==4.8.5",
+  "peft==0.21.0",
+  "transformers==5.17.0",
+  "trl==0.29.1",
+]
+test = ["pytest>=8,<9"]
+
+[project.scripts]
+mediflow-prepare = "mediflow_vlm.prepare_dataset:main"
+mediflow-infer = "mediflow_vlm.infer:main"
+mediflow-evaluate = "mediflow_vlm.evaluate:main"
+mediflow-train = "mediflow_vlm.train_qlora:main"
+mediflow-make-pilot = "mediflow_vlm.make_pilot:main"
+mediflow-review = "mediflow_vlm.review_app:main"
+mediflow-import-capture = "mediflow_vlm.import_capture:main"
+mediflow-prepare-reviewed = "mediflow_vlm.prepare_reviewed:main"
+mediflow-safe-infer = "mediflow_vlm.safe_infer:main"
+mediflow-analyze-action = "mediflow_vlm.analyze_action:main"
+mediflow-audit-safety = "mediflow_vlm.audit_safety:main"
+mediflow-combine-predictions = "mediflow_vlm.combine_predictions:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mediflow_vlm = ["templates/*.html", "static/*.css", "static/*.js"]

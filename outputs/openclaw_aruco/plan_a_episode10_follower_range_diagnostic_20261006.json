@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "status": "RECORDED_ACTION_VS_FOLLOWER_CALIBRATION_ONLY",
+  "target_count": 1098,
+  "unit_body": "degrees",
+  "unit_gripper": "0_to_100",
+  "findings": {
+    "shoulder_pan.pos": {
+      "recorded_min": -21.75824,
+      "recorded_max": -1.90476,
+      "calibrated_min": -118.37363,
+      "calibrated_max": 118.37363,
+      "below_count": 0,
+      "above_count": 0,
+      "maximum_excess": 0.0
+    },
+    "shoulder_lift.pos": {
+      "recorded_min": -98.98901,
+      "recorded_max": 16.52747,
+      "calibrated_min": -101.84615,
+      "calibrated_max": 101.84615,
+      "below_count": 0,
+      "above_count": 0,
+      "maximum_excess": 0.0
+    },
+    "elbow_flex.pos": {
+      "recorded_min": -21.0989,
+      "recorded_max": 93.18681,
+      "calibrated_min": -97.01099,
+      "calibrated_max": 97.01099,
+      "below_count": 0,
+      "above_count": 0,
+      "maximum_excess": 0.0
+    },
+    "wrist_flex.pos": {
+      "recorded_min": 41.58242,
+      "recorded_max": 102.76923,
+      "calibrated_min": -100.61538,
+      "calibrated_max": 100.61538,
+      "below_count": 0,
+      "above_count": 86,
+      "maximum_excess": 2.15385
+    },
+    "wrist_roll.pos": {
+      "recorded_min": -18.02198,
+      "recorded_max": 0.17582,
+      "calibrated_min": -156.35165,
+      "calibrated_max": 156.35165,
+      "below_count": 0,
+      "above_count": 0,
+      "maximum_excess": 0.0
+    },
+    "gripper.pos": {
+      "recorded_min": 6.43185,
+      "recorded_max": 51.37825,
+      "calibrated_min": 0.0,
+      "calibrated_max": 100.0,
+      "below_count": 0,
+      "above_count": 0,
+      "maximum_excess": 0.0
+    }
+  },
+  "violations": {
+    "wrist_flex.pos": {
+      "recorded_min": 41.58242,
+      "recorded_max": 102.76923,
+      "calibrated_min": -100.61538,
+      "calibrated_max": 100.61538,
+      "below_count": 0,
+      "above_count": 86,
+      "maximum_excess": 2.15385
+    }
+  },
+  "interpretation": "LeRobot's degree-mode target conversion does not itself clip to calibrated range; this is not a physical-limit or collision-safety certification.",
+  "blocking_reasons": [
+    "recorded actions exceed current follower calibration range",
+    "actual TCP, workspace, transform, collision and stop path remain unvalidated"
+  ],
+  "motion_authorized": false,
+  "robot_commands_sent": 0
+}

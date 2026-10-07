@@ -1,0 +1,44 @@
+dataset:
+  annotations: data/pilot/annotations.jsonl
+  root: data/pilot
+  output: dataset_v2
+  phase: before_grasp
+  session_gap_seconds: 30
+  split_seed: 101
+  splits:
+    train: 0.70
+    validation: 0.15
+    test: 0.15
+
+labels:
+  medicine:
+    medicine_a: A
+    medicine_b: B
+    medicine_c: C
+  orientation:
+    upright: upright
+    fallen: fallen
+    tilted: tilted
+    not_visible: unknown
+  bins:
+    A: BIN_A
+    B: BIN_B
+    C: BIN_C
+    unknown: NONE
+
+prompt: >-
+  이미지에서 로봇 그리퍼가 접근 중인 약통 하나를 대상으로 약통 종류와 현재 자세를 판단하라.
+  약통 종류는 A, B, C, unknown 중 하나이고 자세는 upright, fallen, tilted, unknown 중 하나이다.
+  반드시 영문 키 medicine_id, orientation, target_bin 세 개만 포함한 JSON 객체를 반환하라.
+  키를 번역하거나 추가·생략하지 마라.
+  target_bin은 A이면 BIN_A, B이면 BIN_B, C이면 BIN_C, unknown이면 NONE이다.
+  예: {"medicine_id":"A","orientation":"upright","target_bin":"BIN_A"}
+
+model:
+  id: Qwen/Qwen3-VL-2B-Instruct
+  cache_dir: work/hf-cache
+  max_new_tokens: 128
+  load_in_4bit: true
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.05

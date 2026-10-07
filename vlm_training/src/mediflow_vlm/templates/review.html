@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MediFlow VLM 데이터 검수</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='review.css') }}">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">메디플로우 · 데이터 품질</p>
+        <h1>VLM 데이터 검수</h1>
+      </div>
+      <div class="local-badge"><span></span> 로컬 전용 · 로봇 연결 없음</div>
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar">
+        <section class="panel progress-panel">
+          <div class="section-title">
+            <h2>검수 진행률</h2>
+            <strong id="progressPercent">0%</strong>
+          </div>
+          <div class="progress-track"><div id="progressBar"></div></div>
+          <div class="stats-grid">
+            <div><span>전체</span><strong id="statTotal">—</strong></div>
+            <div><span>대기</span><strong id="statPending">—</strong></div>
+            <div class="success"><span>승인</span><strong id="statApproved">—</strong></div>
+            <div class="danger"><span>제외</span><strong id="statExcluded">—</strong></div>
+          </div>
+        </section>
+
+        <section class="panel filters">
+          <div class="section-title"><h2>보기 필터</h2><button id="resetFilters" class="text-button">초기화</button></div>
+          <label>상태
+            <select id="statusFilter">
+              <option value="pending">검수 대기</option>
+              <option value="approved">승인됨</option>
+              <option value="excluded">제외됨</option>
+              <option value="all">전체</option>
+            </select>
+          </label>
+          <label>데이터 분할
+            <select id="splitFilter">
+              <option value="all">전체 분할</option>
+              <option value="train">학습</option>
+              <option value="validation">검증</option>
+              <option value="test">테스트</option>
+              <option value="incoming">신규 촬영</option>
+            </select>
+          </label>
+          <label>기존 라벨의 약 종류
+            <select id="medicineFilter">
+              <option value="all">전체 클래스</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="unknown">unknown</option>
+            </select>
+          </label>
+          <label class="toggle-row">
+            <input id="hideDuplicates" type="checkbox" checked>
+            <span>근접 중복 후보 숨기기</span>
+          </label>
+        </section>
+
+        <section class="panel export-panel">
+          <p>승인한 항목만 새 manifest로 내보냅니다. 기존 파일은 변경하지 않습니다.</p>
+          <button id="exportButton" class="secondary wide">승인본 내보내기</button>
+          <p id="exportStatus" class="small-status"></p>
+        </section>
+      </aside>
+
+      <section class="review-stage">
+        <div class="stage-head">
+          <div>
+            <span id="positionLabel" class="counter">— / —</span>
+            <h2 id="sampleId">불러오는 중…</h2>
+          </div>
+          <div class="nav-buttons">
+            <button id="prevButton" class="icon-button" aria-label="이전 이미지">←</button>
+            <button id="nextButton" class="icon-button" aria-label="다음 이미지">→</button>
+          </div>
+        </div>
+
+        <div id="emptyState" class="empty-state hidden">
+          <div class="empty-icon">✓</div>
+          <h2>현재 필터의 검수가 끝났습니다</h2>
+          <p>다른 필터를 선택하거나 승인본을 내보내세요.</p>
+        </div>
+
+        <div id="reviewContent" class="review-content">
+          <div class="image-card">
+            <img id="reviewImage" alt="검수 대상 이미지">
+            <div id="statusRibbon" class="status-ribbon">대기</div>
+          </div>
+          <div class="meta-strip">
+            <span id="splitBadge" class="badge"></span>
+            <span id="cameraBadge" class="badge"></span>
+            <span id="sessionBadge" class="badge"></span>
+            <span id="phaseBadge" class="badge"></span>
+            <span id="resultBadge" class="badge hidden"></span>
+            <span id="duplicateBadge" class="badge warning hidden">근접 중복</span>
+          </div>
+          <div id="trialVideoPanel" class="trial-video hidden">
+            <div><strong>원본 동작 영상</strong><span id="videoOffset"></span></div>
+            <video id="reviewVideo" controls preload="metadata"></video>
+          </div>
+        </div>
+      </section>
+
+      <aside class="decision-panel">
+        <section class="panel sticky-panel">
+          <div class="section-title">
+            <h2>라벨 확인</h2>
+            <span id="changedBadge" class="changed-badge hidden">수정됨</span>
+          </div>
+
+          <fieldset>
+            <legend>약 종류</legend>
+            <div class="segmented four" id="medicineButtons">
+              <button type="button" data-value="A">A</button>
+              <button type="button" data-value="B">B</button>
+              <button type="button" data-value="C">C</button>
+              <button type="button" data-value="unknown">?</button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>현재 자세</legend>
+            <div class="segmented two" id="orientationButtons">
+              <button type="button" data-value="upright">세워짐</button>
+              <button type="button" data-value="fallen">쓰러짐</button>
+              <button type="button" data-value="tilted">기울어짐</button>
+              <button type="button" data-value="unknown">판단 불가</button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>그리퍼 접근/파지 부위 <span class="legend-help">사진 기준</span></legend>
+            <div class="segmented three" id="graspButtons">
+              <button type="button" data-value="lid">뚜껑</button>
+              <button type="button" data-value="body">몸통</button>
+              <button type="button" data-value="unknown">판단 불가</button>
+            </div>
+          </fieldset>
+
+          <div class="bin-preview">
+            <span>목표 바구니</span>
+            <strong id="targetBin">—</strong>
+          </div>
+
+          <label class="note-label">메모 <span>(선택)</span>
+            <textarea id="reviewNote" maxlength="500" rows="3" placeholder="가려짐, 대상 모호함 등"></textarea>
+          </label>
+
+          <div class="primary-actions">
+            <button id="approveButton" class="primary">승인하고 다음 <kbd>Space</kbd></button>
+            <button id="excludeButton" class="danger-button">학습에서 제외 <kbd>X</kbd></button>
+          </div>
+          <button id="pendingButton" class="text-button wide">결정을 대기로 되돌리기</button>
+
+          <div class="shortcuts">
+            <span><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> 약 종류</span>
+            <span><kbd>U</kbd><kbd>F</kbd> 자세</span>
+            <span><kbd>L</kbd><kbd>B</kbd> 파지 부위</span>
+            <span><kbd>←</kbd><kbd>→</kbd> 이동</span>
+          </div>
+          <p id="saveStatus" class="save-status" role="status"></p>
+        </section>
+      </aside>
+    </main>
+
+    <script src="{{ url_for('static', filename='review.js') }}"></script>
+  </body>
+</html>

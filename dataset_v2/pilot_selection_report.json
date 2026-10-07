@@ -1,0 +1,68 @@
+{
+  "purpose": "pipeline-validation-only",
+  "review_status": "preserved from source; pending rows require explicit training override",
+  "selection": {
+    "capture_phase": "before_grasp",
+    "exclude_near_duplicates": true,
+    "orientations": [
+      "fallen",
+      "upright"
+    ]
+  },
+  "splits": {
+    "test": {
+      "excluded": {
+        "near_duplicate_candidate": 50
+      },
+      "medicine_id": {
+        "A": 14,
+        "B": 2,
+        "C": 18
+      },
+      "orientation": {
+        "fallen": 14,
+        "upright": 20
+      },
+      "output": "dataset_v2/pilot_test.jsonl",
+      "selected_samples": 34,
+      "sessions": 4,
+      "source_samples": 84
+    },
+    "train": {
+      "excluded": {
+        "near_duplicate_candidate": 164,
+        "orientation_not_upright_or_fallen": 5
+      },
+      "medicine_id": {
+        "A": 38,
+        "B": 38,
+        "C": 33
+      },
+      "orientation": {
+        "fallen": 74,
+        "upright": 35
+      },
+      "output": "dataset_v2/pilot_train.jsonl",
+      "selected_samples": 109,
+      "sessions": 21,
+      "source_samples": 278
+    },
+    "validation": {
+      "excluded": {
+        "near_duplicate_candidate": 61
+      },
+      "medicine_id": {
+        "A": 25,
+        "C": 2
+      },
+      "orientation": {
+        "fallen": 14,
+        "upright": 13
+      },
+      "output": "dataset_v2/pilot_validation.jsonl",
+      "selected_samples": 27,
+      "sessions": 5,
+      "source_samples": 88
+    }
+  }
+}

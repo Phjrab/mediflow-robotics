@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "status": "READY_FOR_DRY_RUN",
+  "image": "outputs/openclaw_aruco/openclaw_raw_vertical.jpg",
+  "image_sha256": "3c4da9db1097c57928115c583d3a0bd8e9b0488948774acd095a8fe45fc03ca1",
+  "frame_size": {
+    "width": 640,
+    "height": 480
+  },
+  "detected_marker_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "rejected_marker_candidates": 9,
+  "reference": {
+    "required_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "missing_ids": [],
+    "homography_ready": true,
+    "rms_mm": 4e-06
+  },
+  "tasks": {
+    "A": {
+      "identity": "large",
+      "pickup_source": "fixed_alignment_guide",
+      "pickup_pixel": [
+        447.0,
+        243.5
+      ],
+      "pickup_table_xy_mm": [
+        65.635,
+        319.748
+      ],
+      "basket_marker_id": 6,
+      "basket_table_xy_mm": [
+        71.102,
+        127.969
+      ],
+      "robot_base_pickup_xyz_mm": null,
+      "robot_base_basket_xyz_mm": null
+    },
+    "B": {
+      "identity": "medium",
+      "pickup_source": "fixed_alignment_guide",
+      "pickup_pixel": [
+        384.5,
+        243.5
+      ],
+      "pickup_table_xy_mm": [
+        173.313,
+        322.942
+      ],
+      "basket_marker_id": 5,
+      "basket_table_xy_mm": [
+        186.79,
+        130.621
+      ],
+      "robot_base_pickup_xyz_mm": null,
+      "robot_base_basket_xyz_mm": null
+    },
+    "C": {
+      "identity": "small",
+      "pickup_source": "fixed_alignment_guide",
+      "pickup_pixel": [
+        316.5,
+        243.5
+      ],
+      "pickup_table_xy_mm": [
+        292.215,
+        326.47
+      ],
+      "basket_marker_id": 4,
+      "basket_table_xy_mm": [
+        287.35,
+        129.999
+      ],
+      "robot_base_pickup_xyz_mm": null,
+      "robot_base_basket_xyz_mm": null
+    }
+  },
+  "robot_transform_ready": false,
+  "robot_limits_ready": false,
+  "blocked_reasons": [
+    "T_B_W is not calibrated",
+    "robot workspace limits are not defined",
+    "pickup/approach/drop heights are not measured",
+    "fixed pickup guides require bottles to be centered on the marked X positions",
+    "current YOLO model did not detect the bottles in the 2026-10-05 live frame"
+  ],
+  "robot_enabled": false,
+  "motion_authorized": false
+}

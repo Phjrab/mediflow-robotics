@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "status": "READY_FOR_DRY_RUN",
+  "image": "outputs/openclaw_aruco/openclaw_raw_batch_20261005/raw_02.jpg",
+  "image_sha256": "27b7dd37dd20bf2cc3d42e70d5e561f1588abc0b4e531b550694d6f9c521878d",
+  "frame_size": {
+    "width": 640,
+    "height": 480
+  },
+  "detected_marker_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "rejected_marker_candidates": 2,
+  "reference": {
+    "required_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "missing_ids": [],
+    "homography_ready": true,
+    "rms_mm": 4e-06
+  },
+  "bottle_detection": {
+    "method": "hough_cap_circles",
+    "roi_xyxy": [
+      270,
+      170,
+      500,
+      275
+    ],
+    "expected_count": 3,
+    "candidate_count": 3,
+    "fixed_left_to_right_identity": [
+      "C",
+      "B",
+      "A"
+    ],
+    "detections": {
+      "C": {
+        "cap_center_pixel": [
+          313.5,
+          224.5
+        ],
+        "cap_radius_px": 9.6,
+        "identity_basis": "fixed_left_to_right_order_C_B_A"
+      },
+      "B": {
+        "cap_center_pixel": [
+          382.5,
+          231.5
+        ],
+        "cap_radius_px": 14.7,
+        "identity_basis": "fixed_left_to_right_order_C_B_A"
+      },
+      "A": {
+        "cap_center_pixel": [
+          442.5,
+          211.5
+        ],
+        "cap_radius_px": 16.9,
+        "identity_basis": "fixed_left_to_right_order_C_B_A"
+      }
+    },
+    "depth_validated": false
+  },
+  "tasks": {
+    "A": {
+      "identity": "large",
+      "pickup_source": "live_cap_detection_fixed_order_cba",
+      "pickup_pixel": [
+        442.5,
+        211.5
+      ],
+      "pickup_table_xy_mm": [
+        67.448,
+        390.067
+      ],
+      "pickup_coordinate_status": "UNVALIDATED_CAP_PROJECTION",
+      "basket_marker_id": 6,
+      "basket_table_xy_mm": [
+        73.369,
+        136.211
+      ],
+      "robot_base_pickup_xyz_mm": null,
+      "robot_base_basket_xyz_mm": null
+    },
+    "B": {
+      "identity": "medium",
+      "pickup_source": "live_cap_detection_fixed_order_cba",
+      "pickup_pixel": [
+        382.5,
+        231.5
+      ],
+      "pickup_table_xy_mm": [
+        176.481,
+        348.199
+      ],
+      "pickup_coordinate_status": "UNVALIDATED_CAP_PROJECTION",
+      "basket_marker_id": 5,
+      "basket_table_xy_mm": [
+        185.789,
+        131.705
+      ],
+      "robot_base_pickup_xyz_mm": null,
+      "robot_base_basket_xyz_mm": null
+    },
+    "C": {
+      "identity": "small",
+      "pickup_source": "live_cap_detection_fixed_order_cba",
+      "pickup_pixel": [
+        313.5,
+        224.5
+      ],
+      "pickup_table_xy_mm": [
+        299.696,
+        367.376
+      ],
+      "pickup_coordinate_status": "UNVALIDATED_CAP_PROJECTION",
+      "basket_marker_id": 4,
+      "basket_table_xy_mm": [
+        287.237,
+        130.361
+      ],
+      "robot_base_pickup_xyz_mm": null,
+      "robot_base_basket_xyz_mm": null
+    }
+  },
+  "robot_transform_ready": false,
+  "robot_limits_ready": false,
+  "blocked_reasons": [
+    "T_B_W is not calibrated",
+    "robot workspace limits are not defined",
+    "pickup/approach/drop heights are not measured",
+    "bottle identities currently require the fixed visible left-to-right order C, B, A",
+    "RGB cap centers are above the table plane; depth/TCP validation is required before using them as grasp coordinates",
+    "current YOLO model did not detect the bottles in the 2026-10-05 live frame"
+  ],
+  "robot_enabled": false,
+  "motion_authorized": false
+}

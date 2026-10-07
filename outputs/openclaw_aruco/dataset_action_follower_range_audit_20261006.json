@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "status": "DATASET_ACTION_VS_CURRENT_FOLLOWER_CALIBRATION_ONLY",
+  "calibration_source": "Read-only copy of range_min/range_max from Jetson so_follower/so-101.json on 2026-10-06; homing offsets deliberately omitted",
+  "tasks": {
+    "A": {
+      "frames": 32597,
+      "episodes": 60,
+      "joint_findings": {
+        "shoulder_pan.pos": {
+          "observed_min": -45.58242,
+          "observed_max": 7.6044,
+          "calibrated_min": -118.37363,
+          "calibrated_max": 118.37363,
+          "exceeding_frames": 0,
+          "affected_episodes": 0,
+          "maximum_excess": 0.0
+        },
+        "shoulder_lift.pos": {
+          "observed_min": -99.34066,
+          "observed_max": 59.16484,
+          "calibrated_min": -101.84615,
+          "calibrated_max": 101.84615,
+          "exceeding_frames": 0,
+          "affected_episodes": 0,
+          "maximum_excess": 0.0
+        },
+        "elbow_flex.pos": {
+          "observed_min": -96.08791,
+          "observed_max": 97.75824,
+          "calibrated_min": -97.01099,
+          "calibrated_max": 97.01099,
+          "exceeding_frames": 11204,
+          "affected_episodes": 54,
+          "maximum_excess": 0.74725
+        },
+        "wrist_flex.pos": {
+          "observed_min": -18.46154,
+          "observed_max": 103.91209,
+          "calibrated_min": -100.61538,
+          "calibrated_max": 100.61538,
+          "exceeding_frames": 1335,
+          "affected_episodes": 56,
+          "maximum_excess": 3.2967
+        },
+        "wrist_roll.pos": {
+          "observed_min": -41.14286,
+          "observed_max": 6.94506,
+          "calibrated_min": -156.35165,
+          "calibrated_max": 156.35165,
+          "exceeding_frames": 0,
+          "affected_episodes": 0,
+          "maximum_excess": 0.0
+        },
+        "gripper.pos": {
+          "observed_min": 0.0,
+          "observed_max": 66.76876,
+          "calibrated_min": 0.0,
+          "calibrated_max": 100.0,
+          "exceeding_frames": 0,
+          "affected_episodes": 0,
+          "maximum_excess": 0.0
+        }
+      }
+    },
+    "B": {
+      "frames": 27613,
+      "episodes": 60,
+      "joint_findings": {
+        "shoulder_pan.pos": {
+          "observed_min": -46.9011,
+          "observed_max": 43.64835,
+          "calibrated_min": -118.37363,
+          "calibrated_max": 118.37363,
+          "exceeding_frames": 0,
+          "affected_episodes": 0,
+          "maximum_excess": 0.0
+        },
+        "shoulder_lift.pos": {
+          "observed_min": -99.34066,
+          "observed_max": 80.26373,
+          "calibrated_min": -101.84615,
+          "calibrated_max": 101.84615,
+          "exceeding_frames": 0,
+          "affected_episodes": 0,
+          "maximum_excess": 0.0
+        },
+        "elbow_flex.pos": {
+          "observed_min": -96.0,
+          "observed_max": 97.67033,
+          "calibrated_min": -97.01099,
+          "calibrated_max": 97.01099,
+          "exceeding_frames": 3665,
+          "affected_episodes": 45,
+          "maximum_excess": 0.65934
+        },
+        "wrist_flex.pos": {
+          "observed_min": -17.23077,
+          "observed_max": 103.73627,
+          "calibrated_min": -100.61538,
+          "calibrated_max": 100.61538,
+          "exceeding_frames": 1432,
+          "affected_episodes": 55,
+          "maximum_excess": 3.12088
+        },
+        "wrist_roll.pos": {
+          "observed_min": -36.48352,
+          "observed_max": 45.62637,
+          "calibrated_min": -156.35165,
+          "calibrated_max": 156.35165,
+          "exceeding_frames": 0,
+          "affected_episodes": 0,
+          "maximum_excess": 0.0
+        },
+        "gripper.pos": {
+          "observed_min": 0.0,
+          "observed_max": 92.11332,
+          "calibrated_min": 0.0,
+          "calibrated_max": 100.0,
+          "exceeding_frames": 0,
+          "affected_episodes": 0,
+          "maximum_excess": 0.0
+        }
+      }
+    },
+    "C": {
+      "frames": 28966,
+      "episodes": 60,
+      "joint_findings": {
+        "shoulder_pan.pos": {
+          "observed_min": -30.63736,
+          "observed_max": 19.82417,
+          "calibrated_min": -118.37363,
+          "calibrated_max": 118.37363,
+          "exceeding_frames": 0,
+          "affected_episodes": 0,
+          "maximum_excess": 0.0
+        },
+        "shoulder_lift.pos": {
+          "observed_min": -99.51649,
+          "observed_max": 72.17583,
+          "calibrated_min": -101.84615,
+          "calibrated_max": 101.84615,
+          "exceeding_frames": 0,
+          "affected_episodes": 0,
+          "maximum_excess": 0.0
+        },
+        "elbow_flex.pos": {
+          "observed_min": -96.0,
+          "observed_max": 97.58242,
+          "calibrated_min": -97.01099,
+          "calibrated_max": 97.01099,
+          "exceeding_frames": 47,
+          "affected_episodes": 3,
+          "maximum_excess": 0.57143
+        },
+        "wrist_flex.pos": {
+          "observed_min": -65.58242,
+          "observed_max": 104.17583,
+          "calibrated_min": -100.61538,
+          "calibrated_max": 100.61538,
+          "exceeding_frames": 1341,
+          "affected_episodes": 60,
+          "maximum_excess": 3.56044
+        },
+        "wrist_roll.pos": {
+          "observed_min": -48.0,
+          "observed_max": 32.52747,
+          "calibrated_min": -156.35165,
+          "calibrated_max": 156.35165,
+          "exceeding_frames": 0,
+          "affected_episodes": 0,
+          "maximum_excess": 0.0
+        },
+        "gripper.pos": {
+          "observed_min": 0.0,
+          "observed_max": 90.27565,
+          "calibrated_min": 0.0,
+          "calibrated_max": 100.0,
+          "exceeding_frames": 0,
+          "affected_episodes": 0,
+          "maximum_excess": 0.0
+        }
+      }
+    }
+  },
+  "interpretation": "These are recorded leader actions compared with today's follower calibration, not a claim that past recordings were physically invalid. Degree-mode conversion is not clipped to this range by LeRobot.",
+  "motion_authorized": false,
+  "robot_commands_sent": 0
+}

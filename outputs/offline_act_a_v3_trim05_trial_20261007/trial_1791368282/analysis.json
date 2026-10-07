@@ -1,0 +1,90 @@
+{
+  "samples": 61,
+  "last_sample_s": 2.704572,
+  "initial_state": {
+    "shoulder_pan.pos": -4.615384615384615,
+    "shoulder_lift.pos": -98.94505494505495,
+    "elbow_flex.pos": 96.48351648351648,
+    "wrist_flex.pos": 54.10989010989011,
+    "wrist_roll.pos": -6.637362637362638,
+    "gripper.pos": 4.957160342717258
+  },
+  "joints": {
+    "shoulder_pan.pos": {
+      "measured_min": -5.318681318681318,
+      "measured_max": -4.615384615384615,
+      "final_measured": -5.230769230769231,
+      "clipped_first20_count": 0,
+      "first20_count": 61,
+      "preclamp_gap_first20_p95": 0.4524106402973551,
+      "next_observation_vs_sent_first20_p95": 0.3688941567808717
+    },
+    "shoulder_lift.pos": {
+      "measured_min": -98.94505494505495,
+      "measured_max": -97.97802197802197,
+      "final_measured": -97.97802197802197,
+      "clipped_first20_count": 0,
+      "first20_count": 61,
+      "preclamp_gap_first20_p95": 0.6769150954026486,
+      "next_observation_vs_sent_first20_p95": 0.5933986118861652
+    },
+    "elbow_flex.pos": {
+      "measured_min": 87.78021978021978,
+      "measured_max": 96.48351648351648,
+      "final_measured": 87.78021978021978,
+      "clipped_first20_count": 15,
+      "first20_count": 61,
+      "preclamp_gap_first20_p95": 11.978773850661057,
+      "next_observation_vs_sent_first20_p95": 4.6571428571428575
+    },
+    "wrist_flex.pos": {
+      "measured_min": 54.10989010989011,
+      "measured_max": 58.065934065934066,
+      "final_measured": 58.065934065934066,
+      "clipped_first20_count": 0,
+      "first20_count": 61,
+      "preclamp_gap_first20_p95": 2.9601610204675666,
+      "next_observation_vs_sent_first20_p95": 1.623897284203831
+    },
+    "wrist_roll.pos": {
+      "measured_min": -6.637362637362638,
+      "measured_max": -6.1098901098901095,
+      "final_measured": -6.1098901098901095,
+      "clipped_first20_count": 0,
+      "first20_count": 61,
+      "preclamp_gap_first20_p95": 0.467231897207407,
+      "next_observation_vs_sent_first20_p95": 0.3001989301744392
+    },
+    "gripper.pos": {
+      "measured_min": 4.651162790697675,
+      "measured_max": 4.957160342717258,
+      "final_measured": 4.651162790697675,
+      "clipped_first20_count": 0,
+      "first20_count": 61,
+      "preclamp_gap_first20_p95": 0.3227427960025784,
+      "next_observation_vs_sent_first20_p95": 0.2064637262351363
+    }
+  },
+  "timing": {
+    "observation_s": {
+      "median_s": 0.001996,
+      "p95_s": 0.002225,
+      "max_s": 0.002345
+    },
+    "process_s": {
+      "median_s": 7.9e-05,
+      "p95_s": 8.7e-05,
+      "max_s": 0.002225
+    },
+    "infer_and_send_s": {
+      "median_s": 0.002046,
+      "p95_s": 0.004447,
+      "max_s": 0.724322
+    },
+    "loop_work_s": {
+      "median_s": 0.004163,
+      "p95_s": 0.006517,
+      "max_s": 0.726788
+    }
+  }
+}

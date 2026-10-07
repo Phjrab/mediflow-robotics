@@ -1,0 +1,556 @@
+{
+  "schema_version": 1,
+  "status": "ALL_EPISODES_SEARCHED",
+  "motion_authorized": false,
+  "tasks": {
+    "A": {
+      "searched_episodes": 57,
+      "matching_episodes": 0,
+      "best_candidates": [
+        {
+          "episode": 10,
+          "score": 1.5757,
+          "pixel_error": 2.236,
+          "pixel_delta_current_minus_recorded": [
+            -1.0,
+            2.0
+          ],
+          "recorded_pixel": [
+            443.5,
+            209.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": 2.1099,
+            "shoulder_lift.pos": 0.3517,
+            "elbow_flex.pos": -1.4066,
+            "wrist_flex.pos": 3.6044,
+            "wrist_roll.pos": -8.8791,
+            "gripper.pos": 1.3464
+          },
+          "pose_violations": {
+            "wrist_roll.pos": {
+              "delta": -8.8791,
+              "limit": 3.0
+            }
+          },
+          "gate_match": false
+        },
+        {
+          "episode": 8,
+          "score": 1.8459,
+          "pixel_error": 2.236,
+          "pixel_delta_current_minus_recorded": [
+            -1.0,
+            2.0
+          ],
+          "recorded_pixel": [
+            443.5,
+            209.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": 6.2418,
+            "shoulder_lift.pos": -0.1758,
+            "elbow_flex.pos": -1.9341,
+            "wrist_flex.pos": 8.8791,
+            "wrist_roll.pos": -7.5604,
+            "gripper.pos": -3.4272
+          },
+          "pose_violations": {
+            "shoulder_pan.pos": {
+              "delta": 6.2418,
+              "limit": 3.0
+            },
+            "wrist_flex.pos": {
+              "delta": 8.8791,
+              "limit": 5.0
+            },
+            "wrist_roll.pos": {
+              "delta": -7.5604,
+              "limit": 3.0
+            }
+          },
+          "gate_match": false
+        },
+        {
+          "episode": 39,
+          "score": 1.8988,
+          "pixel_error": 0.0,
+          "pixel_delta_current_minus_recorded": [
+            0.0,
+            0.0
+          ],
+          "recorded_pixel": [
+            442.5,
+            211.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": 2.3736,
+            "shoulder_lift.pos": -0.7033,
+            "elbow_flex.pos": -4.6593,
+            "wrist_flex.pos": 18.8132,
+            "wrist_roll.pos": -5.6264,
+            "gripper.pos": 4.6512
+          },
+          "pose_violations": {
+            "elbow_flex.pos": {
+              "delta": -4.6593,
+              "limit": 3.0
+            },
+            "wrist_flex.pos": {
+              "delta": 18.8132,
+              "limit": 5.0
+            },
+            "wrist_roll.pos": {
+              "delta": -5.6264,
+              "limit": 3.0
+            }
+          },
+          "gate_match": false
+        },
+        {
+          "episode": 57,
+          "score": 1.9081,
+          "pixel_error": 2.236,
+          "pixel_delta_current_minus_recorded": [
+            1.0,
+            2.0
+          ],
+          "recorded_pixel": [
+            441.5,
+            209.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": 0.5275,
+            "shoulder_lift.pos": -0.5275,
+            "elbow_flex.pos": -4.6593,
+            "wrist_flex.pos": 17.8462,
+            "wrist_roll.pos": -2.1099,
+            "gripper.pos": 2.2644
+          },
+          "pose_violations": {
+            "elbow_flex.pos": {
+              "delta": -4.6593,
+              "limit": 3.0
+            },
+            "wrist_flex.pos": {
+              "delta": 17.8462,
+              "limit": 5.0
+            }
+          },
+          "gate_match": false
+        },
+        {
+          "episode": 33,
+          "score": 1.9806,
+          "pixel_error": 1.0,
+          "pixel_delta_current_minus_recorded": [
+            0.0,
+            1.0
+          ],
+          "recorded_pixel": [
+            442.5,
+            210.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": 1.9341,
+            "shoulder_lift.pos": -0.6154,
+            "elbow_flex.pos": -4.6593,
+            "wrist_flex.pos": 17.6703,
+            "wrist_roll.pos": -5.8022,
+            "gripper.pos": 6.2424
+          },
+          "pose_violations": {
+            "elbow_flex.pos": {
+              "delta": -4.6593,
+              "limit": 3.0
+            },
+            "wrist_flex.pos": {
+              "delta": 17.6703,
+              "limit": 5.0
+            },
+            "wrist_roll.pos": {
+              "delta": -5.8022,
+              "limit": 3.0
+            },
+            "gripper.pos": {
+              "delta": 6.2424,
+              "limit": 5.0
+            }
+          },
+          "gate_match": false
+        }
+      ]
+    },
+    "B": {
+      "searched_episodes": 57,
+      "matching_episodes": 0,
+      "best_candidates": [
+        {
+          "episode": 30,
+          "score": 3.5538,
+          "pixel_error": 18.439,
+          "pixel_delta_current_minus_recorded": [
+            12.0,
+            14.0
+          ],
+          "recorded_pixel": [
+            370.5,
+            217.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": -6.8571,
+            "shoulder_lift.pos": 0.0879,
+            "elbow_flex.pos": -2.2857,
+            "wrist_flex.pos": 7.033,
+            "wrist_roll.pos": 1.3187,
+            "gripper.pos": 5.8752
+          },
+          "pose_violations": {
+            "shoulder_pan.pos": {
+              "delta": -6.8571,
+              "limit": 3.0
+            },
+            "wrist_flex.pos": {
+              "delta": 7.033,
+              "limit": 5.0
+            },
+            "gripper.pos": {
+              "delta": 5.8752,
+              "limit": 5.0
+            }
+          },
+          "gate_match": false
+        },
+        {
+          "episode": 11,
+          "score": 3.645,
+          "pixel_error": 14.866,
+          "pixel_delta_current_minus_recorded": [
+            -10.0,
+            11.0
+          ],
+          "recorded_pixel": [
+            392.5,
+            220.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": -2.022,
+            "shoulder_lift.pos": -0.7033,
+            "elbow_flex.pos": -4.7473,
+            "wrist_flex.pos": 17.9341,
+            "wrist_roll.pos": 4.3077,
+            "gripper.pos": 5.508
+          },
+          "pose_violations": {
+            "elbow_flex.pos": {
+              "delta": -4.7473,
+              "limit": 3.0
+            },
+            "wrist_flex.pos": {
+              "delta": 17.9341,
+              "limit": 5.0
+            },
+            "wrist_roll.pos": {
+              "delta": 4.3077,
+              "limit": 3.0
+            },
+            "gripper.pos": {
+              "delta": 5.508,
+              "limit": 5.0
+            }
+          },
+          "gate_match": false
+        },
+        {
+          "episode": 7,
+          "score": 3.9584,
+          "pixel_error": 10.05,
+          "pixel_delta_current_minus_recorded": [
+            -10.0,
+            1.0
+          ],
+          "recorded_pixel": [
+            392.5,
+            230.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": 0.7912,
+            "shoulder_lift.pos": -0.8791,
+            "elbow_flex.pos": -4.7473,
+            "wrist_flex.pos": 18.989,
+            "wrist_roll.pos": 9.4945,
+            "gripper.pos": -20.4406
+          },
+          "pose_violations": {
+            "elbow_flex.pos": {
+              "delta": -4.7473,
+              "limit": 3.0
+            },
+            "wrist_flex.pos": {
+              "delta": 18.989,
+              "limit": 5.0
+            },
+            "wrist_roll.pos": {
+              "delta": 9.4945,
+              "limit": 3.0
+            },
+            "gripper.pos": {
+              "delta": -20.4406,
+              "limit": 5.0
+            }
+          },
+          "gate_match": false
+        },
+        {
+          "episode": 46,
+          "score": 4.0964,
+          "pixel_error": 30.414,
+          "pixel_delta_current_minus_recorded": [
+            21.0,
+            22.0
+          ],
+          "recorded_pixel": [
+            361.5,
+            209.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": -1.1429,
+            "shoulder_lift.pos": -0.3516,
+            "elbow_flex.pos": 1.0549,
+            "wrist_flex.pos": 0.7033,
+            "wrist_roll.pos": 1.3187,
+            "gripper.pos": -0.7956
+          },
+          "pose_violations": {},
+          "gate_match": false
+        },
+        {
+          "episode": 50,
+          "score": 4.3184,
+          "pixel_error": 27.659,
+          "pixel_delta_current_minus_recorded": [
+            21.0,
+            18.0
+          ],
+          "recorded_pixel": [
+            361.5,
+            213.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": 1.1429,
+            "shoulder_lift.pos": -0.4396,
+            "elbow_flex.pos": -2.4615,
+            "wrist_flex.pos": 7.6484,
+            "wrist_roll.pos": 3.3407,
+            "gripper.pos": -0.8568
+          },
+          "pose_violations": {
+            "wrist_flex.pos": {
+              "delta": 7.6484,
+              "limit": 5.0
+            },
+            "wrist_roll.pos": {
+              "delta": 3.3407,
+              "limit": 3.0
+            }
+          },
+          "gate_match": false
+        }
+      ]
+    },
+    "C": {
+      "searched_episodes": 59,
+      "matching_episodes": 0,
+      "best_candidates": [
+        {
+          "episode": 13,
+          "score": 1.808,
+          "pixel_error": 7.616,
+          "pixel_delta_current_minus_recorded": [
+            -7.0,
+            3.0
+          ],
+          "recorded_pixel": [
+            320.5,
+            221.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": 1.2308,
+            "shoulder_lift.pos": -0.0,
+            "elbow_flex.pos": 1.2308,
+            "wrist_flex.pos": -5.011,
+            "wrist_roll.pos": -3.7802,
+            "gripper.pos": 6.0588
+          },
+          "pose_violations": {
+            "wrist_flex.pos": {
+              "delta": -5.011,
+              "limit": 5.0
+            },
+            "wrist_roll.pos": {
+              "delta": -3.7802,
+              "limit": 3.0
+            },
+            "gripper.pos": {
+              "delta": 6.0588,
+              "limit": 5.0
+            }
+          },
+          "gate_match": false
+        },
+        {
+          "episode": 4,
+          "score": 1.9108,
+          "pixel_error": 2.236,
+          "pixel_delta_current_minus_recorded": [
+            -2.0,
+            1.0
+          ],
+          "recorded_pixel": [
+            315.5,
+            223.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": 9.6703,
+            "shoulder_lift.pos": 0.1758,
+            "elbow_flex.pos": 2.1099,
+            "wrist_flex.pos": -9.2308,
+            "wrist_roll.pos": -2.1978,
+            "gripper.pos": 5.3244
+          },
+          "pose_violations": {
+            "shoulder_pan.pos": {
+              "delta": 9.6703,
+              "limit": 3.0
+            },
+            "wrist_flex.pos": {
+              "delta": -9.2308,
+              "limit": 5.0
+            },
+            "gripper.pos": {
+              "delta": 5.3244,
+              "limit": 5.0
+            }
+          },
+          "gate_match": false
+        },
+        {
+          "episode": 44,
+          "score": 1.9121,
+          "pixel_error": 7.616,
+          "pixel_delta_current_minus_recorded": [
+            -3.0,
+            -7.0
+          ],
+          "recorded_pixel": [
+            316.5,
+            231.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": 3.7802,
+            "shoulder_lift.pos": -0.0879,
+            "elbow_flex.pos": 1.5824,
+            "wrist_flex.pos": -6.9451,
+            "wrist_roll.pos": 1.1429,
+            "gripper.pos": 6.3035
+          },
+          "pose_violations": {
+            "shoulder_pan.pos": {
+              "delta": 3.7802,
+              "limit": 3.0
+            },
+            "wrist_flex.pos": {
+              "delta": -6.9451,
+              "limit": 5.0
+            },
+            "gripper.pos": {
+              "delta": 6.3035,
+              "limit": 5.0
+            }
+          },
+          "gate_match": false
+        },
+        {
+          "episode": 14,
+          "score": 2.0071,
+          "pixel_error": 7.616,
+          "pixel_delta_current_minus_recorded": [
+            -7.0,
+            -3.0
+          ],
+          "recorded_pixel": [
+            320.5,
+            227.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": -3.956,
+            "shoulder_lift.pos": 0.2637,
+            "elbow_flex.pos": 1.3187,
+            "wrist_flex.pos": -5.6264,
+            "wrist_roll.pos": -4.4835,
+            "gripper.pos": 5.5692
+          },
+          "pose_violations": {
+            "shoulder_pan.pos": {
+              "delta": -3.956,
+              "limit": 3.0
+            },
+            "wrist_flex.pos": {
+              "delta": -5.6264,
+              "limit": 5.0
+            },
+            "wrist_roll.pos": {
+              "delta": -4.4835,
+              "limit": 3.0
+            },
+            "gripper.pos": {
+              "delta": 5.5692,
+              "limit": 5.0
+            }
+          },
+          "gate_match": false
+        },
+        {
+          "episode": 18,
+          "score": 2.0243,
+          "pixel_error": 5.385,
+          "pixel_delta_current_minus_recorded": [
+            -5.0,
+            -2.0
+          ],
+          "recorded_pixel": [
+            318.5,
+            226.5
+          ],
+          "pose_deltas": {
+            "shoulder_pan.pos": 3.5165,
+            "shoulder_lift.pos": -0.0,
+            "elbow_flex.pos": 2.3736,
+            "wrist_flex.pos": -10.9011,
+            "wrist_roll.pos": 5.011,
+            "gripper.pos": 5.9364
+          },
+          "pose_violations": {
+            "shoulder_pan.pos": {
+              "delta": 3.5165,
+              "limit": 3.0
+            },
+            "wrist_flex.pos": {
+              "delta": -10.9011,
+              "limit": 5.0
+            },
+            "wrist_roll.pos": {
+              "delta": 5.011,
+              "limit": 3.0
+            },
+            "gripper.pos": {
+              "delta": 5.9364,
+              "limit": 5.0
+            }
+          },
+          "gate_match": false
+        }
+      ]
+    }
+  }
+}

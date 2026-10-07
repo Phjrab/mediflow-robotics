@@ -1,0 +1,177 @@
+{
+  "approved_eligible_before_dedup": 844,
+  "dedup_rule": {
+    "hash": "64-bit difference hash",
+    "max_hamming_distance": 2,
+    "scope": "same session, capture phase, and exact four-field label"
+  },
+  "excluded_before_dedup": {
+    "capture_phase:after_place": 22,
+    "capture_phase:grasping": 102,
+    "orientation:tilted": 2,
+    "review_status:excluded": 5,
+    "review_status:pending": 275
+  },
+  "final": {
+    "camera": {
+      "astra": 113,
+      "realsense": 110,
+      "video4": 43,
+      "video6": 319
+    },
+    "capture_phase": {
+      "after_grasp": 202,
+      "before_grasp": 383
+    },
+    "fields": {
+      "grasp_region": {
+        "body": 324,
+        "lid": 144,
+        "unknown": 117
+      },
+      "medicine_id": {
+        "A": 200,
+        "B": 218,
+        "C": 167
+      },
+      "orientation": {
+        "fallen": 304,
+        "upright": 281
+      },
+      "target_bin": {
+        "BIN_A": 200,
+        "BIN_B": 218,
+        "BIN_C": 167
+      }
+    },
+    "samples": 585,
+    "sessions": 178
+  },
+  "generated_at": "2026-09-25T08:58:22.009065+00:00",
+  "near_duplicates_removed": 259,
+  "review_summary": {
+    "approved": 970,
+    "approved_by_split": {
+      "incoming": 800,
+      "test": 34,
+      "train": 109,
+      "validation": 27
+    },
+    "excluded": 5,
+    "pending": 275,
+    "reviewed": 975,
+    "total": 1250
+  },
+  "session_overlap": {
+    "test:train": [],
+    "test:validation": [],
+    "train:validation": []
+  },
+  "splits": {
+    "test": {
+      "camera": {
+        "astra": 13,
+        "realsense": 12,
+        "video4": 1,
+        "video6": 85
+      },
+      "capture_phase": {
+        "after_grasp": 33,
+        "before_grasp": 78
+      },
+      "fields": {
+        "grasp_region": {
+          "body": 68,
+          "lid": 21,
+          "unknown": 22
+        },
+        "medicine_id": {
+          "A": 43,
+          "B": 32,
+          "C": 36
+        },
+        "orientation": {
+          "fallen": 65,
+          "upright": 46
+        },
+        "target_bin": {
+          "BIN_A": 43,
+          "BIN_B": 32,
+          "BIN_C": 36
+        }
+      },
+      "samples": 111,
+      "sessions": 24
+    },
+    "train": {
+      "camera": {
+        "astra": 85,
+        "realsense": 85,
+        "video4": 26,
+        "video6": 179
+      },
+      "capture_phase": {
+        "after_grasp": 151,
+        "before_grasp": 224
+      },
+      "fields": {
+        "grasp_region": {
+          "body": 196,
+          "lid": 103,
+          "unknown": 76
+        },
+        "medicine_id": {
+          "A": 120,
+          "B": 153,
+          "C": 102
+        },
+        "orientation": {
+          "fallen": 184,
+          "upright": 191
+        },
+        "target_bin": {
+          "BIN_A": 120,
+          "BIN_B": 153,
+          "BIN_C": 102
+        }
+      },
+      "samples": 375,
+      "sessions": 131
+    },
+    "validation": {
+      "camera": {
+        "astra": 15,
+        "realsense": 13,
+        "video4": 16,
+        "video6": 55
+      },
+      "capture_phase": {
+        "after_grasp": 18,
+        "before_grasp": 81
+      },
+      "fields": {
+        "grasp_region": {
+          "body": 60,
+          "lid": 20,
+          "unknown": 19
+        },
+        "medicine_id": {
+          "A": 37,
+          "B": 33,
+          "C": 29
+        },
+        "orientation": {
+          "fallen": 55,
+          "upright": 44
+        },
+        "target_bin": {
+          "BIN_A": 37,
+          "BIN_B": 33,
+          "BIN_C": 29
+        }
+      },
+      "samples": 99,
+      "sessions": 23
+    }
+  }
+}

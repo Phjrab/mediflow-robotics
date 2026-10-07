@@ -1,0 +1,31 @@
+{
+  "baseline_records": 1226,
+  "classes": {
+    "A": 201,
+    "B": 440,
+    "C": 159
+  },
+  "grasp_regions": {
+    "body": 535,
+    "lid": 265
+  },
+  "incoming_ids": [
+    "scene_001227",
+    "scene_002041"
+  ],
+  "incoming_records": 800,
+  "orientations": {
+    "fallen": 362,
+    "upright": 438
+  },
+  "phases": {
+    "after_grasp": 328,
+    "after_place": 22,
+    "before_grasp": 348,
+    "grasping": 102
+  },
+  "review_manifest_records": 1250,
+  "staged_records": 2026,
+  "video_trials": 102,
+  "videos_copied": 102
+}
