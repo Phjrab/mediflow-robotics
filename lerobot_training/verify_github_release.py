@@ -1,6 +1,7 @@
 """Read-only check of uploaded asset sizes and GitHub-reported SHA-256."""
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -29,6 +30,9 @@ def main():
             failures.append({"file": expected["file"], "error": "size mismatch"})
         elif row.get("digest") != "sha256:" + expected["sha256"]:
             failures.append({"file": expected["file"], "error": "digest missing/mismatch"})
+    inventory = actual.get(args.manifest.name)
+    if inventory is None or inventory.get("digest") != "sha256:" + hashlib.sha256(args.manifest.read_bytes()).hexdigest():
+        failures.append({"file": args.manifest.name, "error": "inventory missing/digest mismatch"})
     print(json.dumps({"repo": repo, "tag": args.tag, "draft": release["draft"],
                       "expected_assets": len(manifest["assets"]),
                       "remote_assets": len(actual), "failures": failures},

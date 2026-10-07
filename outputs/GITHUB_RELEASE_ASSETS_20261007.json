@@ -1,0 +1,165 @@
+{
+  "date_kst": "2026-10-07",
+  "repo": "Phjrab/mediflow-robotics",
+  "uploaded": true,
+  "assets": [
+    {
+      "file": "so101_pilot_dataset_ready.tar.gz",
+      "bytes": 89796787,
+      "sha256": "336ed0df289c9a7cef5d1fde7e10533df788e4153bb487cb59ee177c05e074fb",
+      "sources": [
+        "so101_pilot_dataset_ready.tar.gz"
+      ]
+    },
+    {
+      "file": "mediflow-original-capture-data-20261007.tar.gz",
+      "bytes": 296569987,
+      "sha256": "8551d5405b6dad1a03a650051b8604ef7f1808c3b2538b0906d2cde2470c466a",
+      "files": 2131,
+      "sources": [
+        "data"
+      ]
+    },
+    {
+      "file": "dataset-medicine_a_to_basket_a_3cam_v2_20261002_173846.tar.gz",
+      "bytes": 1238367233,
+      "sha256": "37e5105f348aa84fd23bc3617ed663c5f4eb3b65877b4e2c5f4f4f4e8997d85f",
+      "files": 12,
+      "sources": [
+        "work/lerobot_datasets/Supermassive111/Supermassive111_medicine_a_to_basket_a_3cam_v2_20261002_173846"
+      ]
+    },
+    {
+      "file": "dataset-medicine_a_to_basket_a_3cam_v3_48episodes_20261006.tar.gz",
+      "bytes": 1237979199,
+      "sha256": "0379ed37ff62551158fa19306827688e19b6a084b87efdc908d0a99874fd1099",
+      "files": 13,
+      "sources": [
+        "work/lerobot_datasets/Supermassive111/Supermassive111_medicine_a_to_basket_a_3cam_v3_48episodes_20261006"
+      ]
+    },
+    {
+      "file": "dataset-medicine_a_to_basket_a_3cam_v3_trim05_20261006.tar.gz",
+      "bytes": 1238040265,
+      "sha256": "f92982944818ce914bcb6d8a913d2499c11a0c0c0ca32819a71607c23ea99dd9",
+      "files": 13,
+      "sources": [
+        "work/lerobot_datasets/Supermassive111/Supermassive111_medicine_a_to_basket_a_3cam_v3_trim05_20261006"
+      ]
+    },
+    {
+      "file": "dataset-medicine_b_to_basket_b_3cam_v1_20260928_203749.tar.gz",
+      "bytes": 973153219,
+      "sha256": "aaed601fb6b5f04f910106cca9c7aca384c7c810ffc272a728d57e1c2969ac05",
+      "files": 11,
+      "sources": [
+        "work/lerobot_datasets/Supermassive111/Supermassive111_medicine_b_to_basket_b_3cam_v1_20260928_203749"
+      ]
+    },
+    {
+      "file": "dataset-medicine_a_to_basket_a_3cam_v1_20260928_211312.tar.gz",
+      "bytes": 969918125,
+      "sha256": "4b26a665f1d9b9d4e70ce6e6a4cc69ba0fe73cc1b01817a16d51d10c77cd625d",
+      "files": 11,
+      "sources": [
+        "work/lerobot_datasets/Supermassive111/medicine_a_to_basket_a_3cam_v1_20260928_211312"
+      ]
+    },
+    {
+      "file": "dataset-medicine_c_to_basket_c_3cam_test_20260928_154245.tar.gz",
+      "bytes": 993344325,
+      "sha256": "4af0d1a7798a993a05016f4d8f950355b2d7c85c975998324aa1cbf9470ab959",
+      "files": 12,
+      "sources": [
+        "work/lerobot_datasets/Supermassive111/medicine_c_to_basket_c_3cam_test_20260928_154245"
+      ]
+    },
+    {
+      "file": "model-act_a_3cam_10000_20260928_214354-step010000.tar.gz",
+      "bytes": 191725230,
+      "sha256": "be0c69345bcf3e49322b11f5f52ebb63f72b73ec3a94a9247c7b326d6b92a43d",
+      "files": 7,
+      "sources": [
+        "work/lerobot_outputs/act_a_3cam_10000_20260928_214354/checkpoints/010000/pretrained_model"
+      ],
+      "step": 10000,
+      "complete_100k": false
+    },
+    {
+      "file": "model-act_a_v2_3cam_100k_20261002-step100000.tar.gz",
+      "bytes": 191806007,
+      "sha256": "6adddc6449318c6c370d647dac265c52151b724df7ad75cded7a0c03431a90e8",
+      "files": 7,
+      "sources": [
+        "work/lerobot_outputs/act_a_v2_3cam_100k_20261002/checkpoints/100000/pretrained_model"
+      ],
+      "step": 100000,
+      "complete_100k": true
+    },
+    {
+      "file": "model-act_a_v3_48episodes_3cam_100k_20261006-step075000.tar.gz",
+      "bytes": 191792558,
+      "sha256": "fb5629c8bf43735cb594cabea5b832a0cb289fd56013feabd7967968c0fc228a",
+      "files": 7,
+      "sources": [
+        "work/lerobot_outputs/act_a_v3_48episodes_3cam_100k_20261006/checkpoints/075000/pretrained_model"
+      ],
+      "step": 75000,
+      "complete_100k": false
+    },
+    {
+      "file": "model-act_a_v3_trim05_3cam_100k_20261006-step100000.tar.gz",
+      "bytes": 191804088,
+      "sha256": "0645992b6da39681091a85e6fe8b5ffe1c141d5b07688f3621d1769ee5a0be0f",
+      "files": 7,
+      "sources": [
+        "work/lerobot_outputs/act_a_v3_trim05_3cam_100k_20261006/checkpoints/100000/pretrained_model"
+      ],
+      "step": 100000,
+      "complete_100k": true
+    },
+    {
+      "file": "model-act_b_3cam_10000_20260928_214354-step010000.tar.gz",
+      "bytes": 191725154,
+      "sha256": "c4a35623d4aa31202a76f18a1035a4c483cb60d58d0269dfdac71718d77a4cc2",
+      "files": 7,
+      "sources": [
+        "work/lerobot_outputs/act_b_3cam_10000_20260928_214354/checkpoints/010000/pretrained_model"
+      ],
+      "step": 10000,
+      "complete_100k": false
+    },
+    {
+      "file": "model-act_c_3cam_10000_20260928_163839-step010000.tar.gz",
+      "bytes": 191730191,
+      "sha256": "408536dff55a0aa7974bb17f579954b9f59a45556447e5cfde06d000dafff56a",
+      "files": 7,
+      "sources": [
+        "work/lerobot_outputs/act_c_3cam_10000_20260928_163839/checkpoints/010000/pretrained_model"
+      ],
+      "step": 10000,
+      "complete_100k": false
+    },
+    {
+      "file": "models-vlm-adapters-20261007.tar.gz",
+      "bytes": 428322120,
+      "sha256": "fe3f9a2a8eac48f6fe4d35255013b53c39997416add82a2ce997a1dbe4e29b27",
+      "files": 93,
+      "sources": [
+        "work/qwen3-vl-2b-mediflow-action-v1-20260926/final_adapter",
+        "work/qwen3-vl-2b-mediflow-grasp-v1-20260926/final_adapter",
+        "work/qwen3-vl-2b-mediflow-pilot-lora/final_adapter",
+        "work/qwen3-vl-2b-mediflow-pilot-lora-3epoch/final_adapter",
+        "work/qwen3-vl-2b-mediflow-v3-lora/final_adapter",
+        "work/qwen3-vl-2b-mediflow-v4-20260925-lora/final_adapter",
+        "work/qwen3-vl-2b-mediflow-v5-candidate-a/final_adapter",
+        "work/qwen3-vl-2b-mediflow-v5-candidate-b/final_adapter",
+        "work/qwen3-vl-2b-mediflow-v5-candidate-c/final_adapter",
+        "work/qwen3-vl-2b-mediflow-v5-candidate-d-compact/final_adapter",
+        "work/qwen3-vl-2b-mediflow-v5-compact-continued-20260926/final_adapter",
+        "work/qwen3-vl-2b-mediflow-action-v1-20260926/checkpoint-47",
+        "work/qwen3-vl-2b-mediflow-grasp-v1-20260926/checkpoint-47"
+      ]
+    }
+  ]
+}

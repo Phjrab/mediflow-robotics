@@ -8,7 +8,7 @@
 
 https://github.com/Phjrab/mediflow-robotics
 
-보고서와 별도로 소스코드가 올라간 다른 저장소 주소는 확인되지 않았다. 촬영·VLM·ACT·OpenClaw 코드는 같은 저장소에 모으고 있다. 소스 공개 커밋이 완료되면 다음 경로로 확인한다.
+보고서와 별도로 소스코드가 올라간 다른 저장소 주소는 확인되지 않았다. 촬영·VLM·ACT·OpenClaw 코드를 같은 저장소에 공개했다. 다음 경로로 확인한다.
 
 - 촬영 웹 도구: `so101_vlm_capture/`
 - VLM 검수·학습·평가: `vlm_training/`
@@ -36,4 +36,4 @@ https://github.com/Phjrab/mediflow-robotics
 
 ## 원본 영상과 모델
 
-원본 압축파일, 촬영 데이터 및 학습 모델은 별도 다운로드 자료로 준비한다. 대형 모델은 일반 Git 파일로 넣지 않고 GitHub Releases 자산으로 업로드하며,2GiB 이상 데이터 묶음은 분할한다. 업로드가 완료되기 전에는 Releases 페이지나 예정 파일명을 실제 다운로드 완료 주소로 간주하지 않는다. https://github.com/Phjrab/mediflow-robotics/releases
+원본 압축파일, 촬영 데이터 및 학습 모델 15개 묶음을 GitHub Releases 자산으로 공개했다. 일반 Git 소스 이력과는 별도이며 각 파일은 2GiB 미만이다. 파일 크기와 SHA-256 검증을 통과했다. 다운로드: https://github.com/Phjrab/mediflow-robotics/releases/tag/mediflow-archive-20261007

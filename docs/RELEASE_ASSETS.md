@@ -6,7 +6,11 @@
 
 다운로드 확인: https://github.com/Phjrab/mediflow-robotics/releases
 
-현재 상태: 업로드 준비 단계. Releases에 실제 파일이 보이기 전에는 업로드 완료가 아니다.
+현재 상태: 2026-10-07 업로드·공개 완료. 원본 자료/모델 15개 묶음과 파일 목록 `assets_manifest.json`을 공개했다. 모든 묶음의 원격 파일 크기와 GitHub SHA-256이 로컬 manifest와 일치한다.
+
+다운로드: https://github.com/Phjrab/mediflow-robotics/releases/tag/mediflow-archive-20261007
+
+저장소에서도 [파일 목록과 SHA-256](../outputs/GITHUB_RELEASE_ASSETS_20261007.json)을 확인할 수 있다. PC GitHub CLI로만 업로드했으며 이 작업에서 ChatGPT와 GitHub를 연동하지 않았다.
 
 ## 준비 범위
 
