@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import re
 import shutil
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 STAGE = ROOT / "outputs/public_repository_20261007"
@@ -88,7 +89,7 @@ def prepare(refresh=False):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", choices=("prepare", "refresh", "plan", "batch", "chunk"))
+    parser.add_argument("command", choices=("prepare", "refresh", "plan", "batch", "chunk", "verify"))
     parser.add_argument("--index", type=int, default=0)
     parser.add_argument("--path")
     parser.add_argument("--offset", type=int, default=0)
@@ -97,6 +98,15 @@ def main():
         prepare(refresh=args.command == "refresh")
         return
     manifest = json.loads((STAGE/"manifest.json").read_text())
+    if args.command == "verify":
+        remote = json.loads(subprocess.check_output([
+            "gh", "api", "repos/Phjrab/mediflow-robotics/git/trees/main?recursive=1"
+        ], text=True))
+        assert not remote.get("truncated"), "Remote tree truncated"
+        hashes = {row["path"]: row["sha"] for row in remote["tree"] if row["type"] == "blob"}
+        failures = [row["path"] for row in manifest if hashes.get(row["path"]) != row["sha"]]
+        print(json.dumps({"files_checked": len(manifest), "mismatches": failures}, ensure_ascii=False))
+        raise SystemExit(bool(failures))
     if args.command == "chunk":
         assert args.path in {x["path"] for x in manifest}
         encoded = base64.b64encode((STAGE/"files"/args.path).read_bytes()).decode()

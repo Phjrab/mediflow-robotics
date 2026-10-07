@@ -1,5 +1,6 @@
 """Archive explicit project assets without modifying data or running hardware."""
 
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -50,7 +51,21 @@ def pack(name, paths, models=False):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--include-imported-original", action="store_true")
+    args = parser.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
+    if args.include_imported_original:
+        manifest_path = OUT / "assets_manifest.json"
+        manifest = json.loads(manifest_path.read_text())
+        original = Path("/home/USER/Downloads/so101_pilot_dataset_ready.tar.gz")
+        if original.name not in {row["file"] for row in manifest["assets"]}:
+            manifest["assets"].append({"file": original.name, "bytes": original.stat().st_size,
+                                      "sha256": digest(original),
+                                      "sources": ["imported/so101_pilot_dataset_ready.tar.gz"]})
+            manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2))
+        print("Imported original archive inventoried; no source data changed.")
+        return
     if (OUT / "assets_manifest.json").exists():
         raise RuntimeError("Archives already inventoried; inspect manifest before rebuilding")
     records = []

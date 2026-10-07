@@ -1,5 +1,7 @@
 # MediFlow SO-ARM101 자율 약통 분류 프로젝트
 
+기존 저장소 소개: SO-101 robot control, ROS 2 integration, and safe mock medication logistics.
+
 3대의 카메라와 SO-ARM101 로봇팔을 이용해 약통 A/B/C를 인식하고 지정된 바구니로 옮기는 자율설계 프로젝트입니다. 이미지 기반 상태 판단에는 Qwen3-VL 계열 VLM을, 시연 동작 학습에는 LeRobot ACT 정책을 사용했습니다.
 
 ## 현재 상태
