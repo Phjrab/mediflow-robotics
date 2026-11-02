@@ -1,0 +1,33 @@
+# Stage 4 preparation only. Paths are NEW derived artifacts, not ACT originals.
+schema_version: 1
+dataset_root: .local/vla_datasets/medicine_sorting_vla_derived_v1
+repo_id: local/medicine_sorting_vla_derived_v1
+split: .local/vla_reports/split.json
+sessions: data/vla_sessions.jsonl
+audit: .local/vla_reports/audit/DATASET_AUDIT.json
+audit_receipt: .local/vla_reports/audit/content_receipt.json
+cameras_config: configs/vla_cameras.yaml
+units_evidence: null
+calibration_bounds: configs/so101_follower_calibration_bounds_20261008.json
+model: lerobot/smolvla_base
+model_config: null  # runtime config still missing; see vla_model_metadata_evidence.json for attributed external key evidence only
+official_source: /tmp/mediflow-lerobot060-help-H2dsrt/source
+verified_options: configs/vla_verified_options.json
+output_dir: .local/vla_outputs/smolvla_v1
+seed: 101
+batch_size: 4  # memory-conservative candidate, not a proven fit
+steps: 100000
+save_freq: 5000
+num_workers: 2
+device: cuda
+min_free_vram_bytes: 8589934592  # admission floor, NOT a proven batch/model fit
+wandb: false
+push_to_hub: false
+# The ONE project mapping; training and future inference must read this function/config.
+# This is a project choice, NOT a claim that pretrained camera1 inherently means wrist.
+rename_map:
+  observation.images.wrist: observation.images.camera1
+  observation.images.top: observation.images.camera2
+  observation.images.oblique: observation.images.camera3
+physical_mapping_status: UNVERIFIED_PROJECT_CHOICE
+physical_mapping_evidence: null

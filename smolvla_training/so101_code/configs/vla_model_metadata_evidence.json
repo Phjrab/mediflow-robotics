@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "model_id": "lerobot/smolvla_base",
+  "revision": "5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6",
+  "pinned_url": "https://huggingface.co/lerobot/smolvla_base/resolve/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6/config.json",
+  "evidence_status": "ATTRIBUTED_EXTERNAL_OBSERVATION",
+  "attribution": {
+    "source_thread_id": "01a18185-0095-7291-8dd7-b844e066fc92",
+    "observed_on": "2026-10-28",
+    "environment": "separate laptop; reported official HTTP metadata read and local file digest",
+    "reported_raw_bytes": 2299,
+    "reported_raw_sha256": "650584b56c104720f7a3c91d1ec6bec9e8de8ac11e60c92ba2fa82d93eda147d"
+  },
+  "reported_fields": {
+    "type": "smolvla",
+    "input_feature_keys": [
+      "observation.state",
+      "observation.images.camera1",
+      "observation.images.camera2",
+      "observation.images.camera3"
+    ],
+    "output_features": {"action": {"shape": [6]}},
+    "chunk_size": 50,
+    "push_to_hub": true
+  },
+  "local_verification": {
+    "raw_config_saved": false,
+    "raw_digest_independently_verified": false,
+    "curl": "DNS resolution failed; exit 6",
+    "web_reader": "pinned URL inaccessible",
+    "runtime_config": "MISSING; model_config remains null"
+  },
+  "constraints": {
+    "physical_camera_semantics": "UNVERIFIED; camera numbers do not establish wrist/top/oblique roles",
+    "not_a_runtime_model_config": true,
+    "training_push_to_hub_override": false,
+    "weights_downloaded": false,
+    "training_or_inference_run": false
+  }
+}

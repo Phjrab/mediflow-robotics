@@ -1,0 +1,42 @@
+schema_version: 1
+language_mode: korean
+sentence_selection: cycle
+random_seed: 101
+targets:
+  primary_per_combo: 10
+  secondary_per_combo: 20
+imbalance_max_gap: 3
+position_variations:
+  - 모든 약통과 바구니가 보이는 상태에서 목표 약통 위치를 조금씩 바꿉니다.
+  - 좌우·앞뒤 위치를 고르게 바꾸되 카메라 시야와 검증된 작업 공간을 유지합니다.
+  - 다른 약통을 함께 두고도 지시한 약통만 옮깁니다.
+  - 바구니 색상과 약통 크기를 확인하고 접근·파지·들기·운반·놓기를 완료합니다.
+  - 카메라 위치와 보정값은 임의로 바꾸지 않습니다.
+combinations:
+  A:red:
+    ko: [큰 A 약통을 빨간 바구니에 넣어 주세요., 빨간 바구니로 큰 A 약통을 옮겨 주세요.]
+    en: [Pick up the large medicine bottle A and place it in the red basket.]
+  A:blue:
+    ko: [큰 A 약통을 파란 바구니에 넣어 주세요., 파란 바구니로 큰 A 약통을 옮겨 주세요.]
+    en: [Pick up the large medicine bottle A and place it in the blue basket.]
+  A:green:
+    ko: [큰 A 약통을 초록 바구니에 넣어 주세요., 초록 바구니로 큰 A 약통을 옮겨 주세요.]
+    en: [Pick up the large medicine bottle A and place it in the green basket.]
+  B:red:
+    ko: [중간 B 약통을 빨간 바구니에 넣어 주세요., 빨간 바구니로 중간 B 약통을 옮겨 주세요.]
+    en: [Pick up the medium medicine bottle B and place it in the red basket.]
+  B:blue:
+    ko: [중간 B 약통을 파란 바구니에 넣어 주세요., 파란 바구니로 중간 B 약통을 옮겨 주세요.]
+    en: [Pick up the medium medicine bottle B and place it in the blue basket.]
+  B:green:
+    ko: [중간 B 약통을 초록 바구니에 넣어 주세요., 초록 바구니로 중간 B 약통을 옮겨 주세요.]
+    en: [Pick up the medium medicine bottle B and place it in the green basket.]
+  C:red:
+    ko: [작은 C 약통을 빨간 바구니에 넣어 주세요., 빨간 바구니로 작은 C 약통을 옮겨 주세요.]
+    en: [Pick up the small medicine bottle C and place it in the red basket.]
+  C:blue:
+    ko: [작은 C 약통을 파란 바구니에 넣어 주세요., 파란 바구니로 작은 C 약통을 옮겨 주세요.]
+    en: [Pick up the small medicine bottle C and place it in the blue basket.]
+  C:green:
+    ko: [작은 C 약통을 초록 바구니에 넣어 주세요., 초록 바구니로 작은 C 약통을 옮겨 주세요.]
+    en: [Pick up the small medicine bottle C and place it in the green basket.]

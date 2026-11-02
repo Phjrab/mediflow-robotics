@@ -1,0 +1,15 @@
+.venv/
+venv/
+.local/
+__pycache__/
+*.py[cod]
+.env*
+raw/
+derived/
+checkpoints/
+wandb/
+*.mp4
+*.safetensors
+*.pt
+*.pth
+*.bundle

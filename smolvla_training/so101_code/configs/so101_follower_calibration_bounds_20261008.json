@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": "Jetson follower so-101.json calibration, arm range_min/range_max only",
+  "source_sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+  "observed_on": "2026-10-08",
+  "motor_model": "sts3215",
+  "normalization_mode": "DEGREES",
+  "normalization": "LeRobot MotorNormMode.DEGREES; (raw - midpoint) * 360 / (resolution_steps - 1)",
+  "resolution_steps": 4096,
+  "arm_ranges_raw": {
+    "Rotation": [755, 3448],
+    "Pitch": [796, 3113],
+    "Elbow": [880, 3087],
+    "Wrist_Pitch": [936, 3225],
+    "Wrist_Roll": [86, 3643]
+  },
+  "note": "Dated calibration-file snapshot, not a live check of every motor register or physical hard stop. Never use as a motion authorization."
+}
