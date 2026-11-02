@@ -1,0 +1,16 @@
+{
+  "source_repository": "https://github.com/gyeyeongjo-lgtm/so101-lelab-medicine-sorter",
+  "source_base_commit": "ad9bc48e378497fa2e9b1a22b1a4c0eb3425b926",
+  "notebook_source_commit": "9aad878cf109748de89f1f741cda10a7e9c2af2c",
+  "linux_latest_reported_commit": "05d144f",
+  "linux_latest_complete_source_included": false,
+  "not_recovered": [
+    "scripts/vla_fast_train.py",
+    "scripts/vla_prepare_a_fast.py",
+    "scripts/check_new_recording.py",
+    "complete fast-track RobotController integration"
+  ],
+  "source_sanitization": "private home paths and LAN addresses replaced with placeholders; no robot safety logic changes",
+  "new_training_run_performed": false,
+  "weights_or_raw_videos_included": false
+}

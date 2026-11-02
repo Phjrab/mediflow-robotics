@@ -1,0 +1,2 @@
+# Install in a project venv after verifying GPU / torch CUDA compatibility.
+lerobot[smolvla,dataset,training]==0.6.0

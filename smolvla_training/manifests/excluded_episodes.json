@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "numbering": {
+    "basis": "one_based_ordinal",
+    "user_clarification": "번째 에피소드",
+    "conversion": "episode_index = ordinal - 1"
+  },
+  "automatic_exclusions": false,
+  "datasets": {
+    "red": {
+      "repo_id": "Supermassive111/a_to_red_20261102_201029",
+      "revision": "c14477c22cb0cf3b27599a32b96222631380720e",
+      "excluded_episodes": [
+        1
+      ],
+      "excluded_details": [
+        {
+          "user_episode_number": 2,
+          "episode_index": 1,
+          "reason": "USER_REPORTED_FAILURE",
+          "frames": 685,
+          "seconds": 22.833333333333332
+        }
+      ],
+      "included_episodes": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "reference_notes": [],
+      "source_frames": 4628,
+      "remaining_frames": 3943,
+      "audit": "audit_red.json"
+    },
+    "green": {
+      "repo_id": "Supermassive111/a_to_green_20261102_201804",
+      "revision": "ecc9d395cdce6bcc8a44ffbd6840ebe2f2d2466d",
+      "excluded_episodes": [],
+      "excluded_details": [],
+      "included_episodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "reference_notes": [
+        {
+          "user_episode_number": 5,
+          "episode_index": 4,
+          "note": "USER_REPORTED_DROP_KEEP_INCLUDED",
+          "excluded": false,
+          "frames": 502,
+          "seconds": 16.733333333333334
+        },
+        {
+          "user_episode_number": 6,
+          "episode_index": 5,
+          "note": "USER_REPORTED_DROP_KEEP_INCLUDED",
+          "excluded": false,
+          "frames": 456,
+          "seconds": 15.2
+        }
+      ],
+      "source_frames": 5510,
+      "remaining_frames": 5510,
+      "audit": "audit_green.json"
+    },
+    "blue": {
+      "repo_id": "Supermassive111/a_to_blue_20261102_203209",
+      "revision": "91da17d4ad12e361874acfcd12c2f6f4a68ffbff",
+      "excluded_episodes": [
+        1,
+        5
+      ],
+      "excluded_details": [
+        {
+          "user_episode_number": 2,
+          "episode_index": 1,
+          "reason": "USER_REPORTED_FAILURE",
+          "frames": 286,
+          "seconds": 9.533333333333333
+        },
+        {
+          "user_episode_number": 6,
+          "episode_index": 5,
+          "reason": "USER_REPORTED_FAILURE",
+          "frames": 319,
+          "seconds": 10.633333333333333
+        }
+      ],
+      "included_episodes": [
+        0,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9
+      ],
+      "reference_notes": [
+        {
+          "user_episode_number": 9,
+          "episode_index": 8,
+          "note": "USER_REPORTED_DROP_KEEP_INCLUDED",
+          "excluded": false,
+          "frames": 451,
+          "seconds": 15.033333333333333
+        }
+      ],
+      "source_frames": 4011,
+      "remaining_frames": 3406,
+      "audit": "audit_blue.json"
+    }
+  }
+}

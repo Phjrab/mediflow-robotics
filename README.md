@@ -2,6 +2,8 @@
 
 기존 저장소 소개: SO-101 robot control, ROS 2 integration, and safe mock medication logistics.
 
+2026-11-02 추가: 다른 GPU PC에서 약통 A의 빨강·초록 SmolVLA 학습을 이어갈 자료는 [학습 인계 폴더](smolvla_training/README.md)와 [Codex 인계 프롬프트](smolvla_training/CODEX_RED_GREEN_TRAINING_HANDOFF.md)를 확인하세요. 원본 20회 중 red 2번째만 제외한 19회·9,453프레임이 이번 대상이며, 실제 새 데이터 학습은 아직 시작하지 않았습니다.
+
 3대의 카메라와 SO-ARM101 로봇팔을 이용해 약통 A/B/C를 인식하고 지정된 바구니로 옮기는 자율설계 프로젝트입니다. 이미지 기반 상태 판단에는 Qwen3-VL 계열 VLM을, 시연 동작 학습에는 LeRobot ACT 정책을 사용했습니다.
 
 ## 현재 상태

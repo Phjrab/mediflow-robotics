@@ -1,0 +1,20 @@
+# Stage 1 template. Populate ONLY after verifying each physical camera on Jetson.
+# null is intentional: schema validation can pass, capture must fail closed.
+# Use /dev/v4l/by-id/<verified-device>-video-index0, never /dev/videoN.
+schema_version: 1
+cameras:
+  wrist:
+    device: null
+    width: 640
+    height: 480
+    fps: 30
+  top:
+    device: null
+    width: 640
+    height: 480
+    fps: 30
+  oblique:
+    device: null
+    width: 640
+    height: 480
+    fps: 30

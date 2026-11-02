@@ -1,0 +1,48 @@
+{
+  "source_version": "0.6.0",
+  "source_commit": "30da8e687a6dfc617fcd94afc367ac7071c376ce",
+  "help_exit": 0,
+  "help_sha256": "0b9a47fb4cc9eec73fdb098959d7ab03e8733e817d110bd549b8850099151b5f",
+  "verified_flags": [
+    "--dataset.repo_id",
+    "--dataset.root",
+    "--dataset.episodes",
+    "--dataset.eval_split",
+    "--dataset.use_imagenet_stats",
+    "--dataset.video_backend",
+    "--policy.device",
+    "--policy.type",
+    "--policy.push_to_hub",
+    "--output_dir",
+    "--seed",
+    "--steps",
+    "--batch_size",
+    "--num_workers",
+    "--save_freq",
+    "--save_checkpoint_to_hub",
+    "--wandb.enable",
+    "--env_eval_freq",
+    "--eval_steps",
+    "--rename_map",
+    "--resume",
+    "--config_path"
+    ,"--job.target"
+    ,"--dataset.image_transforms.enable"
+  ],
+  "source_only_flags": {
+    "--policy.path": {
+      "file": "src/lerobot/configs/train.py",
+      "line": 159,
+      "reason": "custom parser path argument; help prose describes pretrained source"
+    }
+  },
+  "files": {
+    "src/lerobot/scripts/lerobot_train.py": "95f6d05d21205c03abbfbf4225ed1cb26b7af4826e3e8a84def3eb10ddd988dc",
+    "src/lerobot/configs/parser.py": "69118561b33fbed68ad27066c26af894ad21d2caf4ed3577bad71bf32a05e036",
+    "src/lerobot/configs/train.py": "e947a6a0dc7006ef02bb1fb301007684c86930bc21e5a6abdfd4849a11727291",
+    "src/lerobot/configs/default.py": "93ab849672a146123ca2f9e96a36123fbfd83e22f21e4353a468d7dca7d81712",
+    "src/lerobot/datasets/factory.py": "8af7945ce4802e1aede4dda316f32cb57bc634482f12ee0eface4721cd748e05",
+    "src/lerobot/datasets/dataset_metadata.py": "57d5362571053bb67567ceb4e3fe2f879278fb4215577e9dd2d37b9bebe802c7",
+    "src/lerobot/policies/smolvla/configuration_smolvla.py": "2fb637cb428fa2fdf1d114646dcffaf4728216bfe5b7039d5d0cac4857ffc4e0"
+  }
+}

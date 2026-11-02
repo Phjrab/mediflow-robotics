@@ -1,0 +1,615 @@
+{
+  "repo_id": "Supermassive111/a_to_green_20261102_201804",
+  "revision": "ecc9d395cdce6bcc8a44ffbd6840ebe2f2d2466d",
+  "format": "v3.0",
+  "fps": 30,
+  "declared_episodes": 10,
+  "episodes": 10,
+  "declared_frames": 5510,
+  "frames": 5510,
+  "expected_task": "Put medicine bottle A into the green basket",
+  "task_table": {
+    "0": "Put medicine bottle A into the green basket"
+  },
+  "median_episode_frames": 530.5,
+  "short_rule": "frames < 2*fps OR frames < 0.5*median; candidate only, never auto-excluded",
+  "repeat_rule": "exact decoded RGB equality; longest run >=1 second flagged; stationary scenes possible",
+  "features": {
+    "action": {
+      "dtype": "float32",
+      "shape": [
+        6
+      ],
+      "names": [
+        "shoulder_pan.pos",
+        "shoulder_lift.pos",
+        "elbow_flex.pos",
+        "wrist_flex.pos",
+        "wrist_roll.pos",
+        "gripper.pos"
+      ]
+    },
+    "observation.state": {
+      "dtype": "float32",
+      "shape": [
+        6
+      ],
+      "names": [
+        "shoulder_pan.pos",
+        "shoulder_lift.pos",
+        "elbow_flex.pos",
+        "wrist_flex.pos",
+        "wrist_roll.pos",
+        "gripper.pos"
+      ]
+    }
+  },
+  "episode_checks": [
+    {
+      "episode_index": 0,
+      "user_episode_number": 1,
+      "frames": 624,
+      "seconds": 20.8,
+      "declared_frames": 624,
+      "state_dims": [
+        6
+      ],
+      "action_dims": [
+        6
+      ],
+      "tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0,
+      "short_candidate": false,
+      "issues": [],
+      "video": {
+        "observation.images.ceiling_vertical": {
+          "frames": 624,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 16,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.ceiling_oblique": {
+          "frames": 624,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 23,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.end_effector": {
+          "frames": 624,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 92,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        }
+      }
+    },
+    {
+      "episode_index": 1,
+      "user_episode_number": 2,
+      "frames": 588,
+      "seconds": 19.6,
+      "declared_frames": 588,
+      "state_dims": [
+        6
+      ],
+      "action_dims": [
+        6
+      ],
+      "tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0,
+      "short_candidate": false,
+      "issues": [],
+      "video": {
+        "observation.images.ceiling_vertical": {
+          "frames": 588,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 32,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.ceiling_oblique": {
+          "frames": 588,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 30,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.end_effector": {
+          "frames": 588,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 103,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        }
+      }
+    },
+    {
+      "episode_index": 2,
+      "user_episode_number": 3,
+      "frames": 664,
+      "seconds": 22.133333333333333,
+      "declared_frames": 664,
+      "state_dims": [
+        6
+      ],
+      "action_dims": [
+        6
+      ],
+      "tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0,
+      "short_candidate": false,
+      "issues": [],
+      "video": {
+        "observation.images.ceiling_vertical": {
+          "frames": 664,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 30,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.ceiling_oblique": {
+          "frames": 664,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 41,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.end_effector": {
+          "frames": 664,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 111,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        }
+      }
+    },
+    {
+      "episode_index": 3,
+      "user_episode_number": 4,
+      "frames": 504,
+      "seconds": 16.8,
+      "declared_frames": 504,
+      "state_dims": [
+        6
+      ],
+      "action_dims": [
+        6
+      ],
+      "tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0,
+      "short_candidate": false,
+      "issues": [],
+      "video": {
+        "observation.images.ceiling_vertical": {
+          "frames": 504,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 21,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.ceiling_oblique": {
+          "frames": 504,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 25,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.end_effector": {
+          "frames": 504,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 74,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        }
+      }
+    },
+    {
+      "episode_index": 4,
+      "user_episode_number": 5,
+      "frames": 502,
+      "seconds": 16.733333333333334,
+      "declared_frames": 502,
+      "state_dims": [
+        6
+      ],
+      "action_dims": [
+        6
+      ],
+      "tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0,
+      "short_candidate": false,
+      "issues": [],
+      "video": {
+        "observation.images.ceiling_vertical": {
+          "frames": 502,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 22,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.ceiling_oblique": {
+          "frames": 502,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 23,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.end_effector": {
+          "frames": 502,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 65,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        }
+      }
+    },
+    {
+      "episode_index": 5,
+      "user_episode_number": 6,
+      "frames": 456,
+      "seconds": 15.2,
+      "declared_frames": 456,
+      "state_dims": [
+        6
+      ],
+      "action_dims": [
+        6
+      ],
+      "tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0,
+      "short_candidate": false,
+      "issues": [],
+      "video": {
+        "observation.images.ceiling_vertical": {
+          "frames": 456,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 20,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.ceiling_oblique": {
+          "frames": 456,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 20,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.end_effector": {
+          "frames": 456,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 72,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        }
+      }
+    },
+    {
+      "episode_index": 6,
+      "user_episode_number": 7,
+      "frames": 528,
+      "seconds": 17.6,
+      "declared_frames": 528,
+      "state_dims": [
+        6
+      ],
+      "action_dims": [
+        6
+      ],
+      "tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0,
+      "short_candidate": false,
+      "issues": [],
+      "video": {
+        "observation.images.ceiling_vertical": {
+          "frames": 528,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 23,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.ceiling_oblique": {
+          "frames": 528,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 22,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.end_effector": {
+          "frames": 528,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 56,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        }
+      }
+    },
+    {
+      "episode_index": 7,
+      "user_episode_number": 8,
+      "frames": 592,
+      "seconds": 19.733333333333334,
+      "declared_frames": 592,
+      "state_dims": [
+        6
+      ],
+      "action_dims": [
+        6
+      ],
+      "tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0,
+      "short_candidate": false,
+      "issues": [],
+      "video": {
+        "observation.images.ceiling_vertical": {
+          "frames": 592,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 29,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.ceiling_oblique": {
+          "frames": 592,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 44,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.end_effector": {
+          "frames": 592,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 88,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        }
+      }
+    },
+    {
+      "episode_index": 8,
+      "user_episode_number": 9,
+      "frames": 519,
+      "seconds": 17.3,
+      "declared_frames": 519,
+      "state_dims": [
+        6
+      ],
+      "action_dims": [
+        6
+      ],
+      "tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0,
+      "short_candidate": false,
+      "issues": [],
+      "video": {
+        "observation.images.ceiling_vertical": {
+          "frames": 519,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 24,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.ceiling_oblique": {
+          "frames": 519,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 39,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.end_effector": {
+          "frames": 519,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 71,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        }
+      }
+    },
+    {
+      "episode_index": 9,
+      "user_episode_number": 10,
+      "frames": 533,
+      "seconds": 17.766666666666666,
+      "declared_frames": 533,
+      "state_dims": [
+        6
+      ],
+      "action_dims": [
+        6
+      ],
+      "tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0,
+      "short_candidate": false,
+      "issues": [],
+      "video": {
+        "observation.images.ceiling_vertical": {
+          "frames": 533,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 15,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.ceiling_oblique": {
+          "frames": 533,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 22,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        },
+        "observation.images.end_effector": {
+          "frames": 533,
+          "uniform_frames": 0,
+          "black_frames": 0,
+          "adjacent_identical_pairs": 56,
+          "max_identical_run": 2,
+          "max_identical_seconds": 0.06666666666666667,
+          "long_repeat_candidate": false
+        }
+      }
+    }
+  ],
+  "cameras": [
+    {
+      "key": "observation.images.ceiling_vertical",
+      "declared_shape": [
+        480,
+        640,
+        3
+      ],
+      "files": [
+        {
+          "file": "videos/observation.images.ceiling_vertical/chunk-000/file-000.mp4",
+          "decoded_frames": 5510,
+          "unmapped_frames": 0,
+          "resolution": [
+            640,
+            480
+          ],
+          "fps": "30/1",
+          "codec": "libdav1d"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "key": "observation.images.ceiling_oblique",
+      "declared_shape": [
+        480,
+        640,
+        3
+      ],
+      "files": [
+        {
+          "file": "videos/observation.images.ceiling_oblique/chunk-000/file-000.mp4",
+          "decoded_frames": 5510,
+          "unmapped_frames": 0,
+          "resolution": [
+            640,
+            480
+          ],
+          "fps": "30/1",
+          "codec": "libdav1d"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "key": "observation.images.end_effector",
+      "declared_shape": [
+        480,
+        640,
+        3
+      ],
+      "files": [
+        {
+          "file": "videos/observation.images.end_effector/chunk-000/file-000.mp4",
+          "decoded_frames": 5510,
+          "unmapped_frames": 0,
+          "resolution": [
+            640,
+            480
+          ],
+          "fps": "30/1",
+          "codec": "libdav1d"
+        }
+      ],
+      "issues": []
+    }
+  ],
+  "issues": [],
+  "state_dims": [
+    6
+  ],
+  "action_dims": [
+    6
+  ],
+  "all_tasks_exact": true
+}

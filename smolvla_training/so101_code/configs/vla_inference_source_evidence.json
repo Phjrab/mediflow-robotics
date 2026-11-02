@@ -1,0 +1,23 @@
+{
+  "version": "0.6.0",
+  "source_commit": "30da8e687a6dfc617fcd94afc367ac7071c376ce",
+  "installed_distribution": "0.6.1; not substituted for the pinned source",
+  "live_api_validation": "NOT_RUN",
+  "official_files": {
+    "src/lerobot/policies/smolvla/configuration_smolvla.py": "2fb637cb428fa2fdf1d114646dcffaf4728216bfe5b7039d5d0cac4857ffc4e0",
+    "src/lerobot/policies/smolvla/modeling_smolvla.py": "5daaa297954acf9ae89397b571322f07bf30798e72f566e61a09393342cb1f99",
+    "src/lerobot/policies/smolvla/processor_smolvla.py": "d34594291b2ecf7801f8c27a940a998c52a7e308cbc89f2403c9cbecfb368f22",
+    "src/lerobot/policies/factory.py": "7d8a74352cb8691bd59de44a478b6f3a2bbe212583fdb04a5c19b669311b4ebe",
+    "src/lerobot/policies/pretrained.py": "39e30b8ff6216d71c59a1a798b5693cbb356659d9fc23597d83232c76eaf0e36",
+    "src/lerobot/processor/rename_processor.py": "10f1b190f0a1f8b4170114011dd2695308051618d6929c898062103e95499b02"
+  },
+  "references": {
+    "chunk_defaults_validation": "configuration_smolvla.py:29,30,113; default 50/50; n_action_steps <= chunk_size",
+    "reset_chunk_queue": "modeling_smolvla.py:251,313,325,348,350; select_action refills empty queue and consumes n_action_steps",
+    "processors": "processor_smolvla.py:39; policies/factory.py:273; saved checkpoint processors preferred",
+    "rename_direction": "processor/rename_processor.py:36,46,47; old dataset observation key -> new model observation key",
+    "rollout": "scripts/lerobot_rollout.py:24,32,33; strategy base; inference sync/rtc; not invoked",
+    "data_guidance": "docs/source/smolvla.mdx:32,42; about 50 demos recommended; their 25-demo experiment inadequate, not a universal minimum"
+  },
+  "physical_camera_semantics": "UNVERIFIED_PROJECT_CHOICE; common mapping only in configs/vla_train.yaml"
+}

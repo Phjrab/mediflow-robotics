@@ -1,0 +1,155 @@
+{
+  "datasets": {
+    "red": {
+      "episodes": 10,
+      "frames": 4628,
+      "task_exact": true,
+      "format_issues": [],
+      "episode_issues": [],
+      "short_candidates": [],
+      "repeat_candidates": [],
+      "cameras": [
+        {
+          "camera": "observation.images.ceiling_vertical",
+          "frames": 4628,
+          "uniform": 0,
+          "black": 0,
+          "pairs": 126,
+          "max_repeat_seconds": 0.06666666666666667,
+          "formats": [
+            "[640, 480]/30/1"
+          ],
+          "issues": []
+        },
+        {
+          "camera": "observation.images.ceiling_oblique",
+          "frames": 4628,
+          "uniform": 0,
+          "black": 0,
+          "pairs": 150,
+          "max_repeat_seconds": 0.06666666666666667,
+          "formats": [
+            "[640, 480]/30/1"
+          ],
+          "issues": []
+        },
+        {
+          "camera": "observation.images.end_effector",
+          "frames": 4628,
+          "uniform": 0,
+          "black": 0,
+          "pairs": 610,
+          "max_repeat_seconds": 0.06666666666666667,
+          "formats": [
+            "[640, 480]/30/1"
+          ],
+          "issues": []
+        }
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0
+    },
+    "green": {
+      "episodes": 10,
+      "frames": 5510,
+      "task_exact": true,
+      "format_issues": [],
+      "episode_issues": [],
+      "short_candidates": [],
+      "repeat_candidates": [],
+      "cameras": [
+        {
+          "camera": "observation.images.ceiling_vertical",
+          "frames": 5510,
+          "uniform": 0,
+          "black": 0,
+          "pairs": 232,
+          "max_repeat_seconds": 0.06666666666666667,
+          "formats": [
+            "[640, 480]/30/1"
+          ],
+          "issues": []
+        },
+        {
+          "camera": "observation.images.ceiling_oblique",
+          "frames": 5510,
+          "uniform": 0,
+          "black": 0,
+          "pairs": 289,
+          "max_repeat_seconds": 0.06666666666666667,
+          "formats": [
+            "[640, 480]/30/1"
+          ],
+          "issues": []
+        },
+        {
+          "camera": "observation.images.end_effector",
+          "frames": 5510,
+          "uniform": 0,
+          "black": 0,
+          "pairs": 788,
+          "max_repeat_seconds": 0.06666666666666667,
+          "formats": [
+            "[640, 480]/30/1"
+          ],
+          "issues": []
+        }
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0
+    },
+    "blue": {
+      "episodes": 10,
+      "frames": 4011,
+      "task_exact": true,
+      "format_issues": [],
+      "episode_issues": [],
+      "short_candidates": [],
+      "repeat_candidates": [],
+      "cameras": [
+        {
+          "camera": "observation.images.ceiling_vertical",
+          "frames": 4011,
+          "uniform": 0,
+          "black": 0,
+          "pairs": 97,
+          "max_repeat_seconds": 0.06666666666666667,
+          "formats": [
+            "[640, 480]/30/1"
+          ],
+          "issues": []
+        },
+        {
+          "camera": "observation.images.ceiling_oblique",
+          "frames": 4011,
+          "uniform": 0,
+          "black": 0,
+          "pairs": 90,
+          "max_repeat_seconds": 0.06666666666666667,
+          "formats": [
+            "[640, 480]/30/1"
+          ],
+          "issues": []
+        },
+        {
+          "camera": "observation.images.end_effector",
+          "frames": 4011,
+          "uniform": 0,
+          "black": 0,
+          "pairs": 694,
+          "max_repeat_seconds": 0.06666666666666667,
+          "formats": [
+            "[640, 480]/30/1"
+          ],
+          "issues": []
+        }
+      ],
+      "timestamp_bad_intervals": 0,
+      "nonfinite_values": 0
+    }
+  },
+  "total_episodes": 30,
+  "total_frames": 14149,
+  "kept_episodes": 27,
+  "kept_frames": 12859
+}
