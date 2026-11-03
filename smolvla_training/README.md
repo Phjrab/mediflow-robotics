@@ -1,15 +1,15 @@
-# SmolVLA 학습 인계 — A → 빨강/초록
+# SmolVLA 학습 인계 — A → 빨강/초록 + 새 파랑
 
 **새 컴퓨터 Codex에는 [인계 프롬프트](CODEX_RED_GREEN_TRAINING_HANDOFF.md)를 전달하세요.**
 
-현재 범위는 red 9회 + green 10회 = **19회 / 9,453프레임**입니다. blue는 참고 검수 자료이며 이번 기본 학습에 포함하지 않습니다. 데이터는 Hub에서 고정 revision으로 받으며 Git에는 원본 영상/가중치/토큰이 없습니다.
+기존 빨강/초록 범위는 **19회 / 9,453프레임**입니다. 2026-11-03 요청으로 새 파랑 **45회 / 19,860프레임**의 [추가 인계](BLUE_DATA_HANDOFF_20261103.md)와 [제외·포함 목록](manifests/blue_training_manifest_20261103.json)을 추가했습니다. 두 범위를 합치는 경우 64회 / 29,313프레임입니다. 이 인계 작성 세션에서는 병합/파랑 학습을 실행하지 않았고 다른 PC의 기존 학습 상태는 미확인입니다. 데이터는 Hub에서 고정 revision으로 받으며 Git에는 원본 영상/가중치/토큰이 없습니다.
 
 ```bash
 git clone -b codex/smolvla-handoff-20261102 https://github.com/Phjrab/mediflow-robotics.git mediflow-robotics
 cd mediflow-robotics/smolvla_training
 ```
 
-위 폴더에서 Codex에게 CODEX_RED_GREEN_TRAINING_HANDOFF.md를 읽고 진행하라고 요청하세요. 이 저장소를 받는 것만으로 학습·서비스·로봇이 자동 실행되지는 않습니다.
+위 폴더에서 Codex에게 먼저 BLUE_DATA_HANDOFF_20261103.md를 읽고, CODEX_RED_GREEN_TRAINING_HANDOFF.md의 환경/학습 절차와 함께 진행하라고 요청하세요. 이 저장소를 받는 것만으로 학습·서비스·로봇이 자동 실행되지는 않습니다.
 
 - [이번 빨강/초록 데이터 manifest](manifests/red_green_training_manifest.json)
 - [전체 사용자 제외/참고 목록](manifests/excluded_episodes.json)
