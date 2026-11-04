@@ -1,0 +1,429 @@
+{
+  "latency": {
+    "model_load_seconds": 34.90164804500091,
+    "latency_first": 2.9391624400013825,
+    "latency_mean": 2.057449098000992,
+    "latency_warm_mean": 1.9772933396373198,
+    "latency_max": 2.9391624400013825,
+    "repetitions": 12,
+    "gpu_peak_bytes": 1280764928,
+    "rss_bytes": 3809038336,
+    "system_available_bytes": 1797718016,
+    "samples_evaluated": 18,
+    "errors": [],
+    "jetson_temperatures": {
+      "cpu-thermal": 51.5,
+      "soc2-thermal": 49.093,
+      "soc0-thermal": 49.5,
+      "gpu-thermal": 50.843,
+      "tj-thermal": 51.5,
+      "soc1-thermal": 50.031
+    },
+    "dtype": "torch.float32",
+    "scope": "학습 포함 표본의 오프라인 오차이며 성공률 아님",
+    "real_time_state_prediction": "BLOCKED_SERIAL_STOP",
+    "register_writes": 0,
+    "robot_execution": "NOT_RUN",
+    "elapsed_seconds": 113.16891978399872
+  },
+  "language": [
+    {
+      "sample": "red_e000_middle",
+      "pair": "green__blue",
+      "body_mean_abs_delta": 6.012310060501099,
+      "body_max_abs_delta": 27.79779815673828,
+      "gripper_mean_abs_delta": 0.6884403991699218,
+      "gripper_max_abs_delta": 2.199329376220703
+    },
+    {
+      "sample": "red_e000_middle",
+      "pair": "red__blue",
+      "body_mean_abs_delta": 12.432550406455993,
+      "body_max_abs_delta": 61.56761932373047,
+      "gripper_mean_abs_delta": 1.5902801513671876,
+      "gripper_max_abs_delta": 2.83447265625
+    },
+    {
+      "sample": "red_e000_middle",
+      "pair": "red__green",
+      "body_mean_abs_delta": 9.508972521781923,
+      "body_max_abs_delta": 33.76982116699219,
+      "gripper_mean_abs_delta": 1.4177066040039064,
+      "gripper_max_abs_delta": 2.0615577697753906
+    },
+    {
+      "sample": "red_e000_middle",
+      "pair": "red__red_repeat",
+      "body_mean_abs_delta": 0.0,
+      "body_max_abs_delta": 0.0,
+      "gripper_mean_abs_delta": 0.0,
+      "gripper_max_abs_delta": 0.0
+    },
+    {
+      "sample": "red_e000_start",
+      "pair": "green__blue",
+      "body_mean_abs_delta": 0.4743910207748413,
+      "body_max_abs_delta": 8.282943725585938,
+      "gripper_mean_abs_delta": 0.04978599548339844,
+      "gripper_max_abs_delta": 0.1307201385498047
+    },
+    {
+      "sample": "red_e000_start",
+      "pair": "red__blue",
+      "body_mean_abs_delta": 0.35104409122467045,
+      "body_max_abs_delta": 3.5975189208984375,
+      "gripper_mean_abs_delta": 0.04343551635742188,
+      "gripper_max_abs_delta": 0.12926864624023438
+    },
+    {
+      "sample": "red_e000_start",
+      "pair": "red__green",
+      "body_mean_abs_delta": 0.6721158561706544,
+      "body_max_abs_delta": 11.5238037109375,
+      "gripper_mean_abs_delta": 0.08052215576171876,
+      "gripper_max_abs_delta": 0.2018451690673828
+    },
+    {
+      "sample": "red_e000_start",
+      "pair": "red__red_repeat",
+      "body_mean_abs_delta": 0.0,
+      "body_max_abs_delta": 0.0,
+      "gripper_mean_abs_delta": 0.0,
+      "gripper_max_abs_delta": 0.0
+    }
+  ],
+  "limits": [
+    {
+      "sample": "red_e000_start",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 29,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "red_e000_middle",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 50,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "red_e002_start",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 35,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "red_e002_middle",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 50,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "red_e003_start",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 39,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "red_e003_middle",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 50,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "green_e000_start",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 24,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "green_e000_middle",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 47,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "green_e001_start",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 36,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "green_e001_middle",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 50,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "green_e002_start",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 35,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "green_e002_middle",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 49,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "blue_e001_start",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 31,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "blue_e001_middle",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 50,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "blue_e002_start",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 38,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "blue_e002_middle",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 50,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "blue_e005_start",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 32,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    },
+    {
+      "sample": "blue_e005_middle",
+      "nominal_execution_seconds": 1.6666666666666667,
+      "clip_steps": 46,
+      "max_body_degrees_per_second": 15.0,
+      "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+    }
+  ],
+  "camera": [
+    {
+      "camera": "end_effector",
+      "column": 1,
+      "source": "red",
+      "mean_rgb": [
+        136.69229817708333,
+        132.64895833333333,
+        144.84079427083333
+      ],
+      "brightness_rgb_mean": 138.06068359375,
+      "std_rgb": [
+        72.89265219532629,
+        78.69663899110961,
+        63.17268546367615
+      ],
+      "black_fraction": 0.0
+    },
+    {
+      "camera": "end_effector",
+      "column": 2,
+      "source": "green",
+      "mean_rgb": [
+        129.93428059895834,
+        124.631171875,
+        136.44518229166667
+      ],
+      "brightness_rgb_mean": 130.33687825520835,
+      "std_rgb": [
+        73.22197372045291,
+        79.16537749013729,
+        64.7663951972173
+      ],
+      "black_fraction": 0.0
+    },
+    {
+      "camera": "end_effector",
+      "column": 3,
+      "source": "blue",
+      "mean_rgb": [
+        135.08978515625,
+        130.63122395833332,
+        141.43900390625
+      ],
+      "brightness_rgb_mean": 135.72000434027777,
+      "std_rgb": [
+        75.00356058270748,
+        80.56120073663035,
+        66.58385888375997
+      ],
+      "black_fraction": 0.0
+    },
+    {
+      "camera": "end_effector",
+      "column": 4,
+      "source": "current",
+      "mean_rgb": [
+        2.2407486979166666,
+        0.0014713541666666666,
+        0.7497135416666667
+      ],
+      "brightness_rgb_mean": 0.9973111979166667,
+      "std_rgb": [
+        0.6228523198726539,
+        0.043873892581477815,
+        0.9841517187097963
+      ],
+      "black_fraction": 0.016673177083333334
+    },
+    {
+      "camera": "ceiling_vertical",
+      "column": 1,
+      "source": "red",
+      "mean_rgb": [
+        119.85087565104166,
+        122.172734375,
+        113.51108723958333
+      ],
+      "brightness_rgb_mean": 118.51156575520834,
+      "std_rgb": [
+        69.93815956700159,
+        73.35811090105278,
+        64.31340323299061
+      ],
+      "black_fraction": 0.01310546875
+    },
+    {
+      "camera": "ceiling_vertical",
+      "column": 2,
+      "source": "green",
+      "mean_rgb": [
+        116.13405924479167,
+        121.2321875,
+        111.48820963541667
+      ],
+      "brightness_rgb_mean": 116.28481879340278,
+      "std_rgb": [
+        71.1415299616174,
+        75.25374948548445,
+        65.48989011552734
+      ],
+      "black_fraction": 0.04967447916666667
+    },
+    {
+      "camera": "ceiling_vertical",
+      "column": 3,
+      "source": "blue",
+      "mean_rgb": [
+        119.26630533854167,
+        124.54253580729167,
+        110.869248046875
+      ],
+      "brightness_rgb_mean": 118.22602973090278,
+      "std_rgb": [
+        71.61259547605825,
+        75.25284965241315,
+        65.04597925773649
+      ],
+      "black_fraction": 0.04617513020833333
+    },
+    {
+      "camera": "ceiling_vertical",
+      "column": 4,
+      "source": "current",
+      "mean_rgb": [
+        0.001630859375,
+        0.001865234375,
+        0.007451171875
+      ],
+      "brightness_rgb_mean": 0.003649088541666667,
+      "std_rgb": [
+        0.18503750094600785,
+        0.20252259407033035,
+        0.822344099857106
+      ],
+      "black_fraction": 0.999794921875
+    },
+    {
+      "camera": "ceiling_oblique",
+      "column": 1,
+      "source": "red",
+      "mean_rgb": [
+        115.82475260416666,
+        115.916416015625,
+        105.42203125
+      ],
+      "brightness_rgb_mean": 112.38773328993055,
+      "std_rgb": [
+        53.61857556035155,
+        51.83500493897798,
+        55.43653567169239
+      ],
+      "black_fraction": 0.0
+    },
+    {
+      "camera": "ceiling_oblique",
+      "column": 2,
+      "source": "green",
+      "mean_rgb": [
+        113.457802734375,
+        107.91253580729166,
+        98.21654947916667
+      ],
+      "brightness_rgb_mean": 106.5289626736111,
+      "std_rgb": [
+        64.88974219834007,
+        61.38922852839987,
+        63.22053234899164
+      ],
+      "black_fraction": 0.0012923177083333333
+    },
+    {
+      "camera": "ceiling_oblique",
+      "column": 3,
+      "source": "blue",
+      "mean_rgb": [
+        112.9343359375,
+        107.68963541666666,
+        98.29904622395833
+      ],
+      "brightness_rgb_mean": 106.30767252604167,
+      "std_rgb": [
+        62.737781518782874,
+        58.99543140304289,
+        61.08540017856966
+      ],
+      "black_fraction": 0.002415364583333333
+    },
+    {
+      "camera": "ceiling_oblique",
+      "column": 4,
+      "source": "current",
+      "mean_rgb": [
+        5.3340234375,
+        1.1795703125,
+        5.419788411458334
+      ],
+      "brightness_rgb_mean": 3.9777940538194443,
+      "std_rgb": [
+        1.9825206124088632,
+        1.8917603196576118,
+        2.3398978803890444
+      ],
+      "black_fraction": 0.002265625
+    }
+  ]
+}

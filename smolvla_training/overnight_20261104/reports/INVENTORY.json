@@ -1,0 +1,3487 @@
+{
+  "datasets": [
+    {
+      "name": "a_to_red_20261102_201029",
+      "color": "red",
+      "expected_episodes": 10,
+      "excluded_ordinals": [
+        2
+      ],
+      "exists": true,
+      "info": {
+        "fps": 30,
+        "codebase_version": "v3.0",
+        "total_episodes": 10,
+        "total_frames": 4628,
+        "data_path": "data/chunk-{chunk_index:03d}/file-{file_index:03d}.parquet",
+        "video_path": "videos/{video_key}/chunk-{chunk_index:03d}/file-{file_index:03d}.mp4"
+      },
+      "features": {
+        "action": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "names": [
+            "shoulder_pan.pos",
+            "shoulder_lift.pos",
+            "elbow_flex.pos",
+            "wrist_flex.pos",
+            "wrist_roll.pos",
+            "gripper.pos"
+          ]
+        },
+        "observation.state": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "names": [
+            "shoulder_pan.pos",
+            "shoulder_lift.pos",
+            "elbow_flex.pos",
+            "wrist_flex.pos",
+            "wrist_roll.pos",
+            "gripper.pos"
+          ]
+        },
+        "observation.images.ceiling_vertical": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "observation.images.ceiling_oblique": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "observation.images.end_effector": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "timestamp": {
+          "dtype": "float32",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "frame_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "episode_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "task_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        }
+      },
+      "parquet_files": 1,
+      "video_files": 3
+    },
+    {
+      "name": "a_to_red_20261102_210433",
+      "color": "red",
+      "expected_episodes": 40,
+      "excluded_ordinals": [
+        36
+      ],
+      "exists": true,
+      "info": {
+        "fps": 30,
+        "codebase_version": "v3.0",
+        "total_episodes": 40,
+        "total_frames": 19327,
+        "data_path": "data/chunk-{chunk_index:03d}/file-{file_index:03d}.parquet",
+        "video_path": "videos/{video_key}/chunk-{chunk_index:03d}/file-{file_index:03d}.mp4"
+      },
+      "features": {
+        "action": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "names": [
+            "shoulder_pan.pos",
+            "shoulder_lift.pos",
+            "elbow_flex.pos",
+            "wrist_flex.pos",
+            "wrist_roll.pos",
+            "gripper.pos"
+          ]
+        },
+        "observation.state": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "names": [
+            "shoulder_pan.pos",
+            "shoulder_lift.pos",
+            "elbow_flex.pos",
+            "wrist_flex.pos",
+            "wrist_roll.pos",
+            "gripper.pos"
+          ]
+        },
+        "observation.images.ceiling_vertical": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "observation.images.ceiling_oblique": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "observation.images.end_effector": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "timestamp": {
+          "dtype": "float32",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "frame_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "episode_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "task_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        }
+      },
+      "parquet_files": 1,
+      "video_files": 5
+    },
+    {
+      "name": "a_to_green_20261102_201804",
+      "color": "green",
+      "expected_episodes": 10,
+      "excluded_ordinals": [],
+      "exists": true,
+      "info": {
+        "fps": 30,
+        "codebase_version": "v3.0",
+        "total_episodes": 10,
+        "total_frames": 5510,
+        "data_path": "data/chunk-{chunk_index:03d}/file-{file_index:03d}.parquet",
+        "video_path": "videos/{video_key}/chunk-{chunk_index:03d}/file-{file_index:03d}.mp4"
+      },
+      "features": {
+        "action": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "names": [
+            "shoulder_pan.pos",
+            "shoulder_lift.pos",
+            "elbow_flex.pos",
+            "wrist_flex.pos",
+            "wrist_roll.pos",
+            "gripper.pos"
+          ]
+        },
+        "observation.state": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "names": [
+            "shoulder_pan.pos",
+            "shoulder_lift.pos",
+            "elbow_flex.pos",
+            "wrist_flex.pos",
+            "wrist_roll.pos",
+            "gripper.pos"
+          ]
+        },
+        "observation.images.ceiling_vertical": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "observation.images.ceiling_oblique": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "observation.images.end_effector": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "timestamp": {
+          "dtype": "float32",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "frame_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "episode_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "task_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        }
+      },
+      "parquet_files": 1,
+      "video_files": 3
+    },
+    {
+      "name": "a_to_blue_20261102_212958",
+      "color": "green",
+      "expected_episodes": 40,
+      "excluded_ordinals": [
+        5,
+        21,
+        22,
+        29,
+        38
+      ],
+      "exists": true,
+      "info": {
+        "fps": 30,
+        "codebase_version": "v3.0",
+        "total_episodes": 40,
+        "total_frames": 16752,
+        "data_path": "data/chunk-{chunk_index:03d}/file-{file_index:03d}.parquet",
+        "video_path": "videos/{video_key}/chunk-{chunk_index:03d}/file-{file_index:03d}.mp4"
+      },
+      "features": {
+        "action": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "names": [
+            "shoulder_pan.pos",
+            "shoulder_lift.pos",
+            "elbow_flex.pos",
+            "wrist_flex.pos",
+            "wrist_roll.pos",
+            "gripper.pos"
+          ]
+        },
+        "observation.state": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "names": [
+            "shoulder_pan.pos",
+            "shoulder_lift.pos",
+            "elbow_flex.pos",
+            "wrist_flex.pos",
+            "wrist_roll.pos",
+            "gripper.pos"
+          ]
+        },
+        "observation.images.ceiling_vertical": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "observation.images.ceiling_oblique": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "observation.images.end_effector": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "timestamp": {
+          "dtype": "float32",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "frame_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "episode_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "task_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        }
+      },
+      "parquet_files": 1,
+      "video_files": 5
+    },
+    {
+      "name": "a_to_blue_20261103_193835",
+      "color": "blue",
+      "expected_episodes": 41,
+      "excluded_ordinals": [
+        1,
+        4,
+        5,
+        10,
+        21,
+        35
+      ],
+      "exists": true,
+      "info": {
+        "fps": 30,
+        "codebase_version": "v3.0",
+        "total_episodes": 41,
+        "total_frames": 19154,
+        "data_path": "data/chunk-{chunk_index:03d}/file-{file_index:03d}.parquet",
+        "video_path": "videos/{video_key}/chunk-{chunk_index:03d}/file-{file_index:03d}.mp4"
+      },
+      "features": {
+        "action": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "names": [
+            "shoulder_pan.pos",
+            "shoulder_lift.pos",
+            "elbow_flex.pos",
+            "wrist_flex.pos",
+            "wrist_roll.pos",
+            "gripper.pos"
+          ]
+        },
+        "observation.state": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "names": [
+            "shoulder_pan.pos",
+            "shoulder_lift.pos",
+            "elbow_flex.pos",
+            "wrist_flex.pos",
+            "wrist_roll.pos",
+            "gripper.pos"
+          ]
+        },
+        "observation.images.ceiling_vertical": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "observation.images.ceiling_oblique": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "observation.images.end_effector": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "timestamp": {
+          "dtype": "float32",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "frame_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "episode_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "task_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        }
+      },
+      "parquet_files": 1,
+      "video_files": 5
+    },
+    {
+      "name": "a_to_blue_20261103_193353",
+      "color": "blue",
+      "expected_episodes": 9,
+      "excluded_ordinals": [],
+      "exists": true,
+      "info": {
+        "fps": 30,
+        "codebase_version": "v3.0",
+        "total_episodes": 9,
+        "total_frames": 3643,
+        "data_path": "data/chunk-{chunk_index:03d}/file-{file_index:03d}.parquet",
+        "video_path": "videos/{video_key}/chunk-{chunk_index:03d}/file-{file_index:03d}.mp4"
+      },
+      "features": {
+        "action": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "names": [
+            "shoulder_pan.pos",
+            "shoulder_lift.pos",
+            "elbow_flex.pos",
+            "wrist_flex.pos",
+            "wrist_roll.pos",
+            "gripper.pos"
+          ]
+        },
+        "observation.state": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "names": [
+            "shoulder_pan.pos",
+            "shoulder_lift.pos",
+            "elbow_flex.pos",
+            "wrist_flex.pos",
+            "wrist_roll.pos",
+            "gripper.pos"
+          ]
+        },
+        "observation.images.ceiling_vertical": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "observation.images.ceiling_oblique": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "observation.images.end_effector": {
+          "dtype": "video",
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "names": [
+            "height",
+            "width",
+            "channels"
+          ],
+          "info": {
+            "is_depth_map": false,
+            "video.height": 480,
+            "video.width": 640,
+            "video.codec": "av1",
+            "video.pix_fmt": "yuv420p",
+            "video.fps": 30,
+            "video.channels": 3,
+            "has_audio": false,
+            "video.g": 2,
+            "video.crf": 30,
+            "video.preset": 12,
+            "video.fast_decode": 0,
+            "video.video_backend": "pyav",
+            "video.extra_options": {}
+          }
+        },
+        "timestamp": {
+          "dtype": "float32",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "frame_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "episode_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        },
+        "task_index": {
+          "dtype": "int64",
+          "shape": [
+            1
+          ],
+          "names": null
+        }
+      },
+      "parquet_files": 1,
+      "video_files": 3
+    }
+  ],
+  "model_sha256": "b84b15c70ee711ce3ec5780e8498073852f28c43ccc6a726e9196761d05a7654",
+  "model_hash_seconds": 1.7992329279986734,
+  "model_hash_matches": true,
+  "configs": {
+    "config.json": {
+      "type": "smolvla",
+      "n_obs_steps": 1,
+      "input_features": {
+        "observation.state": {
+          "type": "STATE",
+          "shape": [
+            6
+          ]
+        },
+        "observation.images.camera1": {
+          "type": "VISUAL",
+          "shape": [
+            3,
+            256,
+            256
+          ]
+        },
+        "observation.images.camera2": {
+          "type": "VISUAL",
+          "shape": [
+            3,
+            256,
+            256
+          ]
+        },
+        "observation.images.camera3": {
+          "type": "VISUAL",
+          "shape": [
+            3,
+            256,
+            256
+          ]
+        }
+      },
+      "output_features": {
+        "action": {
+          "type": "ACTION",
+          "shape": [
+            6
+          ]
+        }
+      },
+      "device": "cuda",
+      "use_amp": true,
+      "use_peft": false,
+      "push_to_hub": false,
+      "repo_id": null,
+      "private": null,
+      "tags": null,
+      "license": null,
+      "pretrained_path": "C:\\Users\\user\\Documents\\Codex\\2026-11-03\\https-github-com-phjrab-mediflow-robotics\\work\\red_green_20261103\\run_v1\\production_b4\\checkpoints\\020000\\pretrained_model",
+      "pretrained_revision": null,
+      "chunk_size": 50,
+      "n_action_steps": 50,
+      "normalization_mapping": {
+        "VISUAL": "IDENTITY",
+        "STATE": "MEAN_STD",
+        "ACTION": "MEAN_STD"
+      },
+      "max_state_dim": 32,
+      "max_action_dim": 32,
+      "resize_imgs_with_padding": [
+        512,
+        512
+      ],
+      "empty_cameras": 0,
+      "adapt_to_pi_aloha": false,
+      "use_delta_joint_actions_aloha": false,
+      "tokenizer_max_length": 48,
+      "num_steps": 10,
+      "use_cache": true,
+      "freeze_vision_encoder": true,
+      "train_expert_only": true,
+      "train_state_proj": true,
+      "optimizer_lr": 0.0001,
+      "optimizer_betas": [
+        0.9,
+        0.95
+      ],
+      "optimizer_eps": 1e-08,
+      "optimizer_weight_decay": 1e-10,
+      "optimizer_grad_clip_norm": 10.0,
+      "scheduler_warmup_steps": 1000,
+      "scheduler_decay_steps": 30000,
+      "scheduler_decay_lr": 2.5e-06,
+      "vlm_model_name": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+      "load_vlm_weights": false,
+      "add_image_special_tokens": false,
+      "attention_mode": "cross_attn",
+      "prefix_length": 0,
+      "pad_language_to": "max_length",
+      "num_expert_layers": 0,
+      "num_vlm_layers": 16,
+      "self_attn_every_n_layers": 2,
+      "expert_width_multiplier": 0.75,
+      "min_period": 0.004,
+      "max_period": 4.0,
+      "rtc_config": null,
+      "compile_model": false,
+      "compile_mode": "max-autotune"
+    },
+    "policy_preprocessor.json": {
+      "name": "policy_preprocessor",
+      "steps": [
+        {
+          "registry_name": "rename_observations_processor",
+          "config": {
+            "rename_map": {
+              "observation.images.end_effector": "observation.images.camera1",
+              "observation.images.ceiling_vertical": "observation.images.camera2",
+              "observation.images.ceiling_oblique": "observation.images.camera3"
+            }
+          }
+        },
+        {
+          "registry_name": "to_batch_processor",
+          "config": {}
+        },
+        {
+          "registry_name": "smolvla_new_line_processor",
+          "config": {}
+        },
+        {
+          "registry_name": "tokenizer_processor",
+          "config": {
+            "max_length": 48,
+            "task_key": "task",
+            "padding_side": "right",
+            "padding": "max_length",
+            "truncation": true,
+            "tokenizer_name": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct"
+          }
+        },
+        {
+          "registry_name": "device_processor",
+          "config": {
+            "device": "cuda",
+            "float_dtype": null
+          }
+        },
+        {
+          "registry_name": "normalizer_processor",
+          "config": {
+            "eps": 1e-08,
+            "features": {
+              "observation.state": {
+                "type": "STATE",
+                "shape": [
+                  6
+                ]
+              },
+              "observation.images.camera1": {
+                "type": "VISUAL",
+                "shape": [
+                  3,
+                  256,
+                  256
+                ]
+              },
+              "observation.images.camera2": {
+                "type": "VISUAL",
+                "shape": [
+                  3,
+                  256,
+                  256
+                ]
+              },
+              "observation.images.camera3": {
+                "type": "VISUAL",
+                "shape": [
+                  3,
+                  256,
+                  256
+                ]
+              },
+              "action": {
+                "type": "ACTION",
+                "shape": [
+                  6
+                ]
+              }
+            },
+            "norm_map": {
+              "VISUAL": "IDENTITY",
+              "STATE": "MEAN_STD",
+              "ACTION": "MEAN_STD"
+            }
+          },
+          "state_file": "policy_preprocessor_step_5_normalizer_processor.safetensors"
+        }
+      ]
+    },
+    "policy_postprocessor.json": {
+      "name": "policy_postprocessor",
+      "steps": [
+        {
+          "registry_name": "unnormalizer_processor",
+          "config": {
+            "eps": 1e-08,
+            "features": {
+              "action": {
+                "type": "ACTION",
+                "shape": [
+                  6
+                ]
+              }
+            },
+            "norm_map": {
+              "VISUAL": "IDENTITY",
+              "STATE": "MEAN_STD",
+              "ACTION": "MEAN_STD"
+            }
+          },
+          "state_file": "policy_postprocessor_step_0_unnormalizer_processor.safetensors"
+        },
+        {
+          "registry_name": "device_processor",
+          "config": {
+            "device": "cpu",
+            "float_dtype": null
+          }
+        }
+      ]
+    },
+    "train_config.json": {
+      "steps": 20000,
+      "batch_size": 4,
+      "seed": 101,
+      "rename_map": {
+        "observation.images.end_effector": "observation.images.camera1",
+        "observation.images.ceiling_vertical": "observation.images.camera2",
+        "observation.images.ceiling_oblique": "observation.images.camera3"
+      }
+    }
+  },
+  "packages": {
+    "torch": "2.8.0",
+    "torchvision": "0.23.0",
+    "lerobot": "0.6.0",
+    "transformers": "5.5.4",
+    "numpy": "1.26.4",
+    "av": "15.1.0",
+    "pyarrow": "25.0.1",
+    "opencv-python": "MISSING",
+    "Pillow": "12.3.0",
+    "psutil": "7.2.2"
+  },
+  "temperatures": {
+    "cpu-thermal": 47.125,
+    "soc2-thermal": 45.031,
+    "soc0-thermal": 45.156,
+    "gpu-thermal": 46.375,
+    "tj-thermal": 46.906,
+    "soc1-thermal": 46.187
+  },
+  "disk": {
+    "total": 123887923200,
+    "used": 55061737472,
+    "free": 62485708800
+  },
+  "ffmpeg_path": null,
+  "tool_sources": [
+    {
+      "file": "so101_first_action_test_safe_20261104_v4.py",
+      "source_category": "home_script",
+      "sha256": "af72d76b992c237211c576796219694503986609277da9b877913b550df6ec56",
+      "matches": [
+        {
+          "line": 256,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 297,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 314,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 326,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 401,
+          "tags": [
+            "disable_torque",
+            "disable_torque_on_disconnect"
+          ],
+          "setting_false": true
+        },
+        {
+          "line": 420,
+          "tags": [
+            "configure",
+            "torque_disabled"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 518,
+          "tags": [
+            "send_action"
+          ],
+          "setting_false": false
+        }
+      ]
+    },
+    {
+      "file": "so101_first_action_test_safe_20261104.py",
+      "source_category": "home_script",
+      "sha256": "36c1affe4374c4606aa4757e8f8d0378d58942bc025ee6ba479e625038b5f34d",
+      "matches": [
+        {
+          "line": 248,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 280,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 297,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 377,
+          "tags": [
+            "disable_torque",
+            "disable_torque_on_disconnect"
+          ],
+          "setting_false": true
+        },
+        {
+          "line": 396,
+          "tags": [
+            "configure",
+            "torque_disabled"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 490,
+          "tags": [
+            "send_action"
+          ],
+          "setting_false": false
+        }
+      ]
+    },
+    {
+      "file": "so101_first_action_test_safe_20261104_v2.py",
+      "source_category": "home_script",
+      "sha256": "84d922d4a6437a9217a477b7d728d5480270490bd6011fa898bc8308d99c6f31",
+      "matches": [
+        {
+          "line": 248,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 280,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 297,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 309,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 388,
+          "tags": [
+            "disable_torque",
+            "disable_torque_on_disconnect"
+          ],
+          "setting_false": true
+        },
+        {
+          "line": 407,
+          "tags": [
+            "configure",
+            "torque_disabled"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 501,
+          "tags": [
+            "send_action"
+          ],
+          "setting_false": false
+        }
+      ]
+    },
+    {
+      "file": "so101_first_action_test_safe_20261104_v3.py",
+      "source_category": "home_script",
+      "sha256": "156e8640f1c7fa01ebe8091055b8ff762d45f9d6722c7083959de9b27aeb1c6e",
+      "matches": [
+        {
+          "line": 256,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 288,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 305,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 317,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 392,
+          "tags": [
+            "disable_torque",
+            "disable_torque_on_disconnect"
+          ],
+          "setting_false": true
+        },
+        {
+          "line": 411,
+          "tags": [
+            "configure",
+            "torque_disabled"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 509,
+          "tags": [
+            "send_action"
+          ],
+          "setting_false": false
+        }
+      ]
+    },
+    {
+      "file": "torque_so101_guarded_20261104.py",
+      "source_category": "home_script",
+      "sha256": "50b4985cebcad11d97838e792f1df1cfff347b23f4d608c7ce8cfb375eaa09e1",
+      "matches": [
+        {
+          "line": 68,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 72,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 75,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 139,
+          "tags": [
+            "Torque_Enable",
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 146,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 180,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 204,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 205,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 220,
+          "tags": [
+            "enable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 221,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 237,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 313,
+          "tags": [
+            "disable_torque",
+            "disable_torque_on_disconnect"
+          ],
+          "setting_false": true
+        }
+      ]
+    },
+    {
+      "file": "torque_so101.py",
+      "source_category": "home_script",
+      "sha256": "88788cded8d0db94f51abea52086b798ceec482e3179b3f8b3228751c935fc5d",
+      "matches": [
+        {
+          "line": 25,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 26,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 37,
+          "tags": [
+            "enable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 38,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 48,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 98,
+          "tags": [
+            "disable_torque",
+            "disable_torque_on_disconnect"
+          ],
+          "setting_false": true
+        },
+        {
+          "line": 111,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        }
+      ]
+    },
+    {
+      "file": "torque_so101_guarded_read_v2.py",
+      "source_category": "home_script",
+      "sha256": "4485462a01d2bd8658e28313190dae48ab42f3a8ff100d977c62a7344afd9a3d",
+      "matches": [
+        {
+          "line": 65,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 69,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 72,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 136,
+          "tags": [
+            "Torque_Enable",
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 143,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 181,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 205,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 206,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 221,
+          "tags": [
+            "enable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 222,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 238,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 314,
+          "tags": [
+            "disable_torque",
+            "disable_torque_on_disconnect"
+          ],
+          "setting_false": true
+        }
+      ]
+    },
+    {
+      "file": "torque_so101_reviewed.py",
+      "source_category": "home_script",
+      "sha256": "c32aa428492324c70cd98c06c1470f0b50bec4ebe1abfcaa7389c4ea9418a48e",
+      "matches": [
+        {
+          "line": 47,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 48,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 59,
+          "tags": [
+            "enable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 60,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 72,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 130,
+          "tags": [
+            "disable_torque",
+            "disable_torque_on_disconnect"
+          ],
+          "setting_false": true
+        },
+        {
+          "line": 143,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        }
+      ]
+    },
+    {
+      "file": "torque_so101_verified_goal_v3.py",
+      "source_category": "home_script",
+      "sha256": "6d398d3306498699cb45975033f9e03c173edaf088bc9d63d28bbdf64ac2d3fe",
+      "matches": [
+        {
+          "line": 2,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 66,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 141,
+          "tags": [
+            "Torque_Enable",
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 148,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 186,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 205,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 213,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 221,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 239,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 315,
+          "tags": [
+            "disable_torque",
+            "disable_torque_on_disconnect"
+          ],
+          "setting_false": true
+        }
+      ]
+    },
+    {
+      "file": "home_align_web_reviewed.py",
+      "source_category": "home_script",
+      "sha256": "33ddca36cf01ee52c0d58f11b96cccdfe8bf02d9f0a6d8286b94ff6e51b82f3f",
+      "matches": [
+        {
+          "line": 31,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 162,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 183,
+          "tags": [
+            "disable_torque",
+            "disable_torque_on_disconnect"
+          ],
+          "setting_false": true
+        }
+      ]
+    },
+    {
+      "file": "nov_policy_run.sh",
+      "source_category": "home_script",
+      "sha256": "74a7f03dc2b07d239dd93319f2906cb74ac626a40d9bd2f4e66c06c08e7924a0",
+      "matches": []
+    },
+    {
+      "file": "so_follower.py",
+      "source_category": "installed_package",
+      "sha256": "b7d9fcfcf67818c267d71744c993470dfb5077887f9ecedfe8cdf69f450be8fd",
+      "matches": [
+        {
+          "line": 108,
+          "tags": [
+            "configure"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 127,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 160,
+          "tags": [
+            "torque_disabled"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 209,
+          "tags": [
+            "send_action"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 233,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 238,
+          "tags": [
+            "disable_torque",
+            "disable_torque_on_disconnect"
+          ],
+          "setting_false": false
+        }
+      ]
+    },
+    {
+      "file": "motors_bus.py",
+      "source_category": "installed_package",
+      "sha256": "a4bf39ad87aadd74ff2722f94354fcdc7f0c47836df03b0321e131f48ba36c90",
+      "matches": [
+        {
+          "line": 81,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 112,
+          "tags": [
+            "enable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 117,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 335,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 546,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 550,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 555,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 558,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 619,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 646,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 660,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 664,
+          "tags": [
+            "enable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 668,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 676,
+          "tags": [
+            "torque_disabled"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 682,
+          "tags": [
+            "torque_disabled"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 688,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 692,
+          "tags": [
+            "enable_torque"
+          ],
+          "setting_false": false
+        }
+      ]
+    },
+    {
+      "file": "feetech.py",
+      "source_category": "installed_package",
+      "sha256": "0460413cd6a641cede015ac19ac53d2cfe9c343af1bd18ed74e1951229f64ff2",
+      "matches": [
+        {
+          "line": 47,
+          "tags": [
+            "Goal_Position"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 291,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 293,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 296,
+          "tags": [
+            "disable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 297,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 302,
+          "tags": [
+            "enable_torque"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 304,
+          "tags": [
+            "Torque_Enable"
+          ],
+          "setting_false": false
+        }
+      ]
+    },
+    {
+      "file": "record.py",
+      "source_category": "installed_package",
+      "sha256": "5f55761c53919e82080a27a77ccbaefff225025b40b11c8c86a2b3432d90b615",
+      "matches": [
+        {
+          "line": 741,
+          "tags": [
+            "robot.connect("
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 790,
+          "tags": [
+            "configure"
+          ],
+          "setting_false": false
+        },
+        {
+          "line": 792,
+          "tags": [
+            "configure"
+          ],
+          "setting_false": false
+        }
+      ]
+    },
+    {
+      "file": "rollout.py",
+      "source_category": "installed_package",
+      "sha256": "b3317f7f2677f390e8e46a445ac5078189a1666ad81b11b950183e5a5a80c5ca",
+      "matches": []
+    }
+  ],
+  "bash_history_filtered": [
+    {
+      "line": 2,
+      "script_names": [
+        "teleoperate.py",
+        "teleop_cycle_trace.py",
+        "relative_start_teleop.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 5,
+      "script_names": [
+        "urdf_forward_kinematics.py",
+        "recorded_pose_config.py",
+        "staged_cycle_execution.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 6,
+      "script_names": [
+        "relative_start_teleop.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 7,
+      "script_names": [
+        "teleoperate.py",
+        "teleop_cycle_trace.py",
+        "dry_run_empirical_teaching_jetson.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 8,
+      "script_names": [
+        "dry_run_empirical_teaching_jetson.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 9,
+      "script_names": [
+        "teleoperate.py",
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 15,
+      "script_names": [
+        "teleoperate.py",
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 16,
+      "script_names": [
+        "teleop_cycle_trace.py",
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 17,
+      "script_names": [
+        "teleoperate.py",
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 18,
+      "script_names": [
+        "teleoperate.py",
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 19,
+      "script_names": [
+        "teleop_cycle_trace.py",
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 20,
+      "script_names": [
+        "teleoperate.py",
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 21,
+      "script_names": [
+        "teleoperate.py",
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 23,
+      "script_names": [
+        "dry_run_empirical_teaching_jetson.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 38,
+      "script_names": [
+        "server.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 51,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 62,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 63,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 64,
+      "script_names": [
+        "so101_exclusive_bus.py",
+        "sync_follower_goal_to_present_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 66,
+      "script_names": [
+        "sync_follower_goal_to_present_only.py",
+        "so101_exclusive_bus.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 67,
+      "script_names": [
+        "sync_follower_goal_to_present_only.py",
+        "so101_exclusive_bus.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 68,
+      "script_names": [
+        "sync_follower_goal_to_present_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 74,
+      "script_names": [
+        "server.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 77,
+      "script_names": [
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 78,
+      "script_names": [
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 81,
+      "script_names": [
+        "server.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 82,
+      "script_names": [
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 86,
+      "script_names": [
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 92,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 93,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 94,
+      "script_names": [
+        "so_follower.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 96,
+      "script_names": [
+        "motors_bus.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 97,
+      "script_names": [
+        "so_leader.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 100,
+      "script_names": [
+        "so_follower.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 105,
+      "script_names": [
+        "contact_release_only.py",
+        "test_contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 106,
+      "script_names": [
+        "contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 107,
+      "script_names": [
+        "contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 108,
+      "script_names": [
+        "test_contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 113,
+      "script_names": [
+        "contact_release_only.py",
+        "test_contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 114,
+      "script_names": [
+        "test_contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 115,
+      "script_names": [
+        "contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 119,
+      "script_names": [
+        "contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 120,
+      "script_names": [
+        "test_contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 121,
+      "script_names": [
+        "contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 126,
+      "script_names": [
+        "test_contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 127,
+      "script_names": [
+        "contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 128,
+      "script_names": [
+        "contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 148,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 153,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 155,
+      "script_names": [
+        "contact_release_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 158,
+      "script_names": [
+        "contact_release_only.py"
+      ],
+      "flags": [
+        "--live"
+      ]
+    },
+    {
+      "line": 161,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 172,
+      "script_names": [
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 173,
+      "script_names": [
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 175,
+      "script_names": [
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 186,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 189,
+      "script_names": [
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 190,
+      "script_names": [
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 191,
+      "script_names": [],
+      "flags": [
+        "--dry-run"
+      ]
+    },
+    {
+      "line": 194,
+      "script_names": [
+        "teleop_cycle_trace.py",
+        "teleoperate.py",
+        "dry_run_empirical_teaching_jetson.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 195,
+      "script_names": [
+        "dry_run_empirical_teaching_jetson.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 198,
+      "script_names": [
+        "teleoperate.py",
+        "teleoperate.py",
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 199,
+      "script_names": [
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 203,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 212,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 217,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 221,
+      "script_names": [
+        "sync_follower_goal_to_present_only.py",
+        "so101_exclusive_bus.py",
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 228,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 229,
+      "script_names": [
+        "sync_follower_goal_to_present_only.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 231,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 237,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 238,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 246,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py",
+        "relative_start_teleop.py",
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 247,
+      "script_names": [
+        "test_supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 248,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 256,
+      "script_names": [
+        "test_supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 257,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 265,
+      "script_names": [
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 283,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 284,
+      "script_names": [
+        "teleop_cycle_trace.py",
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 295,
+      "script_names": [
+        "read_follower_pose_telemetry.py",
+        "supervised_teaching_from_current_hold.py",
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 298,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 310,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 314,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py",
+        "teleop_cycle_trace.py",
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 321,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 323,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": [
+        "--live"
+      ]
+    },
+    {
+      "line": 331,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py",
+        "teleop_cycle_trace.py",
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 335,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 337,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": [
+        "--live"
+      ]
+    },
+    {
+      "line": 339,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 344,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py",
+        "teleop_cycle_trace.py",
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 347,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 358,
+      "script_names": [
+        "relative_start_teleop.py",
+        "so101_exclusive_bus.py",
+        "teleop_cycle_trace.py",
+        "temporary_elbow_direction_guard.py",
+        "test_teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 366,
+      "script_names": [
+        "atomic_hold_restore.py",
+        "test_atomic_hold_restore.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 484,
+      "script_names": [
+        "atomic_hold_restore.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 485,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 486,
+      "script_names": [
+        "atomic_hold_restore.py",
+        "supervised_teaching_from_current_hold.py",
+        "test_atomic_hold_restore.py",
+        "test_supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 487,
+      "script_names": [
+        "atomic_hold_restore.py",
+        "supervised_teaching_from_current_hold.py",
+        "test_atomic_hold_restore.py",
+        "test_supervised_teaching_from_current_hold.py",
+        "relative_start_teleop.py",
+        "so101_exclusive_bus.py",
+        "teleop_cycle_trace.py",
+        "temporary_elbow_direction_guard.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 495,
+      "script_names": [
+        "atomic_hold_restore.py",
+        "so101_exclusive_bus.py",
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 517,
+      "script_names": [
+        "atomic_hold_restore.py"
+      ],
+      "flags": [
+        "--live"
+      ]
+    },
+    {
+      "line": 522,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 547,
+      "script_names": [
+        "atomic_hold_restore.py",
+        "so101_exclusive_bus.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 602,
+      "script_names": [
+        "config.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 649,
+      "script_names": [
+        "record.py",
+        "rollout.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 661,
+      "script_names": [
+        "teleoperate.py",
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 662,
+      "script_names": [
+        "so101_exclusive_bus.py",
+        "so101_exclusive_bus.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 663,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py",
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 664,
+      "script_names": [
+        "relative_start_teleop.py",
+        "relative_start_teleop.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 665,
+      "script_names": [
+        "teleop_cycle_trace.py",
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 666,
+      "script_names": [
+        "temporary_elbow_direction_guard.py",
+        "temporary_elbow_direction_guard.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 667,
+      "script_names": [
+        "urdf_forward_kinematics.py",
+        "urdf_forward_kinematics.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 670,
+      "script_names": [
+        "so101_fixed_port_occupancy.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 677,
+      "script_names": [
+        "teleoperate.py",
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 678,
+      "script_names": [
+        "current_hold_ui_teleop.py",
+        "current_hold_ui_teleop.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 679,
+      "script_names": [
+        "so101_exclusive_bus.py",
+        "so101_exclusive_bus.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 680,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py",
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 681,
+      "script_names": [
+        "relative_start_teleop.py",
+        "relative_start_teleop.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 682,
+      "script_names": [
+        "teleop_cycle_trace.py",
+        "teleop_cycle_trace.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 683,
+      "script_names": [
+        "temporary_elbow_direction_guard.py",
+        "temporary_elbow_direction_guard.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 684,
+      "script_names": [
+        "urdf_forward_kinematics.py",
+        "urdf_forward_kinematics.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 687,
+      "script_names": [
+        "teleoperate.py",
+        "current_hold_ui_teleop.py",
+        "so101_exclusive_bus.py",
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 752,
+      "script_names": [
+        "teleoperate.py",
+        "teleoperate.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 753,
+      "script_names": [
+        "current_hold_ui_teleop.py",
+        "current_hold_ui_teleop.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 754,
+      "script_names": [
+        "so101_exclusive_bus.py",
+        "so101_exclusive_bus.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 755,
+      "script_names": [
+        "supervised_teaching_from_current_hold.py",
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 889,
+      "script_names": [
+        "atomic_hold_restore.py",
+        "single_session_demo.py",
+        "supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 890,
+      "script_names": [
+        "test_atomic_hold_restore.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 891,
+      "script_names": [
+        "test_single_session_demo.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 892,
+      "script_names": [
+        "test_supervised_teaching_from_current_hold.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 893,
+      "script_names": [
+        "single_session_demo.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 914,
+      "script_names": [
+        "single_session_demo.py"
+      ],
+      "flags": [
+        "--live"
+      ]
+    },
+    {
+      "line": 923,
+      "script_names": [
+        "so101_exclusive_bus.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 924,
+      "script_names": [
+        "so101_exclusive_bus.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 926,
+      "script_names": [
+        "so101_exclusive_bus.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 927,
+      "script_names": [
+        "test_so101_fixed_port_occupancy.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 928,
+      "script_names": [
+        "so101_exclusive_bus.py",
+        "test_so101_fixed_port_occupancy.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 929,
+      "script_names": [
+        "so101_exclusive_bus.py",
+        "single_session_demo.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 930,
+      "script_names": [
+        "test_so101_fixed_port_occupancy.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 934,
+      "script_names": [
+        "single_session_demo.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 944,
+      "script_names": [
+        "single_session_demo.py"
+      ],
+      "flags": [
+        "--live"
+      ]
+    },
+    {
+      "line": 946,
+      "script_names": [
+        "read_follower_pose_telemetry.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 987,
+      "script_names": [
+        "__init__.py",
+        "__main__.py",
+        "cli.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1102,
+      "script_names": [],
+      "flags": [
+        "--dry-run"
+      ]
+    },
+    {
+      "line": 1106,
+      "script_names": [],
+      "flags": [
+        "--dry-run"
+      ]
+    },
+    {
+      "line": 1131,
+      "script_names": [],
+      "flags": [
+        "--dry-run"
+      ]
+    },
+    {
+      "line": 1133,
+      "script_names": [],
+      "flags": [
+        "--dry-run"
+      ]
+    },
+    {
+      "line": 1180,
+      "script_names": [
+        "feetech.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1181,
+      "script_names": [
+        "motors_bus.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1234,
+      "script_names": [
+        "patch_realsense_yuyv_05d144f.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1235,
+      "script_names": [
+        "patch_realsense_yuyv_05d144f.py"
+      ],
+      "flags": [
+        "--execute"
+      ]
+    },
+    {
+      "line": 1246,
+      "script_names": [
+        "server.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1258,
+      "script_names": [
+        "server.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1264,
+      "script_names": [
+        "camera_opencv.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1351,
+      "script_names": [
+        "so101_first_action_test_safe_20261104.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1392,
+      "script_names": [
+        "so101_first_action_test_safe_20261104_v2.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1483,
+      "script_names": [
+        "so101_first_action_test_safe_20261104_v3.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1503,
+      "script_names": [
+        "so101_first_action_test_safe_20261104_v3.py",
+        "so101_first_action_test_safe_20261104_v4.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1539,
+      "script_names": [
+        "so101_first_action_test_safe_20261104_v4.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1540,
+      "script_names": [
+        "so101_first_action_test_safe_20261104_v4.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1555,
+      "script_names": [
+        "so101_first_action_test_safe_20261104_v4.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1560,
+      "script_names": [
+        "so101_first_action_test_safe_20261104_v4.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1575,
+      "script_names": [
+        "collect_home_so101.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1579,
+      "script_names": [
+        "nov_preflight.sh",
+        "torque_so101.py"
+      ],
+      "flags": [
+        "--enable",
+        "--execute"
+      ]
+    },
+    {
+      "line": 1581,
+      "script_names": [
+        "nov_preflight.sh",
+        "torque_so101.py"
+      ],
+      "flags": [
+        "--enable",
+        "--execute"
+      ]
+    },
+    {
+      "line": 1586,
+      "script_names": [
+        "torque_so101_reviewed.py",
+        "torque_so101_reviewed.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1786,
+      "script_names": [
+        "torque_so101_reviewed.py"
+      ],
+      "flags": []
+    },
+    {
+      "line": 1879,
+      "script_names": [
+        "so101_first_action_test_safe_20261104_v4.py"
+      ],
+      "flags": []
+    }
+  ],
+  "elapsed_seconds": 1.917930843999784
+}

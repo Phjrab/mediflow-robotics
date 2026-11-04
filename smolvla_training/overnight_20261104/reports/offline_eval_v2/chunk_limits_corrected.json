@@ -1,0 +1,128 @@
+[
+  {
+    "sample": "red_e000_start",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 29,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "red_e000_middle",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 50,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "red_e002_start",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 35,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "red_e002_middle",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 50,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "red_e003_start",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 39,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "red_e003_middle",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 50,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "green_e000_start",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 24,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "green_e000_middle",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 47,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "green_e001_start",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 36,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "green_e001_middle",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 50,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "green_e002_start",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 35,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "green_e002_middle",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 49,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "blue_e001_start",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 31,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "blue_e001_middle",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 50,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "blue_e002_start",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 38,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "blue_e002_middle",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 50,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "blue_e005_start",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 32,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  },
+  {
+    "sample": "blue_e005_middle",
+    "nominal_execution_seconds": 1.6666666666666667,
+    "clip_steps": 46,
+    "max_body_degrees_per_second": 15.0,
+    "simulation": "관절이 전송 목표를 완벽히 따른다는 가정의 제한 계산이며 실기 실행 아님"
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "model_load_seconds": 34.90164804500091,
+  "latency_first": 2.9391624400013825,
+  "latency_mean": 2.057449098000992,
+  "latency_warm_mean": 1.9772933396373198,
+  "latency_max": 2.9391624400013825,
+  "repetitions": 12,
+  "gpu_peak_bytes": 1280764928,
+  "rss_bytes": 3809038336,
+  "system_available_bytes": 1797718016,
+  "samples_evaluated": 18,
+  "errors": [],
+  "jetson_temperatures": {
+    "cpu-thermal": 51.5,
+    "soc2-thermal": 49.093,
+    "soc0-thermal": 49.5,
+    "gpu-thermal": 50.843,
+    "tj-thermal": 51.5,
+    "soc1-thermal": 50.031
+  },
+  "dtype": "torch.float32",
+  "scope": "학습 포함 표본의 오프라인 오차이며 성공률 아님",
+  "real_time_state_prediction": "BLOCKED_SERIAL_STOP",
+  "register_writes": 0,
+  "robot_execution": "NOT_RUN",
+  "elapsed_seconds": 113.16891978399872
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "home_monitor_refusal",
+    "exit_code": 1,
+    "expected_refusal": true,
+    "confirmation_input": "EOF_ONLY",
+    "output": "Traceback (most recent call last):\n  File \"~/nov_live_prep_20261104/home_align_web.py\", line 66, in <module>\n    if __name__=='__main__':main()\n  File \"~/nov_live_prep_20261104/home_align_web.py\", line 46, in main\n    n.check_stop();home=n.read_home();cache=Cache();stop=threading.Event()\n  File \"~/nov_live_prep_20261104/nov_readonly.py\", line 23, in check_stop\n    if latch_path().exists():raise SafetyStop('serial 전역 중단 상태; 자동 해제하지 않음')\nnov_readonly.SafetyStop: serial 전역 중단 상태; 자동 해제하지 않음\n",
+    "device_open": "NOT_REACHED_BY_STATIC_GATE"
+  },
+  {
+    "name": "torque_enable_pre_prompt_refusal",
+    "exit_code": 1,
+    "expected_refusal": true,
+    "confirmation_input": "EOF_ONLY",
+    "output": "Traceback (most recent call last):\n  File \"~/nov_live_prep_20261104/torque_so101.py\", line 49, in <module>\n    if __name__=='__main__':main()\n  File \"~/nov_live_prep_20261104/torque_so101.py\", line 36, in main\n    with n.ReadSession() as session:\n  File \"~/nov_live_prep_20261104/nov_readonly.py\", line 109, in __enter__\n    check_stop()\n  File \"~/nov_live_prep_20261104/nov_readonly.py\", line 23, in check_stop\n    if latch_path().exists():raise SafetyStop('serial 전역 중단 상태; 자동 해제하지 않음')\nnov_readonly.SafetyStop: serial 전역 중단 상태; 자동 해제하지 않음\n",
+    "device_open": "NOT_REACHED_BY_STATIC_GATE"
+  },
+  {
+    "name": "dry_wrapper_refusal",
+    "exit_code": 1,
+    "expected_refusal": true,
+    "confirmation_input": "EOF_ONLY",
+    "output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"~/nov_live_prep_20261104/nov_readonly.py\", line 23, in check_stop\n    if latch_path().exists():raise SafetyStop('serial 전역 중단 상태; 자동 해제하지 않음')\nnov_readonly.SafetyStop: serial 전역 중단 상태; 자동 해제하지 않음\n",
+    "device_open": "NOT_REACHED_BY_STATIC_GATE"
+  }
+]

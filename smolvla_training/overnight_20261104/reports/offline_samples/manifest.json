@@ -1,0 +1,727 @@
+{
+  "samples": [
+    {
+      "id": "red_e000_start",
+      "color": "red",
+      "dataset": "a_to_red_20261102_201029",
+      "episode_index": 0,
+      "offset": 0,
+      "phase": "start",
+      "task": "Put medicine bottle A into the red basket",
+      "original_tasks": [
+        "Put medicine bottle A into the red basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 0.0,
+          "decoded": 0.0
+        },
+        "ceiling_vertical": {
+          "target": 0.0,
+          "decoded": 0.0
+        },
+        "ceiling_oblique": {
+          "target": 0.0,
+          "decoded": 0.0
+        }
+      },
+      "state": [
+        -8.747252464294434,
+        -97.97801971435547,
+        96.57142639160156,
+        44.35165023803711,
+        -1.3626374006271362,
+        1.8971848487854004
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": [
+        1
+      ]
+    },
+    {
+      "id": "red_e000_middle",
+      "color": "red",
+      "dataset": "a_to_red_20261102_201029",
+      "episode_index": 0,
+      "offset": 275,
+      "phase": "middle",
+      "task": "Put medicine bottle A into the red basket",
+      "original_tasks": [
+        "Put medicine bottle A into the red basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 9.166666984558105,
+          "decoded": 9.166666666666666
+        },
+        "ceiling_vertical": {
+          "target": 9.166666984558105,
+          "decoded": 9.166666666666666
+        },
+        "ceiling_oblique": {
+          "target": 9.166666984558105,
+          "decoded": 9.166666666666666
+        }
+      },
+      "state": [
+        -28.791208267211914,
+        39.16483688354492,
+        -65.62637329101562,
+        76.79120635986328,
+        -1.890109896659851,
+        32.61933898925781
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": [
+        1
+      ]
+    },
+    {
+      "id": "red_e002_start",
+      "color": "red",
+      "dataset": "a_to_red_20261102_201029",
+      "episode_index": 2,
+      "offset": 0,
+      "phase": "start",
+      "task": "Put medicine bottle A into the red basket",
+      "original_tasks": [
+        "Put medicine bottle A into the red basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 41.2,
+          "decoded": 41.2
+        },
+        "ceiling_vertical": {
+          "target": 41.2,
+          "decoded": 41.2
+        },
+        "ceiling_oblique": {
+          "target": 41.2,
+          "decoded": 41.2
+        }
+      },
+      "state": [
+        -5.758241653442383,
+        -97.89010620117188,
+        96.57142639160156,
+        42.241756439208984,
+        1.3626374006271362,
+        6.670746803283691
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": [
+        1
+      ]
+    },
+    {
+      "id": "red_e002_middle",
+      "color": "red",
+      "dataset": "a_to_red_20261102_201029",
+      "episode_index": 2,
+      "offset": 182,
+      "phase": "middle",
+      "task": "Put medicine bottle A into the red basket",
+      "original_tasks": [
+        "Put medicine bottle A into the red basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 47.26666660308838,
+          "decoded": 47.266666666666666
+        },
+        "ceiling_vertical": {
+          "target": 47.26666660308838,
+          "decoded": 47.266666666666666
+        },
+        "ceiling_oblique": {
+          "target": 47.26666660308838,
+          "decoded": 47.266666666666666
+        }
+      },
+      "state": [
+        -14.373626708984375,
+        -25.098901748657227,
+        0.21978022158145905,
+        56.659339904785156,
+        -10.681318283081055,
+        21.787025451660156
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": [
+        1
+      ]
+    },
+    {
+      "id": "red_e003_start",
+      "color": "red",
+      "dataset": "a_to_red_20261102_201029",
+      "episode_index": 3,
+      "offset": 0,
+      "phase": "start",
+      "task": "Put medicine bottle A into the red basket",
+      "original_tasks": [
+        "Put medicine bottle A into the red basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 53.333333333333336,
+          "decoded": 53.333333333333336
+        },
+        "ceiling_vertical": {
+          "target": 53.333333333333336,
+          "decoded": 53.333333333333336
+        },
+        "ceiling_oblique": {
+          "target": 53.333333333333336,
+          "decoded": 53.333333333333336
+        }
+      },
+      "state": [
+        -3.7362637519836426,
+        -97.89010620117188,
+        96.57142639160156,
+        42.94505310058594,
+        -7.956043720245361,
+        1.7135863304138184
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": [
+        1
+      ]
+    },
+    {
+      "id": "red_e003_middle",
+      "color": "red",
+      "dataset": "a_to_red_20261102_201029",
+      "episode_index": 3,
+      "offset": 200,
+      "phase": "middle",
+      "task": "Put medicine bottle A into the red basket",
+      "original_tasks": [
+        "Put medicine bottle A into the red basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 59.99999984105428,
+          "decoded": 60.0
+        },
+        "ceiling_vertical": {
+          "target": 59.99999984105428,
+          "decoded": 60.0
+        },
+        "ceiling_oblique": {
+          "target": 59.99999984105428,
+          "decoded": 60.0
+        }
+      },
+      "state": [
+        -30.0219783782959,
+        18.505495071411133,
+        -31.516483306884766,
+        45.406593322753906,
+        -1.802197813987732,
+        19.400245666503906
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": [
+        1
+      ]
+    },
+    {
+      "id": "green_e000_start",
+      "color": "green",
+      "dataset": "a_to_green_20261102_201804",
+      "episode_index": 0,
+      "offset": 0,
+      "phase": "start",
+      "task": "Put medicine bottle A into the green basket",
+      "original_tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 0.0,
+          "decoded": 0.0
+        },
+        "ceiling_vertical": {
+          "target": 0.0,
+          "decoded": 0.0
+        },
+        "ceiling_oblique": {
+          "target": 0.0,
+          "decoded": 0.0
+        }
+      },
+      "state": [
+        -4.175824165344238,
+        -97.97801971435547,
+        96.65933990478516,
+        43.38461685180664,
+        -3.0329670906066895,
+        5.018359661102295
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": []
+    },
+    {
+      "id": "green_e000_middle",
+      "color": "green",
+      "dataset": "a_to_green_20261102_201804",
+      "episode_index": 0,
+      "offset": 312,
+      "phase": "middle",
+      "task": "Put medicine bottle A into the green basket",
+      "original_tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 10.399999618530273,
+          "decoded": 10.4
+        },
+        "ceiling_vertical": {
+          "target": 10.399999618530273,
+          "decoded": 10.4
+        },
+        "ceiling_oblique": {
+          "target": 10.399999618530273,
+          "decoded": 10.4
+        }
+      },
+      "state": [
+        4.263736248016357,
+        -37.67033004760742,
+        40.0439567565918,
+        42.94505310058594,
+        -7.604395389556885,
+        34.08812713623047
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": []
+    },
+    {
+      "id": "green_e001_start",
+      "color": "green",
+      "dataset": "a_to_green_20261102_201804",
+      "episode_index": 1,
+      "offset": 0,
+      "phase": "start",
+      "task": "Put medicine bottle A into the green basket",
+      "original_tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 20.8,
+          "decoded": 20.8
+        },
+        "ceiling_vertical": {
+          "target": 20.8,
+          "decoded": 20.8
+        },
+        "ceiling_oblique": {
+          "target": 20.8,
+          "decoded": 20.8
+        }
+      },
+      "state": [
+        -4.615384578704834,
+        -98.15384674072266,
+        96.57142639160156,
+        43.120880126953125,
+        1.3626374006271362,
+        2.7539780139923096
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": []
+    },
+    {
+      "id": "green_e001_middle",
+      "color": "green",
+      "dataset": "a_to_green_20261102_201804",
+      "episode_index": 1,
+      "offset": 294,
+      "phase": "middle",
+      "task": "Put medicine bottle A into the green basket",
+      "original_tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 30.600000190734864,
+          "decoded": 30.6
+        },
+        "ceiling_vertical": {
+          "target": 30.600000190734864,
+          "decoded": 30.6
+        },
+        "ceiling_oblique": {
+          "target": 30.600000190734864,
+          "decoded": 30.6
+        }
+      },
+      "state": [
+        4.791208744049072,
+        -46.28571319580078,
+        22.0219783782959,
+        49.626373291015625,
+        -14.373626708984375,
+        21.175029754638672
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": []
+    },
+    {
+      "id": "green_e002_start",
+      "color": "green",
+      "dataset": "a_to_green_20261102_201804",
+      "episode_index": 2,
+      "offset": 0,
+      "phase": "start",
+      "task": "Put medicine bottle A into the green basket",
+      "original_tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 40.400000000000006,
+          "decoded": 40.4
+        },
+        "ceiling_vertical": {
+          "target": 40.400000000000006,
+          "decoded": 40.4
+        },
+        "ceiling_oblique": {
+          "target": 40.400000000000006,
+          "decoded": 40.4
+        }
+      },
+      "state": [
+        -1.802197813987732,
+        -97.53845977783203,
+        96.65933990478516,
+        43.56044006347656,
+        -6.901098728179932,
+        5.263157844543457
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": []
+    },
+    {
+      "id": "green_e002_middle",
+      "color": "green",
+      "dataset": "a_to_green_20261102_201804",
+      "episode_index": 2,
+      "offset": 332,
+      "phase": "middle",
+      "task": "Put medicine bottle A into the green basket",
+      "original_tasks": [
+        "Put medicine bottle A into the green basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 51.466666603088385,
+          "decoded": 51.46666666666667
+        },
+        "ceiling_vertical": {
+          "target": 51.466666603088385,
+          "decoded": 51.46666666666667
+        },
+        "ceiling_oblique": {
+          "target": 51.466666603088385,
+          "decoded": 51.46666666666667
+        }
+      },
+      "state": [
+        -14.373626708984375,
+        41.010990142822266,
+        -75.73626708984375,
+        90.32967376708984,
+        -14.373626708984375,
+        24.602203369140625
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": []
+    },
+    {
+      "id": "blue_e001_start",
+      "color": "blue",
+      "dataset": "a_to_blue_20261103_193835",
+      "episode_index": 1,
+      "offset": 0,
+      "phase": "start",
+      "task": "Put medicine bottle A into the blue basket",
+      "original_tasks": [
+        "Put medicine bottle A into the blue basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 31.233333333333334,
+          "decoded": 31.233333333333334
+        },
+        "ceiling_vertical": {
+          "target": 31.233333333333334,
+          "decoded": 31.233333333333334
+        },
+        "ceiling_oblique": {
+          "target": 31.233333333333334,
+          "decoded": 31.233333333333334
+        }
+      },
+      "state": [
+        -3.912087917327881,
+        -97.80220031738281,
+        96.57142639160156,
+        43.20878982543945,
+        0.21978022158145905,
+        4.651162624359131
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": [
+        0,
+        3,
+        4,
+        9,
+        20,
+        34
+      ]
+    },
+    {
+      "id": "blue_e001_middle",
+      "color": "blue",
+      "dataset": "a_to_blue_20261103_193835",
+      "episode_index": 1,
+      "offset": 219,
+      "phase": "middle",
+      "task": "Put medicine bottle A into the blue basket",
+      "original_tasks": [
+        "Put medicine bottle A into the blue basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 38.5333335240682,
+          "decoded": 38.53333333333333
+        },
+        "ceiling_vertical": {
+          "target": 38.5333335240682,
+          "decoded": 38.53333333333333
+        },
+        "ceiling_oblique": {
+          "target": 38.5333335240682,
+          "decoded": 38.53333333333333
+        }
+      },
+      "state": [
+        3.2087912559509277,
+        -18.41758155822754,
+        -13.582417488098145,
+        83.47252655029297,
+        8.747252464294434,
+        22.582618713378906
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": [
+        0,
+        3,
+        4,
+        9,
+        20,
+        34
+      ]
+    },
+    {
+      "id": "blue_e002_start",
+      "color": "blue",
+      "dataset": "a_to_blue_20261103_193835",
+      "episode_index": 2,
+      "offset": 0,
+      "phase": "start",
+      "task": "Put medicine bottle A into the blue basket",
+      "original_tasks": [
+        "Put medicine bottle A into the blue basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 45.833333333333336,
+          "decoded": 45.833333333333336
+        },
+        "ceiling_vertical": {
+          "target": 45.833333333333336,
+          "decoded": 45.833333333333336
+        },
+        "ceiling_oblique": {
+          "target": 45.833333333333336,
+          "decoded": 45.833333333333336
+        }
+      },
+      "state": [
+        -3.296703338623047,
+        -98.06593322753906,
+        96.48351287841797,
+        42.94505310058594,
+        -1.186813235282898,
+        2.3867809772491455
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": [
+        0,
+        3,
+        4,
+        9,
+        20,
+        34
+      ]
+    },
+    {
+      "id": "blue_e002_middle",
+      "color": "blue",
+      "dataset": "a_to_blue_20261103_193835",
+      "episode_index": 2,
+      "offset": 220,
+      "phase": "middle",
+      "task": "Put medicine bottle A into the blue basket",
+      "original_tasks": [
+        "Put medicine bottle A into the blue basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 53.16666682561239,
+          "decoded": 53.166666666666664
+        },
+        "ceiling_vertical": {
+          "target": 53.16666682561239,
+          "decoded": 53.166666666666664
+        },
+        "ceiling_oblique": {
+          "target": 53.16666682561239,
+          "decoded": 53.166666666666664
+        }
+      },
+      "state": [
+        2.9450550079345703,
+        -37.67033004760742,
+        20.263736724853516,
+        61.758243560791016,
+        -8.747252464294434,
+        23.37821388244629
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": [
+        0,
+        3,
+        4,
+        9,
+        20,
+        34
+      ]
+    },
+    {
+      "id": "blue_e005_start",
+      "color": "blue",
+      "dataset": "a_to_blue_20261103_193835",
+      "episode_index": 5,
+      "offset": 0,
+      "phase": "start",
+      "task": "Put medicine bottle A into the blue basket",
+      "original_tasks": [
+        "Put medicine bottle A into the blue basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 95.8,
+          "decoded": 95.8
+        },
+        "ceiling_vertical": {
+          "target": 95.8,
+          "decoded": 95.8
+        },
+        "ceiling_oblique": {
+          "target": 95.8,
+          "decoded": 95.8
+        }
+      },
+      "state": [
+        -1.0989011526107788,
+        -97.62637329101562,
+        96.57142639160156,
+        42.769229888916016,
+        -3.384615421295166,
+        9.057527542114258
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": [
+        0,
+        3,
+        4,
+        9,
+        20,
+        34
+      ]
+    },
+    {
+      "id": "blue_e005_middle",
+      "color": "blue",
+      "dataset": "a_to_blue_20261103_193835",
+      "episode_index": 5,
+      "offset": 241,
+      "phase": "middle",
+      "task": "Put medicine bottle A into the blue basket",
+      "original_tasks": [
+        "Put medicine bottle A into the blue basket"
+      ],
+      "fps": 30.0,
+      "video_times": {
+        "end_effector": {
+          "target": 103.83333377838134,
+          "decoded": 103.83333333333333
+        },
+        "ceiling_vertical": {
+          "target": 103.83333377838134,
+          "decoded": 103.83333333333333
+        },
+        "ceiling_oblique": {
+          "target": 103.83333377838134,
+          "decoded": 103.83333333333333
+        }
+      },
+      "state": [
+        3.2087912559509277,
+        -29.318681716918945,
+        30.10988998413086,
+        51.29670333862305,
+        -15.868131637573242,
+        49.816402435302734
+      ],
+      "included_in_training": true,
+      "exclusions_zero_based": [
+        0,
+        3,
+        4,
+        9,
+        20,
+        34
+      ]
+    }
+  ],
+  "errors": [],
+  "seconds": 5.43767970999761,
+  "evaluation_scope": "학습에 포함된 원본 표본 재현 오차이며 held-out/성공률 아님"
+}

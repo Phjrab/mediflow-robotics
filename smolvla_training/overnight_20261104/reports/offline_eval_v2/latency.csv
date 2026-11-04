@@ -1,0 +1,13 @@
+repetition,seconds,rss_bytes,gpu_allocated_bytes,gpu_peak_bytes,jetson_temperatures
+0,2.9391624400013825,3806969856,1222018048,1280713728,"{""cpu-thermal"": 48.5, ""soc2-thermal"": 45.906, ""soc0-thermal"": 46.25, ""gpu-thermal"": 47.406, ""tj-thermal"": 48.5, ""soc1-thermal"": 46.781}"
+1,1.9946948270007852,3806969856,1222018048,1280764928,"{""cpu-thermal"": 48.562, ""soc2-thermal"": 46.125, ""soc0-thermal"": 46.343, ""gpu-thermal"": 47.812, ""tj-thermal"": 48.562, ""soc1-thermal"": 46.937}"
+2,2.000927840002987,3806969856,1222018048,1280764928,"{""cpu-thermal"": 48.812, ""soc2-thermal"": 46.25, ""soc0-thermal"": 46.468, ""gpu-thermal"": 47.906, ""tj-thermal"": 48.812, ""soc1-thermal"": 47.218}"
+3,1.9787932799990813,3806969856,1222018048,1280764928,"{""cpu-thermal"": 48.843, ""soc2-thermal"": 46.468, ""soc0-thermal"": 46.593, ""gpu-thermal"": 48.375, ""tj-thermal"": 48.843, ""soc1-thermal"": 47.25}"
+4,1.969377200002782,3806969856,1222018048,1280764928,"{""cpu-thermal"": 48.625, ""soc2-thermal"": 46.468, ""soc0-thermal"": 46.75, ""gpu-thermal"": 48.281, ""tj-thermal"": 48.718, ""soc1-thermal"": 47.281}"
+5,1.9725416120018053,3806969856,1222018048,1280764928,"{""cpu-thermal"": 49.031, ""soc2-thermal"": 46.656, ""soc0-thermal"": 46.781, ""gpu-thermal"": 48.25, ""tj-thermal"": 49.031, ""soc1-thermal"": 47.531}"
+6,1.9664442210014386,3806969856,1222018048,1280764928,"{""cpu-thermal"": 49.218, ""soc2-thermal"": 46.812, ""soc0-thermal"": 47.0, ""gpu-thermal"": 48.312, ""tj-thermal"": 49.218, ""soc1-thermal"": 47.593}"
+7,1.966610497001966,3806969856,1222018048,1280764928,"{""cpu-thermal"": 49.312, ""soc2-thermal"": 46.968, ""soc0-thermal"": 47.156, ""gpu-thermal"": 48.468, ""tj-thermal"": 49.312, ""soc1-thermal"": 47.843}"
+8,1.9774093380001432,3806969856,1222018048,1280764928,"{""cpu-thermal"": 49.625, ""soc2-thermal"": 47.093, ""soc0-thermal"": 47.218, ""gpu-thermal"": 48.718, ""tj-thermal"": 49.625, ""soc1-thermal"": 47.812}"
+9,1.9761398609989556,3806969856,1222018048,1280764928,"{""cpu-thermal"": 49.312, ""soc2-thermal"": 47.093, ""soc0-thermal"": 47.406, ""gpu-thermal"": 48.781, ""tj-thermal"": 49.312, ""soc1-thermal"": 47.781}"
+10,1.977950378000969,3806969856,1222018048,1280764928,"{""cpu-thermal"": 49.343, ""soc2-thermal"": 47.218, ""soc0-thermal"": 47.5, ""gpu-thermal"": 48.718, ""tj-thermal"": 49.406, ""soc1-thermal"": 47.906}"
+11,1.9693376819996047,3806969856,1222018048,1280764928,"{""cpu-thermal"": 49.812, ""soc2-thermal"": 47.312, ""soc0-thermal"": 47.531, ""gpu-thermal"": 48.843, ""tj-thermal"": 49.812, ""soc1-thermal"": 48.125}"

@@ -1,0 +1,68 @@
+{
+  "end_effector": {
+    "policy_key": "camera1",
+    "shape": [
+      480,
+      640,
+      3
+    ],
+    "dtype": "uint8",
+    "mean_rgb": [
+      2.2407486979166666,
+      0.0014713541666666666,
+      0.7497135416666667
+    ],
+    "std_rgb": [
+      0.6228523198726539,
+      0.043873892581477815,
+      0.9841517187097963
+    ],
+    "image_sha256": "88c7b5f49a7aa80f5b265daeb75dc98bef5cae1b08f3646f4de9159d0cd4a337",
+    "repeated_two_samples": false,
+    "black_fraction": 0.016673177083333334
+  },
+  "ceiling_vertical": {
+    "policy_key": "camera2",
+    "shape": [
+      480,
+      640,
+      3
+    ],
+    "dtype": "uint8",
+    "mean_rgb": [
+      0.001630859375,
+      0.001865234375,
+      0.007451171875
+    ],
+    "std_rgb": [
+      0.18503750094600785,
+      0.20252259407033035,
+      0.822344099857106
+    ],
+    "image_sha256": "eb9e8add0baddbce0e71c3ccccfe5312d3e51be7af9aaedb574d264a963baccc",
+    "repeated_two_samples": false,
+    "black_fraction": 0.999794921875
+  },
+  "ceiling_oblique": {
+    "policy_key": "camera3",
+    "shape": [
+      480,
+      640,
+      3
+    ],
+    "dtype": "uint8",
+    "mean_rgb": [
+      5.3340234375,
+      1.1795703125,
+      5.419788411458334
+    ],
+    "std_rgb": [
+      1.9825206124088632,
+      1.8917603196576118,
+      2.3398978803890444
+    ],
+    "image_sha256": "89debfa3286fc074f2b4956d8cfaa8fbb6076e4010bbefc0c4aa7f9a370dee5e",
+    "repeated_two_samples": false,
+    "black_fraction": 0.002265625
+  }
+}

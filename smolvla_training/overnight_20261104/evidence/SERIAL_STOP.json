@@ -1,0 +1,10 @@
+{
+  "time": 1793805897.0608382,
+  "reason": "토크ON 관측; 이후 serial 작업 중단",
+  "observed": {
+    "joint": "shoulder_pan",
+    "torque": {
+      "shoulder_pan": 1
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "time": 1793810050.9604902,
+  "serial_final_read": "NOT_RUN_STOP_CONDITION_HAS_PRIORITY",
+  "last_serial_observation": {
+    "time": 1793805897.0608382,
+    "reason": "토크ON 관측; 이후 serial 작업 중단",
+    "observed": {
+      "joint": "shoulder_pan",
+      "torque": {
+        "shoulder_pan": 1
+      }
+    }
+  },
+  "unobserved_motor_values": "UNVERIFIED",
+  "register_writes": 0,
+  "port_free": true,
+  "fuser_exit_code": 1,
+  "fuser_has_output": false,
+  "active_task_processes": [],
+  "monitor_8765_listening": false,
+  "astra_bridge": {
+    "exit_code": 0,
+    "state": "active"
+  },
+  "lelab": {
+    "exit_code": 3,
+    "state": "inactive"
+  },
+  "jetson_temperatures": {
+    "cpu-thermal": 47.406,
+    "soc2-thermal": 45.093,
+    "soc0-thermal": 45.343,
+    "gpu-thermal": 46.375,
+    "tj-thermal": 47.406,
+    "soc1-thermal": 46.156
+  }
+}

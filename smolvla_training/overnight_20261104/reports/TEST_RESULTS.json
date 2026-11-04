@@ -1,0 +1,13 @@
+{
+  "tests_run": 46,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 46,
+  "exit_code": 0,
+  "elapsed_seconds": 0.2866772710040095,
+  "python310_syntax_files": 28,
+  "bash_syntax_files": 2,
+  "hardware_execution": "NOT_RUN",
+  "model_inference": "NOT_RUN"
+}
