@@ -158,5 +158,3 @@ def infer_chunk(policy, preprocess, postprocess, observation, torch):
                 raise ValueError("후처리 action 차원 또는 수치 오류")
             actions.append([float(x) for x in action])
     return actions
-
-
