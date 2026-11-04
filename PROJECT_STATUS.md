@@ -1,5 +1,13 @@
 # MediFlow / SO-ARM101 최신 상태
 
+## 최신 추가 — 2026-11-04 KST
+
+현재 목표는 약통 A의 SmolVLA 3색 첫 live 시험 준비입니다. 최종137회 학습 완료 기록과 Windows 모델 해시를 확인했고, 운영자가 Jetson v4 dry-run 1회(chunks=1, 모터 목표 전송0회)를 통과했습니다. 실제 home 통계 계산·토크 활성화·5초 live·바구니 투입 성공은 아직 NOT_RUN/미측정입니다.
+
+자세한 [현재 상태](docs/smolvla/CURRENT_STATUS.md), [문제와 해결](docs/smolvla/TROUBLESHOOTING_20261104.md), [학습 요약](docs/smolvla/TRAINING_SUMMARY_20261104.md), [누적 작업 일지](docs/smolvla/WORK_LOG.md)를 우선 읽으세요. 이후에도 사용자 요청에 따라 이 기록을 갱신합니다.
+
+## 보존 기록 — 2026-10-07
+
 기준일: 2026-10-07 KST. 이 파일은 긴 현장 인수 기록 대신 공개하는 상태 요약이다.
 
 ## 완료·확인
@@ -30,3 +38,4 @@
 - [추적/종료 수정](outputs/offline_act_a_v3_trim05_trial_20261007/TRACKING_SYNC_CHANGE_20261007.md).
 
 저장소만 받아 실제 로봇을 자동 실행하지 않는다. 학습 loss·프로세스 종료·단위 테스트를 실제 투입 성공과 혼동하지 않는다. 과거 보고서의 ‘현재’는 각 보고서 날짜의 상태이며 최신 결과는 이 요약과 최신 주차 문서를 확인한다.
+
