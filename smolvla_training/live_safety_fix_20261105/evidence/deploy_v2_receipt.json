@@ -1,0 +1,17 @@
+{
+  "changed": [
+    "live_safety_runtime.py",
+    "so101_first_action_test_safe_v6.py",
+    "test_live_safety_fix.py",
+    "build_v6.py",
+    "manifest.json"
+  ],
+  "backups": [
+    "live_safety_runtime.py.bak_1793875078830876407",
+    "so101_first_action_test_safe_v6.py.bak_1793875078830876407",
+    "test_live_safety_fix.py.bak_1793875078830876407",
+    "build_v6.py.bak_1793875078830876407",
+    "manifest.json.bak_1793875078830876407"
+  ],
+  "preserved_stop_sha256": "16bf71d5f09ebb246a573a22cbad1faae57e5f50c0ae6ed945f2443c94797f5c"
+}

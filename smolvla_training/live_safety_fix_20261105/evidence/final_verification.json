@@ -1,0 +1,15 @@
+{
+  "stop_archive_unchanged": true,
+  "old_v4_unchanged": true,
+  "lelab": "inactive",
+  "astra": "active",
+  "new_hardware_calls_after_probe": 0,
+  "tests": {
+    "run": 25,
+    "passed": 25,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit_code": 0
+  }
+}

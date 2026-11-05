@@ -1,0 +1,14 @@
+{
+  "before_new_code_tests": {
+    "stop_sha256": null
+  },
+  "stop_record_candidates": [
+    {
+      "path": "nov_live_prep_20261104/SERIAL_STOP.cleared_20261105_185629.json",
+      "bytes": 188,
+      "mtime": 1793805897.0582004,
+      "sha256": "16bf71d5f09ebb246a573a22cbad1faae57e5f50c0ae6ed945f2443c94797f5c"
+    }
+  ],
+  "original_v4_sha256": "af72d76b992c237211c576796219694503986609277da9b877913b550df6ec56"
+}

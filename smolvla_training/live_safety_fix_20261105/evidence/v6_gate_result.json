@@ -1,0 +1,5 @@
+{
+  "status": "REFUSED_BEFORE_DEVICE_IMPORT",
+  "reason": "중단 기록 또는 이름 변경 보존본 존재: 현장 재무장 근거 미확인; 추가 접근/목표 전송 거부",
+  "device_or_gpu_modules_loaded": []
+}
