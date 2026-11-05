@@ -14,6 +14,15 @@ from check_lights_via_lelab import CAMERAS, MAPPING, jpeg_frames, states
 ROOT = Path(__file__).resolve().parent
 
 
+def stable_jpegs(response):
+    # 미리보기는 연결 즉시 출력하므로 초기 자동 보정 프레임을 계속 소비한다.
+    # 잠들어서 HTTP 버퍼에 초기 프레임이 쌓이게 하지 않는다.
+    started = time.monotonic()
+    while time.monotonic() - started < 3.0:
+        jpeg_frames(response)
+    return jpeg_frames(response)
+
+
 def allowed_owners(code, stdout, stderr, astra=False, group_reader=None):
     if not astra:
         return code == 1 and not stdout.strip() and not stderr.strip()
@@ -43,7 +52,8 @@ def main():
     out = args.out
     out.mkdir(parents=True, exist_ok=False)
     result = dict(states_before=states(), cameras={}, serial_open=False, register_writes=0,
-                  captured_at_unix=time.time(), source='LeLab_preview_JPEG_NOT_POLICY_INPUT')
+                  captured_at_unix=time.time(), preview_warmup_seconds=3.0,
+                  source='LeLab_preview_JPEG_NOT_POLICY_INPUT')
     bridge = subprocess.run(['systemctl', 'is-active', 'astra-v4l2-bridge.service'], capture_output=True, text=True)
     if bridge.returncode != 0:
         raise RuntimeError('Astra 브리지 비활성; 서비스는 자동 변경하지 않음')
@@ -66,7 +76,7 @@ def main():
         try:
             url = 'http://127.0.0.1:8022/camera-preview/%s?width=640&height=480&fps=30' % node.group(1)
             with urllib.request.urlopen(url, timeout=5) as response:
-                raw_frames = jpeg_frames(response)
+                raw_frames = stable_jpegs(response)
             for index, raw in enumerate(raw_frames):
                 image = Image.open(io.BytesIO(raw)).convert('RGB')
                 if image.size != (640, 480):

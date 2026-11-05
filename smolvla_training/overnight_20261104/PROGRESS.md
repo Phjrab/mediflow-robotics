@@ -43,3 +43,11 @@
 - 현재 상태: YOLO inactive, Astra active. 부팅 설정은 변경하지 않음.
 - UNVERIFIED: 천장 카메라 구도 차이의 원인, RealSense 식별자 변경 이유, 실제 제어에 적합한 관측인지 여부.
 - NOT_RUN: 로봇/serial/모터 읽기쓰기/정책추론/live/push. 기존 serial 중단 기록 보존.
+
+## 11월 5일 RealSense 노출 원인 확인
+
+- DONE: 읽기 전용 제어값 조회, 자동노출 ON/역광보정 OFF/자동화이트밸런스 ON 확인.
+- DONE: 6초 연속 수신에서 초기55.76 -> 안정화108.62 관측. current 제어값 변화0. 초기2프레임만 잡은 수집 방식이 주원인.
+- DONE: 확인용 클라이언트3초 예열 수정, 독립 재확인 RealSense 밝기109.23. 신규3+2개 테스트 Windows/Jetson 통과.
+- 정정: 이전의 지속적인 RealSense 암부 판단은 초기 프레임에 근거했다. 낮/역광을 원인으로 확정하지 않음.
+- NOT_RUN: 노출/역광/화이트밸런스 설정쓰기, 로봇/serial/정책추론/live/push. 구도 차이는 남음.

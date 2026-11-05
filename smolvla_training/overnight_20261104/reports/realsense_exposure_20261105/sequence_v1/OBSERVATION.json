@@ -1,0 +1,1963 @@
+{
+  "before": {
+    "driver": "uvcvideo",
+    "card": "Intel(R) RealSense(TM) Depth Ca",
+    "format": {
+      "width": 640,
+      "height": 480,
+      "fourcc": "YUYV",
+      "colorspace": 0,
+      "ycbcr_encoding": 0,
+      "quantization": 0,
+      "transfer": 0
+    },
+    "frame_interval": {
+      "numerator": 1,
+      "denominator": 30
+    },
+    "controls": [
+      {
+        "id": 9961473,
+        "name": "User Controls",
+        "type": 6,
+        "min": 0,
+        "max": 0,
+        "step": 0,
+        "default": 0,
+        "flags": 68,
+        "current": null,
+        "read_skipped": true
+      },
+      {
+        "id": 9963776,
+        "name": "Brightness",
+        "type": 1,
+        "min": -64,
+        "max": 64,
+        "step": 1,
+        "default": 0,
+        "flags": 0,
+        "current": 0
+      },
+      {
+        "id": 9963777,
+        "name": "Contrast",
+        "type": 1,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 50,
+        "flags": 0,
+        "current": 50
+      },
+      {
+        "id": 9963778,
+        "name": "Saturation",
+        "type": 1,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 64,
+        "flags": 0,
+        "current": 64
+      },
+      {
+        "id": 9963779,
+        "name": "Hue",
+        "type": 1,
+        "min": -180,
+        "max": 180,
+        "step": 1,
+        "default": 0,
+        "flags": 0,
+        "current": 0
+      },
+      {
+        "id": 9963788,
+        "name": "White Balance, Automatic",
+        "type": 2,
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 1,
+        "flags": 0,
+        "current": 1
+      },
+      {
+        "id": 9963792,
+        "name": "Gamma",
+        "type": 1,
+        "min": 100,
+        "max": 500,
+        "step": 1,
+        "default": 300,
+        "flags": 0,
+        "current": 300
+      },
+      {
+        "id": 9963795,
+        "name": "Gain",
+        "type": 1,
+        "min": 0,
+        "max": 128,
+        "step": 1,
+        "default": 64,
+        "flags": 0,
+        "current": 64
+      },
+      {
+        "id": 9963800,
+        "name": "Power Line Frequency",
+        "type": 3,
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "default": 3,
+        "flags": 0,
+        "current": 3,
+        "menu": {
+          "0": "Disabled",
+          "1": "50 Hz",
+          "2": "60 Hz"
+        }
+      },
+      {
+        "id": 9963802,
+        "name": "White Balance Temperature",
+        "type": 1,
+        "min": 2800,
+        "max": 6500,
+        "step": 10,
+        "default": 4600,
+        "flags": 16,
+        "current": 4600
+      },
+      {
+        "id": 9963803,
+        "name": "Sharpness",
+        "type": 1,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 50,
+        "flags": 0,
+        "current": 50
+      },
+      {
+        "id": 9963804,
+        "name": "Backlight Compensation",
+        "type": 1,
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 0,
+        "flags": 0,
+        "current": 0
+      },
+      {
+        "id": 10092545,
+        "name": "Camera Controls",
+        "type": 6,
+        "min": 0,
+        "max": 0,
+        "step": 0,
+        "default": 0,
+        "flags": 68,
+        "current": null,
+        "read_skipped": true
+      },
+      {
+        "id": 10094849,
+        "name": "Auto Exposure",
+        "type": 3,
+        "min": 0,
+        "max": 3,
+        "step": 1,
+        "default": 3,
+        "flags": 0,
+        "current": 3,
+        "menu": {
+          "1": "Manual Mode",
+          "3": "Aperture Priority Mode"
+        }
+      },
+      {
+        "id": 10094850,
+        "name": "Exposure Time, Absolute",
+        "type": 1,
+        "min": 1,
+        "max": 10000,
+        "step": 1,
+        "default": 166,
+        "flags": 16,
+        "current": 166
+      },
+      {
+        "id": 10094851,
+        "name": "Exposure, Dynamic Framerate",
+        "type": 2,
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 0,
+        "flags": 0,
+        "current": 0
+      }
+    ],
+    "enumeration_errno": 22,
+    "readonly_open": true,
+    "setting_writes": 0
+  },
+  "during": {
+    "frame_00.png": {
+      "driver": "uvcvideo",
+      "card": "Intel(R) RealSense(TM) Depth Ca",
+      "format": {
+        "width": 640,
+        "height": 480,
+        "fourcc": "YUYV",
+        "colorspace": 0,
+        "ycbcr_encoding": 0,
+        "quantization": 0,
+        "transfer": 0
+      },
+      "frame_interval": {
+        "numerator": 1,
+        "denominator": 30
+      },
+      "controls": [
+        {
+          "id": 9961473,
+          "name": "User Controls",
+          "type": 6,
+          "min": 0,
+          "max": 0,
+          "step": 0,
+          "default": 0,
+          "flags": 68,
+          "current": null,
+          "read_skipped": true
+        },
+        {
+          "id": 9963776,
+          "name": "Brightness",
+          "type": 1,
+          "min": -64,
+          "max": 64,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 9963777,
+          "name": "Contrast",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "flags": 0,
+          "current": 50
+        },
+        {
+          "id": 9963778,
+          "name": "Saturation",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 64,
+          "flags": 0,
+          "current": 64
+        },
+        {
+          "id": 9963779,
+          "name": "Hue",
+          "type": 1,
+          "min": -180,
+          "max": 180,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 9963788,
+          "name": "White Balance, Automatic",
+          "type": 2,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 1,
+          "flags": 0,
+          "current": 1
+        },
+        {
+          "id": 9963792,
+          "name": "Gamma",
+          "type": 1,
+          "min": 100,
+          "max": 500,
+          "step": 1,
+          "default": 300,
+          "flags": 0,
+          "current": 300
+        },
+        {
+          "id": 9963795,
+          "name": "Gain",
+          "type": 1,
+          "min": 0,
+          "max": 128,
+          "step": 1,
+          "default": 64,
+          "flags": 0,
+          "current": 64
+        },
+        {
+          "id": 9963800,
+          "name": "Power Line Frequency",
+          "type": 3,
+          "min": 0,
+          "max": 2,
+          "step": 1,
+          "default": 3,
+          "flags": 0,
+          "current": 3,
+          "menu": {
+            "0": "Disabled",
+            "1": "50 Hz",
+            "2": "60 Hz"
+          }
+        },
+        {
+          "id": 9963802,
+          "name": "White Balance Temperature",
+          "type": 1,
+          "min": 2800,
+          "max": 6500,
+          "step": 10,
+          "default": 4600,
+          "flags": 16,
+          "current": 4600
+        },
+        {
+          "id": 9963803,
+          "name": "Sharpness",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "flags": 0,
+          "current": 50
+        },
+        {
+          "id": 9963804,
+          "name": "Backlight Compensation",
+          "type": 1,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 10092545,
+          "name": "Camera Controls",
+          "type": 6,
+          "min": 0,
+          "max": 0,
+          "step": 0,
+          "default": 0,
+          "flags": 68,
+          "current": null,
+          "read_skipped": true
+        },
+        {
+          "id": 10094849,
+          "name": "Auto Exposure",
+          "type": 3,
+          "min": 0,
+          "max": 3,
+          "step": 1,
+          "default": 3,
+          "flags": 0,
+          "current": 3,
+          "menu": {
+            "1": "Manual Mode",
+            "3": "Aperture Priority Mode"
+          }
+        },
+        {
+          "id": 10094850,
+          "name": "Exposure Time, Absolute",
+          "type": 1,
+          "min": 1,
+          "max": 10000,
+          "step": 1,
+          "default": 166,
+          "flags": 16,
+          "current": 166
+        },
+        {
+          "id": 10094851,
+          "name": "Exposure, Dynamic Framerate",
+          "type": 2,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        }
+      ],
+      "enumeration_errno": 22,
+      "readonly_open": true,
+      "setting_writes": 0
+    },
+    "frame_01.png": {
+      "driver": "uvcvideo",
+      "card": "Intel(R) RealSense(TM) Depth Ca",
+      "format": {
+        "width": 640,
+        "height": 480,
+        "fourcc": "YUYV",
+        "colorspace": 0,
+        "ycbcr_encoding": 0,
+        "quantization": 0,
+        "transfer": 0
+      },
+      "frame_interval": {
+        "numerator": 1,
+        "denominator": 30
+      },
+      "controls": [
+        {
+          "id": 9961473,
+          "name": "User Controls",
+          "type": 6,
+          "min": 0,
+          "max": 0,
+          "step": 0,
+          "default": 0,
+          "flags": 68,
+          "current": null,
+          "read_skipped": true
+        },
+        {
+          "id": 9963776,
+          "name": "Brightness",
+          "type": 1,
+          "min": -64,
+          "max": 64,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 9963777,
+          "name": "Contrast",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "flags": 0,
+          "current": 50
+        },
+        {
+          "id": 9963778,
+          "name": "Saturation",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 64,
+          "flags": 0,
+          "current": 64
+        },
+        {
+          "id": 9963779,
+          "name": "Hue",
+          "type": 1,
+          "min": -180,
+          "max": 180,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 9963788,
+          "name": "White Balance, Automatic",
+          "type": 2,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 1,
+          "flags": 0,
+          "current": 1
+        },
+        {
+          "id": 9963792,
+          "name": "Gamma",
+          "type": 1,
+          "min": 100,
+          "max": 500,
+          "step": 1,
+          "default": 300,
+          "flags": 0,
+          "current": 300
+        },
+        {
+          "id": 9963795,
+          "name": "Gain",
+          "type": 1,
+          "min": 0,
+          "max": 128,
+          "step": 1,
+          "default": 64,
+          "flags": 0,
+          "current": 64
+        },
+        {
+          "id": 9963800,
+          "name": "Power Line Frequency",
+          "type": 3,
+          "min": 0,
+          "max": 2,
+          "step": 1,
+          "default": 3,
+          "flags": 0,
+          "current": 3,
+          "menu": {
+            "0": "Disabled",
+            "1": "50 Hz",
+            "2": "60 Hz"
+          }
+        },
+        {
+          "id": 9963802,
+          "name": "White Balance Temperature",
+          "type": 1,
+          "min": 2800,
+          "max": 6500,
+          "step": 10,
+          "default": 4600,
+          "flags": 16,
+          "current": 4600
+        },
+        {
+          "id": 9963803,
+          "name": "Sharpness",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "flags": 0,
+          "current": 50
+        },
+        {
+          "id": 9963804,
+          "name": "Backlight Compensation",
+          "type": 1,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 10092545,
+          "name": "Camera Controls",
+          "type": 6,
+          "min": 0,
+          "max": 0,
+          "step": 0,
+          "default": 0,
+          "flags": 68,
+          "current": null,
+          "read_skipped": true
+        },
+        {
+          "id": 10094849,
+          "name": "Auto Exposure",
+          "type": 3,
+          "min": 0,
+          "max": 3,
+          "step": 1,
+          "default": 3,
+          "flags": 0,
+          "current": 3,
+          "menu": {
+            "1": "Manual Mode",
+            "3": "Aperture Priority Mode"
+          }
+        },
+        {
+          "id": 10094850,
+          "name": "Exposure Time, Absolute",
+          "type": 1,
+          "min": 1,
+          "max": 10000,
+          "step": 1,
+          "default": 166,
+          "flags": 16,
+          "current": 166
+        },
+        {
+          "id": 10094851,
+          "name": "Exposure, Dynamic Framerate",
+          "type": 2,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        }
+      ],
+      "enumeration_errno": 22,
+      "readonly_open": true,
+      "setting_writes": 0
+    },
+    "frame_02.png": {
+      "driver": "uvcvideo",
+      "card": "Intel(R) RealSense(TM) Depth Ca",
+      "format": {
+        "width": 640,
+        "height": 480,
+        "fourcc": "YUYV",
+        "colorspace": 0,
+        "ycbcr_encoding": 0,
+        "quantization": 0,
+        "transfer": 0
+      },
+      "frame_interval": {
+        "numerator": 1,
+        "denominator": 30
+      },
+      "controls": [
+        {
+          "id": 9961473,
+          "name": "User Controls",
+          "type": 6,
+          "min": 0,
+          "max": 0,
+          "step": 0,
+          "default": 0,
+          "flags": 68,
+          "current": null,
+          "read_skipped": true
+        },
+        {
+          "id": 9963776,
+          "name": "Brightness",
+          "type": 1,
+          "min": -64,
+          "max": 64,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 9963777,
+          "name": "Contrast",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "flags": 0,
+          "current": 50
+        },
+        {
+          "id": 9963778,
+          "name": "Saturation",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 64,
+          "flags": 0,
+          "current": 64
+        },
+        {
+          "id": 9963779,
+          "name": "Hue",
+          "type": 1,
+          "min": -180,
+          "max": 180,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 9963788,
+          "name": "White Balance, Automatic",
+          "type": 2,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 1,
+          "flags": 0,
+          "current": 1
+        },
+        {
+          "id": 9963792,
+          "name": "Gamma",
+          "type": 1,
+          "min": 100,
+          "max": 500,
+          "step": 1,
+          "default": 300,
+          "flags": 0,
+          "current": 300
+        },
+        {
+          "id": 9963795,
+          "name": "Gain",
+          "type": 1,
+          "min": 0,
+          "max": 128,
+          "step": 1,
+          "default": 64,
+          "flags": 0,
+          "current": 64
+        },
+        {
+          "id": 9963800,
+          "name": "Power Line Frequency",
+          "type": 3,
+          "min": 0,
+          "max": 2,
+          "step": 1,
+          "default": 3,
+          "flags": 0,
+          "current": 3,
+          "menu": {
+            "0": "Disabled",
+            "1": "50 Hz",
+            "2": "60 Hz"
+          }
+        },
+        {
+          "id": 9963802,
+          "name": "White Balance Temperature",
+          "type": 1,
+          "min": 2800,
+          "max": 6500,
+          "step": 10,
+          "default": 4600,
+          "flags": 16,
+          "current": 4600
+        },
+        {
+          "id": 9963803,
+          "name": "Sharpness",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "flags": 0,
+          "current": 50
+        },
+        {
+          "id": 9963804,
+          "name": "Backlight Compensation",
+          "type": 1,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 10092545,
+          "name": "Camera Controls",
+          "type": 6,
+          "min": 0,
+          "max": 0,
+          "step": 0,
+          "default": 0,
+          "flags": 68,
+          "current": null,
+          "read_skipped": true
+        },
+        {
+          "id": 10094849,
+          "name": "Auto Exposure",
+          "type": 3,
+          "min": 0,
+          "max": 3,
+          "step": 1,
+          "default": 3,
+          "flags": 0,
+          "current": 3,
+          "menu": {
+            "1": "Manual Mode",
+            "3": "Aperture Priority Mode"
+          }
+        },
+        {
+          "id": 10094850,
+          "name": "Exposure Time, Absolute",
+          "type": 1,
+          "min": 1,
+          "max": 10000,
+          "step": 1,
+          "default": 166,
+          "flags": 16,
+          "current": 166
+        },
+        {
+          "id": 10094851,
+          "name": "Exposure, Dynamic Framerate",
+          "type": 2,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        }
+      ],
+      "enumeration_errno": 22,
+      "readonly_open": true,
+      "setting_writes": 0
+    },
+    "frame_03.png": {
+      "driver": "uvcvideo",
+      "card": "Intel(R) RealSense(TM) Depth Ca",
+      "format": {
+        "width": 640,
+        "height": 480,
+        "fourcc": "YUYV",
+        "colorspace": 0,
+        "ycbcr_encoding": 0,
+        "quantization": 0,
+        "transfer": 0
+      },
+      "frame_interval": {
+        "numerator": 1,
+        "denominator": 30
+      },
+      "controls": [
+        {
+          "id": 9961473,
+          "name": "User Controls",
+          "type": 6,
+          "min": 0,
+          "max": 0,
+          "step": 0,
+          "default": 0,
+          "flags": 68,
+          "current": null,
+          "read_skipped": true
+        },
+        {
+          "id": 9963776,
+          "name": "Brightness",
+          "type": 1,
+          "min": -64,
+          "max": 64,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 9963777,
+          "name": "Contrast",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "flags": 0,
+          "current": 50
+        },
+        {
+          "id": 9963778,
+          "name": "Saturation",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 64,
+          "flags": 0,
+          "current": 64
+        },
+        {
+          "id": 9963779,
+          "name": "Hue",
+          "type": 1,
+          "min": -180,
+          "max": 180,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 9963788,
+          "name": "White Balance, Automatic",
+          "type": 2,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 1,
+          "flags": 0,
+          "current": 1
+        },
+        {
+          "id": 9963792,
+          "name": "Gamma",
+          "type": 1,
+          "min": 100,
+          "max": 500,
+          "step": 1,
+          "default": 300,
+          "flags": 0,
+          "current": 300
+        },
+        {
+          "id": 9963795,
+          "name": "Gain",
+          "type": 1,
+          "min": 0,
+          "max": 128,
+          "step": 1,
+          "default": 64,
+          "flags": 0,
+          "current": 64
+        },
+        {
+          "id": 9963800,
+          "name": "Power Line Frequency",
+          "type": 3,
+          "min": 0,
+          "max": 2,
+          "step": 1,
+          "default": 3,
+          "flags": 0,
+          "current": 3,
+          "menu": {
+            "0": "Disabled",
+            "1": "50 Hz",
+            "2": "60 Hz"
+          }
+        },
+        {
+          "id": 9963802,
+          "name": "White Balance Temperature",
+          "type": 1,
+          "min": 2800,
+          "max": 6500,
+          "step": 10,
+          "default": 4600,
+          "flags": 16,
+          "current": 4600
+        },
+        {
+          "id": 9963803,
+          "name": "Sharpness",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "flags": 0,
+          "current": 50
+        },
+        {
+          "id": 9963804,
+          "name": "Backlight Compensation",
+          "type": 1,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 10092545,
+          "name": "Camera Controls",
+          "type": 6,
+          "min": 0,
+          "max": 0,
+          "step": 0,
+          "default": 0,
+          "flags": 68,
+          "current": null,
+          "read_skipped": true
+        },
+        {
+          "id": 10094849,
+          "name": "Auto Exposure",
+          "type": 3,
+          "min": 0,
+          "max": 3,
+          "step": 1,
+          "default": 3,
+          "flags": 0,
+          "current": 3,
+          "menu": {
+            "1": "Manual Mode",
+            "3": "Aperture Priority Mode"
+          }
+        },
+        {
+          "id": 10094850,
+          "name": "Exposure Time, Absolute",
+          "type": 1,
+          "min": 1,
+          "max": 10000,
+          "step": 1,
+          "default": 166,
+          "flags": 16,
+          "current": 166
+        },
+        {
+          "id": 10094851,
+          "name": "Exposure, Dynamic Framerate",
+          "type": 2,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        }
+      ],
+      "enumeration_errno": 22,
+      "readonly_open": true,
+      "setting_writes": 0
+    },
+    "frame_04.png": {
+      "driver": "uvcvideo",
+      "card": "Intel(R) RealSense(TM) Depth Ca",
+      "format": {
+        "width": 640,
+        "height": 480,
+        "fourcc": "YUYV",
+        "colorspace": 0,
+        "ycbcr_encoding": 0,
+        "quantization": 0,
+        "transfer": 0
+      },
+      "frame_interval": {
+        "numerator": 1,
+        "denominator": 30
+      },
+      "controls": [
+        {
+          "id": 9961473,
+          "name": "User Controls",
+          "type": 6,
+          "min": 0,
+          "max": 0,
+          "step": 0,
+          "default": 0,
+          "flags": 68,
+          "current": null,
+          "read_skipped": true
+        },
+        {
+          "id": 9963776,
+          "name": "Brightness",
+          "type": 1,
+          "min": -64,
+          "max": 64,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 9963777,
+          "name": "Contrast",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "flags": 0,
+          "current": 50
+        },
+        {
+          "id": 9963778,
+          "name": "Saturation",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 64,
+          "flags": 0,
+          "current": 64
+        },
+        {
+          "id": 9963779,
+          "name": "Hue",
+          "type": 1,
+          "min": -180,
+          "max": 180,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 9963788,
+          "name": "White Balance, Automatic",
+          "type": 2,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 1,
+          "flags": 0,
+          "current": 1
+        },
+        {
+          "id": 9963792,
+          "name": "Gamma",
+          "type": 1,
+          "min": 100,
+          "max": 500,
+          "step": 1,
+          "default": 300,
+          "flags": 0,
+          "current": 300
+        },
+        {
+          "id": 9963795,
+          "name": "Gain",
+          "type": 1,
+          "min": 0,
+          "max": 128,
+          "step": 1,
+          "default": 64,
+          "flags": 0,
+          "current": 64
+        },
+        {
+          "id": 9963800,
+          "name": "Power Line Frequency",
+          "type": 3,
+          "min": 0,
+          "max": 2,
+          "step": 1,
+          "default": 3,
+          "flags": 0,
+          "current": 3,
+          "menu": {
+            "0": "Disabled",
+            "1": "50 Hz",
+            "2": "60 Hz"
+          }
+        },
+        {
+          "id": 9963802,
+          "name": "White Balance Temperature",
+          "type": 1,
+          "min": 2800,
+          "max": 6500,
+          "step": 10,
+          "default": 4600,
+          "flags": 16,
+          "current": 4600
+        },
+        {
+          "id": 9963803,
+          "name": "Sharpness",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "flags": 0,
+          "current": 50
+        },
+        {
+          "id": 9963804,
+          "name": "Backlight Compensation",
+          "type": 1,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 10092545,
+          "name": "Camera Controls",
+          "type": 6,
+          "min": 0,
+          "max": 0,
+          "step": 0,
+          "default": 0,
+          "flags": 68,
+          "current": null,
+          "read_skipped": true
+        },
+        {
+          "id": 10094849,
+          "name": "Auto Exposure",
+          "type": 3,
+          "min": 0,
+          "max": 3,
+          "step": 1,
+          "default": 3,
+          "flags": 0,
+          "current": 3,
+          "menu": {
+            "1": "Manual Mode",
+            "3": "Aperture Priority Mode"
+          }
+        },
+        {
+          "id": 10094850,
+          "name": "Exposure Time, Absolute",
+          "type": 1,
+          "min": 1,
+          "max": 10000,
+          "step": 1,
+          "default": 166,
+          "flags": 16,
+          "current": 166
+        },
+        {
+          "id": 10094851,
+          "name": "Exposure, Dynamic Framerate",
+          "type": 2,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        }
+      ],
+      "enumeration_errno": 22,
+      "readonly_open": true,
+      "setting_writes": 0
+    },
+    "frame_05.png": {
+      "driver": "uvcvideo",
+      "card": "Intel(R) RealSense(TM) Depth Ca",
+      "format": {
+        "width": 640,
+        "height": 480,
+        "fourcc": "YUYV",
+        "colorspace": 0,
+        "ycbcr_encoding": 0,
+        "quantization": 0,
+        "transfer": 0
+      },
+      "frame_interval": {
+        "numerator": 1,
+        "denominator": 30
+      },
+      "controls": [
+        {
+          "id": 9961473,
+          "name": "User Controls",
+          "type": 6,
+          "min": 0,
+          "max": 0,
+          "step": 0,
+          "default": 0,
+          "flags": 68,
+          "current": null,
+          "read_skipped": true
+        },
+        {
+          "id": 9963776,
+          "name": "Brightness",
+          "type": 1,
+          "min": -64,
+          "max": 64,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 9963777,
+          "name": "Contrast",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "flags": 0,
+          "current": 50
+        },
+        {
+          "id": 9963778,
+          "name": "Saturation",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 64,
+          "flags": 0,
+          "current": 64
+        },
+        {
+          "id": 9963779,
+          "name": "Hue",
+          "type": 1,
+          "min": -180,
+          "max": 180,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 9963788,
+          "name": "White Balance, Automatic",
+          "type": 2,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 1,
+          "flags": 0,
+          "current": 1
+        },
+        {
+          "id": 9963792,
+          "name": "Gamma",
+          "type": 1,
+          "min": 100,
+          "max": 500,
+          "step": 1,
+          "default": 300,
+          "flags": 0,
+          "current": 300
+        },
+        {
+          "id": 9963795,
+          "name": "Gain",
+          "type": 1,
+          "min": 0,
+          "max": 128,
+          "step": 1,
+          "default": 64,
+          "flags": 0,
+          "current": 64
+        },
+        {
+          "id": 9963800,
+          "name": "Power Line Frequency",
+          "type": 3,
+          "min": 0,
+          "max": 2,
+          "step": 1,
+          "default": 3,
+          "flags": 0,
+          "current": 3,
+          "menu": {
+            "0": "Disabled",
+            "1": "50 Hz",
+            "2": "60 Hz"
+          }
+        },
+        {
+          "id": 9963802,
+          "name": "White Balance Temperature",
+          "type": 1,
+          "min": 2800,
+          "max": 6500,
+          "step": 10,
+          "default": 4600,
+          "flags": 16,
+          "current": 4600
+        },
+        {
+          "id": 9963803,
+          "name": "Sharpness",
+          "type": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50,
+          "flags": 0,
+          "current": 50
+        },
+        {
+          "id": 9963804,
+          "name": "Backlight Compensation",
+          "type": 1,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        },
+        {
+          "id": 10092545,
+          "name": "Camera Controls",
+          "type": 6,
+          "min": 0,
+          "max": 0,
+          "step": 0,
+          "default": 0,
+          "flags": 68,
+          "current": null,
+          "read_skipped": true
+        },
+        {
+          "id": 10094849,
+          "name": "Auto Exposure",
+          "type": 3,
+          "min": 0,
+          "max": 3,
+          "step": 1,
+          "default": 3,
+          "flags": 0,
+          "current": 3,
+          "menu": {
+            "1": "Manual Mode",
+            "3": "Aperture Priority Mode"
+          }
+        },
+        {
+          "id": 10094850,
+          "name": "Exposure Time, Absolute",
+          "type": 1,
+          "min": 1,
+          "max": 10000,
+          "step": 1,
+          "default": 166,
+          "flags": 16,
+          "current": 166
+        },
+        {
+          "id": 10094851,
+          "name": "Exposure, Dynamic Framerate",
+          "type": 2,
+          "min": 0,
+          "max": 1,
+          "step": 1,
+          "default": 0,
+          "flags": 0,
+          "current": 0
+        }
+      ],
+      "enumeration_errno": 22,
+      "readonly_open": true,
+      "setting_writes": 0
+    }
+  },
+  "after": {
+    "driver": "uvcvideo",
+    "card": "Intel(R) RealSense(TM) Depth Ca",
+    "format": {
+      "width": 640,
+      "height": 480,
+      "fourcc": "YUYV",
+      "colorspace": 0,
+      "ycbcr_encoding": 0,
+      "quantization": 0,
+      "transfer": 0
+    },
+    "frame_interval": {
+      "numerator": 1,
+      "denominator": 30
+    },
+    "controls": [
+      {
+        "id": 9961473,
+        "name": "User Controls",
+        "type": 6,
+        "min": 0,
+        "max": 0,
+        "step": 0,
+        "default": 0,
+        "flags": 68,
+        "current": null,
+        "read_skipped": true
+      },
+      {
+        "id": 9963776,
+        "name": "Brightness",
+        "type": 1,
+        "min": -64,
+        "max": 64,
+        "step": 1,
+        "default": 0,
+        "flags": 0,
+        "current": 0
+      },
+      {
+        "id": 9963777,
+        "name": "Contrast",
+        "type": 1,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 50,
+        "flags": 0,
+        "current": 50
+      },
+      {
+        "id": 9963778,
+        "name": "Saturation",
+        "type": 1,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 64,
+        "flags": 0,
+        "current": 64
+      },
+      {
+        "id": 9963779,
+        "name": "Hue",
+        "type": 1,
+        "min": -180,
+        "max": 180,
+        "step": 1,
+        "default": 0,
+        "flags": 0,
+        "current": 0
+      },
+      {
+        "id": 9963788,
+        "name": "White Balance, Automatic",
+        "type": 2,
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 1,
+        "flags": 0,
+        "current": 1
+      },
+      {
+        "id": 9963792,
+        "name": "Gamma",
+        "type": 1,
+        "min": 100,
+        "max": 500,
+        "step": 1,
+        "default": 300,
+        "flags": 0,
+        "current": 300
+      },
+      {
+        "id": 9963795,
+        "name": "Gain",
+        "type": 1,
+        "min": 0,
+        "max": 128,
+        "step": 1,
+        "default": 64,
+        "flags": 0,
+        "current": 64
+      },
+      {
+        "id": 9963800,
+        "name": "Power Line Frequency",
+        "type": 3,
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "default": 3,
+        "flags": 0,
+        "current": 3,
+        "menu": {
+          "0": "Disabled",
+          "1": "50 Hz",
+          "2": "60 Hz"
+        }
+      },
+      {
+        "id": 9963802,
+        "name": "White Balance Temperature",
+        "type": 1,
+        "min": 2800,
+        "max": 6500,
+        "step": 10,
+        "default": 4600,
+        "flags": 16,
+        "current": 4600
+      },
+      {
+        "id": 9963803,
+        "name": "Sharpness",
+        "type": 1,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 50,
+        "flags": 0,
+        "current": 50
+      },
+      {
+        "id": 9963804,
+        "name": "Backlight Compensation",
+        "type": 1,
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 0,
+        "flags": 0,
+        "current": 0
+      },
+      {
+        "id": 10092545,
+        "name": "Camera Controls",
+        "type": 6,
+        "min": 0,
+        "max": 0,
+        "step": 0,
+        "default": 0,
+        "flags": 68,
+        "current": null,
+        "read_skipped": true
+      },
+      {
+        "id": 10094849,
+        "name": "Auto Exposure",
+        "type": 3,
+        "min": 0,
+        "max": 3,
+        "step": 1,
+        "default": 3,
+        "flags": 0,
+        "current": 3,
+        "menu": {
+          "1": "Manual Mode",
+          "3": "Aperture Priority Mode"
+        }
+      },
+      {
+        "id": 10094850,
+        "name": "Exposure Time, Absolute",
+        "type": 1,
+        "min": 1,
+        "max": 10000,
+        "step": 1,
+        "default": 166,
+        "flags": 16,
+        "current": 166
+      },
+      {
+        "id": 10094851,
+        "name": "Exposure, Dynamic Framerate",
+        "type": 2,
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 0,
+        "flags": 0,
+        "current": 0
+      }
+    ],
+    "enumeration_errno": 22,
+    "readonly_open": true,
+    "setting_writes": 0
+  },
+  "samples": [
+    {
+      "file": "frame_00.png",
+      "received_seconds": 0.6402754649998315,
+      "received_frame_index": 0,
+      "mean_rgb": [
+        37.27760416666667,
+        71.01166666666667,
+        58.99981770833333
+      ],
+      "brightness": 55.76302951388888,
+      "quantiles": [
+        3.6666666666666665,
+        8.333333333333334,
+        48.333333333333336,
+        127.66666666666667,
+        136.33333333333334
+      ],
+      "fraction_gray_above240": 0.0011946614583333334,
+      "fraction_gray_below20": 0.163466796875,
+      "tiles_mean": [
+        [
+          22.592569444444447,
+          33.29164930555556,
+          33.887048611111105,
+          24.369097222222223
+        ],
+        [
+          65.01600694444446,
+          58.829027777777775,
+          57.08991319444444,
+          50.96538194444444
+        ],
+        [
+          52.44428819444444,
+          95.80121527777779,
+          80.49026041666667,
+          94.70001736111112
+        ],
+        [
+          38.63633680555556,
+          67.28081597222223,
+          55.89239583333333,
+          60.92244791666667
+        ]
+      ]
+    },
+    {
+      "file": "frame_01.png",
+      "received_seconds": 1.006724784999733,
+      "received_frame_index": 1,
+      "mean_rgb": [
+        37.117701822916665,
+        70.94015625,
+        58.96922200520833
+      ],
+      "brightness": 55.67569335937499,
+      "quantiles": [
+        3.6666666666666665,
+        8.333333333333334,
+        48.333333333333336,
+        128.0,
+        136.0
+      ],
+      "fraction_gray_above240": 0.001162109375,
+      "fraction_gray_below20": 0.16574544270833333,
+      "tiles_mean": [
+        [
+          22.135781250000004,
+          33.099774305555556,
+          33.61131944444444,
+          24.07605902777778
+        ],
+        [
+          64.96394097222223,
+          58.82305555555556,
+          57.087743055555556,
+          51.02282986111112
+        ],
+        [
+          52.41378472222222,
+          95.7298090277778,
+          80.54640624999999,
+          94.67980902777778
+        ],
+        [
+          38.61461805555556,
+          67.25710069444445,
+          55.79602430555556,
+          60.95303819444444
+        ]
+      ]
+    },
+    {
+      "file": "frame_02.png",
+      "received_seconds": 1.1787287229999492,
+      "received_frame_index": 2,
+      "mean_rgb": [
+        37.181598307291665,
+        70.94351888020833,
+        58.933193359375
+      ],
+      "brightness": 55.686103515624986,
+      "quantiles": [
+        3.6666666666666665,
+        8.333333333333334,
+        48.333333333333336,
+        128.0,
+        136.33333333333334
+      ],
+      "fraction_gray_above240": 0.0011881510416666666,
+      "fraction_gray_below20": 0.16602864583333332,
+      "tiles_mean": [
+        [
+          22.149201388888894,
+          33.084999999999994,
+          33.61881944444445,
+          24.06920138888889
+        ],
+        [
+          65.05118055555555,
+          58.874652777777776,
+          57.046840277777775,
+          51.04194444444444
+        ],
+        [
+          52.41578125,
+          95.77199652777777,
+          80.50723958333333,
+          94.70053819444443
+        ],
+        [
+          38.637638888888894,
+          67.31559027777777,
+          55.83246527777777,
+          60.85956597222223
+        ]
+      ]
+    },
+    {
+      "file": "frame_03.png",
+      "received_seconds": 2.0074960490001104,
+      "received_frame_index": 41,
+      "mean_rgb": [
+        115.499609375,
+        112.37246419270834,
+        100.97114908854167
+      ],
+      "brightness": 109.61440755208334,
+      "quantiles": [
+        14.333333333333334,
+        26.0,
+        104.33333333333333,
+        211.33333333333334,
+        221.33333333333334
+      ],
+      "fraction_gray_above240": 0.00345703125,
+      "fraction_gray_below20": 0.028779296875,
+      "tiles_mean": [
+        [
+          58.79081597222223,
+          79.73972222222223,
+          79.78057291666667,
+          62.32274305555555
+        ],
+        [
+          125.07954861111112,
+          115.68730902777776,
+          110.92034722222222,
+          100.18897569444444
+        ],
+        [
+          100.81208333333333,
+          168.34663194444445,
+          147.08645833333333,
+          161.57991319444446
+        ],
+        [
+          82.30932291666667,
+          130.09458333333333,
+          111.50821180555558,
+          119.58328125
+        ]
+      ]
+    },
+    {
+      "file": "frame_04.png",
+      "received_seconds": 4.008905615000003,
+      "received_frame_index": 101,
+      "mean_rgb": [
+        117.40488606770833,
+        109.63388997395833,
+        98.85069986979167
+      ],
+      "brightness": 108.62982530381946,
+      "quantiles": [
+        14.333333333333334,
+        25.333333333333332,
+        102.66666666666667,
+        210.0,
+        216.66666666666666
+      ],
+      "fraction_gray_above240": 0.00333984375,
+      "fraction_gray_below20": 0.030182291666666666,
+      "tiles_mean": [
+        [
+          58.40802083333333,
+          79.04138888888889,
+          78.97352430555556,
+          61.86991319444444
+        ],
+        [
+          123.81581597222221,
+          114.54935763888888,
+          110.10805555555555,
+          99.53381944444445
+        ],
+        [
+          99.74151041666666,
+          166.38725694444446,
+          146.0082986111111,
+          160.05041666666665
+        ],
+        [
+          81.58319444444446,
+          129.04960069444442,
+          110.54637152777778,
+          118.41065972222222
+        ]
+      ]
+    },
+    {
+      "file": "frame_05.png",
+      "received_seconds": 6.0103428540001005,
+      "received_frame_index": 161,
+      "mean_rgb": [
+        117.42921223958334,
+        109.62027994791667,
+        98.81877604166667
+      ],
+      "brightness": 108.6227560763889,
+      "quantiles": [
+        14.333333333333334,
+        25.333333333333332,
+        102.33333333333333,
+        210.0,
+        216.66666666666666
+      ],
+      "fraction_gray_above240": 0.003352864583333333,
+      "fraction_gray_below20": 0.030035807291666668,
+      "tiles_mean": [
+        [
+          58.32361111111112,
+          78.97145833333335,
+          79.01069444444444,
+          61.9409375
+        ],
+        [
+          123.7661111111111,
+          114.57472222222223,
+          110.02744791666667,
+          99.50322916666667
+        ],
+        [
+          99.71970486111113,
+          166.37194444444447,
+          146.00036458333332,
+          160.06225694444444
+        ],
+        [
+          81.66671875,
+          129.00006944444445,
+          110.56539930555557,
+          118.45942708333334
+        ]
+      ]
+    }
+  ],
+  "camera_free_after": true,
+  "states_after": {
+    "recording": false,
+    "teleoperation": false,
+    "inference": false
+  },
+  "setting_writes": 0,
+  "serial_access": "NOT_RUN",
+  "frame_time_source": "HTTP_RECEIVE_NOT_SENSOR_TIMESTAMP"
+}

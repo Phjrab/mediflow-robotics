@@ -1,6 +1,6 @@
 # 2026-11-04 무인 읽기·오프라인 준비
 
-11월 5일 오후: 승인된 YOLO 종료와 Astra 시작 후 세 카메라의 영상 수신을 확인했다. 최신 결과는 THREE_CAMERAS_AFTER_SWITCH_20261105.md와 reports/three_cameras_after_switch_20261105_1430/comparison_three_cameras.png를 본다. 천장 카메라의 구도 차이가 남아 있다. 기존 serial 중단 기록은 유지하며 live 준비 완료나 G5/G6 통과 자료가 아니다.
+11월 5일 오후 최신 결과: RealSense의 어두운 초기 프레임은 수집 도구의 예열 부족으로 확인했다. 노출 설정을 바꾸지 않고 초기3초를 버린 뒤 밝기가 회복됐다. REALSENSE_EXPOSURE_FINDINGS_20261105.md와 reports/three_cameras_warmed_20261105/comparison_three_cameras.png를 본다. 천장 카메라의 구도 차이와 기존 serial 중단은 남아 있으며 live는 실행하지 않았다.
 
 - 최종 보고: OVERNIGHT_REPORT.md
 - 내일 현장 확인: TOMORROW_CHECKLIST.md
