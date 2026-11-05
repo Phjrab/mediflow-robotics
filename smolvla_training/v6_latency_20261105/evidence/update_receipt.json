@@ -1,0 +1,13 @@
+{
+  "backups": [
+    "build_fast_variant.py.bak_20261105T121619Z_1793880979151037442",
+    "test_latency.py.bak_20261105T121619Z_1793880979151037442"
+  ],
+  "source_files": {
+    "batch_motor_read.py": "10acefa720926de86f1c94edc6c21dddb691beba78e095c202ef5a07acfb152a",
+    "check_batch_read.py": "879d1fa57d3abd2d5fc03f24e51cb9e5bae0d5d8dc11e5846a4e92e966c82921",
+    "build_fast_variant.py": "4e3fffd06b50a6c3d3cefe96936750bbb8f99e9f4b2ba89a19dc3edc2184756a",
+    "run_v6_fast_validation.py": "845cb0bf263e324896bd3237c49433c76a73326fd114cbaf702ea1036a0767a5",
+    "test_latency.py": "901d90d3876fa488c420cf3123c65abaeb0854a9601cdf0c0939cf4ca0ea9081"
+  }
+}

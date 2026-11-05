@@ -1,0 +1,7 @@
+{
+  "stop_sha256": "16bf71d5f09ebb246a573a22cbad1faae57e5f50c0ae6ed945f2443c94797f5c",
+  "original_v4_sha256": "af72d76b992c237211c576796219694503986609277da9b877913b550df6ec56",
+  "device_transfer_source": [
+    "72:         self.non_blocking = \"cuda\" in str(self.device)"
+  ]
+}
