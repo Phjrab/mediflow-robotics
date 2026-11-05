@@ -1,0 +1,1 @@
+chunk,task,joint,unit,state_at_inference,first_action,delta_first_action,inference_seconds,chunk_execution_seconds,temperature_max_c,mode,first_action_over_2_unit_warning,configured_hz,observed_hz,step_cap_deg,max_deg_per_second

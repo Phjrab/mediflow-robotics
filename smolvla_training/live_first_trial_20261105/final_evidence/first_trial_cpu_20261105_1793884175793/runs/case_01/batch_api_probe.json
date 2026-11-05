@@ -1,0 +1,48 @@
+{
+  "status": "BATCH_READ_API_CONFIRMED",
+  "signature": "(data_name: 'str', motors: 'NameOrID | Sequence[NameOrID] | None' = None, *, normalize: 'bool' = True, num_retry: 'int' = 0) -> 'dict[str, Value]'",
+  "individual_seconds": 0.010863899999094428,
+  "batch_seconds": 0.005683076997229364,
+  "torque": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 0,
+    "wrist_flex": 0,
+    "wrist_roll": 0,
+    "gripper": 0
+  },
+  "modes": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 0,
+    "wrist_flex": 0,
+    "wrist_roll": 0,
+    "gripper": 0
+  },
+  "temperatures": {
+    "shoulder_pan": 31,
+    "shoulder_lift": 32,
+    "elbow_flex": 31,
+    "wrist_flex": 32,
+    "wrist_roll": 32,
+    "gripper": 35
+  },
+  "temperature_delta": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 1,
+    "wrist_flex": 0,
+    "wrist_roll": 0,
+    "gripper": 0
+  },
+  "cleanup_errors": [],
+  "read_packets": 35,
+  "goal_packets": 0,
+  "blocked_packets": 0,
+  "owners_after": {
+    "free": true,
+    "code": 1,
+    "stdout_present": false,
+    "stderr_present": false
+  }
+}

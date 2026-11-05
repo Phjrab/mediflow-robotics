@@ -1,0 +1,11 @@
+{
+  "synthetic_input": true,
+  "used_for_control": false,
+  "serial_open": false,
+  "seconds": [
+    2.1494687399972463,
+    1.3512749910005368
+  ],
+  "saved_use_amp": true,
+  "autocast_dtype": "torch.float16"
+}

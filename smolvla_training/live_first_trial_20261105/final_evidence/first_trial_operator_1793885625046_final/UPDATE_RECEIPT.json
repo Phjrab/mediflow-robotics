@@ -1,0 +1,15 @@
+{
+  "backups": [
+    "operator_arm.py.bak_20261105T224931",
+    "first_trial.py.bak_20261105T224931",
+    "test_operator_trial.py.bak_20261105T224931"
+  ],
+  "files": [
+    "operator_arm.py",
+    "first_trial.py",
+    "test_operator_trial.py",
+    "RESULTS.md",
+    "RUN_ORDER.md",
+    "PROGRESS.md"
+  ]
+}

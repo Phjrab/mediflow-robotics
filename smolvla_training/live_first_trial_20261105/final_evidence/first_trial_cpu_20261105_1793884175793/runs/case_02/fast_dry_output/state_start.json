@@ -1,0 +1,43 @@
+{
+  "joint_names": [
+    "shoulder_pan",
+    "shoulder_lift",
+    "elbow_flex",
+    "wrist_flex",
+    "wrist_roll",
+    "gripper"
+  ],
+  "state": [
+    -3.208791208791209,
+    -97.36263736263736,
+    96.57142857142857,
+    43.472527472527474,
+    -4.615384615384615,
+    7.1603427172582625
+  ],
+  "temperatures": {
+    "shoulder_pan": 31,
+    "shoulder_lift": 32,
+    "elbow_flex": 30,
+    "wrist_flex": 32,
+    "wrist_roll": 32,
+    "gripper": 35
+  },
+  "torque": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 0,
+    "wrist_flex": 0,
+    "wrist_roll": 0,
+    "gripper": 0
+  },
+  "modes": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 0,
+    "wrist_flex": 0,
+    "wrist_roll": 0,
+    "gripper": 0
+  },
+  "source": "CURRENT_READ_ONLY"
+}

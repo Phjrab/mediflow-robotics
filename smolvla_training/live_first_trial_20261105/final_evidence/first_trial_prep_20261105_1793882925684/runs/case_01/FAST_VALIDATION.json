@@ -1,0 +1,189 @@
+{
+  "status": "HOLD",
+  "live": "NOT_RUN",
+  "error": {
+    "kind": "RuntimeError",
+    "reason": "최종 상태 확인 포함 추론 시간/6관절 기록 조건 실패"
+  },
+  "dry_result": {
+    "status": "READ_ONLY_DRY_COMPLETE",
+    "error": null,
+    "chunks": 1,
+    "monitor_count": 28,
+    "read_packets": 174,
+    "goal_packets": 0,
+    "blocked_packets": 0,
+    "register_writes": 0,
+    "cleanup_errors": [],
+    "pending_policy_threads": 0,
+    "live_permitted": false,
+    "receipt_sha256": "f017966a0119e0d7eba9cec47f1d3ff88c88d288c4bb4f6b3782c3b0e973c0d6",
+    "record_inventory": {
+      "SERIAL_STOP.cleared_20261105_185629.json": "16bf71d5f09ebb246a573a22cbad1faae57e5f50c0ae6ed945f2443c94797f5c"
+    },
+    "weights_converted": false,
+    "inference_use_amp": true,
+    "inference_autocast_dtype": "torch.float16",
+    "inference_settings_source": "checkpoint.config.json",
+    "chunk_timeout_seconds": 1.6666666666666667,
+    "gpu_worker_history": [
+      {
+        "label": "synthetic_warmup",
+        "seconds": 2.1291918299975805,
+        "thread_id": 281469876433184
+      },
+      {
+        "label": "synthetic_warmup",
+        "seconds": 1.3602212610021525,
+        "thread_id": 281469876433184
+      },
+      {
+        "label": "reset_after_warmup",
+        "seconds": 7.097799971234053e-05,
+        "thread_id": 281469876433184
+      },
+      {
+        "label": "current_observation_chunk",
+        "seconds": 1.6534019949976937,
+        "thread_id": 281469876433184
+      }
+    ],
+    "phase_metrics": [
+      {
+        "capture_seconds": 0.006742407000274397,
+        "remaining_before_inference": 4.992575272000977,
+        "inference_wait_budget": 1.6666666666666667
+      }
+    ]
+  },
+  "probe": {
+    "start_unix": 1793883085.5536447,
+    "diagnostic_only": true,
+    "resumption_authorized": false,
+    "stop_record_present": false,
+    "stop_sha256_before": null,
+    "register_writes": 0,
+    "cameras_opened": 0,
+    "status": "READ_ONLY_STATUS_COMPLETE_NOT_LIVE_READY",
+    "lelab_state": "inactive",
+    "owners_before": {
+      "free": true,
+      "code": 1,
+      "stdout_present": false,
+      "stderr_present": false
+    },
+    "torque": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "temperatures": {
+      "shoulder_pan": 32,
+      "shoulder_lift": 32,
+      "elbow_flex": 30,
+      "wrist_flex": 32,
+      "wrist_roll": 32,
+      "gripper": 35
+    },
+    "modes": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "positions": {
+      "shoulder_pan": -3.208791208791209,
+      "shoulder_lift": -97.36263736263736,
+      "elbow_flex": 96.57142857142857,
+      "wrist_flex": 43.472527472527474,
+      "wrist_roll": -4.615384615384615,
+      "gripper": 7.1603427172582625
+    },
+    "home_delta": {
+      "shoulder_pan": 0.5345311697363,
+      "shoulder_lift": 0.3901487585918346,
+      "elbow_flex": 0.019252200320565294,
+      "wrist_flex": 0.015400743717812304,
+      "wrist_roll": -2.363359271580586,
+      "gripper": 2.884864505625652
+    },
+    "motor_calibration_matches": true,
+    "home_body_within_5deg": true,
+    "cleanup_errors": [],
+    "read_packets": 42,
+    "goal_packets": 0,
+    "blocked_packets": 0,
+    "stop_sha256_after": null,
+    "stop_record_unchanged": true,
+    "owners_after": {
+      "free": true,
+      "code": 1,
+      "stdout_present": false,
+      "stderr_present": false
+    },
+    "end_unix": 1793883089.200926
+  },
+  "device_after": {
+    "devices": {
+      "serial": {
+        "exists": true,
+        "owners_ok": true,
+        "query_code": 1
+      },
+      "end_effector": {
+        "exists": true,
+        "owners_ok": true,
+        "query_code": 1
+      },
+      "ceiling_vertical": {
+        "exists": true,
+        "owners_ok": true,
+        "query_code": 0
+      },
+      "ceiling_oblique": {
+        "exists": true,
+        "owners_ok": true,
+        "query_code": 1
+      }
+    },
+    "lelab": "inactive",
+    "astra": "active",
+    "all_safe": true
+  },
+  "stop_inventory": {
+    "SERIAL_STOP.cleared_20261105_185629.json": "16bf71d5f09ebb246a573a22cbad1faae57e5f50c0ae6ed945f2443c94797f5c"
+  },
+  "records_preserved": true,
+  "steps": [
+    {
+      "step": "build_fast",
+      "exit_code": 0,
+      "seconds": 0.1434764862060547
+    },
+    {
+      "step": "current_probe",
+      "exit_code": 0,
+      "seconds": 4.690605401992798
+    },
+    {
+      "step": "batch_api_probe",
+      "exit_code": 0,
+      "seconds": 4.828852653503418
+    },
+    {
+      "step": "issue_session",
+      "exit_code": 0,
+      "seconds": 3.1544246673583984
+    },
+    {
+      "step": "v6_fast",
+      "exit_code": 0,
+      "seconds": 71.15467929840088
+    }
+  ]
+}
