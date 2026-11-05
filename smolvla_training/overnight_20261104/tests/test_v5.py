@@ -6,7 +6,8 @@ STATE=[0.]*5+[20.]
 HOME=dict(joint_names=list(api.JOINTS),state=STATE,tolerance_deg=5.)
 def args():return dict(action=STATE[:],state=STATE[:],previous=STATE[:],torque=[1]*6,modes=[0]*6,
     temperatures=[35.]*6,home=HOME,model_hash_ok=True,units_ok=True,camera_mapping_ok=True,live_confirmed=True,
-    observation_age=.1,max_observation_age=.5,inference_seconds=1.,loads=[0.]*6,statuses=[0]*6)
+    observation_age=.1,max_observation_age=.5,inference_seconds=1.,loads=[0.]*6,statuses=[0]*6,
+    joint_bounds=[[-180.,180.]]*5+[[0.,100.]],bounds_evidence={'status':'SYNTHETIC_FIXTURE','source':'unit_test_not_physical_bounds'})
 class Tests(unittest.TestCase):
     def test_validated_target_is_still_not_a_write(self):
         r=Supervisor().propose(**args());self.assertEqual(r['decision'],'VALIDATED_TARGET_ONLY');self.assertEqual(r['register_writes'],0)
@@ -53,5 +54,25 @@ class Tests(unittest.TestCase):
     def test_profile_cannot_weaken_limits_or_use_nan(self):
         for p in (Profile(step_cap=1.),Profile(first_action_limit=float('nan')),Profile(start_temperature=60.),Profile(fps=10.)):
             with self.subTest(profile=p),self.assertRaises(ValueError):Supervisor(p)
+
+    def test_truthy_unknown_evidence_is_not_true(self):
+        for flag in ('model_hash_ok','units_ok','camera_mapping_ok','live_confirmed'):
+            for value in ('UNVERIFIED','false',1):
+                a=args();a[flag]=value;self.assertEqual(Supervisor().propose(**a)['decision'],'HOLD_NO_WRITE')
+
+    def test_missing_bounds_or_excess_home_tolerance_fails(self):
+        for field,value in [('joint_bounds',None),('bounds_evidence',''),('home',dict(HOME,tolerance_deg=100.)),('max_seconds',100.)]:
+            a=args();a[field]=value;self.assertEqual(Supervisor().propose(**a)['decision'],'HOLD_NO_WRITE')
+
+    def test_later_step_hard_jump_and_out_of_bounds_cannot_be_clipped(self):
+        for value in ([11.]*5+[20.],[0.]*5+[90.]):
+            a=args();a['first']=False;a['action']=value
+            self.assertEqual(Supervisor().propose(**a)['decision'],'HOLD_NO_WRITE')
+        a=args();a['joint_bounds'][0]=[-.1,.1];a['action'][0]=.2
+        self.assertEqual(Supervisor().propose(**a)['decision'],'HOLD_NO_WRITE')
+
+    def test_unknown_bounds_and_non_boolean_phase_hold(self):
+        for field,value in [('bounds_evidence',{'status':'UNVERIFIED','source':'unknown'}),('first','false'),('stop_requested',None),('statuses',[False]*6)]:
+            a=args();a[field]=value;self.assertEqual(Supervisor().propose(**a)['decision'],'HOLD_NO_WRITE')
 
 if __name__=='__main__':unittest.main()

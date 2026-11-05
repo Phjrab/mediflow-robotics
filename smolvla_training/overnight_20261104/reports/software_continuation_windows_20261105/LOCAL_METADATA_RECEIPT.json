@@ -1,0 +1,49 @@
+{
+  "purpose": "METADATA_ONLY_NOT_RUNNABLE_CHECKPOINT",
+  "source_name": "smolvla_three_color_020000.zip",
+  "model_weights_extracted": false,
+  "files": [
+    {
+      "name": "config.json",
+      "source_sha256": "dde0b224ce9655bc1774b26bf0721abb5a4ccea685c24cfd462355de6e545434",
+      "local_sha256": "75cfa6dbe5c79f316811c2b9f6b624faade1e1621b85a37af8d79fc5beab4ced",
+      "source_integrity_verified": true,
+      "json_privacy_filter_applied": true
+    },
+    {
+      "name": "policy_postprocessor.json",
+      "source_sha256": "f9dddc832597a49fef22a83d94f188776d1b8c8313f75d4f1c7344455fc7e4a3",
+      "local_sha256": "2b78bb742065288df2ec63b0ee35f97a1f6950171cf2272f7e34b1fe3873b17b",
+      "source_integrity_verified": true,
+      "json_privacy_filter_applied": true
+    },
+    {
+      "name": "policy_postprocessor_step_0_unnormalizer_processor.safetensors",
+      "source_sha256": "84579c6a714b21445a1947117f8805ee0029b37b35523184eda0c40d3734b092",
+      "local_sha256": "84579c6a714b21445a1947117f8805ee0029b37b35523184eda0c40d3734b092",
+      "source_integrity_verified": true,
+      "json_privacy_filter_applied": false
+    },
+    {
+      "name": "policy_preprocessor.json",
+      "source_sha256": "b841161e96458114d8ac58ab8baffb9ae8ef3189fcf41d94dd1a0f07d35e2cdf",
+      "local_sha256": "98a85e55352731df83ffe394d04b8e385a5745b06b2748dac3de591848815cb5",
+      "source_integrity_verified": true,
+      "json_privacy_filter_applied": true
+    },
+    {
+      "name": "policy_preprocessor_step_5_normalizer_processor.safetensors",
+      "source_sha256": "84579c6a714b21445a1947117f8805ee0029b37b35523184eda0c40d3734b092",
+      "local_sha256": "84579c6a714b21445a1947117f8805ee0029b37b35523184eda0c40d3734b092",
+      "source_integrity_verified": true,
+      "json_privacy_filter_applied": false
+    },
+    {
+      "name": "train_config.json",
+      "source_sha256": "66125cd170af8ba5b785f1010d71949d2ec59a17703f051f79937bf7af33cc45",
+      "local_sha256": "59fc7b809ffe709b61816738af3a71c7eb6d1a057107a55fb3f1c8a7ed426631",
+      "source_integrity_verified": true,
+      "json_privacy_filter_applied": true
+    }
+  ]
+}

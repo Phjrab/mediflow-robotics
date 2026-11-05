@@ -1,0 +1,12 @@
+{
+  "archive_name": "bundle_software_continuation_20261105.tar.gz",
+  "archive_sha256": "712a53c4843d35242431e7671574fb62195790473214192b9686e03a6858a2c8",
+  "archive_bytes": 97783,
+  "installer_name": "install_software_bundle_20261105.py",
+  "installer_sha256": "71ca02e0b246e062833e4dbc0f625ef93af10507ade36d5a487ca957a6fbc980",
+  "file_count": 69,
+  "contains_model_weights": false,
+  "contains_original_data": false,
+  "contains_credentials": false,
+  "remote_deployment": "NOT_RUN_SSH_TIMEOUT"
+}

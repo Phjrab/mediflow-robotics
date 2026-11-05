@@ -1,0 +1,11 @@
+{
+  "purpose": "TEST_SNAPSHOT_NOT_HARDWARE_RUNNER",
+  "source_repository": "Phjrab/mediflow-robotics",
+  "source_commit": "2a72321",
+  "source_relative_directory": "smolvla_training/so101_code/medicine_sorter",
+  "source_sha256": {
+    "robot.py": "dec747b7beb900507275907e2ac8c6bfe87af7b90060c9a11d6d6d647298f19f",
+    "models.py": "43a01159707e1141263f9dc483d031a1baa575b2d14b417c7a425b9917d78a49",
+    "errors.py": "2ad67a2f652855dfefc0752b5817c33cbf84938685568f5559f495334882419c"
+  }
+}

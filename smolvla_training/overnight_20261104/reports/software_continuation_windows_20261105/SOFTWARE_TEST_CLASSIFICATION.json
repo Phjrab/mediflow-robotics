@@ -1,0 +1,80 @@
+{
+  "baseline_commit": "5beab8a118dba02a5208e4416cf66973c9ef6a7c",
+  "new_tests": 26,
+  "existing_related_tests": 26,
+  "total": 52,
+  "modules": [
+    {
+      "file": "test_observation_contract.py",
+      "total": 4,
+      "new": 4,
+      "existing_related": 0
+    },
+    {
+      "file": "test_software_preflight.py",
+      "total": 2,
+      "new": 2,
+      "existing_related": 0
+    },
+    {
+      "file": "test_precision_benchmark.py",
+      "total": 4,
+      "new": 4,
+      "existing_related": 0
+    },
+    {
+      "file": "test_cached_replay.py",
+      "total": 5,
+      "new": 5,
+      "existing_related": 0
+    },
+    {
+      "file": "test_mock_controller_integration.py",
+      "total": 3,
+      "new": 3,
+      "existing_related": 0
+    },
+    {
+      "file": "test_v5.py",
+      "total": 17,
+      "new": 4,
+      "existing_related": 13
+    },
+    {
+      "file": "test_preview_warmup.py",
+      "total": 2,
+      "new": 0,
+      "existing_related": 2
+    },
+    {
+      "file": "test_lights_preview.py",
+      "total": 3,
+      "new": 0,
+      "existing_related": 3
+    },
+    {
+      "file": "test_dry.py",
+      "total": 3,
+      "new": 0,
+      "existing_related": 3
+    },
+    {
+      "file": "test_preflight.py",
+      "total": 2,
+      "new": 0,
+      "existing_related": 2
+    },
+    {
+      "file": "test_three_cameras.py",
+      "total": 3,
+      "new": 0,
+      "existing_related": 3
+    },
+    {
+      "file": "test_software_installer.py",
+      "total": 4,
+      "new": 4,
+      "existing_related": 0
+    }
+  ]
+}

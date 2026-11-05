@@ -1,0 +1,27 @@
+{
+  "tests_run": 52,
+  "passed": 52,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "exit_code": 0,
+  "seconds": 1.3008742000674829,
+  "patterns": [
+    "test_observation_contract.py",
+    "test_software_preflight.py",
+    "test_precision_benchmark.py",
+    "test_cached_replay.py",
+    "test_mock_controller_integration.py",
+    "test_v5.py",
+    "test_preview_warmup.py",
+    "test_lights_preview.py",
+    "test_dry.py",
+    "test_preflight.py",
+    "test_three_cameras.py",
+    "test_software_installer.py"
+  ],
+  "bash_syntax_files": 3,
+  "python310_syntax": "PASS",
+  "hardware_execution": "NOT_RUN",
+  "model_inference": "NOT_RUN"
+}

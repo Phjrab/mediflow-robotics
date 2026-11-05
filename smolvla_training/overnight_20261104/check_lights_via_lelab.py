@@ -7,14 +7,10 @@ import re
 import subprocess
 import time
 import urllib.request
+from observation_contract import load_contract,display_mapping,warm_preview
 
 ROOT = Path(__file__).resolve().parent
-CAMERAS = {
-    'end_effector': '/dev/v4l/by-id/usb-Generic_USB_Camera_200901010001-video-index0',
-    'ceiling_vertical': '/dev/video8',
-    'ceiling_oblique': '/dev/v4l/by-id/usb-Intel_R__RealSense_TM__Depth_Camera_435_Intel_R__RealSense_TM__Depth_Camera_435-video-index0',
-}
-MAPPING = {'end_effector': 'camera1', 'ceiling_vertical': 'camera2', 'ceiling_oblique': 'camera3'}
+CAMERAS = load_contract()['cameras']
 
 
 def states():
@@ -60,6 +56,7 @@ def jpeg_frames(response, count=2, max_bytes=4_000_000):
 
 def main():
     from PIL import Image, ImageDraw, ImageStat
+    contract=load_contract();mapping=display_mapping()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True)
     args = parser.parse_args()
@@ -68,7 +65,7 @@ def main():
     result = {'states_before': states(), 'serial_open': False, 'register_writes': 0,
               'source': 'LeLab_preview_JPEG_NOT_POLICY_INPUT', 'cameras': {}}
     for name, device in CAMERAS.items():
-        row = {'policy_key': MAPPING[name], 'device': device}
+        row = {'policy_key': mapping[name], 'device': device}
         result['cameras'][name] = row
         if name == 'ceiling_vertical':
             status = subprocess.run(['systemctl', 'is-active', 'astra-v4l2-bridge.service'], capture_output=True, text=True)
@@ -90,7 +87,7 @@ def main():
         try:
             url = 'http://127.0.0.1:8022/camera-preview/%s?width=640&height=480&fps=30' % match.group(1)
             with urllib.request.urlopen(url, timeout=5) as response:
-                frames = jpeg_frames(response)
+                frames = warm_preview(response,jpeg_frames,contract['warmup_seconds'])
             for index, raw in enumerate(frames):
                 image = Image.open(io.BytesIO(raw)).convert('RGB')
                 if image.size != (640, 480):
@@ -115,7 +112,7 @@ def main():
     for r, camera in enumerate(CAMERAS):
         for c, color in enumerate(('red', 'green', 'blue', 'lights_on')):
             path = (ROOT / 'reports/offline_samples' / (color + '_' + camera + '_start.png')) if c < 3 else out / (camera + '_1.png')
-            draw.text((c * 320 + 5, r * 260 + 3), MAPPING[camera] + ' ' + color, fill='black')
+            draw.text((c * 320 + 5, r * 260 + 3), mapping[camera] + ' ' + color, fill='black')
             if path.is_file():
                 sheet.paste(Image.open(path).convert('RGB').resize((320, 240)), (c * 320, r * 260 + 20))
             else:

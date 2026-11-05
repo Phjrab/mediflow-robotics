@@ -1,0 +1,57 @@
+test_mapping_comes_from_checkpoint_not_runtime_camera_json (test_observation_contract.Tests.test_mapping_comes_from_checkpoint_not_runtime_camera_json) ... ok
+test_pack_preserves_dataset_keys_and_state_units (test_observation_contract.Tests.test_pack_preserves_dataset_keys_and_state_units) ... ok
+test_unknown_camera_serial_path_and_short_warmup_refused (test_observation_contract.Tests.test_unknown_camera_serial_path_and_short_warmup_refused) ... ok
+test_wrong_frame_type_double_rename_and_unknown_task_refused (test_observation_contract.Tests.test_wrong_frame_type_double_rename_and_unknown_task_refused) ... ok
+test_metadata_pass_never_means_hardware_ready_and_stop_unchanged (test_software_preflight.Tests.test_metadata_pass_never_means_hardware_ready_and_stop_unchanged) ... ok
+test_missing_statistics_refuses (test_software_preflight.Tests.test_missing_statistics_refuses) ... ok
+test_autocast_modes_are_explicit_without_modifying_weights (test_precision_benchmark.Tests.test_autocast_modes_are_explicit_without_modifying_weights) ... ok
+test_bad_output_path_refused_before_model_import (test_precision_benchmark.Tests.test_bad_output_path_refused_before_model_import) ... ok
+test_default_plan_does_not_import_gpu_network_or_devices (test_precision_benchmark.Tests.test_default_plan_does_not_import_gpu_network_or_devices) ... ok
+test_parity_separates_joint_units_and_rejects_invalid_action (test_precision_benchmark.Tests.test_parity_separates_joint_units_and_rejects_invalid_action) ... ok
+test_clip_math_is_not_permission_to_execute (test_cached_replay.Tests.test_clip_math_is_not_permission_to_execute) ... ok
+test_first_step_cannot_skip_home_and_interrupt_is_no_write_hold (test_cached_replay.Tests.test_first_step_cannot_skip_home_and_interrupt_is_no_write_hold) ... ok
+test_incomplete_and_duplicate_prediction_rows_refused (test_cached_replay.Tests.test_incomplete_and_duplicate_prediction_rows_refused) ... ok
+test_only_memory_backend_and_mock_goal_updates (test_cached_replay.Tests.test_only_memory_backend_and_mock_goal_updates) ... ok
+test_unknown_approval_holds_without_target_and_latches (test_cached_replay.Tests.test_unknown_approval_holds_without_target_and_latches) ... ok
+test_existing_controller_orchestrates_mock_vla_stage_and_closes (test_mock_controller_integration.Tests.test_existing_controller_orchestrates_mock_vla_stage_and_closes) ... ok
+test_fault_uses_existing_finally_stop_close_without_goal_hold_write (test_mock_controller_integration.Tests.test_fault_uses_existing_finally_stop_close_without_goal_hold_write) ... ok
+test_physical_mode_refused_before_mock_connect (test_mock_controller_integration.Tests.test_physical_mode_refused_before_mock_connect) ... ok
+test_clip_ratio_stops_persistent_policy_control_mismatch (test_v5.Tests.test_clip_ratio_stops_persistent_policy_control_mismatch) ... ok
+test_fifty_five_and_start_fifty_stop (test_v5.Tests.test_fifty_five_and_start_fifty_stop) ... ok
+test_home_or_first_jump_rejected (test_v5.Tests.test_home_or_first_jump_rejected) ... ok
+test_later_step_hard_jump_and_out_of_bounds_cannot_be_clipped (test_v5.Tests.test_later_step_hard_jump_and_out_of_bounds_cannot_be_clipped) ... ok
+test_missing_bounds_or_excess_home_tolerance_fails (test_v5.Tests.test_missing_bounds_or_excess_home_tolerance_fails) ... ok
+test_missing_hash_units_camera_or_live_confirmation_stops (test_v5.Tests.test_missing_hash_units_camera_or_live_confirmation_stops) ... ok
+test_nan_inf_shape_and_gripper_fail_closed (test_v5.Tests.test_nan_inf_shape_and_gripper_fail_closed) ... ok
+test_nan_timing_cannot_bypass_deadline (test_v5.Tests.test_nan_timing_cannot_bypass_deadline) ... ok
+test_partial_torque_blocks_even_hold_goal (test_v5.Tests.test_partial_torque_blocks_even_hold_goal) ... ok
+test_profile_cannot_weaken_limits_or_use_nan (test_v5.Tests.test_profile_cannot_weaken_limits_or_use_nan) ... ok
+test_speed_bound_keeps_point_five_at_thirty (test_v5.Tests.test_speed_bound_keeps_point_five_at_thirty) ... ok
+test_stale_and_slow_inference_stop (test_v5.Tests.test_stale_and_slow_inference_stop) ... ok
+test_stop_and_deadline_are_latched (test_v5.Tests.test_stop_and_deadline_are_latched) ... ok
+test_truthy_unknown_evidence_is_not_true (test_v5.Tests.test_truthy_unknown_evidence_is_not_true) ... ok
+test_unknown_bounds_and_non_boolean_phase_hold (test_v5.Tests.test_unknown_bounds_and_non_boolean_phase_hold) ... ok
+test_unknown_or_excess_load_and_status_stops (test_v5.Tests.test_unknown_or_excess_load_and_status_stops) ... ok
+test_validated_target_is_still_not_a_write (test_v5.Tests.test_validated_target_is_still_not_a_write) ... ok
+test_initial_frames_discarded_instead_of_reused (test_preview_warmup.Tests.test_initial_frames_discarded_instead_of_reused) ... ok
+test_stream_error_propagates (test_preview_warmup.Tests.test_stream_error_propagates) ... ok
+test_activity_requires_explicit_false (test_lights_preview.Tests.test_activity_requires_explicit_false) ... ok
+test_truncated_and_oversize_fail (test_lights_preview.Tests.test_truncated_and_oversize_fail) ... ok
+test_two_jpegs_across_read_boundaries (test_lights_preview.Tests.test_two_jpegs_across_read_boundaries) ... ok
+test_mode_and_health_stay_fail_closed (test_dry.Tests.test_mode_and_health_stay_fail_closed) ... ok
+test_no_motor_write_or_robot_connection_calls (test_dry.Tests.test_no_motor_write_or_robot_connection_calls) ... ok
+test_shared_stop_prevents_model_or_sdk_imports (test_dry.Tests.test_shared_stop_prevents_model_or_sdk_imports) ... ok
+test_dry_wrapper_refuses_other_modes_before_python (test_preflight.Tests.test_dry_wrapper_refuses_other_modes_before_python) ... ok
+test_occupancy_function_refuses_pid_and_unknown (test_preflight.Tests.test_occupancy_function_refuses_pid_and_unknown) ... ok
+test_astra_requires_only_known_producer_group (test_three_cameras.Tests.test_astra_requires_only_known_producer_group) ... ok
+test_normal_camera_requires_empty_successful_query (test_three_cameras.Tests.test_normal_camera_requires_empty_successful_query) ... ok
+test_unreadable_producer_and_query_errors_fail (test_three_cameras.Tests.test_unreadable_producer_and_query_errors_fail) ... ok
+test_backup_and_atomic_replace_preserve_stop (test_software_installer.Tests.test_backup_and_atomic_replace_preserve_stop) ... ok
+test_bad_hash_protected_stop_and_traversal_refused (test_software_installer.Tests.test_bad_hash_protected_stop_and_traversal_refused) ... ok
+test_default_cli_check_only_does_not_write (test_software_installer.Tests.test_default_cli_check_only_does_not_write) ... ok
+test_symlink_and_duplicate_refused (test_software_installer.Tests.test_symlink_and_duplicate_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 52 tests in 0.869s
+
+OK

@@ -1,6 +1,6 @@
 # 2026-11-04 무인 읽기·오프라인 준비
 
-11월 5일 오후 최신 결과: RealSense의 어두운 초기 프레임은 수집 도구의 예열 부족으로 확인했다. 노출 설정을 바꾸지 않고 초기3초를 버린 뒤 밝기가 회복됐다. REALSENSE_EXPOSURE_FINDINGS_20261105.md와 reports/three_cameras_warmed_20261105/comparison_three_cameras.png를 본다. 천장 카메라의 구도 차이와 기존 serial 중단은 남아 있으며 live는 실행하지 않았다.
+11월 5일 소프트웨어 후속: SOFTWARE_CONTINUATION_20261105.md가 최신 보고다. 공통 관측 설정·예열·전처리 검증·모의 controller 연결 및 관련52개 테스트를 완료했다. 이번 변경의 Jetson 배포와 새 GPU 측정은 SSH timeout으로 NOT_RUN이다. 로컬 metadata PASS나 mock PASS를 실기 준비 완료로 해석하지 않는다.
 
 - 최종 보고: OVERNIGHT_REPORT.md
 - 내일 현장 확인: TOMORROW_CHECKLIST.md

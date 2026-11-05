@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "rename_source": "checkpoint.policy_preprocessor.json",
+  "width": 640,
+  "height": 480,
+  "channels": 3,
+  "color_mode": "rgb",
+  "fps": 30,
+  "warmup_seconds": 3.0,
+  "cameras": {
+    "end_effector": "/dev/v4l/by-id/usb-Generic_USB_Camera_200901010001-video-index0",
+    "ceiling_vertical": "/dev/video8",
+    "ceiling_oblique": "/dev/v4l/by-id/usb-Intel_R__RealSense_TM__Depth_Camera_435_Intel_R__RealSense_TM__Depth_Camera_435-video-index0"
+  }
+}

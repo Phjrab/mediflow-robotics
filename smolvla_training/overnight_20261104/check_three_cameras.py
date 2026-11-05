@@ -9,7 +9,8 @@ import subprocess
 import time
 import urllib.request
 from artifacts import save_json
-from check_lights_via_lelab import CAMERAS, MAPPING, jpeg_frames, states
+from check_lights_via_lelab import CAMERAS, jpeg_frames, states
+from observation_contract import load_contract,display_mapping,warm_preview
 
 ROOT = Path(__file__).resolve().parent
 
@@ -17,10 +18,7 @@ ROOT = Path(__file__).resolve().parent
 def stable_jpegs(response):
     # 미리보기는 연결 즉시 출력하므로 초기 자동 보정 프레임을 계속 소비한다.
     # 잠들어서 HTTP 버퍼에 초기 프레임이 쌓이게 하지 않는다.
-    started = time.monotonic()
-    while time.monotonic() - started < 3.0:
-        jpeg_frames(response)
-    return jpeg_frames(response)
+    return warm_preview(response,jpeg_frames,load_contract()['warmup_seconds'],time.monotonic)
 
 
 def allowed_owners(code, stdout, stderr, astra=False, group_reader=None):
@@ -46,13 +44,14 @@ def occupancy(path, astra=False):
 
 def main():
     from PIL import Image, ImageDraw, ImageStat
+    contract=load_contract();mapping=display_mapping()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True)
     args = parser.parse_args()
     out = args.out
     out.mkdir(parents=True, exist_ok=False)
     result = dict(states_before=states(), cameras={}, serial_open=False, register_writes=0,
-                  captured_at_unix=time.time(), preview_warmup_seconds=3.0,
+                  captured_at_unix=time.time(), preview_warmup_seconds=contract['warmup_seconds'],
                   source='LeLab_preview_JPEG_NOT_POLICY_INPUT')
     bridge = subprocess.run(['systemctl', 'is-active', 'astra-v4l2-bridge.service'], capture_output=True, text=True)
     if bridge.returncode != 0:
@@ -60,7 +59,7 @@ def main():
     for name, device in CAMERAS.items():
         astra = name == 'ceiling_vertical'
         path = Path(device)
-        row = dict(policy_key=MAPPING[name], device=device, producer_occupancy_expected=astra)
+        row = dict(policy_key=mapping[name], device=device, producer_occupancy_expected=astra)
         result['cameras'][name] = row
         if not path.exists():
             row['status'] = 'BLOCKED_MISSING_DEVICE'
@@ -100,7 +99,7 @@ def main():
     for r, camera in enumerate(CAMERAS):
         for c, color in enumerate(('red', 'green', 'blue', 'current')):
             path = ROOT / 'reports/offline_samples' / (color + '_' + camera + '_start.png') if c < 3 else out / (camera + '_1.png')
-            draw.text((c * 320 + 5, r * 260 + 3), MAPPING[camera] + ' ' + color, fill='black')
+            draw.text((c * 320 + 5, r * 260 + 3), mapping[camera] + ' ' + color, fill='black')
             if path.is_file():
                 sheet.paste(Image.open(path).convert('RGB').resize((320, 240)), (c * 320, r * 260 + 20))
             else:

@@ -8,7 +8,7 @@ import time
 import nov_readonly as n
 import policy_api as api
 from artifacts import save_json,save_csv
-from capture_cameras import DEVICES
+from observation_contract import load_contract,saved_mapping,pack_observation,validate_frames
 
 def safe_health(session,home):
     value=session.read(home);n.home_gate(value,home)
@@ -31,6 +31,7 @@ def frames_from(cameras,np):
 
 def main():
     n.check_stop()
+    contract=load_contract()
     os.environ['HF_HUB_OFFLINE']='1';os.environ['TRANSFORMERS_OFFLINE']='1'
     import numpy as np
     import torch
@@ -40,6 +41,7 @@ def main():
     from lerobot.policies.smolvla import SmolVLAPolicy
     from lerobot.policies.factory import make_pre_post_processors
     home=n.read_home();checkpoint=Path.home()/'smolvla_model/pretrained_model'
+    mapping=saved_mapping(checkpoint)
     api.verify_units(Path.home()/'units_so101.json',checkpoint,n.CALIBRATION)
     if api.inspect_checkpoint(checkpoint)['checkpoint_kind']!='SO101_FINETUNED_CANDIDATE':raise ValueError('모델 종류 미확인')
     policy=SmolVLAPolicy.from_pretrained(str(checkpoint),local_files_only=True).to('cuda').eval()
@@ -50,19 +52,19 @@ def main():
     try:
         with n.ReadSession() as session:
             before=safe_health(session,home);session.verify_motor_calibration()
-            for name,device in DEVICES.items():
+            for name,device in contract['cameras'].items():
                 camera=OpenCVCamera(OpenCVCameraConfig(index_or_path=device,fps=30,width=640,height=480,
-                    color_mode='rgb',warmup_s=1,backend=200));cameras[name]=camera;camera.connect()
+                    color_mode='rgb',warmup_s=contract['warmup_seconds'],backend=200));cameras[name]=camera;camera.connect()
                 safe_health(session,home)
             frames=frames_from(cameras,np);before=safe_health(session,home)
+            validate_frames(frames,contract)
             state=api.vector([before['positions'][j] for j in n.JOINTS])
-            packed={'observation.state':torch.tensor([state],dtype=torch.float32)}
             for name,frame in frames.items():
                 Image.fromarray(frame).save(out/(name+'_start.png'))
-                packed['observation.images.'+name]=torch.from_numpy(frame).permute(2,0,1).unsqueeze(0).float()/255.
             task='Put medicine bottle A into the blue basket'
+            packed=pack_observation(frames,state,task,torch,contract)
             torch.cuda.synchronize();start=time.perf_counter()
-            actions=api.infer_chunk(policy,pre,post,dict(packed,task=[task]),torch)
+            actions=api.infer_chunk(policy,pre,post,packed,torch)
             torch.cuda.synchronize();elapsed=time.perf_counter()-start
             for action in actions:api.vector(action)
             after=safe_health(session,home);current_frames=frames_from(cameras,np)
@@ -71,7 +73,8 @@ def main():
                 state_at_inference=state[i],first_action=actions[0][i],delta_first_action=actions[0][i]-state[i],
                 inference_seconds=elapsed,mode='dry-run',executed_steps=0) for i,j in enumerate(n.JOINTS)]
             save_csv(out/'chunks.csv',rows);save_json(out/'summary.json',dict(before=before,after=after,
-                inference_seconds=elapsed,register_writes=0,executed_steps=0,read_packets=session.guard.read_packets))
+                inference_seconds=elapsed,register_writes=0,executed_steps=0,read_packets=session.guard.read_packets,
+                camera_mapping=mapping,camera_config=contract))
             if any(abs(r['delta_first_action'])>1 for r in rows):raise ValueError('첫 목표 차이1단위 초과; 숫자 검수 거부')
             print('DRY_REVIEW_NUMERIC_PASS: 장면·색·구도는 별도 현장 확인 필요',flush=True)
     finally:

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 task_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+cd -- "$task_root"
 require_no_owners() {
   local result="$1" detail="$2"
   if test "$result" -ne 1 || test -n "$detail"; then
@@ -23,7 +24,8 @@ if test -e "$task_root/SERIAL_STOP.json"; then
   echo 'PREFLIGHT_BLOCKED: serial 전역 중단 기록 존재. 토크ON/45도 조건을 우회하지 않음'; exit 2
 fi
 systemctl is-active --quiet astra-v4l2-bridge.service || { echo 'PREFLIGHT_BLOCKED: Astra 브리지 inactive'; exit 1; }
-for camera in /dev/video8 /dev/v4l/by-id/usb-Generic_USB_Camera_200901010001-video-index0 /dev/v4l/by-id/usb-Intel_R__RealSense_TM__Depth_Camera_435_Intel_R__RealSense_TM__Depth_Camera_435_236223023645-video-index0; do
+task_camera_paths=$("$HOME/venvs/smolvla-py310/bin/python" -B -c 'from observation_contract import load_contract; print("\n".join(load_contract()["cameras"].values()))')
+while IFS= read -r camera; do
   test -e "$camera" || { echo 'PREFLIGHT_BLOCKED: 카메라 경로 없음'; exit 1; }
-done
+done <<< "$task_camera_paths"
 echo 'PREFLIGHT_PASS: 비점유·서비스·경로·중단기록 검사 통과'
