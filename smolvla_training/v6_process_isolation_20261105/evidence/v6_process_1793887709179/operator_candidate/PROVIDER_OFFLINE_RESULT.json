@@ -1,0 +1,12 @@
+{
+  "status": "PROVIDER_OFFLINE_PASS",
+  "max_abs": 0.0,
+  "chunk_shape": [
+    50,
+    6
+  ],
+  "register_writes": 0,
+  "hardware_opened": false,
+  "live": "NOT_RUN",
+  "child_alive": false
+}

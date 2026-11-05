@@ -1,0 +1,7 @@
+chunk,task,joint,unit,state_at_inference,first_action,delta_first_action,inference_seconds,chunk_execution_seconds,temperature_max_c,mode,first_action_over_2_unit_warning,configured_hz,observed_hz,step_cap_deg,max_deg_per_second
+0,Put medicine bottle A into the blue basket,shoulder_pan,degree,-3.208791208791209,-3.575404167175293,-0.36661295838408403,1.471882,NOT_RUN,34.00,dry-run,False,30.0,NOT_RUN,0.5,20.0
+0,Put medicine bottle A into the blue basket,shoulder_lift,degree,-97.36263736263736,-97.57747650146484,-0.21483913882748595,1.471882,NOT_RUN,34.00,dry-run,False,30.0,NOT_RUN,0.5,20.0
+0,Put medicine bottle A into the blue basket,elbow_flex,degree,96.57142857142857,96.66180419921875,0.0903756277901806,1.471882,NOT_RUN,34.00,dry-run,False,30.0,NOT_RUN,0.5,20.0
+0,Put medicine bottle A into the blue basket,wrist_flex,degree,43.472527472527474,42.40068435668945,-1.0718431158380213,1.471882,NOT_RUN,34.00,dry-run,False,30.0,NOT_RUN,0.5,20.0
+0,Put medicine bottle A into the blue basket,wrist_roll,degree,-4.615384615384615,-4.613709449768066,0.0016751656165485684,1.471882,NOT_RUN,34.00,dry-run,False,30.0,NOT_RUN,0.5,20.0
+0,Put medicine bottle A into the blue basket,gripper,percent_0_100,7.1603427172582625,6.797677040100098,-0.3626656771581649,1.471882,NOT_RUN,34.00,dry-run,False,30.0,NOT_RUN,0.5,20.0

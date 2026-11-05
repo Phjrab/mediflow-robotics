@@ -1,0 +1,42 @@
+{
+  "planned": 3,
+  "completed": 3,
+  "passed": 3,
+  "cases": [
+    {
+      "index": 0,
+      "status": "V6_FAST_DRY_COMPLETE",
+      "exit_code": 0,
+      "seconds": 80.56251049041748,
+      "error": null,
+      "register_writes": 0,
+      "post_checks": true,
+      "record_preserved": true,
+      "inference_seconds": 1.470148849999532
+    },
+    {
+      "index": 1,
+      "status": "V6_FAST_DRY_COMPLETE",
+      "exit_code": 0,
+      "seconds": 80.34431219100952,
+      "error": null,
+      "register_writes": 0,
+      "post_checks": true,
+      "record_preserved": true,
+      "inference_seconds": 1.423360708002292
+    },
+    {
+      "index": 2,
+      "status": "V6_FAST_DRY_COMPLETE",
+      "exit_code": 0,
+      "seconds": 80.50821852684021,
+      "error": null,
+      "register_writes": 0,
+      "post_checks": true,
+      "record_preserved": true,
+      "inference_seconds": 1.4508091210009297
+    }
+  ],
+  "live": "NOT_RUN",
+  "all_pass": true
+}

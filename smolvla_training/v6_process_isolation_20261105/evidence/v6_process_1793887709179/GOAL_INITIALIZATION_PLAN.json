@@ -1,0 +1,90 @@
+{
+  "status": "PLAN_ONLY_FIELD_REVIEW_REQUIRED",
+  "execution_authorized": false,
+  "register_writes": 0,
+  "joints": [
+    {
+      "joint": "shoulder_pan",
+      "present_raw": 2035,
+      "existing_goal_raw": 0,
+      "proposed_goal_raw": 2035,
+      "change_needed": true,
+      "calibration_raw_range": [
+        755,
+        3448
+      ]
+    },
+    {
+      "joint": "shoulder_lift",
+      "present_raw": 831,
+      "existing_goal_raw": 0,
+      "proposed_goal_raw": 831,
+      "change_needed": true,
+      "calibration_raw_range": [
+        796,
+        3113
+      ]
+    },
+    {
+      "joint": "elbow_flex",
+      "present_raw": 3082,
+      "existing_goal_raw": 0,
+      "proposed_goal_raw": 3082,
+      "change_needed": true,
+      "calibration_raw_range": [
+        880,
+        3087
+      ]
+    },
+    {
+      "joint": "wrist_flex",
+      "present_raw": 2575,
+      "existing_goal_raw": 0,
+      "proposed_goal_raw": 2575,
+      "change_needed": true,
+      "calibration_raw_range": [
+        936,
+        3225
+      ]
+    },
+    {
+      "joint": "wrist_roll",
+      "present_raw": 1812,
+      "existing_goal_raw": 0,
+      "proposed_goal_raw": 1812,
+      "change_needed": true,
+      "calibration_raw_range": [
+        86,
+        3643
+      ]
+    },
+    {
+      "joint": "gripper",
+      "present_raw": 531,
+      "existing_goal_raw": 0,
+      "proposed_goal_raw": 531,
+      "change_needed": true,
+      "calibration_raw_range": [
+        413,
+        2047
+      ]
+    }
+  ],
+  "goal_register": {
+    "address": 42,
+    "width": 2
+  },
+  "torque_register": {
+    "address": 40,
+    "width": 1
+  },
+  "source": "읽기 교차검증 결과",
+  "same_goal_count": 0,
+  "warning": "제안값은 실행 명령이 아님. 목표 쓰기와 토크의 현장 상호작용은 미확인. 기존 재무장 검사는 유지.",
+  "required_before_execution": [
+    "현장 입회·팔 지지·즉시 전원 차단 수단",
+    "새 읽기 점검과 SDK 패킷 검토",
+    "별도 승인된 초기화 시험과 토크 상태 확인",
+    "정확한 목표 일치 및 기존 재무장 조건 재검증"
+  ]
+}

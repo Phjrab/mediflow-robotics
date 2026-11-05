@@ -1,0 +1,12 @@
+{
+  "backups": [
+    "operator_candidate/first_trial.py.bak_20261105T234249"
+  ],
+  "files": [
+    "operator_candidate/initialize_current_goal.py",
+    "operator_candidate/test_goal_initialization.py",
+    "operator_candidate/run_goal_initialization.sh",
+    "operator_candidate/first_trial.py",
+    "FIELD_GUIDE.md"
+  ]
+}

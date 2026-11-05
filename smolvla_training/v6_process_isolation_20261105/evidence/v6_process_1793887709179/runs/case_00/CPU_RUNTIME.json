@@ -1,0 +1,7 @@
+{
+  "scope": "PROCESS_ONLY",
+  "torch_before": 6,
+  "opencv_before": 6,
+  "torch_after": 1,
+  "opencv_after": 1
+}

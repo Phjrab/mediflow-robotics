@@ -1,0 +1,34 @@
+{
+  "devices": {
+    "devices": {
+      "serial": {
+        "exists": true,
+        "owners_ok": true,
+        "query_code": 1
+      },
+      "end_effector": {
+        "exists": true,
+        "owners_ok": true,
+        "query_code": 1
+      },
+      "ceiling_vertical": {
+        "exists": true,
+        "owners_ok": true,
+        "query_code": 0
+      },
+      "ceiling_oblique": {
+        "exists": true,
+        "owners_ok": true,
+        "query_code": 1
+      }
+    },
+    "lelab": "inactive",
+    "astra": "active",
+    "all_safe": true
+  },
+  "stop_inventory": {
+    "SERIAL_STOP.cleared_20261105_185629.json": "16bf71d5f09ebb246a573a22cbad1faae57e5f50c0ae6ed945f2443c94797f5c"
+  },
+  "records_preserved": true,
+  "remaining_task_processes": []
+}

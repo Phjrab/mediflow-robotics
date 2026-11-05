@@ -1,0 +1,124 @@
+{
+  "status": "GOAL_READ_CROSSCHECK_COMPLETE",
+  "joints": [
+    {
+      "joint": "shoulder_pan",
+      "present_raw": 2035,
+      "goal_individual_raw": 0,
+      "goal_sync_raw": 0,
+      "calibration_raw_range": [
+        755,
+        3448
+      ],
+      "torque": 0,
+      "mode": 0,
+      "temperature": 31,
+      "load": 0,
+      "status": 0,
+      "moving": 0
+    },
+    {
+      "joint": "shoulder_lift",
+      "present_raw": 831,
+      "goal_individual_raw": 0,
+      "goal_sync_raw": 0,
+      "calibration_raw_range": [
+        796,
+        3113
+      ],
+      "torque": 0,
+      "mode": 0,
+      "temperature": 32,
+      "load": 0,
+      "status": 0,
+      "moving": 0
+    },
+    {
+      "joint": "elbow_flex",
+      "present_raw": 3082,
+      "goal_individual_raw": 0,
+      "goal_sync_raw": 0,
+      "calibration_raw_range": [
+        880,
+        3087
+      ],
+      "torque": 0,
+      "mode": 0,
+      "temperature": 30,
+      "load": 0,
+      "status": 0,
+      "moving": 0
+    },
+    {
+      "joint": "wrist_flex",
+      "present_raw": 2575,
+      "goal_individual_raw": 0,
+      "goal_sync_raw": 0,
+      "calibration_raw_range": [
+        936,
+        3225
+      ],
+      "torque": 0,
+      "mode": 0,
+      "temperature": 32,
+      "load": 0,
+      "status": 0,
+      "moving": 0
+    },
+    {
+      "joint": "wrist_roll",
+      "present_raw": 1812,
+      "goal_individual_raw": 0,
+      "goal_sync_raw": 0,
+      "calibration_raw_range": [
+        86,
+        3643
+      ],
+      "torque": 0,
+      "mode": 0,
+      "temperature": 32,
+      "load": 0,
+      "status": 0,
+      "moving": 0
+    },
+    {
+      "joint": "gripper",
+      "present_raw": 531,
+      "goal_individual_raw": 0,
+      "goal_sync_raw": 0,
+      "calibration_raw_range": [
+        413,
+        2047
+      ],
+      "torque": 0,
+      "mode": 0,
+      "temperature": 34,
+      "load": 0,
+      "status": 0,
+      "moving": 0
+    }
+  ],
+  "calibration_sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+  "register_writes": 0,
+  "read_packets": 84,
+  "blocked_packets": 0,
+  "records_preserved": true,
+  "final_torque": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 0,
+    "wrist_flex": 0,
+    "wrist_roll": 0,
+    "gripper": 0
+  },
+  "final_temperatures": {
+    "shoulder_pan": 31,
+    "shoulder_lift": 32,
+    "elbow_flex": 30,
+    "wrist_flex": 32,
+    "wrist_roll": 32,
+    "gripper": 35
+  },
+  "unix_end": 1793889828.4220517,
+  "cleanup_errors": []
+}

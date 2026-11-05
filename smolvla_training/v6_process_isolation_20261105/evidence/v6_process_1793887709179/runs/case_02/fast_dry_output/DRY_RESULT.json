@@ -1,0 +1,51 @@
+{
+  "status": "READ_ONLY_DRY_COMPLETE",
+  "error": null,
+  "chunks": 1,
+  "monitor_count": 25,
+  "read_packets": 159,
+  "goal_packets": 0,
+  "blocked_packets": 0,
+  "register_writes": 0,
+  "cleanup_errors": [],
+  "pending_policy_threads": 0,
+  "live_permitted": false,
+  "receipt_sha256": "19bf5e702793051996f23b891f6b9419d5388642d02385ffa68a9c0450112e31",
+  "record_inventory": {
+    "SERIAL_STOP.cleared_20261105_185629.json": "16bf71d5f09ebb246a573a22cbad1faae57e5f50c0ae6ed945f2443c94797f5c"
+  },
+  "weights_converted": false,
+  "inference_use_amp": true,
+  "inference_autocast_dtype": "torch.float16",
+  "inference_settings_source": "checkpoint.config.json",
+  "chunk_timeout_seconds": 1.6666666666666667,
+  "gpu_worker_history": [
+    {
+      "label": "synthetic_warmup",
+      "seconds": 2.0393216270022094,
+      "thread_id": 281470583566624
+    },
+    {
+      "label": "synthetic_warmup",
+      "seconds": 1.3666157929983456,
+      "thread_id": 281470583566624
+    },
+    {
+      "label": "reset_after_warmup",
+      "seconds": 0.0003612910004449077,
+      "thread_id": 281470583566624
+    },
+    {
+      "label": "current_observation_chunk",
+      "seconds": 1.4508091210009297,
+      "thread_id": 281470583566624
+    }
+  ],
+  "phase_metrics": [
+    {
+      "capture_seconds": 0.015156663001107518,
+      "remaining_before_inference": 4.984163670000271,
+      "inference_wait_budget": 1.6666666666666667
+    }
+  ]
+}

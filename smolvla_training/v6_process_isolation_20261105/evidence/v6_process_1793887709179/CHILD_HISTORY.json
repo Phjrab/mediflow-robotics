@@ -1,0 +1,61 @@
+{
+  "pid": 8990,
+  "history": [
+    {
+      "command": "predict",
+      "parent_seconds": 2.0413110250010504,
+      "child_seconds": 2.0266358660010155
+    },
+    {
+      "command": "predict",
+      "parent_seconds": 1.3840619449983933,
+      "child_seconds": 1.3601365580034326
+    },
+    {
+      "command": "reset",
+      "parent_seconds": 0.0006282739996095188,
+      "child_seconds": 7.593799819005653e-05
+    },
+    {
+      "command": "seed",
+      "parent_seconds": 0.0029340390028664842,
+      "child_seconds": 0.0023305979993892834
+    },
+    {
+      "command": "predict",
+      "parent_seconds": 1.3672957430026145,
+      "child_seconds": 1.3533895669970661
+    },
+    {
+      "command": "reset",
+      "parent_seconds": 0.0003431779987295158,
+      "child_seconds": 6.723399565089494e-05
+    },
+    {
+      "command": "seed",
+      "parent_seconds": 0.0007490790012525395,
+      "child_seconds": 0.0006072180040064268
+    },
+    {
+      "command": "predict",
+      "parent_seconds": 1.3554081170004793,
+      "child_seconds": 1.339073451999866
+    },
+    {
+      "command": "reset",
+      "parent_seconds": 0.0003407460026210174,
+      "child_seconds": 6.30409995210357e-05
+    },
+    {
+      "command": "seed",
+      "parent_seconds": 0.000736246001906693,
+      "child_seconds": 0.000592241995036602
+    },
+    {
+      "command": "predict",
+      "parent_seconds": 1.3673284349933965,
+      "child_seconds": 1.351584444004402
+    }
+  ],
+  "alive": false
+}
