@@ -1,0 +1,41 @@
+{
+  "status": "HOLD_CLEANUP_OR_RECORDS",
+  "live": "NOT_RUN",
+  "register_writes": "UNVERIFIED",
+  "error": {
+    "kind": "RuntimeError",
+    "reason": "장치 사전검사 거부: {\"devices\": {\"serial\": {\"exists\": true, \"owners_ok\": true, \"query_code\": 1}, \"end_effector\": {\"exists\": true, \"owners_ok\": true, \"query_code\": 1}, \"ceiling_vertical\": {\"exists\": true, \"owners_ok\": true, \"query_code\": 0}, \"ceiling_oblique\": {\"exists\": false, \"owners_ok\": false}}, \"lelab\": \"inactive\", \"astra\": \"active\", \"all_safe\": false}"
+  },
+  "device_after": {
+    "devices": {
+      "serial": {
+        "exists": true,
+        "owners_ok": true,
+        "query_code": 1
+      },
+      "end_effector": {
+        "exists": true,
+        "owners_ok": true,
+        "query_code": 1
+      },
+      "ceiling_vertical": {
+        "exists": true,
+        "owners_ok": true,
+        "query_code": 0
+      },
+      "ceiling_oblique": {
+        "exists": false,
+        "owners_ok": false
+      }
+    },
+    "lelab": "inactive",
+    "astra": "active",
+    "all_safe": false
+  },
+  "stop_inventory_after": {
+    "SERIAL_STOP.cleared_20261105_185629.json": "16bf71d5f09ebb246a573a22cbad1faae57e5f50c0ae6ed945f2443c94797f5c"
+  },
+  "stop_archive_preserved": true,
+  "steps": [],
+  "total_seconds": 0.5432369709014893
+}

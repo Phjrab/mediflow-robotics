@@ -1,0 +1,72 @@
+{
+  "start_unix": 1793877097.3580244,
+  "diagnostic_only": true,
+  "resumption_authorized": false,
+  "stop_record_present": false,
+  "stop_sha256_before": null,
+  "register_writes": 0,
+  "cameras_opened": 0,
+  "status": "READ_ONLY_STATUS_COMPLETE_NOT_LIVE_READY",
+  "lelab_state": "inactive",
+  "owners_before": {
+    "free": true,
+    "code": 1,
+    "stdout_present": false,
+    "stderr_present": false
+  },
+  "torque": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 0,
+    "wrist_flex": 0,
+    "wrist_roll": 0,
+    "gripper": 0
+  },
+  "temperatures": {
+    "shoulder_pan": 32,
+    "shoulder_lift": 33,
+    "elbow_flex": 31,
+    "wrist_flex": 32,
+    "wrist_roll": 32,
+    "gripper": 35
+  },
+  "modes": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 0,
+    "wrist_flex": 0,
+    "wrist_roll": 0,
+    "gripper": 0
+  },
+  "positions": {
+    "shoulder_pan": -3.208791208791209,
+    "shoulder_lift": -97.36263736263736,
+    "elbow_flex": 96.65934065934066,
+    "wrist_flex": 43.56043956043956,
+    "wrist_roll": -4.615384615384615,
+    "gripper": 7.1603427172582625
+  },
+  "home_delta": {
+    "shoulder_pan": 0.5345311697363,
+    "shoulder_lift": 0.3901487585918346,
+    "elbow_flex": 0.1071642882326529,
+    "wrist_flex": 0.1033128316298999,
+    "wrist_roll": -2.363359271580586,
+    "gripper": 2.884864505625652
+  },
+  "motor_calibration_matches": true,
+  "home_body_within_5deg": true,
+  "cleanup_errors": [],
+  "read_packets": 42,
+  "goal_packets": 0,
+  "blocked_packets": 0,
+  "stop_sha256_after": null,
+  "stop_record_unchanged": true,
+  "owners_after": {
+    "free": true,
+    "code": 1,
+    "stdout_present": false,
+    "stderr_present": false
+  },
+  "end_unix": 1793877100.8268082
+}

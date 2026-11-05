@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "rename_source": "checkpoint.policy_preprocessor.json",
+  "width": 640,
+  "height": 480,
+  "channels": 3,
+  "color_mode": "rgb",
+  "fps": 30,
+  "warmup_seconds": 3.0,
+  "cameras": {
+    "end_effector": "/dev/v4l/by-id/usb-Generic_USB_Camera_200901010001-video-index0",
+    "ceiling_vertical": "/dev/video8",
+    "ceiling_oblique": "/dev/v4l/by-path/platform-3610000.usb-usb-0:1.1.2:1.3-video-index0"
+  },
+  "camera_identity": {
+    "ceiling_oblique": {
+      "vendor": "8086",
+      "product": "0b07",
+      "serial": "236223023645",
+      "interface": "03",
+      "fourcc": "YUYV"
+    }
+  },
+  "derived_from": {
+    "path": "nov_live_prep_20261104/vla_observation_config.json",
+    "sha256": "6a8905faebd344779f235d27c37dd0001b4dd31c419eb4e44111016ebd89aaa1"
+  }
+}
