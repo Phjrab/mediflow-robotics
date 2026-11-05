@@ -1,0 +1,11 @@
+{
+  "camera_owners_expected": {
+    "end_effector": true,
+    "ceiling_vertical": true,
+    "ceiling_oblique": true
+  },
+  "serial_stop_preserved": true,
+  "serial_open": false,
+  "yolo": "inactive",
+  "astra": "active"
+}

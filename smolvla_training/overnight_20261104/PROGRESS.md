@@ -35,3 +35,11 @@
 - BLOCKED: Astra inactive와 YOLO active/Conflicts 확인. 서비스 조작 없이 중단.
 - BLOCKED: 기존 토크ON serial 중단 기록 보존. 재읽기/실시간 관절 결합 추론/live 미실행.
 - 종료: follower/USB카메라2대 OS 비점유, 카메라 수집 종료. 자세한 내용은 LIGHTS_FOLLOWUP_20261105.md.
+
+## 11월 5일 오후 카메라 서비스 전환
+
+- DONE: 승인된 YOLO 중지와 Astra 시작, 세 카메라 각2장 수신, 학습 영상과 비교.
+- DONE: 새 점유 검증 모의3개 Windows/Jetson 통과. 카메라 미리보기 읽기 연결 해제 확인.
+- 현재 상태: YOLO inactive, Astra active. 부팅 설정은 변경하지 않음.
+- UNVERIFIED: 천장 카메라 구도 차이의 원인, RealSense 식별자 변경 이유, 실제 제어에 적합한 관측인지 여부.
+- NOT_RUN: 로봇/serial/모터 읽기쓰기/정책추론/live/push. 기존 serial 중단 기록 보존.

@@ -1,0 +1,75 @@
+{
+  "states_before": {
+    "recording": false,
+    "teleoperation": false,
+    "inference": false
+  },
+  "cameras": {
+    "end_effector": {
+      "policy_key": "camera1",
+      "device": "/dev/v4l/by-id/usb-Generic_USB_Camera_200901010001-video-index0",
+      "producer_occupancy_expected": false,
+      "status": "CAPTURED",
+      "resolution": [
+        640,
+        480
+      ],
+      "mean_rgb": [
+        119.15741536458333,
+        114.67673502604167,
+        124.222421875
+      ],
+      "frames": 2,
+      "identical_jpeg": false,
+      "astra_preview_overlay": false,
+      "cleanup_expected": true
+    },
+    "ceiling_vertical": {
+      "policy_key": "camera2",
+      "device": "/dev/video8",
+      "producer_occupancy_expected": true,
+      "status": "CAPTURED",
+      "resolution": [
+        640,
+        480
+      ],
+      "mean_rgb": [
+        116.3645703125,
+        117.92009765625,
+        111.25079427083334
+      ],
+      "frames": 2,
+      "identical_jpeg": false,
+      "astra_preview_overlay": true,
+      "cleanup_expected": true
+    },
+    "ceiling_oblique": {
+      "policy_key": "camera3",
+      "device": "/dev/v4l/by-id/usb-Intel_R__RealSense_TM__Depth_Camera_435_Intel_R__RealSense_TM__Depth_Camera_435-video-index0",
+      "producer_occupancy_expected": false,
+      "status": "CAPTURED",
+      "resolution": [
+        640,
+        480
+      ],
+      "mean_rgb": [
+        36.274915364583336,
+        72.32328450520833,
+        59.33119466145833
+      ],
+      "frames": 2,
+      "identical_jpeg": false,
+      "astra_preview_overlay": false,
+      "cleanup_expected": true
+    }
+  },
+  "serial_open": false,
+  "register_writes": 0,
+  "captured_at_unix": 1793856588.831891,
+  "source": "LeLab_preview_JPEG_NOT_POLICY_INPUT",
+  "states_after": {
+    "recording": false,
+    "teleoperation": false,
+    "inference": false
+  }
+}

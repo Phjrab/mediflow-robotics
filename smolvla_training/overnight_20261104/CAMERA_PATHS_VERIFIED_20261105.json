@@ -1,0 +1,41 @@
+{
+  "status": "VERIFIED_PREVIEW_PATHS_NOT_APPLIED_TO_EXISTING_RUNNER",
+  "recorded_at": "2026-11-05T14:33:39.606779+09:00",
+  "serial_access": "NOT_RUN",
+  "preprocessor_rename": "saved_processor_only_do_not_apply_twice",
+  "fps_requested": 30,
+  "fps_measured": null,
+  "source": "LeLab_preview_JPEG_not_policy_input",
+  "cameras": {
+    "end_effector": {
+      "device": "/dev/v4l/by-id/usb-Generic_USB_Camera_200901010001-video-index0",
+      "dataset_key": "observation.images.end_effector",
+      "model_key": "observation.images.camera1",
+      "resolution": [
+        640,
+        480
+      ],
+      "preview_verified": true
+    },
+    "ceiling_vertical": {
+      "device": "/dev/video8",
+      "dataset_key": "observation.images.ceiling_vertical",
+      "model_key": "observation.images.camera2",
+      "resolution": [
+        640,
+        480
+      ],
+      "preview_verified": true
+    },
+    "ceiling_oblique": {
+      "device": "/dev/v4l/by-id/usb-Intel_R__RealSense_TM__Depth_Camera_435_Intel_R__RealSense_TM__Depth_Camera_435-video-index0",
+      "dataset_key": "observation.images.ceiling_oblique",
+      "model_key": "observation.images.camera3",
+      "resolution": [
+        640,
+        480
+      ],
+      "preview_verified": true
+    }
+  }
+}
