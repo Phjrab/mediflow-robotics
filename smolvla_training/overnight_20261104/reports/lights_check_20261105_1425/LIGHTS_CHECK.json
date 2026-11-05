@@ -1,0 +1,56 @@
+{
+  "states_before": {
+    "recording": false,
+    "teleoperation": false,
+    "inference": false
+  },
+  "serial_open": false,
+  "register_writes": 0,
+  "source": "LeLab_preview_JPEG_NOT_POLICY_INPUT",
+  "cameras": {
+    "end_effector": {
+      "policy_key": "camera1",
+      "device": "/dev/v4l/by-id/usb-Generic_USB_Camera_200901010001-video-index0",
+      "status": "CAPTURED",
+      "resolution": [
+        640,
+        480
+      ],
+      "mean_rgb": [
+        133.679912109375,
+        109.96456380208333,
+        139.48703776041665
+      ],
+      "frames": 2,
+      "identical_jpeg": false,
+      "port_free_after": true
+    },
+    "ceiling_vertical": {
+      "policy_key": "camera2",
+      "device": "/dev/video8",
+      "status": "NOT_RUN_ASTRA_BRIDGE_INACTIVE"
+    },
+    "ceiling_oblique": {
+      "policy_key": "camera3",
+      "device": "/dev/v4l/by-id/usb-Intel_R__RealSense_TM__Depth_Camera_435_Intel_R__RealSense_TM__Depth_Camera_435-video-index0",
+      "status": "CAPTURED",
+      "resolution": [
+        640,
+        480
+      ],
+      "mean_rgb": [
+        37.19216796875,
+        71.76880859375,
+        60.656002604166666
+      ],
+      "frames": 2,
+      "identical_jpeg": false,
+      "port_free_after": true
+    }
+  },
+  "states_after": {
+    "recording": false,
+    "teleoperation": false,
+    "inference": false
+  }
+}

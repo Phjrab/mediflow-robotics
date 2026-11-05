@@ -28,3 +28,10 @@
 | P3-14 | 내일 현장 체크리스트 | 10 | 0.0 | DONE | 중단기록·OS점유·조명·관측·재승인 절차와 예상시간 작성. live명령 미제공 |
 | P3-15 | B/C 수집 계획 | 5 | 0.0 | DONE | 6조합300회 및 A보충13회, task/30fps/카메라·단위/세션 검수 계획. 실행 없음 |
 | END | 최종 읽기·정리·보고·작업브랜치 커밋 | 10 | 7.94 | DONE | Windows/Jetson 새 모의46개·Python28개/Bash2개 문법 PASS, 코드커밋7920b64. 보고서 배포/백업 보존, OS 비점유 확인. 최종 serial 재읽기는 중단 조건으로 NOT_RUN |
+
+## 11월 5일 오후 조명 후속 확인
+
+- DONE: 손목/RealSense LeLab 미리보기 각2장, 학습 비교 이미지 저장, 새 모의3개 Windows/Jetson 통과.
+- BLOCKED: Astra inactive와 YOLO active/Conflicts 확인. 서비스 조작 없이 중단.
+- BLOCKED: 기존 토크ON serial 중단 기록 보존. 재읽기/실시간 관절 결합 추론/live 미실행.
+- 종료: follower/USB카메라2대 OS 비점유, 카메라 수집 종료. 자세한 내용은 LIGHTS_FOLLOWUP_20261105.md.
