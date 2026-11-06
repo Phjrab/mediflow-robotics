@@ -20,3 +20,7 @@
 로컬·Jetson 각각 관련 모의 테스트64개 통과. 이번 현장 중단의 직접 원인은 당시 원시 응답 누락으로 여전히 미확인이다. 팔 자세 조정이 필요하다는 근거도 없다. 전원 OFF와 FIELD_STOP을 유지하고 실기는 진행하지 않는다.
 
 [추가 분석](v6_process_isolation_20261105/goal_incident_20261106/REPLY_ANALYSIS.md) · [홈 목표 안내 화면](v6_process_isolation_20261105/goal_incident_20261106/홈_오차범위_전원OFF.html). 현재 관절값은 미측정이며 실시간 창은 NOT_RUN이다.
+
+## 운영자 읽기 전용 진단 준비
+
+토크/온도 개별 응답만 확인하는 별도 진단 도구를 추가했다. Jetson 모의 테스트75개와 파일 검사 통과. FIELD_STOP은 그대로이며 live/초기화 차단은 유지한다. 실제 장치 읽기는 운영자가 READ_ONLY 확인 후 직접 수행할 때만 진행한다. 자세한 절차는 v6_process_isolation_20261105/goal_incident_20261106/READONLY_DIAGNOSIS_GUIDE.md 참조.

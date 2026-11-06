@@ -1,0 +1,10 @@
+{
+  "files": {
+    "operator_candidate/torque_readonly_diagnosis.py": "8ce061ab5468633fef1591dc99c2e048e2c72c5299f42deba759f90eb78d30b6",
+    "operator_candidate/test_torque_readonly_diagnosis.py": "3bd3c0512bf2e7abb87d2050853ab346404882050fd0c31cd9f005491491b30d",
+    "operator_candidate/run_torque_readonly.sh": "714f87b4f71e45addd41fa5505a9ebae44d103372853baaa33841653962cd8be",
+    "goal_incident_20261106/READONLY_DIAGNOSIS_GUIDE.md": "5b3337e47729326a48b407677c0a2893a4dc61f33ae7b5a6febb1e0c15160db5"
+  },
+  "field_stop_preserved": true,
+  "device_execution": false
+}
