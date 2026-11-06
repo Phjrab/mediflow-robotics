@@ -104,6 +104,13 @@ class ReplyTests(unittest.TestCase):
                 guard.restore()
                 self.assertIs(reader.ph, handler)
 
+    def test_two_byte_position_reply_requires_exact_length(self):
+        guard, _, _ = self.strict([(packet(payload=(232, 3)), 0)])
+        self.assertEqual(guard.readRx(None, 1, 2), ([232, 3], 0, 0))
+        guard, _, _ = self.strict([(packet(payload=(232,)), 0)])
+        with self.assertRaisesRegex(ReplyFault, "길이"):
+            guard.readRx(None, 1, 2)
+
     def test_short_ack_refused_with_raw_packet(self):
         raw = packet(payload=())
         guard, handler, _ = self.strict([(raw, 0)])

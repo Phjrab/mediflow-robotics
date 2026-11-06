@@ -1,0 +1,317 @@
+{
+  "status": "NO_MISMATCH_WITHOUT_WRITES",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "field_stop_preserved": true,
+  "summaries": [
+    {
+      "round": 0,
+      "torque": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "temperatures": {
+        "shoulder_pan": 22,
+        "shoulder_lift": 23,
+        "elbow_flex": 22,
+        "wrist_flex": 22,
+        "wrist_roll": 22,
+        "gripper": 25
+      }
+    },
+    {
+      "round": 1,
+      "torque": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "temperatures": {
+        "shoulder_pan": 22,
+        "shoulder_lift": 23,
+        "elbow_flex": 22,
+        "wrist_flex": 22,
+        "wrist_roll": 22,
+        "gripper": 25
+      }
+    }
+  ],
+  "cleanup_errors": [],
+  "read_packets": 24,
+  "blocked_packets": 0,
+  "port_closed": true,
+  "replies": [
+    {
+      "unix": 1793945305.6231267,
+      "register": "Torque_Enable",
+      "expected_id": 1,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff01030000fb",
+      "received_bytes": 7,
+      "received_id": 1,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.6240556,
+      "register": "Torque_Enable",
+      "expected_id": 2,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff02030000fa",
+      "received_bytes": 7,
+      "received_id": 2,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.6247623,
+      "register": "Torque_Enable",
+      "expected_id": 3,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff03030000f9",
+      "received_bytes": 7,
+      "received_id": 3,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.6253066,
+      "register": "Torque_Enable",
+      "expected_id": 4,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff04030000f8",
+      "received_bytes": 7,
+      "received_id": 4,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.6258483,
+      "register": "Torque_Enable",
+      "expected_id": 5,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff05030000f7",
+      "received_bytes": 7,
+      "received_id": 5,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.626415,
+      "register": "Torque_Enable",
+      "expected_id": 6,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff06030000f6",
+      "received_bytes": 7,
+      "received_id": 6,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.6268928,
+      "register": "Present_Temperature",
+      "expected_id": 1,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff01030016e5",
+      "received_bytes": 7,
+      "received_id": 1,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.6275303,
+      "register": "Present_Temperature",
+      "expected_id": 2,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff02030017e3",
+      "received_bytes": 7,
+      "received_id": 2,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.628158,
+      "register": "Present_Temperature",
+      "expected_id": 3,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff03030016e3",
+      "received_bytes": 7,
+      "received_id": 3,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.6287637,
+      "register": "Present_Temperature",
+      "expected_id": 4,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff04030016e2",
+      "received_bytes": 7,
+      "received_id": 4,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.6293738,
+      "register": "Present_Temperature",
+      "expected_id": 5,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff05030016e1",
+      "received_bytes": 7,
+      "received_id": 5,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.629949,
+      "register": "Present_Temperature",
+      "expected_id": 6,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff06030019dd",
+      "received_bytes": 7,
+      "received_id": 6,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.8820074,
+      "register": "Torque_Enable",
+      "expected_id": 1,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff01030000fb",
+      "received_bytes": 7,
+      "received_id": 1,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.8832932,
+      "register": "Torque_Enable",
+      "expected_id": 2,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff02030000fa",
+      "received_bytes": 7,
+      "received_id": 2,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.8839874,
+      "register": "Torque_Enable",
+      "expected_id": 3,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff03030000f9",
+      "received_bytes": 7,
+      "received_id": 3,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.885147,
+      "register": "Torque_Enable",
+      "expected_id": 4,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff04030000f8",
+      "received_bytes": 7,
+      "received_id": 4,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.8862543,
+      "register": "Torque_Enable",
+      "expected_id": 5,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff05030000f7",
+      "received_bytes": 7,
+      "received_id": 5,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.8873065,
+      "register": "Torque_Enable",
+      "expected_id": 6,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff06030000f6",
+      "received_bytes": 7,
+      "received_id": 6,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.8883743,
+      "register": "Present_Temperature",
+      "expected_id": 1,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff01030016e5",
+      "received_bytes": 7,
+      "received_id": 1,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.8890128,
+      "register": "Present_Temperature",
+      "expected_id": 2,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff02030017e3",
+      "received_bytes": 7,
+      "received_id": 2,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.8901143,
+      "register": "Present_Temperature",
+      "expected_id": 3,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff03030016e3",
+      "received_bytes": 7,
+      "received_id": 3,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.8908427,
+      "register": "Present_Temperature",
+      "expected_id": 4,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff04030016e2",
+      "received_bytes": 7,
+      "received_id": 4,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.89192,
+      "register": "Present_Temperature",
+      "expected_id": 5,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff05030016e1",
+      "received_bytes": 7,
+      "received_id": 5,
+      "status": 0
+    },
+    {
+      "unix": 1793945305.8925915,
+      "register": "Present_Temperature",
+      "expected_id": 6,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff06030019dd",
+      "received_bytes": 7,
+      "received_id": 6,
+      "status": 0
+    }
+  ],
+  "reply_fault": null
+}

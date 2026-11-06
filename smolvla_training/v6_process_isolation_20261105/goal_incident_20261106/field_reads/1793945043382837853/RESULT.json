@@ -1,0 +1,88 @@
+{
+  "status": "HOLD",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "field_stop_preserved": true,
+  "summaries": [],
+  "cleanup_errors": [],
+  "error": {
+    "kind": "DiagnosisStop",
+    "code": "RESPONSE_REJECTED",
+    "reason": "SDK 통신 실패; 재시도 안 함",
+    "observed": {
+      "response": {
+        "reason": "SDK 통신 실패; 재시도 안 함",
+        "unix": 1793945046.8473103,
+        "register": "Torque_Enable",
+        "expected_id": 1,
+        "expected_bytes": 1,
+        "communication": -6,
+        "raw_hex": "",
+        "received_bytes": 0,
+        "received_id": null,
+        "status": null,
+        "recent_replies": [
+          {
+            "unix": 1793945046.8473103,
+            "register": "Torque_Enable",
+            "expected_id": 1,
+            "expected_bytes": 1,
+            "communication": -6,
+            "raw_hex": "",
+            "received_bytes": 0,
+            "received_id": null,
+            "status": null
+          }
+        ]
+      },
+      "summaries": [
+        {
+          "round": 0,
+          "torque": {},
+          "temperatures": {}
+        }
+      ]
+    }
+  },
+  "read_packets": 1,
+  "blocked_packets": 0,
+  "port_closed": true,
+  "replies": [
+    {
+      "unix": 1793945046.8473103,
+      "register": "Torque_Enable",
+      "expected_id": 1,
+      "expected_bytes": 1,
+      "communication": -6,
+      "raw_hex": "",
+      "received_bytes": 0,
+      "received_id": null,
+      "status": null
+    }
+  ],
+  "reply_fault": {
+    "reason": "SDK 통신 실패; 재시도 안 함",
+    "unix": 1793945046.8473103,
+    "register": "Torque_Enable",
+    "expected_id": 1,
+    "expected_bytes": 1,
+    "communication": -6,
+    "raw_hex": "",
+    "received_bytes": 0,
+    "received_id": null,
+    "status": null,
+    "recent_replies": [
+      {
+        "unix": 1793945046.8473103,
+        "register": "Torque_Enable",
+        "expected_id": 1,
+        "expected_bytes": 1,
+        "communication": -6,
+        "raw_hex": "",
+        "received_bytes": 0,
+        "received_id": null,
+        "status": null
+      }
+    ]
+  }
+}

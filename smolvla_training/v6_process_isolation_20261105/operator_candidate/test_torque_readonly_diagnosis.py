@@ -117,5 +117,51 @@ class Tests(unittest.TestCase):
                  patch.object(diagnosis.subprocess, "run", return_value=SimpleNamespace(returncode=code, stdout=stdout, stderr=stderr)), self.assertRaises(RuntimeError):
                 diagnosis.port_owners(set())
 
+    def positions(self, fault=None):
+        calls = []
+        replies = SimpleNamespace(history=[], begin=lambda name: None)
+        class Bus:
+            motors = {j: SimpleNamespace(id=i) for i, j in enumerate(diagnosis.JOINTS, 1)}
+            calibration = {j: SimpleNamespace(range_min=500, range_max=2000) for j in diagnosis.JOINTS}
+            def _normalize(self, values):return {motor_id: 10 if motor_id == 6 else 0 for motor_id in values}
+            def sync_read(self, name, *, motors, normalize, num_retry):
+                calls.append((name, motors[0]))
+                assert normalize is False and num_retry == 0
+                value = {"Torque_Enable": 0, "Present_Temperature": 30, "Operating_Mode": 0,
+                         "Present_Position": 1000, "Goal_Position": 0}[name]
+                if fault is not None:value = fault(name, motors[0], value)
+                replies.history.append(dict(register=name))
+                return {motors[0]: value}
+        return Bus(), replies, calls, dict(state=[0] * 5 + [10])
+
+    def test_goal_mismatch_is_reported_without_rewriting_it(self):
+        bus, replies, calls, home = self.positions()
+        result = diagnosis.position_goal_review(bus, replies, lambda row: None, home)
+        self.assertEqual(len(calls), 30)
+        self.assertFalse(result["goal_exact_match"])
+        self.assertTrue(result["home_within_5_degrees"])
+        self.assertFalse(result["live_authorized"])
+        self.assertTrue(all(row["goal_raw"] == 0 and not row["goal_in_calibration"] for row in result["joints"]))
+
+    def test_position_inspection_torque_on_stops_before_next_read(self):
+        bus, replies, calls, home = self.positions(lambda name, joint, value: 1 if name == "Torque_Enable" else value)
+        with self.assertRaises(diagnosis.DiagnosisStop) as error:
+            diagnosis.position_goal_review(bus, replies, lambda row: None, home)
+        self.assertEqual(error.exception.code, "NONZERO_TORQUE_REPLY")
+        self.assertEqual(len(calls), 1)
+
+    def test_wrong_mode_stops_before_position_read(self):
+        bus, replies, calls, home = self.positions(lambda name, joint, value: 1 if name == "Operating_Mode" else value)
+        with self.assertRaises(diagnosis.DiagnosisStop) as error:
+            diagnosis.position_goal_review(bus, replies, lambda row: None, home)
+        self.assertEqual(error.exception.code, "MODE_STOP")
+        self.assertEqual(len(calls), 3)
+
+    def test_matching_goals_do_not_authorize_live(self):
+        bus, replies, calls, home = self.positions(lambda name, joint, value: 1000 if name == "Goal_Position" else value)
+        result = diagnosis.position_goal_review(bus, replies, lambda row: None, home)
+        self.assertTrue(result["goal_exact_match"])
+        self.assertFalse(result["live_authorized"])
+
 
 if __name__ == "__main__":unittest.main()

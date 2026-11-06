@@ -1,0 +1,26 @@
+{
+  "backups": {
+    "operator_candidate/torque_readonly_diagnosis.py": "operator_candidate/torque_readonly_diagnosis.py.bak_position_20261106T151651",
+    "operator_candidate/test_torque_readonly_diagnosis.py": "operator_candidate/test_torque_readonly_diagnosis.py.bak_position_20261106T151651",
+    "operator_candidate/test_reply_integrity.py": "operator_candidate/test_reply_integrity.py.bak_position_20261106T151651"
+  },
+  "files": {
+    "operator_candidate/torque_readonly_diagnosis.py": {
+      "before": "8ce061ab5468633fef1591dc99c2e048e2c72c5299f42deba759f90eb78d30b6",
+      "after": "307bdce693c96f7f9357a723a5ab5c308848489e6b052215a34b03d77e45348e"
+    },
+    "operator_candidate/test_torque_readonly_diagnosis.py": {
+      "before": "3bd3c0512bf2e7abb87d2050853ab346404882050fd0c31cd9f005491491b30d",
+      "after": "5c8ae7efd4f72eef8789be5ed1cf706b3545ecf910febbecc075b531e813b8bd"
+    },
+    "operator_candidate/test_reply_integrity.py": {
+      "before": "0aa45b7555e72820ff59991e7ca796a3052cfa7bd604738dec2082a4059b0995",
+      "after": "0b5e1a1e3bca69a3c6b0204be5b34a0ef08b0a384ce9e8ee6bc8aab7e4ab43e4"
+    },
+    "goal_incident_20261106/FIELD_READ_RESULT_20261106.md": {
+      "before": null,
+      "after": "2b863881c9442b7e85c51efa0dd6936510bd87788d3ec148e95817097d8402fc"
+    }
+  },
+  "hardware_access": false
+}
