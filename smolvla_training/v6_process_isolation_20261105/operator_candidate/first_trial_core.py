@@ -133,7 +133,7 @@ class FirstTrialAdapter:
         if self.clock()-captured>50/limits.fps:raise Hold("정책 입력 나이/추론 지연 초과")
         if len(actions)!=50:raise Hold("행동50개 필요")
         for row in actions:vector(row)
-        previous=state[:];last_sent=None;clips=deque(maxlen=20)
+        previous=state[:];last_sent=None;clip_window=min(20,limits.max_steps);clips=deque(maxlen=clip_window)
         for step,action in enumerate(actions[:limits.max_steps]):
             if self.clock()>=deadline or self.stop.is_set():raise Hold("시간 상한/정지 요청")
             if last_sent is not None:self.sleep(max(0,last_sent+1/limits.fps-self.clock()))
@@ -145,7 +145,7 @@ class FirstTrialAdapter:
             dt=1/limits.fps if last_sent is None else self.clock()-last_sent
             target=target_gate(action,measured,previous,self.bounds,limits,dt)
             clips.append(any(abs(a-b)>1e-6 for a,b in zip(action,target)))
-            if len(clips)==20 and sum(clips)/20>.5:raise Hold("정책-제어 clip 비율 초과")
+            if len(clips)==clip_window and sum(clips)/clip_window>.5:raise Hold("정책-제어 clip 비율 초과")
             if self.clock()>=deadline or self.stop.is_set():raise Hold("전송 직전 시간/정지")
             self.io.check_records()
             sent_at=self.clock();self.io.send_target(target)

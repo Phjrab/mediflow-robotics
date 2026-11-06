@@ -177,19 +177,23 @@ class InspectionAdapter:
 class PolicyProvider:
     """저장 전/후처리와 CUDA 계산은 장치 권한 없는 별도 프로세스에 둔다."""
     def __init__(self,context,task):
+        self.closed=False
         dependencies();import torch
         from process_policy import ProcessPolicy
         from persistent_policy_worker import PersistentPolicyWorker
         self.torch=torch;self.context=context;self.task=task
-        self.policy=ProcessPolicy.from_pretrained(context["checkpoint"],local_files_only=True)
-        self.worker=PersistentPolicyWorker()
-        import numpy as np
-        frames={name:dict(pixels=np.zeros((480,640,3),dtype=np.uint8)) for name in CAMERAS}
+        self.policy=None;self.worker=None
         try:
+            self.policy=ProcessPolicy.from_pretrained(context["checkpoint"],local_files_only=True)
+            self.worker=PersistentPolicyWorker()
+            import numpy as np
+            frames={name:dict(pixels=np.zeros((480,640,3),dtype=np.uint8)) for name in CAMERAS}
             for _ in range(2):self.predict(frames,context["home"]["state"])
             self.worker.call(self.policy.reset,label="reset_after_warmup")
-        except BaseException:
-            self.close();raise
+        except BaseException as error:
+            try:self.close()
+            except BaseException as cleanup_error:error.initialization_cleanup_error=type(cleanup_error).__name__
+            raise
     def predict(self,frames,state):
         def compute():
             import observation_contract as observation
@@ -197,5 +201,9 @@ class PolicyProvider:
             return self.policy.predict_raw(packed)
         return self.worker.call(compute,label="isolated_first_trial_policy")
     def close(self):
-        try:return self.worker.close()
-        finally:self.policy.close()
+        if self.closed:return
+        self.closed=True
+        try:
+            if self.worker is not None:return self.worker.close()
+        finally:
+            if self.policy is not None:self.policy.close()

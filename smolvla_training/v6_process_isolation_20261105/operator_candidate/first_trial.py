@@ -9,6 +9,7 @@ import sys
 import time
 from first_trial_core import Hold,FirstTrialAdapter,FirstMotionPlan,Limits,CAMERAS
 from controller_bridge import load_controller
+from run_receipts import finish_resources,save_run,verify_target_receipt
 
 def qualified(path):
     if path is None:raise Hold("반복 dry-run 검증 파일 없음")
@@ -54,7 +55,7 @@ def parser():
 def main(argv=None):
     args=parser().parse_args(argv)
     if not args.inspect and not args.execute:
-        print("PLAN_ONLY: 장치·추론·모터 쓰기 없음. 지연 검증 실패 상태에서는 live 실행 불가.");return 0
+        print("PLAN_ONLY: 장치·추론·모터 쓰기 없음. 이 출력은 live 허가가 아니며 중단 기록과 현장 검사는 유지됩니다.");return 0
     if args.execute and not (args.live or args.release):raise Hold("명시적인 live/release 모드 필요")
     if args.live or args.release:
         if args.live and (Path(__file__).parent/"FIELD_STOP.json").exists():raise Hold("현장 중단 기록 미검토; 삭제/우회 없이 중단")
@@ -63,12 +64,13 @@ def main(argv=None):
         if not sys.stdin.isatty():raise Hold("운영자 터미널 직접 실행 필요")
     if args.out is None:raise Hold("새 --out 경로 필요")
     output=args.out.expanduser();output.mkdir(parents=True,exist_ok=False)
-    from trial_runtime import static_context,DeviceIO,InspectionAdapter,PolicyProvider,dependencies
-    context=static_context();Controller=load_controller()
     result={"mode":"inspect" if args.inspect else "release" if args.release else "live","status":"HOLD","first_trial_only":True,
-            "task":args.task,"settings":Limits().__dict__,"evidence_files":context["files"],"camera_mapping":context["mapping"]}
-    io=None;policy=None;adapter=None;arm=None
+            "task":args.task,"settings":Limits().__dict__}
+    io=None;policy=None;adapter=None;arm=None;context=None
     try:
+        from trial_runtime import static_context,DeviceIO,InspectionAdapter,PolicyProvider,dependencies
+        context=static_context();Controller=load_controller()
+        result.update(evidence_files=context["files"],camera_mapping=context["mapping"])
         if args.inspect:
             io=DeviceIO(context,expected_torque=0)
             result["inspection"]=Controller(InspectionAdapter(io)).read_status()
@@ -97,22 +99,28 @@ def main(argv=None):
                 adapter=SupervisedAdapter(io,evidence,context["home"],[],waiter=wait)
                 adapter.output=output
                 Controller(adapter).run(FirstMotionPlan(True))
+                verify_target_receipt(io,adapter.sent,Limits().max_steps)
                 result["targets"]=adapter.sent
             result["status"]="FIRST_TRIAL_COMPLETE" if args.live else "TORQUE_OFF_SUPPORTED"
     except BaseException as error:
-        result["error"]={"kind":type(error).__name__,"reason":str(error).replace(str(Path.home()),"~")}
-        print(json.dumps(result["error"],ensure_ascii=False))
+        result["error"]={"kind":type(error).__name__,"reason":str(error).replace(str(Path.home()),"~"),
+                         "observed":getattr(error,"observed",None) or getattr(io,"last_fault",None),
+                         "initialization_cleanup_error":getattr(error,"initialization_cleanup_error",None)}
     finally:
-        if io is not None:io.close()
-        if policy is not None:policy.close()
+        cleanup=finish_resources(("io",io),("arm",arm),("policy",policy))
         result["motor_goal_packets"]=io.permission.goal_packets if io is not None and io.permission is not None else 0
-        result["cleanup_errors"]=io.cleanup_errors if io is not None else []
-        result["stop_inventory"]=context["stop_inventory"]
+        result["cleanup_errors"]=cleanup["errors"]
+        result["ports_closed"]=cleanup["ports_closed"]
+        if context is not None:result["stop_inventory"]=context["stop_inventory"]
         if adapter is not None:
             result["events"]=adapter.events
-            with (output/"targets.csv").open("x",encoding="utf-8",newline="") as f:
-                writer=csv.DictWriter(f,fieldnames=("step","raw_action","target","state","clip","sent_at"));writer.writeheader();writer.writerows(adapter.sent)
-        with (output/"RESULT.json").open("x",encoding="utf-8") as f:json.dump(result,f,ensure_ascii=False,indent=2)
+            result["targets"]=adapter.sent
+            try:
+                with (output/"targets.csv").open("x",encoding="utf-8",newline="") as f:
+                    writer=csv.DictWriter(f,fieldnames=("step","raw_action","target","state","clip","sent_at"));writer.writeheader();writer.writerows(adapter.sent)
+            except BaseException as error:
+                result["cleanup_errors"].append(dict(component="targets_csv",kind=type(error).__name__))
+        result=save_run(Path(__file__).parent,output,result,latch=args.live or args.release)
         print(json.dumps(result,ensure_ascii=False))
     return 0 if result["status"]!="HOLD" else 2
 

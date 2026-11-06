@@ -98,6 +98,20 @@ class ControllerTests(unittest.TestCase):
         self.assertEqual(target,[.2]*5+[0.])
     def test_unverified_bounds_refused(self):
         with self.assertRaises(Hold):target_gate([0.]*6,[0.]*6,[0.]*6,[],Limits(),.03)
+    def test_persistent_clipping_holds_within_short_trial(self):
+        clock=Clock();hw=Hardware(clock);hw.actions=[[9.]*5+[0.] for _ in range(50)]
+        with self.assertRaisesRegex(Hold,"clip 비율"):
+            self.run_trial(hw)
+        self.assertEqual(len(hw.targets),9)
+        self.assertTrue(hw.closed)
+        self.assertEqual(hw.reg_writes,0)
+    def test_three_step_profile_does_not_wait_twenty_steps_to_check_clipping(self):
+        clock=Clock();hw=Hardware(clock);hw.actions=[[9.]*5+[0.] for _ in range(50)]
+        adapter=FirstTrialAdapter(hw,EVIDENCE,HOME,BOUNDS,limits=Limits(max_steps=3),waiter=instant,clock=clock,sleep=clock.sleep)
+        with self.assertRaisesRegex(Hold,"clip 비율"):
+            load_controller(mock_posix=True)(adapter).run(FirstMotionPlan(False))
+        self.assertEqual(len(hw.targets),2)
+        self.assertTrue(hw.closed)
     def test_main_mode_mismatch_no_connect(self):
         clock=Clock();hw=Hardware(clock);adapter=FirstTrialAdapter(hw,EVIDENCE,HOME,BOUNDS)
         with self.assertRaises(Exception):load_controller(mock_posix=True)(adapter).run(FirstMotionPlan(True))
