@@ -1,0 +1,122 @@
+[
+  {
+    "file": "lerobot/motors/motors_bus.py",
+    "sha256": "a4bf39ad87aadd74ff2722f94354fcdc7f0c47836df03b0321e131f48ba36c90",
+    "methods": [
+      {
+        "name": "sync_read",
+        "line": 102,
+        "source": "def sync_read(self, data_name: str, motors: str | list[str] | None = None) -> dict[str, Value]:\n        \"\"\"Read a value from multiple motors.\"\"\"\n        pass"
+      },
+      {
+        "name": "sync_write",
+        "line": 107,
+        "source": "def sync_write(self, data_name: str, values: dict[str, Value]) -> None:\n        \"\"\"Write values to multiple motors.\"\"\"\n        pass"
+      },
+      {
+        "name": "enable_torque",
+        "line": 112,
+        "source": "def enable_torque(self, motors: str | list[str] | None = None, num_retry: int = 0) -> None:\n        \"\"\"Enable torque on selected motors.\"\"\"\n        pass"
+      },
+      {
+        "name": "enable_torque",
+        "line": 664,
+        "source": "def enable_torque(self, motors: int | str | list[str] | None = None, num_retry: int = 0) -> None:\n        \"\"\"Enable torque on selected motors.\n\n        Args:\n            motors (int | str | list[str] | None, optional): Same semantics as :pymeth:`disable_torque`.\n                Defaults to `None`.\n            num_retry (int, optional): Number of additional retry attempts on communication failure.\n                Defaults to 0.\n        \"\"\"\n        pass"
+      },
+      {
+        "name": "sync_read",
+        "line": 1126,
+        "source": "def sync_read(\n        self,\n        data_name: str,\n        motors: NameOrID | Sequence[NameOrID] | None = None,\n        *,\n        normalize: bool = True,\n        num_retry: int = 0,\n    ) -> dict[str, Value]:\n        \"\"\"Read the same register from several motors at once.\n\n        Args:\n            data_name (str): Register name.\n            motors (NameOrID | Sequence[NameOrID] | None, optional): Motors to query. `None` (default) reads every motor.\n            normalize (bool, optional): Normalisation flag.  Defaults to `True`.\n            num_retry (int, optional): Retry attempts.  Defaults to `0`.\n\n        Returns:\n            dict[str, Value]: Mapping *motor name → value*.\n        \"\"\"\n\n        self._assert_protocol_is_compatible(\"sync_read\")\n\n        names = self._get_motors_list(motors)\n        ids = [self.motors[motor].id for motor in names]\n        models = [self.motors[motor].model for motor in names]\n\n        if self._has_different_ctrl_tables:\n            assert_same_address(self.model_ctrl_table, models, data_name)\n\n        model = next(iter(models))\n        addr, length = get_address(self.model_ctrl_table, model, data_name)\n\n        err_msg = f\"Failed to sync read '{data_name}' on {ids=} after {num_retry + 1} tries.\"\n        raw_ids_values, _ = self._sync_read(\n            addr, length, ids, num_retry=num_retry, raise_on_error=True, err_msg=err_msg\n        )\n\n        decoded = self._decode_sign(data_name, raw_ids_values)\n\n        if normalize and data_name in self.normalized_data:\n            normalized = self._normalize(decoded)\n            return {self._id_to_name(id_): value for id_, value in normalized.items()}\n\n        return {self._id_to_name(id_): value for id_, value in decoded.items()}"
+      },
+      {
+        "name": "_sync_read",
+        "line": 1171,
+        "source": "def _sync_read(\n        self,\n        addr: int,\n        length: int,\n        motor_ids: list[int],\n        *,\n        num_retry: int = 0,\n        raise_on_error: bool = True,\n        err_msg: str = \"\",\n    ) -> tuple[dict[int, int], int]:\n        self._setup_sync_reader(motor_ids, addr, length)\n        for n_try in range(1 + num_retry):\n            comm = self.sync_reader.txRxPacket()\n            if self._is_comm_success(comm):\n                break\n            logger.debug(\n                f\"Failed to sync read @{addr=} ({length=}) on {motor_ids=} ({n_try=}): \"\n                + self.packet_handler.getTxRxResult(comm)\n            )\n\n        if not self._is_comm_success(comm) and raise_on_error:\n            raise ConnectionError(f\"{err_msg} {self.packet_handler.getTxRxResult(comm)}\")\n\n        values = {id_: self.sync_reader.getData(id_, addr, length) for id_ in motor_ids}\n        return values, comm"
+      },
+      {
+        "name": "sync_write",
+        "line": 1219,
+        "source": "def sync_write(\n        self,\n        data_name: str,\n        values: Value | dict[str, Value],\n        *,\n        normalize: bool = True,\n        num_retry: int = 0,\n    ) -> None:\n        \"\"\"Write the same register on multiple motors.\n\n        Contrary to :pymeth:`write`, this *does not* expects a response status packet emitted by the motor, which\n        can allow for lost packets. It is faster than :pymeth:`write` and should typically be used when\n        frequency matters and losing some packets is acceptable (e.g. teleoperation loops).\n\n        Args:\n            data_name (str): Register name.\n            values (Value | dict[str, Value]): Either a single value (applied to every motor) or a mapping\n                *motor name → value*.\n            normalize (bool, optional): If `True` (default) convert values from the user range to raw units.\n            num_retry (int, optional): Retry attempts.  Defaults to `0`.\n        \"\"\"\n\n        raw_ids_values = self._get_ids_values_dict(values)\n        models = [self._id_to_model(id_) for id_ in raw_ids_values]\n        if self._has_different_ctrl_tables:\n            assert_same_address(self.model_ctrl_table, models, data_name)\n\n        model = next(iter(models))\n        addr, length = get_address(self.model_ctrl_table, model, data_name)\n\n        int_ids_values = {id_: int(val) for id_, val in raw_ids_values.items()}\n        if normalize and data_name in self.normalized_data:\n            int_ids_values = self._unnormalize(raw_ids_values)\n\n        int_ids_values = self._encode_sign(data_name, int_ids_values)\n\n        err_msg = f\"Failed to sync write '{data_name}' with ids_values={int_ids_values} after {num_retry + 1} tries.\"\n        self._sync_write(\n            addr, length, int_ids_values, num_retry=num_retry, raise_on_error=True, err_msg=err_msg\n        )"
+      },
+      {
+        "name": "_sync_write",
+        "line": 1260,
+        "source": "def _sync_write(\n        self,\n        addr: int,\n        length: int,\n        ids_values: dict[int, int],\n        num_retry: int = 0,\n        raise_on_error: bool = True,\n        err_msg: str = \"\",\n    ) -> int:\n        self._setup_sync_writer(ids_values, addr, length)\n        for n_try in range(1 + num_retry):\n            comm = self.sync_writer.txPacket()\n            if self._is_comm_success(comm):\n                break\n            logger.debug(\n                f\"Failed to sync write @{addr=} ({length=}) with {ids_values=} ({n_try=}): \"\n                + self.packet_handler.getTxRxResult(comm)\n            )\n\n        if not self._is_comm_success(comm) and raise_on_error:\n            raise ConnectionError(f\"{err_msg} {self.packet_handler.getTxRxResult(comm)}\")\n\n        return comm"
+      }
+    ]
+  },
+  {
+    "file": "lerobot/motors/feetech/feetech.py",
+    "sha256": "0460413cd6a641cede015ac19ac53d2cfe9c343af1bd18ed74e1951229f64ff2",
+    "methods": [
+      {
+        "name": "enable_torque",
+        "line": 302,
+        "source": "def enable_torque(self, motors: int | str | list[str] | None = None, num_retry: int = 0) -> None:\n        for motor in self._get_motors_list(motors):\n            self.write(\"Torque_Enable\", motor, TorqueMode.ENABLED.value, num_retry=num_retry)\n            self.write(\"Lock\", motor, 1, num_retry=num_retry)"
+      }
+    ]
+  },
+  {
+    "file": "scservo_sdk/group_sync_read.py",
+    "sha256": "ccbbb3a864c047bf3a7808a0b455676b198645ee1caffa58dac562339a86ad76",
+    "methods": [
+      {
+        "name": "txPacket",
+        "line": 48,
+        "source": "def txPacket(self):\n        if len(self.data_dict.keys()) == 0:\n            return COMM_NOT_AVAILABLE\n\n        if self.is_param_changed is True or not self.param:\n            self.makeParam()\n\n        return self.ph.syncReadTx(self.port, self.start_address, self.data_length, self.param,\n                                  len(self.data_dict.keys()) * 1)"
+      },
+      {
+        "name": "rxPacket",
+        "line": 58,
+        "source": "def rxPacket(self):\n        self.last_result = False\n\n        result = COMM_RX_FAIL\n\n        if len(self.data_dict.keys()) == 0:\n            return COMM_NOT_AVAILABLE\n\n        for scs_id in self.data_dict:\n            self.data_dict[scs_id], result, _ = self.ph.readRx(self.port, scs_id, self.data_length)\n            if result != COMM_SUCCESS:\n                return result\n\n        if result == COMM_SUCCESS:\n            self.last_result = True\n\n        return result"
+      },
+      {
+        "name": "txRxPacket",
+        "line": 76,
+        "source": "def txRxPacket(self):\n        result = self.txPacket()\n        if result != COMM_SUCCESS:\n            return result\n\n        return self.rxPacket()"
+      },
+      {
+        "name": "isAvailable",
+        "line": 83,
+        "source": "def isAvailable(self, scs_id, address, data_length):\n        #if self.last_result is False or scs_id not in self.data_dict:\n        if scs_id not in self.data_dict:\n            return False\n\n        if (address < self.start_address) or (self.start_address + self.data_length - data_length < address):\n            return False\n\n        if len(self.data_dict[scs_id])<data_length:\n            return False\n        return True"
+      },
+      {
+        "name": "getData",
+        "line": 95,
+        "source": "def getData(self, scs_id, address, data_length):\n        if not self.isAvailable(scs_id, address, data_length):\n            return 0\n\n        if data_length == 1:\n            return self.data_dict[scs_id][address - self.start_address]\n        elif data_length == 2:\n            return SCS_MAKEWORD(self.data_dict[scs_id][address - self.start_address],\n                                self.data_dict[scs_id][address - self.start_address + 1])\n        elif data_length == 4:\n            return SCS_MAKEDWORD(SCS_MAKEWORD(self.data_dict[scs_id][address - self.start_address + 0],\n                                              self.data_dict[scs_id][address - self.start_address + 1]),\n                                 SCS_MAKEWORD(self.data_dict[scs_id][address - self.start_address + 2],\n                                              self.data_dict[scs_id][address - self.start_address + 3]))\n        else:\n            return 0"
+      }
+    ]
+  },
+  {
+    "file": "scservo_sdk/group_sync_write.py",
+    "sha256": "70d2a9e2157692932dd6e25515e53d600da9ca87ffab656c4660fb0de4d03476",
+    "methods": [
+      {
+        "name": "addParam",
+        "line": 31,
+        "source": "def addParam(self, scs_id, data):\n        if scs_id in self.data_dict:  # scs_id already exist\n            return False\n\n        if len(data) > self.data_length:  # input data is longer than set\n            return False\n\n        self.data_dict[scs_id] = data\n\n        self.is_param_changed = True\n        return True"
+      },
+      {
+        "name": "txPacket",
+        "line": 66,
+        "source": "def txPacket(self):\n        if len(self.data_dict.keys()) == 0:\n            return COMM_NOT_AVAILABLE\n\n        if self.is_param_changed is True or not self.param:\n            self.makeParam()\n\n        return self.ph.syncWriteTxOnly(self.port, self.start_address, self.data_length, self.param,\n                                       len(self.data_dict.keys()) * (1 + self.data_length))"
+      }
+    ]
+  },
+  {
+    "file": "scservo_sdk/protocol_packet_handler.py",
+    "sha256": "9932c85b9e2ac671a7e33f39e8e80b05d6592280d9f2bcebd85103845e36e655",
+    "methods": [
+      {
+        "name": "syncReadTx",
+        "line": 431,
+        "source": "def syncReadTx(self, port, start_address, data_length, param, param_length):\n        txpacket = [0] * (param_length + 8)\n        # 8: HEADER0 HEADER1 ID LEN INST START_ADDR DATA_LEN CHKSUM\n\n        txpacket[PKT_ID] = BROADCAST_ID\n        txpacket[PKT_LENGTH] = param_length + 4  # 7: INST START_ADDR DATA_LEN CHKSUM\n        txpacket[PKT_INSTRUCTION] = INST_SYNC_READ\n        txpacket[PKT_PARAMETER0 + 0] = start_address\n        txpacket[PKT_PARAMETER0 + 1] = data_length\n\n        txpacket[PKT_PARAMETER0 + 2: PKT_PARAMETER0 + 2 + param_length] = param[0: param_length]\n\n        result = self.txPacket(port, txpacket)\n        if result == COMM_SUCCESS:\n            port.setPacketTimeout((6 + data_length) * param_length)\n\n        return result"
+      },
+      {
+        "name": "syncWriteTxOnly",
+        "line": 450,
+        "source": "def syncWriteTxOnly(self, port, start_address, data_length, param, param_length):\n        txpacket = [0] * (param_length + 8)\n        # 8: HEADER0 HEADER1 ID LEN INST START_ADDR DATA_LEN ... CHKSUM\n\n        txpacket[PKT_ID] = BROADCAST_ID\n        txpacket[PKT_LENGTH] = param_length + 4  # 4: INST START_ADDR DATA_LEN ... CHKSUM\n        txpacket[PKT_INSTRUCTION] = INST_SYNC_WRITE\n        txpacket[PKT_PARAMETER0 + 0] = start_address\n        txpacket[PKT_PARAMETER0 + 1] = data_length\n\n        txpacket[PKT_PARAMETER0 + 2: PKT_PARAMETER0 + 2 + param_length] = param[0: param_length]\n\n        _, result, _ = self.txRxPacket(port, txpacket)\n\n        return result"
+      }
+    ]
+  }
+]

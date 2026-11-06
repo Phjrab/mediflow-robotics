@@ -48,7 +48,9 @@ class DeviceIO:
     def __init__(self,context,*,expected_torque=0,allow_goal=False,policy=None):
         self.context=context;self.expected_torque=expected_torque;self.allow_goal=allow_goal;self.policy=policy
         self.robot=None;self.permission=None;self.cameras=[];self.authorized=False;self.cleanup_errors=[];self.closed=False
+        self.read_history=[];self.last_fault=None;self.diagnostic_phase="INITIAL"
     def connect(self):
+        if (Path(__file__).resolve().parent/"FIELD_STOP.json").exists():raise Hold("현장 중단 기록 미검토; 추가 장치 접근 거부")
         dependencies();import probe_current_state as probe,device_preflight as devices
         devices.require();check_context(self.context)
         from lerobot.robots.so_follower import SO101Follower,SO101FollowerConfig
@@ -67,18 +69,39 @@ class DeviceIO:
         self.health_snapshot()
         if not self.robot.is_calibrated:raise Hold("모터/파일 보정 불일치")
     def raw(self,name):
-        values=self.robot.bus.sync_read(name,normalize=False,num_retry=0)
-        if set(values)!=set(JOINTS) or any(type(v) not in (int,float) or not __import__("math").isfinite(v) for v in values.values()):raise Hold("RAW 센서 오류")
+        try:values=self.robot.bus.sync_read(name,normalize=False,num_retry=0)
+        except Exception as error:
+            self.last_fault=dict(phase=self.diagnostic_phase,register=name,read_failed=True,error_kind=type(error).__name__,recent_reads=list(self.read_history))
+            error.observed=self.last_fault
+            raise
+        import math
+        def safe(value):
+            if type(value) in (int,str,bool) or value is None:return value
+            if type(value) is float and math.isfinite(value):return value
+            return repr(value)[:120]
+        captured={str(k):safe(v) for k,v in values.items()} if isinstance(values,dict) else {"received_type":type(values).__name__,"repr":repr(values)[:240]}
+        self.read_history.append(dict(unix=time.time(),phase=self.diagnostic_phase,register=name,values=captured))
+        self.read_history=self.read_history[-32:]
+        if not isinstance(values,dict) or set(values)!=set(JOINTS) or any(type(v) not in (int,float) or not math.isfinite(v) for v in values.values()):
+            raise self.observed_hold("RAW 센서 오류",register=name,values=captured)
         return values
+    def observed_hold(self,reason,**observed):
+        self.last_fault=dict(phase=self.diagnostic_phase,expected_torque=self.expected_torque,**observed,recent_reads=list(self.read_history))
+        error=Hold(reason);error.observed=self.last_fault
+        return error
     def health_snapshot(self):
         torque=self.raw("Torque_Enable")
-        if any(type(v) is not int or v!=self.expected_torque for v in torque.values()):raise Hold("예상 토크 상태 불일치; 추가 읽기/쓰기 중단")
+        if any(type(v) is not int or v!=self.expected_torque for v in torque.values()):raise self.observed_hold("예상 토크 상태 불일치; 추가 읽기/쓰기 중단",torque=dict(torque))
         temps=self.raw("Present_Temperature")
         threshold=45 if self.expected_torque==0 else 55
-        if any(not 0<=t<threshold for t in temps.values()):raise Hold("온도 상한; 추가 읽기/쓰기 중단")
+        if any(not 0<=t<threshold for t in temps.values()):raise self.observed_hold("온도 상한; 추가 읽기/쓰기 중단",temperatures=dict(temps),threshold=threshold)
         modes=self.raw("Operating_Mode");loads=self.raw("Present_Load");status=self.raw("Status")
         row=dict(torque=torque,modes=modes,temperatures=temps,loads=loads,statuses=status)
-        sensor_gate(row,Limits(),expected_torque=self.expected_torque,require_state=False)
+        try:sensor_gate(row,Limits(),expected_torque=self.expected_torque,require_state=False)
+        except Hold as error:
+            self.last_fault=dict(phase=self.diagnostic_phase,snapshot=row,recent_reads=list(self.read_history))
+            error.observed=self.last_fault
+            raise
         return row
     def snapshot(self):
         row=self.health_snapshot()

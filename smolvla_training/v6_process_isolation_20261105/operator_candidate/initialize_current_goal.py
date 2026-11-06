@@ -69,10 +69,12 @@ class InitializationAdapter:
         self.attempted_target=dict(current)
         with permission.goal_once():self.io.robot.bus.sync_write("Goal_Position",current,normalize=False,num_retry=0)
         # 자동 토크ON/OFF나 재시도 없음. 예상 밖 토크ON이면 추가 읽기도 중단한다.
+        self.io.diagnostic_phase="POST_GOAL_INITIAL_TORQUE"
         torque=self.io.raw("Torque_Enable")
         if any(type(v) is not int or v!=0 for v in torque.values()):
             self.stop_observed=dict(torque=torque)
             raise RuntimeError("초기화 후 토크ON/미확인; 현장 지지 유지, 전원 차단 판단 필요")
+        self.io.diagnostic_phase="POST_GOAL_HEALTH_CHECK"
         self.io.health_snapshot()
         actual_goal=self.io.raw("Goal_Position");after=self.io.raw("Present_Position")
         if actual_goal!=current or after!=current:raise RuntimeError("초기화 후 목표/현재 위치 불일치; 추가 목표 전송 금지")
@@ -91,7 +93,8 @@ def main(argv=None):
     parser.add_argument("--out",type=Path)
     args=parser.parse_args(argv)
     if not args.execute:
-        print("PLAN_ONLY: 장치 접근·모터 쓰기0. 현장 검증 전 초기화 기능은 NOT_RUN.");return 0
+        print("PLAN_ONLY: 장치 접근·모터 쓰기0. 2026-11-06 현장 HOLD 검토 전 초기화 재실행 차단.");return 0
+    raise RuntimeError("2026-11-06 초기화 후 토크 불일치 관측으로 이 초기화 실행기는 중지됨. 재시도·중단 파일 삭제·새 폴더 우회 금지")
     if not all((args.operator_present,args.supported,args.stop_ready)) or args.out is None:raise RuntimeError("현장 입회·팔 지지·전원 차단 수단·새 출력 경로 필요")
     root=Path(__file__).parent
     if (root/"FIELD_STOP.json").exists():raise RuntimeError("현장 중단 기록 보존 중; 검토 전 재시도 금지")
@@ -108,6 +111,7 @@ def main(argv=None):
         result.update(adapter.result)
     except BaseException as e:
         result["error"]=dict(kind=type(e).__name__,reason=str(e).replace(str(Path.home()),"~"))
+        if adapter.stop_observed is None:adapter.stop_observed=getattr(e,"observed",None) or getattr(io,"last_fault",None)
     finally:
         result["goal_packets"]=io.permission.goal_packets if io.permission else 0
         result["cleanup_errors"]=io.cleanup_errors

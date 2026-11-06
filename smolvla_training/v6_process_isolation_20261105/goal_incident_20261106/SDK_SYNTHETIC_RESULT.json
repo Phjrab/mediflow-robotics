@@ -1,0 +1,120 @@
+{
+  "status": "PASS",
+  "synthetic_scenarios": 4,
+  "evidence_sha256": "f15d8111efb067e6125de3529d6976fcc1eb202ba0a059a5f43afcff5a5496bf",
+  "zero": {
+    "values": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0
+    },
+    "communication": 0,
+    "requests": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "extractions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "one": {
+    "values": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1
+    },
+    "communication": 0,
+    "requests": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "extractions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "malformed_success_response": {
+    "values": {
+      "1": 1,
+      "2": 1,
+      "3": 0,
+      "4": 1,
+      "5": 1,
+      "6": 1
+    },
+    "communication": 0,
+    "requests": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "extractions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "communication_error": {
+    "rejected": true,
+    "requests": [
+      1
+    ],
+    "extractions": []
+  },
+  "attempted_goal_packet": {
+    "address": 42,
+    "byte_width": 2,
+    "motor_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "values": {
+      "shoulder_pan": 2035,
+      "shoulder_lift": 831,
+      "elbow_flex": 3082,
+      "wrist_flex": 2575,
+      "wrist_roll": 1812,
+      "gripper": 531
+    },
+    "hex": "fffffe16832a0201f307023f03030a0c040f0a0514070613028c",
+    "torque_address_40_in_write_range": false
+  },
+  "finding": "합성 데이터만 사용. 누락 응답을 통신 성공으로 전달하면 0으로 처리되지만, 실기 발생 증거 없음.",
+  "incident_root_cause": "UNVERIFIED",
+  "hardware_access": false,
+  "inference": "NOT_RUN",
+  "live": "NOT_RUN"
+}

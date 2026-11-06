@@ -1,0 +1,46 @@
+{
+  "backups": {
+    "operator_candidate/trial_runtime.py": "operator_candidate/trial_runtime.py.bak_incident_20261106T140525",
+    "operator_candidate/initialize_current_goal.py": "operator_candidate/initialize_current_goal.py.bak_incident_20261106T140525",
+    "goal_crosscheck.py": "goal_crosscheck.py.bak_incident_20261106T140525",
+    "test_goal_crosscheck.py": "test_goal_crosscheck.py.bak_incident_20261106T140525",
+    "CURRENT_STATUS.md": "CURRENT_STATUS.md.bak_incident_20261106T140525",
+    "FIELD_GUIDE.md": "FIELD_GUIDE.md.bak_incident_20261106T140525"
+  },
+  "files": {
+    "operator_candidate/trial_runtime.py": {
+      "before": "69441150ab0335de6021ddbcec253bffbe59345be7972f3975c6bac113bcfcfc",
+      "after": "dff9afd9d52cc5c4775518333d00bbbd4bd979c6f59f81d47e7cef4969c64021"
+    },
+    "operator_candidate/initialize_current_goal.py": {
+      "before": "3315e330f4621cb80832c016f540f6310f567a8edbd9d49b1fdf96d345aa73ed",
+      "after": "d03c19171c9168faa68510fb6d6f22b8259e04bb2dc218fff466e27719c5da6b"
+    },
+    "operator_candidate/test_fault_observation.py": {
+      "before": null,
+      "after": "6467c921a7b181e477fad11e780e630ac013675a34e9e60d2cccfc79ea7e0597"
+    },
+    "goal_crosscheck.py": {
+      "before": "d7e85f8bbb79a3ea7b859c8ed678888fb628129de140295b1b6790c14945e169",
+      "after": "c548085958b61490c023ce46cf6aa54a71086f25b26edffaec70fdb6d316e0e9"
+    },
+    "test_goal_crosscheck.py": {
+      "before": "05dcba84ee21eef57025f5ed0ab17650aaeff688db50e30d4cce07e74f2e2859",
+      "after": "b1c5e13d1611d4b841e7305560b0f424440cad71913b3c61173936967ef2724c"
+    },
+    "CURRENT_STATUS.md": {
+      "before": "a19080a304b2fcff21b11ab3702f9b178c4231c367fd72a243147f1465044142",
+      "after": "72341aeb93c45ea38dbaf5e720226a3d320e14ff438a032eb059f8982445eac2"
+    },
+    "FIELD_GUIDE.md": {
+      "before": "e5c150b8d3c3f80b9c1aa87405256041e9482b5f744860ce2302a5e6aba19181",
+      "after": "8695bdc3998cb61a64649eef261bc667419dd02f49188fce92c63d8c510baace"
+    },
+    "goal_incident_20261106/INCIDENT.md": {
+      "before": null,
+      "after": "12091c29cafb5fe0c95c11c53c0d05bb5ba64044234a4184bc51a48ba9e892f4"
+    }
+  },
+  "field_stop_preserved": true,
+  "hardware_access": false
+}

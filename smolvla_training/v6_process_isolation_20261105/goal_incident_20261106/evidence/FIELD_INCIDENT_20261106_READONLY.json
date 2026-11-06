@@ -1,0 +1,110 @@
+{
+  "v6_process_1793887709179/operator_candidate/FIELD_STOP.json": {
+    "sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "modified_unix": 1793938257.122281,
+    "data": {
+      "unix": 1793938257.126791,
+      "status": "HOLD",
+      "live": "NOT_RUN",
+      "operator_only": true,
+      "error": {
+        "kind": "Hold",
+        "reason": "예상 토크 상태 불일치; 추가 읽기/쓰기 중단"
+      },
+      "goal_packets": 1,
+      "cleanup_errors": [],
+      "attempted_target_raw": {
+        "shoulder_pan": 2035,
+        "shoulder_lift": 831,
+        "elbow_flex": 3082,
+        "wrist_flex": 2575,
+        "wrist_roll": 1812,
+        "gripper": 531
+      },
+      "stop_observed": null,
+      "devices_after": {
+        "devices": {
+          "serial": {
+            "exists": true,
+            "owners_ok": true,
+            "query_code": 1
+          },
+          "end_effector": {
+            "exists": true,
+            "owners_ok": true,
+            "query_code": 1
+          },
+          "ceiling_vertical": {
+            "exists": true,
+            "owners_ok": true,
+            "query_code": 0
+          },
+          "ceiling_oblique": {
+            "exists": true,
+            "owners_ok": true,
+            "query_code": 1
+          }
+        },
+        "lelab": "inactive",
+        "astra": "active",
+        "all_safe": true
+      }
+    }
+  },
+  "goal_init_field_20261106_131046/RESULT.json": {
+    "sha256": "e55b1360f61b8c9c3bdf150ef967d9f54bf3f161f14ff4b787263655c497d885",
+    "modified_unix": 1793938257.122281,
+    "data": {
+      "status": "HOLD",
+      "live": "NOT_RUN",
+      "operator_only": true,
+      "error": {
+        "kind": "Hold",
+        "reason": "예상 토크 상태 불일치; 추가 읽기/쓰기 중단"
+      },
+      "goal_packets": 1,
+      "cleanup_errors": [],
+      "attempted_target_raw": {
+        "shoulder_pan": 2035,
+        "shoulder_lift": 831,
+        "elbow_flex": 3082,
+        "wrist_flex": 2575,
+        "wrist_roll": 1812,
+        "gripper": 531
+      },
+      "stop_observed": null,
+      "devices_after": {
+        "devices": {
+          "serial": {
+            "exists": true,
+            "owners_ok": true,
+            "query_code": 1
+          },
+          "end_effector": {
+            "exists": true,
+            "owners_ok": true,
+            "query_code": 1
+          },
+          "ceiling_vertical": {
+            "exists": true,
+            "owners_ok": true,
+            "query_code": 0
+          },
+          "ceiling_oblique": {
+            "exists": true,
+            "owners_ok": true,
+            "query_code": 1
+          }
+        },
+        "lelab": "inactive",
+        "astra": "active",
+        "all_safe": true
+      }
+    }
+  },
+  "source_hashes": {
+    "initialize_current_goal.py": "3315e330f4621cb80832c016f540f6310f567a8edbd9d49b1fdf96d345aa73ed",
+    "trial_runtime.py": "69441150ab0335de6021ddbcec253bffbe59345be7972f3975c6bac113bcfcfc",
+    "first_trial.py": "4cc9b5ba83ad19ebc57f8d9e95b5d3c86bff93b66134d75c98b54410c103d0dc"
+  }
+}

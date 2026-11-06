@@ -41,5 +41,13 @@ class CrosscheckTests(unittest.TestCase):
         io=IO();io.fail=True
         with patch.dict(sys.modules,{"first_trial_core":SimpleNamespace(home_gate=lambda *args:None)}),self.assertRaises(RuntimeError):crosscheck(io,{"home":{}})
         self.assertEqual(io.calls,[])
+    def test_field_stop_blocks_main_before_files_or_device_access(self):
+        import goal_crosscheck
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);(root/"operator_candidate").mkdir();(root/"operator_candidate/FIELD_STOP.json").write_text('{}')
+            output=root/"never_created.json"
+            with patch.object(goal_crosscheck,"__file__",str(root/"goal_crosscheck.py")),patch.object(sys,"argv",["goal_crosscheck.py","--out",str(output)]),self.assertRaisesRegex(RuntimeError,"추가 serial 진단 금지"):
+                goal_crosscheck.main()
+            self.assertFalse(output.exists())
 
 if __name__=="__main__":unittest.main()

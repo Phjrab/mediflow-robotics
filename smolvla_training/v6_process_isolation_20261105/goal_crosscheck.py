@@ -32,6 +32,7 @@ def crosscheck(io,context):
 
 def main():
     p=argparse.ArgumentParser();p.add_argument("--code-root",type=Path,default=Path.home()/"first_trial_operator_1793885625046_final");p.add_argument("--out",type=Path,required=True);args=p.parse_args()
+    if (Path(__file__).resolve().parent/"operator_candidate/FIELD_STOP.json").exists():raise RuntimeError("현장 중단 기록 미검토; 추가 serial 진단 금지")
     if args.out.exists():raise RuntimeError("기존 출력 덮어쓰기 거부")
     root=args.code_root.expanduser();manifest=json.loads((Path(__file__).parent/"REVIEWED_READONLY_CODE.json").read_text(encoding="utf-8"))
     for name,digest in manifest.items():
