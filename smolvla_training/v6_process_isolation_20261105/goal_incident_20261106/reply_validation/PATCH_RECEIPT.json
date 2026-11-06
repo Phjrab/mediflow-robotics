@@ -1,0 +1,46 @@
+{
+  "backups": {
+    "operator_candidate/trial_runtime.py": "operator_candidate/trial_runtime.py.bak_reply_20261106T143011",
+    "operator_candidate/test_fault_observation.py": "operator_candidate/test_fault_observation.py.bak_reply_20261106T143011"
+  },
+  "files": {
+    "operator_candidate/trial_runtime.py": {
+      "before": "dff9afd9d52cc5c4775518333d00bbbd4bd979c6f59f81d47e7cef4969c64021",
+      "after": "33125a770b23e3606890e842366c0138c9348bf8ddb073b2fc8895c74e0c0bbd"
+    },
+    "operator_candidate/test_fault_observation.py": {
+      "before": "6467c921a7b181e477fad11e780e630ac013675a34e9e60d2cccfc79ea7e0597",
+      "after": "8776347c26fc11b7c357e30ff1842f6f6b20c8cc8b47713e678e7661bfb32e06"
+    },
+    "operator_candidate/reply_integrity.py": {
+      "before": null,
+      "after": "1e2f121263ee0eb6c7a8d5eda1eb2ddf4b0f2fb65abb8220e49759c94f0fe6cd"
+    },
+    "operator_candidate/test_reply_integrity.py": {
+      "before": null,
+      "after": "0aa45b7555e72820ff59991e7ca796a3052cfa7bd604738dec2082a4059b0995"
+    },
+    "goal_incident_20261106/REPLY_ANALYSIS.md": {
+      "before": null,
+      "after": "fbf124db8379cfa38f8f271262c09481f1580f8a555bf2c8890bfea393ef1f5b"
+    },
+    "goal_incident_20261106/evidence/PROTOCOL_READ_SOURCE.json": {
+      "before": null,
+      "after": "7523954a4e225db8e2e25508f422432d0d043c5c5b443e86f0fe255af9fb8346"
+    },
+    "goal_incident_20261106/source_review/receipt.json": {
+      "before": null,
+      "after": "751c2c5cb7d0c098d528c0d159e3bef33eb1e6dd01363b289d7ef0b6442599b3"
+    },
+    "goal_incident_20261106/source_review/home_state_so101.json": {
+      "before": null,
+      "after": "73ed963208beebe7080a681302350d35a20fc0cda412676dd547b7fc9f7d6074"
+    },
+    "goal_incident_20261106/홈_오차범위_전원OFF.html": {
+      "before": null,
+      "after": "fda7b31c5cce76596c00524a06436e3b4ed589407ee81eb5c08497af3b40de1a"
+    }
+  },
+  "field_stop_preserved": true,
+  "hardware_access": false
+}

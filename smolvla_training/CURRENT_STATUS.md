@@ -12,3 +12,11 @@
 상세 기록: [현장 HOLD 분석](v6_process_isolation_20261105/goal_incident_20261106/INCIDENT.md).
 
 하드웨어 접근·추론·학습·재무장·초기화 재실행·live·push: 이번 후속 작업에서 모두 NOT_RUN.
+
+## 추가 분석 — 응답 처리 결함 보강
+
+설치된 SDK에 짧거나 긴 응답 및 오류 상태를 잘못 해석할 수 있는 결함이 있음을 가짜 바이트로 재현했다. 실행기 앞단에 응답 ID·길이·체크섬·오류 상태 검증을 추가했다. 기존 SDK와 RobotController는 수정하지 않았다.
+
+로컬·Jetson 각각 관련 모의 테스트64개 통과. 이번 현장 중단의 직접 원인은 당시 원시 응답 누락으로 여전히 미확인이다. 팔 자세 조정이 필요하다는 근거도 없다. 전원 OFF와 FIELD_STOP을 유지하고 실기는 진행하지 않는다.
+
+[추가 분석](v6_process_isolation_20261105/goal_incident_20261106/REPLY_ANALYSIS.md) · [홈 목표 안내 화면](v6_process_isolation_20261105/goal_incident_20261106/홈_오차범위_전원OFF.html). 현재 관절값은 미측정이며 실시간 창은 NOT_RUN이다.

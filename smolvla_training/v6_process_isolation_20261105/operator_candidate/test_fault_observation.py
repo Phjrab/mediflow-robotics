@@ -64,5 +64,16 @@ class ObservationTests(unittest.TestCase):
         with self.assertRaises(Hold) as caught:io.health_snapshot()
         self.assertEqual(calls,["Torque_Enable","Present_Temperature","Operating_Mode","Present_Load","Status"])
         self.assertEqual(caught.exception.observed["snapshot"]["statuses"],dict.fromkeys(JOINTS,1))
+    def test_raw_fault_preserves_response_bytes_without_more_requests(self):
+        from reply_integrity import ReplyFault
+        io,calls=self.make_io([])
+        response=dict(raw_hex="ffff010200fc",expected_bytes=1,received_bytes=6,status=0)
+        def fail(name,**kwargs):
+            calls.append(name)
+            raise ReplyFault("합성 ACK 길이 불일치",response)
+        io.robot.bus.sync_read=fail
+        with self.assertRaises(ReplyFault) as caught:io.raw("Torque_Enable")
+        self.assertEqual(calls,["Torque_Enable"])
+        self.assertEqual(caught.exception.observed["response"],response)
 
 if __name__=="__main__":unittest.main()

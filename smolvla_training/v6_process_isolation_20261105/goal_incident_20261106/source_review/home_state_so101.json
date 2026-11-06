@@ -1,0 +1,19 @@
+{
+  "joint_names": [
+    "shoulder_pan",
+    "shoulder_lift",
+    "elbow_flex",
+    "wrist_flex",
+    "wrist_roll",
+    "gripper"
+  ],
+  "state": [
+    -3.743322378527509,
+    -97.75278612122919,
+    96.552176371108,
+    43.45712672880966,
+    -2.252025343804029,
+    4.275478211632611
+  ],
+  "tolerance_deg": 5.0
+}

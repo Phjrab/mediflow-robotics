@@ -1,0 +1,39 @@
+[
+  {
+    "file": "protocol_packet_handler.py",
+    "sha256": "9932c85b9e2ac671a7e33f39e8e80b05d6592280d9f2bcebd85103845e36e655",
+    "methods": [
+      {
+        "name": "rxPacket",
+        "line": 103,
+        "source": "def rxPacket(self, port):\r\n        rxpacket = []\r\n\r\n        result = COMM_TX_FAIL\r\n        checksum = 0\r\n        rx_length = 0\r\n        wait_length = 6  # minimum length (HEADER0 HEADER1 ID LENGTH ERROR CHKSUM)\r\n\r\n        while True:\r\n            rxpacket.extend(port.readPort(wait_length - rx_length))\r\n            rx_length = len(rxpacket)\r\n            if rx_length >= wait_length:\r\n                # find packet header\r\n                for idx in range(0, (rx_length - 1)):\r\n                    if (rxpacket[idx] == 0xFF) and (rxpacket[idx + 1] == 0xFF):\r\n                        break\r\n\r\n                if idx == 0:  # found at the beginning of the packet\r\n                    if (rxpacket[PKT_ID] > 0xFD) or (rxpacket[PKT_LENGTH] > RXPACKET_MAX_LEN) or (\r\n                            rxpacket[PKT_ERROR] > 0x7F):\r\n                        # unavailable ID or unavailable Length or unavailable Error\r\n                        # remove the first byte in the packet\r\n                        del rxpacket[0]\r\n                        rx_length -= 1\r\n                        continue\r\n\r\n                    # re-calculate the exact length of the rx packet\r\n                    if wait_length != (rxpacket[PKT_LENGTH] + PKT_LENGTH + 1):\r\n                        wait_length = rxpacket[PKT_LENGTH] + PKT_LENGTH + 1\r\n                        continue\r\n\r\n                    if rx_length < wait_length:\r\n                        # check timeout\r\n                        if port.isPacketTimeout():\r\n                            if rx_length == 0:\r\n                                result = COMM_RX_TIMEOUT\r\n                            else:\r\n                                result = COMM_RX_CORRUPT\r\n                            break\r\n                        else:\r\n                            continue\r\n\r\n                    # calculate checksum\r\n                    for i in range(2, wait_length - 1):  # except header, checksum\r\n                        checksum += rxpacket[i]\r\n                    checksum = ~checksum & 0xFF\r\n\r\n                    # verify checksum\r\n                    if rxpacket[wait_length - 1] == checksum:\r\n                        result = COMM_SUCCESS\r\n                    else:\r\n                        result = COMM_RX_CORRUPT\r\n                    break\r\n\r\n                else:\r\n                    # remove unnecessary packets\r\n                    del rxpacket[0: idx]\r\n                    rx_length -= idx\r\n\r\n            else:\r\n                # check timeout\r\n                if port.isPacketTimeout():\r\n                    if rx_length == 0:\r\n                        result = COMM_RX_TIMEOUT\r\n                    else:\r\n                        result = COMM_RX_CORRUPT\r\n                    break\r\n\r\n        port.is_using = False\r\n\r\n        #print \"[RxPacket] %r\" % rxpacket\r\n\r\n        return rxpacket, result"
+      },
+      {
+        "name": "readRx",
+        "line": 262,
+        "source": "def readRx(self, port, scs_id, length):\r\n        result = COMM_TX_FAIL\r\n        error = 0\r\n\r\n        rxpacket = None\r\n        data = []\r\n\r\n        while True:\r\n            rxpacket, result = self.rxPacket(port)\r\n\r\n            if result != COMM_SUCCESS or rxpacket[PKT_ID] == scs_id:\r\n                break\r\n\r\n        if result == COMM_SUCCESS and rxpacket[PKT_ID] == scs_id:\r\n            error = rxpacket[PKT_ERROR]\r\n\r\n            data.extend(rxpacket[PKT_PARAMETER0: PKT_PARAMETER0 + length])\r\n\r\n        return data, result, error"
+      }
+    ]
+  },
+  {
+    "file": "group_sync_read.py",
+    "sha256": "ccbbb3a864c047bf3a7808a0b455676b198645ee1caffa58dac562339a86ad76",
+    "methods": [
+      {
+        "name": "rxPacket",
+        "line": 58,
+        "source": "def rxPacket(self):\r\n        self.last_result = False\r\n\r\n        result = COMM_RX_FAIL\r\n\r\n        if len(self.data_dict.keys()) == 0:\r\n            return COMM_NOT_AVAILABLE\r\n\r\n        for scs_id in self.data_dict:\r\n            self.data_dict[scs_id], result, _ = self.ph.readRx(self.port, scs_id, self.data_length)\r\n            if result != COMM_SUCCESS:\r\n                return result\r\n\r\n        if result == COMM_SUCCESS:\r\n            self.last_result = True\r\n\r\n        return result"
+      },
+      {
+        "name": "isAvailable",
+        "line": 83,
+        "source": "def isAvailable(self, scs_id, address, data_length):\r\n        #if self.last_result is False or scs_id not in self.data_dict:\r\n        if scs_id not in self.data_dict:\r\n            return False\r\n\r\n        if (address < self.start_address) or (self.start_address + self.data_length - data_length < address):\r\n            return False\r\n\r\n        if len(self.data_dict[scs_id])<data_length:\r\n            return False\r\n        return True"
+      },
+      {
+        "name": "getData",
+        "line": 95,
+        "source": "def getData(self, scs_id, address, data_length):\r\n        if not self.isAvailable(scs_id, address, data_length):\r\n            return 0\r\n\r\n        if data_length == 1:\r\n            return self.data_dict[scs_id][address - self.start_address]\r\n        elif data_length == 2:\r\n            return SCS_MAKEWORD(self.data_dict[scs_id][address - self.start_address],\r\n                                self.data_dict[scs_id][address - self.start_address + 1])\r\n        elif data_length == 4:\r\n            return SCS_MAKEDWORD(SCS_MAKEWORD(self.data_dict[scs_id][address - self.start_address + 0],\r\n                                              self.data_dict[scs_id][address - self.start_address + 1]),\r\n                                 SCS_MAKEWORD(self.data_dict[scs_id][address - self.start_address + 2],\r\n                                              self.data_dict[scs_id][address - self.start_address + 3]))\r\n        else:\r\n            return 0"
+      }
+    ]
+  }
+]

@@ -49,6 +49,7 @@ class DeviceIO:
         self.context=context;self.expected_torque=expected_torque;self.allow_goal=allow_goal;self.policy=policy
         self.robot=None;self.permission=None;self.cameras=[];self.authorized=False;self.cleanup_errors=[];self.closed=False
         self.read_history=[];self.last_fault=None;self.diagnostic_phase="INITIAL"
+        self.reply_guard=None
     def connect(self):
         if (Path(__file__).resolve().parent/"FIELD_STOP.json").exists():raise Hold("현장 중단 기록 미검토; 추가 장치 접근 거부")
         dependencies();import probe_current_state as probe,device_preflight as devices
@@ -63,15 +64,20 @@ class DeviceIO:
             for name,pair in {"Goal_Position":(42,2),"Moving":(66,1),"Torque_Enable":(40,1)}.items():
                 if tuple(table[motor.model][name])!=pair:raise Hold("설치 SDK 레지스터 계약 미확인")
         self.permission=Permission(self.robot.bus.port_handler,allow_goal=self.allow_goal).install()
+        from reply_integrity import StrictSyncReplies
+        self.reply_guard=StrictSyncReplies(self.robot.bus.sync_reader,self.robot.bus.packet_handler).install()
         self.robot.bus.connect(handshake=False)
         import fcntl,termios
         fcntl.ioctl(self.robot.bus.port_handler.ser.fileno(),termios.TIOCEXCL)
         self.health_snapshot()
         if not self.robot.is_calibrated:raise Hold("모터/파일 보정 불일치")
     def raw(self,name):
-        try:values=self.robot.bus.sync_read(name,normalize=False,num_retry=0)
+        try:
+            if self.reply_guard is not None:self.reply_guard.begin(name)
+            values=self.robot.bus.sync_read(name,normalize=False,num_retry=0)
         except Exception as error:
-            self.last_fault=dict(phase=self.diagnostic_phase,register=name,read_failed=True,error_kind=type(error).__name__,recent_reads=list(self.read_history))
+            self.last_fault=dict(phase=self.diagnostic_phase,register=name,read_failed=True,error_kind=type(error).__name__,
+                                 response=getattr(error,"observed",None),recent_reads=list(self.read_history))
             error.observed=self.last_fault
             raise
         import math
@@ -158,6 +164,7 @@ class DeviceIO:
         if self.robot is not None:
             from live_safety_runtime import close_without_writes,finish_workers_after_port_close
             self.cleanup_errors=close_without_writes(self.robot,self.cameras,bool(self.robot.bus.is_connected),self.permission)
+            if self.reply_guard is not None and not self.robot.bus.is_connected:self.reply_guard.restore()
             finish_workers_after_port_close(10)
         if self.policy is not None:self.policy.close()
 

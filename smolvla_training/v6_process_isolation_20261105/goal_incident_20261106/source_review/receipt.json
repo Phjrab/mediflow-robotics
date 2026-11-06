@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "motors_bus.py": "a4bf39ad87aadd74ff2722f94354fcdc7f0c47836df03b0321e131f48ba36c90",
+    "feetech.py": "0460413cd6a641cede015ac19ac53d2cfe9c343af1bd18ed74e1951229f64ff2",
+    "group_sync_read.py": "ccbbb3a864c047bf3a7808a0b455676b198645ee1caffa58dac562339a86ad76",
+    "group_sync_write.py": "70d2a9e2157692932dd6e25515e53d600da9ca87ffab656c4660fb0de4d03476",
+    "protocol_packet_handler.py": "9932c85b9e2ac671a7e33f39e8e80b05d6592280d9f2bcebd85103845e36e655",
+    "port_handler.py": "c8dbb189ca98705bd71066d5a9a691b4c80b484c77ebe8a9ccc2d6c46321e999",
+    "home_state_so101.json": "73ed963208beebe7080a681302350d35a20fc0cda412676dd547b7fc9f7d6074",
+    "so-101.json": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e"
+  },
+  "hardware_access": false,
+  "original_stop_preserved": true
+}
