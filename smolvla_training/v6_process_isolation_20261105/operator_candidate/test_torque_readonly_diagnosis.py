@@ -163,5 +163,37 @@ class Tests(unittest.TestCase):
         self.assertTrue(result["goal_exact_match"])
         self.assertFalse(result["live_authorized"])
 
+    def test_feedback67_compared_separately_without_authorizing_live(self):
+        bus, replies, calls, home = self.positions()
+        raw_calls = []
+        def raw_read(addr, length, motor_ids, **kwargs):
+            raw_calls.append((addr, length, motor_ids))
+            self.assertEqual(kwargs["num_retry"], 0)
+            self.assertTrue(kwargs["raise_on_error"])
+            return {motor_ids[0]: 1000}, 0
+        bus._sync_read = raw_read
+        result = diagnosis.position_goal_review(bus, replies, lambda row: None, home, inspect_feedback=True)
+        self.assertFalse(result["goal_exact_match"])
+        self.assertTrue(result["feedback_exact_match"])
+        self.assertFalse(result["live_authorized"])
+        self.assertEqual(len(raw_calls), 6)
+        self.assertTrue(all(addr == 67 and length == 2 and len(ids) == 1 for addr, length, ids in raw_calls))
+        self.assertEqual(len(calls), 36)
+
+    def test_feedback_error_stops_before_following_torque_or_motor(self):
+        bus, replies, calls, home = self.positions()
+        def raw_read(*args, **kwargs):raise ReplyFault("합성 피드백 오류", {"raw_hex": "", "register": "Goal_Feedback_67"})
+        bus._sync_read = raw_read
+        with self.assertRaises(diagnosis.DiagnosisStop) as error:
+            diagnosis.position_goal_review(bus, replies, lambda row: None, home, inspect_feedback=True)
+        self.assertEqual(error.exception.code, "RESPONSE_REJECTED")
+        self.assertEqual(len(calls), 5)
+
+    def test_feedback_option_alone_rejected_before_any_file_or_device(self):
+        with patch.object(diagnosis, "check_files", side_effect=AssertionError("파일 접근")), \
+             contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as error:
+            diagnosis.main(["--inspect-goal-feedback"])
+        self.assertEqual(error.exception.code, 2)
+
 
 if __name__ == "__main__":unittest.main()

@@ -1,0 +1,21 @@
+{
+  "files": {
+    "operator_candidate/torque_readonly_diagnosis.py": {
+      "before": "307bdce693c96f7f9357a723a5ab5c308848489e6b052215a34b03d77e45348e",
+      "after": "660631bd764b3a7b0e6e630d4c32cddba5bd4dbd22aeb7a744605ae6d7bb776d"
+    },
+    "operator_candidate/test_torque_readonly_diagnosis.py": {
+      "before": "5c8ae7efd4f72eef8789be5ed1cf706b3545ecf910febbecc075b531e813b8bd",
+      "after": "e7bce4b383cb2a1cd46ccbdec8cb4f0c1aa44aaa64a57b740546d557895aa6ab"
+    },
+    "goal_incident_20261106/GOAL_FEEDBACK_REVIEW_20261106.md": {
+      "before": null,
+      "after": "6327e47e07c945a4796cf74c5e4d2cada3e11ba595d86edad2d0a8c3aed2ec77"
+    }
+  },
+  "backups": {
+    "operator_candidate/torque_readonly_diagnosis.py": "operator_candidate/torque_readonly_diagnosis.py.bak_feedback_1793946988560326614",
+    "operator_candidate/test_torque_readonly_diagnosis.py": "operator_candidate/test_torque_readonly_diagnosis.py.bak_feedback_1793946988560326614"
+  },
+  "hardware_access": false
+}

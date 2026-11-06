@@ -1,0 +1,478 @@
+{
+  "status": "READONLY_POSITION_GOAL_REVIEW",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "field_stop_preserved": true,
+  "summaries": [
+    {
+      "round": 0,
+      "torque": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "temperatures": {
+        "shoulder_pan": 28,
+        "shoulder_lift": 28,
+        "elbow_flex": 27,
+        "wrist_flex": 27,
+        "wrist_roll": 28,
+        "gripper": 31
+      }
+    },
+    {
+      "round": 1,
+      "torque": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "temperatures": {
+        "shoulder_pan": 27,
+        "shoulder_lift": 28,
+        "elbow_flex": 27,
+        "wrist_flex": 27,
+        "wrist_roll": 28,
+        "gripper": 31
+      }
+    }
+  ],
+  "cleanup_errors": [],
+  "position_goal_review": {
+    "joints": [
+      {
+        "joint": "shoulder_pan",
+        "present_raw": 2034,
+        "goal_raw": 0,
+        "goal_matches_current": false,
+        "goal_in_calibration": false,
+        "current": -5.934065934065934,
+        "home": -3.743322378527509,
+        "home_delta": -2.1907435555384254,
+        "unit": "degree"
+      },
+      {
+        "joint": "shoulder_lift",
+        "present_raw": 831,
+        "goal_raw": 0,
+        "goal_matches_current": false,
+        "goal_in_calibration": false,
+        "current": -98.76923076923077,
+        "home": -97.75278612122919,
+        "home_delta": -1.0164446480015812,
+        "unit": "degree"
+      },
+      {
+        "joint": "elbow_flex",
+        "present_raw": 3082,
+        "goal_raw": 0,
+        "goal_matches_current": false,
+        "goal_in_calibration": false,
+        "current": 96.57142857142857,
+        "home": 96.552176371108,
+        "home_delta": 0.019252200320565294,
+        "unit": "degree"
+      },
+      {
+        "joint": "wrist_flex",
+        "present_raw": 2575,
+        "goal_raw": 0,
+        "goal_matches_current": false,
+        "goal_in_calibration": false,
+        "current": 43.472527472527474,
+        "home": 43.45712672880966,
+        "home_delta": 0.015400743717812304,
+        "unit": "degree"
+      },
+      {
+        "joint": "wrist_roll",
+        "present_raw": 1812,
+        "goal_raw": 0,
+        "goal_matches_current": false,
+        "goal_in_calibration": false,
+        "current": -4.615384615384615,
+        "home": -2.252025343804029,
+        "home_delta": -2.363359271580586,
+        "unit": "degree"
+      },
+      {
+        "joint": "gripper",
+        "present_raw": 531,
+        "goal_raw": 0,
+        "goal_matches_current": false,
+        "goal_in_calibration": false,
+        "current": 7.221542227662178,
+        "home": 4.275478211632611,
+        "home_delta": 2.9460640160295677,
+        "unit": "percent_0_100"
+      }
+    ],
+    "goal_exact_match": false,
+    "home_within_5_degrees": true,
+    "live_authorized": false
+  },
+  "read_packets": 54,
+  "blocked_packets": 0,
+  "port_closed": true,
+  "replies": [
+    {
+      "unix": 1793945953.3684747,
+      "register": "Present_Temperature",
+      "expected_id": 5,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff0503001cdb",
+      "received_bytes": 7,
+      "received_id": 5,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3691242,
+      "register": "Present_Temperature",
+      "expected_id": 6,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff0603001fd7",
+      "received_bytes": 7,
+      "received_id": 6,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3698275,
+      "register": "Torque_Enable",
+      "expected_id": 1,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff01030000fb",
+      "received_bytes": 7,
+      "received_id": 1,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3705304,
+      "register": "Present_Temperature",
+      "expected_id": 1,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff0103001cdf",
+      "received_bytes": 7,
+      "received_id": 1,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3711615,
+      "register": "Operating_Mode",
+      "expected_id": 1,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff01030000fb",
+      "received_bytes": 7,
+      "received_id": 1,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.371766,
+      "register": "Present_Position",
+      "expected_id": 1,
+      "expected_bytes": 2,
+      "communication": 0,
+      "raw_hex": "ffff010400f20701",
+      "received_bytes": 8,
+      "received_id": 1,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3724744,
+      "register": "Goal_Position",
+      "expected_id": 1,
+      "expected_bytes": 2,
+      "communication": 0,
+      "raw_hex": "ffff0104000000fa",
+      "received_bytes": 8,
+      "received_id": 1,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3732538,
+      "register": "Torque_Enable",
+      "expected_id": 2,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff02030000fa",
+      "received_bytes": 7,
+      "received_id": 2,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3738716,
+      "register": "Present_Temperature",
+      "expected_id": 2,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff0203001cde",
+      "received_bytes": 7,
+      "received_id": 2,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3744638,
+      "register": "Operating_Mode",
+      "expected_id": 2,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff02030000fa",
+      "received_bytes": 7,
+      "received_id": 2,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3750658,
+      "register": "Present_Position",
+      "expected_id": 2,
+      "expected_bytes": 2,
+      "communication": 0,
+      "raw_hex": "ffff0204003f03b7",
+      "received_bytes": 8,
+      "received_id": 2,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.375722,
+      "register": "Goal_Position",
+      "expected_id": 2,
+      "expected_bytes": 2,
+      "communication": 0,
+      "raw_hex": "ffff0204000000f9",
+      "received_bytes": 8,
+      "received_id": 2,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3764036,
+      "register": "Torque_Enable",
+      "expected_id": 3,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff03030000f9",
+      "received_bytes": 7,
+      "received_id": 3,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3770475,
+      "register": "Present_Temperature",
+      "expected_id": 3,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff0303001bde",
+      "received_bytes": 7,
+      "received_id": 3,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3776848,
+      "register": "Operating_Mode",
+      "expected_id": 3,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff03030000f9",
+      "received_bytes": 7,
+      "received_id": 3,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3783627,
+      "register": "Present_Position",
+      "expected_id": 3,
+      "expected_bytes": 2,
+      "communication": 0,
+      "raw_hex": "ffff0304000a0ce2",
+      "received_bytes": 8,
+      "received_id": 3,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3789887,
+      "register": "Goal_Position",
+      "expected_id": 3,
+      "expected_bytes": 2,
+      "communication": 0,
+      "raw_hex": "ffff0304000000f8",
+      "received_bytes": 8,
+      "received_id": 3,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3796504,
+      "register": "Torque_Enable",
+      "expected_id": 4,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff04030000f8",
+      "received_bytes": 7,
+      "received_id": 4,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.380291,
+      "register": "Present_Temperature",
+      "expected_id": 4,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff0403001bdd",
+      "received_bytes": 7,
+      "received_id": 4,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3809633,
+      "register": "Operating_Mode",
+      "expected_id": 4,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff04030000f8",
+      "received_bytes": 7,
+      "received_id": 4,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3816829,
+      "register": "Present_Position",
+      "expected_id": 4,
+      "expected_bytes": 2,
+      "communication": 0,
+      "raw_hex": "ffff0404000f0ade",
+      "received_bytes": 8,
+      "received_id": 4,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3823626,
+      "register": "Goal_Position",
+      "expected_id": 4,
+      "expected_bytes": 2,
+      "communication": 0,
+      "raw_hex": "ffff0404000000f7",
+      "received_bytes": 8,
+      "received_id": 4,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.383013,
+      "register": "Torque_Enable",
+      "expected_id": 5,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff05030000f7",
+      "received_bytes": 7,
+      "received_id": 5,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3836107,
+      "register": "Present_Temperature",
+      "expected_id": 5,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff0503001cdb",
+      "received_bytes": 7,
+      "received_id": 5,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3842113,
+      "register": "Operating_Mode",
+      "expected_id": 5,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff05030000f7",
+      "received_bytes": 7,
+      "received_id": 5,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3848228,
+      "register": "Present_Position",
+      "expected_id": 5,
+      "expected_bytes": 2,
+      "communication": 0,
+      "raw_hex": "ffff0504001407db",
+      "received_bytes": 8,
+      "received_id": 5,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.38557,
+      "register": "Goal_Position",
+      "expected_id": 5,
+      "expected_bytes": 2,
+      "communication": 0,
+      "raw_hex": "ffff0504000000f6",
+      "received_bytes": 8,
+      "received_id": 5,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3862238,
+      "register": "Torque_Enable",
+      "expected_id": 6,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff06030000f6",
+      "received_bytes": 7,
+      "received_id": 6,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.38683,
+      "register": "Present_Temperature",
+      "expected_id": 6,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff0603001fd7",
+      "received_bytes": 7,
+      "received_id": 6,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3874006,
+      "register": "Operating_Mode",
+      "expected_id": 6,
+      "expected_bytes": 1,
+      "communication": 0,
+      "raw_hex": "ffff06030000f6",
+      "received_bytes": 7,
+      "received_id": 6,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3880122,
+      "register": "Present_Position",
+      "expected_id": 6,
+      "expected_bytes": 2,
+      "communication": 0,
+      "raw_hex": "ffff0604001302e0",
+      "received_bytes": 8,
+      "received_id": 6,
+      "status": 0
+    },
+    {
+      "unix": 1793945953.3886507,
+      "register": "Goal_Position",
+      "expected_id": 6,
+      "expected_bytes": 2,
+      "communication": 0,
+      "raw_hex": "ffff0604000000f5",
+      "received_bytes": 8,
+      "received_id": 6,
+      "status": 0
+    }
+  ],
+  "reply_fault": null
+}

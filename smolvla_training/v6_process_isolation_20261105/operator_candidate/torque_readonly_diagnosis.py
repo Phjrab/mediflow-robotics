@@ -104,7 +104,7 @@ def known_home():
     return home
 
 
-def position_goal_review(bus, replies, emit, home):
+def position_goal_review(bus, replies, emit, home, *, inspect_feedback=False):
     rows = []
     deadline = time.monotonic() + 8
     def read(register, joint):
@@ -112,7 +112,15 @@ def position_goal_review(bus, replies, emit, home):
             raise DiagnosisStop("위치 검토 시간 상한", "TIME_LIMIT", rows)
         replies.begin(register)
         try:
-            values = bus.sync_read(register, motors=[joint], normalize=False, num_retry=0)
+            if register == "Goal_Feedback_67":
+                motor_id = bus.motors[joint].id
+                raw, comm = bus._sync_read(67, 2, [motor_id], num_retry=0, raise_on_error=True,
+                                          err_msg="목표 피드백 읽기 실패")
+                if type(comm) is not int or comm != 0 or not isinstance(raw, dict) or set(raw) != {motor_id}:
+                    raise RuntimeError("목표 피드백 응답 형식 불일치")
+                values = {joint: raw[motor_id]}
+            else:
+                values = bus.sync_read(register, motors=[joint], normalize=False, num_retry=0)
         except Exception as error:
             raise DiagnosisStop(str(error), "RESPONSE_REJECTED", getattr(error, "observed", None)) from error
         if not isinstance(values, dict) or set(values) != {joint} or type(values[joint]) is not int:
@@ -145,8 +153,14 @@ def position_goal_review(bus, replies, emit, home):
                          current=current, home=home["state"][index],
                          home_delta=current - home["state"][index],
                          unit="percent_0_100" if index == 5 else "degree"))
+        if inspect_feedback:
+            feedback = read("Goal_Feedback_67", joint)
+            rows[-1].update(goal_feedback_raw=feedback, feedback_matches_current=feedback == present,
+                            feedback_in_calibration=cal.range_min <= feedback <= cal.range_max)
+            read("Torque_Enable", joint)
     return dict(joints=rows, goal_exact_match=all(r["goal_matches_current"] for r in rows),
                 home_within_5_degrees=all(abs(r["home_delta"]) <= 5 for r in rows[:5]),
+                feedback_exact_match=all(r.get("feedback_matches_current", False) for r in rows) if inspect_feedback else None,
                 live_authorized=False)
 
 
@@ -157,7 +171,10 @@ def main(argv=None):
     parser.add_argument("--supported", action="store_true")
     parser.add_argument("--stop-ready", action="store_true")
     parser.add_argument("--inspect-position-goal", action="store_true")
+    parser.add_argument("--inspect-goal-feedback", action="store_true")
     args = parser.parse_args(argv)
+    if args.inspect_goal_feedback and not args.inspect_position_goal:
+        parser.error("--inspect-goal-feedback는 --inspect-position-goal과 함께 사용")
     calibration = check_files()
     home = known_home() if args.inspect_position_goal else None
     if not args.execute:
@@ -187,7 +204,8 @@ def main(argv=None):
         from reply_integrity import StrictSyncReplies
         from lerobot.robots.so_follower import SO101Follower, SO101FollowerConfig
         class ReadPermission(PacketPermission):
-            READS = {40: 1, 63: 1, **({33: 1, 56: 2, 42: 2} if args.inspect_position_goal else {})}
+            READS = {40: 1, 63: 1, **({33: 1, 56: 2, 42: 2} if args.inspect_position_goal else {}),
+                     **({67: 2} if args.inspect_goal_feedback else {})}
         robot = SO101Follower(SO101FollowerConfig(port=PORT, id="so-101", calibration_dir=calibration.parent,
                               cameras={}, use_degrees=True, disable_torque_on_disconnect=False))
         bus = robot.bus
@@ -211,7 +229,8 @@ def main(argv=None):
                 stream.flush()
             result["summaries"] = probe(bus, strict, emit)
             if args.inspect_position_goal:
-                result["position_goal_review"] = position_goal_review(bus, strict, emit, home)
+                result["position_goal_review"] = position_goal_review(bus, strict, emit, home,
+                                                                       inspect_feedback=args.inspect_goal_feedback)
         result["status"] = "READONLY_POSITION_GOAL_REVIEW" if args.inspect_position_goal else "NO_MISMATCH_WITHOUT_WRITES"
     except BaseException as error:
         result["error"] = dict(kind=type(error).__name__, code=getattr(error, "code", "SETUP_OR_USER_STOP"),
