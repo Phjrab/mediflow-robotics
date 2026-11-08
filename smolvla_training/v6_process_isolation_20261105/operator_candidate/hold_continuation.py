@@ -94,7 +94,7 @@ class HoldContinuation:
         self.check()
         if not self.bound or not self.operator_reviewed or self.claimed:raise Hold("새 운영자 검토 또는 일회 사용 조건 불충족")
         self.marker_dir.mkdir(exist_ok=True)
-        receipt=dict(self.summary,scope="FIRST_MOTION_FROM_HELD_POSE",run_id=self.run_id,context_sha256=self.context_digest,
+        receipt=dict(self.summary,scope=getattr(self.start_review,"usage_scope","FIRST_MOTION_FROM_HELD_POSE"),run_id=self.run_id,context_sha256=self.context_digest,
                      operator_review=True,unix=time.time(),max_steps=10,max_seconds=5,live_confirm_still_required=True)
         try:exclusive_json(self.marker,receipt)
         except FileExistsError as error:raise Hold("같은 토크 기록을 다른 실행이 이미 사용") from error

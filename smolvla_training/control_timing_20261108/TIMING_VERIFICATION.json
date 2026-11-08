@@ -1,0 +1,31 @@
+{
+  "status": "READ_ONLY_TIMING_PREPARED",
+  "files": {
+    "reviewed_start_stop.py": "f910e36ca3843200a4cc4c1ae255edccbaa591ef58f8778db865d5de4f1088fb",
+    "hold_continuation.py": "49e09ed88d38a200f79a07833436f8cb447832439ed3169a0f2e4aeb91c8f4cf",
+    "trial_runtime.py": "8b66512c623b1df344454e29b8fa751a4b05896d1627a63fcef5e8497d54b9a7",
+    "profile_control_timing.py": "b027cee07ac97a827cd103695e29ed2df3eb96afc467e96d3b349a860a189eee",
+    "run_control_timing.sh": "5c7b9232af6498f286b808c9475856e59afc9241335eea465ccd377a5f20163e",
+    "test_control_timing.py": "c06e83ec7620e87bc7b7bbf76a98a23f154f0363f13ba0fe29c2dd84f1d2a4de"
+  },
+  "tests_passed": 196,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "check_files": {
+    "status": "TIMING_FILES_READY",
+    "hardware_access": false,
+    "goal_writes_allowed": false
+  },
+  "new_profile_unused": true,
+  "new_stop_absent": true,
+  "preserved_stops": {
+    "FIELD_STOP.json": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "POST_HOLD_STOP.json": "3ed9dc4110dfbdcfb79b352a96e3b13be3bd5ec22c758fe0efd3efea973511bf",
+    "POST_START_REVIEW_STOP.json": "c70c2909aacf31ce763b6a1b1fff0d072b42092af5a37c31c6156bdc95311ae7"
+  },
+  "hardware_access": false,
+  "live": "NOT_RUN",
+  "inference": "NOT_RUN",
+  "push": "NOT_PUSHED"
+}

@@ -52,6 +52,8 @@ class DeviceIO:
         self.reply_guard=None
         self.continuation=continuation
     def connect(self):
+        if getattr(getattr(self.continuation,"start_review",None),"profile_only",False) and self.allow_goal:
+            raise Hold("읽기 계측 경로의 목표 쓰기 금지")
         stop=Path(__file__).resolve().parent/"FIELD_STOP.json"
         if (stop.parent/"POST_HOLD_STOP.json").exists():
             from hold_continuation import HoldContinuation

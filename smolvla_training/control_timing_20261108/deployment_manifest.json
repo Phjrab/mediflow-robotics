@@ -1,0 +1,43 @@
+{
+  "base_commit": "257885f",
+  "hardware_access": false,
+  "operator_live_required": true,
+  "files": [
+    {
+      "path": "operator_candidate/reviewed_start_stop.py",
+      "before_sha256": "9d8afaaa7e59769141ffcc195bfd2196e3280d1c003133d3e74508432e38c5e3",
+      "after_sha256": "f910e36ca3843200a4cc4c1ae255edccbaa591ef58f8778db865d5de4f1088fb",
+      "bytes": 7265
+    },
+    {
+      "path": "operator_candidate/hold_continuation.py",
+      "before_sha256": "a5911d63d6523a2c2e017525299b257393b1279b6cc2f120a91719484ca2fe7a",
+      "after_sha256": "49e09ed88d38a200f79a07833436f8cb447832439ed3169a0f2e4aeb91c8f4cf",
+      "bytes": 8796
+    },
+    {
+      "path": "operator_candidate/trial_runtime.py",
+      "before_sha256": "4091f51d9a44f40932f95ebc6751105884afca02f4a1ab5340450c1bdb2d80ac",
+      "after_sha256": "8b66512c623b1df344454e29b8fa751a4b05896d1627a63fcef5e8497d54b9a7",
+      "bytes": 15334
+    },
+    {
+      "path": "operator_candidate/profile_control_timing.py",
+      "before_sha256": null,
+      "after_sha256": "b027cee07ac97a827cd103695e29ed2df3eb96afc467e96d3b349a860a189eee",
+      "bytes": 3911
+    },
+    {
+      "path": "operator_candidate/run_control_timing.sh",
+      "before_sha256": null,
+      "after_sha256": "5c7b9232af6498f286b808c9475856e59afc9241335eea465ccd377a5f20163e",
+      "bytes": 327
+    },
+    {
+      "path": "operator_candidate/test_control_timing.py",
+      "before_sha256": null,
+      "after_sha256": "c06e83ec7620e87bc7b7bbf76a98a23f154f0363f13ba0fe29c2dd84f1d2a4de",
+      "bytes": 4335
+    }
+  ]
+}
