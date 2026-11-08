@@ -1,0 +1,61 @@
+{
+  "base_commit": "c3d31d6",
+  "hardware_access": false,
+  "operator_live_required": true,
+  "files": [
+    {
+      "path": "operator_candidate/first_trial_core.py",
+      "before_sha256": "dc0609f031c3c20e9aec321eced3c8dd46574612287cf4118dda73620aec958c",
+      "after_sha256": "b79a84b3acf55ca8d12e8eb353d98c35e4c4e73b1110dacfbc884bf19cba71b4",
+      "bytes": 13271
+    },
+    {
+      "path": "operator_candidate/first_trial_from_hold.py",
+      "before_sha256": "843a25a22d7cd302c4cdd82e90336097a66cea460e7cd38881affc712cec467e",
+      "after_sha256": "1aff33f9edabbdfed91f305e6be50554844744d171cade59f4060e62de3e484a",
+      "bytes": 11527
+    },
+    {
+      "path": "operator_candidate/reviewed_start_stop.py",
+      "before_sha256": "7048998131b0ea38284852e5bfc0ced4ce4761b6cd95fd1bce8c6404d4698b84",
+      "after_sha256": "9822faca5286b96e61d3164b94fb2409db752537e97e950d47ed931420d30f9a",
+      "bytes": 15361
+    },
+    {
+      "path": "operator_candidate/cadence_repeat.py",
+      "before_sha256": "f2eeccd8362224f7a985289e33b8ed15e264e28eae484919e53f7a61793ceb5a",
+      "after_sha256": "5a4135836b503021f170ee1acad319e58691342cc55eff16d657062a881fdc92",
+      "bytes": 1270
+    },
+    {
+      "path": "operator_candidate/trial_runtime.py",
+      "before_sha256": "2d052da99397f1396dfbd94ccd201625f0eaa490cf718ebf13e13d7ceee21952",
+      "after_sha256": "55a334d567de46ce00f63ca02572748d7385736da5f9d5aedb552094f9d604e9",
+      "bytes": 16444
+    },
+    {
+      "path": "operator_candidate/first_trial.py",
+      "before_sha256": "aefee9d1c512f03ba6584317d74674417036d6a2b8f18743e4ae0a92644ff968",
+      "after_sha256": "fff043209a6707ac0ec384f50d3554a438581ea95e33eb38f30d0f2f1cc0c6e2",
+      "bytes": 8124
+    },
+    {
+      "path": "operator_candidate/work_session.py",
+      "before_sha256": null,
+      "after_sha256": "4475f37aca8ab2823e6e434c9adc14a6a2961f3bafb28171978b0814ef9c7075",
+      "bytes": 1891
+    },
+    {
+      "path": "operator_candidate/run_work_session.sh",
+      "before_sha256": null,
+      "after_sha256": "21c1696ebc4bfdc8ddde0037eff8e911540161ec52c59ed6fbd6bad94572d123",
+      "bytes": 159
+    },
+    {
+      "path": "operator_candidate/test_work_session.py",
+      "before_sha256": null,
+      "after_sha256": "b47644fe93301ea4a23c8f367a3edccd9c2a94b6106cc98fad97e1e0fe0925e3",
+      "bytes": 3229
+    }
+  ]
+}

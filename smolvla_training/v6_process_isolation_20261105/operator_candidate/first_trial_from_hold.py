@@ -36,6 +36,7 @@ def main(argv=None):
     review_mode.add_argument("--quantized-repeat",action="store_true")
     review_mode.add_argument("--continue-clipped",action="store_true")
     review_mode.add_argument("--work-segment",action="store_true")
+    review_mode.add_argument("--work-session",action="store_true")
     parser.add_argument("--hold-log",type=Path,default=Path.home()/"torque_guard_20261108_155436/events.jsonl")
     parser.add_argument("--repeat-summary",type=Path,default=root.parent/"REPEAT_SUMMARY.json")
     parser.add_argument("--out",type=Path)
@@ -43,16 +44,16 @@ def main(argv=None):
     args=parser.parse_args(argv)
     def continuation():
         start_review=None
-        if args.review_start_hold or args.review_action_hold or args.repeat_live or args.quantized_repeat or args.continue_clipped or args.work_segment:
+        if args.review_start_hold or args.review_action_hold or args.repeat_live or args.quantized_repeat or args.continue_clipped or args.work_segment or args.work_session:
             from reviewed_start_stop import ReviewedStartStop
-            start_review=ReviewedStartStop(root,review_action=args.review_action_hold,repeat_live=args.repeat_live,quantized_repeat=args.quantized_repeat,continue_clipped=args.continue_clipped,work_segment=args.work_segment)
+            start_review=ReviewedStartStop(root,review_action=args.review_action_hold,repeat_live=args.repeat_live,quantized_repeat=args.quantized_repeat,continue_clipped=args.continue_clipped,work_segment=args.work_segment,work_session=args.work_session)
         return HoldContinuation(root,args.hold_log,start_review=start_review)
     if not args.execute:
         if args.check_files:
             receipt=continuation();qualified(args.repeat_summary)
             print(json.dumps(dict(status="HOLD_FILES_READY",**receipt.summary,hardware_access=False,live_authorized=False),ensure_ascii=False))
         else:
-            token="REARM_WORK" if args.work_segment else "REARM_CONTINUE" if args.continue_clipped else "REARM_QUANTIZED" if args.quantized_repeat else "REARM_REPEAT" if args.repeat_live else "REARM_ACTION" if args.review_action_hold else "REARM_START" if args.review_start_hold else "REARM_HOLD"
+            token="REARM_SESSION" if args.work_session else "REARM_WORK" if args.work_segment else "REARM_CONTINUE" if args.continue_clipped else "REARM_QUANTIZED" if args.quantized_repeat else "REARM_REPEAT" if args.repeat_live else "REARM_ACTION" if args.review_action_hold else "REARM_START" if args.review_start_hold else "REARM_HOLD"
             print("PLAN_ONLY: 토크 변경·장치·추론·목표 쓰기 없음. 새 "+token+"와 LIVE 직접 확인이 필요합니다.")
         return 0
     if not args.live or args.check_files or not all((args.operator_present,args.supported,args.stop_ready)) or not sys.stdin.isatty():
@@ -60,11 +61,12 @@ def main(argv=None):
     output=(args.out or Path.home()/("first_vla_from_hold_"+str(time.time_ns()))).expanduser()
     output.mkdir(parents=True,exist_ok=False)
     limits=Limits()
-    if args.work_segment:
+    if args.work_segment or args.work_session:
         from work_segment_limits import WorkSegmentLimits
         limits=WorkSegmentLimits();limits.validate()
     result=dict(status="HOLD",mode="work_segment" if args.work_segment else "live_from_hold",first_trial_only=True,task=args.task,settings=limits.__dict__,
                 output=str(output).replace(str(Path.home()),"~"),torque_register_writes=0)
+    if args.work_session:result.update(mode="work_session",session_budget=dict(max_chunks=6,max_steps=300,max_seconds=30))
     io=probe=policy=adapter=receipt=None;hardware_started=False
     try:
         receipt=continuation();qualified(args.repeat_summary)
@@ -91,13 +93,18 @@ def main(argv=None):
         io=DeviceIO(context,expected_torque=1,allow_goal=True,policy=policy,continuation=receipt)
         evidence=dict(kind="OPERATOR_ARMED",model_verified=True,units_verified=True,mapping_verified=True,
                       operator_live_confirmed=False,arm_receipt_verified=True)
-        adapter=SupervisedAdapter(io,evidence,context["home"],[],waiter=wait,limits=limits);adapter.output=output
-        adapter.compensated=args.repeat_live or args.quantized_repeat or args.continue_clipped or args.work_segment
-        adapter.quantized=args.quantized_repeat or args.continue_clipped or args.work_segment
-        adapter.clip_warning_only=args.continue_clipped or args.work_segment
+        Adapter=SupervisedAdapter
+        if args.work_session:
+            from work_session import WorkSessionAdapter
+            Adapter=WorkSessionAdapter
+        adapter=Adapter(io,evidence,context["home"],[],waiter=wait,limits=limits);adapter.output=output
+        adapter.compensated=args.repeat_live or args.quantized_repeat or args.continue_clipped or args.work_segment or args.work_session
+        adapter.quantized=args.quantized_repeat or args.continue_clipped or args.work_segment or args.work_session
+        adapter.clip_warning_only=args.continue_clipped or args.work_segment or args.work_session
         Controller(adapter).run(FirstMotionPlan(True))
-        verify_target_receipt(io,adapter.sent,limits.max_steps)
-        result["status"]="WORK_SEGMENT_COMPLETE" if args.work_segment else "FIRST_TRIAL_COMPLETE"
+        expected=sum(c["sent_count"] for c in adapter.session_chunks) if args.work_session else limits.max_steps
+        verify_target_receipt(io,adapter.sent,expected)
+        result["status"]="WORK_SESSION_COMPLETE" if args.work_session else "WORK_SEGMENT_COMPLETE" if args.work_segment else "FIRST_TRIAL_COMPLETE"
     except BaseException as error:
         result["error"]=dict(kind=type(error).__name__,reason=str(error).replace(str(Path.home()),"~"),
                              observed=getattr(error,"observed",None) or getattr(io,"last_fault",None),
@@ -108,6 +115,11 @@ def main(argv=None):
                       motor_goal_packets=io.permission.goal_packets if io is not None and io.permission is not None else 0,
                       hardware_started=hardware_started)
         if adapter is not None:
+            if hasattr(adapter,"session_chunks"):
+                result.update(completed_chunks=sum(c["status"]=="COMPLETE" for c in adapter.session_chunks),session_end_reason=getattr(adapter,"session_end_reason",None))
+                try:
+                    with (output/"session_chunks.json").open("x",encoding="utf-8") as stream:json.dump(json_value(adapter.session_chunks),stream,ensure_ascii=False,indent=2)
+                except BaseException as error:result["cleanup_errors"].append(dict(component="session_chunks",kind=type(error).__name__))
             if hasattr(adapter,"step_timings"):
                 try:
                     with (output/"step_timings.json").open("x",encoding="utf-8") as stream:json.dump(json_value(adapter.step_timings),stream,ensure_ascii=False,indent=2)
@@ -139,7 +151,7 @@ def main(argv=None):
         if "new_stop_receipt" in result:summary["new_stop_receipt"]=result["new_stop_receipt"]
         if "result_save_error" in result:summary["result_save_error"]=result["result_save_error"]
         print(json.dumps(summary,ensure_ascii=False),flush=True)
-    return 0 if result["status"] in ("FIRST_TRIAL_COMPLETE","WORK_SEGMENT_COMPLETE") else 2
+    return 0 if result["status"] in ("FIRST_TRIAL_COMPLETE","WORK_SEGMENT_COMPLETE","WORK_SESSION_COMPLETE") else 2
 
 
 if __name__=="__main__":raise SystemExit(main())

@@ -134,7 +134,8 @@ class FirstTrialAdapter:
         limits=self.limits;start=self.clock();deadline=start+limits.max_seconds
         frames=self.await_job(self.io.capture_frames,deadline,1.)
         self.previous_hash=frame_gate(frames,self.clock(),limits)
-        state=sensor_gate(self.io.snapshot(),limits,starting=True);home_gate(state,self.home)
+        state=sensor_gate(self.io.snapshot(),limits,starting=True)
+        if not getattr(self,"skip_home_recheck",False):home_gate(state,self.home)
         captured=min(row["host_received"] for row in frames.values())
         inference_started=self.clock()
         actions=self.await_job(lambda:self.io.predict(frames,state),deadline,50/limits.fps)
@@ -158,7 +159,7 @@ class FirstTrialAdapter:
             timing["camera_seconds"]=self.clock()-mark;mark=self.clock()
             s=self.io.snapshot();measured=sensor_gate(s,limits)
             sampled_at=self.clock();timing["snapshot_seconds"]=sampled_at-mark
-            if step==0:home_gate(measured,self.home)
+            if step==0 and not getattr(self,"skip_home_recheck",False):home_gate(measured,self.home)
             mark=self.clock()
             if compensated:self.io.check_records()
             timing["records_seconds"]=self.clock()-mark

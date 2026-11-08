@@ -33,7 +33,7 @@ class SupervisedAdapter(FirstTrialAdapter):
         from first_trial_core import frame_gate
         frame_gate(frames,time.monotonic(),self.limits)
         for name in CAMERAS:Image.fromarray(frames[name]["pixels"]).save(self.output/(name+"_start.png"))
-        confirm("LIVE",f"현장 시험: 최대{self.limits.max_steps}스텝/{self.limits.max_seconds:g}초, 상대 목표 차이{self.limits.cap:g}도·속도{self.limits.speed:g}도/초. 물체 작업 성공은 사람이 확인합니다.",monitor=self.monitor)
+        confirm("LIVE",f"현장 시험: 최대{getattr(self,'session_max_steps',self.limits.max_steps)}스텝/{getattr(self,'session_max_seconds',self.limits.max_seconds):g}초, 상대 목표 차이{self.limits.cap:g}도·속도{self.limits.speed:g}도/초. 물체 작업 성공은 사람이 확인합니다.",monitor=self.monitor)
         self.evidence["operator_live_confirmed"]=True
         super().prepare();self.io.authorized=True
 

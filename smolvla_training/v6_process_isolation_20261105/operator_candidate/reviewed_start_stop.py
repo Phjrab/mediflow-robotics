@@ -21,7 +21,8 @@ SUCCESS_CLAIM_SHA="1e2c050ffa16522902bee46de044e1de356104690d52b5cbb7b088c00f3a5
 
 
 class ReviewedStartStop:
-    def __init__(self,root,*,home=None,review_action=False,profile_success=False,compensated_profile=False,repeat_live=False,quantized_repeat=False,continue_clipped=False,work_segment=False):
+    def __init__(self,root,*,home=None,review_action=False,profile_success=False,compensated_profile=False,repeat_live=False,quantized_repeat=False,continue_clipped=False,work_segment=False,work_session=False):
+        if work_session:work_segment=True
         if work_segment:continue_clipped=True
         if continue_clipped:quantized_repeat=True
         self.quantized_repeat=quantized_repeat
@@ -128,6 +129,17 @@ class ReviewedStartStop:
                             if latest_complete.get("status")!="FIRST_TRIAL_COMPLETE" or latest_complete.get("motor_goal_packets")!=10 or latest_complete.get("torque_register_writes")!=0 or latest_complete.get("cleanup_errors")!=[]:raise Hold("작업 구간 이전 완료 근거 불일치")
                             self.expected_last_goal=latest_complete["targets"][-1]["target"]
                             self.summary.update(scope=self.usage_scope,max_steps=50,max_seconds=10,relative_goal_cap_degrees=2,speed_degrees_per_second=20,expected_last_goal=self.expected_last_goal)
+                            if work_session:
+                                latest_work=self.home/"first_vla_from_hold_1794134086238144466/RESULT.json"
+                                self.profile_paths+=((latest_work,"793b311068cdf7ed753ecbb025aa40f39a3a619c95966b6bb9ad399e7d5ef829"),)
+                                self.next_stop_name="POST_WORK_SESSION_STOP.json";self.stop_sha="session_793b311068cdf7ed753ecbb025aa40f39a3a619c95966b6bb9ad399e7d5ef829"
+                                self.operator_token="REARM_SESSION";self.usage_scope="SIX_CHUNKS_THIRTY_SECOND_SESSION"
+                                self.operator_message="50스텝 완료 기록을 보존하고 모델을 재사용해 최대6구간/300스텝/30초를 실행합니다. 매 구간 새 영상·관절값으로 예측하며 상대 목표2도·속도20도/초·온도·과부하 제한은 유지합니다. 주변 공간과 즉시 전원 차단 수단을 확인하세요."
+                                self.max_steps=300;self.max_seconds=30;self.tracking_cap_degrees=2.
+                                self.check();work_record=json.loads(latest_work.read_text(encoding="utf-8"))
+                                if work_record.get("status")!="WORK_SEGMENT_COMPLETE" or work_record.get("motor_goal_packets")!=50 or work_record.get("torque_register_writes")!=0 or work_record.get("cleanup_errors")!=[]:raise Hold("50스텝 완료 근거 불일치")
+                                self.expected_last_goal=work_record["targets"][-1]["target"]
+                                self.summary.update(scope=self.usage_scope,max_steps=300,max_seconds=30,max_chunks=6,tracking_cap_degrees=2,expected_last_goal=self.expected_last_goal)
                 self.check()
 
     def check(self):

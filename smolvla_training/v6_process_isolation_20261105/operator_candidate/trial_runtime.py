@@ -166,7 +166,7 @@ class DeviceIO:
             for j in JOINTS:
                 mid=bus.motors[j].id;raw=active_target[j];other=raw-1 if raw else raw+1
                 quantum.append(abs(float(bus._normalize({mid:raw})[mid])-float(bus._normalize({mid:other})[mid])))
-            continuity_result=continuity(current_state,active_state,review.expected_last_goal,quantum,bounds,encoding_allowance=getattr(review,"quantized_repeat",False))
+            continuity_result=continuity(current_state,active_state,review.expected_last_goal,quantum,bounds,encoding_allowance=getattr(review,"quantized_repeat",False),tracking_cap=getattr(review,"tracking_cap_degrees",.5))
         return dict(status="ARM_INSPECTION_READ_ONLY",snapshot=snap,present_raw=present,goal_raw=goal,goal_state=goal_state,
                     raw_delta={j:goal[j]-present[j] for j in JOINTS},goal_exact_match=goal==present,
                     target_feedback_raw=active_target,target_feedback_state=active_state,active_target_exact_match=active_target==present,
