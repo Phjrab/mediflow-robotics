@@ -1,0 +1,113 @@
+[
+  {
+    "step": 0,
+    "camera_seconds": 0.06991551799728768,
+    "snapshot_seconds": 0.01892267199946218,
+    "records_seconds": 0.0032133380009327084,
+    "wait_seconds": 3.839995770249516e-07,
+    "state_age_seconds": 0.0033873259999381844,
+    "send_seconds": 0.0017544490001455415,
+    "step_seconds": 0.09398738999880152,
+    "sent_at": 26177.340662203
+  },
+  {
+    "step": 1,
+    "camera_seconds": 5.759975465480238e-07,
+    "snapshot_seconds": 0.023666516000957927,
+    "records_seconds": 0.0031230310014507268,
+    "wait_seconds": 0.004698082997492747,
+    "state_age_seconds": 0.007970205999299651,
+    "send_seconds": 0.0017360809979436453,
+    "step_seconds": 0.03338179500133265,
+    "sent_at": 26177.374075935
+  },
+  {
+    "step": 2,
+    "camera_seconds": 8.319984772242606e-07,
+    "snapshot_seconds": 0.01906737999888719,
+    "records_seconds": 0.002973746999487048,
+    "wait_seconds": 0.00948016800248297,
+    "state_age_seconds": 0.0126014400011627,
+    "send_seconds": 0.0028030860012222547,
+    "step_seconds": 0.034481634000258055,
+    "sent_at": 26177.407502788
+  },
+  {
+    "step": 3,
+    "camera_seconds": 7.679991540499032e-07,
+    "snapshot_seconds": 0.019822249003482284,
+    "records_seconds": 0.003309244999400107,
+    "wait_seconds": 0.00730746800036286,
+    "state_age_seconds": 0.010770092998427572,
+    "send_seconds": 0.0028510230004030745,
+    "step_seconds": 0.03345232500214479,
+    "sent_at": 26177.440919432
+  },
+  {
+    "step": 4,
+    "camera_seconds": 6.72000169288367e-07,
+    "snapshot_seconds": 0.01943081399804214,
+    "records_seconds": 0.003316923997772392,
+    "wait_seconds": 0.007630132997292094,
+    "state_age_seconds": 0.01111243800187367,
+    "send_seconds": 0.002861520002625184,
+    "step_seconds": 0.03341398799966555,
+    "sent_at": 26177.474334188
+  },
+  {
+    "step": 5,
+    "camera_seconds": 0.05932920700070099,
+    "snapshot_seconds": 0.017743759002769366,
+    "records_seconds": 0.002880944000935415,
+    "wait_seconds": 7.423997885780409e-06,
+    "state_age_seconds": 0.003026643997145584,
+    "send_seconds": 0.001544106999062933,
+    "step_seconds": 0.08165079000173137,
+    "sent_at": 26177.557316183
+  },
+  {
+    "step": 6,
+    "camera_seconds": 4.800021997652948e-07,
+    "snapshot_seconds": 0.016041823000705335,
+    "records_seconds": 0.0027425410007708706,
+    "wait_seconds": 0.012936168001033366,
+    "state_age_seconds": 0.01581586600150331,
+    "send_seconds": 0.00179518600270967,
+    "step_seconds": 0.03366471499975887,
+    "sent_at": 26177.590738139
+  },
+  {
+    "step": 7,
+    "camera_seconds": 3.839995770249516e-07,
+    "snapshot_seconds": 0.01737091700124438,
+    "records_seconds": 0.003079254001931986,
+    "wait_seconds": 0.011002642997482326,
+    "state_age_seconds": 0.014235053000447806,
+    "send_seconds": 0.0018460040009813383,
+    "step_seconds": 0.03346118999979808,
+    "sent_at": 26177.624157951
+  },
+  {
+    "step": 8,
+    "camera_seconds": 5.120018613524735e-07,
+    "snapshot_seconds": 0.01892302399937762,
+    "records_seconds": 0.0031321509995905217,
+    "wait_seconds": 0.009308323998993728,
+    "state_age_seconds": 0.012633919999643695,
+    "send_seconds": 0.001961814999958733,
+    "step_seconds": 0.03352963900033501,
+    "sent_at": 26177.657582595
+  },
+  {
+    "step": 9,
+    "camera_seconds": 6.079972081352025e-07,
+    "snapshot_seconds": 0.018840717002603924,
+    "records_seconds": 0.0033181090002472047,
+    "clip_ratio_warning": 1.0,
+    "wait_seconds": 0.0091295349993743,
+    "state_age_seconds": 0.012610047997441143,
+    "send_seconds": 0.0017500329995527864,
+    "step_seconds": 0.033209951001481386,
+    "sent_at": 26177.69101748
+  }
+]

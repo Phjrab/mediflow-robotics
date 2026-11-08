@@ -1,0 +1,30 @@
+{
+  "status": "FIRST_TRIAL_COMPLETE",
+  "goals": 10,
+  "torque_writes": 0,
+  "hz": 25.68821019941699,
+  "inference_seconds": 1.5484778470017773,
+  "clipped_steps": 10,
+  "measured_change": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.12239902080783427
+  ],
+  "max50_raw_delta": [
+    1.184380641350379,
+    1.6888622242015856,
+    1.2784859793526806,
+    1.1208963079766932,
+    2.4885268578162556,
+    1.351789257371732
+  ],
+  "ports": {
+    "io": true,
+    "probe": true
+  },
+  "agent_additional_live": false,
+  "push": "NOT_PUSHED"
+}
