@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-08",
+  "source": "사용자 채팅",
+  "approved_scope": "시작 검사: 원시값 1칸 이하 AND 관절 0.1도 이하; 기존 중단 기록을 보존한 새 현장 재검토",
+  "gripper_max_difference_points": 0.1,
+  "preserved_limits": [
+    "관절 스텝당0.5도",
+    "초당20도",
+    "시작50도 미만",
+    "55도 중단",
+    "과부하 HOLD",
+    "home·단위·모델·카메라·추론 지연 검사",
+    "운영자 REARM_START 및 LIVE 직접 입력"
+  ],
+  "agent_live_execution": false,
+  "push": false
+}

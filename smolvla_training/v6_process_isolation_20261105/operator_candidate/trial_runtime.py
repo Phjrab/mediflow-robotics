@@ -53,7 +53,11 @@ class DeviceIO:
         self.continuation=continuation
     def connect(self):
         stop=Path(__file__).resolve().parent/"FIELD_STOP.json"
-        if (stop.parent/"POST_HOLD_STOP.json").exists():raise Hold("새 현장 중단 기록 존재; 추가 장치 접근 거부")
+        if (stop.parent/"POST_HOLD_STOP.json").exists():
+            from hold_continuation import HoldContinuation
+            if not isinstance(self.continuation,HoldContinuation) or getattr(self.continuation,"start_review",None) is None:
+                raise Hold("새 현장 중단 기록 존재; 추가 장치 접근 거부")
+            self.continuation.require_claimed(self.context)
         if self.continuation is not None:
             from hold_continuation import HoldContinuation
             if not isinstance(self.continuation,HoldContinuation) or self.expected_torque!=1 or self.continuation.root!=stop.parent:
@@ -149,10 +153,14 @@ class DeviceIO:
         bounds=self.joint_bounds();within=True
         try:bounds_gate(snap["state"],bounds);bounds_gate(active_state,bounds)
         except Hold:within=False
+        from start_goal_agreement import assess
+        current_state=[float(bus._normalize({bus.motors[j].id:present[j]})[bus.motors[j].id]) for j in JOINTS]
+        agreement=assess(present,active_target,current_state,active_state,bounds)
         return dict(status="ARM_INSPECTION_READ_ONLY",snapshot=snap,present_raw=present,goal_raw=goal,goal_state=goal_state,
                     raw_delta={j:goal[j]-present[j] for j in JOINTS},goal_exact_match=goal==present,
                     target_feedback_raw=active_target,target_feedback_state=active_state,active_target_exact_match=active_target==present,
-                    joint_bounds=bounds,bounds_contain_current_and_active_target=within,arm_ready=active_target==present and within,
+                    joint_bounds=bounds,bounds_contain_current_and_active_target=within,
+                    start_agreement=agreement,arm_ready=agreement["start_check_passed"] and within,
                     register_writes=self.permission.goal_packets)
     def connect_cameras(self):
         from lerobot.cameras.opencv import OpenCVCameraConfig

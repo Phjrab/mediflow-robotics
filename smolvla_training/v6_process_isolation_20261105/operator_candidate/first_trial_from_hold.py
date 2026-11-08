@@ -29,14 +29,21 @@ def main(argv=None):
     parser.add_argument("--operator-present",action="store_true")
     parser.add_argument("--supported",action="store_true")
     parser.add_argument("--stop-ready",action="store_true")
+    parser.add_argument("--review-start-hold",action="store_true")
     parser.add_argument("--hold-log",type=Path,default=Path.home()/"torque_guard_20261108_155436/events.jsonl")
     parser.add_argument("--repeat-summary",type=Path,default=root.parent/"REPEAT_SUMMARY.json")
     parser.add_argument("--out",type=Path)
     parser.add_argument("--task",choices=["Put medicine bottle A into the "+c+" basket" for c in ("red","green","blue")],default="Put medicine bottle A into the blue basket")
     args=parser.parse_args(argv)
+    def continuation():
+        start_review=None
+        if args.review_start_hold:
+            from reviewed_start_stop import ReviewedStartStop
+            start_review=ReviewedStartStop(root)
+        return HoldContinuation(root,args.hold_log,start_review=start_review)
     if not args.execute:
         if args.check_files:
-            receipt=HoldContinuation(root,args.hold_log);qualified(args.repeat_summary)
+            receipt=continuation();qualified(args.repeat_summary)
             print(json.dumps(dict(status="HOLD_FILES_READY",**receipt.summary,hardware_access=False,live_authorized=False),ensure_ascii=False))
         else:print("PLAN_ONLY: 토크 변경·장치·추론·목표 쓰기 없음. 새 REARM_HOLD와 LIVE 직접 확인이 필요합니다.")
         return 0
@@ -48,7 +55,7 @@ def main(argv=None):
                 output=str(output).replace(str(Path.home()),"~"),torque_register_writes=0)
     io=probe=policy=adapter=receipt=None;hardware_started=False
     try:
-        receipt=HoldContinuation(root,args.hold_log);qualified(args.repeat_summary)
+        receipt=continuation();qualified(args.repeat_summary)
         from trial_runtime import static_context,DeviceIO,InspectionAdapter,PolicyProvider
         from operator_arm import confirm
         from bounded_wait import wait
@@ -65,7 +72,10 @@ def main(argv=None):
         inspection=Controller(InspectionAdapter(probe)).read_status()
         result["inspection"]=inspection
         sensor_gate(inspection["snapshot"],Limits(),starting=True)
-        if inspection.get("arm_ready") is not True:raise Hold("현재 목표 피드백·현재 위치·보정 범위 불일치")
+        if inspection.get("arm_ready") is not True:
+            error=Hold("시작 위치·목표 대조 실패; 상세 start_agreement 확인")
+            error.observed=inspection.get("start_agreement",inspection)
+            raise error
         io=DeviceIO(context,expected_torque=1,allow_goal=True,policy=policy,continuation=receipt)
         evidence=dict(kind="OPERATOR_ARMED",model_verified=True,units_verified=True,mapping_verified=True,
                       operator_live_confirmed=False,arm_receipt_verified=True)
@@ -92,7 +102,7 @@ def main(argv=None):
         except OSError:result["original_stop_preserved"]=False
         if result["cleanup_errors"] or not result["original_stop_preserved"]:result["status"]="HOLD"
         if hardware_started and result["status"]=="HOLD":
-            try:result["new_stop_receipt"]=latch_new_stop(root,result)
+            try:result["new_stop_receipt"]=latch_new_stop(root,result,start_review=getattr(receipt,"start_review",None))
             except OSError as error:result["new_stop_receipt"]=dict(created=False,error_kind=type(error).__name__)
         try:result=save_run(root,output,result,latch=False)
         except OSError as error:

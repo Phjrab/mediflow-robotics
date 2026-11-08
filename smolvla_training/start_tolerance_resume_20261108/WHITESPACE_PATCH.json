@@ -1,0 +1,7 @@
+{
+  "before_sha256": "3a7b9018ecd0e88b9ff8bebef0599a419d8b9757849797697cafa1a17a8c3aa8",
+  "after_sha256": "be639cf3a29983b675e36276494ead9207edcd4c1879520c497894718ca218f2",
+  "backup": "start_goal_agreement.py.bak_whitespace_1794125502653204860",
+  "semantics_changed": false,
+  "hardware_access": false
+}

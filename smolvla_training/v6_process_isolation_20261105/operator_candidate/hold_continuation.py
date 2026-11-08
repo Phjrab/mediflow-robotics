@@ -24,7 +24,7 @@ def exclusive_json(path,data):
         stream.flush();os.fsync(stream.fileno())
 
 class HoldContinuation:
-    def __init__(self,root,log,*,home=None):
+    def __init__(self,root,log,*,home=None,start_review=None):
         self.home=Path.home() if home is None else Path(home)
         self.home=self.home.resolve();self.root=Path(root).resolve()
         requested=Path(log).expanduser()
@@ -33,6 +33,13 @@ class HoldContinuation:
         if self.review.is_symlink() or self.log.name!="events.jsonl" or self.log.parent.parent!=self.home or not self.log.parent.name.startswith("torque_guard_") or self.root!=self.home/PROJECT_FOLDER/"operator_candidate":
             raise Hold("토크 기록 위치 불일치")
         self.marker_dir=self.root/"hold_usage";self.marker=self.marker_dir/(HOLD_SHA+".json")
+        self.start_review=start_review
+        if start_review is not None:
+            from reviewed_start_stop import ReviewedStartStop
+            if type(start_review) is not ReviewedStartStop or start_review.root!=self.root or start_review.home!=self.home:
+                raise Hold("시작 중단 검토 객체·위치 불일치")
+            start_review.check()
+            self.marker_dir=self.root/"start_review_usage";self.marker=self.marker_dir/(start_review.stop_sha+".json")
         self.claimed=False;self.operator_reviewed=False;self.bound=False;self.marker_sha=None
         self.run_id=uuid.uuid4().hex
         self.check()
@@ -55,9 +62,11 @@ class HoldContinuation:
         if review.get("scope")!="TORQUE_HOLD_ONLY" or review.get("live_authorized") is not False or review.get("operator_review") is not True or review.get("stop_preserved") is not True or review.get("stop_sha256")!=STOP_SHA:raise Hold("원래 토크 전용 검토 범위 불일치")
         self.summary=dict(hold_sha256=HOLD_SHA,hold_review_sha256=REVIEW_SHA,field_stop_sha256=STOP_SHA,
                           hold_only_receipt_is_not_live_permission=True,operator_live_review_required=True)
+        if self.start_review is not None:self.summary["reviewed_start_stop"]=self.start_review.summary
 
     def check(self):
-        if (self.root/NEW_STOP).exists():raise Hold("새 현장 중단 기록 존재; 자동 재개 금지")
+        if self.start_review is not None:self.start_review.check()
+        elif (self.root/NEW_STOP).exists():raise Hold("새 현장 중단 기록 존재; 자동 재개 금지")
         stop=self.root/"FIELD_STOP.json"
         if stop.is_symlink() or sha(stop)!=STOP_SHA or sha(self.log)!=HOLD_SHA or sha(self.review)!=REVIEW_SHA:
             raise Hold("중단 또는 토크 유지 근거 변경")
@@ -75,7 +84,10 @@ class HoldContinuation:
     def confirm_operator(self,confirm):
         self.check()
         if not self.bound:raise Hold("실행 설정 검증 전 운영자 검토 금지")
-        confirm("REARM_HOLD","토크ON 성공 기록과 원래 중단 기록을 보존합니다. 자동 토크 변경 없이 첫10스텝/5초 시험을 검토합니다. 팔 지지·즉시 전원 차단 수단을 현장에서 확인하세요.")
+        if self.start_review is None:
+            confirm("REARM_HOLD","토크ON 성공 기록과 원래 중단 기록을 보존합니다. 자동 토크 변경 없이 첫10스텝/5초 시험을 검토합니다. 팔 지지·즉시 전원 차단 수단을 현장에서 확인하세요.")
+        else:
+            confirm("REARM_START","앞선 목표·토크 쓰기0의 시작 중단을 보존합니다. 시작 차이1칸 및 관절0.1도 이내만 허용하며 이동·온도·HOLD는 유지합니다. 팔 지지·즉시 전원 차단 수단을 현장에서 확인하세요.")
         self.operator_reviewed=True
 
     def claim(self,output):
@@ -96,11 +108,11 @@ class HoldContinuation:
             raise Hold("운영자 검토 후 실행 설정 불일치")
 
 
-def latch_new_stop(root,result):
+def latch_new_stop(root,result,*,start_review=None):
     """원래 FIELD_STOP은 보존하고, 새 실패는 별도 기록으로 차단한다."""
     from run_receipts import json_value
-    path=Path(root)/NEW_STOP
-    data=dict(status="HOLD",kind="POST_HOLD_FIRST_TRIAL_STOP",unix=time.time(),
+    path=Path(root)/(NEW_STOP if start_review is None else "POST_START_REVIEW_STOP.json")
+    data=dict(status="HOLD",kind="POST_HOLD_FIRST_TRIAL_STOP" if start_review is None else "REVIEWED_START_FIRST_TRIAL_STOP",unix=time.time(),
               error=result.get("error"),goal_packets=result.get("motor_goal_packets",0),
               cleanup_errors=result.get("cleanup_errors",[]),output=result.get("output"))
     try:

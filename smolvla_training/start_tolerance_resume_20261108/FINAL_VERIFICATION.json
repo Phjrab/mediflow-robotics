@@ -1,0 +1,59 @@
+{
+  "status": "START_TOLERANCE_SOFTWARE_VERIFIED",
+  "tests": {
+    "operator_tests_final.log": {
+      "passed": 162,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0
+    },
+    "root_tests_final.log": {
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0
+    }
+  },
+  "files": {
+    "trial_runtime.py": "4091f51d9a44f40932f95ebc6751105884afca02f4a1ab5340450c1bdb2d80ac",
+    "hold_continuation.py": "2cc4e199578f949f6b61a61dfcab4d6cc481b39464adb69715a05053a107afa2",
+    "first_trial_from_hold.py": "c4ff19e90a643c780346706a37e38e3ecd2b93ed9922e0164e910050e7d2edfb",
+    "test_first_trial_from_hold.py": "888d81434cbfb9d085fdd42a26b8b9ffa829a90e040bafbc2df4985509c8f84b",
+    "start_goal_agreement.py": "be639cf3a29983b675e36276494ead9207edcd4c1879520c497894718ca218f2",
+    "reviewed_start_stop.py": "d83fc734c745db32c9f1d3af2dde18ed5057f58c6738deb214b8017b1ae3d607",
+    "run_first_after_start_review.sh": "9d0bad70a12e655e44a75b0acaff46195ff9d9323c8facf0135b99845b6d85db",
+    "test_reviewed_start_stop.py": "2216b71f1276abe3583325ee337f7686055d2f56517bb0f89929823f7399d86a",
+    "test_start_goal_agreement.py": "c49dadf777764cf746a92263fadd9bbf10e3d1793dce41f1b078ae52a7de14d0"
+  },
+  "check_files": {
+    "status": "HOLD_FILES_READY",
+    "hold_sha256": "4767b9cf28dce8ec3cbb7c0210d9ba8f0f73c74b18a00723bb6399c46f733183",
+    "hold_review_sha256": "742dc63e6ba15b9b8f23f6d16f512decc21126b04b0798901580abfed2310488",
+    "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "hold_only_receipt_is_not_live_permission": true,
+    "operator_live_review_required": true,
+    "reviewed_start_stop": {
+      "scope": "REVIEWED_ZERO_WRITE_START_HOLD",
+      "result_sha256": "f2e4c81cb18473a4f091f49d9b12ed4944bce7a296e11bf1ee4caaaaf0bd9291",
+      "post_hold_stop_sha256": "3ed9dc4110dfbdcfb79b352a96e3b13be3bd5ec22c758fe0efd3efea973511bf",
+      "prior_usage_sha256": "971e05d27fa1a192500d189ec6c8c26b5c62254a7ca38f4343f1b10a4d28f189",
+      "max_raw_difference": 1,
+      "max_joint_degrees": 0.1,
+      "max_gripper_points": 0.1,
+      "fresh_operator_review_required": true,
+      "live_authorized": false
+    },
+    "hardware_access": false,
+    "live_authorized": false
+  },
+  "hardware_access": false,
+  "inference": "NOT_RUN",
+  "live": "NOT_RUN",
+  "push": "NOT_PUSHED",
+  "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+  "post_hold_stop_sha256": "3ed9dc4110dfbdcfb79b352a96e3b13be3bd5ec22c758fe0efd3efea973511bf",
+  "new_stop_absent": true,
+  "review_unused": true
+}

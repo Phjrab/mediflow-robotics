@@ -48,10 +48,15 @@ class FakeIO:
 
 class Tests(unittest.TestCase):
     def setUp(self):FakeIO.instances=[];FakeIO.temp=30.;FakeIO.camera_fault=False
-    def run_case(self,home,*,reject_live=False,preflight_fault=False):
+    def run_case(self,home,*,reject_live=False,preflight_fault=False,review_start=False):
         from first_trial_dependencies import prepare
         dependency_root=prepare()
         root,log,context,pins,summary=fixture(home);out=home/"run"
+        import reviewed_start_stop as reviewed
+        review_pins={}
+        if review_start:
+            from test_reviewed_start_stop import add_review_fixture
+            review_pins=add_review_fixture(home,root,pins)
         class Policy:
             def __init__(self,*args):self.closed=False
             def close(self):self.closed=True
@@ -63,7 +68,7 @@ class Tests(unittest.TestCase):
         def preflight():
             if preflight_fault:raise Hold("fixture preflight rejected")
         image=SimpleNamespace(fromarray=lambda pixels:SimpleNamespace(save=lambda path:Path(path).write_bytes(b"fixture image")))
-        with patch.multiple(held,**pins),patch.object(entry,"STOP_SHA",pins["STOP_SHA"]),patch.object(Path,"home",return_value=home), \
+        with patch.multiple(held,**pins),patch.multiple(reviewed,**review_pins) if review_pins else contextlib.nullcontext(),patch.object(entry,"STOP_SHA",pins["STOP_SHA"]),patch.object(Path,"home",return_value=home), \
              patch.dict("os.environ",{"V6_PREP_ROOT":str(dependency_root)}), \
              patch.object(entry,"__file__",str(root/"first_trial_from_hold.py")),patch.object(entry,"preflight",side_effect=preflight), \
              patch.object(entry,"load_controller",side_effect=lambda:load_controller(mock_posix=True)), \
@@ -71,7 +76,7 @@ class Tests(unittest.TestCase):
              patch("operator_arm.ArmingAdapter",side_effect=AssertionError("토크 변경 adapter 호출 금지")), \
              patch.dict(sys.modules,{"trial_runtime":module,"PIL":SimpleNamespace(Image=image),"runtime_cpu":SimpleNamespace(configure_main=lambda path:None)}), \
              contextlib.redirect_stdout(io.StringIO()):
-            code=entry.main(["--live","--execute","--operator-present","--supported","--stop-ready","--hold-log",str(log),"--repeat-summary",str(summary),"--out",str(out)])
+            code=entry.main(["--live","--execute","--operator-present","--supported","--stop-ready","--hold-log",str(log),"--repeat-summary",str(summary),"--out",str(out)]+(["--review-start-hold"] if review_start else []))
         return code,root,out,tokens
 
     def test_default_plan_never_imports_runtime_or_gpu(self):
@@ -128,6 +133,21 @@ class Tests(unittest.TestCase):
             code,root,out,tokens=self.run_case(Path(name))
             self.assertEqual(code,2);self.assertTrue(all(not item.targets for item in FakeIO.instances))
             self.assertTrue((root/held.NEW_STOP).exists());self.assertTrue((root/"FIELD_STOP.json").is_file())
+
+    def test_reviewed_start_requires_new_tokens_and_uses_no_torque_writes(self):
+        with tempfile.TemporaryDirectory() as name:
+            code,root,out,tokens=self.run_case(Path(name),review_start=True)
+            data=json.loads((out/"RESULT.json").read_text())
+            self.assertEqual(code,0,data.get("error"));self.assertEqual(tokens,["REARM_START","LIVE"])
+            self.assertEqual(data["motor_goal_packets"],10);self.assertEqual(data["torque_register_writes"],0)
+            self.assertTrue((root/held.NEW_STOP).exists());self.assertFalse((root/"POST_START_REVIEW_STOP.json").exists())
+
+    def test_reviewed_start_failure_preserves_prior_stop_and_adds_next_stop(self):
+        with tempfile.TemporaryDirectory() as name:
+            code,root,out,tokens=self.run_case(Path(name),review_start=True,reject_live=True)
+            self.assertEqual(code,2);self.assertEqual(tokens,["REARM_START","LIVE"])
+            self.assertTrue((root/held.NEW_STOP).exists());self.assertTrue((root/"POST_START_REVIEW_STOP.json").exists())
+            self.assertTrue(all(not item.targets for item in FakeIO.instances))
 
 
 if __name__=="__main__":unittest.main()
