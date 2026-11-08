@@ -8,7 +8,7 @@ import time
 from types import SimpleNamespace
 from first_trial_core import JOINTS,Hold,home_gate,vector
 
-ARM_SHA="23fa519f40d793b4722ac4a68bcee921cfff1d66102218a6aa078531c77d1ee8"
+ARM_SHA="701f6bcde366ecb678005ea574a4ec8305c9f221eba5a7fb8a09181ad9ea9c8f"
 
 def confirm(token,prompt,*,monitor=None):
     if not sys.stdin.isatty():raise Hold("현장 터미널의 직접 입력 필요; 자동 입력 거부")
@@ -51,7 +51,7 @@ class ArmingAdapter:
         self.robot=SO101Follower(SO101FollowerConfig(port=probe.PORT,id="so-101",calibration_dir=self.context["calibration"].parent,
                     cameras={},use_degrees=True,max_relative_target=2.,disable_torque_on_disconnect=False))
         from individual_reply_guard import StrictIndividualReplies
-        replies=StrictIndividualReplies(self.robot.bus.packet_handler).install()
+        replies=StrictIndividualReplies(self.robot.bus.packet_handler,write_guard=self.guard).install()
         self.stack.callback(replies.restore)
         arm.validate_sdk(self.robot.bus);self.guard.phase="open";self.robot.bus.connect(handshake=False)
         import fcntl,termios

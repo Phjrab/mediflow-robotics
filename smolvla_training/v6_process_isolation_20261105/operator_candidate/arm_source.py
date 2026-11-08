@@ -118,6 +118,7 @@ class WriteGuard:
         def close_port(port):
             guard.emit(dict(event='PORT_CLOSE', phase=guard.phase))
             return original_close(port)
+        write._torque_write_guard = guard
         cls.writePort, cls.openPort, cls.closePort = write, open_port, close_port
         try:
             yield
@@ -368,7 +369,7 @@ def main():
                 calibration_dir=calibration.parent, cameras={}, use_degrees=True,
                 max_relative_target=2.0, disable_torque_on_disconnect=False))
             bus = robot.bus
-            replies = StrictIndividualReplies(bus.packet_handler).install()
+            replies = StrictIndividualReplies(bus.packet_handler,write_guard=guard).install()
             try:
                 validate_sdk(bus)
                 guard.phase = 'open'

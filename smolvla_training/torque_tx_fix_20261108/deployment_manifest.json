@@ -1,0 +1,36 @@
+{
+  "base_commit": "586ed6b",
+  "hardware_access": false,
+  "files": [
+    {
+      "path": "operator_candidate/individual_reply_guard.py",
+      "before_sha256": "2be252355c324dc5ec6942ace4c794f24b397308a9833e52d8193c35c6057f53",
+      "after_sha256": "d3b5916b6d0a6234af62a63c56a32fd56fb486eaf451e5ae083852e052e7cc94",
+      "bytes": 6999
+    },
+    {
+      "path": "operator_candidate/arm_source.py",
+      "before_sha256": "23fa519f40d793b4722ac4a68bcee921cfff1d66102218a6aa078531c77d1ee8",
+      "after_sha256": "701f6bcde366ecb678005ea574a4ec8305c9f221eba5a7fb8a09181ad9ea9c8f",
+      "bytes": 22710
+    },
+    {
+      "path": "operator_candidate/operator_arm.py",
+      "before_sha256": "4dbcc3baffeba81978da1199b16dd958815c2eb8d014072426560181693d67b7",
+      "after_sha256": "d6b58fc5cd1d4e4f246416f8cbb46a3282c6ee07789db72d9acc9e37748488c3",
+      "bytes": 6100
+    },
+    {
+      "path": "operator_candidate/test_torque_sdk_integration.py",
+      "before_sha256": null,
+      "after_sha256": "581b0967d2b4f027526ca0d1be92ed5a42e9d2f79ac8804b108a0b4398a5695a",
+      "bytes": 6915
+    },
+    {
+      "path": "operator_candidate/torque_tx_sdk_fixture.json",
+      "before_sha256": null,
+      "after_sha256": "c943c81b2998fb282b759b532df3ffa8ba95cf50b7b2e8a5041e7d8378261e2b",
+      "bytes": 3875
+    }
+  ]
+}

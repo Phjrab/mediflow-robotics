@@ -1,0 +1,9 @@
+{
+  "scope": "TORQUE_HOLD_ONLY",
+  "stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+  "diagnosis_sha256": "90ab6aec722a585b1fa3f83b8888d36a60b5d14608b20586c5e781bb0d578ada",
+  "operator_review": true,
+  "live_authorized": false,
+  "stop_preserved": true,
+  "unix": 1794119436.3950186
+}
