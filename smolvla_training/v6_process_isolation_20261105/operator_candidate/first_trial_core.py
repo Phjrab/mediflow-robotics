@@ -172,7 +172,7 @@ class FirstTrialAdapter:
                 raise
             clips.append(any(abs(a-b)>1e-6 for a,b in zip(action,target)))
             if len(clips)==clip_window and sum(clips)/clip_window>.5:
-                if getattr(self,"clip_warning_only",False) and limits.max_steps<=10:
+                if getattr(self,"clip_warning_only",False) and (limits.max_steps<=10 or (getattr(limits,"work_segment",False) and limits.max_steps<=50)):
                     self.events.append("clip_ratio_warning");timing["clip_ratio_warning"]=sum(clips)/clip_window
                 else:raise Hold("정책-제어 clip 비율 초과")
             if self.clock()>=deadline or self.stop.is_set():raise Hold("전송 직전 시간/정지")
@@ -182,7 +182,7 @@ class FirstTrialAdapter:
             timing["wait_seconds"]=self.clock()-mark
             if self.clock()>=deadline or self.stop.is_set():raise Hold("전송 직전 시간/정지")
             timing["state_age_seconds"]=self.clock()-sampled_at
-            if compensated and timing["state_age_seconds"]>1/limits.fps:raise Hold("전송 전 관측 지연 초과")
+            if compensated and timing["state_age_seconds"]>1/limits.fps+1e-9:raise Hold("전송 전 관측 지연 초과")
             sent_at=self.clock();self.io.send_target(target)
             timing.update(send_seconds=self.clock()-sent_at,step_seconds=self.clock()-work_started,sent_at=sent_at)
             self.sent.append(dict(step=step,raw_action=action,target=target,state=measured,clip=clips[-1],sent_at=sent_at))

@@ -1,0 +1,55 @@
+{
+  "status": "WORK_SEGMENT_READY",
+  "tests_passed": 216,
+  "files": {
+    "operator_candidate/first_trial_core.py": "dc0609f031c3c20e9aec321eced3c8dd46574612287cf4118dda73620aec958c",
+    "operator_candidate/first_trial_from_hold.py": "843a25a22d7cd302c4cdd82e90336097a66cea460e7cd38881affc712cec467e",
+    "operator_candidate/reviewed_start_stop.py": "7048998131b0ea38284852e5bfc0ced4ce4761b6cd95fd1bce8c6404d4698b84",
+    "operator_candidate/first_trial.py": "aefee9d1c512f03ba6584317d74674417036d6a2b8f18743e4ae0a92644ff968",
+    "operator_candidate/hold_continuation.py": "ca583130234f0217db98a24ed4a1fb1bfe854faa3ae68cc81bd99136e710bbee",
+    "operator_candidate/work_segment_limits.py": "88ba17e7804a2b90fbd5291090a7462c0ad8f32fd8851888c39576e7ef535b1e",
+    "operator_candidate/run_work_segment.sh": "b462af0418a4a76fe40abf631ffd5fb69f7be2478a3bb1d4e4120ed715b82f74",
+    "operator_candidate/test_work_segment.py": "30fea176e3f95c418f6f7db99ed6699640174a15d19fc1cac7cb488d3cd8508c"
+  },
+  "check_files": {
+    "status": "HOLD_FILES_READY",
+    "hold_sha256": "4767b9cf28dce8ec3cbb7c0210d9ba8f0f73c74b18a00723bb6399c46f733183",
+    "hold_review_sha256": "742dc63e6ba15b9b8f23f6d16f512decc21126b04b0798901580abfed2310488",
+    "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "hold_only_receipt_is_not_live_permission": true,
+    "operator_live_review_required": true,
+    "reviewed_start_stop": {
+      "scope": "SINGLE_CHUNK_WORK_SEGMENT",
+      "result_sha256": "8268fd1008190afbe45d25e45aa1acbbac84257d29f08f230920be1d86f219d2",
+      "post_hold_stop_sha256": "c70c2909aacf31ce763b6a1b1fff0d072b42092af5a37c31c6156bdc95311ae7",
+      "prior_usage_sha256": "8c0028758824993cce426477e75302d89b5eee45bcd8d31cb753cfc0e7d4b7a5",
+      "max_raw_difference": 1,
+      "max_joint_degrees": 0.1,
+      "max_gripper_points": 0.1,
+      "fresh_operator_review_required": true,
+      "live_authorized": false,
+      "success_sha256": "4909135423bb0788c3f0da7ac329f892a92f582911a7a7b85fcd8a45b247936c",
+      "goal_writes_allowed": true,
+      "expected_last_goal": [
+        -5.755800724029541,
+        -98.74175824175825,
+        96.92307692307692,
+        43.18832015991211,
+        -4.667402267456055,
+        8.073694229125977
+      ],
+      "encoder_margin_for_new_goals": true,
+      "tracking_allowance_one_count": true,
+      "clip_ratio_is_warning": true,
+      "max_steps": 50,
+      "max_seconds": 10,
+      "relative_goal_cap_degrees": 2,
+      "speed_degrees_per_second": 20
+    },
+    "hardware_access": false,
+    "live_authorized": false
+  },
+  "hardware_access": false,
+  "live": "NOT_RUN",
+  "work_unused": true
+}

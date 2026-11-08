@@ -1,0 +1,55 @@
+{
+  "base_commit": "6761baf",
+  "hardware_access": false,
+  "operator_live_required": true,
+  "files": [
+    {
+      "path": "operator_candidate/first_trial_core.py",
+      "before_sha256": "d7656917d9bb5992894dd483a2109e9a7db9a5aded4e0d6a8ba847fb375d442c",
+      "after_sha256": "dc0609f031c3c20e9aec321eced3c8dd46574612287cf4118dda73620aec958c",
+      "bytes": 13168
+    },
+    {
+      "path": "operator_candidate/first_trial_from_hold.py",
+      "before_sha256": "d6c27d4adabe401b263ede6986c4903d336df8b23fee6d817ef64559907f4ba3",
+      "after_sha256": "843a25a22d7cd302c4cdd82e90336097a66cea460e7cd38881affc712cec467e",
+      "bytes": 10277
+    },
+    {
+      "path": "operator_candidate/reviewed_start_stop.py",
+      "before_sha256": "a59152ede7be0c5d1b481d4200bee3a6e431ae821ff6b43538741559c2e5786a",
+      "after_sha256": "7048998131b0ea38284852e5bfc0ced4ce4761b6cd95fd1bce8c6404d4698b84",
+      "bytes": 13601
+    },
+    {
+      "path": "operator_candidate/first_trial.py",
+      "before_sha256": "a14b94e357a526dcf9a709de5bf55f3b028f1b6746202e49b1f108df59b30538",
+      "after_sha256": "aefee9d1c512f03ba6584317d74674417036d6a2b8f18743e4ae0a92644ff968",
+      "bytes": 8054
+    },
+    {
+      "path": "operator_candidate/hold_continuation.py",
+      "before_sha256": "49e09ed88d38a200f79a07833436f8cb447832439ed3169a0f2e4aeb91c8f4cf",
+      "after_sha256": "ca583130234f0217db98a24ed4a1fb1bfe854faa3ae68cc81bd99136e710bbee",
+      "bytes": 8876
+    },
+    {
+      "path": "operator_candidate/work_segment_limits.py",
+      "before_sha256": null,
+      "after_sha256": "88ba17e7804a2b90fbd5291090a7462c0ad8f32fd8851888c39576e7ef535b1e",
+      "bytes": 666
+    },
+    {
+      "path": "operator_candidate/run_work_segment.sh",
+      "before_sha256": null,
+      "after_sha256": "b462af0418a4a76fe40abf631ffd5fb69f7be2478a3bb1d4e4120ed715b82f74",
+      "bytes": 159
+    },
+    {
+      "path": "operator_candidate/test_work_segment.py",
+      "before_sha256": null,
+      "after_sha256": "30fea176e3f95c418f6f7db99ed6699640174a15d19fc1cac7cb488d3cd8508c",
+      "bytes": 1626
+    }
+  ]
+}

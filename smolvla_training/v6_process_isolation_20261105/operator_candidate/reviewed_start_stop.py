@@ -21,7 +21,8 @@ SUCCESS_CLAIM_SHA="1e2c050ffa16522902bee46de044e1de356104690d52b5cbb7b088c00f3a5
 
 
 class ReviewedStartStop:
-    def __init__(self,root,*,home=None,review_action=False,profile_success=False,compensated_profile=False,repeat_live=False,quantized_repeat=False,continue_clipped=False):
+    def __init__(self,root,*,home=None,review_action=False,profile_success=False,compensated_profile=False,repeat_live=False,quantized_repeat=False,continue_clipped=False,work_segment=False):
+        if work_segment:continue_clipped=True
         if continue_clipped:quantized_repeat=True
         self.quantized_repeat=quantized_repeat
         if quantized_repeat:repeat_live=True
@@ -116,6 +117,17 @@ class ReviewedStartStop:
                         if recorded.get("motor_goal_packets")!=9 or recorded.get("torque_register_writes")!=0 or len(recorded.get("targets",[]))!=9 or recorded.get("error",{}).get("reason")!="정책-제어 clip 비율 초과":raise Hold("9스텝 중단 검토 범위 불일치")
                         self.expected_last_goal=recorded["targets"][-1]["target"]
                         self.summary.update(scope=self.usage_scope,clip_ratio_is_warning=True,expected_last_goal=self.expected_last_goal)
+                        if work_segment:
+                            completed=self.home/"first_vla_from_hold_1794132963959272373/RESULT.json"
+                            self.profile_paths+=((completed,"83ed69d8c95706ce775c8a3d626ad80fd58f4919f5db48fa264ee7b79b0bbcad"),)
+                            self.next_stop_name="POST_WORK_SEGMENT_STOP.json";self.stop_sha="work_83ed69d8c95706ce775c8a3d626ad80fd58f4919f5db48fa264ee7b79b0bbcad"
+                            self.operator_token="REARM_WORK";self.usage_scope="SINGLE_CHUNK_WORK_SEGMENT"
+                            self.operator_message="10스텝 완료 기록을 보존하고50스텝 작업 구간으로 진행합니다. 최대10초, 현재 위치 대비 목표2도, 연속 목표20도/초이며 정수 변환 여유·온도·과부하 제한은 유지합니다. 팔과 주변 공간·전원 차단 수단을 현장에서 확인하세요."
+                            self.max_steps=50;self.max_seconds=10
+                            self.check();latest_complete=json.loads(completed.read_text(encoding="utf-8"))
+                            if latest_complete.get("status")!="FIRST_TRIAL_COMPLETE" or latest_complete.get("motor_goal_packets")!=10 or latest_complete.get("torque_register_writes")!=0 or latest_complete.get("cleanup_errors")!=[]:raise Hold("작업 구간 이전 완료 근거 불일치")
+                            self.expected_last_goal=latest_complete["targets"][-1]["target"]
+                            self.summary.update(scope=self.usage_scope,max_steps=50,max_seconds=10,relative_goal_cap_degrees=2,speed_degrees_per_second=20,expected_last_goal=self.expected_last_goal)
                 self.check()
 
     def check(self):
