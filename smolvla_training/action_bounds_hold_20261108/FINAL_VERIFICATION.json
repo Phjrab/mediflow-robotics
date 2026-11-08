@@ -1,0 +1,62 @@
+{
+  "status": "ACTION_PROJECTION_SOFTWARE_VERIFIED",
+  "files": {
+    "first_trial_core.py": "b3ba58f76009548956515b804f529bcd1eade40a2786d56a66ab89e0c966956a",
+    "first_trial_from_hold.py": "c971d3e626e0413ae1bfe91977c95b1720d361f9cf99bbf70298a7975419f0a5",
+    "hold_continuation.py": "a5911d63d6523a2c2e017525299b257393b1279b6cc2f120a91719484ca2fe7a",
+    "reviewed_start_stop.py": "9d8afaaa7e59769141ffcc195bfd2196e3280d1c003133d3e74508432e38c5e3",
+    "test_first_trial_from_hold.py": "0b04e4a621cdf7a94660262e0cedeec16c763b301212c1aba162d1b4a9408099",
+    "run_first_after_action_review.sh": "af2497b832134f858f398641c9f42ebe7d987cd2bc9cd9910c16189a8bec96d8",
+    "test_action_projection.py": "289d49463b2ab0d5206eb7e34c5dcd9231034bd51f91bfd57bd9725d8ddc0f3c",
+    "test_reviewed_action_stop.py": "afcc1cef99ada49e282c7d6e757f00c5ae3b929bbacf6771aa182631fea5055a"
+  },
+  "tests": {
+    "operator_tests.log": {
+      "passed": 176,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0
+    },
+    "root_tests.log": {
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0
+    }
+  },
+  "check_files": {
+    "status": "HOLD_FILES_READY",
+    "hold_sha256": "4767b9cf28dce8ec3cbb7c0210d9ba8f0f73c74b18a00723bb6399c46f733183",
+    "hold_review_sha256": "742dc63e6ba15b9b8f23f6d16f512decc21126b04b0798901580abfed2310488",
+    "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "hold_only_receipt_is_not_live_permission": true,
+    "operator_live_review_required": true,
+    "reviewed_start_stop": {
+      "scope": "REVIEWED_ZERO_WRITE_ACTION_HOLD",
+      "result_sha256": "8268fd1008190afbe45d25e45aa1acbbac84257d29f08f230920be1d86f219d2",
+      "post_hold_stop_sha256": "c70c2909aacf31ce763b6a1b1fff0d072b42092af5a37c31c6156bdc95311ae7",
+      "prior_usage_sha256": "8c0028758824993cce426477e75302d89b5eee45bcd8d31cb753cfc0e7d4b7a5",
+      "max_raw_difference": 1,
+      "max_joint_degrees": 0.1,
+      "max_gripper_points": 0.1,
+      "fresh_operator_review_required": true,
+      "live_authorized": false
+    },
+    "hardware_access": false,
+    "live_authorized": false
+  },
+  "preserved_stops": {
+    "FIELD_STOP.json": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "POST_HOLD_STOP.json": "3ed9dc4110dfbdcfb79b352a96e3b13be3bd5ec22c758fe0efd3efea973511bf",
+    "POST_START_REVIEW_STOP.json": "c70c2909aacf31ce763b6a1b1fff0d072b42092af5a37c31c6156bdc95311ae7"
+  },
+  "hardware_access": false,
+  "actual_motor_writes": 0,
+  "live": "NOT_RUN_BY_AGENT",
+  "offline_inference_runs": 3,
+  "new_stop_absent": true,
+  "new_review_unused": true,
+  "push": "NOT_PUSHED"
+}

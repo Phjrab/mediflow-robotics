@@ -9,7 +9,7 @@ from first_trial_core import Hold,Limits,FirstMotionPlan,sensor_gate
 from first_trial import qualified,SupervisedAdapter
 from controller_bridge import load_controller
 from hold_continuation import HoldContinuation,latch_new_stop,sha,STOP_SHA
-from run_receipts import finish_resources,save_run,verify_target_receipt
+from run_receipts import finish_resources,save_run,verify_target_receipt,json_value
 
 
 def preflight():
@@ -29,7 +29,9 @@ def main(argv=None):
     parser.add_argument("--operator-present",action="store_true")
     parser.add_argument("--supported",action="store_true")
     parser.add_argument("--stop-ready",action="store_true")
-    parser.add_argument("--review-start-hold",action="store_true")
+    review_mode=parser.add_mutually_exclusive_group()
+    review_mode.add_argument("--review-start-hold",action="store_true")
+    review_mode.add_argument("--review-action-hold",action="store_true")
     parser.add_argument("--hold-log",type=Path,default=Path.home()/"torque_guard_20261108_155436/events.jsonl")
     parser.add_argument("--repeat-summary",type=Path,default=root.parent/"REPEAT_SUMMARY.json")
     parser.add_argument("--out",type=Path)
@@ -37,15 +39,17 @@ def main(argv=None):
     args=parser.parse_args(argv)
     def continuation():
         start_review=None
-        if args.review_start_hold:
+        if args.review_start_hold or args.review_action_hold:
             from reviewed_start_stop import ReviewedStartStop
-            start_review=ReviewedStartStop(root)
+            start_review=ReviewedStartStop(root,review_action=args.review_action_hold)
         return HoldContinuation(root,args.hold_log,start_review=start_review)
     if not args.execute:
         if args.check_files:
             receipt=continuation();qualified(args.repeat_summary)
             print(json.dumps(dict(status="HOLD_FILES_READY",**receipt.summary,hardware_access=False,live_authorized=False),ensure_ascii=False))
-        else:print("PLAN_ONLY: 토크 변경·장치·추론·목표 쓰기 없음. 새 REARM_HOLD와 LIVE 직접 확인이 필요합니다.")
+        else:
+            token="REARM_ACTION" if args.review_action_hold else "REARM_START" if args.review_start_hold else "REARM_HOLD"
+            print("PLAN_ONLY: 토크 변경·장치·추론·목표 쓰기 없음. 새 "+token+"와 LIVE 직접 확인이 필요합니다.")
         return 0
     if not args.live or args.check_files or not all((args.operator_present,args.supported,args.stop_ready)) or not sys.stdin.isatty():
         raise Hold("현장 직접 live·execute·팔 지지·정지 수단 확인 필요; 장치 미연결")
@@ -94,6 +98,13 @@ def main(argv=None):
                       hardware_started=hardware_started)
         if adapter is not None:
             result.update(targets=adapter.sent,events=adapter.events)
+            if hasattr(adapter,"policy_chunk"):
+                try:
+                    with (output/"policy_chunk.json").open("x",encoding="utf-8") as stream:
+                        json.dump(json_value(adapter.policy_chunk),stream,ensure_ascii=False,allow_nan=False,indent=2)
+                    result["policy_chunk_saved"]=True
+                except BaseException as error:result["cleanup_errors"].append(dict(component="policy_chunk",kind=type(error).__name__))
+            if hasattr(adapter,"last_target_context"):result["last_target_context"]=adapter.last_target_context
             try:
                 with (output/"targets.csv").open("x",encoding="utf-8",newline="") as stream:
                     writer=csv.DictWriter(stream,fieldnames=("step","raw_action","target","state","clip","sent_at"));writer.writeheader();writer.writerows(adapter.sent)

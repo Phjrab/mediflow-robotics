@@ -1,0 +1,14 @@
+{
+  "status": "HOLD",
+  "kind": "REVIEWED_START_FIRST_TRIAL_STOP",
+  "unix": 1794125763.9120278,
+  "error": {
+    "kind": "Hold",
+    "reason": "관절 한계/형식 이탈",
+    "observed": null,
+    "initialization_cleanup_error": null
+  },
+  "goal_packets": 0,
+  "cleanup_errors": [],
+  "output": "~/first_vla_from_hold_1794125680799432750"
+}

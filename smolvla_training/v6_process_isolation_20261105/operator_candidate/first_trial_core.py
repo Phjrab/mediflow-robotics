@@ -53,12 +53,14 @@ def home_gate(state,home):
     target=vector(home["state"])
     if any(abs(state[i]-target[i])>home["tolerance_deg"] for i in range(5)):raise Hold("home 범위 이탈")
 
-def bounds_gate(values,bounds):
+def bounds_gate(values,bounds,*,source="unspecified"):
     values=vector(values)
     if len(bounds)!=6:raise Hold("관절 한계 근거 없음")
-    for value,pair in zip(values,bounds):
+    for i,(value,pair) in enumerate(zip(values,bounds)):
         if len(pair)!=2 or any(type(v) not in (float,int) or not math.isfinite(v) for v in pair) or pair[0]>=pair[1] or not pair[0]<=value<=pair[1]:
-            raise Hold("관절 한계/형식 이탈")
+            error=Hold("관절 한계/형식 이탈")
+            error.observed=dict(source=source,joint=JOINTS[i],value=value,bounds=pair)
+            raise error
 
 def frame_gate(frames,now,limits,previous=None):
     if set(frames)!=set(CAMERAS):raise Hold("카메라 키 누락")
@@ -74,7 +76,8 @@ def frame_gate(frames,now,limits,previous=None):
 
 def target_gate(action,measured,previous,bounds,limits,dt):
     action=vector(action);measured=vector(measured);previous=vector(previous)
-    for values in (action,measured,previous):bounds_gate(values,bounds)
+    bounds_gate(measured,bounds,source="measured_state")
+    bounds_gate(previous,bounds,source="previous_target")
     if any(abs(action[i]-measured[i])>limits.first_jump or abs(action[i]-previous[i])>limits.first_jump for i in range(6)):raise Hold("큰 목표 점프")
     if type(dt) not in (float,int) or not math.isfinite(dt) or dt<=0:raise Hold("명령 간격 미확인")
     result=[]
@@ -129,7 +132,10 @@ class FirstTrialAdapter:
         self.previous_hash=frame_gate(frames,self.clock(),limits)
         state=sensor_gate(self.io.snapshot(),limits,starting=True);home_gate(state,self.home)
         captured=min(row["host_received"] for row in frames.values())
+        inference_started=self.clock()
         actions=self.await_job(lambda:self.io.predict(frames,state),deadline,50/limits.fps)
+        self.policy_chunk=dict(raw_actions=actions,observation_state=list(state),bounds=self.bounds,
+                               inference_seconds=self.clock()-inference_started,fps=limits.fps)
         if self.clock()-captured>50/limits.fps:raise Hold("정책 입력 나이/추론 지연 초과")
         if len(actions)!=50:raise Hold("행동50개 필요")
         for row in actions:vector(row)
@@ -143,7 +149,12 @@ class FirstTrialAdapter:
             s=self.io.snapshot();measured=sensor_gate(s,limits)
             if step==0:home_gate(measured,self.home)
             dt=1/limits.fps if last_sent is None else self.clock()-last_sent
-            target=target_gate(action,measured,previous,self.bounds,limits,dt)
+            self.last_target_context=dict(step=step,raw_action=action,measured_state=measured,
+                                          previous_target=previous,bounds=self.bounds,dt=dt)
+            try:target=target_gate(action,measured,previous,self.bounds,limits,dt)
+            except Hold as error:
+                error.observed=dict(target_context=self.last_target_context,gate=getattr(error,"observed",None))
+                raise
             clips.append(any(abs(a-b)>1e-6 for a,b in zip(action,target)))
             if len(clips)==clip_window and sum(clips)/clip_window>.5:raise Hold("정책-제어 clip 비율 초과")
             if self.clock()>=deadline or self.stop.is_set():raise Hold("전송 직전 시간/정지")

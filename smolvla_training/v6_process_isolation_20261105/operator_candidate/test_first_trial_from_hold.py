@@ -48,13 +48,16 @@ class FakeIO:
 
 class Tests(unittest.TestCase):
     def setUp(self):FakeIO.instances=[];FakeIO.temp=30.;FakeIO.camera_fault=False
-    def run_case(self,home,*,reject_live=False,preflight_fault=False,review_start=False):
+    def run_case(self,home,*,reject_live=False,preflight_fault=False,review_start=False,review_action=False):
         from first_trial_dependencies import prepare
         dependency_root=prepare()
         root,log,context,pins,summary=fixture(home);out=home/"run"
         import reviewed_start_stop as reviewed
         review_pins={}
-        if review_start:
+        if review_action:
+            from test_reviewed_action_stop import add_action_review_fixture
+            review_pins=add_action_review_fixture(home,root,pins)
+        elif review_start:
             from test_reviewed_start_stop import add_review_fixture
             review_pins=add_review_fixture(home,root,pins)
         class Policy:
@@ -76,7 +79,7 @@ class Tests(unittest.TestCase):
              patch("operator_arm.ArmingAdapter",side_effect=AssertionError("토크 변경 adapter 호출 금지")), \
              patch.dict(sys.modules,{"trial_runtime":module,"PIL":SimpleNamespace(Image=image),"runtime_cpu":SimpleNamespace(configure_main=lambda path:None)}), \
              contextlib.redirect_stdout(io.StringIO()):
-            code=entry.main(["--live","--execute","--operator-present","--supported","--stop-ready","--hold-log",str(log),"--repeat-summary",str(summary),"--out",str(out)]+(["--review-start-hold"] if review_start else []))
+            code=entry.main(["--live","--execute","--operator-present","--supported","--stop-ready","--hold-log",str(log),"--repeat-summary",str(summary),"--out",str(out)]+(["--review-action-hold"] if review_action else ["--review-start-hold"] if review_start else []))
         return code,root,out,tokens
 
     def test_default_plan_never_imports_runtime_or_gpu(self):
@@ -148,6 +151,24 @@ class Tests(unittest.TestCase):
             self.assertEqual(code,2);self.assertEqual(tokens,["REARM_START","LIVE"])
             self.assertTrue((root/held.NEW_STOP).exists());self.assertTrue((root/"POST_START_REVIEW_STOP.json").exists())
             self.assertTrue(all(not item.targets for item in FakeIO.instances))
+
+    def test_reviewed_action_uses_new_tokens_ten_targets_and_no_torque_writes(self):
+        with tempfile.TemporaryDirectory() as name:
+            code,root,out,tokens=self.run_case(Path(name),review_action=True)
+            data=json.loads((out/"RESULT.json").read_text(encoding="utf-8"))
+            self.assertEqual(code,0,data.get("error"));self.assertEqual(tokens,["REARM_ACTION","LIVE"])
+            self.assertEqual(data["motor_goal_packets"],10);self.assertEqual(data["torque_register_writes"],0)
+            self.assertTrue((out/"policy_chunk.json").is_file());self.assertTrue(data["policy_chunk_saved"])
+            self.assertFalse((root/"POST_ACTION_REVIEW_STOP.json").exists())
+
+    def test_reviewed_action_failed_prediction_is_saved_before_zero_target_hold(self):
+        def bad_prediction(io,frames,state):return [[state[0]+11.]+list(state[1:]) for _ in range(50)]
+        with tempfile.TemporaryDirectory() as name,patch.object(FakeIO,"predict",bad_prediction):
+            code,root,out,tokens=self.run_case(Path(name),review_action=True)
+            data=json.loads((out/"RESULT.json").read_text(encoding="utf-8"))
+            self.assertEqual(code,2);self.assertEqual(data["motor_goal_packets"],0)
+            self.assertTrue((out/"policy_chunk.json").is_file());self.assertTrue((root/"POST_ACTION_REVIEW_STOP.json").exists())
+            self.assertEqual(data["error"]["observed"]["target_context"]["step"],0)
 
 
 if __name__=="__main__":unittest.main()

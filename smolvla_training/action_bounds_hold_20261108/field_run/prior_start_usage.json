@@ -1,0 +1,26 @@
+{
+  "hold_sha256": "4767b9cf28dce8ec3cbb7c0210d9ba8f0f73c74b18a00723bb6399c46f733183",
+  "hold_review_sha256": "742dc63e6ba15b9b8f23f6d16f512decc21126b04b0798901580abfed2310488",
+  "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+  "hold_only_receipt_is_not_live_permission": true,
+  "operator_live_review_required": true,
+  "reviewed_start_stop": {
+    "scope": "REVIEWED_ZERO_WRITE_START_HOLD",
+    "result_sha256": "f2e4c81cb18473a4f091f49d9b12ed4944bce7a296e11bf1ee4caaaaf0bd9291",
+    "post_hold_stop_sha256": "3ed9dc4110dfbdcfb79b352a96e3b13be3bd5ec22c758fe0efd3efea973511bf",
+    "prior_usage_sha256": "971e05d27fa1a192500d189ec6c8c26b5c62254a7ca38f4343f1b10a4d28f189",
+    "max_raw_difference": 1,
+    "max_joint_degrees": 0.1,
+    "max_gripper_points": 0.1,
+    "fresh_operator_review_required": true,
+    "live_authorized": false
+  },
+  "scope": "FIRST_MOTION_FROM_HELD_POSE",
+  "run_id": "5f9520f3d5e543b4a0cc3767e8a575dd",
+  "context_sha256": "59590a23e69d502bd9d9c29833c950f4b49fafd199955beb2668960e0b4dcda0",
+  "operator_review": true,
+  "unix": 1794125741.7835581,
+  "max_steps": 10,
+  "max_seconds": 5,
+  "live_confirm_still_required": true
+}

@@ -1,0 +1,55 @@
+{
+  "base_commit": "ec5dbdb",
+  "hardware_access": false,
+  "operator_live_required": true,
+  "files": [
+    {
+      "path": "operator_candidate/first_trial_core.py",
+      "before_sha256": "abf3795cffca2a8db1a8cc4d8c144485ea4fb3ab48fd7e95967302a1c8f465db",
+      "after_sha256": "b3ba58f76009548956515b804f529bcd1eade40a2786d56a66ab89e0c966956a",
+      "bytes": 11089
+    },
+    {
+      "path": "operator_candidate/first_trial_from_hold.py",
+      "before_sha256": "c4ff19e90a643c780346706a37e38e3ecd2b93ed9922e0164e910050e7d2edfb",
+      "after_sha256": "c971d3e626e0413ae1bfe91977c95b1720d361f9cf99bbf70298a7975419f0a5",
+      "bytes": 8612
+    },
+    {
+      "path": "operator_candidate/hold_continuation.py",
+      "before_sha256": "2cc4e199578f949f6b61a61dfcab4d6cc481b39464adb69715a05053a107afa2",
+      "after_sha256": "a5911d63d6523a2c2e017525299b257393b1279b6cc2f120a91719484ca2fe7a",
+      "bytes": 8755
+    },
+    {
+      "path": "operator_candidate/reviewed_start_stop.py",
+      "before_sha256": "d83fc734c745db32c9f1d3af2dde18ed5057f58c6738deb214b8017b1ae3d607",
+      "after_sha256": "9d8afaaa7e59769141ffcc195bfd2196e3280d1c003133d3e74508432e38c5e3",
+      "bytes": 5593
+    },
+    {
+      "path": "operator_candidate/test_first_trial_from_hold.py",
+      "before_sha256": "888d81434cbfb9d085fdd42a26b8b9ffa829a90e040bafbc2df4985509c8f84b",
+      "after_sha256": "0b04e4a621cdf7a94660262e0cedeec16c763b301212c1aba162d1b4a9408099",
+      "bytes": 12031
+    },
+    {
+      "path": "operator_candidate/run_first_after_action_review.sh",
+      "before_sha256": null,
+      "after_sha256": "af2497b832134f858f398641c9f42ebe7d987cd2bc9cd9910c16189a8bec96d8",
+      "bytes": 165
+    },
+    {
+      "path": "operator_candidate/test_action_projection.py",
+      "before_sha256": null,
+      "after_sha256": "289d49463b2ab0d5206eb7e34c5dcd9231034bd51f91bfd57bd9725d8ddc0f3c",
+      "bytes": 3761
+    },
+    {
+      "path": "operator_candidate/test_reviewed_action_stop.py",
+      "before_sha256": null,
+      "after_sha256": "afcc1cef99ada49e282c7d6e757f00c5ae3b929bbacf6771aa182631fea5055a",
+      "bytes": 4297
+    }
+  ]
+}

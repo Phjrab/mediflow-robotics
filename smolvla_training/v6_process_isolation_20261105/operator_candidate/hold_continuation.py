@@ -87,7 +87,7 @@ class HoldContinuation:
         if self.start_review is None:
             confirm("REARM_HOLD","토크ON 성공 기록과 원래 중단 기록을 보존합니다. 자동 토크 변경 없이 첫10스텝/5초 시험을 검토합니다. 팔 지지·즉시 전원 차단 수단을 현장에서 확인하세요.")
         else:
-            confirm("REARM_START","앞선 목표·토크 쓰기0의 시작 중단을 보존합니다. 시작 차이1칸 및 관절0.1도 이내만 허용하며 이동·온도·HOLD는 유지합니다. 팔 지지·즉시 전원 차단 수단을 현장에서 확인하세요.")
+            confirm(self.start_review.operator_token,self.start_review.operator_message)
         self.operator_reviewed=True
 
     def claim(self,output):
@@ -111,8 +111,9 @@ class HoldContinuation:
 def latch_new_stop(root,result,*,start_review=None):
     """원래 FIELD_STOP은 보존하고, 새 실패는 별도 기록으로 차단한다."""
     from run_receipts import json_value
-    path=Path(root)/(NEW_STOP if start_review is None else "POST_START_REVIEW_STOP.json")
-    data=dict(status="HOLD",kind="POST_HOLD_FIRST_TRIAL_STOP" if start_review is None else "REVIEWED_START_FIRST_TRIAL_STOP",unix=time.time(),
+    path=Path(root)/(NEW_STOP if start_review is None else start_review.next_stop_name)
+    kind="POST_HOLD_FIRST_TRIAL_STOP" if start_review is None else "REVIEWED_ACTION_FIRST_TRIAL_STOP" if start_review.review_action else "REVIEWED_START_FIRST_TRIAL_STOP"
+    data=dict(status="HOLD",kind=kind,unix=time.time(),
               error=result.get("error"),goal_packets=result.get("motor_goal_packets",0),
               cleanup_errors=result.get("cleanup_errors",[]),output=result.get("output"))
     try:
