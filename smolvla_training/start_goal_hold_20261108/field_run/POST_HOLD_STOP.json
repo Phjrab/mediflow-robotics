@@ -1,0 +1,14 @@
+{
+  "status": "HOLD",
+  "kind": "POST_HOLD_FIRST_TRIAL_STOP",
+  "unix": 1794123790.8727784,
+  "error": {
+    "kind": "Hold",
+    "reason": "현재 목표 피드백·현재 위치·보정 범위 불일치",
+    "observed": null,
+    "initialization_cleanup_error": null
+  },
+  "goal_packets": 0,
+  "cleanup_errors": [],
+  "output": "~/first_vla_from_hold_1794123713212153170"
+}

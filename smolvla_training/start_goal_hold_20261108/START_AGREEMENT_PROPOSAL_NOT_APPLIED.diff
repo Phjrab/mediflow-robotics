@@ -1,0 +1,95 @@
+--- a/smolvla_training/v6_process_isolation_20261105/operator_candidate/trial_runtime.py
++++ b/smolvla_training/v6_process_isolation_20261105/operator_candidate/trial_runtime.py
+@@ -149,10 +149,13 @@
+         bounds=self.joint_bounds();within=True
+         try:bounds_gate(snap["state"],bounds);bounds_gate(active_state,bounds)
+         except Hold:within=False
++        from start_goal_agreement import assess
++        current_state=[float(bus._normalize({bus.motors[j].id:present[j]})[bus.motors[j].id]) for j in JOINTS]
++        agreement=assess(present,active_target,current_state,active_state,bounds)
+         return dict(status="ARM_INSPECTION_READ_ONLY",snapshot=snap,present_raw=present,goal_raw=goal,goal_state=goal_state,
+                     raw_delta={j:goal[j]-present[j] for j in JOINTS},goal_exact_match=goal==present,
+                     target_feedback_raw=active_target,target_feedback_state=active_state,active_target_exact_match=active_target==present,
+-                    joint_bounds=bounds,bounds_contain_current_and_active_target=within,arm_ready=active_target==present and within,
++                    joint_bounds=bounds,bounds_contain_current_and_active_target=within,start_agreement=agreement,arm_ready=agreement["proposed_start_check_passed"] and within,
+                     register_writes=self.permission.goal_packets)
+     def connect_cameras(self):
+         from lerobot.cameras.opencv import OpenCVCameraConfig
+--- /dev/null
++++ b/smolvla_training/v6_process_isolation_20261105/operator_candidate/start_goal_agreement.py
+@@ -0,0 +1,75 @@
++"""저장된 결과의 시작 목표 차이를 검토한다. 장치 접근·실행 권한 부여 없음.
++
++이 파일의 1 raw count / 0.1 단위 제안은 운영 중 실행기에 적용되지 않았다.
++"""
++import argparse
++import json
++import math
++from pathlib import Path
++
++JOINTS = ("shoulder_pan", "shoulder_lift", "elbow_flex", "wrist_flex", "wrist_roll", "gripper")
++MAX_RAW_DIFFERENCE = 1
++MAX_NORMALIZED_DIFFERENCE = 0.1
++
++
++def vector(values, size):
++    if not isinstance(values, (tuple, list)) or len(values) != size:
++        raise ValueError("관절 차원 불일치")
++    if any(type(v) not in (int, float) or not math.isfinite(v) for v in values):
++        raise ValueError("수치 형식 또는 NaN/Inf 오류")
++    return values
++
++
++def assess(present_raw, target_raw, current_state, target_state, bounds):
++    for values in (present_raw, target_raw):
++        if not isinstance(values, dict) or set(values) != set(JOINTS):
++            raise ValueError("원시 관절 이름 불일치")
++        if any(type(v) is not int or not 0 <= v <= 4095 for v in values.values()):
++            raise ValueError("원시 위치 형식 또는 범위 오류")
++    current_state, target_state = vector(current_state, 6), vector(target_state, 6)
++    if not isinstance(bounds, (list, tuple)) or len(bounds) != 6:
++        raise ValueError("관절 한계 차원 불일치")
++    rows = []
++    for i, joint in enumerate(JOINTS):
++        lo, hi = vector(bounds[i], 2)
++        if lo >= hi:
++            raise ValueError("관절 한계 순서 오류")
++        delta_raw = target_raw[joint] - present_raw[joint]
++        delta = target_state[i] - current_state[i]
++        inside = lo <= current_state[i] <= hi and lo <= target_state[i] <= hi
++        reasons = []
++        if abs(delta_raw) > MAX_RAW_DIFFERENCE:
++            reasons.append("RAW_DIFFERENCE_GT_ONE")
++        if abs(delta) > MAX_NORMALIZED_DIFFERENCE:
++            reasons.append("NORMALIZED_DIFFERENCE_GT_POINT_ONE")
++        if not inside:
++            reasons.append("OUTSIDE_CALIBRATION_BOUNDS")
++        if i == 5 and not (0 <= current_state[i] <= 100 and 0 <= target_state[i] <= 100):
++            reasons.append("GRIPPER_RANGE")
++        rows.append(dict(joint=joint, present_raw=present_raw[joint], target_raw=target_raw[joint],
++                         delta_raw=delta_raw, delta=delta, unit="degree" if i < 5 else "percent_0_100",
++                         exact=delta_raw == 0, proposed_check_passed=not reasons, reasons=reasons))
++    return dict(scope="START_POSITION_AGREEMENT_PROPOSAL_ONLY", proposal_only=True,
++                current_raw_exact=all(r["exact"] for r in rows),
++                proposed_start_check_passed=all(r["proposed_check_passed"] for r in rows),
++                max_raw_difference=MAX_RAW_DIFFERENCE,
++                max_normalized_difference=MAX_NORMALIZED_DIFFERENCE,
++                hardware_access=False, live_authorized=False, rows=rows)
++
++
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--result", required=True, type=Path)
++    args = parser.parse_args(argv)
++    result = json.loads(args.result.read_text(encoding="utf-8"))
++    inspection = result["inspection"]
++    review = assess(inspection["present_raw"], inspection["target_feedback_raw"],
++                    inspection["snapshot"]["state"], inspection["target_feedback_state"],
++                    inspection["joint_bounds"])
++    review["normalized_values_source"] = "저장된 snapshot.state와 target_feedback_state. 재접속·재측정 없음."
++    print(json.dumps(review, ensure_ascii=False, allow_nan=False, indent=2))
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())

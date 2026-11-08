@@ -1,0 +1,15 @@
+{
+  "hold_sha256": "4767b9cf28dce8ec3cbb7c0210d9ba8f0f73c74b18a00723bb6399c46f733183",
+  "hold_review_sha256": "742dc63e6ba15b9b8f23f6d16f512decc21126b04b0798901580abfed2310488",
+  "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+  "hold_only_receipt_is_not_live_permission": true,
+  "operator_live_review_required": true,
+  "scope": "FIRST_MOTION_FROM_HELD_POSE",
+  "run_id": "e1401a6168814392bfe6ad312a1fe557",
+  "context_sha256": "59590a23e69d502bd9d9c29833c950f4b49fafd199955beb2668960e0b4dcda0",
+  "operator_review": true,
+  "unix": 1794123788.3272011,
+  "max_steps": 10,
+  "max_seconds": 5,
+  "live_confirm_still_required": true
+}
