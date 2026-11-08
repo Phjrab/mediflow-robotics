@@ -1,0 +1,9 @@
+{
+  "status": "TEST_ENV_PATCH_APPLIED",
+  "file": "test_first_trial_from_hold.py",
+  "before_sha256": "bbbf51314a7ab091005e3797e84780f24eca244d013ade3e7a09286b515e1eaa",
+  "after_sha256": "ce51f5e1e283b956ee931fef589dce43fab84c808de6568a768bd07db58f945d",
+  "backup": "test_first_trial_from_hold.py.bak_test_home_1794123186363414058",
+  "runtime_changed": false,
+  "hardware_access": false
+}

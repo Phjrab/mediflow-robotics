@@ -1,0 +1,69 @@
+{
+  "status": "SOFTWARE_ONLY_VERIFIED",
+  "files": {
+    "trial_runtime.py": "b1deb5fb476809814d0c452d4300803eeaccfc5feda2bfd21ccf89c20f3c6dd3",
+    "arm_source.py": "126f99e4bf5c69131a614b10513d308d2215a6bde5ed3aef16e8ffbabc1b1703",
+    "operator_arm.py": "3eb5b417f0db644d7fc2a36d77600add92015b94d4667fe07bdee78c985e5670",
+    "hold_continuation.py": "fc156297187eeb2cc11fe84d65d05391ad66bb9d2324df704e87f264876b2c1f",
+    "first_trial_from_hold.py": "a3f3c55635e68b3f0d22c91ab2eb6a7553c2939c51dfadff802abd37ac074859",
+    "run_first_from_hold.sh": "1e2592a92f043c24f4dd656257bf404767df69920cb0bc02af7e0ac578e58239",
+    "test_hold_continuation.py": "3f6c27ef0443ef87d41b3a0d92c959ef550a05d82d9f5b392680e8b5cdab1231",
+    "test_first_trial_from_hold.py": "ce51f5e1e283b956ee931fef589dce43fab84c808de6568a768bd07db58f945d",
+    "test_device_continuation_guard.py": "8de89785a72af432f85e2cce7a6b4baa90a661520958cff3c2ff8e461bed9b81",
+    "test_goal_sdk_integration.py": "eebafed2744d0a766874c196bb62ad659a6ce75ad815f2f555928f087b700983"
+  },
+  "checks": [
+    {
+      "command": [
+        "bash",
+        "-n",
+        "~/v6_process_1793887709179/operator_candidate/run_first_from_hold.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "bash",
+        "~/v6_process_1793887709179/operator_candidate/run_first_from_hold.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "PLAN_ONLY: 토크 변경·장치·추론·목표 쓰기 없음. 새 REARM_HOLD와 LIVE 직접 확인이 필요합니다.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "bash",
+        "~/v6_process_1793887709179/operator_candidate/run_first_from_hold.sh",
+        "--check-files"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"status\": \"HOLD_FILES_READY\", \"hold_sha256\": \"4767b9cf28dce8ec3cbb7c0210d9ba8f0f73c74b18a00723bb6399c46f733183\", \"hold_review_sha256\": \"742dc63e6ba15b9b8f23f6d16f512decc21126b04b0798901580abfed2310488\", \"field_stop_sha256\": \"e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c\", \"hold_only_receipt_is_not_live_permission\": true, \"operator_live_review_required\": true, \"hardware_access\": false, \"live_authorized\": false}\n",
+      "stderr": ""
+    }
+  ],
+  "tests": {
+    "operator_tests_final.log": {
+      "passed": 140,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0
+    },
+    "root_tests_final.log": {
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0
+    }
+  },
+  "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+  "hold_proof_unused": true,
+  "new_stop_absent": true,
+  "hardware_access": false,
+  "inference": "NOT_RUN",
+  "live": "NOT_RUN",
+  "push": "NOT_PUSHED"
+}

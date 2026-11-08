@@ -1,0 +1,67 @@
+{
+  "base_commit": "b5ef9a4",
+  "hardware_access": false,
+  "operator_live_required": true,
+  "files": [
+    {
+      "path": "operator_candidate/trial_runtime.py",
+      "before_sha256": "85f032fa463f72aa0e79833ca88f40b2b901e9f666752daac1e3c2fe6d08de21",
+      "after_sha256": "b1deb5fb476809814d0c452d4300803eeaccfc5feda2bfd21ccf89c20f3c6dd3",
+      "bytes": 14586
+    },
+    {
+      "path": "operator_candidate/arm_source.py",
+      "before_sha256": "701f6bcde366ecb678005ea574a4ec8305c9f221eba5a7fb8a09181ad9ea9c8f",
+      "after_sha256": "126f99e4bf5c69131a614b10513d308d2215a6bde5ed3aef16e8ffbabc1b1703",
+      "bytes": 22892
+    },
+    {
+      "path": "operator_candidate/operator_arm.py",
+      "before_sha256": "d6b58fc5cd1d4e4f246416f8cbb46a3282c6ee07789db72d9acc9e37748488c3",
+      "after_sha256": "3eb5b417f0db644d7fc2a36d77600add92015b94d4667fe07bdee78c985e5670",
+      "bytes": 6100
+    },
+    {
+      "path": "operator_candidate/hold_continuation.py",
+      "before_sha256": null,
+      "after_sha256": "fc156297187eeb2cc11fe84d65d05391ad66bb9d2324df704e87f264876b2c1f",
+      "bytes": 7704
+    },
+    {
+      "path": "operator_candidate/first_trial_from_hold.py",
+      "before_sha256": null,
+      "after_sha256": "a3f3c55635e68b3f0d22c91ab2eb6a7553c2939c51dfadff802abd37ac074859",
+      "bytes": 7228
+    },
+    {
+      "path": "operator_candidate/run_first_from_hold.sh",
+      "before_sha256": null,
+      "after_sha256": "1e2592a92f043c24f4dd656257bf404767df69920cb0bc02af7e0ac578e58239",
+      "bytes": 373
+    },
+    {
+      "path": "operator_candidate/test_hold_continuation.py",
+      "before_sha256": null,
+      "after_sha256": "3f6c27ef0443ef87d41b3a0d92c959ef550a05d82d9f5b392680e8b5cdab1231",
+      "bytes": 6914
+    },
+    {
+      "path": "operator_candidate/test_first_trial_from_hold.py",
+      "before_sha256": null,
+      "after_sha256": "ce51f5e1e283b956ee931fef589dce43fab84c808de6568a768bd07db58f945d",
+      "bytes": 8858
+    },
+    {
+      "path": "operator_candidate/test_device_continuation_guard.py",
+      "before_sha256": null,
+      "after_sha256": "8de89785a72af432f85e2cce7a6b4baa90a661520958cff3c2ff8e461bed9b81",
+      "bytes": 2443
+    },
+    {
+      "path": "operator_candidate/test_goal_sdk_integration.py",
+      "before_sha256": null,
+      "after_sha256": "eebafed2744d0a766874c196bb62ad659a6ce75ad815f2f555928f087b700983",
+      "bytes": 2104
+    }
+  ]
+}

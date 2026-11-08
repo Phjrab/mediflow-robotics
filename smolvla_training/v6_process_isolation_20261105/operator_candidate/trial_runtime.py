@@ -45,13 +45,21 @@ def check_context(context):
 
 class DeviceIO:
     physical=True
-    def __init__(self,context,*,expected_torque=0,allow_goal=False,policy=None):
+    def __init__(self,context,*,expected_torque=0,allow_goal=False,policy=None,continuation=None):
         self.context=context;self.expected_torque=expected_torque;self.allow_goal=allow_goal;self.policy=policy
         self.robot=None;self.permission=None;self.cameras=[];self.authorized=False;self.cleanup_errors=[];self.closed=False
         self.read_history=[];self.last_fault=None;self.diagnostic_phase="INITIAL"
         self.reply_guard=None
+        self.continuation=continuation
     def connect(self):
-        if (Path(__file__).resolve().parent/"FIELD_STOP.json").exists():raise Hold("현장 중단 기록 미검토; 추가 장치 접근 거부")
+        stop=Path(__file__).resolve().parent/"FIELD_STOP.json"
+        if (stop.parent/"POST_HOLD_STOP.json").exists():raise Hold("새 현장 중단 기록 존재; 추가 장치 접근 거부")
+        if self.continuation is not None:
+            from hold_continuation import HoldContinuation
+            if not isinstance(self.continuation,HoldContinuation) or self.expected_torque!=1 or self.continuation.root!=stop.parent:
+                raise Hold("토크 유지 연결 범위·위치·모드 불일치")
+            self.continuation.require_claimed(self.context)
+        elif stop.exists():raise Hold("현장 중단 기록 미검토; 추가 장치 접근 거부")
         dependencies();import probe_current_state as probe,device_preflight as devices
         devices.require();check_context(self.context)
         from lerobot.robots.so_follower import SO101Follower,SO101FollowerConfig
@@ -70,9 +78,12 @@ class DeviceIO:
         import fcntl,termios
         fcntl.ioctl(self.robot.bus.port_handler.ser.fileno(),termios.TIOCEXCL)
         self.health_snapshot()
-        if not self.robot.is_calibrated:raise Hold("모터/파일 보정 불일치")
+        from individual_reply_guard import StrictIndividualReplies
+        with StrictIndividualReplies(self.robot.bus.packet_handler):
+            if not self.robot.is_calibrated:raise Hold("모터/파일 보정 불일치")
     def raw(self,name):
         try:
+            if self.continuation is not None:self.continuation.require_claimed(self.context)
             if self.reply_guard is not None:self.reply_guard.begin(name)
             values=self.robot.bus.sync_read(name,normalize=False,num_retry=0)
         except Exception as error:
@@ -159,7 +170,9 @@ class DeviceIO:
             result[name]=dict(pixels=frame,shape=list(frame.shape),dtype=str(frame.dtype),host_received=time.monotonic(),sha256=hashlib.sha256(frame.tobytes()).hexdigest())
         return result
     def predict(self,frames,state):return self.policy.predict(frames,state)
-    def check_records(self):check_context(self.context)
+    def check_records(self):
+        check_context(self.context)
+        if self.continuation is not None:self.continuation.require_claimed(self.context)
     def send_target(self,target):
         if not self.authorized or not self.allow_goal or self.expected_torque!=1:raise Hold("목표 전송 권한 없음")
         with self.permission.goal_once():self.robot.send_action({j+".pos":target[i] for i,j in enumerate(JOINTS)})

@@ -8,7 +8,7 @@ import time
 from types import SimpleNamespace
 from first_trial_core import JOINTS,Hold,home_gate,vector
 
-ARM_SHA="701f6bcde366ecb678005ea574a4ec8305c9f221eba5a7fb8a09181ad9ea9c8f"
+ARM_SHA="126f99e4bf5c69131a614b10513d308d2215a6bde5ed3aef16e8ffbabc1b1703"
 
 def confirm(token,prompt,*,monitor=None):
     if not sys.stdin.isatty():raise Hold("현장 터미널의 직접 입력 필요; 자동 입력 거부")

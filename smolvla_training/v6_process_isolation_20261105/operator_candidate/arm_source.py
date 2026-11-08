@@ -296,6 +296,8 @@ def main():
         return
     if args.review_stop_for_hold_only and not args.enable:
         raise RuntimeError("중단 검토는 enable 토크 유지 시험 전용")
+    if args.enable and (Path(__file__).resolve().parent/"POST_HOLD_STOP.json").exists():
+        raise RuntimeError("새 현장 중단 기록 존재; 토크ON 자동 재개 금지")
     stop = Path(__file__).resolve().parent / "FIELD_STOP.json"
     stop_review = None
     if args.enable and stop.exists():
