@@ -1,0 +1,105 @@
+{
+  "status": "HOLD",
+  "kind": "REVIEWED_ACTION_FIRST_TRIAL_STOP",
+  "unix": 1794131677.563407,
+  "error": {
+    "kind": "Hold",
+    "reason": "시작 위치·목표 대조 실패; 상세 start_agreement 확인",
+    "observed": {
+      "scope": "START_POSITION_AGREEMENT_ONLY",
+      "current_raw_exact": false,
+      "start_check_passed": false,
+      "max_raw_difference": 1,
+      "max_normalized_difference": 0.1,
+      "hardware_access": false,
+      "live_authorized": false,
+      "rows": [
+        {
+          "joint": "shoulder_pan",
+          "present_raw": 2035,
+          "target_raw": 2037,
+          "delta_raw": 2,
+          "delta": 0.1758241758241752,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        },
+        {
+          "joint": "shoulder_lift",
+          "present_raw": 837,
+          "target_raw": 839,
+          "delta_raw": 2,
+          "delta": 0.1758241758241752,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        },
+        {
+          "joint": "elbow_flex",
+          "present_raw": 3082,
+          "target_raw": 3085,
+          "delta_raw": 3,
+          "delta": 0.2637362637362628,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        },
+        {
+          "joint": "wrist_flex",
+          "present_raw": 2575,
+          "target_raw": 2569,
+          "delta_raw": -6,
+          "delta": -0.5274725274725327,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        },
+        {
+          "joint": "wrist_roll",
+          "present_raw": 1812,
+          "target_raw": 1811,
+          "delta_raw": -1,
+          "delta": -0.08791208791208849,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": true,
+          "reasons": []
+        },
+        {
+          "joint": "gripper",
+          "present_raw": 535,
+          "target_raw": 537,
+          "delta_raw": 2,
+          "delta": 0.12239902080783338,
+          "unit": "percent_0_100",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        }
+      ]
+    },
+    "initialization_cleanup_error": null
+  },
+  "goal_packets": 0,
+  "cleanup_errors": [],
+  "output": "~/first_vla_from_hold_1794131617431241184"
+}

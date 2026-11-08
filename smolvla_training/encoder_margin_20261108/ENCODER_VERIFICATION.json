@@ -1,0 +1,49 @@
+{
+  "status": "ENCODER_MARGIN_REPEAT_READY",
+  "tests_passed": 210,
+  "files": {
+    "operator_candidate/cadence_repeat.py": "f2eeccd8362224f7a985289e33b8ed15e264e28eae484919e53f7a61793ceb5a",
+    "operator_candidate/first_trial_core.py": "6db043385d5b520a38091248e6235ff50766eefbc30161c350874acd90c8cd40",
+    "operator_candidate/first_trial_from_hold.py": "d221ca12203ea952e555c9d9083d440fc42296a453f9a97816929bccfa167420",
+    "operator_candidate/trial_runtime.py": "2d052da99397f1396dfbd94ccd201625f0eaa490cf718ebf13e13d7ceee21952",
+    "operator_candidate/reviewed_start_stop.py": "88c12f82f0713c8a761cf40d7087655eb336fbe2a574db5667239c60baa8148b",
+    "operator_candidate/run_quantized_cadence_repeat.sh": "ee07c85ea0148e4b3a8ef5f1675f87fd26c6d36411dd77b83c2c74f22c083407",
+    "operator_candidate/test_encoder_margin.py": "e1b2c4c7e2498441b3761a9717ef5d8adfd3ef58b90877ee95301215fd92e21e"
+  },
+  "check_files": {
+    "status": "HOLD_FILES_READY",
+    "hold_sha256": "4767b9cf28dce8ec3cbb7c0210d9ba8f0f73c74b18a00723bb6399c46f733183",
+    "hold_review_sha256": "742dc63e6ba15b9b8f23f6d16f512decc21126b04b0798901580abfed2310488",
+    "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "hold_only_receipt_is_not_live_permission": true,
+    "operator_live_review_required": true,
+    "reviewed_start_stop": {
+      "scope": "QUANTIZATION_AWARE_SHORT_REPEAT",
+      "result_sha256": "8268fd1008190afbe45d25e45aa1acbbac84257d29f08f230920be1d86f219d2",
+      "post_hold_stop_sha256": "c70c2909aacf31ce763b6a1b1fff0d072b42092af5a37c31c6156bdc95311ae7",
+      "prior_usage_sha256": "8c0028758824993cce426477e75302d89b5eee45bcd8d31cb753cfc0e7d4b7a5",
+      "max_raw_difference": 1,
+      "max_joint_degrees": 0.1,
+      "max_gripper_points": 0.1,
+      "fresh_operator_review_required": true,
+      "live_authorized": false,
+      "success_sha256": "4909135423bb0788c3f0da7ac329f892a92f582911a7a7b85fcd8a45b247936c",
+      "goal_writes_allowed": true,
+      "expected_last_goal": [
+        -5.607943534851074,
+        -97.98101806640625,
+        96.85830688476562,
+        43.01438522338867,
+        -4.697505950927734,
+        7.604035377502441
+      ],
+      "encoder_margin_for_new_goals": true,
+      "tracking_allowance_one_count": true
+    },
+    "hardware_access": false,
+    "live_authorized": false
+  },
+  "hardware_access": false,
+  "live": "NOT_RUN",
+  "repeat_unused": true
+}

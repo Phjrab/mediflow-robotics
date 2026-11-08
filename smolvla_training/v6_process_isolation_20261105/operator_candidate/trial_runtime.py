@@ -166,7 +166,7 @@ class DeviceIO:
             for j in JOINTS:
                 mid=bus.motors[j].id;raw=active_target[j];other=raw-1 if raw else raw+1
                 quantum.append(abs(float(bus._normalize({mid:raw})[mid])-float(bus._normalize({mid:other})[mid])))
-            continuity_result=continuity(current_state,active_state,review.expected_last_goal,quantum,bounds)
+            continuity_result=continuity(current_state,active_state,review.expected_last_goal,quantum,bounds,encoding_allowance=getattr(review,"quantized_repeat",False))
         return dict(status="ARM_INSPECTION_READ_ONLY",snapshot=snap,present_raw=present,goal_raw=goal,goal_state=goal_state,
                     raw_delta={j:goal[j]-present[j] for j in JOINTS},goal_exact_match=goal==present,
                     target_feedback_raw=active_target,target_feedback_state=active_state,active_target_exact_match=active_target==present,
@@ -182,6 +182,12 @@ class DeviceIO:
             c=OpenCVCamera(OpenCVCameraConfig(index_or_path=self.context["contract"]["cameras"][name],fps=30,width=640,height=480,color_mode="rgb",warmup_s=3,backend=200))
             self.cameras.append(c);self.camera_map[name]=c
             wait(c.connect,self.health_snapshot,deadline=time.monotonic()+12,timeout=12)
+    def motor_quantum(self):
+        bus=self.robot.bus;result=[]
+        for name in JOINTS:
+            mid=bus.motors[name].id;raw=bus.calibration[name].range_min
+            result.append(abs(float(bus._normalize({mid:raw+1})[mid])-float(bus._normalize({mid:raw})[mid])))
+        return result
     def capture_frames(self):
         import numpy as np
         result={}

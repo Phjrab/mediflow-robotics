@@ -1,0 +1,49 @@
+{
+  "base_commit": "6068e22",
+  "hardware_access": false,
+  "operator_live_required": true,
+  "files": [
+    {
+      "path": "operator_candidate/cadence_repeat.py",
+      "before_sha256": "d27dbb9da1d85585df541c9dfeb35de2334e86fdfeb728864356e2eb7ea6c80e",
+      "after_sha256": "f2eeccd8362224f7a985289e33b8ed15e264e28eae484919e53f7a61793ceb5a",
+      "bytes": 1085
+    },
+    {
+      "path": "operator_candidate/first_trial_core.py",
+      "before_sha256": "fc50689a4b8a65ef4cae30080d994d6019faed7bd13e032addc2afab8fc60c3a",
+      "after_sha256": "6db043385d5b520a38091248e6235ff50766eefbc30161c350874acd90c8cd40",
+      "bytes": 12874
+    },
+    {
+      "path": "operator_candidate/first_trial_from_hold.py",
+      "before_sha256": "ea56344b1798b54421a1ea6b05602c5225ea44eee711adfd226a342002bb98d7",
+      "after_sha256": "d221ca12203ea952e555c9d9083d440fc42296a453f9a97816929bccfa167420",
+      "bytes": 9482
+    },
+    {
+      "path": "operator_candidate/trial_runtime.py",
+      "before_sha256": "f8477baf054d78b78401ca9d778b9efca58dc3e8c79d149302fb0b4ae9cd3935",
+      "after_sha256": "2d052da99397f1396dfbd94ccd201625f0eaa490cf718ebf13e13d7ceee21952",
+      "bytes": 16389
+    },
+    {
+      "path": "operator_candidate/reviewed_start_stop.py",
+      "before_sha256": "656fda41aa811b985df8b992f919db7cad9ddb27db08df5b97446f02edcb594f",
+      "after_sha256": "88c12f82f0713c8a761cf40d7087655eb336fbe2a574db5667239c60baa8148b",
+      "bytes": 10252
+    },
+    {
+      "path": "operator_candidate/run_quantized_cadence_repeat.sh",
+      "before_sha256": null,
+      "after_sha256": "ee07c85ea0148e4b3a8ef5f1675f87fd26c6d36411dd77b83c2c74f22c083407",
+      "bytes": 163
+    },
+    {
+      "path": "operator_candidate/test_encoder_margin.py",
+      "before_sha256": null,
+      "after_sha256": "e1b2c4c7e2498441b3761a9717ef5d8adfd3ef58b90877ee95301215fd92e21e",
+      "bytes": 2318
+    }
+  ]
+}

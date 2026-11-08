@@ -21,7 +21,9 @@ SUCCESS_CLAIM_SHA="1e2c050ffa16522902bee46de044e1de356104690d52b5cbb7b088c00f3a5
 
 
 class ReviewedStartStop:
-    def __init__(self,root,*,home=None,review_action=False,profile_success=False,compensated_profile=False,repeat_live=False):
+    def __init__(self,root,*,home=None,review_action=False,profile_success=False,compensated_profile=False,repeat_live=False,quantized_repeat=False):
+        self.quantized_repeat=quantized_repeat
+        if quantized_repeat:repeat_live=True
         if repeat_live:profile_success=True
         if compensated_profile:profile_success=True
         if profile_success:review_action=True
@@ -94,6 +96,13 @@ class ReviewedStartStop:
                 self.operator_message="첫 live 성공과 읽기 주기 개선 기록을 보존합니다. 직전 목표와 현재 피드백을 대조한 뒤 최대10스텝/5초를 반복합니다. 팔 지지·즉시 전원 차단 수단을 현장에서 확인하세요."
                 self.expected_last_goal=success["targets"][-1]["target"]
                 self.summary.update(scope=self.usage_scope,goal_writes_allowed=True,expected_last_goal=self.expected_last_goal)
+                if quantized_repeat:
+                    self.profile_paths+=((self.home/"first_vla_from_hold_1794131617431241184/RESULT.json","12ae262414e50f3e00caadf11117ad25697f047c6d67283d9448535c708e755d"),
+                        (self.root/"POST_REPEAT_LIVE_STOP.json","debe50acb60dbc9878957fd8f580389e264730bf3e85d34a3ef14b94ebed14c8"))
+                    self.next_stop_name="POST_QUANTIZED_REPEAT_STOP.json";self.stop_sha="quantized_repeat_"+SUCCESS_SHA
+                    self.operator_token="REARM_QUANTIZED";self.usage_scope="QUANTIZATION_AWARE_SHORT_REPEAT"
+                    self.operator_message="손목 정수 변환 오차 중단을 보존합니다. 직전 목표 일치를 확인하고 새 목표는 정수 변환 여유를 두어 이동·속도·보정 범위 안으로 제한합니다. 최대10스텝/5초이며 현장 정지 수단을 확인하세요."
+                    self.summary.update(scope=self.usage_scope,encoder_margin_for_new_goals=True,tracking_allowance_one_count=True)
                 self.check()
 
     def check(self):

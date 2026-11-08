@@ -74,18 +74,22 @@ def frame_gate(frames,now,limits,previous=None):
     if max(stamps)-min(stamps)>limits.camera_skew:raise Hold("카메라 수신 시각 차이 초과")
     return {role:row["sha256"] for role,row in frames.items()}
 
-def target_gate(action,measured,previous,bounds,limits,dt):
+def target_gate(action,measured,previous,bounds,limits,dt,*,quantum=None):
     action=vector(action);measured=vector(measured);previous=vector(previous)
     bounds_gate(measured,bounds,source="measured_state")
     bounds_gate(previous,bounds,source="previous_target")
     if any(abs(action[i]-measured[i])>limits.first_jump or abs(action[i]-previous[i])>limits.first_jump for i in range(6)):raise Hold("큰 목표 점프")
     if type(dt) not in (float,int) or not math.isfinite(dt) or dt<=0:raise Hold("명령 간격 미확인")
     result=[]
+    supplied_quantum=quantum is not None
+    quantum=[0.]*6 if quantum is None else vector(quantum)
+    if any((q<=0 if supplied_quantum else q<0) or q>=(limits.cap if i<5 else 2.) for i,q in enumerate(quantum)):raise Hold("정수 변환 여유 미확인")
     for i in range(6):
-        cap=limits.cap if i<5 else 2.
-        speed_delta=limits.speed*dt if i<5 else 2.
-        low=max(measured[i]-cap,previous[i]-speed_delta,bounds[i][0])
-        high=min(measured[i]+cap,previous[i]+speed_delta,bounds[i][1])
+        cap=(limits.cap if i<5 else 2.)-quantum[i]
+        speed_delta=(limits.speed*dt if i<5 else 2.)-2*quantum[i]
+        if speed_delta<0:raise Hold("정수 변환 이후 속도 여유 부족")
+        low=max(measured[i]-cap,previous[i]-speed_delta,bounds[i][0]+quantum[i])
+        high=min(measured[i]+cap,previous[i]+speed_delta,bounds[i][1]-quantum[i])
         if low>high:raise Hold("현재/이전 목표 제한 교집합 없음")
         result.append(min(high,max(low,action[i])))
     return vector(result)
@@ -141,6 +145,8 @@ class FirstTrialAdapter:
         for row in actions:vector(row)
         previous=state[:];last_sent=None;clip_window=min(20,limits.max_steps);clips=deque(maxlen=clip_window)
         compensated=getattr(self,"compensated",False);self.step_timings=[]
+        quantum=self.io.motor_quantum() if getattr(self,"quantized",False) else None
+        if quantum is not None:self.policy_chunk["motor_quantum"]=quantum
         for step,action in enumerate(actions[:limits.max_steps]):
             timing=dict(step=step);self.step_timings.append(timing);work_started=self.clock()
             if self.clock()>=deadline or self.stop.is_set():raise Hold("시간 상한/정지 요청")
@@ -160,7 +166,7 @@ class FirstTrialAdapter:
             dt=1/limits.fps if last_sent is None else (max(self.clock(),due) if compensated else self.clock())-last_sent
             self.last_target_context=dict(step=step,raw_action=action,measured_state=measured,
                                           previous_target=previous,bounds=self.bounds,dt=dt)
-            try:target=target_gate(action,measured,previous,self.bounds,limits,dt)
+            try:target=target_gate(action,measured,previous,self.bounds,limits,dt,quantum=quantum)
             except Hold as error:
                 error.observed=dict(target_context=self.last_target_context,gate=getattr(error,"observed",None))
                 raise

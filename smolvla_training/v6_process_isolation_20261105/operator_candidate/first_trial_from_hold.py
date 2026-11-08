@@ -33,6 +33,7 @@ def main(argv=None):
     review_mode.add_argument("--review-start-hold",action="store_true")
     review_mode.add_argument("--review-action-hold",action="store_true")
     review_mode.add_argument("--repeat-live",action="store_true")
+    review_mode.add_argument("--quantized-repeat",action="store_true")
     parser.add_argument("--hold-log",type=Path,default=Path.home()/"torque_guard_20261108_155436/events.jsonl")
     parser.add_argument("--repeat-summary",type=Path,default=root.parent/"REPEAT_SUMMARY.json")
     parser.add_argument("--out",type=Path)
@@ -40,16 +41,16 @@ def main(argv=None):
     args=parser.parse_args(argv)
     def continuation():
         start_review=None
-        if args.review_start_hold or args.review_action_hold or args.repeat_live:
+        if args.review_start_hold or args.review_action_hold or args.repeat_live or args.quantized_repeat:
             from reviewed_start_stop import ReviewedStartStop
-            start_review=ReviewedStartStop(root,review_action=args.review_action_hold,repeat_live=args.repeat_live)
+            start_review=ReviewedStartStop(root,review_action=args.review_action_hold,repeat_live=args.repeat_live,quantized_repeat=args.quantized_repeat)
         return HoldContinuation(root,args.hold_log,start_review=start_review)
     if not args.execute:
         if args.check_files:
             receipt=continuation();qualified(args.repeat_summary)
             print(json.dumps(dict(status="HOLD_FILES_READY",**receipt.summary,hardware_access=False,live_authorized=False),ensure_ascii=False))
         else:
-            token="REARM_REPEAT" if args.repeat_live else "REARM_ACTION" if args.review_action_hold else "REARM_START" if args.review_start_hold else "REARM_HOLD"
+            token="REARM_QUANTIZED" if args.quantized_repeat else "REARM_REPEAT" if args.repeat_live else "REARM_ACTION" if args.review_action_hold else "REARM_START" if args.review_start_hold else "REARM_HOLD"
             print("PLAN_ONLY: 토크 변경·장치·추론·목표 쓰기 없음. 새 "+token+"와 LIVE 직접 확인이 필요합니다.")
         return 0
     if not args.live or args.check_files or not all((args.operator_present,args.supported,args.stop_ready)) or not sys.stdin.isatty():
@@ -79,13 +80,14 @@ def main(argv=None):
         sensor_gate(inspection["snapshot"],Limits(),starting=True)
         if inspection.get("arm_ready") is not True:
             error=Hold("시작 위치·목표 대조 실패; 상세 start_agreement 확인")
-            error.observed=inspection.get("start_agreement",inspection)
+            error.observed=inspection.get("repeat_continuity") or inspection.get("start_agreement",inspection)
             raise error
         io=DeviceIO(context,expected_torque=1,allow_goal=True,policy=policy,continuation=receipt)
         evidence=dict(kind="OPERATOR_ARMED",model_verified=True,units_verified=True,mapping_verified=True,
                       operator_live_confirmed=False,arm_receipt_verified=True)
         adapter=SupervisedAdapter(io,evidence,context["home"],[],waiter=wait);adapter.output=output
-        adapter.compensated=args.repeat_live
+        adapter.compensated=args.repeat_live or args.quantized_repeat
+        adapter.quantized=args.quantized_repeat
         Controller(adapter).run(FirstMotionPlan(True))
         verify_target_receipt(io,adapter.sent,Limits().max_steps)
         result["status"]="FIRST_TRIAL_COMPLETE"
