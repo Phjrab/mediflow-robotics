@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 import time
 import traceback
+from individual_reply_guard import StrictIndividualReplies, read_target_feedback
 
 CALIBRATION_HASH = "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e"
 V4_HASH = "af72d76b992c237211c576796219694503986609277da9b877913b550df6ec56"
@@ -158,13 +159,13 @@ def read_joints(bus, register, normalize=True):
     return {joint: bus.read(register, joint, normalize=normalize, num_retry=0) for joint in JOINTS}
 
 
-def diagnostics(bus, api, home=None):
+def diagnostics(bus, api, home=None, *, expected_torque=None):
     positions = read_joints(bus, "Present_Position")
     values = api.vector([float(positions[j]) for j in api.JOINTS])
     temperatures = api.read_temperatures(bus)
     # 모든 위치/온도 조회 뒤에 모드, 그리고 토크를 마지막으로 읽는다.
     modes = {j: int(bus.read("Operating_Mode", j, normalize=False, num_retry=0)) for j in api.JOINTS}
-    torque = fresh_torque(bus, api)
+    torque = fresh_torque(bus, api, expected=expected_torque)
     targets = None
     if home is not None:
         try:
@@ -182,16 +183,21 @@ def diagnostics(bus, api, home=None):
     return torque, modes, positions
 
 
-def fresh_torque(bus, api):
-    values = {j: int(bus.read("Torque_Enable", j, normalize=False, num_retry=0)) for j in api.JOINTS}
-    if any(v not in (0, 1) for v in values.values()):
-        raise RuntimeError("토크 응답 이상; 상태 미확인")
+def fresh_torque(bus, api, *, expected=None):
+    values = {}
+    for joint in api.JOINTS:
+        value = bus.read("Torque_Enable", joint, normalize=False, num_retry=0)
+        values[joint] = value
+        if type(value) is not int or value not in (0, 1) or (expected is not None and value != expected):
+            error = RuntimeError("토크 응답 이상 또는 예상 상태 불일치; 추가 읽기 중단")
+            error.observed = dict(joint=joint, torque=values, expected=expected)
+            raise error
     return values
 
 
 def arm(bus, api, home, guard):
     def state_check(stage):
-        torque, modes, positions = diagnostics(bus, api, home)
+        torque, modes, positions = diagnostics(bus, api, home, expected_torque=0)
         guard.emit(dict(event="STATE_CHECK", stage=stage, torque=torque, modes=modes, positions=positions))
         if any(t != 0 for t in torque.values()):
             raise RuntimeError("시작 거부: 토크ON 또는 일부ON; 자동 변경하지 않음")
@@ -202,33 +208,45 @@ def arm(bus, api, home, guard):
         return temperatures, positions
     temps, before = state_check("before_existing_goal_check")
     raw = read_joints(bus, "Present_Position", normalize=False)
-    goal = read_joints(bus, "Goal_Position", normalize=False)
+    control = read_joints(bus, "Goal_Position", normalize=False)
+    goal = read_target_feedback(bus, JOINTS)
+    guard.emit(dict(event="TARGET_REGISTERS", control_goal_42=control, active_target_67=goal, present_56=raw))
+    if any(not bus.calibration[j].range_min <= raw[j] <= bus.calibration[j].range_max for j in JOINTS):
+        raise RuntimeError("현재 위치가 보정 범위 밖; 토크ON 금지")
     if goal != raw:
         raise RuntimeError("기존 목표와 현재 위치 불일치; 목표 쓰기가 토크ON을 유발한 현장 기록이 있어 자동 수정하지 않음")
     state_check("after_existing_goal_check")
     after = read_joints(bus, "Present_Position")
+    api.vector([float(after[j]) for j in api.JOINTS])
     if any(abs(after[j] - before[j]) > 0.5 for j in api.JOINTS):
         raise RuntimeError("준비 중 자세0.5단위 초과 변화; 쓰기 없이 중단")
     raw_now = read_joints(bus, "Present_Position", normalize=False)
-    goal_now = read_joints(bus, "Goal_Position", normalize=False)
-    if raw_now != raw or goal_now != raw_now:
+    control_now = read_joints(bus, "Goal_Position", normalize=False)
+    goal_now = read_target_feedback(bus, JOINTS)
+    if raw_now != raw or goal_now != raw_now or control_now != control:
         raise RuntimeError("준비 중 원시 위치 또는 기존 목표 변화; 쓰기 없이 중단")
-    torque = fresh_torque(bus, api)
+    torque = fresh_torque(bus, api, expected=0)
     guard.emit(dict(event="TORQUE_CHECK", stage="before_explicit_on", torque=torque))
     if any(torque.values()):
         raise RuntimeError("활성화 직전 토크ON; 자동 변경하지 않음")
     guard.confirm_existing_goal(raw_now, goal_now)
     guarded_write(bus, guard, "Torque_Enable", dict.fromkeys(api.JOINTS, 1))
-    torque, modes = api.read_motor_state(bus)
-    guard.emit(dict(event="TORQUE_CHECK", stage="after_explicit_on", torque=torque, modes=modes))
-    if any(t != 1 for t in torque.values()) or any(m != 0 for m in modes.values()):
-        raise RuntimeError("활성화 일부 실패 또는 모드 불일치; 지지 유지, 자동OFF하지 않음")
-    api.read_health(bus)
-    current = read_joints(bus, "Present_Position")
-    if any(abs(current[j]-before[j]) > 0.5 for j in api.JOINTS):
-        raise RuntimeError("활성화 뒤 자세0.5단위 초과 변화; 지지 유지, 추가 쓰기 없음")
+    for tick in range(5):
+        if tick:time.sleep(.05)
+        torque = fresh_torque(bus, api, expected=1)
+        modes = read_joints(bus, "Operating_Mode", normalize=False)
+        guard.emit(dict(event="TORQUE_CHECK", stage="after_explicit_on", tick=tick, torque=torque, modes=modes))
+        if any(type(m) is not int or m != 0 for m in modes.values()):
+            raise RuntimeError("활성화 뒤 모드 불일치; 지지 유지, 추가 쓰기 없음")
+        api.read_health(bus)
+        current = read_joints(bus, "Present_Position")
+        api.vector([float(current[j]) for j in api.JOINTS])
+        guard.emit(dict(event="STATE_AFTER_ON", tick=tick, current=current,
+                        delta={j:current[j]-before[j] for j in api.JOINTS}))
+        if any(abs(current[j]-before[j]) > 0.5 for j in api.JOINTS):
+            raise RuntimeError("활성화 뒤 자세0.5단위 초과 변화; 지지 유지, 추가 쓰기 없음")
     return {"torque":torque, "modes":modes, "temperature_before":temps,
-            "current":current, "goal_raw":goal_now, "goal_writes":0}
+            "current":current, "target_feedback_67":goal_now, "control_goal_42":control_now, "goal_writes":0}
 
 
 
@@ -262,6 +280,8 @@ def main():
     mode.add_argument("--enable", action="store_true")
     mode.add_argument("--disable", action="store_true")
     p.add_argument("--execute", action="store_true")
+    p.add_argument("--review-stop-for-hold-only", action="store_true",
+                   help="중단 기록을 보존하고 별도 현장 확인 후 토크 유지 시험만 수행. live 허가 아님")
     p.add_argument("--confirm-supported", action="store_true")
     p.add_argument("--v4", type=Path, default=Path.home()/"so101_first_action_test_safe_20261104_v4.py")
     p.add_argument("--home", type=Path, default=Path.home()/"home_state_so101.json")
@@ -273,6 +293,27 @@ def main():
     if not args.execute:
         print("PLAN_ONLY: 장치 열기/토크 변경 없음; 실제 변경에는 --execute 필요")
         return
+    if args.review_stop_for_hold_only and not args.enable:
+        raise RuntimeError("중단 검토는 enable 토크 유지 시험 전용")
+    stop = Path(__file__).resolve().parent / "FIELD_STOP.json"
+    stop_review = None
+    if args.enable and stop.exists():
+        if not args.review_stop_for_hold_only:
+            raise RuntimeError("기존 FIELD_STOP 보존 중; 토크ON은 별도 현장 중단 검토가 필요")
+        from review_saved_readiness import review
+        stop_review = review(Path(__file__).resolve().parent.parent / "readonly_diagnostics", stop)
+        allowed = {"FIELD_STOP_REVIEW_REQUIRED", "TORQUE_ENABLE_TRANSITION_UNVERIFIED"}
+        if stop_review.get("field_stop_sha256") != "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c" or stop_review.get("current_target_readback_verified") is not True or set(stop_review["blockers"]) != allowed:
+            raise RuntimeError("토크 유지 시험의 저장된 읽기 근거 불충족; 장치 미연결")
+        import sys
+        if not sys.stdin.isatty():
+            raise RuntimeError("중단 검토는 현장 터미널 직접 입력 필요")
+        print("과거 쓰기 뒤 토크 불일치의 직접 원인은 미확인입니다. 이번 시험은 목표 쓰기0, 토크ON 1패킷만 허용합니다.")
+        print("토크ON 때 팔이 움직일 가능성이 남아 있습니다. 팔 지지·즉시 DC 전원 차단 수단이 있을 때만 직접 확인하세요.")
+        if input("이 별도 토크 유지 시험에 동의하면 REVIEW_HOLD 입력: ").strip() != "REVIEW_HOLD":
+            raise RuntimeError("현장 중단 검토 불일치; 장치 미연결")
+    elif args.review_stop_for_hold_only:
+        raise RuntimeError("검토할 원래 FIELD_STOP이 없음; 자동 허가 금지")
     if args.disable and not args.confirm_supported:
         raise SystemExit("거부: 팔/물체를 지지한 뒤 --confirm-supported 필요")
     if hashlib.sha256(args.v4.expanduser().read_bytes()).hexdigest() != V4_HASH:
@@ -290,6 +331,9 @@ def main():
                 raise
             print("HOME_DIAGNOSTICS_UNVERIFIED: 토크 해제는 home 파일을 요구하지 않음")
     if args.enable:
+        from torque_readonly_diagnosis import service_gate, port_owners
+        service_gate()
+        port_owners(set())
         api.verify_units(args.units, args.checkpoint, calibration)
         if api.inspect_checkpoint(args.checkpoint)["checkpoint_kind"] != "SO101_FINETUNED_CANDIDATE":
             raise RuntimeError("base 또는 모델 미확인")
@@ -300,8 +344,18 @@ def main():
     print("팔은 지지대로 안정되게 받치고 회전부에서 손을 빼세요. 토크 변경은 물리 작용을 일으킬 수 있습니다.")
     if input("진행하려면 " + token + " 입력: ").strip() != token:
         raise RuntimeError("사용자 확인 불일치; 장치 미연결")
+    if args.enable:
+        service_gate()
+        port_owners(set())
+        if stop_review is not None and hashlib.sha256(stop.read_bytes()).hexdigest() != stop_review["field_stop_sha256"]:
+            raise RuntimeError("현장 검토 후 중단 기록 변경; 장치 미연결")
     args.out = args.out.expanduser()
     args.out.mkdir(parents=True, exist_ok=False)
+    if stop_review is not None:
+        with (args.out / "HOLD_REVIEW.json").open("x", encoding="utf-8") as receipt:
+            json.dump(dict(scope="TORQUE_HOLD_ONLY", stop_sha256=stop_review["field_stop_sha256"],
+                           diagnosis_sha256=stop_review["result_sha256"], operator_review=True,
+                           live_authorized=False, stop_preserved=True, unix=time.time()), receipt, ensure_ascii=False, indent=2)
     with (args.out/'events.jsonl').open('x', encoding='utf-8') as log:
         def emit(row):
             text = json.dumps(dict(unix=time.time(), **row), ensure_ascii=False)
@@ -314,6 +368,7 @@ def main():
                 calibration_dir=calibration.parent, cameras={}, use_degrees=True,
                 max_relative_target=2.0, disable_torque_on_disconnect=False))
             bus = robot.bus
+            replies = StrictIndividualReplies(bus.packet_handler).install()
             try:
                 validate_sdk(bus)
                 guard.phase = 'open'
@@ -322,19 +377,32 @@ def main():
                 import fcntl, termios
                 fcntl.ioctl(bus.port_handler.ser.fileno(), termios.TIOCEXCL)
                 guard.phase = 'calibration_check'
+                if args.enable:
+                    fresh_torque(bus, api, expected=0)
                 if not robot.is_calibrated:
                     raise RuntimeError('파일과 모터 보정 불일치; 자동 보정하지 않음')
                 guard.phase = 'state_check'
                 result = arm(bus, api, home, guard) if args.enable else release(bus, api, guard, home)
-                emit(dict(event='RESULT', status='TORQUE_ON_HOLD' if args.enable else 'TORQUE_OFF_SUPPORTED',
-                          result=result, authorized_writes=guard.writes, reads=guard.reads))
             except BaseException as exc:
-                emit(dict(event='STOPPED', kind=type(exc).__name__, reason=str(exc)))
+                emit(dict(event='STOPPED', kind=type(exc).__name__, reason=str(exc),
+                          observed=getattr(exc,"observed",None), recent_replies=replies.history,
+                          authorized_writes=guard.writes, goal_writes=0))
                 raise
             finally:
                 guard.phase = 'close'
-                if bus.is_connected:
-                    close_bus(bus)
+                try:
+                    if bus.is_connected:
+                        close_bus(bus)
+                finally:
+                    replies.restore()
+                    if stop_review is not None:
+                        preserved = hashlib.sha256(stop.read_bytes()).hexdigest() == stop_review["field_stop_sha256"]
+                        emit(dict(event="FIELD_STOP_PRESERVED", preserved=preserved))
+                        if not preserved:
+                            raise RuntimeError("중단 기록 변경; 자동 복구하지 않음")
+            emit(dict(event='RESULT', status='TORQUE_ON_HOLD' if args.enable else 'TORQUE_OFF_SUPPORTED',
+                      result=result, authorized_writes=guard.writes, goal_writes=0, reads=guard.reads,
+                      port_closed=not bus.is_connected, live="NOT_RUN"))
     print('송신 기록:', args.out/'events.jsonl')
 
 

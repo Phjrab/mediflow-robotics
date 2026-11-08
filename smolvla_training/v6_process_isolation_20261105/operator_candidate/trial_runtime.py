@@ -56,7 +56,7 @@ class DeviceIO:
         devices.require();check_context(self.context)
         from lerobot.robots.so_follower import SO101Follower,SO101FollowerConfig
         from live_safety_runtime import PacketPermission
-        class Permission(PacketPermission):READS={**PacketPermission.READS,42:2,66:1}
+        class Permission(PacketPermission):READS={**PacketPermission.READS,42:2,66:1,67:2}
         self.robot=SO101Follower(SO101FollowerConfig(port=probe.PORT,id="so-101",calibration_dir=self.context["calibration"].parent,
                           cameras={},use_degrees=True,max_relative_target=2.,disable_torque_on_disconnect=False))
         table=self.robot.bus.model_ctrl_table
@@ -127,16 +127,21 @@ class DeviceIO:
     def inspect_goal(self):
         snap=self.snapshot();home_gate(snap["state"],self.context["home"])
         present=self.raw("Present_Position");goal=self.raw("Goal_Position")
-        for values in (present,goal):
+        from individual_reply_guard import StrictIndividualReplies,read_target_feedback
+        with StrictIndividualReplies(self.robot.bus.packet_handler):
+            active_target=read_target_feedback(self.robot.bus,JOINTS)
+        for values in (present,goal,active_target):
             if any(type(v) is not int or not 0<=v<=4095 for v in values.values()):raise Hold("원시 목표/현재 위치 범위 오류")
         bus=self.robot.bus
         goal_state=[float(bus._normalize({bus.motors[j].id:goal[j]})[bus.motors[j].id]) for j in JOINTS]
+        active_state=[float(bus._normalize({bus.motors[j].id:active_target[j]})[bus.motors[j].id]) for j in JOINTS]
         bounds=self.joint_bounds();within=True
-        try:bounds_gate(snap["state"],bounds);bounds_gate(goal_state,bounds)
+        try:bounds_gate(snap["state"],bounds);bounds_gate(active_state,bounds)
         except Hold:within=False
         return dict(status="ARM_INSPECTION_READ_ONLY",snapshot=snap,present_raw=present,goal_raw=goal,goal_state=goal_state,
                     raw_delta={j:goal[j]-present[j] for j in JOINTS},goal_exact_match=goal==present,
-                    joint_bounds=bounds,bounds_contain_current_and_goal=within,arm_ready=goal==present and within,
+                    target_feedback_raw=active_target,target_feedback_state=active_state,active_target_exact_match=active_target==present,
+                    joint_bounds=bounds,bounds_contain_current_and_active_target=within,arm_ready=active_target==present and within,
                     register_writes=self.permission.goal_packets)
     def connect_cameras(self):
         from lerobot.cameras.opencv import OpenCVCameraConfig

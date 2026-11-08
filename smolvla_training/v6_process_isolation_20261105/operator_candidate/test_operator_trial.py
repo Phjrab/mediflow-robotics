@@ -14,7 +14,16 @@ from operator_arm import confirm,ArmingAdapter
 HOME=dict(joint_names=list(JOINTS),state=[0.]*6,tolerance_deg=5.)
 
 class Bus:
-    def __init__(self):self.torque=dict.fromkeys(JOINTS,0);self.goal=dict.fromkeys(JOINTS,1000);self.current=dict(self.goal);self.writes=[]
+    def __init__(self):
+        self.torque=dict.fromkeys(JOINTS,0);self.goal=dict.fromkeys(JOINTS,1000);self.current=dict(self.goal);self.writes=[]
+        self.feedback=dict(self.current)
+        self.motors={j:SimpleNamespace(id=i) for i,j in enumerate(JOINTS,1)}
+        self.calibration={j:SimpleNamespace(range_min=100,range_max=3000) for j in JOINTS}
+        self.port_handler=object()
+        def read_target(port,motor,address,width):
+            if (address,width)!=(67,2):raise AssertionError("목표 피드백 주소 오류")
+            return list(self.feedback[JOINTS[motor-1]].to_bytes(2,"little")),0,0
+        self.packet_handler=SimpleNamespace(_individual_reply_guard=SimpleNamespace(installed=True,fault=None),readTxRx=read_target)
     def read(self,register,joint,normalize=True,num_retry=0):
         if register=="Present_Position":return 0. if normalize else self.current[joint]
         if register=="Goal_Position":return self.goal[joint]
@@ -73,7 +82,7 @@ class OperatorTests(unittest.TestCase):
     def test_arm_requires_exact_goal_and_torque_off(self):
         for fault in ("goal","partial_on"):
             bus=Bus();guard=Guard()
-            if fault=="goal":bus.goal[JOINTS[0]]+=1
+            if fault=="goal":bus.feedback[JOINTS[0]]+=1
             else:bus.torque[JOINTS[0]]=1
             with self.subTest(fault=fault),contextlib.redirect_stdout(io.StringIO()),self.assertRaises(RuntimeError):
                 arm.arm(bus,api(bus),HOME,guard)
@@ -82,6 +91,31 @@ class OperatorTests(unittest.TestCase):
         bus=Bus();guard=Guard()
         with contextlib.redirect_stdout(io.StringIO()):result=arm.arm(bus,api(bus),HOME,guard)
         self.assertEqual(result["goal_writes"],0);self.assertEqual(bus.writes,[("Torque_Enable",dict.fromkeys(JOINTS,1))])
+    def test_control_zero_is_recorded_but_active_target_drives_mock_gate(self):
+        bus=Bus();bus.goal=dict.fromkeys(JOINTS,0);guard=Guard()
+        with contextlib.redirect_stdout(io.StringIO()):result=arm.arm(bus,api(bus),HOME,guard)
+        self.assertEqual(result["control_goal_42"],dict.fromkeys(JOINTS,0))
+        self.assertEqual(result["target_feedback_67"],dict.fromkeys(JOINTS,1000))
+        self.assertEqual([name for name,_ in bus.writes],["Torque_Enable"])
+    def test_first_wrong_torque_stops_before_reading_other_joints(self):
+        bus=Bus();bus.torque[JOINTS[0]]=1;seen=[];read=bus.read
+        def wrapped(register,joint,**kw):seen.append(joint);return read(register,joint,**kw)
+        bus.read=wrapped
+        with self.assertRaises(RuntimeError):arm.fresh_torque(bus,api(bus),expected=0)
+        self.assertEqual(seen,[JOINTS[0]])
+        self.assertEqual(bus.writes,[])
+    def test_late_off_after_mock_enable_never_sends_second_packet(self):
+        bus=Bus();guard=Guard();state=api(bus);ticks=[]
+        def health(_ ,**kw):
+            if bus.writes:
+                ticks.append(1)
+                bus.torque[JOINTS[0]]=0
+            return dict.fromkeys(JOINTS,30.)
+        state.read_health=health
+        with patch("arm_source.time.sleep",return_value=None),contextlib.redirect_stdout(io.StringIO()),self.assertRaises(RuntimeError):
+            arm.arm(bus,state,HOME,guard)
+        self.assertEqual(len(bus.writes),1)
+        self.assertEqual(ticks,[1])
     def test_packet_guard_denies_goal_and_unconfirmed_on(self):
         guard=arm.WriteGuard("enable",lambda _:None)
         with self.assertRaises(arm.BlockedCommand):

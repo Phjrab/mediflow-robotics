@@ -1,0 +1,68 @@
+{
+  "base_commit": "239568a",
+  "kind": "TARGET67_SOFTWARE_ONLY",
+  "hardware_access": false,
+  "live_authorized": false,
+  "files": [
+    {
+      "path": "operator_candidate/arm_source.py",
+      "before_sha256": "6d398d3306498699cb45975033f9e03c173edaf088bc9d63d28bbdf64ac2d3fe",
+      "after_sha256": "23fa519f40d793b4722ac4a68bcee921cfff1d66102218a6aa078531c77d1ee8",
+      "bytes": 22650
+    },
+    {
+      "path": "operator_candidate/operator_arm.py",
+      "before_sha256": "038d92ef82193041101bec13a8fef866f6585d6fbb10da0c52916308fca73ea7",
+      "after_sha256": "4dbcc3baffeba81978da1199b16dd958815c2eb8d014072426560181693d67b7",
+      "bytes": 6077
+    },
+    {
+      "path": "operator_candidate/trial_runtime.py",
+      "before_sha256": "c77ba4e056c6a16a90879139cc8c3e94bbcaec11b0859b1181fbed3f6aaddda0",
+      "after_sha256": "85f032fa463f72aa0e79833ca88f40b2b901e9f666752daac1e3c2fe6d08de21",
+      "bytes": 13658
+    },
+    {
+      "path": "operator_candidate/test_operator_trial.py",
+      "before_sha256": "2c2135ee65387fd7983e3839a5703037b8d2218d328f586143c76f236e74ba2f",
+      "after_sha256": "0945902830c95fc3781519e0b100518c1d1cf2914473ce285b63dc08fa35cd62",
+      "bytes": 7514
+    },
+    {
+      "path": "operator_candidate/review_saved_readiness.py",
+      "before_sha256": "a7b4ea315afd1592cde01575dde12e39c889d21efe0a42a503f522dac5bbb84c",
+      "after_sha256": "282b65b02b075111ce06727826cf340d84964caf7926d0c6d3210a19e855dfeb",
+      "bytes": 7728
+    },
+    {
+      "path": "operator_candidate/test_review_saved_readiness.py",
+      "before_sha256": "e9c094f69c133021623985c324cfd71d9404a029d38c6b7649bf02f6372d7577",
+      "after_sha256": "b301837ae296a85ca451724f1bade5adb8cb03806854dbaac06049a391c8aaa1",
+      "bytes": 5615
+    },
+    {
+      "path": "operator_candidate/individual_reply_guard.py",
+      "before_sha256": null,
+      "after_sha256": "2be252355c324dc5ec6942ace4c794f24b397308a9833e52d8193c35c6057f53",
+      "bytes": 4408
+    },
+    {
+      "path": "operator_candidate/test_individual_reply_guard.py",
+      "before_sha256": null,
+      "after_sha256": "652e27d997a8fcd1b8f11948102689e410e0340dc8f9b520a1f03e3a6d903ca6",
+      "bytes": 3628
+    },
+    {
+      "path": "operator_candidate/test_target67_entry_gates.py",
+      "before_sha256": null,
+      "after_sha256": "2e893e70634f75765321511436ba71512791b7b547cd2c718bf2432739d64c92",
+      "bytes": 3591
+    },
+    {
+      "path": "operator_candidate/run_target67_hold.sh",
+      "before_sha256": null,
+      "after_sha256": "b71d615947017f654b141b95dd538c2829fa246b0ed445b81851d88d869ae298",
+      "bytes": 371
+    }
+  ]
+}

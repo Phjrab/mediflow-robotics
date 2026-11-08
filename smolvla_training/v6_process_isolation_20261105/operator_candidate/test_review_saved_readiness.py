@@ -36,11 +36,14 @@ class Tests(unittest.TestCase):
             self.assertIn("--inspect-goal-feedback",report["next_operator_read_command"])
             self.assertFalse(report["live_authorized"])
 
-    def test_feedback_matches_but_control_zero_requires_semantics_review(self):
+    def test_documented_feedback_matches_but_control_zero_never_authorizes_rearm(self):
         with tempfile.TemporaryDirectory() as name:
             root=Path(name);self.write_run(root,"1",feedback=True)
             report=review(root,root/"FIELD_STOP.json")
-            self.assertIn("REGISTER_SEMANTICS_REVIEW_REQUIRED",report["blockers"])
+            self.assertIn("TORQUE_ENABLE_TRANSITION_UNVERIFIED",report["blockers"])
+            self.assertIn("DOCUMENTED_TARGET67_MATCHES_PRESENT56",report["findings"])
+            self.assertTrue(report["current_target_readback_verified"])
+            self.assertFalse(report["rearm_authorized"])
             self.assertTrue(report["feedback_matches_current"])
             self.assertFalse(report["control_goal_matches_current"])
             self.assertFalse(report["live_authorized"])
@@ -57,7 +60,30 @@ class Tests(unittest.TestCase):
             root=Path(name);self.write_run(root,"1",feedback=True,bad_checksum=True)
             report=review(root,root/"FIELD_STOP.json")
             self.assertIn("RAW_REPLY_EVIDENCE_INVALID",report["blockers"])
+            self.assertFalse(report["current_target_readback_verified"])
             self.assertFalse(report["live_authorized"])
+
+    def test_documented_feedback_match_preserves_existing_stop(self):
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name);self.write_run(root,"1",feedback=True)
+            stop=root/"FIELD_STOP.json";original=b'{"status":"HOLD"}\n';stop.write_bytes(original)
+            report=review(root,stop)
+            self.assertIn("FIELD_STOP_REVIEW_REQUIRED",report["blockers"])
+            self.assertEqual(stop.read_bytes(),original)
+            self.assertFalse(report["live_authorized"])
+            self.assertFalse(report["rearm_authorized"])
+
+    def test_invalid_feedback_bytes_cannot_become_verified_target(self):
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name);self.write_run(root,"1",feedback=True)
+            path=root/"1/responses.jsonl"
+            rows=[json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+            rows=[row for row in rows if row["reply"]["register"]!="Goal_Feedback_67"]
+            path.write_text("\n".join(json.dumps(row) for row in rows),encoding="utf-8")
+            report=review(root,root/"FIELD_STOP.json")
+            self.assertIn("FEEDBACK_RAW_REPLY_MISMATCH",report["blockers"])
+            self.assertFalse(report["current_target_readback_verified"])
+            self.assertFalse(report["rearm_authorized"])
 
     def test_unexpected_write_or_no_result_never_authorizes_live(self):
         with tempfile.TemporaryDirectory() as name:

@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 JOINTS=("shoulder_pan","shoulder_lift","elbow_flex","wrist_flex","wrist_roll","gripper")
+REGISTER_SOURCE="https://docs.waveshare.com/Memory_Map_Explanation/ST_Servo_Memory_Map_Explanation"
 NEXT_READ="sudo -v && bash ~/v6_process_1793887709179/operator_candidate/run_torque_readonly.sh --execute --inspect-position-goal --inspect-goal-feedback --operator-present --supported --stop-ready"
 
 
@@ -19,7 +20,8 @@ def decode_reply(reply):
 
 
 def review(records,stop):
-    result=dict(kind="SAVED_EVIDENCE_REVIEW",live_authorized=False,hardware_access=False,
+    result=dict(kind="SAVED_EVIDENCE_REVIEW",live_authorized=False,rearm_authorized=False,hardware_access=False,
+                register_contract=dict(control_goal=42,present_position=56,active_target_feedback=67,source=REGISTER_SOURCE),
                 state_scope="마지막 저장 기록이며 현재 실시간 상태가 아님",blockers=[],findings=[],latest_run=None)
     if Path(stop).is_file():
         result["field_stop_sha256"]=hashlib.sha256(Path(stop).read_bytes()).hexdigest()
@@ -79,15 +81,25 @@ def review(records,stop):
         result["blockers"].append("GOAL_FEEDBACK_67_NOT_MEASURED")
         result["next_operator_read_command"]=NEXT_READ
         return result
-    if any(frames.get(("Goal_Feedback_67",i))!=row["goal_feedback_raw"] for i,row in enumerate(rows,1)):
+    feedback_raw_ok=all(frames.get(("Goal_Feedback_67",i))==row["goal_feedback_raw"] for i,row in enumerate(rows,1))
+    if not feedback_raw_ok:
         result["blockers"].append("FEEDBACK_RAW_REPLY_MISMATCH")
     control_match=all(row["goal_raw"]==row["present_raw"] for row in rows)
     feedback_match=all(row["goal_feedback_raw"]==row["present_raw"] for row in rows)
-    result.update(control_goal_matches_current=control_match,feedback_matches_current=feedback_match)
+    evidence_ok=not any(code in result["blockers"] for code in (
+        "RAW_REPLY_EVIDENCE_INVALID","SUMMARY_RAW_REPLY_MISMATCH","FEEDBACK_RAW_REPLY_MISMATCH",
+        "UNEXPECTED_RECORDED_WRITE","PORT_OR_CLEANUP_UNVERIFIED","STOP_PRESERVATION_UNVERIFIED","HOME_NOT_VERIFIED"))
+    result.update(control_goal_matches_current=control_match,feedback_matches_current=feedback_match,
+                  current_target_readback_verified=evidence_ok and feedback_match)
     if not control_match and not feedback_match:
         result["blockers"].append("GOAL_STATE_MISMATCH")
     elif control_match!=feedback_match:
-        result["blockers"].append("REGISTER_SEMANTICS_REVIEW_REQUIRED")
+        if feedback_match and evidence_ok:
+            result["findings"].append("DOCUMENTED_TARGET67_MATCHES_PRESENT56")
+            result["findings"].append("CONTROL42_AND_TARGET67_REPORTED_SEPARATELY")
+            result["blockers"].append("TORQUE_ENABLE_TRANSITION_UNVERIFIED")
+        else:
+            result["blockers"].append("REGISTER_SEMANTICS_REVIEW_REQUIRED")
     result["findings"].append("NO_AUTOMATIC_REARM_OR_LIVE_AUTHORIZATION")
     return result
 

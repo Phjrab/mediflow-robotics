@@ -8,7 +8,7 @@ import time
 from types import SimpleNamespace
 from first_trial_core import JOINTS,Hold,home_gate,vector
 
-ARM_SHA="6d398d3306498699cb45975033f9e03c173edaf088bc9d63d28bbdf64ac2d3fe"
+ARM_SHA="23fa519f40d793b4722ac4a68bcee921cfff1d66102218a6aa078531c77d1ee8"
 
 def confirm(token,prompt,*,monitor=None):
     if not sys.stdin.isatty():raise Hold("현장 터미널의 직접 입력 필요; 자동 입력 거부")
@@ -33,6 +33,8 @@ class ArmingAdapter:
         self.context=context;self.emit=emit;self.release=release;self.stack=contextlib.ExitStack()
         self.robot=None;self.guard=None;self.api=None;self.result=None;self.stopped=False
     def connect(self):
+        if not self.release and (Path(__file__).resolve().parent/"FIELD_STOP.json").exists():
+            raise Hold("현장 중단 기록 보존 중; 정책 재무장 거부")
         from trial_runtime import dependencies,check_context
         dependencies()
         import arm_source as arm,device_preflight as devices,probe_current_state as probe
@@ -48,10 +50,13 @@ class ArmingAdapter:
         self.stack.enter_context(self.guard.installed(scservo_sdk.PortHandler))
         self.robot=SO101Follower(SO101FollowerConfig(port=probe.PORT,id="so-101",calibration_dir=self.context["calibration"].parent,
                     cameras={},use_degrees=True,max_relative_target=2.,disable_torque_on_disconnect=False))
+        from individual_reply_guard import StrictIndividualReplies
+        replies=StrictIndividualReplies(self.robot.bus.packet_handler).install()
+        self.stack.callback(replies.restore)
         arm.validate_sdk(self.robot.bus);self.guard.phase="open";self.robot.bus.connect(handshake=False)
         import fcntl,termios
         fcntl.ioctl(self.robot.bus.port_handler.ser.fileno(),termios.TIOCEXCL)
-        torque=arm.fresh_torque(self.robot.bus,self.api)
+        torque=arm.fresh_torque(self.robot.bus,self.api,expected=None if self.release else 0)
         if not self.release and any(torque.values()):raise Hold("재무장 시작 토크ON; 추가 읽기/쓰기 중단")
         temperatures=self.api.read_temperatures(self.robot.bus)
         if any(not 0<=v<50 for v in temperatures.values()):raise Hold("시작 온도50도 미만 필요")
@@ -59,14 +64,15 @@ class ArmingAdapter:
         self.guard.phase="state_check"
     def read_state(self):
         import arm_source as arm
-        torque,modes,positions=arm.diagnostics(self.robot.bus,self.api,self.context["home"])
+        torque,modes,positions=arm.diagnostics(self.robot.bus,self.api,self.context["home"],expected_torque=None if self.release else 0)
         self.api.read_health(self.robot.bus,starting=True)
         if any(m!=0 for m in modes.values()):raise Hold("위치모드0 필요")
         if not self.release:
             if any(torque.values()):raise Hold("토크OFF 필요")
             home_gate(vector([float(positions[j]) for j in JOINTS]),self.context["home"])
             present=arm.read_joints(self.robot.bus,"Present_Position",normalize=False)
-            goal=arm.read_joints(self.robot.bus,"Goal_Position",normalize=False)
+            from individual_reply_guard import read_target_feedback
+            goal=read_target_feedback(self.robot.bus,JOINTS)
             if goal!=present:raise Hold("기존 목표와 현재 원시 위치 불일치; 자동 목표 수정 금지")
         moving=arm.read_joints(self.robot.bus,"Moving",normalize=False)
         if any(type(v) is not int or v not in (0,1) for v in moving.values()):raise Hold("Moving 응답 미확인")
