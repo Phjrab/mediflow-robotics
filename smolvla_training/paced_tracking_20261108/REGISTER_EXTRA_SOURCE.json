@@ -1,0 +1,66 @@
+{
+  "source": "lerobot/motors/feetech/tables.py",
+  "matches": [
+    {
+      "line": 53,
+      "text": "\"Max_Voltage_Limit\": (14, 1),"
+    },
+    {
+      "line": 54,
+      "text": "\"Min_Voltage_Limit\": (15, 1),"
+    },
+    {
+      "line": 62,
+      "text": "\"Minimum_Startup_Force\": (24, 2),"
+    },
+    {
+      "line": 72,
+      "text": "\"Velocity_closed_loop_P_proportional_coefficient\": (37, 1),"
+    },
+    {
+      "line": 74,
+      "text": "\"Velocity_closed_loop_I_integral_coefficient\": (39, 1),"
+    },
+    {
+      "line": 78,
+      "text": "\"Goal_Position\": (42, 2),"
+    },
+    {
+      "line": 79,
+      "text": "\"Goal_Time\": (44, 2),"
+    },
+    {
+      "line": 80,
+      "text": "\"Goal_Velocity\": (46, 2),"
+    },
+    {
+      "line": 84,
+      "text": "\"Present_Velocity\": (58, 2),  # read-only"
+    },
+    {
+      "line": 86,
+      "text": "\"Present_Voltage\": (62, 1),  # read-only"
+    },
+    {
+      "line": 91,
+      "text": "\"Goal_Position_2\": (71, 2),  # read-only"
+    },
+    {
+      "line": 93,
+      "text": "\"Moving_Velocity\": (80, 1),"
+    },
+    {
+      "line": 94,
+      "text": "\"Moving_Velocity_Threshold\": (80, 1),"
+    },
+    {
+      "line": 96,
+      "text": "\"Velocity_Unit_factor\": (82, 1),"
+    },
+    {
+      "line": 98,
+      "text": "\"Maximum_Velocity_Limit\": (84, 1),"
+    }
+  ],
+  "hardware_access": false
+}

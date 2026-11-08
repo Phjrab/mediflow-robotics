@@ -1,0 +1,24 @@
+{
+  "scope": "OS 메타데이터만 조회; 장치 열기 없음",
+  "serial_device_exists": true,
+  "fuser_returncode": 1,
+  "ownership": "UNVERIFIED",
+  "fuser_summary": "Cannot stat file /proc/4975/fd/0: Permission denied\nCannot stat file /proc/4975/fd/1: Permission denied\nCannot stat file /proc/4975/fd/2: Permission denied\nCannot stat file /proc/4984/fd/0: Permission denied\nCannot stat file /proc/4984/fd/1: Permission denied\nCannot stat file /proc/4984/fd/2: Permission denied\nCannot stat file /proc/4984/fd/3: Permission denied\nCannot stat file /proc/4984/fd/4: Permission denied\nCannot stat file /proc/4984/fd/5: Permission denied\nCannot stat file /proc/4984/fd/6: Permission denied\nCannot stat file /proc/4984/fd/7: Permission denied\nCannot stat file /proc/4984/fd/10: Permission denied\nCannot stat file /proc/4984/fd/11: Permission denied\nCannot stat file /proc/4985/fd/0: Permission denied\nCannot stat file /proc/4985/fd/1: Permission denied\nCannot stat file /proc/4985/fd/2: Permission denied\nCannot stat file /proc/4985/fd/3: Permission denied\nCannot stat file /proc/4985/fd/4: Permission denied\nCannot stat file /proc/4985/fd/5: Permission denied\nCannot sta",
+  "astra": {
+    "returncode": 0,
+    "lines": [
+      "ActiveState=active"
+    ]
+  },
+  "lelab": {
+    "returncode": 0,
+    "lines": [
+      "ActiveState=inactive"
+    ]
+  },
+  "motor_dc_power": "UNVERIFIED",
+  "torque": "NOT_RUN",
+  "motor_temperature": "NOT_RUN",
+  "hardware_access": false,
+  "services_changed": false
+}

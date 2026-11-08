@@ -1,0 +1,87 @@
+{
+  "status": "PACED_SOFTWARE_RELEASE_MOCK_ONLY",
+  "tests_passed": 272,
+  "test_counts": [
+    257,
+    15
+  ],
+  "files": [
+    {
+      "path": "operator_candidate/first_trial_core.py",
+      "before_sha256": "90db59283d00f4dcf712cf51ad22814cf075d46a0a8d4fa80ef77b9999e48eeb",
+      "after_sha256": "90db59283d00f4dcf712cf51ad22814cf075d46a0a8d4fa80ef77b9999e48eeb"
+    },
+    {
+      "path": "operator_candidate/paced_tracking.py",
+      "before_sha256": "1be4f02defda9bb7aec69611de321277c16118370b25db44a5673e28ce7e613f",
+      "after_sha256": "1be4f02defda9bb7aec69611de321277c16118370b25db44a5673e28ce7e613f"
+    },
+    {
+      "path": "operator_candidate/paced_trial.py",
+      "before_sha256": "7ca39f6a7398cdf823b7fb2facb3fc5c077fbdf41d69b88359a7ab53fabb551d",
+      "after_sha256": "7ca39f6a7398cdf823b7fb2facb3fc5c077fbdf41d69b88359a7ab53fabb551d"
+    },
+    {
+      "path": "operator_candidate/paced_replay.py",
+      "before_sha256": "c191a247bd6f3fbb55a8de3ace77f616b996d8f59583c6c1d6b44235fbb0e9f3",
+      "after_sha256": "c191a247bd6f3fbb55a8de3ace77f616b996d8f59583c6c1d6b44235fbb0e9f3"
+    },
+    {
+      "path": "operator_candidate/test_paced_tracking.py",
+      "before_sha256": "91911e1a375caf2b4f4cd209ccacf5584f5e27a50becac2963c01d9e2241448e",
+      "after_sha256": "91911e1a375caf2b4f4cd209ccacf5584f5e27a50becac2963c01d9e2241448e"
+    },
+    {
+      "path": "operator_candidate/servo_config_readonly.py",
+      "before_sha256": "c714a0e09e92a676d0d6b558a19efddfb0ceee9b53d97fee42a729da9e358a47",
+      "after_sha256": "3ffe4797fe4b3a11c34fd6bd6db7225ae43a3b4413c2192850ff41b84c91ac08"
+    },
+    {
+      "path": "operator_candidate/test_servo_config_readonly.py",
+      "before_sha256": "ff4289cb9e36eab1a7568e4ca0c19778a4462dda578fc0b050f152e4e5021d49",
+      "after_sha256": "f423d9804f69bbc87913dffa7feb9536a44fa9d78ca40f912fb2e6cc97576039"
+    },
+    {
+      "path": "operator_candidate/analyze_goal_tracking.py",
+      "before_sha256": "d5f8c43481141dc1b4676cfc9e0f10ba5d0eed3d28bea76ba88b914bdd8a2c2a",
+      "after_sha256": "d5f8c43481141dc1b4676cfc9e0f10ba5d0eed3d28bea76ba88b914bdd8a2c2a"
+    },
+    {
+      "path": "operator_candidate/test_analyze_goal_tracking.py",
+      "before_sha256": "4b2162542657304773a7e3a475809f0503efde818a3bcc855cb1d2ae22e091c5",
+      "after_sha256": "4b2162542657304773a7e3a475809f0503efde818a3bcc855cb1d2ae22e091c5"
+    }
+  ],
+  "backup_relative": "software_backups_20261108/1794138638484583231",
+  "initial_backup_relative": "software_backups_20261108/1794137749539848979",
+  "stop_hashes_preserved": {
+    "POST_HOLD_STOP.json": "3ed9dc4110dfbdcfb79b352a96e3b13be3bd5ec22c758fe0efd3efea973511bf",
+    "POST_WORK_SESSION_STOP.json": "8081b2c57792a526e234e6ee10791dc73b574bc4ad62731daa2e4c7e721edbd5",
+    "POST_START_REVIEW_STOP.json": "c70c2909aacf31ce763b6a1b1fff0d072b42092af5a37c31c6156bdc95311ae7",
+    "FIELD_STOP.json": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "POST_REPEAT_LIVE_STOP.json": "debe50acb60dbc9878957fd8f580389e264730bf3e85d34a3ef14b94ebed14c8",
+    "POST_QUANTIZED_REPEAT_STOP.json": "e1b2559920274fa446fd991a457277d2dc9729db8eb796ad906648bd5867d882"
+  },
+  "hardware_access": false,
+  "inference": "NOT_RUN",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "control_limits_changed": false,
+  "physical_paced_mode_blocked": true,
+  "replay_cases": 18,
+  "replay_code_unchanged": true,
+  "replay_status_counts": {
+    "MOCK_PACED_COMMAND_BUDGET": 16,
+    "HOLD": 2
+  },
+  "planner_benchmark": {
+    "scope": "CPU 경로 생성만 측정; 정책 추론 아님",
+    "python": "3.10.12",
+    "samples": 120,
+    "mean_ms": 2.185824983431909,
+    "p50_ms": 2.081317998090526,
+    "p95_ms": 2.979052998853149,
+    "max_ms": 3.1461939979635645
+  },
+  "source_conflicts_handled": true
+}

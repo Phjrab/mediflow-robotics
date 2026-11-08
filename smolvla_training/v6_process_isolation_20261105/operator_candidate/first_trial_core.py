@@ -78,7 +78,14 @@ def target_gate(action,measured,previous,bounds,limits,dt,*,quantum=None):
     action=vector(action);measured=vector(measured);previous=vector(previous)
     bounds_gate(measured,bounds,source="measured_state")
     bounds_gate(previous,bounds,source="previous_target")
-    if any(abs(action[i]-measured[i])>limits.first_jump or abs(action[i]-previous[i])>limits.first_jump for i in range(6)):raise Hold("큰 목표 점프")
+    gaps=[dict(joint=JOINTS[i],unit="degree" if i<5 else "percent_0_100",raw_action=action[i],current=measured[i],
+               previous_sent_target=previous[i],current_gap=abs(action[i]-measured[i]),previous_sent_gap=abs(action[i]-previous[i]),threshold=limits.first_jump)
+          for i in range(6) if abs(action[i]-measured[i])>limits.first_jump or abs(action[i]-previous[i])>limits.first_jump]
+    if gaps:
+        error=Hold("큰 목표 점프")
+        error.observed=dict(code="POLICY_CURRENT_OR_SENT_TARGET_GAP",joints=gaps,
+                            previous_is_sent_target_not_previous_raw_policy=True)
+        raise error
     if type(dt) not in (float,int) or not math.isfinite(dt) or dt<=0:raise Hold("명령 간격 미확인")
     result=[]
     supplied_quantum=quantum is not None
@@ -184,10 +191,17 @@ class FirstTrialAdapter:
             if self.clock()>=deadline or self.stop.is_set():raise Hold("전송 직전 시간/정지")
             timing["state_age_seconds"]=self.clock()-sampled_at
             if compensated and timing["state_age_seconds"]>1/limits.fps+1e-9:raise Hold("전송 전 관측 지연 초과")
-            sent_at=self.clock();self.io.send_target(target)
+            sent_at=self.clock();sdk=self.io.send_target(target)
             timing.update(send_seconds=self.clock()-sent_at,step_seconds=self.clock()-work_started,sent_at=sent_at)
             self.sent.append(dict(step=step,raw_action=action,target=target,state=measured,clip=clips[-1],sent_at=sent_at))
-            previous=target;last_sent=sent_at
+            wire=sdk.get("wire_normalized") if isinstance(sdk,dict) else target
+            wire=vector(wire);bounds_gate(wire,self.bounds,source="wire_target")
+            for i in range(6):
+                if abs(wire[i]-measured[i])>(limits.cap if i<5 else 2.)+1e-7 or abs(wire[i]-previous[i])>(limits.speed*dt if i<5 else 2.)+1e-7:
+                    error=Hold("실제 전송 목표 이동/속도 계약 불일치")
+                    error.observed=dict(code="WIRE_TARGET_MISMATCH",joint=JOINTS[i],wire=wire[i],current=measured[i],previous_sent_target=previous[i],dt=dt)
+                    raise error
+            previous=wire;last_sent=sent_at
         self.events.append("max_steps_completed")
     def stop_new_commands(self):
         # RobotController finally에서 반드시 성공해야 close가 이어진다. 모터 쓰기 없음.

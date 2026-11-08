@@ -1,0 +1,70 @@
+{
+  "source": "lerobot/motors/feetech/tables.py",
+  "matches": [
+    {
+      "line": 87,
+      "text": "\"Present_Temperature\": (63, 1),  # read-only"
+    },
+    {
+      "line": 88,
+      "text": "\"Status\": (65, 1),  # read-only"
+    },
+    {
+      "line": 89,
+      "text": "\"Moving\": (66, 1),  # read-only"
+    },
+    {
+      "line": 90,
+      "text": "\"Present_Current\": (69, 2),  # read-only"
+    },
+    {
+      "line": 91,
+      "text": "\"Goal_Position_2\": (71, 2),  # read-only"
+    },
+    {
+      "line": 92,
+      "text": "# Factory"
+    },
+    {
+      "line": 93,
+      "text": "\"Moving_Velocity\": (80, 1),"
+    },
+    {
+      "line": 94,
+      "text": "\"Moving_Velocity_Threshold\": (80, 1),"
+    },
+    {
+      "line": 95,
+      "text": "\"DTs\": (81, 1),  # (ms)"
+    },
+    {
+      "line": 96,
+      "text": "\"Velocity_Unit_factor\": (82, 1),"
+    },
+    {
+      "line": 97,
+      "text": "\"Hts\": (83, 1),  # (ns) valid for firmware >= 2.54, other versions keep 0"
+    },
+    {
+      "line": 98,
+      "text": "\"Maximum_Velocity_Limit\": (84, 1),"
+    },
+    {
+      "line": 99,
+      "text": "\"Maximum_Acceleration\": (85, 1),"
+    },
+    {
+      "line": 100,
+      "text": "\"Acceleration_Multiplier \": (86, 1),  # Acceleration multiplier in effect when acceleration is 0"
+    },
+    {
+      "line": 101,
+      "text": "}"
+    },
+    {
+      "line": 102,
+      "text": ""
+    }
+  ],
+  "hardware_access": false
+}

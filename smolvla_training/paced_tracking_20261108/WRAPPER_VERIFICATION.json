@@ -1,0 +1,10 @@
+{
+  "status": "READONLY_WRAPPER_PLAN_PASS",
+  "relative_path": "run_servo_readonly_20261108.sh",
+  "sha256": "e98a94033f588d45a3307b5b4bc00e5a70e4e94ffe25fa98020f664f2c458054",
+  "syntax_exit_code": 0,
+  "plan_exit_code": 0,
+  "hardware_access": false,
+  "motor_register_writes": 0,
+  "execute": "NOT_RUN"
+}

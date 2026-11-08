@@ -1,0 +1,54 @@
+{
+  "base_commit": "d1b3f42",
+  "hardware_access": false,
+  "physical_paced_mode_blocked": true,
+  "control_limits_changed": false,
+  "source_conflicts_handled": true,
+  "files": [
+    {
+      "path": "operator_candidate/first_trial_core.py",
+      "before_sha256": "90db59283d00f4dcf712cf51ad22814cf075d46a0a8d4fa80ef77b9999e48eeb",
+      "after_sha256": "90db59283d00f4dcf712cf51ad22814cf075d46a0a8d4fa80ef77b9999e48eeb"
+    },
+    {
+      "path": "operator_candidate/paced_tracking.py",
+      "before_sha256": "1be4f02defda9bb7aec69611de321277c16118370b25db44a5673e28ce7e613f",
+      "after_sha256": "1be4f02defda9bb7aec69611de321277c16118370b25db44a5673e28ce7e613f"
+    },
+    {
+      "path": "operator_candidate/paced_trial.py",
+      "before_sha256": "7ca39f6a7398cdf823b7fb2facb3fc5c077fbdf41d69b88359a7ab53fabb551d",
+      "after_sha256": "7ca39f6a7398cdf823b7fb2facb3fc5c077fbdf41d69b88359a7ab53fabb551d"
+    },
+    {
+      "path": "operator_candidate/paced_replay.py",
+      "before_sha256": "c191a247bd6f3fbb55a8de3ace77f616b996d8f59583c6c1d6b44235fbb0e9f3",
+      "after_sha256": "c191a247bd6f3fbb55a8de3ace77f616b996d8f59583c6c1d6b44235fbb0e9f3"
+    },
+    {
+      "path": "operator_candidate/test_paced_tracking.py",
+      "before_sha256": "91911e1a375caf2b4f4cd209ccacf5584f5e27a50becac2963c01d9e2241448e",
+      "after_sha256": "91911e1a375caf2b4f4cd209ccacf5584f5e27a50becac2963c01d9e2241448e"
+    },
+    {
+      "path": "operator_candidate/servo_config_readonly.py",
+      "before_sha256": "c714a0e09e92a676d0d6b558a19efddfb0ceee9b53d97fee42a729da9e358a47",
+      "after_sha256": "3ffe4797fe4b3a11c34fd6bd6db7225ae43a3b4413c2192850ff41b84c91ac08"
+    },
+    {
+      "path": "operator_candidate/test_servo_config_readonly.py",
+      "before_sha256": "ff4289cb9e36eab1a7568e4ca0c19778a4462dda578fc0b050f152e4e5021d49",
+      "after_sha256": "f423d9804f69bbc87913dffa7feb9536a44fa9d78ca40f912fb2e6cc97576039"
+    },
+    {
+      "path": "operator_candidate/analyze_goal_tracking.py",
+      "before_sha256": "d5f8c43481141dc1b4676cfc9e0f10ba5d0eed3d28bea76ba88b914bdd8a2c2a",
+      "after_sha256": "d5f8c43481141dc1b4676cfc9e0f10ba5d0eed3d28bea76ba88b914bdd8a2c2a"
+    },
+    {
+      "path": "operator_candidate/test_analyze_goal_tracking.py",
+      "before_sha256": "4b2162542657304773a7e3a475809f0503efde818a3bcc855cb1d2ae22e091c5",
+      "after_sha256": "4b2162542657304773a7e3a475809f0503efde818a3bcc855cb1d2ae22e091c5"
+    }
+  ]
+}
