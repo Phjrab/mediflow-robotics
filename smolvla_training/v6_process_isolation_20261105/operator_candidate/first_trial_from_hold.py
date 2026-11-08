@@ -114,6 +114,12 @@ def main(argv=None):
         result.update(cleanup_errors=cleanup["errors"],ports_closed=cleanup["ports_closed"],
                       motor_goal_packets=io.permission.goal_packets if io is not None and io.permission is not None else 0,
                       hardware_started=hardware_started)
+        if io is not None and hasattr(io,'goal_telemetry'):
+            try:
+                with (output/'goal_telemetry.json').open('x',encoding='utf-8') as stream:
+                    json.dump(json_value(io.goal_telemetry.rows),stream,ensure_ascii=False,allow_nan=False,indent=2)
+                result['goal_telemetry_count']=len(io.goal_telemetry.rows)
+            except BaseException as error:result['cleanup_errors'].append(dict(component='goal_telemetry',kind=type(error).__name__))
         if adapter is not None:
             if hasattr(adapter,"session_chunks"):
                 result.update(completed_chunks=sum(c["status"]=="COMPLETE" for c in adapter.session_chunks),session_end_reason=getattr(adapter,"session_end_reason",None))

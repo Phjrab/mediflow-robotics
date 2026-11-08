@@ -1,0 +1,27 @@
+{
+  "base_commit": "d549d5c",
+  "hardware_access": false,
+  "control_limits_changed": false,
+  "files": [
+    {
+      "path": "operator_candidate/trial_runtime.py",
+      "before_sha256": "55a334d567de46ce00f63ca02572748d7385736da5f9d5aedb552094f9d604e9",
+      "after_sha256": "c20d626e1954df086d0c4f432fb3014f9b7c6283feb1734264bd1e29ea44c3f6"
+    },
+    {
+      "path": "operator_candidate/first_trial_from_hold.py",
+      "before_sha256": "1aff33f9edabbdfed91f305e6be50554844744d171cade59f4060e62de3e484a",
+      "after_sha256": "dd9384405929d0ccc8dd1fa889725be01412781efa4fd3c2d31732141c568343"
+    },
+    {
+      "path": "operator_candidate/goal_telemetry.py",
+      "before_sha256": null,
+      "after_sha256": "a6a405616936d271e62de29faa107b71ce0cbea0c9a77268c7612edf86c8be75"
+    },
+    {
+      "path": "operator_candidate/test_goal_telemetry.py",
+      "before_sha256": null,
+      "after_sha256": "1c00edfdadf617ac1854857af13f6d153b5fdb8d3ecc288601185216236e2391"
+    }
+  ]
+}

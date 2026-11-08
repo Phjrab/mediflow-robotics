@@ -1,0 +1,44 @@
+{
+  "status": "TELEMETRY_SOFTWARE_READY",
+  "tests_passed": 228,
+  "test_counts": [
+    213,
+    15
+  ],
+  "files": [
+    {
+      "path": "operator_candidate/trial_runtime.py",
+      "before_sha256": "55a334d567de46ce00f63ca02572748d7385736da5f9d5aedb552094f9d604e9",
+      "after_sha256": "c20d626e1954df086d0c4f432fb3014f9b7c6283feb1734264bd1e29ea44c3f6"
+    },
+    {
+      "path": "operator_candidate/first_trial_from_hold.py",
+      "before_sha256": "1aff33f9edabbdfed91f305e6be50554844744d171cade59f4060e62de3e484a",
+      "after_sha256": "dd9384405929d0ccc8dd1fa889725be01412781efa4fd3c2d31732141c568343"
+    },
+    {
+      "path": "operator_candidate/goal_telemetry.py",
+      "before_sha256": null,
+      "after_sha256": "a6a405616936d271e62de29faa107b71ce0cbea0c9a77268c7612edf86c8be75"
+    },
+    {
+      "path": "operator_candidate/test_goal_telemetry.py",
+      "before_sha256": null,
+      "after_sha256": "1c00edfdadf617ac1854857af13f6d153b5fdb8d3ecc288601185216236e2391"
+    }
+  ],
+  "backup_relative": "software_backups_20261108/1794136227238561900",
+  "stop_hashes_preserved": {
+    "POST_HOLD_STOP.json": "3ed9dc4110dfbdcfb79b352a96e3b13be3bd5ec22c758fe0efd3efea973511bf",
+    "POST_WORK_SESSION_STOP.json": "8081b2c57792a526e234e6ee10791dc73b574bc4ad62731daa2e4c7e721edbd5",
+    "POST_START_REVIEW_STOP.json": "c70c2909aacf31ce763b6a1b1fff0d072b42092af5a37c31c6156bdc95311ae7",
+    "FIELD_STOP.json": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "POST_REPEAT_LIVE_STOP.json": "debe50acb60dbc9878957fd8f580389e264730bf3e85d34a3ef14b94ebed14c8",
+    "POST_QUANTIZED_REPEAT_STOP.json": "e1b2559920274fa446fd991a457277d2dc9729db8eb796ad906648bd5867d882"
+  },
+  "hardware_access": false,
+  "inference": "NOT_RUN",
+  "live": "NOT_RUN",
+  "motor_writes": 0,
+  "control_limits_changed": false
+}

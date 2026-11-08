@@ -51,6 +51,8 @@ class DeviceIO:
         self.read_history=[];self.last_fault=None;self.diagnostic_phase="INITIAL"
         self.reply_guard=None
         self.continuation=continuation
+        from goal_telemetry import GoalTelemetry
+        self.goal_telemetry=GoalTelemetry()
     def connect(self):
         if getattr(getattr(self.continuation,"start_review",None),"profile_only",False) and self.allow_goal:
             raise Hold("읽기 계측 경로의 목표 쓰기 금지")
@@ -70,7 +72,13 @@ class DeviceIO:
         devices.require();check_context(self.context)
         from lerobot.robots.so_follower import SO101Follower,SO101FollowerConfig
         from live_safety_runtime import PacketPermission
-        class Permission(PacketPermission):READS={**PacketPermission.READS,42:2,66:1,67:2}
+        io=self
+        class Permission(PacketPermission):
+            READS={**PacketPermission.READS,42:2,66:1,67:2}
+            def inspect(self,port,packet):
+                kind=super().inspect(port,packet)
+                if kind=='goal':io.goal_telemetry.capture(packet,io.robot.bus._normalize)
+                return kind
         self.robot=SO101Follower(SO101FollowerConfig(port=probe.PORT,id="so-101",calibration_dir=self.context["calibration"].parent,
                           cameras={},use_degrees=True,max_relative_target=2.,disable_torque_on_disconnect=False))
         table=self.robot.bus.model_ctrl_table
@@ -201,7 +209,13 @@ class DeviceIO:
         if self.continuation is not None:self.continuation.require_claimed(self.context)
     def send_target(self,target):
         if not self.authorized or not self.allow_goal or self.expected_torque!=1:raise Hold("목표 전송 권한 없음")
-        with self.permission.goal_once():self.robot.send_action({j+".pos":target[i] for i,j in enumerate(JOINTS)})
+        self.goal_telemetry.begin(target)
+        try:
+            with self.permission.goal_once():returned=self.robot.send_action({j+".pos":target[i] for i,j in enumerate(JOINTS)})
+            return self.goal_telemetry.finish(returned)
+        except BaseException as error:
+            self.goal_telemetry.fail(error)
+            raise
     def close(self):
         if self.closed:return
         self.closed=True
