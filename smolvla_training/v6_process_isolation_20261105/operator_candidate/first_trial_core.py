@@ -140,15 +140,24 @@ class FirstTrialAdapter:
         if len(actions)!=50:raise Hold("행동50개 필요")
         for row in actions:vector(row)
         previous=state[:];last_sent=None;clip_window=min(20,limits.max_steps);clips=deque(maxlen=clip_window)
+        compensated=getattr(self,"compensated",False);self.step_timings=[]
         for step,action in enumerate(actions[:limits.max_steps]):
+            timing=dict(step=step);self.step_timings.append(timing);work_started=self.clock()
             if self.clock()>=deadline or self.stop.is_set():raise Hold("시간 상한/정지 요청")
-            if last_sent is not None:self.sleep(max(0,last_sent+1/limits.fps-self.clock()))
+            if last_sent is not None and not compensated:self.sleep(max(0,last_sent+1/limits.fps-self.clock()))
+            mark=self.clock()
             if step%5==0:
                 frames=self.await_job(self.io.capture_frames,deadline,1.)
                 self.previous_hash=frame_gate(frames,self.clock(),limits,self.previous_hash)
+            timing["camera_seconds"]=self.clock()-mark;mark=self.clock()
             s=self.io.snapshot();measured=sensor_gate(s,limits)
+            sampled_at=self.clock();timing["snapshot_seconds"]=sampled_at-mark
             if step==0:home_gate(measured,self.home)
-            dt=1/limits.fps if last_sent is None else self.clock()-last_sent
+            mark=self.clock()
+            if compensated:self.io.check_records()
+            timing["records_seconds"]=self.clock()-mark
+            due=None if last_sent is None else last_sent+1/limits.fps
+            dt=1/limits.fps if last_sent is None else (max(self.clock(),due) if compensated else self.clock())-last_sent
             self.last_target_context=dict(step=step,raw_action=action,measured_state=measured,
                                           previous_target=previous,bounds=self.bounds,dt=dt)
             try:target=target_gate(action,measured,previous,self.bounds,limits,dt)
@@ -158,8 +167,15 @@ class FirstTrialAdapter:
             clips.append(any(abs(a-b)>1e-6 for a,b in zip(action,target)))
             if len(clips)==clip_window and sum(clips)/clip_window>.5:raise Hold("정책-제어 clip 비율 초과")
             if self.clock()>=deadline or self.stop.is_set():raise Hold("전송 직전 시간/정지")
-            self.io.check_records()
+            if not compensated:self.io.check_records()
+            mark=self.clock()
+            if compensated and due is not None:self.sleep(max(0,due-self.clock()))
+            timing["wait_seconds"]=self.clock()-mark
+            if self.clock()>=deadline or self.stop.is_set():raise Hold("전송 직전 시간/정지")
+            timing["state_age_seconds"]=self.clock()-sampled_at
+            if compensated and timing["state_age_seconds"]>1/limits.fps:raise Hold("전송 전 관측 지연 초과")
             sent_at=self.clock();self.io.send_target(target)
+            timing.update(send_seconds=self.clock()-sent_at,step_seconds=self.clock()-work_started,sent_at=sent_at)
             self.sent.append(dict(step=step,raw_action=action,target=target,state=measured,clip=clips[-1],sent_at=sent_at))
             previous=target;last_sent=sent_at
         self.events.append("max_steps_completed")

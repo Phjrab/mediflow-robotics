@@ -21,7 +21,8 @@ SUCCESS_CLAIM_SHA="1e2c050ffa16522902bee46de044e1de356104690d52b5cbb7b088c00f3a5
 
 
 class ReviewedStartStop:
-    def __init__(self,root,*,home=None,review_action=False,profile_success=False,compensated_profile=False):
+    def __init__(self,root,*,home=None,review_action=False,profile_success=False,compensated_profile=False,repeat_live=False):
+        if repeat_live:profile_success=True
         if compensated_profile:profile_success=True
         if profile_success:review_action=True
         self.home=(Path.home() if home is None else Path(home)).resolve()
@@ -85,6 +86,15 @@ class ReviewedStartStop:
             self.check()
             success=json.loads(self.profile_paths[0][0].read_text(encoding="utf-8"))
             if success.get("status")!="FIRST_TRIAL_COMPLETE" or success.get("motor_goal_packets")!=10 or success.get("torque_register_writes")!=0 or success.get("cleanup_errors")!=[] or success.get("ports_closed")!={"io":True,"probe":True}:raise Hold("첫 live 완료 근거 불일치")
+            if repeat_live:
+                self.profile_only=False;self.repeat_live=True
+                self.profile_paths+=((self.home/"control_timing_1794130957872490741/TIMING_RESULT.json","90e6ba8ac729421074d0ef03d7c50ddc98997c61b830a74108bdcf01d05ff316"),)
+                self.next_stop_name="POST_REPEAT_LIVE_STOP.json";self.stop_sha="repeat_"+SUCCESS_SHA
+                self.operator_token="REARM_REPEAT";self.usage_scope="SHORT_LIVE_CADENCE_REPEAT"
+                self.operator_message="첫 live 성공과 읽기 주기 개선 기록을 보존합니다. 직전 목표와 현재 피드백을 대조한 뒤 최대10스텝/5초를 반복합니다. 팔 지지·즉시 전원 차단 수단을 현장에서 확인하세요."
+                self.expected_last_goal=success["targets"][-1]["target"]
+                self.summary.update(scope=self.usage_scope,goal_writes_allowed=True,expected_last_goal=self.expected_last_goal)
+                self.check()
 
     def check(self):
         if hasattr(self,"profile_paths") and (self.root/ACTION_NEXT_STOP).exists():raise Hold("첫 live 이후 새 중단 기록 존재")

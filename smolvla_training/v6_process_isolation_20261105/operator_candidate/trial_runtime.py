@@ -158,11 +158,21 @@ class DeviceIO:
         from start_goal_agreement import assess
         current_state=[float(bus._normalize({bus.motors[j].id:present[j]})[bus.motors[j].id]) for j in JOINTS]
         agreement=assess(present,active_target,current_state,active_state,bounds)
+        continuity_result=None
+        review=getattr(self.continuation,"start_review",None)
+        if getattr(review,"repeat_live",False):
+            from cadence_repeat import continuity
+            quantum=[]
+            for j in JOINTS:
+                mid=bus.motors[j].id;raw=active_target[j];other=raw-1 if raw else raw+1
+                quantum.append(abs(float(bus._normalize({mid:raw})[mid])-float(bus._normalize({mid:other})[mid])))
+            continuity_result=continuity(current_state,active_state,review.expected_last_goal,quantum,bounds)
         return dict(status="ARM_INSPECTION_READ_ONLY",snapshot=snap,present_raw=present,goal_raw=goal,goal_state=goal_state,
                     raw_delta={j:goal[j]-present[j] for j in JOINTS},goal_exact_match=goal==present,
                     target_feedback_raw=active_target,target_feedback_state=active_state,active_target_exact_match=active_target==present,
                     joint_bounds=bounds,bounds_contain_current_and_active_target=within,
-                    start_agreement=agreement,arm_ready=agreement["start_check_passed"] and within,
+                    start_agreement=agreement,repeat_continuity=continuity_result,
+                    arm_ready=(continuity_result["passed"] if continuity_result is not None else agreement["start_check_passed"]) and within,
                     register_writes=self.permission.goal_packets)
     def connect_cameras(self):
         from lerobot.cameras.opencv import OpenCVCameraConfig

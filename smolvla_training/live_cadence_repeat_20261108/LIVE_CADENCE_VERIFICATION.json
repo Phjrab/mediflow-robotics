@@ -1,0 +1,47 @@
+{
+  "status": "LIVE_CADENCE_REPEAT_PREPARED",
+  "tests_passed": 205,
+  "files": {
+    "operator_candidate/first_trial_core.py": "fc50689a4b8a65ef4cae30080d994d6019faed7bd13e032addc2afab8fc60c3a",
+    "operator_candidate/first_trial_from_hold.py": "ea56344b1798b54421a1ea6b05602c5225ea44eee711adfd226a342002bb98d7",
+    "operator_candidate/trial_runtime.py": "f8477baf054d78b78401ca9d778b9efca58dc3e8c79d149302fb0b4ae9cd3935",
+    "operator_candidate/reviewed_start_stop.py": "656fda41aa811b985df8b992f919db7cad9ddb27db08df5b97446f02edcb594f",
+    "operator_candidate/cadence_repeat.py": "d27dbb9da1d85585df541c9dfeb35de2334e86fdfeb728864356e2eb7ea6c80e",
+    "operator_candidate/run_cadence_live_repeat.sh": "81062ecf2ff8b5e8d0f2de6eaed3fe3cee9b38e73cf33a7f03d66cc49ed85696",
+    "operator_candidate/test_live_cadence.py": "2e7b74d397e192c4691defe2ed85025b3ca705712f9ac86d5426f61680bdf296"
+  },
+  "check_files": {
+    "status": "HOLD_FILES_READY",
+    "hold_sha256": "4767b9cf28dce8ec3cbb7c0210d9ba8f0f73c74b18a00723bb6399c46f733183",
+    "hold_review_sha256": "742dc63e6ba15b9b8f23f6d16f512decc21126b04b0798901580abfed2310488",
+    "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "hold_only_receipt_is_not_live_permission": true,
+    "operator_live_review_required": true,
+    "reviewed_start_stop": {
+      "scope": "SHORT_LIVE_CADENCE_REPEAT",
+      "result_sha256": "8268fd1008190afbe45d25e45aa1acbbac84257d29f08f230920be1d86f219d2",
+      "post_hold_stop_sha256": "c70c2909aacf31ce763b6a1b1fff0d072b42092af5a37c31c6156bdc95311ae7",
+      "prior_usage_sha256": "8c0028758824993cce426477e75302d89b5eee45bcd8d31cb753cfc0e7d4b7a5",
+      "max_raw_difference": 1,
+      "max_joint_degrees": 0.1,
+      "max_gripper_points": 0.1,
+      "fresh_operator_review_required": true,
+      "live_authorized": false,
+      "success_sha256": "4909135423bb0788c3f0da7ac329f892a92f582911a7a7b85fcd8a45b247936c",
+      "goal_writes_allowed": true,
+      "expected_last_goal": [
+        -5.607943534851074,
+        -97.98101806640625,
+        96.85830688476562,
+        43.01438522338867,
+        -4.697505950927734,
+        7.604035377502441
+      ]
+    },
+    "hardware_access": false,
+    "live_authorized": false
+  },
+  "hardware_access": false,
+  "live": "NOT_RUN",
+  "repeat_unused": true
+}
