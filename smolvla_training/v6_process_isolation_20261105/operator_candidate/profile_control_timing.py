@@ -10,14 +10,14 @@ from reviewed_start_stop import ReviewedStartStop
 from run_receipts import finish_resources,json_value
 
 
-def measure(io,*,clock=time.monotonic,sleep=time.sleep,steps=10):
+def measure(io,*,clock=time.monotonic,sleep=time.sleep,steps=10,compensated=False):
     if steps!=10:raise Hold("계측은10회 고정")
     rows=[];start=clock();last=None
     for step in range(10):
         if clock()-start>5:raise Hold("읽기 계측5초 상한")
         row=dict(step=step)
         a=clock()
-        if last is not None:sleep(max(0,last+1/30-clock()))
+        if last is not None and not compensated:sleep(max(0,last+1/30-clock()))
         row["sleep_seconds"]=clock()-a
         cycle_started=clock()
         a=clock()
@@ -25,9 +25,14 @@ def measure(io,*,clock=time.monotonic,sleep=time.sleep,steps=10):
             frames=io.capture_frames();frame_gate(frames,clock(),Limits())
         row["camera_seconds"]=clock()-a
         a=clock();snapshot=io.snapshot();sensor_gate(snapshot,Limits(),starting=step==0)
+        sampled_at=clock()
         row["snapshot_seconds"]=clock()-a
         a=clock();io.check_records();row["records_seconds"]=clock()-a
         row["read_only_cycle_seconds"]=clock()-cycle_started
+        if compensated and last is not None:
+            a=clock();sleep(max(0,last+1/30-clock()));row["sleep_seconds"]+=clock()-a
+        row["state_age_seconds"]=clock()-sampled_at
+        if compensated and row["state_age_seconds"]>1/30:raise Hold("계측 관측 이후 과도한 지연")
         row["marker_at"]=clock();row["state"]=snapshot["state"]
         row["goal_send_seconds"]=None
         rows.append(row);last=clock()
@@ -38,11 +43,12 @@ def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--execute",action="store_true");p.add_argument("--check-files",action="store_true")
     p.add_argument("--operator-present",action="store_true");p.add_argument("--out",type=Path)
+    p.add_argument("--compensated",action="store_true")
     args=p.parse_args(argv);root=Path(__file__).resolve().parent
     if not args.execute and not args.check_files:
         print("PLAN_ONLY: 읽기 계측 준비. 장치·추론·모터 쓰기 없음.");return 0
     if args.execute and (args.check_files or not args.operator_present or not sys.stdin.isatty()):raise Hold("운영자 터미널 직접 계측 필요")
-    review=ReviewedStartStop(root,profile_success=True)
+    review=ReviewedStartStop(root,profile_success=True,compensated_profile=args.compensated)
     receipt=HoldContinuation(root,Path.home()/"torque_guard_20261108_155436/events.jsonl",start_review=review)
     if args.check_files:
         print(json.dumps(dict(status="TIMING_FILES_READY",hardware_access=False,goal_writes_allowed=False)));return 0
@@ -54,7 +60,8 @@ def main(argv=None):
         context=static_context();receipt.bind_context(context);receipt.confirm_operator(confirm);receipt.claim(out)
         io=DeviceIO(context,expected_torque=1,allow_goal=False,continuation=receipt);started=True
         io.connect();sensor_gate(io.snapshot(),Limits(),starting=True);io.connect_cameras()
-        result["rows"]=measure(io);result["status"]="READ_ONLY_TIMING_COMPLETE"
+        result["rows"]=measure(io,compensated=args.compensated);result["status"]="READ_ONLY_TIMING_COMPLETE"
+        result["schedule"]="WORK_THEN_REMAINING_WAIT" if args.compensated else "WAIT_THEN_WORK"
     except BaseException as error:result["error"]=dict(kind=type(error).__name__,reason=str(error).replace(str(Path.home()),"~"),observed=getattr(error,"observed",None))
     finally:
         result.update(finish_resources(("io",io)))

@@ -1,0 +1,18 @@
+{
+  "status": "COMPENSATED_PROFILE_READY",
+  "tests_passed": 200,
+  "files": {
+    "operator_candidate/reviewed_start_stop.py": "3ab6559462bd506fb0e8b58ae522c33cf0f8900e9f3f4afd6b9435cf9f6b5167",
+    "operator_candidate/profile_control_timing.py": "de73eb9c2b3c6696fa38f28539c10112edf93ea16e6ac488039d164b4d0f519a",
+    "operator_candidate/run_control_timing_compensated.sh": "7befa06cd12a220ba83beff50d0acb32ee3bb912658c8293a2de3a9caa25a98e",
+    "operator_candidate/test_compensated_timing.py": "177a37cb82f133945f4a1776dbbea4db7a91486165317c664f10f19151117c38"
+  },
+  "check_files": {
+    "status": "TIMING_FILES_READY",
+    "hardware_access": false,
+    "goal_writes_allowed": false
+  },
+  "hardware_access": false,
+  "live": "NOT_RUN",
+  "baseline_sha256": "68b4451c3add733babd22f676be2cf012843c48bdfee77c5aa70fc67f6452023"
+}

@@ -21,7 +21,8 @@ SUCCESS_CLAIM_SHA="1e2c050ffa16522902bee46de044e1de356104690d52b5cbb7b088c00f3a5
 
 
 class ReviewedStartStop:
-    def __init__(self,root,*,home=None,review_action=False,profile_success=False):
+    def __init__(self,root,*,home=None,review_action=False,profile_success=False,compensated_profile=False):
+        if compensated_profile:profile_success=True
         if profile_success:review_action=True
         self.home=(Path.home() if home is None else Path(home)).resolve()
         self.root=Path(root).resolve()
@@ -73,6 +74,14 @@ class ReviewedStartStop:
             self.operator_message="모터 목표·토크 쓰기 없이 센서와 카메라 읽기 시간을10회 계측합니다. 토크는 변경하지 않습니다. 현장에서 상태를 확인한 뒤 진행하세요."
             self.usage_scope="READ_ONLY_CONTROL_TIMING"
             self.summary.update(scope=self.usage_scope,success_sha256=SUCCESS_SHA,goal_writes_allowed=False)
+            if compensated_profile:
+                baseline=self.home/"control_timing_1794130259923524372/TIMING_RESULT.json"
+                self.profile_paths+=((baseline,"68b4451c3add733babd22f676be2cf012843c48bdfee77c5aa70fc67f6452023"),)
+                self.next_stop_name="POST_COMPENSATED_TIMING_STOP.json"
+                self.stop_sha="timing_compensated_"+SUCCESS_SHA
+                self.usage_scope="READ_ONLY_COMPENSATED_TIMING"
+                self.summary.update(scope=self.usage_scope,baseline_sha256=self.profile_paths[-1][1])
+                self.operator_message="완료된 읽기 계측과 비교해 작업 후 남은 주기만 기다립니다. 모터 목표·토크 쓰기와 추론은 없으며 같은 읽기를10회 수행합니다."
             self.check()
             success=json.loads(self.profile_paths[0][0].read_text(encoding="utf-8"))
             if success.get("status")!="FIRST_TRIAL_COMPLETE" or success.get("motor_goal_packets")!=10 or success.get("torque_register_writes")!=0 or success.get("cleanup_errors")!=[] or success.get("ports_closed")!={"io":True,"probe":True}:raise Hold("첫 live 완료 근거 불일치")

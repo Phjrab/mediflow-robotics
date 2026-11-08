@@ -1,0 +1,31 @@
+{
+  "base_commit": "0db6d8a",
+  "hardware_access": false,
+  "operator_live_required": true,
+  "files": [
+    {
+      "path": "operator_candidate/reviewed_start_stop.py",
+      "before_sha256": "f910e36ca3843200a4cc4c1ae255edccbaa591ef58f8778db865d5de4f1088fb",
+      "after_sha256": "3ab6559462bd506fb0e8b58ae522c33cf0f8900e9f3f4afd6b9435cf9f6b5167",
+      "bytes": 8102
+    },
+    {
+      "path": "operator_candidate/profile_control_timing.py",
+      "before_sha256": "b027cee07ac97a827cd103695e29ed2df3eb96afc467e96d3b349a860a189eee",
+      "after_sha256": "de73eb9c2b3c6696fa38f28539c10112edf93ea16e6ac488039d164b4d0f519a",
+      "bytes": 4486
+    },
+    {
+      "path": "operator_candidate/run_control_timing_compensated.sh",
+      "before_sha256": null,
+      "after_sha256": "7befa06cd12a220ba83beff50d0acb32ee3bb912658c8293a2de3a9caa25a98e",
+      "bytes": 157
+    },
+    {
+      "path": "operator_candidate/test_compensated_timing.py",
+      "before_sha256": null,
+      "after_sha256": "177a37cb82f133945f4a1776dbbea4db7a91486165317c664f10f19151117c38",
+      "bytes": 1458
+    }
+  ]
+}
