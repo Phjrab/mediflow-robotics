@@ -1,0 +1,86 @@
+{
+  "kind": "SAVED_EVIDENCE_REVIEW",
+  "live_authorized": false,
+  "hardware_access": false,
+  "state_scope": "마지막 저장 기록이며 현재 실시간 상태가 아님",
+  "blockers": [
+    "FIELD_STOP_REVIEW_REQUIRED",
+    "GOAL_FEEDBACK_67_NOT_MEASURED"
+  ],
+  "findings": [
+    "SAVED_REPLY_INTEGRITY_CHECKED"
+  ],
+  "latest_run": "1793945949525475776",
+  "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+  "result_sha256": "615701df9ac397fef0d0511377872bc28e65e572c28afed2b21521008f56796f",
+  "recorded_status": "READONLY_POSITION_GOAL_REVIEW",
+  "joints": [
+    {
+      "joint": "shoulder_pan",
+      "present_raw": 2034,
+      "goal_raw": 0,
+      "goal_matches_current": false,
+      "goal_in_calibration": false,
+      "current": -5.934065934065934,
+      "home": -3.743322378527509,
+      "home_delta": -2.1907435555384254,
+      "unit": "degree"
+    },
+    {
+      "joint": "shoulder_lift",
+      "present_raw": 831,
+      "goal_raw": 0,
+      "goal_matches_current": false,
+      "goal_in_calibration": false,
+      "current": -98.76923076923077,
+      "home": -97.75278612122919,
+      "home_delta": -1.0164446480015812,
+      "unit": "degree"
+    },
+    {
+      "joint": "elbow_flex",
+      "present_raw": 3082,
+      "goal_raw": 0,
+      "goal_matches_current": false,
+      "goal_in_calibration": false,
+      "current": 96.57142857142857,
+      "home": 96.552176371108,
+      "home_delta": 0.019252200320565294,
+      "unit": "degree"
+    },
+    {
+      "joint": "wrist_flex",
+      "present_raw": 2575,
+      "goal_raw": 0,
+      "goal_matches_current": false,
+      "goal_in_calibration": false,
+      "current": 43.472527472527474,
+      "home": 43.45712672880966,
+      "home_delta": 0.015400743717812304,
+      "unit": "degree"
+    },
+    {
+      "joint": "wrist_roll",
+      "present_raw": 1812,
+      "goal_raw": 0,
+      "goal_matches_current": false,
+      "goal_in_calibration": false,
+      "current": -4.615384615384615,
+      "home": -2.252025343804029,
+      "home_delta": -2.363359271580586,
+      "unit": "degree"
+    },
+    {
+      "joint": "gripper",
+      "present_raw": 531,
+      "goal_raw": 0,
+      "goal_matches_current": false,
+      "goal_in_calibration": false,
+      "current": 7.221542227662178,
+      "home": 4.275478211632611,
+      "home_delta": 2.9460640160295677,
+      "unit": "percent_0_100"
+    }
+  ],
+  "next_operator_read_command": "sudo -v && bash ~/v6_process_1793887709179/operator_candidate/run_torque_readonly.sh --execute --inspect-position-goal --inspect-goal-feedback --operator-present --supported --stop-ready"
+}

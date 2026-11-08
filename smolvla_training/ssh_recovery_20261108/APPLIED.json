@@ -1,0 +1,59 @@
+{
+  "files": [
+    {
+      "path": "operator_candidate/first_trial.py",
+      "before_sha256": "4cc9b5ba83ad19ebc57f8d9e95b5d3c86bff93b66134d75c98b54410c103d0dc",
+      "after_sha256": "a14b94e357a526dcf9a709de5bf55f3b028f1b6746202e49b1f108df59b30538",
+      "bytes": 7941
+    },
+    {
+      "path": "operator_candidate/first_trial_core.py",
+      "before_sha256": "8839324587e26716ff2c792b4b4c1ae8a5c51a7006ff3c73f03b19ab0ea867d4",
+      "after_sha256": "abf3795cffca2a8db1a8cc4d8c144485ea4fb3ab48fd7e95967302a1c8f465db",
+      "bytes": 10300
+    },
+    {
+      "path": "operator_candidate/trial_runtime.py",
+      "before_sha256": "33125a770b23e3606890e842366c0138c9348bf8ddb073b2fc8895c74e0c0bbd",
+      "after_sha256": "c77ba4e056c6a16a90879139cc8c3e94bbcaec11b0859b1181fbed3f6aaddda0",
+      "bytes": 13132
+    },
+    {
+      "path": "operator_candidate/test_first_trial.py",
+      "before_sha256": "b1b0182cebf8a32df05da13858a4623b6cc14ef6100b9bbc3cb60a49f0daea20",
+      "after_sha256": "19f1ad11eeef694eb72a02578f198170ea8e3b64ab8d2c1698238a9f29ddce08",
+      "bytes": 7001
+    },
+    {
+      "path": "operator_candidate/run_receipts.py",
+      "before_sha256": null,
+      "after_sha256": "470fe4cb5b5476efa3d99a0c4e8cdd7bd66c0a3434921a165e91396b86dbe363",
+      "bytes": 4231
+    },
+    {
+      "path": "operator_candidate/test_run_receipts.py",
+      "before_sha256": null,
+      "after_sha256": "33264b211cd5d60a065ec40613c56d0614772e81222c041b74168baa390be498",
+      "bytes": 6737
+    },
+    {
+      "path": "operator_candidate/review_saved_readiness.py",
+      "before_sha256": null,
+      "after_sha256": "a7b4ea315afd1592cde01575dde12e39c889d21efe0a42a503f522dac5bbb84c",
+      "bytes": 6775
+    },
+    {
+      "path": "operator_candidate/test_review_saved_readiness.py",
+      "before_sha256": null,
+      "after_sha256": "e9c094f69c133021623985c324cfd71d9404a029d38c6b7649bf02f6372d7577",
+      "bytes": 3981
+    }
+  ],
+  "field_stop_before": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+  "hardware_access": false,
+  "live": "NOT_RUN",
+  "backup_relative": "software_backups_20261108/1794116160151773267",
+  "status": "SOFTWARE_PATCH_APPLIED",
+  "field_stop_after": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+  "files_written": 8
+}
