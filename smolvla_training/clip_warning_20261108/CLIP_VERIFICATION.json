@@ -1,0 +1,47 @@
+{
+  "status": "BOUNDED_CLIP_WARNING_READY",
+  "tests_passed": 212,
+  "files": {
+    "operator_candidate/first_trial_core.py": "d7656917d9bb5992894dd483a2109e9a7db9a5aded4e0d6a8ba847fb375d442c",
+    "operator_candidate/first_trial_from_hold.py": "d6c27d4adabe401b263ede6986c4903d336df8b23fee6d817ef64559907f4ba3",
+    "operator_candidate/reviewed_start_stop.py": "a59152ede7be0c5d1b481d4200bee3a6e431ae821ff6b43538741559c2e5786a",
+    "operator_candidate/run_bounded_continue.sh": "59f9189d68178206850e35ef0a02c2357f2c595b2eaccf9b0fa7229f43c78851",
+    "operator_candidate/test_clip_warning.py": "4c4944f3a34b2d321e8e460ec00de94a3cbea47777e271d02be0ad67826beb3b"
+  },
+  "check_files": {
+    "status": "HOLD_FILES_READY",
+    "hold_sha256": "4767b9cf28dce8ec3cbb7c0210d9ba8f0f73c74b18a00723bb6399c46f733183",
+    "hold_review_sha256": "742dc63e6ba15b9b8f23f6d16f512decc21126b04b0798901580abfed2310488",
+    "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "hold_only_receipt_is_not_live_permission": true,
+    "operator_live_review_required": true,
+    "reviewed_start_stop": {
+      "scope": "BOUNDED_CLIP_WARNING_TRIAL",
+      "result_sha256": "8268fd1008190afbe45d25e45aa1acbbac84257d29f08f230920be1d86f219d2",
+      "post_hold_stop_sha256": "c70c2909aacf31ce763b6a1b1fff0d072b42092af5a37c31c6156bdc95311ae7",
+      "prior_usage_sha256": "8c0028758824993cce426477e75302d89b5eee45bcd8d31cb753cfc0e7d4b7a5",
+      "max_raw_difference": 1,
+      "max_joint_degrees": 0.1,
+      "max_gripper_points": 0.1,
+      "fresh_operator_review_required": true,
+      "live_authorized": false,
+      "success_sha256": "4909135423bb0788c3f0da7ac329f892a92f582911a7a7b85fcd8a45b247936c",
+      "goal_writes_allowed": true,
+      "expected_last_goal": [
+        -5.763855934143066,
+        -98.74175824175825,
+        96.92307692307692,
+        43.06043956043956,
+        -4.4605183601379395,
+        7.522072792053223
+      ],
+      "encoder_margin_for_new_goals": true,
+      "tracking_allowance_one_count": true,
+      "clip_ratio_is_warning": true
+    },
+    "hardware_access": false,
+    "live_authorized": false
+  },
+  "hardware_access": false,
+  "live": "NOT_RUN"
+}

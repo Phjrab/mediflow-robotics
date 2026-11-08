@@ -171,7 +171,10 @@ class FirstTrialAdapter:
                 error.observed=dict(target_context=self.last_target_context,gate=getattr(error,"observed",None))
                 raise
             clips.append(any(abs(a-b)>1e-6 for a,b in zip(action,target)))
-            if len(clips)==clip_window and sum(clips)/clip_window>.5:raise Hold("정책-제어 clip 비율 초과")
+            if len(clips)==clip_window and sum(clips)/clip_window>.5:
+                if getattr(self,"clip_warning_only",False) and limits.max_steps<=10:
+                    self.events.append("clip_ratio_warning");timing["clip_ratio_warning"]=sum(clips)/clip_window
+                else:raise Hold("정책-제어 clip 비율 초과")
             if self.clock()>=deadline or self.stop.is_set():raise Hold("전송 직전 시간/정지")
             if not compensated:self.io.check_records()
             mark=self.clock()

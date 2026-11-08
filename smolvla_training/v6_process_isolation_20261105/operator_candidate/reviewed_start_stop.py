@@ -21,7 +21,8 @@ SUCCESS_CLAIM_SHA="1e2c050ffa16522902bee46de044e1de356104690d52b5cbb7b088c00f3a5
 
 
 class ReviewedStartStop:
-    def __init__(self,root,*,home=None,review_action=False,profile_success=False,compensated_profile=False,repeat_live=False,quantized_repeat=False):
+    def __init__(self,root,*,home=None,review_action=False,profile_success=False,compensated_profile=False,repeat_live=False,quantized_repeat=False,continue_clipped=False):
+        if continue_clipped:quantized_repeat=True
         self.quantized_repeat=quantized_repeat
         if quantized_repeat:repeat_live=True
         if repeat_live:profile_success=True
@@ -103,6 +104,18 @@ class ReviewedStartStop:
                     self.operator_token="REARM_QUANTIZED";self.usage_scope="QUANTIZATION_AWARE_SHORT_REPEAT"
                     self.operator_message="손목 정수 변환 오차 중단을 보존합니다. 직전 목표 일치를 확인하고 새 목표는 정수 변환 여유를 두어 이동·속도·보정 범위 안으로 제한합니다. 최대10스텝/5초이며 현장 정지 수단을 확인하세요."
                     self.summary.update(scope=self.usage_scope,encoder_margin_for_new_goals=True,tracking_allowance_one_count=True)
+                    if continue_clipped:
+                        latest=self.home/"first_vla_from_hold_1794132383185029292/RESULT.json"
+                        self.profile_paths+=((latest,"b6e4f34528b8d312d73081166003c856c43fb4be3f4aad191f6203e072d6c7df"),
+                            (self.root/"POST_QUANTIZED_REPEAT_STOP.json","e1b2559920274fa446fd991a457277d2dc9729db8eb796ad906648bd5867d882"))
+                        self.next_stop_name="POST_CLIP_WARNING_TRIAL_STOP.json";self.stop_sha="clip_warning_"+SUCCESS_SHA
+                        self.operator_token="REARM_CONTINUE";self.usage_scope="BOUNDED_CLIP_WARNING_TRIAL"
+                        self.operator_message="최근9스텝 결과와 중단 기록을 보존합니다. 이번10스텝 시험에서는 높은 목표 보정 비율을 경고로 기록하며 이동·속도·온도·과부하·비정상 값 제한은 유지합니다. 현장에서 정지 수단을 확인하세요."
+                        self.check()
+                        recorded=json.loads(latest.read_text(encoding="utf-8"))
+                        if recorded.get("motor_goal_packets")!=9 or recorded.get("torque_register_writes")!=0 or len(recorded.get("targets",[]))!=9 or recorded.get("error",{}).get("reason")!="정책-제어 clip 비율 초과":raise Hold("9스텝 중단 검토 범위 불일치")
+                        self.expected_last_goal=recorded["targets"][-1]["target"]
+                        self.summary.update(scope=self.usage_scope,clip_ratio_is_warning=True,expected_last_goal=self.expected_last_goal)
                 self.check()
 
     def check(self):

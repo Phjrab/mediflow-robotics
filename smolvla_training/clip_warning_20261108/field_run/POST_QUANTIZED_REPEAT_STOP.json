@@ -1,0 +1,14 @@
+{
+  "status": "HOLD",
+  "kind": "REVIEWED_ACTION_FIRST_TRIAL_STOP",
+  "unix": 1794132461.2405481,
+  "error": {
+    "kind": "Hold",
+    "reason": "정책-제어 clip 비율 초과",
+    "observed": null,
+    "initialization_cleanup_error": null
+  },
+  "goal_packets": 9,
+  "cleanup_errors": [],
+  "output": "~/first_vla_from_hold_1794132383185029292"
+}
