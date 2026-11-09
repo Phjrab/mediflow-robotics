@@ -10,6 +10,10 @@ from first_trial_core import JOINTS,Hold
 from paced_tracking import fault
 
 MANDATORY={'Torque_Enable':(40,1),'Operating_Mode':(33,1),'Present_Position':(56,2),'Present_Temperature':(63,1)}
+REQUESTED=('Torque_Enable','P_Coefficient','I_Coefficient','D_Coefficient','Torque_Limit',
+           'Max_Torque_Limit','Acceleration','Goal_Velocity','Min_Position_Limit','Max_Position_Limit',
+           'CW_Dead_Zone','CCW_Dead_Zone','Protection_Current','Overload_Torque','Present_Position',
+           'Present_Load','Present_Current','Present_Temperature','Present_Voltage')
 OPTIONAL=('P_Coefficient','I_Coefficient','D_Coefficient','CW_Dead_Zone','CCW_Dead_Zone',
           'Torque_Limit','Max_Torque_Limit','Maximum_Torque','Maximum_Acceleration','Acceleration',
           'Goal_Velocity','Present_Velocity','Present_Voltage','Max_Voltage_Limit','Min_Voltage_Limit','Phase',
@@ -21,11 +25,12 @@ RAW_PROFILE={'firmware_major_byte0':(0,1),'firmware_minor_byte1':(1,1),'endianne
              'startup_byte24':(24,1),'integral_limit_byte25':(25,1),'target_feedback67':(67,2)}
 RAW_PROFILE_SOURCE='https://docs.waveshare.com/Memory_Map_Explanation/ST_Servo_Memory_Map_Explanation'
 
-def register_contract(table):
+def register_contract(table, *, requested_only=False):
     for key,pair in MANDATORY.items():
         if tuple(table.get(key,()))!=pair:raise fault('REGISTER_CONTRACT','필수 레지스터 계약 불일치',register=key)
     selected=dict(MANDATORY);unsupported={}
-    for name in OPTIONAL:
+    for name in (REQUESTED if requested_only else OPTIONAL):
+        if name in selected:continue
         if name in CONFLICTS:unsupported[name]=CONFLICTS[name];continue
         row=table.get(name)
         if row is None:unsupported[name]='NOT_FOUND';continue
@@ -35,7 +40,7 @@ def register_contract(table):
         selected[name]=tuple(row)
     return selected,unsupported
 
-def inspect_bus(bus,selected,*,exclusive=lambda:None,replies=contextlib.nullcontext,seal=lambda:None,raw_read=None):
+def inspect_bus(bus,selected,*,exclusive=lambda:None,replies=contextlib.nullcontext,seal=lambda:None,raw_read=None,allow_torque_on=False):
     result=dict(status='HOLD',live='NOT_RUN',motor_register_writes=0,values={},raw_positions={},
         connected=False,port_closed=False,cleanup_errors=[],actual_units_for_optional='UNVERIFIED',read_history=[],raw_profile_values={})
     def read(register,joint):
@@ -44,12 +49,16 @@ def inspect_bus(bus,selected,*,exclusive=lambda:None,replies=contextlib.nullcont
         result['values'].setdefault(register,{})[joint]=value
         result['read_history'].append(dict(register=register,joint=joint,value=value))
         return value
+    def read_torque():
+        for joint in JOINTS:
+            value=read('Torque_Enable',joint)
+            if value not in (0,1) or (value==1 and not allow_torque_on):
+                raise fault('TORQUE_NOT_OFF','허용되지 않은 토크 상태',joint=joint,value=value)
     try:
         bus.connect(handshake=False);result['connected']=True;exclusive()
         with replies():
-            for joint in JOINTS:
-                value=read('Torque_Enable',joint)
-                if value!=0:raise fault('TORQUE_NOT_OFF','토크ON/미확인 감지; 추가 읽기 없이 중단',joint=joint,value=value)
+            read_torque()
+            result['torque_at_start']=dict(result['values']['Torque_Enable'])
             for joint in JOINTS:
                 value=read('Present_Temperature',joint)
                 if not 0<=value<45:raise fault('TEMPERATURE','45도 이상/미확인; 추가 읽기 없이 중단',joint=joint,value=value)
@@ -67,9 +76,7 @@ def inspect_bus(bus,selected,*,exclusive=lambda:None,replies=contextlib.nullcont
                         value=raw_read(address,size,joint)
                         if type(value) is not int or not 0<=value<256**size:raise fault('RAW_PROFILE_RESPONSE','원시 프로필 응답 오류',joint=joint,address=address)
                         result['raw_profile_values'][name][joint]=value
-            for joint in JOINTS:
-                value=read('Torque_Enable',joint)
-                if value!=0:raise fault('TORQUE_NOT_OFF','종료 전 토크ON/미확인 감지; 추가 읽기 중단',joint=joint,value=value)
+            read_torque()
             for joint in JOINTS:
                 value=read('Present_Temperature',joint)
                 if not 0<=value<45:raise fault('TEMPERATURE','종료 전45도 이상/미확인; 추가 읽기 중단',joint=joint,value=value)
@@ -95,6 +102,7 @@ def inspect_bus(bus,selected,*,exclusive=lambda:None,replies=contextlib.nullcont
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--execute',action='store_true');p.add_argument('--operator-present',action='store_true');p.add_argument('--out',type=Path)
+    p.add_argument('--allow-torque-on',action='store_true',help='요청된 6축 설정만 읽고 정상 토크값 0/1을 기록')
     args=p.parse_args()
     if not args.execute:
         print('PLAN_ONLY: 장치·추론·레지스터 쓰기 없음. 토크OFF·45도 미만·현장 직접 READ_CONFIG 확인 후 읽기만 가능합니다.');return 0
@@ -111,11 +119,12 @@ def main():
     from lerobot.robots.so_follower import SO101Follower,SO101FollowerConfig
     robot=SO101Follower(SO101FollowerConfig(port=probe.PORT,id='so-101',calibration_dir=calibration.parent,cameras={},use_degrees=True,disable_torque_on_disconnect=False))
     if {name:robot.bus.motors[name].id for name in JOINTS}!={name:i+1 for i,name in enumerate(JOINTS)}:raise Hold('모터 ID 순서 불일치')
-    selected,unsupported=register_contract(robot.bus.model_ctrl_table['sts3215'])
+    selected,unsupported=register_contract(robot.bus.model_ctrl_table['sts3215'],requested_only=args.allow_torque_on)
     from live_safety_runtime import PacketPermission
     class ReadOnlyPermission(PacketPermission):READS={address:size for address,size in list(selected.values())+list(RAW_PROFILE.values())}
     devices.require()
-    confirm('READ_CONFIG','모터 설정 읽기만 수행합니다. 팔을 안정적으로 받치고 DC 전원을 연결한 상태에서 진행하세요. 토크ON 또는45도 이상이면 읽기를 중단하며 토크·목표·설정은 변경하지 않습니다.')
+    torque_message='토크값 0과 1을 기록하고 계속 읽습니다.' if args.allow_torque_on else '토크ON이면 중단합니다.'
+    confirm('READ_CONFIG','팔을 안정적으로 받친 상태에서 설정을 읽습니다. '+torque_message+' 온도가 45°C 이상이면 중단합니다.')
     devices.require();output.mkdir(parents=True,exist_ok=False)
     guard=ReadOnlyPermission(robot.bus.port_handler,allow_goal=False).install()
     from individual_reply_guard import StrictIndividualReplies
@@ -126,12 +135,14 @@ def main():
         data,communication,status=robot.bus.packet_handler.readTxRx(robot.bus.port_handler,robot.bus.motors[joint].id,address,size)
         if communication!=0 or status!=0 or len(data)!=size:raise fault('RAW_PROFILE_RESPONSE','원시 프로필 통신 실패; 재시도 없이 중단',joint=joint,address=address,communication=communication,status=status)
         return int.from_bytes(bytes(data),'little')
-    result=inspect_bus(robot.bus,selected,exclusive=exclusive,replies=lambda:StrictIndividualReplies(robot.bus.packet_handler),seal=guard.seal,raw_read=raw_read)
+    result=inspect_bus(robot.bus,selected,exclusive=exclusive,replies=lambda:StrictIndividualReplies(robot.bus.packet_handler),seal=guard.seal,
+        raw_read=None if args.allow_torque_on else raw_read,allow_torque_on=args.allow_torque_on)
     if result['port_closed']:
         try:guard.restore()
         except BaseException as error:
             result['cleanup_errors'].append(dict(stage='guard_restore',kind=type(error).__name__));result['status']='HOLD'
     result.update(register_contract=selected,unsupported_registers=unsupported,read_packets=guard.read_packets,blocked_packets=guard.blocked_packets,
+        allow_torque_on=args.allow_torque_on,requested_complete=all(set(result['values'].get(name,{}))==set(JOINTS) for name in REQUESTED),
         calibration_sha256=CAL_SHA,raw_profile=RAW_PROFILE,raw_profile_source=RAW_PROFILE_SOURCE,
         source_conflicts=CONFLICTS,output=str(output).replace(str(Path.home()),'~'))
     with (output/'RESULT.json').open('x',encoding='utf-8') as f:json.dump(result,f,ensure_ascii=False,allow_nan=False,indent=2)

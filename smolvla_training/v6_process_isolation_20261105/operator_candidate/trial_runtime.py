@@ -45,12 +45,15 @@ def check_context(context):
 
 class DeviceIO:
     physical=True
-    def __init__(self,context,*,expected_torque=0,allow_goal=False,policy=None,continuation=None):
+    def __init__(self,context,*,expected_torque=0,allow_goal=False,policy=None,continuation=None,current_limits=None):
         self.context=context;self.expected_torque=expected_torque;self.allow_goal=allow_goal;self.policy=policy
         self.robot=None;self.permission=None;self.cameras=[];self.authorized=False;self.cleanup_errors=[];self.closed=False
         self.read_history=[];self.last_fault=None;self.diagnostic_phase="INITIAL"
         self.reply_guard=None
         self.continuation=continuation
+        self.current_limits=current_limits
+        self.expected_wire=None
+        self.before_wire=None
         from goal_telemetry import GoalTelemetry
         self.goal_telemetry=GoalTelemetry()
     def connect(self):
@@ -74,10 +77,15 @@ class DeviceIO:
         from live_safety_runtime import PacketPermission
         io=self
         class Permission(PacketPermission):
-            READS={**PacketPermission.READS,42:2,66:1,67:2}
+            READS={**PacketPermission.READS,42:2,66:1,67:2,**({28:2,69:2} if io.current_limits is not None else {})}
             def inspect(self,port,packet):
                 kind=super().inspect(port,packet)
-                if kind=='goal':io.goal_telemetry.capture(packet,io.robot.bus._normalize)
+                if kind=='goal':
+                    io.goal_telemetry.capture(packet,io.robot.bus._normalize)
+                    if io.current_limits is not None and io.goal_telemetry.active["wire_raw"] != io.expected_wire:
+                        raise Hold("검증한 정수 목표와 SDK 패킷 불일치. 전송 중단")
+                    if io.current_limits is not None:
+                        io.before_wire()
                 return kind
         self.robot=SO101Follower(SO101FollowerConfig(port=probe.PORT,id="so-101",calibration_dir=self.context["calibration"].parent,
                           cameras={},use_degrees=True,max_relative_target=2.,disable_torque_on_disconnect=False))
@@ -85,12 +93,18 @@ class DeviceIO:
         for motor in self.robot.bus.motors.values():
             for name,pair in {"Goal_Position":(42,2),"Moving":(66,1),"Torque_Enable":(40,1)}.items():
                 if tuple(table[motor.model][name])!=pair:raise Hold("설치 SDK 레지스터 계약 미확인")
+            if self.current_limits is not None:
+                for name,pair in {"Protection_Current":(28,2),"Present_Current":(69,2)}.items():
+                    if tuple(table[motor.model][name])!=pair:raise Hold("설치 SDK 전류 레지스터 계약 미확인")
         self.permission=Permission(self.robot.bus.port_handler,allow_goal=self.allow_goal).install()
         from reply_integrity import StrictSyncReplies
         self.reply_guard=StrictSyncReplies(self.robot.bus.sync_reader,self.robot.bus.packet_handler).install()
         self.robot.bus.connect(handshake=False)
         import fcntl,termios
         fcntl.ioctl(self.robot.bus.port_handler.ser.fileno(),termios.TIOCEXCL)
+        if self.current_limits is not None:
+            if self.raw("Protection_Current") != self.current_limits:
+                raise Hold("진단 이후 모터 전류 보호 설정이 달라짐")
         self.health_snapshot()
         from individual_reply_guard import StrictIndividualReplies
         with StrictIndividualReplies(self.robot.bus.packet_handler):
@@ -133,10 +147,21 @@ class DeviceIO:
             self.last_fault=dict(phase=self.diagnostic_phase,snapshot=row,recent_reads=list(self.read_history))
             error.observed=self.last_fault
             raise
+        if self.current_limits is not None:
+            currents=self.raw("Present_Current")
+            if any(type(currents[j]) is not int or abs(currents[j])>=self.current_limits[j] for j in JOINTS):
+                raise self.observed_hold("전류 보호 한계. 추가 목표 전송 중단",currents=currents,limits=self.current_limits)
+            row["currents"]=currents
         return row
     def snapshot(self):
         row=self.health_snapshot()
-        pos=self.robot.bus.sync_read("Present_Position",num_retry=0)
+        if self.current_limits is None:
+            pos=self.robot.bus.sync_read("Present_Position",num_retry=0)
+        else:
+            bus=self.robot.bus
+            ids={name:bus.motors[name].id for name in JOINTS}
+            normalized=bus._normalize({ids[name]:value for name,value in self.raw("Present_Position").items()})
+            pos={name:normalized[ids[name]] for name in JOINTS}
         row["state"]=vector([float(pos[j]) for j in JOINTS])
         moving=self.raw("Moving")
         if any(type(v) is not int or v not in (0,1) for v in moving.values()):raise Hold("Moving 응답 미확인")
@@ -216,6 +241,33 @@ class DeviceIO:
         except BaseException as error:
             self.goal_telemetry.fail(error)
             raise
+    def encoder_axes(self):
+        from data_motion import Axis
+        bus=self.robot.bus
+        axes=[]
+        for name in JOINTS:
+            motor=bus.motors[name].id
+            cal=bus.calibration[name]
+            low=float(bus._normalize({motor:cal.range_min})[motor])
+            high=float(bus._normalize({motor:cal.range_max})[motor])
+            axes.append(Axis(cal.range_min,cal.range_max,low,high))
+        return axes
+    def send_encoded_target(self,normalized,raw,check):
+        if self.current_limits is None or not self.authorized or not self.allow_goal or self.expected_torque!=1:
+            raise Hold("정수 목표 전송 권한 없음")
+        self.goal_telemetry.begin(normalized)
+        self.expected_wire=dict(raw)
+        self.before_wire=check
+        try:
+            with self.permission.goal_once():
+                self.robot.bus.sync_write("Goal_Position",raw,normalize=False,num_retry=0)
+            return self.goal_telemetry.finish_encoded()
+        except BaseException as error:
+            self.goal_telemetry.fail(error)
+            raise
+        finally:
+            self.expected_wire=None
+            self.before_wire=None
     def close(self):
         if self.closed:return
         self.closed=True

@@ -31,6 +31,13 @@ class Tests(unittest.TestCase):
     def test_first_on_torque_stops_without_more_reads(self):
         bus=Bus();bus.torque=1;result=inspect_bus(bus,MANDATORY)
         self.assertEqual(result['error']['observed']['code'],'TORQUE_NOT_OFF');self.assertEqual(len([r for r in bus.calls if r[0]=='read']),1);self.assertTrue(result['port_closed'])
+    def test_explicit_torque_on_review_reads_all_six_without_writing(self):
+        bus=Bus();bus.torque=1
+        result=inspect_bus(bus,{**MANDATORY,'P_Coefficient':(21,1)},allow_torque_on=True)
+        self.assertEqual(result['status'],'SERVO_CONFIG_READONLY_COMPLETE')
+        self.assertEqual(result['values']['Torque_Enable'],dict.fromkeys(JOINTS,1))
+        self.assertEqual(result['values']['P_Coefficient'],dict.fromkeys(JOINTS,2))
+        self.assertEqual(bus.calls[-1],('disconnect',False))
     def test_temperature_and_mode_abort_and_close(self):
         for key,value,code in [('temp',45,'TEMPERATURE'),('mode',1,'MODE')]:
             bus=Bus();setattr(bus,key,value);result=inspect_bus(bus,MANDATORY)

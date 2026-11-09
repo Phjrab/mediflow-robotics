@@ -6,8 +6,10 @@ class SessionStages:
     def execute_stage(self,stage):
         if self.limits.max_steps!=50 or self.limits.max_seconds>10 or self.limits.cap>2:raise Hold("세션 작업 프로필 불일치")
         started=self.clock();self.session_chunks=[];all_timings=[];self.session_end_reason="MAX_CHUNKS"
+        if getattr(self,"data_session",False):self.session_deadline=started+30
         for chunk in range(6):
-            if 30-(self.clock()-started)<self.limits.max_seconds:
+            remaining=30-(self.clock()-started)
+            if (remaining<=0 if getattr(self,"data_session",False) else remaining<self.limits.max_seconds):
                 self.session_end_reason="TIME_BUDGET";break
             if self.stop.is_set():raise Hold("세션 정지 요청")
             self.skip_home_recheck=chunk>0

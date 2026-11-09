@@ -35,6 +35,13 @@ class GoalTelemetry:
             wire_minus_sdk=[a-b for a,b in zip(self.active['wire_normalized'],values)],
             motor_acknowledgement='UNVERIFIED')
         row=self.active;self.active=None;return row
+    def finish_encoded(self):
+        if self.active is None or not self.active["packet_captured"]:
+            raise Hold("목표 계측 전송 패킷 없음")
+        row=self.active
+        row.update(status="SDK_WRITE_RETURNED",motor_acknowledgement="UNVERIFIED")
+        self.active=None
+        return row
     def fail(self,error):
         if self.active is not None:
             self.active.update(status='ERROR',error_kind=type(error).__name__);self.active=None

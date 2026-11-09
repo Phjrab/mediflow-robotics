@@ -1,0 +1,135 @@
+{
+  "episodes": 137,
+  "frames": 63551,
+  "fps": 30,
+  "pairs": 63414,
+  "counts": {
+    "red": 48,
+    "green": 45,
+    "blue": 44
+  },
+  "frames_by_color": {
+    "red": 22752,
+    "green": 21367,
+    "blue": 19432
+  },
+  "mapping_sha256": "d6b2c82317ff8a1652f5dd6d3eb14e43899421257d19a3bf78caa0450927821a",
+  "parquet_sha256": {
+    "a_to_red_20261102_201029/data/chunk-000/file-000.parquet": "f799e22af6a7b141be1457e935c8902886468fb64ef99250e371e97728361292",
+    "a_to_red_20261102_210433/data/chunk-000/file-000.parquet": "6fdf565a638655982b9e0a575e99a64ae2e95dd1d20539f74ae94d1c0507485a",
+    "a_to_green_20261102_201804/data/chunk-000/file-000.parquet": "81dc6ebe7cd48d1a715a55bf5e12615af74fff1fccb62816bf9f5cea00a67ac6",
+    "a_to_blue_20261102_212958/data/chunk-000/file-000.parquet": "a55e42ca90c9a4cfd66604660c136a239a204f0c6cad52aa8e328b02fbfb31bd",
+    "a_to_blue_20261103_193835/data/chunk-000/file-000.parquet": "3ca854deaa401f312c364a42c85a2dc5e6209f2f189b2b5c15b8e64fbc285b1e",
+    "a_to_blue_20261103_193353/data/chunk-000/file-000.parquet": "22813bc35cc95a42bb3af8dc4ac49f9fdef13d288bb625199ff3146a3330b850"
+  },
+  "joints": {
+    "shoulder_pan": {
+      "unit": "degree",
+      "per_frame": {
+        "p50": 0.0,
+        "p95": 0.8791208267211914,
+        "p99": 1.7582426071166992,
+        "max": 7.296703338623047
+      },
+      "per_second": {
+        "p50": 0.0,
+        "p95": 26.373286985380368,
+        "p99": 52.748083085374226,
+        "max": 218.90130891924755
+      },
+      "above_2_per_frame": 452,
+      "above_20_per_second": 4501,
+      "requested_limit": 60.0
+    },
+    "shoulder_lift": {
+      "unit": "degree",
+      "per_frame": {
+        "p50": 0.0,
+        "p95": 2.8131866455078125,
+        "p99": 4.5714287757873535,
+        "max": 14.417579650878906
+      },
+      "per_second": {
+        "p50": 0.0,
+        "p95": 84.39447257746116,
+        "p99": 137.14488441290914,
+        "max": 432.5278020170231
+      },
+      "above_2_per_frame": 6394,
+      "above_20_per_second": 17885,
+      "requested_limit": 60.0
+    },
+    "elbow_flex": {
+      "unit": "degree",
+      "per_frame": {
+        "p50": 0.0,
+        "p95": 3.3406600952148438,
+        "p99": 5.890110015869141,
+        "max": 15.824175357818604
+      },
+      "per_second": {
+        "p50": 0.0,
+        "p95": 100.21989843358844,
+        "p99": 176.70599679560542,
+        "max": 474.7189225531428
+      },
+      "above_2_per_frame": 8048,
+      "above_20_per_second": 18719,
+      "requested_limit": 60.0
+    },
+    "wrist_flex": {
+      "unit": "degree",
+      "per_frame": {
+        "p50": 0.0,
+        "p95": 1.8461532592773438,
+        "p99": 3.0769271850585938,
+        "max": 12.307693481445312
+      },
+      "per_second": {
+        "p50": 0.0,
+        "p95": 55.38385832403513,
+        "p99": 92.30922407873655,
+        "max": 369.2364385442893
+      },
+      "above_2_per_frame": 2616,
+      "above_20_per_second": 10809,
+      "requested_limit": 60.0
+    },
+    "wrist_roll": {
+      "unit": "degree",
+      "per_frame": {
+        "p50": 0.0,
+        "p95": 0.5274724960327148,
+        "p99": 1.4065933227539062,
+        "max": 4.571428537368774
+      },
+      "per_second": {
+        "p50": 0.0,
+        "p95": 15.824189972105,
+        "p99": 42.19723628873058,
+        "max": 137.14298691080754
+      },
+      "above_2_per_frame": 183,
+      "above_20_per_second": 2651,
+      "requested_limit": 50.6366835464767
+    },
+    "gripper": {
+      "unit": "gripper_point_0_100",
+      "per_frame": {
+        "p50": 0.0,
+        "p95": 2.1439509809017183,
+        "p99": 4.670750617980957,
+        "max": 16.003063201904297
+      },
+      "per_second": {
+        "p50": 0.0,
+        "p95": 64.31854659895572,
+        "p99": 140.12265217080324,
+        "max": 480.09922178988325
+      },
+      "above_2_per_frame": 3325,
+      "above_20_per_second": 5812,
+      "requested_limit": null
+    }
+  }
+}

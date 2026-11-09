@@ -1,7 +1,7 @@
 """쓰기가 없었던 특정 시작 중단만 검토한다. 새 현장 확인 전 장치 권한 없음."""
 import json
 from pathlib import Path
-from first_trial_core import Hold,JOINTS,Limits,sensor_gate
+from first_trial_core import Hold,JOINTS,Limits,sensor_gate,vector
 import hold_continuation as held
 from start_goal_agreement import assess
 
@@ -142,6 +142,55 @@ class ReviewedStartStop:
                                 self.summary.update(scope=self.usage_scope,max_steps=300,max_seconds=30,max_chunks=6,tracking_cap_degrees=2,expected_last_goal=self.expected_last_goal)
                 self.check()
 
+    @classmethod
+    def for_data_motion(cls, root, stage, stats, servo, dry, completed_50=None):
+        from data_motion_evidence import ARCHIVE_SHA, ARCHIVE_STOP_SHA, CODE_FILES, dry_gate, previous_live50
+        review = cls(root, work_segment=True)
+        archived = review.home / "first_vla_from_hold_1794135170684736390" / "RESULT.json"
+        dry_gate(review.root, dry, stats, servo)
+        stop = review.root / "POST_WORK_SESSION_STOP.json"
+        if held.sha(archived) != ARCHIVE_SHA or held.sha(stop) != ARCHIVE_STOP_SHA:
+            raise Hold("284개 전송 중단 기록 불일치")
+        result = json.loads(archived.read_text(encoding="utf-8"))
+        if (result["status"] != "HOLD" or result["motor_goal_packets"] != 284
+            or result["torque_register_writes"] != 0 or result["cleanup_errors"] != []
+            or result["ports_closed"] != {"io": True, "probe": True}):
+            raise Hold("이전 정지·포트 기록 미확인")
+        review.profile_paths += ((stop, ARCHIVE_STOP_SHA),)
+        bulk = [archived, stats, servo, dry, *(review.root / name for name in CODE_FILES)]
+        fingerprints = {path: review.file_identity(path) for path in bulk}
+        dry_gate(review.root, dry, stats, servo)
+        if held.sha(archived) != ARCHIVE_SHA:
+            raise Hold("284개 전송 중단 기록 불일치")
+        if stage == 300:
+            if completed_50 is None or (review.root / "POST_DATA_LIVE_50_STOP.json").exists():
+                raise Hold("50스텝 시험 완료 검토 필요")
+            fingerprints[completed_50] = review.file_identity(completed_50)
+            review.expected_last_goal = previous_live50(completed_50, stats, servo, dry)
+        else:
+            review.expected_last_goal = vector(result["targets"][-1]["target"])
+        review.max_steps = stage
+        review.max_seconds = 10 if stage == 50 else 30
+        review.tracking_cap_degrees = 2.
+        review.next_stop_name = f"POST_DATA_LIVE_{stage}_STOP.json"
+        review.stop_sha = f"data_live_{stage}_" + ARCHIVE_SHA
+        review.usage_scope = f"DATA_LIMITS_LIVE_{stage}"
+        review.operator_token = f"REARM_DATA_{stage}"
+        review.operator_message = f"데이터 기반 {stage}스텝 시험입니다. 직전 전송 목표 기준 2도, 관절별 속도, 15도 보류와 25도 지속 중단을 적용합니다. 팔 지지와 정지 수단을 확인하세요."
+        review.summary.update(scope=review.usage_scope, max_steps=stage, max_seconds=review.max_seconds,
+                              expected_last_goal=review.expected_last_goal, command_reference="previous_wire",
+                              gap_hold_degrees=15, gap_stop_degrees=25, gap_stop_seconds=.5)
+        review.bulk_fingerprints = fingerprints
+        review.check()
+        return review
+
+    @staticmethod
+    def file_identity(path):
+        if path.is_symlink() or path.parent.is_symlink() or not path.is_file():
+            raise Hold("검증 파일 경로 변경")
+        st = path.stat()
+        return st.st_dev, st.st_ino, st.st_size, st.st_mtime_ns, st.st_ctime_ns
+
     def check(self):
         if hasattr(self,"profile_paths") and (self.root/ACTION_NEXT_STOP).exists():raise Hold("첫 live 이후 새 중단 기록 존재")
         if (self.root/self.next_stop_name).exists():raise Hold("재개 후 새 중단 기록 존재; 자동 반복 금지")
@@ -150,3 +199,5 @@ class ReviewedStartStop:
         paths=paths+getattr(self,"profile_paths",())
         for path,digest in paths:
             if path.is_symlink() or path.parent.is_symlink() or held.sha(path)!=digest:raise Hold("시작 중단 검토 원본 변경")
+        for path, identity in getattr(self,"bulk_fingerprints",{}).items():
+            if self.file_identity(path) != identity:raise Hold("데이터 기반 시험 검증 파일 변경")

@@ -1,0 +1,978 @@
+{
+  "status": "SERVO_CONFIG_READONLY_COMPLETE",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "values": {
+    "Torque_Enable": {
+      "shoulder_pan": 1,
+      "shoulder_lift": 1,
+      "elbow_flex": 1,
+      "wrist_flex": 1,
+      "wrist_roll": 1,
+      "gripper": 1
+    },
+    "Present_Temperature": {
+      "shoulder_pan": 31,
+      "shoulder_lift": 32,
+      "elbow_flex": 35,
+      "wrist_flex": 30,
+      "wrist_roll": 30,
+      "gripper": 33
+    },
+    "Operating_Mode": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "Present_Position": {
+      "shoulder_pan": 2039,
+      "shoulder_lift": 836,
+      "elbow_flex": 3076,
+      "wrist_flex": 2586,
+      "wrist_roll": 1855,
+      "gripper": 636
+    },
+    "P_Coefficient": {
+      "shoulder_pan": 16,
+      "shoulder_lift": 16,
+      "elbow_flex": 16,
+      "wrist_flex": 16,
+      "wrist_roll": 16,
+      "gripper": 16
+    },
+    "I_Coefficient": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "D_Coefficient": {
+      "shoulder_pan": 32,
+      "shoulder_lift": 32,
+      "elbow_flex": 32,
+      "wrist_flex": 32,
+      "wrist_roll": 32,
+      "gripper": 32
+    },
+    "Torque_Limit": {
+      "shoulder_pan": 1000,
+      "shoulder_lift": 1000,
+      "elbow_flex": 1000,
+      "wrist_flex": 1000,
+      "wrist_roll": 500,
+      "gripper": 500
+    },
+    "Max_Torque_Limit": {
+      "shoulder_pan": 1000,
+      "shoulder_lift": 1000,
+      "elbow_flex": 1000,
+      "wrist_flex": 1000,
+      "wrist_roll": 500,
+      "gripper": 500
+    },
+    "Acceleration": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "Goal_Velocity": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "Min_Position_Limit": {
+      "shoulder_pan": 755,
+      "shoulder_lift": 796,
+      "elbow_flex": 880,
+      "wrist_flex": 936,
+      "wrist_roll": 86,
+      "gripper": 413
+    },
+    "Max_Position_Limit": {
+      "shoulder_pan": 3448,
+      "shoulder_lift": 3113,
+      "elbow_flex": 3087,
+      "wrist_flex": 3225,
+      "wrist_roll": 3643,
+      "gripper": 2047
+    },
+    "CW_Dead_Zone": {
+      "shoulder_pan": 1,
+      "shoulder_lift": 1,
+      "elbow_flex": 1,
+      "wrist_flex": 1,
+      "wrist_roll": 1,
+      "gripper": 1
+    },
+    "CCW_Dead_Zone": {
+      "shoulder_pan": 1,
+      "shoulder_lift": 1,
+      "elbow_flex": 1,
+      "wrist_flex": 1,
+      "wrist_roll": 1,
+      "gripper": 1
+    },
+    "Protection_Current": {
+      "shoulder_pan": 310,
+      "shoulder_lift": 310,
+      "elbow_flex": 310,
+      "wrist_flex": 310,
+      "wrist_roll": 250,
+      "gripper": 250
+    },
+    "Overload_Torque": {
+      "shoulder_pan": 80,
+      "shoulder_lift": 80,
+      "elbow_flex": 80,
+      "wrist_flex": 80,
+      "wrist_roll": 25,
+      "gripper": 25
+    },
+    "Present_Load": {
+      "shoulder_pan": -32,
+      "shoulder_lift": 28,
+      "elbow_flex": 100,
+      "wrist_flex": -20,
+      "wrist_roll": -24,
+      "gripper": 0
+    },
+    "Present_Current": {
+      "shoulder_pan": 1,
+      "shoulder_lift": 1,
+      "elbow_flex": 4,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "Present_Voltage": {
+      "shoulder_pan": 122,
+      "shoulder_lift": 121,
+      "elbow_flex": 122,
+      "wrist_flex": 116,
+      "wrist_roll": 122,
+      "gripper": 122
+    }
+  },
+  "raw_positions": {
+    "shoulder_pan": 2039,
+    "shoulder_lift": 836,
+    "elbow_flex": 3076,
+    "wrist_flex": 2586,
+    "wrist_roll": 1855,
+    "gripper": 636
+  },
+  "connected": true,
+  "port_closed": true,
+  "cleanup_errors": [],
+  "actual_units_for_optional": "UNVERIFIED",
+  "read_history": [
+    {
+      "register": "Torque_Enable",
+      "joint": "shoulder_pan",
+      "value": 1
+    },
+    {
+      "register": "Torque_Enable",
+      "joint": "shoulder_lift",
+      "value": 1
+    },
+    {
+      "register": "Torque_Enable",
+      "joint": "elbow_flex",
+      "value": 1
+    },
+    {
+      "register": "Torque_Enable",
+      "joint": "wrist_flex",
+      "value": 1
+    },
+    {
+      "register": "Torque_Enable",
+      "joint": "wrist_roll",
+      "value": 1
+    },
+    {
+      "register": "Torque_Enable",
+      "joint": "gripper",
+      "value": 1
+    },
+    {
+      "register": "Present_Temperature",
+      "joint": "shoulder_pan",
+      "value": 31
+    },
+    {
+      "register": "Present_Temperature",
+      "joint": "shoulder_lift",
+      "value": 32
+    },
+    {
+      "register": "Present_Temperature",
+      "joint": "elbow_flex",
+      "value": 35
+    },
+    {
+      "register": "Present_Temperature",
+      "joint": "wrist_flex",
+      "value": 30
+    },
+    {
+      "register": "Present_Temperature",
+      "joint": "wrist_roll",
+      "value": 30
+    },
+    {
+      "register": "Present_Temperature",
+      "joint": "gripper",
+      "value": 33
+    },
+    {
+      "register": "Operating_Mode",
+      "joint": "shoulder_pan",
+      "value": 0
+    },
+    {
+      "register": "Operating_Mode",
+      "joint": "shoulder_lift",
+      "value": 0
+    },
+    {
+      "register": "Operating_Mode",
+      "joint": "elbow_flex",
+      "value": 0
+    },
+    {
+      "register": "Operating_Mode",
+      "joint": "wrist_flex",
+      "value": 0
+    },
+    {
+      "register": "Operating_Mode",
+      "joint": "wrist_roll",
+      "value": 0
+    },
+    {
+      "register": "Operating_Mode",
+      "joint": "gripper",
+      "value": 0
+    },
+    {
+      "register": "Present_Position",
+      "joint": "shoulder_pan",
+      "value": 2039
+    },
+    {
+      "register": "Present_Position",
+      "joint": "shoulder_lift",
+      "value": 836
+    },
+    {
+      "register": "Present_Position",
+      "joint": "elbow_flex",
+      "value": 3076
+    },
+    {
+      "register": "Present_Position",
+      "joint": "wrist_flex",
+      "value": 2586
+    },
+    {
+      "register": "Present_Position",
+      "joint": "wrist_roll",
+      "value": 1855
+    },
+    {
+      "register": "Present_Position",
+      "joint": "gripper",
+      "value": 636
+    },
+    {
+      "register": "P_Coefficient",
+      "joint": "shoulder_pan",
+      "value": 16
+    },
+    {
+      "register": "P_Coefficient",
+      "joint": "shoulder_lift",
+      "value": 16
+    },
+    {
+      "register": "P_Coefficient",
+      "joint": "elbow_flex",
+      "value": 16
+    },
+    {
+      "register": "P_Coefficient",
+      "joint": "wrist_flex",
+      "value": 16
+    },
+    {
+      "register": "P_Coefficient",
+      "joint": "wrist_roll",
+      "value": 16
+    },
+    {
+      "register": "P_Coefficient",
+      "joint": "gripper",
+      "value": 16
+    },
+    {
+      "register": "I_Coefficient",
+      "joint": "shoulder_pan",
+      "value": 0
+    },
+    {
+      "register": "I_Coefficient",
+      "joint": "shoulder_lift",
+      "value": 0
+    },
+    {
+      "register": "I_Coefficient",
+      "joint": "elbow_flex",
+      "value": 0
+    },
+    {
+      "register": "I_Coefficient",
+      "joint": "wrist_flex",
+      "value": 0
+    },
+    {
+      "register": "I_Coefficient",
+      "joint": "wrist_roll",
+      "value": 0
+    },
+    {
+      "register": "I_Coefficient",
+      "joint": "gripper",
+      "value": 0
+    },
+    {
+      "register": "D_Coefficient",
+      "joint": "shoulder_pan",
+      "value": 32
+    },
+    {
+      "register": "D_Coefficient",
+      "joint": "shoulder_lift",
+      "value": 32
+    },
+    {
+      "register": "D_Coefficient",
+      "joint": "elbow_flex",
+      "value": 32
+    },
+    {
+      "register": "D_Coefficient",
+      "joint": "wrist_flex",
+      "value": 32
+    },
+    {
+      "register": "D_Coefficient",
+      "joint": "wrist_roll",
+      "value": 32
+    },
+    {
+      "register": "D_Coefficient",
+      "joint": "gripper",
+      "value": 32
+    },
+    {
+      "register": "Torque_Limit",
+      "joint": "shoulder_pan",
+      "value": 1000
+    },
+    {
+      "register": "Torque_Limit",
+      "joint": "shoulder_lift",
+      "value": 1000
+    },
+    {
+      "register": "Torque_Limit",
+      "joint": "elbow_flex",
+      "value": 1000
+    },
+    {
+      "register": "Torque_Limit",
+      "joint": "wrist_flex",
+      "value": 1000
+    },
+    {
+      "register": "Torque_Limit",
+      "joint": "wrist_roll",
+      "value": 500
+    },
+    {
+      "register": "Torque_Limit",
+      "joint": "gripper",
+      "value": 500
+    },
+    {
+      "register": "Max_Torque_Limit",
+      "joint": "shoulder_pan",
+      "value": 1000
+    },
+    {
+      "register": "Max_Torque_Limit",
+      "joint": "shoulder_lift",
+      "value": 1000
+    },
+    {
+      "register": "Max_Torque_Limit",
+      "joint": "elbow_flex",
+      "value": 1000
+    },
+    {
+      "register": "Max_Torque_Limit",
+      "joint": "wrist_flex",
+      "value": 1000
+    },
+    {
+      "register": "Max_Torque_Limit",
+      "joint": "wrist_roll",
+      "value": 500
+    },
+    {
+      "register": "Max_Torque_Limit",
+      "joint": "gripper",
+      "value": 500
+    },
+    {
+      "register": "Acceleration",
+      "joint": "shoulder_pan",
+      "value": 0
+    },
+    {
+      "register": "Acceleration",
+      "joint": "shoulder_lift",
+      "value": 0
+    },
+    {
+      "register": "Acceleration",
+      "joint": "elbow_flex",
+      "value": 0
+    },
+    {
+      "register": "Acceleration",
+      "joint": "wrist_flex",
+      "value": 0
+    },
+    {
+      "register": "Acceleration",
+      "joint": "wrist_roll",
+      "value": 0
+    },
+    {
+      "register": "Acceleration",
+      "joint": "gripper",
+      "value": 0
+    },
+    {
+      "register": "Goal_Velocity",
+      "joint": "shoulder_pan",
+      "value": 0
+    },
+    {
+      "register": "Goal_Velocity",
+      "joint": "shoulder_lift",
+      "value": 0
+    },
+    {
+      "register": "Goal_Velocity",
+      "joint": "elbow_flex",
+      "value": 0
+    },
+    {
+      "register": "Goal_Velocity",
+      "joint": "wrist_flex",
+      "value": 0
+    },
+    {
+      "register": "Goal_Velocity",
+      "joint": "wrist_roll",
+      "value": 0
+    },
+    {
+      "register": "Goal_Velocity",
+      "joint": "gripper",
+      "value": 0
+    },
+    {
+      "register": "Min_Position_Limit",
+      "joint": "shoulder_pan",
+      "value": 755
+    },
+    {
+      "register": "Min_Position_Limit",
+      "joint": "shoulder_lift",
+      "value": 796
+    },
+    {
+      "register": "Min_Position_Limit",
+      "joint": "elbow_flex",
+      "value": 880
+    },
+    {
+      "register": "Min_Position_Limit",
+      "joint": "wrist_flex",
+      "value": 936
+    },
+    {
+      "register": "Min_Position_Limit",
+      "joint": "wrist_roll",
+      "value": 86
+    },
+    {
+      "register": "Min_Position_Limit",
+      "joint": "gripper",
+      "value": 413
+    },
+    {
+      "register": "Max_Position_Limit",
+      "joint": "shoulder_pan",
+      "value": 3448
+    },
+    {
+      "register": "Max_Position_Limit",
+      "joint": "shoulder_lift",
+      "value": 3113
+    },
+    {
+      "register": "Max_Position_Limit",
+      "joint": "elbow_flex",
+      "value": 3087
+    },
+    {
+      "register": "Max_Position_Limit",
+      "joint": "wrist_flex",
+      "value": 3225
+    },
+    {
+      "register": "Max_Position_Limit",
+      "joint": "wrist_roll",
+      "value": 3643
+    },
+    {
+      "register": "Max_Position_Limit",
+      "joint": "gripper",
+      "value": 2047
+    },
+    {
+      "register": "CW_Dead_Zone",
+      "joint": "shoulder_pan",
+      "value": 1
+    },
+    {
+      "register": "CW_Dead_Zone",
+      "joint": "shoulder_lift",
+      "value": 1
+    },
+    {
+      "register": "CW_Dead_Zone",
+      "joint": "elbow_flex",
+      "value": 1
+    },
+    {
+      "register": "CW_Dead_Zone",
+      "joint": "wrist_flex",
+      "value": 1
+    },
+    {
+      "register": "CW_Dead_Zone",
+      "joint": "wrist_roll",
+      "value": 1
+    },
+    {
+      "register": "CW_Dead_Zone",
+      "joint": "gripper",
+      "value": 1
+    },
+    {
+      "register": "CCW_Dead_Zone",
+      "joint": "shoulder_pan",
+      "value": 1
+    },
+    {
+      "register": "CCW_Dead_Zone",
+      "joint": "shoulder_lift",
+      "value": 1
+    },
+    {
+      "register": "CCW_Dead_Zone",
+      "joint": "elbow_flex",
+      "value": 1
+    },
+    {
+      "register": "CCW_Dead_Zone",
+      "joint": "wrist_flex",
+      "value": 1
+    },
+    {
+      "register": "CCW_Dead_Zone",
+      "joint": "wrist_roll",
+      "value": 1
+    },
+    {
+      "register": "CCW_Dead_Zone",
+      "joint": "gripper",
+      "value": 1
+    },
+    {
+      "register": "Protection_Current",
+      "joint": "shoulder_pan",
+      "value": 310
+    },
+    {
+      "register": "Protection_Current",
+      "joint": "shoulder_lift",
+      "value": 310
+    },
+    {
+      "register": "Protection_Current",
+      "joint": "elbow_flex",
+      "value": 310
+    },
+    {
+      "register": "Protection_Current",
+      "joint": "wrist_flex",
+      "value": 310
+    },
+    {
+      "register": "Protection_Current",
+      "joint": "wrist_roll",
+      "value": 250
+    },
+    {
+      "register": "Protection_Current",
+      "joint": "gripper",
+      "value": 250
+    },
+    {
+      "register": "Overload_Torque",
+      "joint": "shoulder_pan",
+      "value": 80
+    },
+    {
+      "register": "Overload_Torque",
+      "joint": "shoulder_lift",
+      "value": 80
+    },
+    {
+      "register": "Overload_Torque",
+      "joint": "elbow_flex",
+      "value": 80
+    },
+    {
+      "register": "Overload_Torque",
+      "joint": "wrist_flex",
+      "value": 80
+    },
+    {
+      "register": "Overload_Torque",
+      "joint": "wrist_roll",
+      "value": 25
+    },
+    {
+      "register": "Overload_Torque",
+      "joint": "gripper",
+      "value": 25
+    },
+    {
+      "register": "Present_Load",
+      "joint": "shoulder_pan",
+      "value": -32
+    },
+    {
+      "register": "Present_Load",
+      "joint": "shoulder_lift",
+      "value": 28
+    },
+    {
+      "register": "Present_Load",
+      "joint": "elbow_flex",
+      "value": 100
+    },
+    {
+      "register": "Present_Load",
+      "joint": "wrist_flex",
+      "value": -20
+    },
+    {
+      "register": "Present_Load",
+      "joint": "wrist_roll",
+      "value": -24
+    },
+    {
+      "register": "Present_Load",
+      "joint": "gripper",
+      "value": 0
+    },
+    {
+      "register": "Present_Current",
+      "joint": "shoulder_pan",
+      "value": 1
+    },
+    {
+      "register": "Present_Current",
+      "joint": "shoulder_lift",
+      "value": 1
+    },
+    {
+      "register": "Present_Current",
+      "joint": "elbow_flex",
+      "value": 4
+    },
+    {
+      "register": "Present_Current",
+      "joint": "wrist_flex",
+      "value": 0
+    },
+    {
+      "register": "Present_Current",
+      "joint": "wrist_roll",
+      "value": 0
+    },
+    {
+      "register": "Present_Current",
+      "joint": "gripper",
+      "value": 0
+    },
+    {
+      "register": "Present_Voltage",
+      "joint": "shoulder_pan",
+      "value": 122
+    },
+    {
+      "register": "Present_Voltage",
+      "joint": "shoulder_lift",
+      "value": 121
+    },
+    {
+      "register": "Present_Voltage",
+      "joint": "elbow_flex",
+      "value": 122
+    },
+    {
+      "register": "Present_Voltage",
+      "joint": "wrist_flex",
+      "value": 116
+    },
+    {
+      "register": "Present_Voltage",
+      "joint": "wrist_roll",
+      "value": 122
+    },
+    {
+      "register": "Present_Voltage",
+      "joint": "gripper",
+      "value": 122
+    },
+    {
+      "register": "Torque_Enable",
+      "joint": "shoulder_pan",
+      "value": 1
+    },
+    {
+      "register": "Torque_Enable",
+      "joint": "shoulder_lift",
+      "value": 1
+    },
+    {
+      "register": "Torque_Enable",
+      "joint": "elbow_flex",
+      "value": 1
+    },
+    {
+      "register": "Torque_Enable",
+      "joint": "wrist_flex",
+      "value": 1
+    },
+    {
+      "register": "Torque_Enable",
+      "joint": "wrist_roll",
+      "value": 1
+    },
+    {
+      "register": "Torque_Enable",
+      "joint": "gripper",
+      "value": 1
+    },
+    {
+      "register": "Present_Temperature",
+      "joint": "shoulder_pan",
+      "value": 31
+    },
+    {
+      "register": "Present_Temperature",
+      "joint": "shoulder_lift",
+      "value": 32
+    },
+    {
+      "register": "Present_Temperature",
+      "joint": "elbow_flex",
+      "value": 35
+    },
+    {
+      "register": "Present_Temperature",
+      "joint": "wrist_flex",
+      "value": 30
+    },
+    {
+      "register": "Present_Temperature",
+      "joint": "wrist_roll",
+      "value": 30
+    },
+    {
+      "register": "Present_Temperature",
+      "joint": "gripper",
+      "value": 33
+    }
+  ],
+  "raw_profile_values": {},
+  "torque_at_start": {
+    "shoulder_pan": 1,
+    "shoulder_lift": 1,
+    "elbow_flex": 1,
+    "wrist_flex": 1,
+    "wrist_roll": 1,
+    "gripper": 1
+  },
+  "register_contract": {
+    "Torque_Enable": [
+      40,
+      1
+    ],
+    "Operating_Mode": [
+      33,
+      1
+    ],
+    "Present_Position": [
+      56,
+      2
+    ],
+    "Present_Temperature": [
+      63,
+      1
+    ],
+    "P_Coefficient": [
+      21,
+      1
+    ],
+    "I_Coefficient": [
+      23,
+      1
+    ],
+    "D_Coefficient": [
+      22,
+      1
+    ],
+    "Torque_Limit": [
+      48,
+      2
+    ],
+    "Max_Torque_Limit": [
+      16,
+      2
+    ],
+    "Acceleration": [
+      41,
+      1
+    ],
+    "Goal_Velocity": [
+      46,
+      2
+    ],
+    "Min_Position_Limit": [
+      9,
+      2
+    ],
+    "Max_Position_Limit": [
+      11,
+      2
+    ],
+    "CW_Dead_Zone": [
+      26,
+      1
+    ],
+    "CCW_Dead_Zone": [
+      27,
+      1
+    ],
+    "Protection_Current": [
+      28,
+      2
+    ],
+    "Overload_Torque": [
+      36,
+      1
+    ],
+    "Present_Load": [
+      60,
+      2
+    ],
+    "Present_Current": [
+      69,
+      2
+    ],
+    "Present_Voltage": [
+      62,
+      1
+    ]
+  },
+  "unsupported_registers": {},
+  "read_packets": 132,
+  "blocked_packets": 0,
+  "allow_torque_on": true,
+  "requested_complete": true,
+  "calibration_sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+  "raw_profile": {
+    "firmware_major_byte0": [
+      0,
+      1
+    ],
+    "firmware_minor_byte1": [
+      1,
+      1
+    ],
+    "endianness_byte2": [
+      2,
+      1
+    ],
+    "model_major_byte3": [
+      3,
+      1
+    ],
+    "model_minor_byte4": [
+      4,
+      1
+    ],
+    "startup_byte24": [
+      24,
+      1
+    ],
+    "integral_limit_byte25": [
+      25,
+      1
+    ],
+    "target_feedback67": [
+      67,
+      2
+    ]
+  },
+  "raw_profile_source": "https://docs.waveshare.com/Memory_Map_Explanation/ST_Servo_Memory_Map_Explanation",
+  "source_conflicts": {
+    "Minimum_Startup_Force": "SDK 주소24 길이2와 공급사 주소24·25 개별 길이1 불일치; 원시 바이트로 별도 기록",
+    "Goal_Position_2": "SDK 주소71과 공급사 목표 피드백67 정의 불일치; 주소71 자동 조회 제외"
+  },
+  "output": "~/servo_readonly_1794202279784287777"
+}
