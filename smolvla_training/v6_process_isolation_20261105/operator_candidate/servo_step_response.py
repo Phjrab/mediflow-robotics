@@ -164,7 +164,7 @@ def block(bus, address, width, motors):
     return data
 
 
-def sample_bus(bus, axes, protection, starting=False):
+def read_bus_snapshot(bus, axes):
     mode = block(bus, 33, 8, JOINTS)
     feedback = block(bus, 56, 15, JOINTS)
     def number(payload, offset, width=1):
@@ -173,12 +173,16 @@ def sample_bus(bus, axes, protection, starting=False):
         mid = bus.motors[name].id
         return bus._decode_sign(register, {mid:number(feedback[name],offset,2)})[mid]
     ticks = {j:signed("Present_Position",j,0) for j in JOINTS}
-    row = dict(ticks=ticks, state=[axes[j].decode(ticks[j]) for j in JOINTS],
+    return dict(ticks=ticks, state=[axes[j].decode(ticks[j]) for j in JOINTS],
                torque={j:mode[j][7] for j in JOINTS}, modes={j:mode[j][0] for j in JOINTS},
                loads={j:signed("Present_Load",j,4) for j in JOINTS},
                currents={j:signed("Present_Current",j,13) for j in JOINTS},
                temperatures={j:feedback[j][7] for j in JOINTS}, statuses={j:feedback[j][9] for j in JOINTS})
-    sensor_gate(row, Limits(), starting=starting)
+
+
+def sample_bus(bus, axes, protection, starting=False, *, expected_torque=1):
+    row = read_bus_snapshot(bus, axes)
+    sensor_gate(row, Limits(), starting=starting, expected_torque=expected_torque)
     if any(abs(row["currents"][j]) >= protection[j] for j in JOINTS):
         raise Hold("전류 보호 상한")
     if abs(row["state"][JOINTS.index("elbow_flex")]) > ELBOW_TRAVEL:
