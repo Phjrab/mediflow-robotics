@@ -68,6 +68,7 @@ def previous_live50(path, stats_path, servo_path, dry_path):
         or report.get("ports_closed") != {"io": True, "probe": True}
         or report.get("data_evidence") != dict(stats=digest(stats_path), servo=digest(servo_path), dry=digest(dry_path))
         or type(ratio) not in (float, int) or not .5 <= ratio < float("inf")
-        or elbow.get("commanded_span", 0) < 1):
+        or elbow.get("status") != "ASSESSED" or elbow.get("cumulative_sent_change", 0) < 2 - 1e-8
+        or elbow.get("commands", 0) < 30 or elbow.get("elapsed_seconds", 0) < 1 - 1e-8):
         raise Hold("300스텝 차단. 동일 프로필 50스텝 완료와 팔꿈치 추종 증거 필요")
     return vector(report["last_wire_target"])

@@ -41,6 +41,7 @@ class DataMotionAdapter(SupervisedAdapter):
         if not getattr(self, "skip_home_recheck", False):
             home_gate(state, self.home)
         if self.tracking is None:
+            self.start_motion_state = state
             self.tracking = Tracking(self.io.encoder_axes(), self.rates, self.initial_raw, state, self.clock())
         else:
             self.tracking.begin_chunk()

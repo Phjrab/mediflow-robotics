@@ -13,6 +13,9 @@ STOP_DURATION = .5
 ELBOW = JOINTS.index("elbow_flex")
 ELBOW_TRAVEL = 97.01098901098901
 EPSILON = 1e-8
+RESPONSE_MIN_SECONDS = 1.
+RESPONSE_MIN_COMMANDS = 30
+RESPONSE_MIN_TRAVEL = 2.
 
 
 def hold(code, message, **details):
@@ -102,9 +105,32 @@ class Tracking:
         self.observe(measured, now)
 
     def begin_chunk(self):
-        self.elbow_excited_at = None
-        self.elbow_commands = [self.previous[ELBOW]]
-        self.elbow_observations = []
+        self.chunk_first_sent = None
+        self.chunk_commands = []
+        self.chunk_observations = []
+        self.chunk_baseline = None
+        self.chunk_travel = [0.] * 6
+
+    def response(self):
+        elapsed = (self.last_observed-self.chunk_first_sent
+                   if self.last_observed is not None and self.chunk_first_sent is not None else 0.)
+        ready = (len(self.chunk_commands) >= RESPONSE_MIN_COMMANDS and elapsed >= RESPONSE_MIN_SECONDS - EPSILON)
+        rows = {}
+        for i, name in enumerate(JOINTS):
+            # Start at measured position, not the previous run's still-active target.
+            goals = ([self.chunk_baseline[i]] if self.chunk_baseline is not None else [])
+            goals += [row[i] for row in self.chunk_commands]
+            samples = ([self.chunk_baseline[i]] if self.chunk_baseline is not None else [])
+            samples += [row[i] for row in self.chunk_observations]
+            command_span = max(goals) - min(goals) if goals else 0.
+            measured_span = max(samples) - min(samples) if samples else 0.
+            eligible = i < 5 and ready and self.chunk_travel[i] >= RESPONSE_MIN_TRAVEL - EPSILON and command_span > EPSILON
+            rows[name] = dict(commanded_span=command_span, observed_span=measured_span,
+                              cumulative_sent_change=self.chunk_travel[i],
+                              commands=len(self.chunk_commands), elapsed_seconds=elapsed,
+                              status="ASSESSED" if eligible else "NOT_ASSESSED",
+                              ratio=measured_span / command_span if eligible else None)
+        return rows
 
     def decode(self, raw):
         return vector([axis.decode(raw[name]) for name, axis in zip(JOINTS, self.axes)])
@@ -115,8 +141,10 @@ class Tracking:
         if not math.isfinite(now) or self.last_observed is not None and now < self.last_observed:
             raise Hold("관측 시계 역행")
         self.last_observed = now
+        self.latest_measurement = measured
         self.observations.append(measured)
-        self.elbow_observations.append(measured[ELBOW])
+        if self.chunk_first_sent is not None:
+            self.chunk_observations.append(measured)
         gaps = [abs(a - b) for a, b in zip(self.previous, measured)]
         for i, gap in enumerate(gaps[:5]):
             if gap <= STOP_GAP:
@@ -126,11 +154,11 @@ class Tracking:
             elif now - self.severe_since[i] >= STOP_DURATION - EPSILON:
                 raise hold("TRACKING_GAP_PERSISTENT", "활성 목표 추종 차이 25° 초과가 0.5초 지속",
                            joint=JOINTS[i], gap=gap, seconds=now-self.severe_since[i])
-        if self.elbow_excited_at is not None and now - self.elbow_excited_at >= STOP_DURATION:
-            commanded = max(self.elbow_commands) - min(self.elbow_commands)
-            observed = max(self.elbow_observations) - min(self.elbow_observations)
-            elbow = dict(commanded_span=commanded, observed_span=observed, ratio=observed/commanded)
-            if elbow["ratio"] < .5:
+        if (len(self.chunk_commands) >= RESPONSE_MIN_COMMANDS and
+            now - self.chunk_first_sent >= RESPONSE_MIN_SECONDS - EPSILON and
+            self.chunk_travel[ELBOW] >= RESPONSE_MIN_TRAVEL - EPSILON):
+            elbow = self.response()[JOINTS[ELBOW]]
+            if elbow["ratio"] is not None and elbow["ratio"] < .5:
                 raise hold("ELBOW_UNDERTRACKING", "팔꿈치 응답 부족. 서보·부하 원인 조사 필요", **elbow)
         return gaps
 
@@ -179,9 +207,13 @@ class Tracking:
         self.previous_raw = dict(raw)
         self.last_sent = now
         self.commands.append(self.previous)
-        self.elbow_commands.append(self.previous[ELBOW])
-        if self.elbow_excited_at is None and max(self.elbow_commands) - min(self.elbow_commands) >= 1.:
-            self.elbow_excited_at = now
+        if self.chunk_first_sent is None:
+            self.chunk_first_sent = now
+            self.chunk_baseline = list(self.latest_measurement)
+        else:
+            for i in range(6):
+                self.chunk_travel[i] += abs(self.previous[i] - self.chunk_commands[-1][i])
+        self.chunk_commands.append(self.previous)
 
     def ratios(self):
         def span(rows, index):

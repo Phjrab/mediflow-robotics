@@ -55,16 +55,28 @@ class MotionTests(unittest.TestCase):
 
     def test_elbow_undertracking_stops_after_response_window(self):
         t, state = controller()
-        for step, goal in enumerate((1.5, 2.8), 1):
+        for step in range(1,31):
             now = step/30
+            goal = 0 if step == 1 else 2.8
             row = t.propose([0, 0, goal, 0, 0, 50], state, t.observe(state, now), now)
             t.sent(row["planned_wire_raw"], now)
-        state[2] = .53
-        t.observe(state, .51)
+            state[2] = .53 if step > 4 else 0
+        t.observe(state, 1.02)
+        self.assertIsNone(t.response()["elbow_flex"]["ratio"])
         with self.assertRaises(Hold) as failure:
-            t.observe(state, .55)
+            t.observe(state, 31/30)
         self.assertEqual(failure.exception.observed["code"], "ELBOW_UNDERTRACKING")
         self.assertAlmostEqual(failure.exception.observed["ratio"], .53/2.8)
+
+    def test_existing_active_target_and_short_excursion_do_not_count(self):
+        t, state = controller()
+        t.previous[2] = -2
+        for step in range(1,32):
+            now = step/30
+            row = t.propose([0, 0, .7 if step>1 else 0, 0, 0, 50], state, t.observe(state, now), now)
+            t.sent(row["planned_wire_raw"], now)
+        self.assertEqual(t.response()["elbow_flex"]["status"],"NOT_ASSESSED")
+        self.assertAlmostEqual(t.response()["elbow_flex"]["cumulative_sent_change"],.7)
 
     def test_elbow_travel_limit_applies_to_encoded_goal(self):
         t, state = controller()

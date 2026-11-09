@@ -18,6 +18,12 @@ def preflight():
     import device_preflight
     device_preflight.require()
 
+def compare_home(measured, home):
+    from first_trial_core import JOINTS, vector
+    return {name:dict(state=actual,home=mean,delta=actual-mean,
+                      unit="degree" if i<5 else "percent_0_100")
+            for i,(name,actual,mean) in enumerate(zip(JOINTS,vector(measured),vector(home["state"])))}
+
 
 def main(argv=None):
     root=Path(__file__).resolve().parent
@@ -112,6 +118,8 @@ def main(argv=None):
         hardware_started=True
         inspection=Controller(InspectionAdapter(probe)).read_status()
         result["inspection"]=inspection
+        if args.data_stage:
+            result["inspection_home_deltas"]=compare_home(inspection["snapshot"]["state"],context["home"])
         sensor_gate(inspection["snapshot"],Limits(),starting=True)
         if inspection.get("arm_ready") is not True:
             error=Hold("시작 위치·목표 대조 실패; 상세 start_agreement 확인")
@@ -155,8 +163,11 @@ def main(argv=None):
         if adapter is not None:
             if args.data_stage:
                 result["data_steps"]=adapter.data_steps
+                if hasattr(adapter,"start_motion_state"):
+                    result["start_home_deltas"]=compare_home(adapter.start_motion_state,context["home"])
                 if adapter.tracking is not None:
-                    result["tracking_ratios"]=adapter.tracking.ratios()
+                    result["diagnostic_total_span"]=adapter.tracking.ratios()
+                    result["tracking_ratios"]=adapter.tracking.response()
                     result["last_wire_target"]=adapter.tracking.previous
             if hasattr(adapter,"session_chunks"):
                 result.update(completed_chunks=sum(c["status"]=="COMPLETE" for c in adapter.session_chunks),session_end_reason=getattr(adapter,"session_end_reason",None))
@@ -191,7 +202,9 @@ def main(argv=None):
         summary={key:result[key] for key in ("status","mode","first_trial_only","output","motor_goal_packets","torque_register_writes","original_stop_preserved")}
         summary["steps"]=len(result.get("targets",[]));summary["ports_closed"]=result["ports_closed"]
         if "error" in result:summary["error"]={key:result["error"][key] for key in ("kind","reason")}
-        if args.data_stage:summary["tracking_ratios"]=result.get("tracking_ratios")
+        if args.data_stage:
+            summary["tracking_ratios"]=result.get("tracking_ratios")
+            summary["start_home_deltas"]=result.get("start_home_deltas")
         if "new_stop_receipt" in result:summary["new_stop_receipt"]=result["new_stop_receipt"]
         if "result_save_error" in result:summary["result_save_error"]=result["result_save_error"]
         print(json.dumps(summary,ensure_ascii=False),flush=True)
