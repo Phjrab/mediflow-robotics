@@ -1,0 +1,157 @@
+[
+  {
+    "index": 0,
+    "requested": [
+      -5.47514533996582,
+      -99.80532836914062,
+      96.10989010989009,
+      43.42169189453125,
+      -0.8023443222045898,
+      11.647490820073441
+    ],
+    "status": "SDK_WRITE_RETURNED",
+    "packet_captured": true,
+    "wire_raw": {
+      "shoulder_pan": 2039,
+      "shoulder_lift": 819,
+      "elbow_flex": 3076,
+      "wrist_flex": 2574,
+      "wrist_roll": 1855,
+      "gripper": 604
+    },
+    "wire_normalized": [
+      -5.4945054945054945,
+      -99.82417582417582,
+      96.04395604395604,
+      43.38461538461539,
+      -0.8351648351648352,
+      11.689106487148102
+    ],
+    "packet_hex": "fffffe16832a0201f70702330303040c040e0a053f07065c0227",
+    "motor_acknowledgement": "UNVERIFIED"
+  },
+  {
+    "index": 1,
+    "requested": [
+      -5.632549285888672,
+      -100.29624938964844,
+      96.78437805175781,
+      43.23147964477539,
+      -0.6548552513122559,
+      12.388240814208984
+    ],
+    "status": "SDK_WRITE_RETURNED",
+    "packet_captured": true,
+    "wire_raw": {
+      "shoulder_pan": 2037,
+      "shoulder_lift": 814,
+      "elbow_flex": 3084,
+      "wrist_flex": 2572,
+      "wrist_roll": 1857,
+      "gripper": 615
+    },
+    "wire_normalized": [
+      -5.670329670329671,
+      -100.26373626373626,
+      96.74725274725274,
+      43.20879120879121,
+      -0.6593406593406593,
+      12.362301101591187
+    ],
+    "packet_hex": "fffffe16832a0201f507022e03030c0c040c0a0541070667021b",
+    "motor_acknowledgement": "UNVERIFIED"
+  },
+  {
+    "index": 2,
+    "requested": [
+      -5.266324043273926,
+      -99.1390609741211,
+      96.7764892578125,
+      42.85614013671875,
+      -0.7467260360717773,
+      13.131107330322266
+    ],
+    "status": "SDK_WRITE_RETURNED",
+    "packet_captured": true,
+    "wire_raw": {
+      "shoulder_pan": 2042,
+      "shoulder_lift": 827,
+      "elbow_flex": 3084,
+      "wrist_flex": 2568,
+      "wrist_roll": 1856,
+      "gripper": 628
+    },
+    "wire_normalized": [
+      -5.230769230769231,
+      -99.12087912087912,
+      96.74725274725274,
+      42.857142857142854,
+      -0.7472527472527473,
+      13.157894736842104
+    ],
+    "packet_hex": "fffffe16832a0201fa07023b03030c0c04080a05400706740201",
+    "motor_acknowledgement": "UNVERIFIED"
+  },
+  {
+    "index": 3,
+    "requested": [
+      -5.4787187576293945,
+      -99.41754150390625,
+      96.65196228027344,
+      43.074466705322266,
+      -0.9234147071838379,
+      13.268619537353516
+    ],
+    "status": "SDK_WRITE_RETURNED",
+    "packet_captured": true,
+    "wire_raw": {
+      "shoulder_pan": 2039,
+      "shoulder_lift": 824,
+      "elbow_flex": 3083,
+      "wrist_flex": 2570,
+      "wrist_roll": 1854,
+      "gripper": 630
+    },
+    "wire_normalized": [
+      -5.4945054945054945,
+      -99.38461538461539,
+      96.65934065934066,
+      43.032967032967036,
+      -0.9230769230769231,
+      13.280293757649938
+    ],
+    "packet_hex": "fffffe16832a0201f707023803030b0c040a0a053e0706760206",
+    "motor_acknowledgement": "UNVERIFIED"
+  },
+  {
+    "index": 4,
+    "requested": [
+      -5.439853668212891,
+      -99.17052459716797,
+      96.06781005859375,
+      43.18824005126953,
+      -0.9060778617858887,
+      13.331131935119629
+    ],
+    "status": "SDK_WRITE_RETURNED",
+    "packet_captured": true,
+    "wire_raw": {
+      "shoulder_pan": 2040,
+      "shoulder_lift": 826,
+      "elbow_flex": 3076,
+      "wrist_flex": 2572,
+      "wrist_roll": 1854,
+      "gripper": 631
+    },
+    "wire_normalized": [
+      -5.406593406593407,
+      -99.20879120879121,
+      96.04395604395604,
+      43.20879120879121,
+      -0.9230769230769231,
+      13.341493268053856
+    ],
+    "packet_hex": "fffffe16832a0201f807023a0303040c040c0a053e0706770207",
+    "motor_acknowledgement": "UNVERIFIED"
+  }
+]

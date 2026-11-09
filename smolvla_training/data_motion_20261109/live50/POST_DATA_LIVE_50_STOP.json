@@ -1,0 +1,19 @@
+{
+  "status": "HOLD",
+  "kind": "REVIEWED_ACTION_FIRST_TRIAL_STOP",
+  "unix": 1794203620.3320057,
+  "error": {
+    "kind": "Hold",
+    "reason": "팔꿈치 응답 부족. 서보·부하 원인 조사 필요",
+    "observed": {
+      "code": "ELBOW_UNDERTRACKING",
+      "commanded_span": 2.6373626373626564,
+      "observed_span": 0.2637362637362628,
+      "ratio": 0.09999999999999892
+    },
+    "initialization_cleanup_error": null
+  },
+  "goal_packets": 5,
+  "cleanup_errors": [],
+  "output": "~/first_vla_from_hold_1794203530063480968"
+}

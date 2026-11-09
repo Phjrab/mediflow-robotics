@@ -1,0 +1,1138 @@
+{
+  "status": "HOLD",
+  "mode": "data_live_50",
+  "first_trial_only": true,
+  "task": "Put medicine bottle A into the blue basket",
+  "settings": {
+    "fps": 30.0,
+    "cap": 2.0,
+    "speed": 20.0,
+    "start_temperature": 50.0,
+    "stop_temperature": 55.0,
+    "first_jump": 10.0,
+    "load": 200.0,
+    "max_seconds": 10.0,
+    "max_steps": 50,
+    "frame_age": 0.25,
+    "camera_skew": 0.1
+  },
+  "output": "~/first_vla_from_hold_1794203530063480968",
+  "torque_register_writes": 0,
+  "evidence_files": {
+    ".cache/huggingface/lerobot/calibration/robots/so_follower/so-101.json": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+    "units_so101.json": "76a527b7702dee9a4dfb79d275d6f2bb4a937d3584860b5d2a51af8759561241",
+    "home_state_so101.json": "73ed963208beebe7080a681302350d35a20fc0cda412676dd547b7fc9f7d6074",
+    "v6_dry_rearm_worker_20261105_1793878117328/resolved_camera_config.json": "c9656776de83c11c6a7eb563f30763ad98af23b9d25435a8d90e65bf48573fe4",
+    "smolvla_model/pretrained_model/config.json": "dde0b224ce9655bc1774b26bf0721abb5a4ccea685c24cfd462355de6e545434",
+    "smolvla_model/pretrained_model/policy_preprocessor.json": "b841161e96458114d8ac58ab8baffb9ae8ef3189fcf41d94dd1a0f07d35e2cdf",
+    "smolvla_model/pretrained_model/policy_postprocessor.json": "f9dddc832597a49fef22a83d94f188776d1b8c8313f75d4f1c7344455fc7e4a3"
+  },
+  "camera_mapping": {
+    "observation.images.end_effector": "observation.images.camera1",
+    "observation.images.ceiling_vertical": "observation.images.camera2",
+    "observation.images.ceiling_oblique": "observation.images.camera3"
+  },
+  "hold_evidence": {
+    "hold_sha256": "4767b9cf28dce8ec3cbb7c0210d9ba8f0f73c74b18a00723bb6399c46f733183",
+    "hold_review_sha256": "742dc63e6ba15b9b8f23f6d16f512decc21126b04b0798901580abfed2310488",
+    "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "hold_only_receipt_is_not_live_permission": true,
+    "operator_live_review_required": true,
+    "reviewed_start_stop": {
+      "scope": "DATA_LIMITS_LIVE_50",
+      "result_sha256": "8268fd1008190afbe45d25e45aa1acbbac84257d29f08f230920be1d86f219d2",
+      "post_hold_stop_sha256": "c70c2909aacf31ce763b6a1b1fff0d072b42092af5a37c31c6156bdc95311ae7",
+      "prior_usage_sha256": "8c0028758824993cce426477e75302d89b5eee45bcd8d31cb753cfc0e7d4b7a5",
+      "max_raw_difference": 1,
+      "max_joint_degrees": 0.1,
+      "max_gripper_points": 0.1,
+      "fresh_operator_review_required": true,
+      "live_authorized": false,
+      "success_sha256": "4909135423bb0788c3f0da7ac329f892a92f582911a7a7b85fcd8a45b247936c",
+      "goal_writes_allowed": true,
+      "expected_last_goal": [
+        -4.9706932913446735,
+        -98.67394572385308,
+        94.13186813186813,
+        44.67854243405816,
+        -0.49538230895996094,
+        13.685601234436035
+      ],
+      "encoder_margin_for_new_goals": true,
+      "tracking_allowance_one_count": true,
+      "clip_ratio_is_warning": true,
+      "max_steps": 50,
+      "max_seconds": 10,
+      "relative_goal_cap_degrees": 2,
+      "speed_degrees_per_second": 20,
+      "command_reference": "previous_wire",
+      "gap_hold_degrees": 15,
+      "gap_stop_degrees": 25,
+      "gap_stop_seconds": 0.5
+    }
+  },
+  "data_evidence": {
+    "stats": "252d17501046f993510d044f56fe63c786d3a48ccbe4f7b64720d0abe6fff407",
+    "servo": "8617e5bcea5fbfd925dfea4815a42dca390a05b4a11b8070198a567ec96ab7c7",
+    "dry": "4862e6cd60f73c4ca1b75cadb209dc885422c6297feff6a4d52b5241b53835e2"
+  },
+  "data_speed_caps": [
+    60.0,
+    60.0,
+    60.0,
+    60.0,
+    50.6366835464767
+  ],
+  "inspection": {
+    "status": "ARM_INSPECTION_READ_ONLY",
+    "snapshot": {
+      "torque": {
+        "shoulder_pan": 1,
+        "shoulder_lift": 1,
+        "elbow_flex": 1,
+        "wrist_flex": 1,
+        "wrist_roll": 1,
+        "gripper": 1
+      },
+      "modes": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "temperatures": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 32,
+        "elbow_flex": 35,
+        "wrist_flex": 30,
+        "wrist_roll": 31,
+        "gripper": 33
+      },
+      "loads": {
+        "shoulder_pan": -32,
+        "shoulder_lift": 28,
+        "elbow_flex": 100,
+        "wrist_flex": -20,
+        "wrist_roll": -24,
+        "gripper": 0
+      },
+      "statuses": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "currents": {
+        "shoulder_pan": 1,
+        "shoulder_lift": 1,
+        "elbow_flex": 3,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "state": [
+        -5.4945054945054945,
+        -98.32967032967034,
+        96.04395604395604,
+        44.43956043956044,
+        -0.8351648351648352,
+        13.647490820073441
+      ],
+      "moving": false
+    },
+    "present_raw": {
+      "shoulder_pan": 2039,
+      "shoulder_lift": 836,
+      "elbow_flex": 3076,
+      "wrist_flex": 2586,
+      "wrist_roll": 1855,
+      "gripper": 636
+    },
+    "goal_raw": {
+      "shoulder_pan": 2044,
+      "shoulder_lift": 832,
+      "elbow_flex": 3054,
+      "wrist_flex": 2588,
+      "wrist_roll": 1858,
+      "gripper": 636
+    },
+    "goal_state": [
+      -5.054945054945055,
+      -98.68131868131869,
+      94.10989010989012,
+      44.61538461538461,
+      -0.5714285714285714,
+      13.647490820073441
+    ],
+    "raw_delta": {
+      "shoulder_pan": 5,
+      "shoulder_lift": -4,
+      "elbow_flex": -22,
+      "wrist_flex": 2,
+      "wrist_roll": 3,
+      "gripper": 0
+    },
+    "goal_exact_match": false,
+    "target_feedback_raw": {
+      "shoulder_pan": 2044,
+      "shoulder_lift": 832,
+      "elbow_flex": 3054,
+      "wrist_flex": 2588,
+      "wrist_roll": 1858,
+      "gripper": 636
+    },
+    "target_feedback_state": [
+      -5.054945054945055,
+      -98.68131868131869,
+      94.10989010989012,
+      44.61538461538461,
+      -0.5714285714285714,
+      13.647490820073441
+    ],
+    "active_target_exact_match": false,
+    "joint_bounds": [
+      [
+        -118.37362637362638,
+        118.37362637362638
+      ],
+      [
+        -101.84615384615384,
+        101.84615384615384
+      ],
+      [
+        -97.01098901098901,
+        97.01098901098901
+      ],
+      [
+        -100.61538461538461,
+        100.61538461538461
+      ],
+      [
+        -156.35164835164835,
+        156.35164835164835
+      ],
+      [
+        0.0,
+        100.0
+      ]
+    ],
+    "bounds_contain_current_and_active_target": true,
+    "start_agreement": {
+      "scope": "START_POSITION_AGREEMENT_ONLY",
+      "current_raw_exact": false,
+      "start_check_passed": false,
+      "max_raw_difference": 1,
+      "max_normalized_difference": 0.1,
+      "hardware_access": false,
+      "live_authorized": false,
+      "rows": [
+        {
+          "joint": "shoulder_pan",
+          "present_raw": 2039,
+          "target_raw": 2044,
+          "delta_raw": 5,
+          "delta": 0.4395604395604398,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        },
+        {
+          "joint": "shoulder_lift",
+          "present_raw": 836,
+          "target_raw": 832,
+          "delta_raw": -4,
+          "delta": -0.3516483516483504,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        },
+        {
+          "joint": "elbow_flex",
+          "present_raw": 3076,
+          "target_raw": 3054,
+          "delta_raw": -22,
+          "delta": -1.9340659340659272,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        },
+        {
+          "joint": "wrist_flex",
+          "present_raw": 2586,
+          "target_raw": 2588,
+          "delta_raw": 2,
+          "delta": 0.1758241758241752,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        },
+        {
+          "joint": "wrist_roll",
+          "present_raw": 1855,
+          "target_raw": 1858,
+          "delta_raw": 3,
+          "delta": 0.2637362637362638,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        },
+        {
+          "joint": "gripper",
+          "present_raw": 636,
+          "target_raw": 636,
+          "delta_raw": 0,
+          "delta": 0.0,
+          "unit": "percent_0_100",
+          "exact": true,
+          "check_passed": true,
+          "reasons": []
+        }
+      ]
+    },
+    "repeat_continuity": {
+      "scope": "PREVIOUS_SUCCESS_GOAL_CONTINUITY",
+      "passed": true,
+      "rows": [
+        {
+          "joint_index": 0,
+          "active_expected_delta": -0.08425176360038122,
+          "active_current_delta": 0.4395604395604398,
+          "quantum": 0.08791208791208849,
+          "tracking_limit": 2.0879120879120885,
+          "passed": true
+        },
+        {
+          "joint_index": 1,
+          "active_expected_delta": -0.007372957465605623,
+          "active_current_delta": -0.3516483516483504,
+          "quantum": 0.0879120879120876,
+          "tracking_limit": 2.0879120879120876,
+          "passed": true
+        },
+        {
+          "joint_index": 2,
+          "active_expected_delta": -0.021978021978014795,
+          "active_current_delta": -1.9340659340659272,
+          "quantum": 0.0879120879120876,
+          "tracking_limit": 2.0879120879120876,
+          "passed": true
+        },
+        {
+          "joint_index": 3,
+          "active_expected_delta": -0.06315781867354531,
+          "active_current_delta": 0.1758241758241752,
+          "quantum": 0.0879120879120876,
+          "tracking_limit": 2.0879120879120876,
+          "passed": true
+        },
+        {
+          "joint_index": 4,
+          "active_expected_delta": -0.07604626246861046,
+          "active_current_delta": 0.2637362637362638,
+          "quantum": 0.08791208791208793,
+          "tracking_limit": 2.087912087912088,
+          "passed": true
+        },
+        {
+          "joint_index": 5,
+          "active_expected_delta": -0.03811041436259366,
+          "active_current_delta": 0.0,
+          "quantum": 0.06119951040391847,
+          "tracking_limit": 2.0611995104039185,
+          "passed": true
+        }
+      ]
+    },
+    "arm_ready": true,
+    "register_writes": 0
+  },
+  "error": {
+    "kind": "Hold",
+    "reason": "팔꿈치 응답 부족. 서보·부하 원인 조사 필요",
+    "observed": {
+      "code": "ELBOW_UNDERTRACKING",
+      "commanded_span": 2.6373626373626564,
+      "observed_span": 0.2637362637362628,
+      "ratio": 0.09999999999999892
+    },
+    "initialization_cleanup_error": null
+  },
+  "cleanup_errors": [],
+  "ports_closed": {
+    "io": true,
+    "probe": true
+  },
+  "motor_goal_packets": 5,
+  "hardware_started": true,
+  "goal_telemetry_count": 5,
+  "data_steps": [
+    {
+      "step": 0,
+      "policy_index": 0,
+      "time": 96754.704497645,
+      "raw_action": [
+        -5.47514533996582,
+        -99.80532836914062,
+        97.22700500488281,
+        43.42169189453125,
+        -0.8023443222045898,
+        11.278757095336914
+      ],
+      "measured_state": [
+        -5.4945054945054945,
+        -98.32967032967034,
+        96.04395604395604,
+        44.43956043956044,
+        -0.8351648351648352,
+        13.647490820073441
+      ],
+      "loads": {
+        "shoulder_pan": -32,
+        "shoulder_lift": 28,
+        "elbow_flex": 100,
+        "wrist_flex": -20,
+        "wrist_roll": -24,
+        "gripper": 0
+      },
+      "currents": {
+        "shoulder_pan": 1,
+        "shoulder_lift": 0,
+        "elbow_flex": 3,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "sdk_wire_raw": {
+        "shoulder_pan": 2039,
+        "shoulder_lift": 819,
+        "elbow_flex": 3076,
+        "wrist_flex": 2574,
+        "wrist_roll": 1855,
+        "gripper": 604
+      },
+      "status": "SENT",
+      "target": [
+        -5.47514533996582,
+        -99.80532836914062,
+        96.10989010989009,
+        43.42169189453125,
+        -0.8023443222045898,
+        11.647490820073441
+      ],
+      "planned_wire_raw": {
+        "shoulder_pan": 2039,
+        "shoulder_lift": 819,
+        "elbow_flex": 3076,
+        "wrist_flex": 2574,
+        "wrist_roll": 1855,
+        "gripper": 604
+      },
+      "active_tracking_gap": [
+        0.43956043956044333,
+        0.3516483516483362,
+        1.9340659340659556,
+        0.1758241758241752,
+        0.2637362637362516,
+        1.7763568394002505e-15
+      ],
+      "clamp_reasons": {
+        "shoulder_pan": [
+          "encoder_quantization"
+        ],
+        "shoulder_lift": [
+          "encoder_quantization"
+        ],
+        "elbow_flex": [
+          "elbow_travel_or_calibration",
+          "previous_wire_step",
+          "joint_speed",
+          "encoder_quantization"
+        ],
+        "wrist_flex": [
+          "encoder_quantization"
+        ],
+        "wrist_roll": [
+          "encoder_quantization"
+        ],
+        "gripper": [
+          "previous_wire_step",
+          "gripper_current_limit",
+          "encoder_quantization"
+        ]
+      },
+      "warning_joints": [],
+      "dt": 0.03333333333333333,
+      "sdk_wire_normalized": [
+        -5.4945054945054945,
+        -99.82417582417582,
+        96.04395604395604,
+        43.38461538461539,
+        -0.8351648351648352,
+        11.689106487148102
+      ]
+    },
+    {
+      "step": 1,
+      "policy_index": 1,
+      "time": 96754.771685234,
+      "raw_action": [
+        -5.632549285888672,
+        -100.29624938964844,
+        96.78437805175781,
+        43.23147964477539,
+        -0.6548552513122559,
+        12.388240814208984
+      ],
+      "measured_state": [
+        -5.4945054945054945,
+        -98.76923076923077,
+        96.04395604395604,
+        44.26373626373626,
+        -0.8351648351648352,
+        13.341493268053856
+      ],
+      "loads": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 92,
+        "elbow_flex": -64,
+        "wrist_flex": 72,
+        "wrist_roll": 0,
+        "gripper": 176
+      },
+      "currents": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 1,
+        "elbow_flex": 0,
+        "wrist_flex": 1,
+        "wrist_roll": 0,
+        "gripper": 5
+      },
+      "sdk_wire_raw": {
+        "shoulder_pan": 2037,
+        "shoulder_lift": 814,
+        "elbow_flex": 3084,
+        "wrist_flex": 2572,
+        "wrist_roll": 1857,
+        "gripper": 615
+      },
+      "status": "SENT",
+      "target": [
+        -5.632549285888672,
+        -100.29624938964844,
+        96.78437805175781,
+        43.23147964477539,
+        -0.6548552513122559,
+        12.388240814208984
+      ],
+      "planned_wire_raw": {
+        "shoulder_pan": 2037,
+        "shoulder_lift": 814,
+        "elbow_flex": 3084,
+        "wrist_flex": 2572,
+        "wrist_roll": 1857,
+        "gripper": 615
+      },
+      "active_tracking_gap": [
+        5.329070518200751e-15,
+        1.0549450549450512,
+        0.0,
+        0.879120879120876,
+        1.1213252548714081e-14,
+        1.6523867809057542
+      ],
+      "clamp_reasons": {
+        "shoulder_pan": [
+          "encoder_quantization"
+        ],
+        "shoulder_lift": [
+          "encoder_quantization"
+        ],
+        "elbow_flex": [
+          "encoder_quantization"
+        ],
+        "wrist_flex": [
+          "encoder_quantization"
+        ],
+        "wrist_roll": [
+          "encoder_quantization"
+        ],
+        "gripper": [
+          "encoder_quantization"
+        ]
+      },
+      "warning_joints": [],
+      "dt": 0.06654622699716128,
+      "sdk_wire_normalized": [
+        -5.670329670329671,
+        -100.26373626373626,
+        96.74725274725274,
+        43.20879120879121,
+        -0.6593406593406593,
+        12.362301101591187
+      ]
+    },
+    {
+      "step": 2,
+      "policy_index": 2,
+      "time": 96754.845570893,
+      "raw_action": [
+        -5.266324043273926,
+        -99.1390609741211,
+        96.7764892578125,
+        42.85614013671875,
+        -0.7467260360717773,
+        13.131107330322266
+      ],
+      "measured_state": [
+        -5.4945054945054945,
+        -99.2967032967033,
+        96.13186813186813,
+        44.08791208791209,
+        -0.8351648351648352,
+        12.607099143206854
+      ],
+      "loads": {
+        "shoulder_pan": 20,
+        "shoulder_lift": 56,
+        "elbow_flex": -44,
+        "wrist_flex": 48,
+        "wrist_roll": -20,
+        "gripper": -40
+      },
+      "currents": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 1,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 1
+      },
+      "sdk_wire_raw": {
+        "shoulder_pan": 2042,
+        "shoulder_lift": 827,
+        "elbow_flex": 3084,
+        "wrist_flex": 2568,
+        "wrist_roll": 1856,
+        "gripper": 628
+      },
+      "status": "SENT",
+      "target": [
+        -5.266324043273926,
+        -99.1390609741211,
+        96.7764892578125,
+        42.85614013671875,
+        -0.7467260360717773,
+        13.131107330322266
+      ],
+      "planned_wire_raw": {
+        "shoulder_pan": 2042,
+        "shoulder_lift": 827,
+        "elbow_flex": 3084,
+        "wrist_flex": 2568,
+        "wrist_roll": 1856,
+        "gripper": 628
+      },
+      "active_tracking_gap": [
+        0.17582417582416987,
+        0.9670329670329636,
+        0.6153846153846132,
+        0.879120879120876,
+        0.175824175824164,
+        0.24479804161566676
+      ],
+      "clamp_reasons": {
+        "shoulder_pan": [
+          "encoder_quantization"
+        ],
+        "shoulder_lift": [
+          "encoder_quantization"
+        ],
+        "elbow_flex": [
+          "encoder_quantization"
+        ],
+        "wrist_flex": [
+          "encoder_quantization"
+        ],
+        "wrist_roll": [
+          "encoder_quantization"
+        ],
+        "gripper": [
+          "encoder_quantization"
+        ]
+      },
+      "warning_joints": [],
+      "dt": 0.07316042299498804,
+      "sdk_wire_normalized": [
+        -5.230769230769231,
+        -99.12087912087912,
+        96.74725274725274,
+        42.857142857142854,
+        -0.7472527472527473,
+        13.157894736842104
+      ]
+    },
+    {
+      "step": 3,
+      "policy_index": 3,
+      "time": 96754.933011897,
+      "raw_action": [
+        -5.4787187576293945,
+        -99.41754150390625,
+        96.65196228027344,
+        43.074466705322266,
+        -0.9234147071838379,
+        13.268619537353516
+      ],
+      "measured_state": [
+        -5.4945054945054945,
+        -99.20879120879121,
+        96.21978021978022,
+        43.824175824175825,
+        -0.8351648351648352,
+        12.790697674418606
+      ],
+      "loads": {
+        "shoulder_pan": -24,
+        "shoulder_lift": -40,
+        "elbow_flex": -36,
+        "wrist_flex": 56,
+        "wrist_roll": 0,
+        "gripper": -64
+      },
+      "currents": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 1,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "sdk_wire_raw": {
+        "shoulder_pan": 2039,
+        "shoulder_lift": 824,
+        "elbow_flex": 3083,
+        "wrist_flex": 2570,
+        "wrist_roll": 1854,
+        "gripper": 630
+      },
+      "status": "SENT",
+      "target": [
+        -5.4787187576293945,
+        -99.41754150390625,
+        96.65196228027344,
+        43.074466705322266,
+        -0.9234147071838379,
+        13.268619537353516
+      ],
+      "planned_wire_raw": {
+        "shoulder_pan": 2039,
+        "shoulder_lift": 824,
+        "elbow_flex": 3083,
+        "wrist_flex": 2570,
+        "wrist_roll": 1854,
+        "gripper": 630
+      },
+      "active_tracking_gap": [
+        0.26373626373626813,
+        0.08791208791210181,
+        0.5274725274725256,
+        0.9670329670329636,
+        0.08791208791207639,
+        0.36719706242349837
+      ],
+      "clamp_reasons": {
+        "shoulder_pan": [
+          "encoder_quantization"
+        ],
+        "shoulder_lift": [
+          "encoder_quantization"
+        ],
+        "elbow_flex": [
+          "encoder_quantization"
+        ],
+        "wrist_flex": [
+          "encoder_quantization"
+        ],
+        "wrist_roll": [
+          "encoder_quantization"
+        ],
+        "gripper": [
+          "encoder_quantization"
+        ]
+      },
+      "warning_joints": [],
+      "dt": 0.086613748993841,
+      "sdk_wire_normalized": [
+        -5.4945054945054945,
+        -99.38461538461539,
+        96.65934065934066,
+        43.032967032967036,
+        -0.9230769230769231,
+        13.280293757649938
+      ]
+    },
+    {
+      "step": 4,
+      "policy_index": 4,
+      "time": 96755.096021422,
+      "raw_action": [
+        -5.439853668212891,
+        -99.17052459716797,
+        96.06781005859375,
+        43.18824005126953,
+        -0.9060778617858887,
+        13.331131935119629
+      ],
+      "measured_state": [
+        -5.4945054945054945,
+        -99.12087912087912,
+        96.3076923076923,
+        43.824175824175825,
+        -0.8351648351648352,
+        12.974296205630356
+      ],
+      "loads": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 24,
+        "elbow_flex": -28,
+        "wrist_flex": 48,
+        "wrist_roll": 0,
+        "gripper": -32
+      },
+      "currents": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 1,
+        "elbow_flex": 0,
+        "wrist_flex": 1,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "sdk_wire_raw": {
+        "shoulder_pan": 2040,
+        "shoulder_lift": 826,
+        "elbow_flex": 3076,
+        "wrist_flex": 2572,
+        "wrist_roll": 1854,
+        "gripper": 631
+      },
+      "status": "SENT",
+      "target": [
+        -5.439853668212891,
+        -99.17052459716797,
+        96.06781005859375,
+        43.18824005126953,
+        -0.9060778617858887,
+        13.331131935119629
+      ],
+      "planned_wire_raw": {
+        "shoulder_pan": 2040,
+        "shoulder_lift": 826,
+        "elbow_flex": 3076,
+        "wrist_flex": 2572,
+        "wrist_roll": 1854,
+        "gripper": 631
+      },
+      "active_tracking_gap": [
+        5.329070518200751e-15,
+        0.2637362637362486,
+        0.3516483516483504,
+        0.7912087912087884,
+        0.08791208791209881,
+        0.3059975520195817
+      ],
+      "clamp_reasons": {
+        "shoulder_pan": [
+          "encoder_quantization"
+        ],
+        "shoulder_lift": [
+          "encoder_quantization"
+        ],
+        "elbow_flex": [
+          "encoder_quantization"
+        ],
+        "wrist_flex": [
+          "encoder_quantization"
+        ],
+        "wrist_roll": [
+          "encoder_quantization"
+        ],
+        "gripper": [
+          "encoder_quantization"
+        ]
+      },
+      "warning_joints": [],
+      "dt": 0.16207698699145112,
+      "sdk_wire_normalized": [
+        -5.406593406593407,
+        -99.20879120879121,
+        96.04395604395604,
+        43.20879120879121,
+        -0.9230769230769231,
+        13.341493268053856
+      ]
+    },
+    {
+      "step": 5,
+      "policy_index": 5,
+      "time": 96755.213490444,
+      "raw_action": [
+        -5.153693199157715,
+        -99.8634033203125,
+        96.73295593261719,
+        43.3914909362793,
+        -0.8561568260192871,
+        13.375757217407227
+      ],
+      "measured_state": [
+        -5.4945054945054945,
+        -99.12087912087912,
+        96.3076923076923,
+        43.824175824175825,
+        -0.8351648351648352,
+        12.974296205630356
+      ],
+      "loads": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 24,
+        "wrist_flex": 40,
+        "wrist_roll": 0,
+        "gripper": -36
+      },
+      "currents": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 1
+      },
+      "sdk_wire_raw": null,
+      "status": "INSPECTED"
+    }
+  ],
+  "tracking_ratios": {
+    "shoulder_pan": {
+      "commanded_span": 0.6153846153846132,
+      "observed_span": 0.0,
+      "ratio": null
+    },
+    "shoulder_lift": {
+      "commanded_span": 1.582417582417591,
+      "observed_span": 0.9670329670329636,
+      "ratio": 0.6111111111111056
+    },
+    "elbow_flex": {
+      "commanded_span": 2.6373626373626564,
+      "observed_span": 0.2637362637362628,
+      "ratio": 0.09999999999999892
+    },
+    "wrist_flex": {
+      "commanded_span": 1.758241758241752,
+      "observed_span": 0.6153846153846132,
+      "ratio": 0.35
+    },
+    "wrist_roll": {
+      "commanded_span": 0.3516483516483504,
+      "observed_span": 0.0,
+      "ratio": null
+    },
+    "gripper": {
+      "commanded_span": 1.9583843329253376,
+      "observed_span": 1.0403916768665873,
+      "ratio": 0.5312500000000009
+    }
+  },
+  "last_wire_target": [
+    -5.406593406593402,
+    -99.2087912087912,
+    96.04395604395604,
+    43.20879120879121,
+    -0.923076923076934,
+    13.341493268053854
+  ],
+  "targets": [
+    {
+      "step": 0,
+      "raw_action": [
+        -5.47514533996582,
+        -99.80532836914062,
+        97.22700500488281,
+        43.42169189453125,
+        -0.8023443222045898,
+        11.278757095336914
+      ],
+      "target": [
+        -5.47514533996582,
+        -99.80532836914062,
+        96.10989010989009,
+        43.42169189453125,
+        -0.8023443222045898,
+        11.647490820073441
+      ],
+      "state": [
+        -5.4945054945054945,
+        -98.32967032967034,
+        96.04395604395604,
+        44.43956043956044,
+        -0.8351648351648352,
+        13.647490820073441
+      ],
+      "clip": true,
+      "sent_at": 96754.704684434
+    },
+    {
+      "step": 1,
+      "raw_action": [
+        -5.632549285888672,
+        -100.29624938964844,
+        96.78437805175781,
+        43.23147964477539,
+        -0.6548552513122559,
+        12.388240814208984
+      ],
+      "target": [
+        -5.632549285888672,
+        -100.29624938964844,
+        96.78437805175781,
+        43.23147964477539,
+        -0.6548552513122559,
+        12.388240814208984
+      ],
+      "state": [
+        -5.4945054945054945,
+        -98.76923076923077,
+        96.04395604395604,
+        44.26373626373626,
+        -0.8351648351648352,
+        13.341493268053856
+      ],
+      "clip": true,
+      "sent_at": 96754.77189868
+    },
+    {
+      "step": 2,
+      "raw_action": [
+        -5.266324043273926,
+        -99.1390609741211,
+        96.7764892578125,
+        42.85614013671875,
+        -0.7467260360717773,
+        13.131107330322266
+      ],
+      "target": [
+        -5.266324043273926,
+        -99.1390609741211,
+        96.7764892578125,
+        42.85614013671875,
+        -0.7467260360717773,
+        13.131107330322266
+      ],
+      "state": [
+        -5.4945054945054945,
+        -99.2967032967033,
+        96.13186813186813,
+        44.08791208791209,
+        -0.8351648351648352,
+        12.607099143206854
+      ],
+      "clip": true,
+      "sent_at": 96754.845841781
+    },
+    {
+      "step": 3,
+      "raw_action": [
+        -5.4787187576293945,
+        -99.41754150390625,
+        96.65196228027344,
+        43.074466705322266,
+        -0.9234147071838379,
+        13.268619537353516
+      ],
+      "target": [
+        -5.4787187576293945,
+        -99.41754150390625,
+        96.65196228027344,
+        43.074466705322266,
+        -0.9234147071838379,
+        13.268619537353516
+      ],
+      "state": [
+        -5.4945054945054945,
+        -99.20879120879121,
+        96.21978021978022,
+        43.824175824175825,
+        -0.8351648351648352,
+        12.790697674418606
+      ],
+      "clip": true,
+      "sent_at": 96754.933324162
+    },
+    {
+      "step": 4,
+      "raw_action": [
+        -5.439853668212891,
+        -99.17052459716797,
+        96.06781005859375,
+        43.18824005126953,
+        -0.9060778617858887,
+        13.331131935119629
+      ],
+      "target": [
+        -5.439853668212891,
+        -99.17052459716797,
+        96.06781005859375,
+        43.18824005126953,
+        -0.9060778617858887,
+        13.331131935119629
+      ],
+      "state": [
+        -5.4945054945054945,
+        -99.12087912087912,
+        96.3076923076923,
+        43.824175824175825,
+        -0.8351648351648352,
+        12.974296205630356
+      ],
+      "clip": true,
+      "sent_at": 96755.096261205
+    }
+  ],
+  "events": [
+    "connect",
+    "prepared_no_write",
+    "stop_new_commands_no_write",
+    "close_no_torque_change"
+  ],
+  "policy_chunk_saved": true,
+  "original_stop_preserved": true,
+  "new_stop_receipt": {
+    "created": true,
+    "name": "POST_DATA_LIVE_50_STOP.json",
+    "sha256": "ece37e900296f1ebea9b873296e602114c41b554c6713a1b0bc6dd6443137f0d"
+  }
+}
