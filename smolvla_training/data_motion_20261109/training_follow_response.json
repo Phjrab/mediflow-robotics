@@ -1,0 +1,1575 @@
+{
+  "episodes": 137,
+  "frames": 63551,
+  "fps": 30,
+  "joints": {
+    "shoulder_pan": {
+      "unit": "degree",
+      "signed_action_minus_state": {
+        "p50": 0.08791208267211914,
+        "p95": 1.5824175979942083,
+        "max": 9.846153736114502
+      },
+      "absolute_error": {
+        "p50": 0.35164833068847656,
+        "p95": 2.4615384489297867,
+        "max": 11.868131458759308
+      },
+      "lag_63_frames": {
+        "reached": 444,
+        "censored": 2,
+        "excluded_baseline": 15,
+        "quantiles": {
+          "p50": 6.0,
+          "p95": 8.0,
+          "max": 8.0
+        }
+      }
+    },
+    "shoulder_lift": {
+      "unit": "degree",
+      "signed_action_minus_state": {
+        "p50": -0.3076934814453125,
+        "p95": 5.010987281799316,
+        "max": 23.868133544921875
+      },
+      "absolute_error": {
+        "p50": 0.5714282989501953,
+        "p95": 9.626373291015625,
+        "max": 28.0
+      },
+      "lag_63_frames": {
+        "reached": 176,
+        "censored": 21,
+        "excluded_baseline": 16,
+        "quantiles": {
+          "p50": 5.0,
+          "p95": 8.0,
+          "max": 15.0
+        }
+      }
+    },
+    "elbow_flex": {
+      "unit": "degree",
+      "signed_action_minus_state": {
+        "p50": -0.131866455078125,
+        "p95": 7.340660095214844,
+        "max": 33.36263561248779
+      },
+      "absolute_error": {
+        "p50": 2.5934066772460938,
+        "p95": 12.087912559509277,
+        "max": 33.36263561248779
+      },
+      "lag_63_frames": {
+        "reached": 112,
+        "censored": 30,
+        "excluded_baseline": 37,
+        "quantiles": {
+          "p50": 5.0,
+          "p95": 13.449999999999989,
+          "max": 15.0
+        }
+      }
+    },
+    "wrist_flex": {
+      "unit": "degree",
+      "signed_action_minus_state": {
+        "p50": -0.3076896667480469,
+        "p95": 3.5604400634765625,
+        "max": 15.780220031738281
+      },
+      "absolute_error": {
+        "p50": 0.5714302062988281,
+        "p95": 5.406593322753906,
+        "max": 17.186805725097656
+      },
+      "lag_63_frames": {
+        "reached": 323,
+        "censored": 7,
+        "excluded_baseline": 19,
+        "quantiles": {
+          "p50": 5.0,
+          "p95": 8.0,
+          "max": 13.0
+        }
+      }
+    },
+    "wrist_roll": {
+      "unit": "degree",
+      "signed_action_minus_state": {
+        "p50": 0.1318678855895996,
+        "p95": 0.6593407392501831,
+        "max": 7.604395806789398
+      },
+      "absolute_error": {
+        "p50": 0.21978020668029785,
+        "p95": 1.7142865657806396,
+        "max": 9.80219841003418
+      },
+      "lag_63_frames": {
+        "reached": 472,
+        "censored": 0,
+        "excluded_baseline": 8,
+        "quantiles": {
+          "p50": 5.0,
+          "p95": 6.0,
+          "max": 9.0
+        }
+      }
+    },
+    "gripper": {
+      "unit": "gripper_point_0_100",
+      "signed_action_minus_state": {
+        "p50": -0.08659791946411133,
+        "p95": 4.133918762207031,
+        "max": 24.55440330505371
+      },
+      "absolute_error": {
+        "p50": 0.28950273990631104,
+        "p95": 8.336581230163574,
+        "max": 27.784578323364258
+      },
+      "lag_63_frames": {
+        "reached": 163,
+        "censored": 7,
+        "excluded_baseline": 0,
+        "quantiles": {
+          "p50": 6.0,
+          "p95": 7.0,
+          "max": 8.0
+        }
+      }
+    }
+  },
+  "elbow": {
+    "action": {
+      "min": -96.17582702636719,
+      "p5": -62.769229888916016,
+      "p50": 48.70329666137695,
+      "p95": 97.31867980957031,
+      "max": 97.5824203491211
+    },
+    "state": {
+      "min": -93.4945068359375,
+      "p5": -59.912086486816406,
+      "p50": 51.56044006347656,
+      "p95": 96.65933990478516,
+      "max": 97.0988998413086
+    },
+    "episodes_below": {
+      "90": {
+        "action": 136,
+        "state": 136
+      },
+      "83": {
+        "action": 136,
+        "state": 136
+      },
+      "60": {
+        "action": 135,
+        "state": 135
+      },
+      "0": {
+        "action": 132,
+        "state": 132
+      },
+      "-60": {
+        "action": 74,
+        "state": 65
+      }
+    },
+    "episode_minima": [
+      {
+        "episode": 0,
+        "source": "a_to_red_20261102_201029",
+        "source_episode_index": 0,
+        "color": "red",
+        "action_min": -76.21977996826172,
+        "state_min": -73.45054626464844,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.05494689941406
+      },
+      {
+        "episode": 1,
+        "source": "a_to_red_20261102_201029",
+        "source_episode_index": 2,
+        "color": "red",
+        "action_min": -26.0219783782959,
+        "state_min": -22.373626708984375,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.4065933227539
+      },
+      {
+        "episode": 2,
+        "source": "a_to_red_20261102_201029",
+        "source_episode_index": 3,
+        "color": "red",
+        "action_min": -39.736263275146484,
+        "state_min": -37.05494689941406,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 3,
+        "source": "a_to_red_20261102_201029",
+        "source_episode_index": 4,
+        "color": "red",
+        "action_min": -64.0,
+        "state_min": -61.58241653442383,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 4,
+        "source": "a_to_red_20261102_201029",
+        "source_episode_index": 5,
+        "color": "red",
+        "action_min": -36.483516693115234,
+        "state_min": -33.978023529052734,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.4065933227539
+      },
+      {
+        "episode": 5,
+        "source": "a_to_red_20261102_201029",
+        "source_episode_index": 6,
+        "color": "red",
+        "action_min": -95.56044006347656,
+        "state_min": -91.64835357666016,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 6,
+        "source": "a_to_red_20261102_201029",
+        "source_episode_index": 7,
+        "color": "red",
+        "action_min": -88.17582702636719,
+        "state_min": -85.75823974609375,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 7,
+        "source": "a_to_red_20261102_201029",
+        "source_episode_index": 8,
+        "color": "red",
+        "action_min": -39.38461685180664,
+        "state_min": -36.79121017456055,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.4065933227539
+      },
+      {
+        "episode": 8,
+        "source": "a_to_red_20261102_201029",
+        "source_episode_index": 9,
+        "color": "red",
+        "action_min": -61.27472686767578,
+        "state_min": -58.94505310058594,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 9,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 0,
+        "color": "red",
+        "action_min": -74.63735961914062,
+        "state_min": -71.86813354492188,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 10,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 1,
+        "color": "red",
+        "action_min": -75.42857360839844,
+        "state_min": -72.74725341796875,
+        "state_at_start": 96.48351287841797,
+        "action_at_start": 97.23076629638672
+      },
+      {
+        "episode": 11,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 2,
+        "color": "red",
+        "action_min": -93.36264038085938,
+        "state_min": -90.76923370361328,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 12,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 3,
+        "color": "red",
+        "action_min": -21.538461685180664,
+        "state_min": -18.85714340209961,
+        "state_at_start": 97.010986328125,
+        "action_at_start": 97.23076629638672
+      },
+      {
+        "episode": 13,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 4,
+        "color": "red",
+        "action_min": -49.31867980957031,
+        "state_min": -46.373626708984375,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 14,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 5,
+        "color": "red",
+        "action_min": -41.05494689941406,
+        "state_min": -38.10988998413086,
+        "state_at_start": 96.3956069946289,
+        "action_at_start": 95.82417297363281
+      },
+      {
+        "episode": 15,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 6,
+        "color": "red",
+        "action_min": -43.516483306884766,
+        "state_min": -41.098899841308594,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 16,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 7,
+        "color": "red",
+        "action_min": -87.73626708984375,
+        "state_min": -83.9120864868164,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.23076629638672
+      },
+      {
+        "episode": 17,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 8,
+        "color": "red",
+        "action_min": -67.69230651855469,
+        "state_min": -65.18681335449219,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.23076629638672
+      },
+      {
+        "episode": 18,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 9,
+        "color": "red",
+        "action_min": -45.18681335449219,
+        "state_min": -42.68132019042969,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.23076629638672
+      },
+      {
+        "episode": 19,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 10,
+        "color": "red",
+        "action_min": -83.95604705810547,
+        "state_min": -80.04395294189453,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.23076629638672
+      },
+      {
+        "episode": 20,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 11,
+        "color": "red",
+        "action_min": 13.626373291015625,
+        "state_min": 17.36263656616211,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 21,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 12,
+        "color": "red",
+        "action_min": -69.89010620117188,
+        "state_min": -67.9120864868164,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 22,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 13,
+        "color": "red",
+        "action_min": -71.29669952392578,
+        "state_min": -68.96703338623047,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 23,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 14,
+        "color": "red",
+        "action_min": -52.74725341796875,
+        "state_min": -50.85714340209961,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 24,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 15,
+        "color": "red",
+        "action_min": -43.516483306884766,
+        "state_min": -41.4505500793457,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 25,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 16,
+        "color": "red",
+        "action_min": -23.560440063476562,
+        "state_min": -20.791208267211914,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 26,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 17,
+        "color": "red",
+        "action_min": -11.604395866394043,
+        "state_min": -8.483516693115234,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 27,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 18,
+        "color": "red",
+        "action_min": 22.593406677246094,
+        "state_min": 25.9780216217041,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 28,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 19,
+        "color": "red",
+        "action_min": 62.41758346557617,
+        "state_min": 66.5054931640625,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 29,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 20,
+        "color": "red",
+        "action_min": -77.45054626464844,
+        "state_min": -74.5934066772461,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 30,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 21,
+        "color": "red",
+        "action_min": -80.96703338623047,
+        "state_min": -76.79120635986328,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 31,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 22,
+        "color": "red",
+        "action_min": -51.9560432434082,
+        "state_min": -49.18681335449219,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.4065933227539
+      },
+      {
+        "episode": 32,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 23,
+        "color": "red",
+        "action_min": -86.85713958740234,
+        "state_min": -83.29669952392578,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 33,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 24,
+        "color": "red",
+        "action_min": -88.87911987304688,
+        "state_min": -85.67032623291016,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 34,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 25,
+        "color": "red",
+        "action_min": -83.34066009521484,
+        "state_min": -80.13186645507812,
+        "state_at_start": 95.78022003173828,
+        "action_at_start": 95.73626708984375
+      },
+      {
+        "episode": 35,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 26,
+        "color": "red",
+        "action_min": -54.41758346557617,
+        "state_min": -51.64834976196289,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 36,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 27,
+        "color": "red",
+        "action_min": -74.19779968261719,
+        "state_min": -71.78022003173828,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 37,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 28,
+        "color": "red",
+        "action_min": -83.86813354492188,
+        "state_min": -80.92308044433594,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 38,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 29,
+        "color": "red",
+        "action_min": -88.43955993652344,
+        "state_min": -85.05494689941406,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 39,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 30,
+        "color": "red",
+        "action_min": -79.73626708984375,
+        "state_min": -76.61538696289062,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 40,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 31,
+        "color": "red",
+        "action_min": -87.64835357666016,
+        "state_min": -83.29669952392578,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 41,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 32,
+        "color": "red",
+        "action_min": -63.736263275146484,
+        "state_min": -60.43955993652344,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 42,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 33,
+        "color": "red",
+        "action_min": -62.85714340209961,
+        "state_min": -60.0,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 96.96703338623047
+      },
+      {
+        "episode": 43,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 34,
+        "color": "red",
+        "action_min": -90.989013671875,
+        "state_min": -86.9011001586914,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.4065933227539
+      },
+      {
+        "episode": 44,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 36,
+        "color": "red",
+        "action_min": -87.20879364013672,
+        "state_min": -83.64835357666016,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 45,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 37,
+        "color": "red",
+        "action_min": -58.46154022216797,
+        "state_min": -55.868133544921875,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 46,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 38,
+        "color": "red",
+        "action_min": -92.83516693115234,
+        "state_min": -89.27472686767578,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 47,
+        "source": "a_to_red_20261102_210433",
+        "source_episode_index": 39,
+        "color": "red",
+        "action_min": -86.5054931640625,
+        "state_min": -83.64835357666016,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 48,
+        "source": "a_to_green_20261102_201804",
+        "source_episode_index": 0,
+        "color": "green",
+        "action_min": 9.934065818786621,
+        "state_min": 13.318681716918945,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 49,
+        "source": "a_to_green_20261102_201804",
+        "source_episode_index": 1,
+        "color": "green",
+        "action_min": -13.274724960327148,
+        "state_min": -9.978021621704102,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 50,
+        "source": "a_to_green_20261102_201804",
+        "source_episode_index": 2,
+        "color": "green",
+        "action_min": -78.94505310058594,
+        "state_min": -76.26373291015625,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 51,
+        "source": "a_to_green_20261102_201804",
+        "source_episode_index": 3,
+        "color": "green",
+        "action_min": -73.4065933227539,
+        "state_min": -70.28571319580078,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 52,
+        "source": "a_to_green_20261102_201804",
+        "source_episode_index": 4,
+        "color": "green",
+        "action_min": -59.25274658203125,
+        "state_min": -56.30769348144531,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 53,
+        "source": "a_to_green_20261102_201804",
+        "source_episode_index": 5,
+        "color": "green",
+        "action_min": -34.46154022216797,
+        "state_min": -30.813186645507812,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 54,
+        "source": "a_to_green_20261102_201804",
+        "source_episode_index": 6,
+        "color": "green",
+        "action_min": -32.43955993652344,
+        "state_min": -28.351648330688477,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 55,
+        "source": "a_to_green_20261102_201804",
+        "source_episode_index": 7,
+        "color": "green",
+        "action_min": -29.626373291015625,
+        "state_min": -26.241758346557617,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.4065933227539
+      },
+      {
+        "episode": 56,
+        "source": "a_to_green_20261102_201804",
+        "source_episode_index": 8,
+        "color": "green",
+        "action_min": -62.5054931640625,
+        "state_min": -59.56044006347656,
+        "state_at_start": 96.48351287841797,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 57,
+        "source": "a_to_green_20261102_201804",
+        "source_episode_index": 9,
+        "color": "green",
+        "action_min": -58.81318664550781,
+        "state_min": -55.78022003173828,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 58,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 0,
+        "color": "green",
+        "action_min": -41.4945068359375,
+        "state_min": -37.58241653442383,
+        "state_at_start": 92.96703338623047,
+        "action_at_start": 93.27472686767578
+      },
+      {
+        "episode": 59,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 1,
+        "color": "green",
+        "action_min": -25.14285659790039,
+        "state_min": -22.63736343383789,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 60,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 2,
+        "color": "green",
+        "action_min": -33.67033004760742,
+        "state_min": -31.25274658203125,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 61,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 3,
+        "color": "green",
+        "action_min": -45.53845977783203,
+        "state_min": -42.68132019042969,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.4065933227539
+      },
+      {
+        "episode": 62,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 5,
+        "color": "green",
+        "action_min": -24.351648330688477,
+        "state_min": -21.670330047607422,
+        "state_at_start": 95.69230651855469,
+        "action_at_start": 95.73626708984375
+      },
+      {
+        "episode": 63,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 6,
+        "color": "green",
+        "action_min": -95.9120864868164,
+        "state_min": -92.0,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 64,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 7,
+        "color": "green",
+        "action_min": -30.94505500793457,
+        "state_min": -28.439559936523438,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 65,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 8,
+        "color": "green",
+        "action_min": -37.71428680419922,
+        "state_min": -35.912086486816406,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 66,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 9,
+        "color": "green",
+        "action_min": -34.10988998413086,
+        "state_min": -32.21977996826172,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 67,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 10,
+        "color": "green",
+        "action_min": -54.241756439208984,
+        "state_min": -52.0,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 68,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 11,
+        "color": "green",
+        "action_min": -30.41758155822754,
+        "state_min": -27.824174880981445,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 69,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 12,
+        "color": "green",
+        "action_min": -44.21977996826172,
+        "state_min": -41.978023529052734,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 70,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 13,
+        "color": "green",
+        "action_min": -58.10988998413086,
+        "state_min": -55.9560432434082,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 71,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 14,
+        "color": "green",
+        "action_min": -96.0,
+        "state_min": -91.9120864868164,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 72,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 15,
+        "color": "green",
+        "action_min": -96.17582702636719,
+        "state_min": -90.94505310058594,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 73,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 16,
+        "color": "green",
+        "action_min": -45.89011001586914,
+        "state_min": -43.29670333862305,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 74,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 17,
+        "color": "green",
+        "action_min": -70.15384674072266,
+        "state_min": -67.47252655029297,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 75,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 18,
+        "color": "green",
+        "action_min": -93.53845977783203,
+        "state_min": -89.0988998413086,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 76,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 19,
+        "color": "green",
+        "action_min": -89.4945068359375,
+        "state_min": -87.16483306884766,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 96.87911987304688
+      },
+      {
+        "episode": 77,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 22,
+        "color": "green",
+        "action_min": -42.5494499206543,
+        "state_min": -39.9560432434082,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 78,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 23,
+        "color": "green",
+        "action_min": -8.79120922088623,
+        "state_min": -5.934065818786621,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 79,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 24,
+        "color": "green",
+        "action_min": -43.9560432434082,
+        "state_min": -41.010990142822266,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 80,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 25,
+        "color": "green",
+        "action_min": -50.81318664550781,
+        "state_min": -47.60439682006836,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 81,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 26,
+        "color": "green",
+        "action_min": -29.450550079345703,
+        "state_min": -25.80219841003418,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 82,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 27,
+        "color": "green",
+        "action_min": -27.956043243408203,
+        "state_min": -24.74725341796875,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 83,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 29,
+        "color": "green",
+        "action_min": -37.36263656616211,
+        "state_min": -34.241756439208984,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 84,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 30,
+        "color": "green",
+        "action_min": -60.83516311645508,
+        "state_min": -57.010990142822266,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 85,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 31,
+        "color": "green",
+        "action_min": -69.36264038085938,
+        "state_min": -66.4175796508789,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.4065933227539
+      },
+      {
+        "episode": 86,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 32,
+        "color": "green",
+        "action_min": -73.5824203491211,
+        "state_min": -68.79120635986328,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 87,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 33,
+        "color": "green",
+        "action_min": -35.69230651855469,
+        "state_min": -32.483516693115234,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 88,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 34,
+        "color": "green",
+        "action_min": -32.087913513183594,
+        "state_min": -28.879121780395508,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 89,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 35,
+        "color": "green",
+        "action_min": -22.241758346557617,
+        "state_min": -18.681318283081055,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 90,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 36,
+        "color": "green",
+        "action_min": 97.31867980957031,
+        "state_min": 96.57142639160156,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 91,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 38,
+        "color": "green",
+        "action_min": -42.72527313232422,
+        "state_min": -39.516483306884766,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 92,
+        "source": "a_to_blue_20261102_212958",
+        "source_episode_index": 39,
+        "color": "green",
+        "action_min": -51.16483688354492,
+        "state_min": -47.69230651855469,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 93,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 1,
+        "color": "blue",
+        "action_min": -69.0988998413086,
+        "state_min": -66.15384674072266,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.4065933227539
+      },
+      {
+        "episode": 94,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 2,
+        "color": "blue",
+        "action_min": -33.31867980957031,
+        "state_min": -30.373626708984375,
+        "state_at_start": 96.48351287841797,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 95,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 5,
+        "color": "blue",
+        "action_min": -19.78022003173828,
+        "state_min": -15.868131637573242,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 96,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 6,
+        "color": "blue",
+        "action_min": -34.46154022216797,
+        "state_min": -31.516483306884766,
+        "state_at_start": 94.10989379882812,
+        "action_at_start": 94.15384674072266
+      },
+      {
+        "episode": 97,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 7,
+        "color": "blue",
+        "action_min": -78.85713958740234,
+        "state_min": -75.9120864868164,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 98,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 8,
+        "color": "blue",
+        "action_min": -62.85714340209961,
+        "state_min": -59.912086486816406,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 99,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 10,
+        "color": "blue",
+        "action_min": -60.83516311645508,
+        "state_min": -57.89011001586914,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 100,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 11,
+        "color": "blue",
+        "action_min": -35.340660095214844,
+        "state_min": -31.78022003173828,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 101,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 12,
+        "color": "blue",
+        "action_min": -76.21977996826172,
+        "state_min": -73.27472686767578,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.14286041259766
+      },
+      {
+        "episode": 102,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 13,
+        "color": "blue",
+        "action_min": -49.230770111083984,
+        "state_min": -45.67033004760742,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 103,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 14,
+        "color": "blue",
+        "action_min": -68.48351287841797,
+        "state_min": -65.36264038085938,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.4065933227539
+      },
+      {
+        "episode": 104,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 15,
+        "color": "blue",
+        "action_min": -87.73626708984375,
+        "state_min": -84.79120635986328,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 105,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 16,
+        "color": "blue",
+        "action_min": -84.21977996826172,
+        "state_min": -80.92308044433594,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 106,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 17,
+        "color": "blue",
+        "action_min": -77.45054626464844,
+        "state_min": -74.4175796508789,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 107,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 18,
+        "color": "blue",
+        "action_min": -74.46154022216797,
+        "state_min": -70.10989379882812,
+        "state_at_start": 96.48351287841797,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 108,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 19,
+        "color": "blue",
+        "action_min": -87.64835357666016,
+        "state_min": -83.29669952392578,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 109,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 21,
+        "color": "blue",
+        "action_min": -61.626373291015625,
+        "state_min": -58.94505310058594,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.4065933227539
+      },
+      {
+        "episode": 110,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 22,
+        "color": "blue",
+        "action_min": -88.17582702636719,
+        "state_min": -87.42857360839844,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 111,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 23,
+        "color": "blue",
+        "action_min": -88.87911987304688,
+        "state_min": -86.63735961914062,
+        "state_at_start": 96.04395294189453,
+        "action_at_start": 96.43955993652344
+      },
+      {
+        "episode": 112,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 24,
+        "color": "blue",
+        "action_min": -43.868133544921875,
+        "state_min": -41.098899841308594,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 113,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 25,
+        "color": "blue",
+        "action_min": -80.0879135131836,
+        "state_min": -76.96703338623047,
+        "state_at_start": 96.48351287841797,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 114,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 26,
+        "color": "blue",
+        "action_min": -77.36264038085938,
+        "state_min": -74.5934066772461,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 115,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 27,
+        "color": "blue",
+        "action_min": -68.13186645507812,
+        "state_min": -65.62637329101562,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 116,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 28,
+        "color": "blue",
+        "action_min": -73.75823974609375,
+        "state_min": -70.989013671875,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 117,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 29,
+        "color": "blue",
+        "action_min": -86.32967376708984,
+        "state_min": -82.32967376708984,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 118,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 30,
+        "color": "blue",
+        "action_min": -36.483516693115234,
+        "state_min": -33.89011001586914,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 119,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 31,
+        "color": "blue",
+        "action_min": -96.0,
+        "state_min": -93.4945068359375,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 120,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 32,
+        "color": "blue",
+        "action_min": -85.45054626464844,
+        "state_min": -83.12088012695312,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 121,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 33,
+        "color": "blue",
+        "action_min": -70.15384674072266,
+        "state_min": -68.35164642333984,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 122,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 35,
+        "color": "blue",
+        "action_min": -54.41758346557617,
+        "state_min": -52.0,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 123,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 36,
+        "color": "blue",
+        "action_min": -77.36264038085938,
+        "state_min": -75.03296661376953,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 124,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 37,
+        "color": "blue",
+        "action_min": -77.80220031738281,
+        "state_min": -75.03296661376953,
+        "state_at_start": 96.04395294189453,
+        "action_at_start": 96.26373291015625
+      },
+      {
+        "episode": 125,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 38,
+        "color": "blue",
+        "action_min": -67.69230651855469,
+        "state_min": -65.89010620117188,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 126,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 39,
+        "color": "blue",
+        "action_min": -67.78022003173828,
+        "state_min": -64.3956069946289,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 127,
+        "source": "a_to_blue_20261103_193835",
+        "source_episode_index": 40,
+        "color": "blue",
+        "action_min": -60.483516693115234,
+        "state_min": -58.153846740722656,
+        "state_at_start": 96.57142639160156,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 128,
+        "source": "a_to_blue_20261103_193353",
+        "source_episode_index": 0,
+        "color": "blue",
+        "action_min": -53.89011001586914,
+        "state_min": -49.978023529052734,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 129,
+        "source": "a_to_blue_20261103_193353",
+        "source_episode_index": 1,
+        "color": "blue",
+        "action_min": -83.95604705810547,
+        "state_min": -81.010986328125,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 130,
+        "source": "a_to_blue_20261103_193353",
+        "source_episode_index": 2,
+        "color": "blue",
+        "action_min": -80.52747344970703,
+        "state_min": -78.72527313232422,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 131,
+        "source": "a_to_blue_20261103_193353",
+        "source_episode_index": 3,
+        "color": "blue",
+        "action_min": -60.483516693115234,
+        "state_min": -57.71428680419922,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 132,
+        "source": "a_to_blue_20261103_193353",
+        "source_episode_index": 4,
+        "color": "blue",
+        "action_min": -65.75823974609375,
+        "state_min": -62.373626708984375,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 133,
+        "source": "a_to_blue_20261103_193353",
+        "source_episode_index": 5,
+        "color": "blue",
+        "action_min": -57.31867980957031,
+        "state_min": -54.28571319580078,
+        "state_at_start": 96.92308044433594,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 134,
+        "source": "a_to_blue_20261103_193353",
+        "source_episode_index": 6,
+        "color": "blue",
+        "action_min": -76.57142639160156,
+        "state_min": -73.97801971435547,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.31867980957031
+      },
+      {
+        "episode": 135,
+        "source": "a_to_blue_20261103_193353",
+        "source_episode_index": 7,
+        "color": "blue",
+        "action_min": -29.9780216217041,
+        "state_min": -26.769229888916016,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 97.23076629638672
+      },
+      {
+        "episode": 136,
+        "source": "a_to_blue_20261103_193353",
+        "source_episode_index": 8,
+        "color": "blue",
+        "action_min": -77.010986328125,
+        "state_min": -74.76923370361328,
+        "state_at_start": 96.65933990478516,
+        "action_at_start": 96.96703338623047
+      }
+    ]
+  },
+  "mapping_sha256": "d6b2c82317ff8a1652f5dd6d3eb14e43899421257d19a3bf78caa0450927821a",
+  "parquet_sha256": {
+    "a_to_red_20261102_201029/data/chunk-000/file-000.parquet": "f799e22af6a7b141be1457e935c8902886468fb64ef99250e371e97728361292",
+    "a_to_red_20261102_210433/data/chunk-000/file-000.parquet": "6fdf565a638655982b9e0a575e99a64ae2e95dd1d20539f74ae94d1c0507485a",
+    "a_to_green_20261102_201804/data/chunk-000/file-000.parquet": "81dc6ebe7cd48d1a715a55bf5e12615af74fff1fccb62816bf9f5cea00a67ac6",
+    "a_to_blue_20261102_212958/data/chunk-000/file-000.parquet": "a55e42ca90c9a4cfd66604660c136a239a204f0c6cad52aa8e328b02fbfb31bd",
+    "a_to_blue_20261103_193835/data/chunk-000/file-000.parquet": "3ca854deaa401f312c364a42c85a2dc5e6209f2f189b2b5c15b8e64fbc285b1e",
+    "a_to_blue_20261103_193353/data/chunk-000/file-000.parquet": "22813bc35cc95a42bb3af8dc4ac49f9fdef13d288bb625199ff3146a3330b850"
+  },
+  "lag_method": {
+    "baseline_frames": 3,
+    "plateau_frames": 4,
+    "minimum_change": 2,
+    "angular_plateau_span": 0.35,
+    "gripper_plateau_span": 0.5,
+    "maximum_onset_to_plateau_frames": 6,
+    "maximum_followup_frames": 15,
+    "unit": "frame",
+    "censored_crossings_excluded_from_quantiles": true
+  }
+}

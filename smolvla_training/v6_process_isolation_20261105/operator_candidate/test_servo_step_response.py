@@ -5,8 +5,9 @@ from unittest.mock import patch
 
 from data_motion import Axis
 from first_trial_core import Hold, JOINTS
-from servo_step_response import (Cadence, SEQUENCE, bounded_goal, main, phase_metrics,
-                                 response_bytes, run_motion, single_goal)
+from servo_step_response import (Cadence, SEQUENCE, WORK_SEQUENCE, bounded_goal, main, phase_metrics,
+                                 response_bytes, run_motion, run_site, single_goal)
+from training_follow_response import crossing_frames
 
 
 class Clock:
@@ -56,7 +57,8 @@ class StepResponseTests(unittest.TestCase):
 
     def test_signed_response_metrics(self):
         axis=Axis(0,2000,-100,100)
-        rows=[dict(seconds=s,position_ticks=p,position_deg=axis.decode(p),goal_ticks=g)
+        rows=[dict(seconds=s,position_ticks=p,position_deg=axis.decode(p),goal_ticks=g,
+                   load=0,current=0,temperature_c=30)
               for s,p,g in ((0.,1000,990),(.1,1000,985),(.2,996,970),
                             (.3,975,970),(1.8,972,970),(2.,972,970))]
         result=phase_metrics(rows,-3,1000,970,axis,True)
@@ -90,6 +92,39 @@ class StepResponseTests(unittest.TestCase):
         self.assertEqual([m["offset_deg"] for m in metrics],list(SEQUENCE))
         self.assertEqual((min(writes),max(writes),writes[-1]),(940,1060,1000))
         self.assertTrue(all(m["final_reach_ratio"]==1 for m in metrics if m["offset_deg"]))
+
+    def test_home_to_work_negative_only_and_back_to_same_raw_home(self):
+        clock=Clock()
+        cadence=Cadence(clock,clock.sleep)
+        axes={j:Axis(0,2000,-100,100) for j in JOINTS}
+        axes["gripper"]=Axis(0,1000,0,100)
+        positions=dict.fromkeys(JOINTS,1000)
+        positions.update(elbow_flex=1960,gripper=500)
+        home=dict(joint_names=list(JOINTS),state=[0.,0.,96.,0.,0.,50.],tolerance_deg=5.)
+        guard=SimpleNamespace(goal_once=contextlib.nullcontext)
+        def write(name, values, normalize, num_retry):
+            self.assertEqual((name,set(values),normalize,num_retry),("Goal_Position",{"elbow_flex"},False,0))
+            positions.update(values)
+        def sample():
+            return dict(ticks=dict(positions),state=[axes[j].decode(positions[j]) for j in JOINTS],
+                        loads=dict.fromkeys(JOINTS,0),currents=dict.fromkeys(JOINTS,0),
+                        temperatures=dict.fromkeys(JOINTS,30))
+        rows,metrics,report=[],[],{}
+        def active(*args):
+            return {j:n.to_bytes(2,"little") for j,n in positions.items()}
+        with patch("servo_step_response.block",side_effect=active):
+            run_site(SimpleNamespace(sync_write=write),guard,cadence,axes,"elbow_flex",sample,home,"B",rows,metrics,report)
+        self.assertEqual([m["offset_deg"] for m in metrics],list(WORK_SEQUENCE))
+        self.assertTrue(report["returned_to_home"])
+        self.assertEqual(positions["elbow_flex"],1960)
+        self.assertEqual(report["start_route"]["site_ticks"],1892)
+        self.assertLessEqual(max(r["goal_ticks"] for r in rows if type(r["phase"]) is int),1892)
+
+    def test_training_response_crossing_and_censor(self):
+        actions=[0.]*3+[4.]*18
+        state=[0.]*3+[1.,2.,3.]+[4.]*15
+        self.assertEqual(crossing_frames(actions,state),([2],0,0))
+        self.assertEqual(crossing_frames(actions,[0.]*21),([],1,0))
 
 
 if __name__=="__main__":

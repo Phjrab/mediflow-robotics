@@ -12,12 +12,15 @@ import threading
 import time
 
 from data_motion import Axis, ELBOW_TRAVEL
-from first_trial_core import JOINTS, Hold, Limits, sensor_gate
-from hold_continuation import CAL_SHA, STOP_SHA
+from first_trial_core import JOINTS, Hold, Limits, home_gate, sensor_gate
+from hold_continuation import CAL_SHA, HOME_SHA, STOP_SHA
 
 
 AXES = ("elbow_flex", "shoulder_lift")
 SEQUENCE = (3, 0, -3, 0, 6, 0, -6, 0)
+WORK_SEQUENCE = (-3, 0, -6, 0)
+WORK_DEGREES = 89.2
+TRANSFER_SLEW = 8.
 RATE = 60
 MAX_SAMPLE_GAP = .020
 HOLD_SECONDS = 2.
@@ -54,8 +57,8 @@ def single_goal(packet, motor, raw):
     return len(data) == 11 and data[:-1] == prefix and sum(data[2:]) % 256 == 255
 
 
-def bounded_goal(axis, previous, destination, seconds, bounds):
-    allowed = min(2., SLEW * seconds)
+def bounded_goal(axis, previous, destination, seconds, bounds, *, speed=SLEW):
+    allowed = min(2., speed * seconds)
     low, high = max(bounds[0], previous-allowed), min(bounds[1], previous+allowed)
     if low > high:
         raise Hold("계측 정수 목표 범위 없음")
@@ -91,6 +94,11 @@ def phase_metrics(rows, offset, start_raw, end_raw, axis, target_reached):
     onset = next((i for i, row in enumerate(rows)
                   if (row["position_ticks"]-start_raw) * direction * (1 if axis.scale > 0 else -1) >= 2), None)
     return dict(offset_deg=offset, direction="positive" if direction > 0 else "negative", status="MEASURED",
+                start_ticks=start_raw, transmitted_target_ticks=end_raw, target_deg=target,
+                load_max_abs_raw=max(abs(row["load"]) for row in rows),
+                load_min_raw=min(row["load"] for row in rows), load_max_raw=max(row["load"] for row in rows),
+                current_max_abs_raw=max(abs(row["current"]) for row in rows),
+                temperature_max_c=max(row["temperature_c"] for row in rows),
                 steady_error_ticks=end_raw-final, steady_error_deg=target-final_deg,
                 time_to_63_seconds=crossing, final_reach_ratio=(final_deg-baseline)/requested,
                 deadzone_estimate_ticks=None if onset is None or onset == 0 else
@@ -203,61 +211,85 @@ def verify_stops(root):
             raise Hold("기존 현장 중단 기록 불일치")
 
 
-def run_motion(bus, guard, cadence, axes, joint, read, origin, rows, metrics):
+def transmit(bus, guard, joint, raw, now):
+    guard.expected, guard.guard_until = raw, now+MAX_SAMPLE_GAP
+    try:
+        with guard.goal_once():
+            bus.sync_write("Goal_Position",{joint:raw},normalize=False,num_retry=0)
+    finally:
+        guard.expected, guard.guard_until = None, None
+
+
+def measurements(snapshot, axis, joint, current_goal, elapsed, phase, offset):
+    actual = snapshot["ticks"][joint]
+    return dict(phase=phase, offset_deg=offset, seconds=elapsed,
+                goal_ticks=current_goal, goal_deg=axis.decode(current_goal),
+                position_ticks=actual, position_deg=axis.decode(actual),
+                load=snapshot["loads"][joint], current=snapshot["currents"][joint],
+                temperature_c=snapshot["temperatures"][joint], sent_ticks=None, sent_goal_deg=None)
+
+
+def active_goals(bus):
+    return {j:int.from_bytes(data,"little") for j,data in block(bus,67,2,JOINTS).items()}
+
+
+def ensure_other_axes(snapshot, reference, idx):
+    if any(abs(value-reference[i]) > (1. if i<5 else 2.)
+           for i,value in enumerate(snapshot["state"]) if i != idx):
+        raise Hold("비대상 관절 이동 감지")
+
+
+def run_motion(bus, guard, cadence, axes, joint, read, origin, rows, metrics,
+               *, site="A", other_reference=None):
     axis = axes[joint]
     idx = JOINTS.index(joint)
     now, initial = cadence.sample(read)
-    origin[0] = now
+    if origin[0] is None:
+        origin[0] = now
+    start = now
     baseline_raw = initial["ticks"][joint]
     baseline = axis.decode(baseline_raw)
     lower, upper = axis.bounds
     fraction = (baseline-lower)/(upper-lower)
-    if not .4 <= fraction <= .6:
-        raise Hold(f"중앙 40–60% 밖: {joint} {fraction:.1%}; 자동 이동 없음")
+    if site=="A" and not .4 <= fraction <= .6:
+        raise Hold(f"중앙 40–60% 밖: {joint} {fraction:.1%}")
+    if site=="B" and (joint!="elbow_flex" or not 88 <= baseline <= 90):
+        raise Hold("작업 구간 B 팔꿈치 88–90° 밖")
+    sequence = SEQUENCE if site=="A" else WORK_SEQUENCE
     bounds = (max(lower,-ELBOW_TRAVEL),min(upper,ELBOW_TRAVEL)) if joint=="elbow_flex" else (lower,upper)
-    goals = [axis.encode(baseline+offset,*bounds) for offset in SEQUENCE]
-    if not all(bounds[0] <= baseline+offset <= bounds[1] for offset in SEQUENCE):
+    goals = [axis.encode(baseline+offset,*bounds) for offset in sequence]
+    if not all(bounds[0] <= baseline+offset <= bounds[1] for offset in sequence):
         raise Hold("시험 전체 경로가 가동범위를 벗어남")
-    active_raw = {j:int.from_bytes(data,"little") for j,data in block(bus,67,2,JOINTS).items()}
+    active_raw = active_goals(bus)
     if any(abs(axes[j].decode(active_raw[j])-initial["state"][i]) > (0.5 if i<5 else 1)
            for i,j in enumerate(JOINTS)):
         raise Hold("시작 활성 목표와 현재 위치 불일치")
-    other_reference = list(initial["state"])
+    if other_reference is None:
+        other_reference = list(initial["state"])
     previous_raw = active_raw[joint]
     last_sent = now
-    for phase, (offset, goal) in enumerate(zip(SEQUENCE, goals)):
+    for phase, (offset, goal) in enumerate(zip(sequence, goals)):
         phase_rows = []
         phase_start, phase_initial = None, None
         reached = None
         while True:
             now, snapshot = cadence.sample(read)
-            if now-origin[0] > 25:
+            if now-start > 25:
                 raise Hold("단일 관절 시험 시간 상한")
-            if any(abs(value-other_reference[i]) > (1. if i<5 else 2.)
-                   for i,value in enumerate(snapshot["state"]) if i != idx):
-                raise Hold("비대상 관절 이동 감지")
+            ensure_other_axes(snapshot, other_reference, idx)
             actual = snapshot["ticks"][joint]
             if phase_start is None:
                 phase_start, phase_initial = now, actual
             if abs(axis.decode(previous_raw)-axis.decode(actual)) > 8.:
                 raise Hold("계측 목표 추종 차이 상한")
-            row = dict(phase=phase+1, offset_deg=offset, seconds=now-origin[0],
-                       goal_ticks=previous_raw, goal_deg=axis.decode(previous_raw),
-                       position_ticks=actual, position_deg=axis.decode(actual),
-                       load=snapshot["loads"][joint], current=snapshot["currents"][joint],
-                       temperature_c=snapshot["temperatures"][joint], sent_ticks=None, sent_goal_deg=None)
+            row = measurements(snapshot,axis,joint,previous_raw,now-origin[0],phase+1,offset)
             phase_rows.append(row)
             rows.append(row)
             if previous_raw != goal:
                 proposed = bounded_goal(axis,axis.decode(previous_raw),axis.decode(goal),
                                         min(now-last_sent,1/RATE),bounds)
                 if proposed != previous_raw:
-                    guard.expected, guard.guard_until = proposed, now+MAX_SAMPLE_GAP
-                    try:
-                        with guard.goal_once():
-                            bus.sync_write("Goal_Position",{joint:proposed},normalize=False,num_retry=0)
-                    finally:
-                        guard.expected, guard.guard_until = None, None
+                    transmit(bus,guard,joint,proposed,now)
                     previous_raw, last_sent = proposed, cadence.clock()
                     row.update(sent_ticks=proposed, sent_goal_deg=axis.decode(proposed))
             if previous_raw == goal and reached is None:
@@ -269,9 +301,83 @@ def run_motion(bus, guard, cadence, axes, joint, read, origin, rows, metrics):
         metrics.append(phase_metrics(phase_rows,offset,phase_initial,goal,axis,True))
 
 
+def transfer(bus, guard, cadence, axes, joint, read, destination, reference, origin, rows, phase):
+    axis = axes[joint]
+    idx = JOINTS.index(joint)
+    lo, hi = axis.bounds
+    if joint=="elbow_flex":
+        lo,hi=max(lo,-ELBOW_TRAVEL),min(hi,ELBOW_TRAVEL)
+    target = axis.decode(destination)
+    if not lo <= target <= hi:
+        raise Hold("이동 목표가 보정 한계 밖")
+    previous = active_goals(bus)[joint]
+    start = last_send = cadence.clock()
+    stable_since = None
+    progressed_at = start
+    progress_reference = None
+    while True:
+        now, snapshot = cadence.sample(read)
+        ensure_other_axes(snapshot,reference,idx)
+        actual = snapshot["state"][idx]
+        remaining = abs(target-actual)
+        if progress_reference is None or remaining < progress_reference-.2:
+            progress_reference,progressed_at=remaining,now
+        if now-start>32 or (remaining>.45 and now-progressed_at>2):
+            raise Hold("자세 이동 시간 또는 추종 정체 상한")
+        current_goal = axis.decode(previous)
+        if abs(current_goal-actual)>2:
+            raise Hold("자세 이동 중 현재 위치와 활성 목표 차이 2° 초과")
+        row = measurements(snapshot,axis,joint,previous,now-origin,phase,None)
+        rows.append(row)
+        if previous != destination:
+            candidate=bounded_goal(axis,current_goal,target,min(now-last_send,1/RATE),(lo,hi),speed=TRANSFER_SLEW)
+            if candidate!=previous and abs(axis.decode(candidate)-actual)<=2:
+                transmit(bus,guard,joint,candidate,now)
+                previous,last_send=candidate,cadence.clock()
+                row.update(sent_ticks=candidate,sent_goal_deg=axis.decode(candidate))
+        elif remaining<=.45:
+            if stable_since is None:
+                stable_since=now
+            if now-stable_since>=.3:
+                return
+        else:
+            stable_since=None
+
+
+def home_load_record(samples, active, joint):
+    values=[s["loads"][joint] for s in samples]
+    current=[s["currents"][joint] for s in samples]
+    positions=[s["ticks"][joint] for s in samples]
+    return dict(samples=len(samples),position_ticks_min=min(positions),position_ticks_max=max(positions),
+                active_goal_ticks=active[joint],load_median_raw=statistics.median(values),
+                load_min_raw=min(values),load_max_raw=max(values),current_max_abs_raw=max(map(abs,current)),
+                physical_direction="UNVERIFIED_NO_CONTACT_OR_GRAVITY_REFERENCE")
+
+
+def run_site(bus, guard, cadence, axes, joint, read, home, site, rows, metrics, report):
+    active=active_goals(bus)
+    now,snapshot=cadence.sample(read)
+    home_gate(snapshot["state"],home)
+    reference=snapshot["state"]
+    if any(abs(axes[j].decode(active[j])-reference[i]) > (.5 if i<5 else 1)
+           for i,j in enumerate(JOINTS)):
+        raise Hold("home에서 현재 위치와 활성 목표 불일치; 토크·목표 변경 없음")
+    baseline=snapshot["ticks"][joint]
+    report["home_before_motion"]=home_load_record([snapshot],active,joint)
+    axis=axes[joint]
+    destination=axis.encode(WORK_DEGREES if site=="B" else sum(axis.bounds)/2,*axis.bounds)
+    report["start_route"]=dict(home_ticks=baseline,site_ticks=destination,site_degrees=axis.decode(destination),
+                               transfer_speed_deg_s=TRANSFER_SLEW)
+    transfer(bus,guard,cadence,axes,joint,read,destination,reference,now,rows,"from_home")
+    run_motion(bus,guard,cadence,axes,joint,read,[now],rows,metrics,site=site,other_reference=reference)
+    transfer(bus,guard,cadence,axes,joint,read,baseline,reference,now,rows,"to_home")
+    report["returned_to_home"]=True
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--joint",choices=AXES,default=AXES[0])
+    p.add_argument("--site",choices=("A","B"),default="B")
     mode=p.add_mutually_exclusive_group()
     mode.add_argument("--read-rate",action="store_true")
     mode.add_argument("--motion",action="store_true")
@@ -279,10 +385,14 @@ def main(argv=None):
     p.add_argument("--clear-path",action="store_true")
     p.add_argument("--stop-ready",action="store_true")
     p.add_argument("--rate-receipt",type=Path)
+    p.add_argument("--work-receipt",type=Path)
     p.add_argument("--out",type=Path)
     args=p.parse_args(argv)
+    if args.joint != "elbow_flex":
+        raise Hold("현재 현장 승인 범위는 팔꿈치만")
     if not (args.read_rate or args.motion):
-        print(json.dumps(dict(status="PLAN_ONLY",joint=args.joint,offsets_deg=SEQUENCE,hold_seconds=HOLD_SECONDS,
+        print(json.dumps(dict(status="PLAN_ONLY",joint=args.joint,site=args.site,
+                              offsets_deg=SEQUENCE if args.site=="A" else WORK_SEQUENCE,hold_seconds=HOLD_SECONDS,
                               goal_slew_deg_s=SLEW,minimum_hz=50,hardware_access=False)))
         return 0
     if not (args.operator_present and args.clear_path and args.stop_ready and args.out and sys.stdin.isatty()):
@@ -293,7 +403,11 @@ def main(argv=None):
     root=Path(__file__).resolve().parent
     verify_stops(root)
     source_sha=digest(Path(__file__))
-    claim=root/f"SERVO_STEP_{args.joint}_CLAIM.json"
+    claim=root/f"SERVO_STEP_{args.joint}_{args.site}_CLAIM.json"
+    home_path=Path.home()/"home_state_so101.json"
+    if digest(home_path)!=HOME_SHA:
+        raise Hold("학습 시작 home 파일 해시 불일치")
+    home=json.loads(home_path.read_bytes())
     if args.motion:
         if args.rate_receipt is None:
             raise Hold("먼저 쓰기 0의 현장 50Hz 읽기 계측 필요")
@@ -305,6 +419,14 @@ def main(argv=None):
             raise Hold("50Hz 읽기 결과가 이번 코드·관절과 일치하지 않음")
         if claim.exists() or (root/"SERVO_STEP_STOP.json").exists():
             raise Hold("이전 계측 사용/중단 기록 검토 필요; 재실행 금지")
+        if args.site=="A":
+            if args.work_receipt is None:
+                raise Hold("중앙으로 큰 이동하기 전에 B 완료 기록과 home 복귀 필요")
+            work=json.loads(args.work_receipt.expanduser().read_bytes())
+            if (work.get("status")!="SERVO_STEP_COMPLETE" or work.get("site")!="B"
+                or work.get("joint")!=args.joint or work.get("source_sha256")!=source_sha
+                or work.get("port_closed") is not True or work.get("returned_to_home") is not True):
+                raise Hold("B 완료·home 복귀 미확인")
     from first_trial_dependencies import prepare
     prepare()
     import device_preflight as devices
@@ -325,17 +447,18 @@ def main(argv=None):
     if any(bus.motors[j].model!="sts3215" for j in JOINTS) or any(tuple(table.get(k,()))!=v for k,v in REGISTERS.items()):
         raise Hold("설치 SDK 레지스터 범위 불일치")
     devices.require()
-    confirm("SERVO_STEP" if args.motion else "READ_RATE",
-            "모델 없이 선택한 관절만 움직입니다. 현장 정지 수단을 확인하세요." if args.motion else "위치·상태 읽기만 합니다.")
+    confirm(f"SERVO_STEP_{args.site}" if args.motion else "READ_RATE",
+            "home에서 지정 위치까지 저속으로 이동하고 팔꿈치만 시험합니다. 전체 이동 경로와 정지 수단을 확인하세요."
+            if args.motion else "home 위치·부하 및 표본 주기를 읽습니다. 모터 목표·설정 쓰기 없음.")
     devices.require()
     verify_stops(root)
     out.mkdir(parents=True,exist_ok=False)
     if args.motion:
         with claim.open("x",encoding="utf-8") as stream:
-            json.dump(dict(joint=args.joint,unix=time.time(),source_sha256=source_sha,output=out.name),stream)
+            json.dump(dict(joint=args.joint,site=args.site,unix=time.time(),source_sha256=source_sha,output=out.name),stream)
     guard=make_permission(bus,args.joint,args.motion)
-    rows, metrics, origin=[], [], [None]
-    report=dict(status="HOLD",joint=args.joint,configuration_register_writes=0,torque_register_writes=0,
+    rows, metrics=[], []
+    report=dict(status="HOLD",joint=args.joint,site=args.site,configuration_register_writes=0,torque_register_writes=0,
                 source_sha256=source_sha)
     cadence=None
     try:
@@ -344,16 +467,22 @@ def main(argv=None):
         axes,protection=inspect_limits(bus)
         def read():
             return sample_bus(bus,axes,protection)
-        sample_bus(bus,axes,protection,starting=True)
+        before=sample_bus(bus,axes,protection,starting=True)
+        home_gate(before["state"],home)
+        active=active_goals(bus)
+        report["home_readonly"]=home_load_record([before],active,args.joint)
         cadence=Cadence()
+        home_samples=[]
         for _ in range(121):
-            cadence.sample(read)
+            _, sample=cadence.sample(read)
+            home_samples.append(sample)
+        report["home_readonly"]=home_load_record(home_samples,active,args.joint)
         if args.motion:
             sample_bus(bus,axes,protection,starting=True)
             verify_stops(root)
             motion_cadence=Cadence()
             try:
-                run_motion(bus,guard,motion_cadence,axes,args.joint,read,origin,rows,metrics)
+                run_site(bus,guard,motion_cadence,axes,args.joint,read,home,args.site,rows,metrics,report)
             finally:
                 cadence.gaps.extend(motion_cadence.gaps)
         report["status"]="SERVO_STEP_COMPLETE" if args.motion else "READ_RATE_PASS"
@@ -387,7 +516,7 @@ def main(argv=None):
             json.dump(report,stream,ensure_ascii=False,allow_nan=False,indent=2)
         if args.motion and (report["status"]=="HOLD" or not report["port_closed"]):
             with (root/"SERVO_STEP_STOP.json").open("x",encoding="utf-8") as stream:
-                json.dump(dict(status="HOLD",joint=args.joint,output=out.name,goal_packets=guard.goal_packets),stream)
+                json.dump(dict(status="HOLD",joint=args.joint,site=args.site,output=out.name,goal_packets=guard.goal_packets),stream)
         print(json.dumps(report,ensure_ascii=False))
     return 0 if report["status"] != "HOLD" and report["port_closed"] else 2
 
