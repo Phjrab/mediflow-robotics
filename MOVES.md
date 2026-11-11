@@ -280,6 +280,25 @@
 | `v6_dry_rearm_worker_20261105_1793878117328.zip` | `so101_vla/_archive/20261110/jetson/home/v6_dry_rearm_worker_20261105_1793878117328.zip` | MOVED |
 | `vla_v3_blue_eval_full.log` | `so101_vla/_archive/20261110/jetson/home/vla_v3_blue_eval_full.log` | MOVED |
 
+## 실행 결과 이름 보완
+
+| 이동 전(so101_vla 기준) | 이동 후 | 결과 |
+|---|---|---|
+| `runs/20261108_181123_UNKNOWN__UNKNOWNsteps_st_vla_from_hold_1794129083418129557` | `runs/20261108_181123_FIRST_TRIAL_COMPLETE_10steps_1794129083418129557` | MOVED |
+| `runs/20261108_171440_UNKNOWN__UNKNOWNsteps_st_vla_from_hold_1794125680799432750` | `_archive/20261110/jetson/zero_step_runs/20261108_171440_HOLD_0steps_1794125680799432750` | MOVED |
+| `runs/20261109_145210_UNKNOWN__UNKNOWNsteps_st_vla_from_hold_1794203530063480968` | `runs/20261109_145210_HOLD_5steps_1794203530063480968` | MOVED |
+| `runs/20261108_193446_UNKNOWN__UNKNOWNsteps_st_vla_from_hold_1794134086238144466` | `runs/20261108_193446_WORK_SEGMENT_COMPLETE_50steps_1794134086238144466` | MOVED |
+| `runs/20261108_191603_UNKNOWN__UNKNOWNsteps_st_vla_from_hold_1794132963959272373` | `runs/20261108_191603_FIRST_TRIAL_COMPLETE_10steps_1794132963959272373` | MOVED |
+| `runs/20261108_195250_UNKNOWN__UNKNOWNsteps_st_vla_from_hold_1794135170684736390` | `runs/20261108_195250_HOLD_284steps_1794135170684736390` | MOVED |
+| `runs/20261108_180848_UNKNOWN__UNKNOWNsteps_st_vla_from_hold_1794128928966449070` | `_archive/20261110/jetson/zero_step_runs/20261108_180848_HOLD_0steps_1794128928966449070` | MOVED |
+| `runs/DRY_1794418905691858132` | `_archive/20261110/jetson/zero_step_runs/20261112_024145_HOLD_0steps_1794418905691858132` | MOVED |
+| `runs/20261109_145058_UNKNOWN__UNKNOWNsteps_st_vla_from_hold_1794203458213493575` | `_archive/20261110/jetson/zero_step_runs/20261109_145058_HOLD_0steps_1794203458213493575` | MOVED |
+| `runs/20261108_164153_UNKNOWN__UNKNOWNsteps_st_vla_from_hold_1794123713212153170` | `_archive/20261110/jetson/zero_step_runs/20261108_164153_HOLD_0steps_1794123713212153170` | MOVED |
+| `runs/20261108_190623_UNKNOWN__UNKNOWNsteps_st_vla_from_hold_1794132383185029292` | `runs/20261108_190623_HOLD_9steps_1794132383185029292` | MOVED |
+| `runs/20261108_185337_UNKNOWN__UNKNOWNsteps_st_vla_from_hold_1794131617431241184` | `_archive/20261110/jetson/zero_step_runs/20261108_185337_HOLD_0steps_1794131617431241184` | MOVED |
+
+대문자 RESULT.json도 읽어 결과명을 보완했다. 총12곳이며, 그중0스텝6곳은 archive로 보냈다. 원래 로그 내부의 output 경로는 증거 보존을 위해 수정하지 않았다.
+
 ## 추가 정리
 
 - Windows 루트의 옛 시작 안내·백업·재시작 프롬프트 → `_archive/20261110/windows/root_notes/`.
