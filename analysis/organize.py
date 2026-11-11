@@ -9,7 +9,7 @@ from datetime import datetime,timezone,timedelta
 
 def protected(p):
     if p.is_symlink():return False
-    if p.name in ['so-101.json','model.safetensors','smolvla_model','venvs','miniforge3','miniconda3','models']:return True
+    if p.name in ['so-101.json','model.safetensors','smolvla_model','venvs','miniforge3','miniconda3','models','so101-medicine-bootstrap','smolvla_three_color_020000.zip','so101_pilot_dataset_ready.tar.gz']:return True
     if p.is_dir():
         for dp,ds,fs in os.walk(p):
             ds[:]=[d for d in ds if d not in ['.git','node_modules','__pycache__']]
@@ -43,7 +43,7 @@ def plan(base,root,platform):
         for p in (base/'.local').iterdir() if (base/'.local').exists() else []:
             if p.name not in ['models']:candidates.append(p)
     else:
-        prefixes=('vla_','first_vla_','smolvla_dry','smolvla_agent','v6_','nov_','servo','torque_','home_align','home_arm','home_monitor','run_servo','run_smolvla','switch_to_astra','patch_astra','patch_realsense','thermal_','vendor_temp','vendor_temperature','elbow_','bundle_','goal_','motion_limits','control_timing','lelab-direct','lelab-present','lelab-teleop','lerobot_base_trace','target67','readonly','first_trial','read_goal','infer_test','load_test','check_v3','collect_home','units_so101')
+        prefixes=('vla_','first_vla_','smolvla_dry','smolvla_agent','v6_','nov_','servo','torque_','home_align','home_arm','home_monitor','run_servo','run_smolvla','switch_to_astra','patch_astra','patch_realsense','thermal_','vendor_temp','vendor_temperature','elbow_','bundle_','goal_','motion_limits','control_timing','lelab-direct','lelab-present','lelab-teleop','lerobot_base_trace','target67','readonly','first_trial','read_goal','infer_test','load_test','check_v3','collect_home','units_so101','so101-','lelab-safe','lelab_start','lerobot-')
         candidates=[p for p in base.iterdir() if p.name!='so101_vla' and (p.name.startswith(prefixes) or p.name=='__pycache__')]
     for p in candidates:
         if not p.exists() or p.is_symlink():continue

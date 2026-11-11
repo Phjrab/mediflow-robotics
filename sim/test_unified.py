@@ -14,6 +14,8 @@ class UnifiedTests(unittest.TestCase):
                 io.connect();events=[]
                 live_start.prepare(io,c['home']['state'],events.append)
                 self.assertTrue(all(io.torque.values()))
+                for joint,(lo,hi) in c['limits'].items():
+                    self.assertTrue(lo<=io.target[joint]<=hi)
                 self.assertLessEqual(io.home_motion_speed,10.1)
                 self.assertTrue(all(reg in ('Goal_Position','Torque_Enable') for reg,_ in io.start_writes))
                 for r in events:
