@@ -87,7 +87,7 @@ def prepare(io,home,log):
     sample=arm(io,sample,log)
     # config home은 검증된 정책 범위로 제한한다.
     target=io.normalize(io.plan(home)['wire_raw'])
-    return_home(io,sample,target,c['home']['tolerance_deg'])
+    return_home(io,sample,target,.05 if adjusted else c['home']['tolerance_deg'])
     io.raw_bounds=policy_limits;io.arm_bounds=policy_limits;update_bounds()
     sample=io.start_snapshot();ensure_health(sample)
     if any(v!=1 for v in sample['torque'].values()):raise Stop('토크 자동ON 최종 확인 실패')

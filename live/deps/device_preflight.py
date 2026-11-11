@@ -16,6 +16,8 @@ def inspect():
     for role,device in paths.items():
         r=subprocess.run(['sudo','-n','fuser',device],capture_output=True,text=True,timeout=8)
         ok=allowed_owners(r.returncode,r.stdout,r.stderr,role=='ceiling_vertical',lambda pid:(Path('/proc')/pid/'cgroup').read_text())
+        if role!='serial' and c['cameras'][role].get('identity'):
+            ok=ok and identity(device)==c['cameras'][role]['identity']
         result['devices'][role]={'exists':Path(device).exists(),'owners_ok':ok and Path(device).exists(),'query_code':r.returncode}
     result['all_safe']=result['lelab']=='inactive' and result['astra']=='active' and all(v['owners_ok'] for v in result['devices'].values())
     return result

@@ -7,13 +7,16 @@ export SO101_CONFIG="$here/config.yaml"
 export PYTHONPATH="$here:$here/deps:$root/sim:$root/analysis:$root/tools"
 export LD_LIBRARY_PATH="$HOME/smolvla-cusparselt-W9m8A2/libcusparse_lt-linux-aarch64-0.6.3.2-archive/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
-if [[ ${1-} == --live && ${SO101_IN_TMUX-} != 1 ]]; then
+mode=--dry-run
+for argument in "$@"; do
+    case "$argument" in --live|--dry-run|--mock|--simulate|--policy-check|--offline-eval|--camera-check) mode=$argument;; esac
+done
+if [[ $mode == --live && ${SO101_IN_TMUX-} != 1 ]]; then
     command -v tmux >/dev/null || { echo 'tmux 미설치'; exit 2; }
     printf -v command 'env SO101_IN_TMUX=1 bash %q ' "$here/run.sh"
     printf -v args '%q ' "$@"
     exec tmux new-session -A -s so101-vla -c "$root" "$command$args"
 fi
-mode=${1:---dry-run}
 if [[ $mode == --mock || $mode == --simulate || $mode == --policy-check || $mode == --offline-eval ]]; then
     exec "$py" -B "$here/entry.py" "$@"
 fi

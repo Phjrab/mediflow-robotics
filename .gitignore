@@ -1,8 +1,15 @@
 _archive/
 runs/
 reports/
+__pycache__/
 **/__pycache__/
 *.pyc
 *.bak*
+*.bundle
+*.tar.gz
 live/deps/CHILD_HISTORY.json
 PATHS.private.json
+tools/*.local.service
+
+analysis/*preview/
+analysis/vla_v3_blue_eval_full/
