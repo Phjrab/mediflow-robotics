@@ -1,6 +1,7 @@
 """공통 설정. JSON은 YAML의 부분집합이며 추가 패키지 없이 읽는다."""
 import json
 import os
+import math
 from pathlib import Path
 
 PATH = Path(os.environ.get('SO101_CONFIG', Path(__file__).with_name('config.yaml')))
@@ -12,6 +13,10 @@ def load():
     assert c['temperature']['stop_c'] == 55
     assert 0 < c['speed'] <= 1 and c['control_hz'] == 60
     assert len(c['joint_names']) == len(c['home']['state']) == 6
+    expected=['shoulder_pan','shoulder_lift','elbow_flex','wrist_flex','wrist_roll','gripper']
+    if c['joint_names']!=expected or c['home']['joint_names']!=expected:raise ValueError('관절 순서 불일치')
+    if not all(math.isfinite(v) for v in c['home']['state']) or not 0<=c['home']['state'][5]<=100:raise ValueError('홈 수치 형식 오류')
+    if any(not 0<=lo<hi<=4095 for lo,hi in c['limits'].values()):raise ValueError('명령 가동범위 오류')
     return c
 
 def path(value):

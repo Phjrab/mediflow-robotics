@@ -14,7 +14,7 @@ CAMERAS = ('end_effector', 'ceiling_vertical', 'ceiling_oblique')
 from config_runtime import load
 CONFIG=load()
 HOME_TICKS=tuple(round((v*4095/360+(lo+hi)/2) if i<5 else lo+v*(hi-lo)/100) for i,(v,(lo,hi)) in enumerate(zip(CONFIG['home']['state'],CONFIG['calibration_ranges'].values())))
-TICK_SIZE = (360 / 4095,) * 5 + (0.0612,)
+TICK_SIZE = (360 / 4095,) * 5 + (100 / (CONFIG['calibration_ranges']['gripper'][1]-CONFIG['calibration_ranges']['gripper'][0]),)
 SCENARIOS = ('all_off', 'partial_off', 'outside_home', 'cooling', 'busy_port', 'intermittent_camera',
              'slow_inference', 'blocked_gripper', 'ctrl_c', 'overheat','usb_disconnect','elbow_plus_1','elbow_plus_5','elbow_plus_20','wrist_plus10','wrist_minus10')
 
@@ -111,7 +111,7 @@ class SimulatedArm:
         wait_until_cool(self.feedback, report, pause=self.pause)
 
     def normalize(self, raw):
-        return [v + (raw[j] - n) * factor for j, v, n, factor in zip(base.JOINTS, self.home, HOME_TICKS, TICK_SIZE)]
+        return [((raw[j]-(lo+hi)/2)*360/4095 if i<5 else (raw[j]-lo)*100/(hi-lo)) for i,(j,(lo,hi)) in enumerate(CONFIG['calibration_ranges'].items())]
 
     def feedback(self):
         now = self.clock()
@@ -165,9 +165,12 @@ class SimulatedArm:
         return self.frames
 
     def plan(self, values):
-        raw = {j: min(high, max(low, n + round((value - home) / factor)))
-               for j, (low, high), n, value, home, factor in zip(
-                   base.JOINTS, self.arm_bounds.values(), HOME_TICKS, values, self.home, TICK_SIZE)}
+        raw = {}
+        for i,(j,value) in enumerate(zip(base.JOINTS,values)):
+            lo,hi=CONFIG['calibration_ranges'][j]
+            encoded=round(value*4095/360+(lo+hi)/2) if i<5 else round(lo+value*(hi-lo)/100)
+            low,high=self.arm_bounds[j]
+            raw[j]=min(high,max(low,encoded))
         if self.policy_active:
             raw['elbow_flex'] = min(raw['elbow_flex'], CONFIG['limits']['elbow_flex'][1])
         return {'wire_raw': raw, 'wire_normalized': self.normalize(raw)}
@@ -212,6 +215,7 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
     if camera_source is not None:
         camera_source.open_cameras(io.checked)
         io.fresh_frames = camera_source.fresh_frames
+        io.camera_frames = camera_source.camera_frames
         io.camera_map, io.cameras_stats = camera_source.camera_map, camera_source.cameras_stats
         preview = camera_source.camera_frames()
         if preview is not None and monitor is not None:

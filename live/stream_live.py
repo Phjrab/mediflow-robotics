@@ -189,6 +189,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     sent_phase = None
     previous_tick = None
     next_tick = started
+    next_preview = started
     last_send = None
     hz = CONTROL_HZ
     estimate = getattr(policy, 'warm_rtc_estimate', 1.5)
@@ -224,6 +225,10 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                     break
             next_tick = tick_started + 1 / hz
             sample = io.checked()
+            if monitor is not None and tick_started >= next_preview:
+                view = io.camera_frames() if hasattr(io,'camera_frames') else None
+                if view is not None:monitor.capture(view,sample['state'])
+                next_preview=tick_started+.2
             for track, value in zip(observed, sample['state']):
                 track.append(value)
             buffer_end = max(slots, default=-1)
@@ -730,10 +735,13 @@ def device_class():
             current = self.feedback()['present_raw']
             _, torque = self.read_modes()
             live_start.validate_position({'present_raw': current}, self.arm_bounds)
-            raw = {joint: min(value, self.arm_bounds[joint][1]) for joint, value in current.items() if torque[joint] == 1}
+            raw = {joint: value for joint, value in current.items() if torque[joint] == 1}
             if not raw:
                 raise base.Stop('토크가 꺼져 있어 유지 목표를 전송하지 않았습니다')
-            self.write_start('Goal_Position', raw)
+            old_bounds = self.arm_bounds
+            self.arm_bounds = {j:(min(lo,current[j]),max(hi,current[j])) for j,(lo,hi) in old_bounds.items()}
+            try:self.write_start('Goal_Position', raw)
+            finally:self.arm_bounds=old_bounds
             if len(raw) != len(base.JOINTS):
                 raise base.Stop('토크가 켜진 축에만 유지 목표를 전송했습니다')
 
@@ -865,6 +873,8 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
                 except Exception as exc:
                     result.update(park='RELEASE_NOT_COMPLETED', release_error=str(exc))
         except (KeyboardInterrupt, Exception) as exc:
+            if io is not None and io.goal_attempted:
+                result['hold']=base.try_hold(io)
             result['reason'] = 'Ctrl+C' if isinstance(exc, KeyboardInterrupt) else str(exc)
             if isinstance(exc, KeyboardInterrupt):
                 result['status'] = 'STOPPED'
