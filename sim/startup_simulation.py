@@ -259,7 +259,7 @@ def run_simulations(duration, speed):
     from trial_runtime import static_context
 
     context = static_context()
-    preview = Path.home() / 'vla_v3_blue_eval_preview'
+    preview = Path(__file__).resolve().parents[1] / 'analysis/vla_v3_blue_eval_preview'
     frames = {name: {'pixels': np.array(Image.open(preview / f'training_{name}.png').convert('RGB'))} for name in CAMERAS}
     policy = make_policy(context)
     passed = True

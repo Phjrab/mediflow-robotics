@@ -5,9 +5,17 @@ import math
 from pathlib import Path
 
 PATH = Path(os.environ.get('SO101_CONFIG', Path(__file__).with_name('config.yaml')))
+_cached = None
+_stamp = None
 
 def load():
-    c = json.loads(PATH.read_text(encoding='utf-8'))
+    global _cached,_stamp
+    stamp=PATH.stat().st_mtime_ns
+    if _cached is not None and stamp==_stamp:return _cached
+    text=PATH.read_text(encoding='utf-8')
+    try:import yaml
+    except ImportError:c=json.loads(text)
+    else:c=yaml.safe_load(text)
     assert c['port'].startswith('/dev/serial/by-id/') and '5AE6058306' in c['port']
     assert '5AE6085272' not in c['port']
     assert c['temperature']['stop_c'] == 55
@@ -17,6 +25,7 @@ def load():
     if c['joint_names']!=expected or c['home']['joint_names']!=expected:raise ValueError('관절 순서 불일치')
     if not all(math.isfinite(v) for v in c['home']['state']) or not 0<=c['home']['state'][5]<=100:raise ValueError('홈 수치 형식 오류')
     if any(not 0<=lo<hi<=4095 for lo,hi in c['limits'].values()):raise ValueError('명령 가동범위 오류')
+    _cached,_stamp=c,stamp
     return c
 
 def path(value):

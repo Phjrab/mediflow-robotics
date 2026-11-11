@@ -93,11 +93,11 @@ def chunk_alignment(origin, elapsed, rate, first_unused, *, moving):
 
 def wait_until_cool(read, report, *, pause=time.sleep):
     sample = read()
-    if max(sample['temperatures'].values()) < 50:
+    if max(sample['temperatures'].values()) < CONFIG['temperature']['wait_at_c']:
         return sample
-    while max(sample['temperatures'].values()) >= 45:
+    while max(sample['temperatures'].values()) >= CONFIG['temperature']['resume_below_c']:
         report(sample['temperatures'])
-        pause(10)
+        pause(CONFIG['temperature']['poll_s'])
         sample = read()
     return sample
 
@@ -283,7 +283,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                 elif missing_since is None:
                     missing_since = tick_started
                 elif tick_started - missing_since > 8:
-                    raise base.Stop('새 카메라 프레임을 받지 못해 추론 중단')
+                    raise base.Stop('사용 가능한 카메라 영상 없음: 프레임 지연 또는 너무 어두운 영상')
             lower, upper = math.floor(phase), math.ceil(phase)
             if lower not in slots or upper not in slots or (phase == sent_phase and phase >= buffer_end):
                 if last_send is not None and underrun is None:
@@ -464,7 +464,10 @@ def device_class():
                 permission.inspect = original
 
         def read_block(self, address, width):
-            data = super().read_block(address, width)
+            try:data = super().read_block(address, width)
+            except BaseException:
+                self.wire_fault=True
+                raise
             if address == 56:
                 self.feedback_bytes = data
             return data
@@ -683,7 +686,7 @@ def device_class():
                 for name, frame in result.items():
                     Image.fromarray(frame['pixels']).save(self.out/f'live_{name}.png')
                 self.saved_first_frames = True
-                training = Path.home()/'vla_v3_blue_eval_preview'
+                training = Path(__file__).resolve().parents[1]/'analysis/vla_v3_blue_eval_preview'
                 if all((training/f'training_{name}.png').is_file() for name in result):
                     compare(training, self.out, self.out/'camera_comparison.png')
             return result
