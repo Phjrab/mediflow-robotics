@@ -1,0 +1,8 @@
+_archive/
+runs/
+reports/
+**/__pycache__/
+*.pyc
+*.bak*
+live/deps/CHILD_HISTORY.json
+PATHS.private.json

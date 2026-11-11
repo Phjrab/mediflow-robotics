@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "port": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6058306-if00",
+  "leader_serial": "5AE6085272",
+  "checkpoint": "~/smolvla_model/pretrained_model",
+  "calibration": "~/.cache/huggingface/lerobot/calibration/robots/so_follower/so-101.json",
+  "model_sha256": "b84b15c70ee711ce3ec5780e8498073852f28c43ccc6a726e9196761d05a7654",
+  "calibration_sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+  "joint_names": [
+    "shoulder_pan",
+    "shoulder_lift",
+    "elbow_flex",
+    "wrist_flex",
+    "wrist_roll",
+    "gripper"
+  ],
+  "home": {
+    "joint_names": [
+      "shoulder_pan",
+      "shoulder_lift",
+      "elbow_flex",
+      "wrist_flex",
+      "wrist_roll",
+      "gripper"
+    ],
+    "state": [
+      -3.743322378527509,
+      -97.75278612122919,
+      96.552176371108,
+      43.45712672880966,
+      -2.252025343804029,
+      4.275478211632611
+    ],
+    "tolerance_deg": 2.0
+  },
+  "calibration_ranges": {
+    "shoulder_pan": [
+      755,
+      3448
+    ],
+    "shoulder_lift": [
+      796,
+      3113
+    ],
+    "elbow_flex": [
+      880,
+      3087
+    ],
+    "wrist_flex": [
+      936,
+      3225
+    ],
+    "wrist_roll": [
+      86,
+      3643
+    ],
+    "gripper": [
+      413,
+      2047
+    ]
+  },
+  "limits": {
+    "shoulder_pan": [
+      755,
+      3448
+    ],
+    "shoulder_lift": [
+      801,
+      3113
+    ],
+    "elbow_flex": [
+      880,
+      3082
+    ],
+    "wrist_flex": [
+      936,
+      3225
+    ],
+    "wrist_roll": [
+      86,
+      3643
+    ],
+    "gripper": [
+      413,
+      2047
+    ]
+  },
+  "limit_evidence": {
+    "elbow_flex": "보정 상한3087에서5틱 안쪽. 명령 상한3082로 통일",
+    "shoulder_lift": "보정 하한796에서5틱 안쪽. 실제 스토퍼 위치·하중은 미확인"
+  },
+  "speed": 0.33,
+  "control_hz": 60,
+  "model_hz": 30,
+  "duration": 180,
+  "overlap_actions": 10,
+  "lookahead_factor": 1.3,
+  "startup": {
+    "max_deg_s": 10,
+    "camera_first_frame_s": 5,
+    "warmup_s": 3,
+    "torque_attempts": 3
+  },
+  "temperature": {
+    "wait_at_c": 50,
+    "resume_below_c": 45,
+    "stop_c": 55,
+    "poll_s": 10
+  },
+  "gripper": {
+    "positive_direction": "open",
+    "relief_points": 4,
+    "blocked_gap_points": 5,
+    "blocked_playback_s": 0.5
+  },
+  "task": "Put medicine bottle A into the blue basket",
+  "cameras": {
+    "end_effector": {
+      "path": "/dev/v4l/by-path/platform-3610000.usb-usb-0:2.2:1.0-video-index0",
+      "model_key": "camera1",
+      "fourcc": null
+    },
+    "ceiling_vertical": {
+      "path": "/dev/v4l/by-path/so101-astra-loopback-video-index0",
+      "model_key": "camera2",
+      "fourcc": null
+    },
+    "ceiling_oblique": {
+      "path": "/dev/v4l/by-path/platform-3610000.usb-usb-0:1.1.2:1.3-video-index0",
+      "model_key": "camera3",
+      "fourcc": "YUYV"
+    }
+  }
+}
