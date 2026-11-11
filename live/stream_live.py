@@ -239,7 +239,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                 inferences.append(seconds)
                 estimate = max(seconds, estimate * 0.85)
                 incoming = base.chunk(actions)
-                expired, usable = chunk_alignment(origin, seconds, rate, first_unused, moving=request_moving)
+                expired, usable = chunk_alignment(origin, seconds, request_rate, first_unused, moving=request_moving)
                 skip = usable - origin
                 # An expired chunk cannot bridge the current playback cursor. Refresh
                 # from the held pose if the existing buffer runs out.
@@ -253,6 +253,9 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                      'elapsed_speed_actions': seconds * rate, 'expired_actions': expired,
                      'skipped_actions': skip, 'discarded': discarded,
                      'blend_max_delta': blend_delta})
+                if seconds * rate * 1.1 > 50:
+                    rate = min(rate, 50 / (seconds * 1.1))
+                    log({'event':'playback_rate_reduced','requested_speed':speed,'actual_playback_hz':rate})
                 job = None
             if job is not None and tick_started - requested > 9:
                 raise base.Stop('정책 추론 응답 시간 초과')
@@ -267,6 +270,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                     origin = first_unused
                     last_origin = origin
                     request_moving = sent_phase is not None and buffer_end > phase
+                    request_rate = rate
                     delay = min(remaining, math.ceil(rate * estimate)) if request_moving else 0
                     job = pool.submit(policy, frames, sample['state'], origin, delay)
                     if monitor is not None:
@@ -812,8 +816,11 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
     result = {'status': 'HOLD', 'steps': 0, 'task_success': 'UNVERIFIED',
               'speed': speed, 'playback_hz': MODEL_HZ * speed}
     io = policy = monitor = None
+    stats = {'relief':0,'startup':[]}
     with (out / 'steps.jsonl').open('x', encoding='utf-8', buffering=1) as trace:
         def log(row):
+            if row.get('event')=='goal_transmitted':stats['relief']+=int(row.get('grip_relief',False))
+            if row.get('event','').startswith('startup_'):stats['startup'].append(row)
             trace.write(json.dumps(row, ensure_ascii=False, allow_nan=False) + '\n')
 
         try:
@@ -881,6 +888,8 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
                     policy.close()
                 except Exception as exc:
                     result['policy_cleanup_exception'] = str(exc)
+            result['gripper_relief_count']=stats['relief']
+            result['startup_auto_processed']=stats['startup']
             result.update(output=str(out), torque_register_writes=(io.torque_off_writes + io.torque_on_writes) if io is not None else 0,
                           configuration_register_writes=0)
             if monitor is not None:
