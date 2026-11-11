@@ -16,7 +16,10 @@ def main():
             a=row['from'].replace('\\','/');b=row['to'].replace('\\','/')
             moves.append(f'| `{a}` | `{b}` | {row.get("status","MOVED")} |')
         moves.append('')
-    moves += ['## 추가 정리','',
+    supplemental=read('MOVES_RUN_NAMES.json') if (REPORTS/'MOVES_RUN_NAMES.json').exists() else []
+    moves += ['## 실행 결과 이름 보완','', '| 이동 전(so101_vla 기준) | 이동 후 | 결과 |','|---|---|---|']
+    moves += [f'| `{x["from"]}` | `{x["to"]}` | {x["status"]} |' for x in supplemental]
+    moves += ['', '대문자 RESULT.json도 읽어 결과명을 보완했다. 총12곳이며, 그중0스텝6곳은 archive로 보냈다. 원래 로그 내부의 output 경로는 증거 보존을 위해 수정하지 않았다.', '', '## 추가 정리','',
               '- Windows 루트의 옛 시작 안내·백업·재시작 프롬프트 → `_archive/20261110/windows/root_notes/`.',
               '- 중복 모듈4개 → `_archive/20261110/duplicate_modules/`; 미사용 의존 모듈11개 → `_archive/20261110/unused_deps/`.',
               '- 배포 중 이전 소스는 `_archive/20261110/pre_*`에 보존하고 Git 커밋으로 버전을 남겼다.',
@@ -28,7 +31,7 @@ def main():
     out=['# 정리·실행기 통합 결과 — 2026-11-12','',
          '**소프트웨어·모의 검증을 완료했지만 실제 카메라 dry-run은 검은 영상으로 차단됐다. 전체 실기 준비 완료나 로봇 성공으로 보고하지 않는다.**','',
          '## 변경','',
-         '- Windows78개·Jetson189개 항목 이동. Windows1곳은 전체 복사 후 원본 권한 잔여물을 보존했다. 모델·데이터·보정은 원위치다.',
+         '- Windows78개·Jetson189개 항목 이동. 실행 결과12곳은 추가로 결과명을 보완했고 그중0스텝6곳을archive로 보냈다. Windows1곳은 전체 복사 후 원본 권한 잔여물을 보존했다. 모델·데이터·보정은 원위치다.',
          '- 최신 실행기1벌과 공통config, 자동 토크ON·범위 복구·홈minimum-jerk·냉각 대기·서비스 인수/복원·tmux를 구성했다.',
          '- 학습에서 확인한 증가=그리퍼 열림을 따라 조임 완화를 현재값−4점으로 적용한다. 열기 목표는 즉시 해제한다.',
          '- 팔꿈치 명령상한은3082로 통일했다. 어깨 들기는 보정하한796+5틱을 적용했지만 실제 스토퍼 실측이라고 주장하지 않는다.',

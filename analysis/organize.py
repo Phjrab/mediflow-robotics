@@ -18,7 +18,7 @@ def protected(p):
     return False
 
 def run_name(p):
-    candidates=[p/'summary.json',p/'result.json']
+    candidates=[p/'summary.json',p/'result.json',p/'RESULT.json']
     row={}
     for f in candidates:
         try:row=json.loads(f.read_text(encoding='utf-8'));break
