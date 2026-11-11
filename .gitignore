@@ -1,0 +1,12 @@
+_archive/
+runs/
+reports/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.bak*
+*.bundle
+*.tar.gz
+live/deps/CHILD_HISTORY.json
+PATHS.private.json
+tools/*.local.service
