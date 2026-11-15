@@ -1,0 +1,5 @@
+﻿relative_to_last_goal_s,position_ticks,temperature_c,load_raw,current_raw,status,voltage_v
+-0.03657480199763086,860,32,0,0,0,NOT_RECORDED
+-0.017532770987600088,860,32,0,0,0,NOT_RECORDED
+0.0,860,32,-36,1,0,NOT_RECORDED
+STOP_AFTER_LAST_GOAL,860,81,-128,5,0,NOT_RECORDED

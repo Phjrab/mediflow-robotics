@@ -1,0 +1,25 @@
+{
+  "sha256": {
+    "live/config.yaml": "7e2c3128bc59201e3d230f26924e6a7fe0f51a97a8c259b65469ea978d6fd7c7",
+    "live/config_runtime.py": "058b226fc9dcee507481f6beabfb9cfd614796753f8a8e0af6bc022cc545332a",
+    "live/thermal_read.py": "111f3870b26183fa82834048076db20c22b55f0a9d4dde5973eebc032f494343",
+    "live/tracking_compensation.py": "4bfc4f435ce0ec4861381849b843dac28faef7a0e797e1fa2e5ec74683554a4f",
+    "live/stream_live.py": "c1366bd6add01dbc6f1be1580a90675d309655a8e7694d8b99a8029a3d33568f",
+    "sim/test_thermal_diagnostics.py": "58abc943cb6b46178c40f874a261b8812b06338cbec67807995b84c6176a3f14",
+    "sim/test_tracking_compensation.py": "7cfe21d628bf0a50d43fefa37d7283128eae2f5a58f3cae7890d916ec5442ce5",
+    "sim/test_control_revision.py": "608ed9973da1562f514c8503eb26f64898d73fa4b61f0dfedeeb00ab81fa2967",
+    "tools/elbow_settings_readonly.py": "dac094f3edffe689b673130b8ee879797e67286cdb280b93829cea58825f236a",
+    "analysis/review_lift_spikes.py": "fa7058e31263f107cd443d04f8dba918faa82f76fd4807675dc65d2f91d71ebc"
+  },
+  "sim_tests": {
+    "count": 48,
+    "failures": 0,
+    "errors": 0
+  },
+  "embedded_tests": {
+    "count": 17,
+    "passed": true
+  },
+  "live": "NOT_RUN_BY_AGENT",
+  "dry_summary": "/home/jetson3/so101_vla/runs/DRY_1794729411477747458/summary.json"
+}

@@ -1,0 +1,145 @@
+{
+  "status": "ELBOW_SETTINGS_READONLY_COMPLETE",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "reads": {
+    "CW_Dead_Zone": 1,
+    "CCW_Dead_Zone": 1,
+    "Min_Position_Limit": 880,
+    "Max_Position_Limit": 3087,
+    "Present_Position": 3075,
+    "Goal_Position": 3073,
+    "Present_Load": 20,
+    "Present_Current": 0,
+    "Present_Temperature": 31,
+    "Present_Voltage": 122,
+    "Torque_Enable": 1,
+    "Status": 0
+  },
+  "packets": [
+    "ffff0304021a01db",
+    "ffff0304021b01da",
+    "ffff0304020902eb",
+    "ffff0304020b02e9",
+    "ffff0304023802bc",
+    "ffff0304022a02ca",
+    "ffff0304023c02b8",
+    "ffff0304024502af",
+    "ffff0304023f01b6",
+    "ffff0304023e01b7",
+    "ffff0304022801cd",
+    "ffff0304024101b4"
+  ],
+  "replies": [
+    {
+      "unix": 1794728917.829415,
+      "expected_id": 3,
+      "address": 26,
+      "expected_bytes": 1,
+      "raw_hex": "ffff03030001f8",
+      "communication": 0,
+      "status": 0
+    },
+    {
+      "unix": 1794728917.8298845,
+      "expected_id": 3,
+      "address": 27,
+      "expected_bytes": 1,
+      "raw_hex": "ffff03030001f8",
+      "communication": 0,
+      "status": 0
+    },
+    {
+      "unix": 1794728917.8302884,
+      "expected_id": 3,
+      "address": 9,
+      "expected_bytes": 2,
+      "raw_hex": "ffff030400700385",
+      "communication": 0,
+      "status": 0
+    },
+    {
+      "unix": 1794728917.8306887,
+      "expected_id": 3,
+      "address": 11,
+      "expected_bytes": 2,
+      "raw_hex": "ffff0304000f0cdd",
+      "communication": 0,
+      "status": 0
+    },
+    {
+      "unix": 1794728917.8310893,
+      "expected_id": 3,
+      "address": 56,
+      "expected_bytes": 2,
+      "raw_hex": "ffff030400030ce9",
+      "communication": 0,
+      "status": 0
+    },
+    {
+      "unix": 1794728917.8314793,
+      "expected_id": 3,
+      "address": 42,
+      "expected_bytes": 2,
+      "raw_hex": "ffff030400010ceb",
+      "communication": 0,
+      "status": 0
+    },
+    {
+      "unix": 1794728917.8318675,
+      "expected_id": 3,
+      "address": 60,
+      "expected_bytes": 2,
+      "raw_hex": "ffff0304001400e4",
+      "communication": 0,
+      "status": 0
+    },
+    {
+      "unix": 1794728917.8322575,
+      "expected_id": 3,
+      "address": 69,
+      "expected_bytes": 2,
+      "raw_hex": "ffff0304000000f8",
+      "communication": 0,
+      "status": 0
+    },
+    {
+      "unix": 1794728917.8326416,
+      "expected_id": 3,
+      "address": 63,
+      "expected_bytes": 1,
+      "raw_hex": "ffff0303001fda",
+      "communication": 0,
+      "status": 0
+    },
+    {
+      "unix": 1794728917.8330417,
+      "expected_id": 3,
+      "address": 62,
+      "expected_bytes": 1,
+      "raw_hex": "ffff0303007a7f",
+      "communication": 0,
+      "status": 0
+    },
+    {
+      "unix": 1794728917.8334346,
+      "expected_id": 3,
+      "address": 40,
+      "expected_bytes": 1,
+      "raw_hex": "ffff03030001f8",
+      "communication": 0,
+      "status": 0
+    },
+    {
+      "unix": 1794728917.833808,
+      "expected_id": 3,
+      "address": 65,
+      "expected_bytes": 1,
+      "raw_hex": "ffff03030000f9",
+      "communication": 0,
+      "status": 0
+    }
+  ],
+  "port_closed": true,
+  "calibration_sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e"
+}
