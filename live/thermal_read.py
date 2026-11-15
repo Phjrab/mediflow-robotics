@@ -2,19 +2,27 @@
 import time
 
 
-def read_temperatures(bus, ids, bulk, strict_factory, *, traces=None, stop_c=55, emergency_c=70):
-    """Confirm a hot reading on that axis before returning the protection input.
+def read_temperatures(bus, ids, bulk, strict_factory, *, traces=None, last_requests=None,
+                      minimum_interval_s=.020, clock=time.monotonic, pause=time.sleep):
+    """One new individual READ per axis, paced >=20ms from its previous READ.
 
-    A hot bulk or individual read gets two immediate individual confirmations.
-    Either hot confirmation retains HOLD; two cool confirmations mark a spike.
-    At >=70C a second >=70C response ends confirmation after that first reread.
-    Invalid/failed replies always raise, including during confirmation.
+    No sync-read cache is used for protection and no bulk/individual maximum is
+    substituted for the individual value. ThermalWindow owns the time decision.
+    Invalid replies raise immediately. The caller persists last_requests.
     """
-    if not 0 < stop_c < emergency_c <= 255:
-        raise ValueError('온도 재확인 기준 오류')
+    if minimum_interval_s < .020:
+        raise ValueError('개별 온도 읽기 간격은 20ms 이상')
+    last_requests = {} if last_requests is None else last_requests
     temperatures, disagreements = {}, {}
     with strict_factory(bus.packet_handler) as strict:
         def read(joint, mid):
+            previous = last_requests.get(joint)
+            if previous is not None:
+                pause(max(0., previous+minimum_interval_s-clock()))
+            requested = clock()
+            if previous is not None and requested-previous < minimum_interval_s-1e-9:
+                raise RuntimeError('온도 개별 READ 간격 미준수')
+            last_requests[joint] = requested
             queued = None
             try:
                 queued = bus.port_handler.getBytesAvailable()
@@ -39,45 +47,20 @@ def read_temperatures(bus, ids, bulk, strict_factory, *, traces=None, stop_c=55,
             trace = {key: row[key] for key in (
                 'address', 'expected_id', 'expected_bytes', 'raw_hex', 'communication', 'status')}
             trace['queued_before_read'] = queued
+            raw = bytes.fromhex(trace['raw_hex'])
+            request = bytes((255,255,mid,4,2,63,1))
+            trace.update(received_id=raw[2], checksum_valid=sum(raw[2:]) % 256 == 255,
+                         tx_hex=(request+bytes(((~sum(request[2:])) & 255,))).hex(),
+                         request_started_monotonic_s=requested,
+                         request_interval_s=None if previous is None else requested-previous,
+                         observed_monotonic_s=clock())
             if traces is not None:
-                traces.append({'joint': joint, **trace, 'value_c': data[0],
-                               'observed_monotonic_s': time.monotonic()})
+                traces.append({'joint': joint, **trace, 'value_c': data[0]})
             return data[0], trace
         for joint, mid in ids.items():
-            values, reply_traces = [], []
-
-            def take():
-                value, trace = read(joint, mid)
-                values.append(value)
-                reply_traces.append(trace)
-                return value
-
-            trigger = bulk[joint] if bulk[joint] >= stop_c else None
-            trigger_source = 'bulk' if trigger is not None else None
-            if trigger is None:
-                value = take()
-                if value >= stop_c:
-                    trigger, trigger_source = value, 'individual'
-                elif value != bulk[joint]:
-                    second = take()
-                    value = max(value, second)
-                    if second >= stop_c:
-                        trigger, trigger_source = second, 'individual_disagreement'
-            confirmation = None
-            if trigger is not None:
-                rereads = [take()]
-                emergency = trigger >= emergency_c and rereads[0] >= emergency_c
-                if not emergency:
-                    rereads.append(take())
-                hot = [v for v in rereads if v >= stop_c]
-                value = max([trigger, *hot]) if hot else max(rereads)
-                confirmation = dict(trigger_c=trigger, trigger_source=trigger_source,
-                                    rereads_c=rereads, status='confirmed' if hot else 'spike',
-                                    emergency_fast_stop=emergency)
-            if trigger is not None or any(v != bulk[joint] for v in values):
-                disagreements[joint] = {'bulk_c': bulk[joint], 'individual_reads_c': values,
-                                        'adopted_c': value, 'reply_trace': reply_traces}
-                if confirmation is not None:
-                    disagreements[joint]['confirmation'] = confirmation
+            value, trace = read(joint, mid)
+            if value != bulk[joint] or value >= 55:
+                disagreements[joint] = {'bulk_c': bulk[joint], 'individual_reads_c': [value],
+                                        'adopted_c': value, 'reply_trace': [trace]}
             temperatures[joint] = value
     return temperatures, disagreements

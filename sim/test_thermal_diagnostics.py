@@ -256,57 +256,41 @@ class ExistingReadIntegrationTests(unittest.TestCase):
         self.assertEqual(len(traces), 6)
         self.assertTrue(all('raw_hex' in row and row['communication'] == 0 for row in traces))
 
-    def test_transient_high_read_requires_two_cool_confirmations(self):
+    def test_fresh_individual_value_and_all_source_bytes_are_preserved(self):
         values = {i: [34] for i in range(1, 7)}
-        values[6] = [81, 34, 34]
+        values[6] = [81]
         bus, traces = self.bus(values), []
         temps, differences = read_temperatures(bus, dict(zip(JOINTS, range(1, 7))),
                                                dict.fromkeys(JOINTS, 34), StrictIndividualReplies, traces=traces)
-        self.assertEqual(temps['gripper'], 34)
-        self.assertEqual(differences['gripper']['individual_reads_c'], [81, 34, 34])
-        self.assertEqual(differences['gripper']['confirmation']['status'], 'spike')
-        self.assertEqual(len(traces), 8)
+        self.assertEqual(temps['gripper'], 81)
+        self.assertEqual(differences['gripper']['individual_reads_c'], [81])
+        self.assertEqual(len(traces), 6)
+        self.assertTrue(traces[-1]['checksum_valid'])
+        self.assertEqual(traces[-1]['received_id'], 6)
         self.assertTrue(all(packet[4] == 2 for packet in bus.packet_handler.requests))
 
-    def test_confirmed_55c_is_not_discarded(self):
-        values = {i: [34] for i in range(1, 7)}
-        values[2] = [55, 55, 34]
-        temps, differences = read_temperatures(self.bus(values), dict(zip(JOINTS, range(1, 7))),
-                                               dict.fromkeys(JOINTS, 34), StrictIndividualReplies)
-        self.assertEqual(temps['shoulder_lift'], 55)
-        self.assertEqual(differences['shoulder_lift']['confirmation']['status'], 'confirmed')
-
-    def test_second_confirmation_hot_is_also_stop(self):
-        values = {i: [34] for i in range(1, 7)}
-        values[2] = [66, 32, 56]
-        temps, differences = read_temperatures(self.bus(values), dict(zip(JOINTS, range(1, 7))),
-                                               dict.fromkeys(JOINTS, 34), StrictIndividualReplies)
-        self.assertEqual(temps['shoulder_lift'], 66)
-        self.assertEqual(differences['shoulder_lift']['confirmation']['rereads_c'], [32, 56])
-
-    def test_bulk_high_is_confirmed_before_next_axis(self):
-        values = {i: [34] for i in range(1, 7)}
-        values[2] = [32, 33]
-        bulk = dict.fromkeys(JOINTS, 34)
-        bulk['shoulder_lift'] = 66
-        bus = self.bus(values)
-        temps, differences = read_temperatures(bus, dict(zip(JOINTS, range(1, 7))), bulk, StrictIndividualReplies)
+    def test_bulk_high_never_substitutes_for_the_individual_register(self):
+        temps, _ = read_temperatures(self.bus({2: [33]}), {'shoulder_lift': 2},
+                                     {'shoulder_lift': 81}, StrictIndividualReplies)
         self.assertEqual(temps['shoulder_lift'], 33)
-        self.assertEqual(differences['shoulder_lift']['confirmation']['status'], 'spike')
-        self.assertEqual([p[2] for p in bus.packet_handler.requests][:4], [1, 2, 2, 3])
 
-    def test_70c_confirmation_stops_without_third_read(self):
-        values = {i: [34] for i in range(1, 7)}
-        values[6] = [81, 72]
-        temps, differences = read_temperatures(self.bus(values), dict(zip(JOINTS, range(1, 7))),
-                                               dict.fromkeys(JOINTS, 34), StrictIndividualReplies)
-        self.assertEqual(temps['gripper'], 81)
-        self.assertTrue(differences['gripper']['confirmation']['emergency_fast_stop'])
-        self.assertEqual(differences['gripper']['confirmation']['rereads_c'], [72])
+    def test_same_axis_requests_are_at_least_20ms_apart(self):
+        now, previous, traces = [0.], {}, []
+        bus = self.bus({2: [60, 60, 33]})
+        values = []
+        for _ in range(3):
+            temps, _ = read_temperatures(bus, {'shoulder_lift': 2}, {'shoulder_lift': 34},
+                StrictIndividualReplies, traces=traces, last_requests=previous,
+                clock=lambda:now[0], pause=lambda duration:now.__setitem__(0,now[0]+duration))
+            values.append(temps['shoulder_lift'])
+        self.assertEqual(values,[60,60,33])
+        self.assertEqual([x['request_started_monotonic_s'] for x in traces],[0.,.02,.04])
+        self.assertTrue(all(x['checksum_valid'] and x['received_id']==2 for x in traces))
+        self.assertEqual(len(bus.packet_handler.requests),3)
 
-    def test_confirmation_failure_remains_a_stop(self):
+    def test_missing_individual_response_remains_an_error(self):
         values = {i: [34] for i in range(1, 7)}
-        values[2] = [66]  # Missing confirmation response must never be accepted as cool.
+        values[2] = []
         with self.assertRaises(Exception):
             read_temperatures(self.bus(values), dict(zip(JOINTS, range(1, 7))),
                               dict.fromkeys(JOINTS, 34), StrictIndividualReplies)

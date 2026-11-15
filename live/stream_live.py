@@ -17,6 +17,7 @@ import live_start
 from thermal_read import read_temperatures
 from thermal_diagnostics import ThermalDiagnostics
 from tracking_compensation import TrackingCompensator
+from thermal_window import ThermalWindow
 from vla_monitor import Monitor
 
 from config_runtime import load as load_config
@@ -93,13 +94,16 @@ def chunk_alignment(origin, elapsed, rate, first_unused, *, moving):
     return expired, max(first_unused, origin + expired)
 
 
-def wait_until_cool(read, report, *, pause=time.sleep):
+def wait_until_cool(read, report, *, pause=time.sleep, sample_interval=None, clock=time.monotonic):
     sample = read()
     if max(sample['temperatures'].values()) < CONFIG['temperature']['wait_at_c']:
         return sample
+    next_report = clock()
     while max(sample['temperatures'].values()) >= CONFIG['temperature']['resume_below_c']:
-        report(sample['temperatures'])
-        pause(CONFIG['temperature']['poll_s'])
+        if sample_interval is None or clock() >= next_report:
+            report(sample['temperatures'])
+            next_report = clock()+CONFIG['temperature']['poll_s']
+        pause(CONFIG['temperature']['poll_s'] if sample_interval is None else sample_interval)
         sample = read()
     return sample
 
@@ -413,6 +417,9 @@ def device_class():
             self.thermal_recheck = {}
             self.thermal_disagreement = {}
             self.thermal_confirmation_counts = {j: dict(spike=0, confirmed=0) for j in base.JOINTS}
+            self.thermal_window = ThermalWindow(base.JOINTS, CONFIG['temperature'])
+            self.temperature_last_requests = {}
+            self.temperature_fault_decisions = {}
             self.thermal_diagnostics = ThermalDiagnostics(base.JOINTS)
             self.thermal_sequence = 0
             self.torque_off_writes = 0
@@ -505,11 +512,16 @@ def device_class():
             sample['temperatures_bulk'] = dict(sample['temperatures'])
             sample['voltage_raw'] = {j: self.feedback_bytes[j][6] for j in base.JOINTS}
             sample['voltage_v'] = {j: value / 10 for j, value in sample['voltage_raw'].items()}
+            sample['current_raw'] = {}
+            for name, mid in self.ids.items():
+                value = int.from_bytes(self.feedback_bytes[name][13:15], 'little')
+                sample['current_raw'][name] = self.bus._decode_sign('Present_Current', {mid: value})[mid]
             traces = []
             try:
                 sample['temperatures'], disagreement = read_temperatures(
                     self.bus, self.ids, sample['temperatures_bulk'], StrictIndividualReplies, traces=traces,
-                    stop_c=CONFIG['temperature']['stop_c'], emergency_c=CONFIG['temperature'].get('emergency_c', 70))
+                    last_requests=self.temperature_last_requests,
+                    minimum_interval_s=CONFIG['temperature']['sample_interval_s'], clock=self.clock, pause=self.pause)
             except Exception as exc:
                 self.wire_fault = True
                 self.log({'event': 'thermal_read_error', 'source': 'individual_temperature',
@@ -518,27 +530,46 @@ def device_class():
                           'feedback_bytes_hex': {j: data.hex() for j, data in self.feedback_bytes.items()},
                           **self.thermal_diagnostics.record_error(exc)})
                 raise base.Stop('개별 온도 응답 검증 실패; 추가 쓰기 금지: ' + str(exc)) from exc
-            # The temporal diagnostic filter remains observation only. Protection
-            # uses the separately confirmed temperatures returned above.
+            # Individual requests own the protection window; bulk values and the
+            # old display-only diagnostic filter never override its decision.
             source_values = {j: [sample['temperatures_bulk'][j]] +
                              [row['value_c'] for row in traces if row.get('joint') == j and 'value_c' in row]
                              for j in base.JOINTS}
             sample['temperatures_raw'] = {j: max(values) for j, values in source_values.items()}
-            sample['temperature_confirmation'] = {j: row['confirmation'] for j, row in disagreement.items()
-                                                  if 'confirmation' in row}
-            for joint, row in sample['temperature_confirmation'].items():
-                self.thermal_confirmation_counts[joint][row['status']] += 1
-                self.log({'event': 'thermal_confirmation', 'joint': joint, **row,
-                          'adopted_c': sample['temperatures'][joint],
-                          'bulk_c': sample['temperatures_bulk'][joint],
-                          'voltage_v': sample['voltage_v'][joint]})
+            sample_times = {row['joint']: row['observed_monotonic_s'] for row in traces}
+            sample['temperature_protection'] = {j: self.thermal_window.observe_axis(
+                j, sample_times[j], sample['temperatures'][j]) for j in base.JOINTS}
+            for joint, row in sample['temperature_protection'].items():
+                self.thermal_confirmation_counts[joint]['spike'] = row['spike_count']
+                if row['hold'] and joint not in self.temperature_fault_decisions:
+                    self.thermal_confirmation_counts[joint]['confirmed'] += 1
+                if row['ended_spike'] or row['hold'] or row['warning_started']:
+                    self.log({'event': 'thermal_window_event', 'joint': joint, **row})
+                if row['warning_started']:
+                    print(f'온도 경고: {joint} 2초 중앙값 {row["median_c"]:.1f}°C',flush=True)
             sample['thermal_diagnostics'] = self.thermal_diagnostics.observe(
                 time.monotonic(), sample['temperatures_raw'], sample['voltage_v'], sample['statuses'], source_values)
+            suspect = [j for j in base.JOINTS if sample['temperatures_raw'][j] >= CONFIG['temperature']['stop_c']
+                       or sample['thermal_diagnostics'][j]['suspected_spike']]
+            if suspect:
+                sample['modes'], sample['torque'] = self.read_modes()
+                sample['torque_observed_monotonic_s'] = self.clock()
+                for joint in suspect:
+                    self.log({'event': 'thermal_spike_context', 'joint': joint,
+                        'temperature_individual_c': sample['temperatures'][joint],
+                        'temperature_bulk_c': sample['temperatures_bulk'][joint],
+                        'voltage_v': sample['voltage_v'][joint], 'load_raw': sample['loads'][joint],
+                        'current_raw': sample['current_raw'][joint], 'torque': sample['torque'][joint],
+                        'status': sample['statuses'][joint], 'decision': sample['temperature_protection'][joint],
+                        'bulk_observed_monotonic_s': bulk_observed_s,
+                        'torque_observed_monotonic_s': sample['torque_observed_monotonic_s'],
+                        'feedback_bytes_hex': self.feedback_bytes[joint].hex(),
+                        'reply_trace': [r for r in traces if r.get('joint') == joint]})
             self.thermal_sequence += 1
             self.log({'event': 'thermal_cycle', 'sequence': self.thermal_sequence,
                       'monotonic_s': time.monotonic(), 'temperature_raw_c': dict(sample['temperatures_raw']),
-                      'temperature_for_protection_c': dict(sample['temperatures']),
-                      'temperature_confirmation': sample['temperature_confirmation'],
+                      'temperature_individual_c': dict(sample['temperatures']),
+                      'temperature_protection': sample['temperature_protection'],
                       'temperature_bulk_c': sample['temperatures_bulk'], 'voltage_v': sample['voltage_v'],
                       'bulk_observed_monotonic_s': bulk_observed_s,
                       'voltage_association': 'same_packet_with_bulk_temperature_only',
@@ -550,10 +581,6 @@ def device_class():
                 if disagreement:
                     self.log({'event': 'thermal_source_disagreement', 'joints': disagreement})
                 self.thermal_disagreement = disagreement
-            sample['current_raw'] = {}
-            for name, mid in self.ids.items():
-                value = int.from_bytes(self.feedback_bytes[name][13:15], 'little')
-                sample['current_raw'][name] = self.bus._decode_sign('Present_Current', {mid: value})[mid]
             if not hasattr(self,'initial_temperatures'):self.initial_temperatures=dict(sample['temperatures_raw'])
             temperature = sample['temperatures_raw']['gripper']
             for joint, value in sample['temperatures_raw'].items():
@@ -564,10 +591,10 @@ def device_class():
                 if temperature >= 45:
                     print(f'그리퍼 시작 온도 경고 {temperature}°C', flush=True)
             self.gripper_peak = max(self.gripper_peak or temperature, temperature)
-            if self.motion_ready:
-                hot = {joint: value for joint, value in sample['temperatures'].items() if value >= 55}
-                if hot:
-                    self.temperature_fault = {**(self.temperature_fault or {}), **hot}
+            hot = {j: sample['temperatures'][j] for j, row in sample['temperature_protection'].items() if row['hold']}
+            if hot:
+                self.temperature_fault = {**(self.temperature_fault or {}), **hot}
+                self.temperature_fault_decisions.update({j:sample['temperature_protection'][j] for j in hot})
             # Collection must remain available to the existing current-position HOLD.
             return sample
 
@@ -576,8 +603,7 @@ def device_class():
                 def startup_sample():
                     feedback = self.feedback()
                     if (any(feedback['statuses'].values()) or any(
-                            row['status'] == 'confirmed'
-                            for row in feedback['temperature_confirmation'].values())):
+                            row['hold'] for row in feedback['temperature_protection'].values())):
                         base.feedback_gate(feedback)
                     return feedback
 
@@ -585,7 +611,8 @@ def device_class():
                     self.log({'event': 'startup_cooling', 'temperature_c': temps})
                     print('식히는 중 ' + json.dumps(temps), flush=True)
 
-                sample = wait_until_cool(startup_sample, report)
+                sample = wait_until_cool(startup_sample, report,
+                    sample_interval=CONFIG['temperature']['sample_interval_s'], clock=self.clock, pause=self.pause)
                 self.startup_pending = False
             else:
                 sample = self.feedback()
@@ -593,17 +620,20 @@ def device_class():
             try:
                 guarded = sample
                 if self.temperature_fault:
-                    guarded = {**sample, 'temperatures': {**sample['temperatures'], **self.temperature_fault}}
+                    guarded = {**sample, 'temperatures': {**sample['temperatures'], **self.temperature_fault},
+                               'temperature_protection': {**sample['temperature_protection'], **self.temperature_fault_decisions}}
                 base.feedback_gate(guarded)
                 if self.motion_ready:
                     _, torque = self.read_modes()
+                    sample['torque'] = torque
                     if any(value != 1 for value in torque.values()):
                         raise base.Stop('동작 중 토크 상태 변경: ' + repr(torque))
             except base.Stop:
                 self.log({'event': 'stop_feedback', **sample,
                           'feedback_bytes_hex': {j:data.hex() for j,data in self.feedback_bytes.items()}})
                 self.temperature_fault = {**(self.temperature_fault or {}),
-                                          **{j: v for j, v in sample['temperatures'].items() if v >= 55}}
+                                          **{j: sample['temperatures'][j] for j, row in
+                                             sample['temperature_protection'].items() if row['hold']}}
                 raise
             return sample
 
@@ -613,13 +643,17 @@ def device_class():
             if not self.temperature_fault or self.wire_fault:
                 return
             bus = self.bus
-            with StrictIndividualReplies(bus.packet_handler):
-                for joint, trigger in self.temperature_fault.items():
-                    try:
-                        samples = [bus.read('Present_Temperature',joint,normalize=False,num_retry=0) for _ in range(3)]
-                        self.thermal_recheck[joint] = {'trigger_c':trigger, 'register_63_reads_c':samples}
-                    except Exception as error:
-                        self.thermal_recheck[joint] = {'trigger_c':trigger, 'read_error':str(error)}
+            for joint, trigger in self.temperature_fault.items():
+                trace, samples = [], []
+                try:
+                    for _ in range(3):
+                        values, _ = read_temperatures(bus,{joint:self.ids[joint]},{joint:trigger},StrictIndividualReplies,
+                            traces=trace,last_requests=self.temperature_last_requests,
+                            minimum_interval_s=CONFIG['temperature']['sample_interval_s'],clock=self.clock,pause=self.pause)
+                        samples.append(values[joint])
+                    self.thermal_recheck[joint] = {'trigger_c':trigger,'register_63_reads_c':samples,'reply_trace':trace}
+                except Exception as error:
+                    self.thermal_recheck[joint] = {'trigger_c':trigger,'read_error':str(error),'reply_trace':trace}
             self.log({'event':'thermal_recheck', **self.thermal_recheck})
 
         def release_if_supported_home(self, operator_supported):
@@ -956,8 +990,8 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
                 result['gripper_limits_readonly'] = io.registers
                 result['thermal_recheck'] = io.thermal_recheck
                 result['thermal_diagnostics'] = io.thermal_diagnostics.summary()
-                result['thermal_confirmation'] = dict(stop_c=CONFIG['temperature']['stop_c'],
-                    emergency_c=CONFIG['temperature'].get('emergency_c', 70), normal_rechecks=2,
+                result['thermal_protection'] = io.thermal_window.summary()
+                result['thermal_confirmation'] = dict(policy=CONFIG['temperature']['policy'],
                     counts=io.thermal_confirmation_counts)
                 result['startup_temperatures_c'] = getattr(io,'initial_temperatures',{})
                 result['goal_packet_attempts'] = getattr(getattr(io, 'permission', None), 'goal_packets', 0)

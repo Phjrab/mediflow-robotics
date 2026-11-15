@@ -28,10 +28,11 @@ class UnifiedTests(unittest.TestCase):
     def test_thermal_and_status_guards(self):
         c=load();io=SimulatedArm(c['home']['state'],{},lambda r:None,'overheat')
         io.packet_count=20
+        for _ in range(100):io.checked()
         with self.assertRaises(base.Stop):io.checked()
     def test_shared_limits(self):
         c=load();self.assertEqual(criteria()['elbow_flex']['command_range_ticks'],c['limits']['elbow_flex'])
-        self.assertEqual(c['limits']['elbow_flex'][1],3082)
+        self.assertEqual(c['limits']['elbow_flex'][1],min(3093,c['calibration_ranges']['elbow_flex'][1]-3))
         self.assertNotIn('5AE6085272',c['port'])
     def test_no_configuration_writes_in_start(self):
         import inspect
