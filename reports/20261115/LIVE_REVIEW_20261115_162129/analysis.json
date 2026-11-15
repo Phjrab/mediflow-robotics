@@ -1,0 +1,267 @@
+{
+  "run": "/home/jetson3/so101_vla/runs/20261115_162129",
+  "steps": 209,
+  "elapsed_s": 7.781636605000131,
+  "status": "HOLD",
+  "reason": "모터 상태코드/온도 중단: {\"shoulder_lift\": {\"status\": 0, \"temperature_c\": 66}}",
+  "playback_s": 1.4651674161300514,
+  "active_transmission_s": 4.428393898999275,
+  "first_last": {
+    "first_state": [
+      -3.6483516483516483,
+      -98.76923076923077,
+      96.48351648351648,
+      41.89010989010989,
+      -3.6483516483516483,
+      4.8959608323133414
+    ],
+    "last_state": [
+      -3.8241758241758244,
+      -98.24175824175825,
+      96.13186813186813,
+      42.857142857142854,
+      -3.7362637362637363,
+      3.9167686658506726
+    ]
+  },
+  "thermal_near_stop": [
+    {
+      "sequence": 459,
+      "monotonic_s": 7443.918303878,
+      "temperature_raw_c": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 32,
+        "elbow_flex": 31,
+        "wrist_flex": 31,
+        "wrist_roll": 31,
+        "gripper": 34
+      },
+      "temperature_bulk_c": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 32,
+        "elbow_flex": 31,
+        "wrist_flex": 31,
+        "wrist_roll": 31,
+        "gripper": 34
+      },
+      "voltage_v": {
+        "shoulder_pan": 12.2,
+        "shoulder_lift": 12.1,
+        "elbow_flex": 12.2,
+        "wrist_flex": 12.2,
+        "wrist_roll": 12.2,
+        "gripper": 12.2
+      },
+      "statuses": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      }
+    },
+    {
+      "sequence": 460,
+      "monotonic_s": 7443.939534644,
+      "temperature_raw_c": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 32,
+        "elbow_flex": 31,
+        "wrist_flex": 31,
+        "wrist_roll": 31,
+        "gripper": 34
+      },
+      "temperature_bulk_c": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 33,
+        "elbow_flex": 31,
+        "wrist_flex": 31,
+        "wrist_roll": 31,
+        "gripper": 34
+      },
+      "voltage_v": {
+        "shoulder_pan": 12.2,
+        "shoulder_lift": 12.1,
+        "elbow_flex": 12.1,
+        "wrist_flex": 12.2,
+        "wrist_roll": 12.2,
+        "gripper": 12.2
+      },
+      "statuses": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      }
+    },
+    {
+      "sequence": 461,
+      "monotonic_s": 7443.959877351,
+      "temperature_raw_c": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 66,
+        "elbow_flex": 31,
+        "wrist_flex": 31,
+        "wrist_roll": 31,
+        "gripper": 34
+      },
+      "temperature_bulk_c": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 32,
+        "elbow_flex": 31,
+        "wrist_flex": 31,
+        "wrist_roll": 31,
+        "gripper": 34
+      },
+      "voltage_v": {
+        "shoulder_pan": 12.2,
+        "shoulder_lift": 12.1,
+        "elbow_flex": 12.2,
+        "wrist_flex": 12.2,
+        "wrist_roll": 12.2,
+        "gripper": 12.2
+      },
+      "statuses": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      }
+    },
+    {
+      "sequence": 462,
+      "monotonic_s": 7443.96568505,
+      "temperature_raw_c": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 32,
+        "elbow_flex": 31,
+        "wrist_flex": 31,
+        "wrist_roll": 31,
+        "gripper": 34
+      },
+      "temperature_bulk_c": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 32,
+        "elbow_flex": 31,
+        "wrist_flex": 31,
+        "wrist_roll": 31,
+        "gripper": 34
+      },
+      "voltage_v": {
+        "shoulder_pan": 12.2,
+        "shoulder_lift": 12.2,
+        "elbow_flex": 12.2,
+        "wrist_flex": 12.2,
+        "wrist_roll": 12.2,
+        "gripper": 12.2
+      },
+      "statuses": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      }
+    }
+  ],
+  "trigger_reply_trace": [
+    {
+      "joint": "shoulder_lift",
+      "address": 63,
+      "expected_id": 2,
+      "expected_bytes": 1,
+      "raw_hex": "ffff02030042b8",
+      "communication": 0,
+      "status": 0,
+      "queued_before_read": 0,
+      "value_c": 66,
+      "observed_monotonic_s": 7443.957568,
+      "packet_checksum_valid": true
+    },
+    {
+      "joint": "shoulder_lift",
+      "address": 63,
+      "expected_id": 2,
+      "expected_bytes": 1,
+      "raw_hex": "ffff02030020da",
+      "communication": 0,
+      "status": 0,
+      "queued_before_read": 0,
+      "value_c": 32,
+      "observed_monotonic_s": 7443.958041422,
+      "packet_checksum_valid": true
+    }
+  ],
+  "thermal_recheck": {
+    "shoulder_lift": {
+      "trigger_c": 66,
+      "register_63_reads_c": [
+        32,
+        33,
+        33
+      ]
+    }
+  },
+  "errors": {
+    "total": 0,
+    "communication": 0,
+    "checksum": 0,
+    "other": 0
+  },
+  "tracking": {
+    "shoulder_pan": {
+      "sent_span": 0.9670329670329672,
+      "observed_span": 0.43956043956043933,
+      "span_ratio": 0.45454545454545425
+    },
+    "shoulder_lift": {
+      "sent_span": 2.285714285714292,
+      "observed_span": 0.7032967032967008,
+      "span_ratio": 0.30769230769230577
+    },
+    "elbow_flex": {
+      "sent_span": 2.19780219780219,
+      "observed_span": 0.3516483516483504,
+      "span_ratio": 0.16
+    },
+    "wrist_flex": {
+      "sent_span": 1.9340659340659343,
+      "observed_span": 1.0549450549450512,
+      "span_ratio": 0.5454545454545434
+    },
+    "wrist_roll": {
+      "sent_span": 0.35164835164835173,
+      "observed_span": 0.08791208791208804,
+      "span_ratio": 0.25000000000000033
+    },
+    "gripper": {
+      "sent_span": 0.673194614443084,
+      "observed_span": 1.1015911872705018,
+      "span_ratio": 1.6363636363636374
+    }
+  },
+  "camera": {
+    "end_effector": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.04395818700049858
+    },
+    "ceiling_vertical": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.04706881100082683
+    },
+    "ceiling_oblique": {
+      "read_failures": 3,
+      "max_frame_gap_s": 0.050310957999499806
+    }
+  },
+  "files_sha256": {
+    "summary.json": "35d164e7c8e4a9ea559442f9a901116da935a273cf523414846f7417df8d8ef2",
+    "steps.jsonl": "3dfd73ed06a79931fc25c0314c125b44732d6b0be5c49ba58bed9d23a221fff4"
+  }
+}
