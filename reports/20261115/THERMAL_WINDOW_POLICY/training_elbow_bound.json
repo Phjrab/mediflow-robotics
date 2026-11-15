@@ -1,0 +1,47 @@
+{
+  "episodes": 137,
+  "frames": 63551,
+  "counts": {
+    "red": 48,
+    "green": 45,
+    "blue": 44
+  },
+  "maxima": {
+    "action": {
+      "degree": 97.5824203491211,
+      "follower_tick_coordinate": 3093.5000314712524,
+      "follower_sdk_integer_tick": 3093,
+      "nearest_tick": 3094,
+      "source": "a_to_blue_20261102_212958",
+      "source_episode": 14,
+      "merged_episode": 71,
+      "frame": 364
+    },
+    "observation.state": {
+      "degree": 97.0988998413086,
+      "follower_tick_coordinate": 3087.9999856948853,
+      "follower_sdk_integer_tick": 3087,
+      "nearest_tick": 3088,
+      "source": "a_to_red_20261102_210433",
+      "source_episode": 2,
+      "merged_episode": 11,
+      "frame": 413
+    }
+  },
+  "training_max_tick": 3093,
+  "training_max_source": "action encoded to follower ticks",
+  "calibration_max_tick": 3087,
+  "margin_ticks": 3,
+  "command_upper_tick": 3084,
+  "mapping_path": "/home/jetson3/so101_vla/_archive/20261110/jetson/home/motion_limits_20261109_1794202196649/episode_mapping.csv",
+  "mapping_sha256": "d6b2c82317ff8a1652f5dd6d3eb14e43899421257d19a3bf78caa0450927821a",
+  "source_parquet_sha256": {
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_red_20261102_201029/data/chunk-000/file-000.parquet": "f799e22af6a7b141be1457e935c8902886468fb64ef99250e371e97728361292",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_red_20261102_210433/data/chunk-000/file-000.parquet": "6fdf565a638655982b9e0a575e99a64ae2e95dd1d20539f74ae94d1c0507485a",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_green_20261102_201804/data/chunk-000/file-000.parquet": "81dc6ebe7cd48d1a715a55bf5e12615af74fff1fccb62816bf9f5cea00a67ac6",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261102_212958/data/chunk-000/file-000.parquet": "a55e42ca90c9a4cfd66604660c136a239a204f0c6cad52aa8e328b02fbfb31bd",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261103_193835/data/chunk-000/file-000.parquet": "3ca854deaa401f312c364a42c85a2dc5e6209f2f189b2b5c15b8e64fbc285b1e",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261103_193353/data/chunk-000/file-000.parquet": "22813bc35cc95a42bb3af8dc4ac49f9fdef13d288bb625199ff3146a3330b850"
+  },
+  "calibration_sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e"
+}

@@ -1,0 +1,63 @@
+{
+  "status": "FRESH_WINDOW_READONLY_COMPLETE",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "initial_torque": {
+    "shoulder_pan": 1,
+    "shoulder_lift": 1,
+    "elbow_flex": 1,
+    "wrist_flex": 1,
+    "wrist_roll": 1,
+    "gripper": 1
+  },
+  "port_closed": true,
+  "read_packets": 738,
+  "cycles": 121,
+  "interval_min_s": 0.020004153999252594,
+  "interval_max_s": 0.020592941000359133,
+  "thermal_protection": {
+    "window_s": 2.0,
+    "continuous_hot_s": 2.0,
+    "stop_c": 55.0,
+    "median_warning_c": 50.0,
+    "joints": {
+      "shoulder_pan": {
+        "spike_count": 0,
+        "warning_count": 0,
+        "raw_peak_c": 31,
+        "median_peak_c": 31.0
+      },
+      "shoulder_lift": {
+        "spike_count": 0,
+        "warning_count": 0,
+        "raw_peak_c": 33,
+        "median_peak_c": 33.0
+      },
+      "elbow_flex": {
+        "spike_count": 0,
+        "warning_count": 0,
+        "raw_peak_c": 32,
+        "median_peak_c": 31.0
+      },
+      "wrist_flex": {
+        "spike_count": 0,
+        "warning_count": 0,
+        "raw_peak_c": 33,
+        "median_peak_c": 32.0
+      },
+      "wrist_roll": {
+        "spike_count": 0,
+        "warning_count": 0,
+        "raw_peak_c": 32,
+        "median_peak_c": 31.0
+      },
+      "gripper": {
+        "spike_count": 0,
+        "warning_count": 0,
+        "raw_peak_c": 35,
+        "median_peak_c": 34.0
+      }
+    }
+  },
+  "calibration_sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e"
+}
