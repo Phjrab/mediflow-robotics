@@ -1,5 +1,9 @@
 # SO-101 VLA 현황 — 2026-11-15
 
+**집기 원인 조사 완료: 우선 원인② 실제 화면 조건 차이. blue5/red1/green1의3,050프레임 전체 평가에서 공식 LeRobot과 실행기 전처리·후처리 차이0, 시작/집기/끝 별도 재추론 차이0. 사선 카메라는 학습7회 대비187.6~189.1px 구도 차이, 수직은1.0~2.3px다. 사선 한 대만으로 단독 원인이라고 확정하지 않으며 모델 오차·실물 추종은 남는다.**
+
+상세 `reports/20261115/GRASP_CAUSE_7_EPISODES/RESULT.md`, 입력표 `INPUT_TABLE.md`, 비교 영상 `training_current_cameras.png`. 먼저 사선 구도와 약통 배치를 학습 영상에 맞춘다. 모델 없는 blue녹화 재생기 추가: `bash ~/so101_vla/tools/run_recorded_blue.sh --execute --operator-present`(0.33배·약44초, Goal_Position만,6축 토크ON 필요). Windows/Jetson 각89모의 PASS, 가짜 서보 전체 재생 완료. 실제 재생/live는 이번 작업에서 NOT_RUN. 코드 커밋 Windows40ca188/Jetson e835247. 아래는 이전 실기 기록을 보존한 것이다.
+
 **최신 실기 20261115_191851: 180.187초·7,968목표 RUN_COMPLETE. 통신147,615응답 모두 정상(-6/-7·재시도0), 종료 유지2차 HOLD_CONFIRMED·포트닫힘. 온도8,198주기 재검산 불일치0·HOLD0. 팔꿈치 목표/실제 변화폭10.110°/6.857°(67.8%, 이전31.6%)로 움직임은 늘었으나 평균오차0.669°로 이전0.683°와 비슷해 보상 효과는 확정하지 않는다. 이번에도 기록된 정책 목표가 학습 집기 자세에 미도달했고 마지막 영상에 집기 성공 증거가 없다.**
 
 사후 검토: `reports/20261115/LIVE_REVIEW_20261115_191851/RESULT.md`. 관제3카메라640×480 확인, 추론56회·묶음대기0초·실제전송45.08Hz. 다음 조사 대상은 관측/모델과 반복 예측·묶음 처리다. 이번 검토는 저장 로그·HTTP만 읽었고 모터 접근·재실행·실행기나 보호 변경 없음. 아래는 이전 기록이다.
@@ -39,7 +43,7 @@
 | 카메라 | 손목 end_effector→camera1, Astra ceiling_vertical→camera2, RealSense ceiling_oblique→camera3 |
 | follower | `/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6058306-if00` |
 | leader | `5AE6085272`는 follower로 선택 금지 |
-| 팔꿈치 | 명령880~3082틱, 상한 밖 유효 위치는 저속 복구 |
+| 팔꿈치 | 현행 공통 config 명령880~3084틱, 상한 밖 유효 위치는 저속 복구 |
 | 어깨 들기 | 명령하한801틱. 보정하한796+5이며 실제 스토퍼 위치는 미확인 |
 | 보호 | 55°C·상태 오류·잘못된 통신·USB 단절에서 HOLD. 보정/PID/가속도 쓰기 금지 |
 
