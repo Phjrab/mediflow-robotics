@@ -1,0 +1,111 @@
+{
+  "new_run": "/home/jetson3/so101_vla/runs/20261115_162129",
+  "older_run": "/home/jetson3/so101_vla/runs/20261109_215013_HOLD_temperature_296steps_vla_stream_blue_1794228613187797901",
+  "window_66": {
+    "samples": 25,
+    "first_relative_s": -0.4819540499993309,
+    "last_relative_s": 0.005807698999888089,
+    "voltage_min_v": 12.1,
+    "voltage_max_v": 12.2,
+    "load_min_raw": -76,
+    "load_max_raw": 20,
+    "current_min_raw": 0,
+    "current_max_raw": 3,
+    "detected_errors": 0,
+    "at_trigger": {
+      "relative_s": 0.0,
+      "sequence": 461,
+      "temperature_individual_max_c": 66,
+      "errors_total": 0,
+      "position_ticks": 837,
+      "speed_raw": 0,
+      "load_raw": -64,
+      "voltage_v": 12.1,
+      "temperature_c": 32,
+      "async_write_flag": 0,
+      "status": 0,
+      "moving": 0,
+      "active_goal_ticks": 850,
+      "current_raw": 2,
+      "raw_hex": "450300004004792000000052030200"
+    }
+  },
+  "lift_comparison": {
+    "new_66": {
+      "start_deg": -98.76923076923077,
+      "final_deg": -98.24175824175825,
+      "delta_deg": 0.5274725274725256,
+      "stop_load_raw": -64,
+      "max_abs_load_during_motion": 84,
+      "stop_current_raw": 2,
+      "max_abs_current_during_motion": 3
+    },
+    "older_81": {
+      "start_deg": -97.89010989010988,
+      "final_deg": -96.21978021978022,
+      "delta_deg": 1.6703296703296644,
+      "stop_load_raw": -128,
+      "max_abs_load_during_motion": 144,
+      "stop_current_raw": 5,
+      "max_abs_current_during_motion": 5
+    },
+    "older_voltage_and_raw_packet": "NOT_RECORDED",
+    "older_after_stop_samples": "NOT_RECORDED"
+  },
+  "elbow": {
+    "steps": 209,
+    "clipped_total": 111,
+    "wire_at_3077": 8,
+    "wire_at_actual_upper_3082": 111,
+    "observed_unchanged_intervals": [
+      {
+        "start_step": 1,
+        "end_step": 134,
+        "duration_s": 2.8312063809999017,
+        "actual_ticks": 3081,
+        "sent_ticks_min": 3070,
+        "sent_ticks_max": 3082
+      },
+      {
+        "start_step": 136,
+        "end_step": 208,
+        "duration_s": 1.534516050000093,
+        "actual_ticks": 3078,
+        "sent_ticks_min": 3059,
+        "sent_ticks_max": 3082
+      }
+    ],
+    "first": {
+      "step": 1,
+      "time_s": 3.337736597000003,
+      "model_phase": 0.0,
+      "model_deg": 96.71632385253906,
+      "sent_deg": 96.57142857142857,
+      "sent_ticks": 3082,
+      "actual_deg": 96.48351648351648,
+      "actual_ticks": 3081,
+      "load_raw": -36,
+      "current_raw": 0,
+      "gap_ticks": 1,
+      "elbow_clipped": true
+    },
+    "last": {
+      "step": 209,
+      "time_s": 7.766130495999278,
+      "model_phase": 43.955022483901544,
+      "model_deg": 94.45891877518262,
+      "sent_deg": 94.37362637362638,
+      "sent_ticks": 3057,
+      "actual_deg": 96.13186813186813,
+      "actual_ticks": 3077,
+      "load_raw": 84,
+      "current_raw": 3,
+      "gap_ticks": -20,
+      "elbow_clipped": false
+    },
+    "sent_ticks_min": 3057,
+    "sent_ticks_max": 3082,
+    "actual_ticks_min": 3077,
+    "actual_ticks_max": 3081
+  }
+}
