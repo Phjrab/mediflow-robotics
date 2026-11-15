@@ -18,6 +18,7 @@ from thermal_read import read_temperatures
 from thermal_diagnostics import ThermalDiagnostics
 from tracking_compensation import TrackingCompensator
 from thermal_window import ThermalWindow
+from communication_retry import CommunicationPolicy,CommunicationHold,confirmed_hold,retryable_write_error
 from vla_monitor import Monitor
 
 from config_runtime import load as load_config
@@ -422,6 +423,10 @@ def device_class():
             self.temperature_fault_decisions = {}
             self.thermal_diagnostics = ThermalDiagnostics(base.JOINTS)
             self.thermal_sequence = 0
+            self.communication=CommunicationPolicy(base.JOINTS,CONFIG['communication'],log,clock=self.clock,pause=self.pause)
+            self.communication_fault=False
+            self.mode_cache=None
+            self.mode_cached_at=None
             self.torque_off_writes = 0
             self.torque_on_writes = 0
             self.startup_pending = True
@@ -442,8 +447,16 @@ def device_class():
             self.permission.READS = {**self.permission.READS, 67: 2}
             self.read_modes()
 
+        def configure_transport(self):
+            self.permission.READS={**self.permission.READS,33:8,67:2}
+            self.read_ids={j:mid for mid in CONFIG['communication']['read_order'] for j,value in self.ids.items() if value==mid}
+            if len(self.read_ids)!=6 or set(self.read_ids)!=set(base.JOINTS):raise base.Stop('읽기 ID 순서 불일치')
+            self.communication.attach(self.bus.port_handler)
+
         def read_modes(self):
-            block = self.read_block(33, 8)
+            if self.mode_cache is None or self.clock()-self.mode_cached_at>.05:
+                self.read_block(33,8)
+            block=self.mode_cache
             modes = {j: row[0] for j, row in block.items()}
             torque = {j: row[7] for j, row in block.items()}
             if any(modes.values()) or any(value not in (0, 1) for value in torque.values()):
@@ -457,6 +470,10 @@ def device_class():
             return sample
 
         def write_start(self, register, goals):
+            return self.communication.perform([self.ids[j] for j in goals],f'write_start:{register}',
+                lambda:self._write_start_once(register,goals),port=self.bus.port_handler,response=False)
+
+        def _write_start_once(self, register, goals):
             if self.gripper_only or self.wire_fault or not goals or not goals.keys() <= self.ids.keys():
                 raise base.Stop('시작 패킷 범위 위반')
             if register == 'Goal_Position' and all(type(value) is int and self.arm_bounds[j][0] <= value <= self.arm_bounds[j][1]
@@ -488,27 +505,59 @@ def device_class():
                 if not sent:
                     raise base.Stop('검증된 시작 패킷을 보내지 못했습니다')
                 self.log({'event': 'startup_write', 'register': register, 'values': goals})
-            except BaseException:
-                self.wire_fault = True
+            except Exception as error:
+                retry=retryable_write_error(error,dict(register=register,goals=goals))
+                if retry is not None:raise retry from error
+                self.wire_fault=True
                 raise
             finally:
                 permission.inspect = original
 
         def read_block(self, address, width):
-            try:data = super().read_block(address, width)
+            requested=(address,width)
+            source=requested
+            try:data = super().read_block(*source)
             except BaseException as error:
-                self.wire_fault=True
+                if isinstance(error,CommunicationHold):self.communication_fault=True
+                else:self.wire_fault=True
                 self.log({'event': 'thermal_read_error', 'source': 'feedback_block',
                           'address': address, 'width': width,
                           **self.thermal_diagnostics.record_error(error)})
                 raise
+            if source==(33,8):
+                self.mode_cache=data
+                self.mode_cached_at=self.clock()
             if address == 56:
                 self.feedback_bytes = data
             return data
 
+        def _send_once(self,raw):
+            if self.gripper_only:return self._send_gripper_once(raw)
+            if set(raw)!=set(base.JOINTS) or any(type(raw[j]) is not int or not lo<=raw[j]<=hi for j,(lo,hi) in self.raw_bounds.items()):
+                raise base.Stop('SDK 전송 전 정수 목표 범위 오류')
+            self.expected={self.ids[j]:raw[j] for j in base.JOINTS};self.goal_attempted=True
+            try:
+                with self.permission.goal_once():self.bus.sync_write('Goal_Position',raw,normalize=False,num_retry=0)
+            except Exception as error:
+                retry=retryable_write_error(error,dict(register='Goal_Position',goals=raw))
+                if retry is not None:raise retry from error
+                self.wire_fault=True;raise
+            finally:self.expected=None
+
+        def _send_policy(self,raw):
+            if self.wire_fault:raise base.Stop('비재시도 송신 오류; 추가 목표 금지')
+            if self.motion_ready:self.communication.activate()
+            return self.communication.perform(list(self.ids.values()),'write:42:2',lambda:self._send_once(raw),
+                port=self.bus.port_handler,response=False)
+
+        def _hold_policy(self):
+            if self.wire_fault:raise base.Stop('비재시도 오류로 위치 유지 쓰기 금지')
+            return confirmed_hold(self,self.communication,('gripper',) if self.gripper_only else base.JOINTS)
+
         def feedback(self):
             sample = super().feedback()
             bulk_observed_s = time.monotonic()
+            self.read_block(33,8)
             sample['temperatures_bulk'] = dict(sample['temperatures'])
             sample['voltage_raw'] = {j: self.feedback_bytes[j][6] for j in base.JOINTS}
             sample['voltage_v'] = {j: value / 10 for j, value in sample['voltage_raw'].items()}
@@ -516,19 +565,23 @@ def device_class():
             for name, mid in self.ids.items():
                 value = int.from_bytes(self.feedback_bytes[name][13:15], 'little')
                 sample['current_raw'][name] = self.bus._decode_sign('Present_Current', {mid: value})[mid]
+            self.communication.update_pose(sample)
             traces = []
             try:
                 sample['temperatures'], disagreement = read_temperatures(
                     self.bus, self.ids, sample['temperatures_bulk'], StrictIndividualReplies, traces=traces,
                     last_requests=self.temperature_last_requests,
-                    minimum_interval_s=CONFIG['temperature']['sample_interval_s'], clock=self.clock, pause=self.pause)
+                    minimum_interval_s=CONFIG['temperature']['sample_interval_s'], clock=self.clock, pause=self.pause,
+                    retry=self.communication)
             except Exception as exc:
-                self.wire_fault = True
+                if isinstance(exc,CommunicationHold):self.communication_fault=True
+                else:self.wire_fault=True
                 self.log({'event': 'thermal_read_error', 'source': 'individual_temperature',
                           'reply_trace': traces, 'temperature_bulk_c': sample['temperatures_bulk'],
                           'voltage_v': sample['voltage_v'],
                           'feedback_bytes_hex': {j: data.hex() for j, data in self.feedback_bytes.items()},
                           **self.thermal_diagnostics.record_error(exc)})
+                if isinstance(exc,CommunicationHold):raise
                 raise base.Stop('개별 온도 응답 검증 실패; 추가 쓰기 금지: ' + str(exc)) from exc
             # Individual requests own the protection window; bulk values and the
             # old display-only diagnostic filter never override its decision.
@@ -553,7 +606,7 @@ def device_class():
                        or sample['thermal_diagnostics'][j]['suspected_spike']]
             if suspect:
                 sample['modes'], sample['torque'] = self.read_modes()
-                sample['torque_observed_monotonic_s'] = self.clock()
+                sample['torque_observed_monotonic_s'] = self.mode_cached_at
                 for joint in suspect:
                     self.log({'event': 'thermal_spike_context', 'joint': joint,
                         'temperature_individual_c': sample['temperatures'][joint],
@@ -649,7 +702,8 @@ def device_class():
                     for _ in range(3):
                         values, _ = read_temperatures(bus,{joint:self.ids[joint]},{joint:trigger},StrictIndividualReplies,
                             traces=trace,last_requests=self.temperature_last_requests,
-                            minimum_interval_s=CONFIG['temperature']['sample_interval_s'],clock=self.clock,pause=self.pause)
+                            minimum_interval_s=CONFIG['temperature']['sample_interval_s'],clock=self.clock,pause=self.pause,
+                            retry=self.communication)
                         samples.append(values[joint])
                     self.thermal_recheck[joint] = {'trigger_c':trigger,'register_63_reads_c':samples,'reply_trace':trace}
                 except Exception as error:
@@ -709,7 +763,7 @@ def device_class():
                 self.bounds = [tuple(sorted((lo,hi))) for lo,hi in zip(a,b)]
             self.permission.READS = {**self.permission.READS, **dict(GRIPPER_REGS.values())}
             motor = bus.motors['gripper']
-            with StrictIndividualReplies(bus.packet_handler):
+            with StrictIndividualReplies(bus.packet_handler,retry=self.communication):
                 for register, location in GRIPPER_REGS.items():
                     if tuple(bus.model_ctrl_table[motor.model].get(register, ())) != location:
                         raise base.Stop(f'설치된 그리퍼 레지스터 주소 불일치 {register}')
@@ -812,8 +866,9 @@ def device_class():
             return result
 
         def send(self, raw):
-            if not self.gripper_only:
-                return super().send(raw)
+            return self._send_policy(raw)
+
+        def _send_gripper_once(self,raw):
             low, high = self.raw_bounds['gripper']
             target = raw['gripper']
             if type(target) is not int or not low <= target <= high:
@@ -824,30 +879,16 @@ def device_class():
             try:
                 with self.permission.goal_once():
                     self.bus.sync_write('Goal_Position', sent, normalize=False, num_retry=0)
-            except BaseException:
-                self.wire_fault = True
-                raise
+            except Exception as error:
+                retry=retryable_write_error(error,dict(register='Goal_Position',goals=sent))
+                if retry is not None:raise retry from error
+                self.wire_fault=True;raise
             finally:
                 self.expected_gripper = None
             return sent
 
         def hold(self):
-            if self.gripper_only:
-                return super().hold()
-            if self.wire_fault:
-                raise base.Stop('직전 송신 결과가 불확실하여 추가 쓰기 금지')
-            current = self.feedback()['present_raw']
-            _, torque = self.read_modes()
-            live_start.validate_position({'present_raw': current}, self.arm_bounds)
-            raw = {joint: value for joint, value in current.items() if torque[joint] == 1}
-            if not raw:
-                raise base.Stop('토크가 꺼져 있어 유지 목표를 전송하지 않았습니다')
-            old_bounds = self.arm_bounds
-            self.arm_bounds = {j:(min(lo,current[j]),max(hi,current[j])) for j,(lo,hi) in old_bounds.items()}
-            try:self.write_start('Goal_Position', raw)
-            finally:self.arm_bounds=old_bounds
-            if len(raw) != len(base.JOINTS):
-                raise base.Stop('토크가 켜진 축에만 유지 목표를 전송했습니다')
+            return self._hold_policy()
 
         def close(self):
             try:
@@ -861,6 +902,7 @@ def device_class():
                             self.cleanup_errors.append(f'{camera.role} 카메라 종료 실패: {exc}')
             finally:
                 self.camera_logger.removeHandler(self.cameras_stats)
+                self.communication.detach()
 
     return StreamingIO
 
@@ -899,7 +941,7 @@ def run_gripper_test(io, monitor, corrections, deadline, log):
     final = outcomes[-1] if outcomes else {}
     clip = monitor.latest_clip
     success = (final.get('status') == 'completed' and clip is not None
-               and hold['status'] == 'CURRENT_POSITION_GOAL_TRANSMITTED')
+               and hold['status'] in ('CURRENT_POSITION_GOAL_TRANSMITTED','HOLD_CONFIRMED'))
     reason = None if success else (final.get('recording_error') or final.get('reason')
                                    or hold.get('reason') or '그리퍼 교정 또는 녹화가 완료되지 않았습니다')
     return {'status': 'RUN_COMPLETE' if success else 'HOLD', 'reason': reason,
@@ -968,7 +1010,7 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
                         io, monitor, request, forward, min(deadline, time.monotonic() + 30), log)
             result['torque_off'] = 'TORQUE_RETAINED'
             if (supported_home and (result['status'] == 'RUN_COMPLETE' or result['reason'] == 'Ctrl+C')
-                    and result['hold']['status'] == 'CURRENT_POSITION_GOAL_TRANSMITTED'):
+                    and result['hold']['status'] in ('CURRENT_POSITION_GOAL_TRANSMITTED','HOLD_CONFIRMED')):
                 try:
                     sample = io.start_snapshot()
                     moved = live_start.return_home(io, sample, context['home']['state'], 1.0)
@@ -991,6 +1033,7 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
                 result['thermal_recheck'] = io.thermal_recheck
                 result['thermal_diagnostics'] = io.thermal_diagnostics.summary()
                 result['thermal_protection'] = io.thermal_window.summary()
+                result['communication'] = io.communication.summary()
                 result['thermal_confirmation'] = dict(policy=CONFIG['temperature']['policy'],
                     counts=io.thermal_confirmation_counts)
                 result['startup_temperatures_c'] = getattr(io,'initial_temperatures',{})

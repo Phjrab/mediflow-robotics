@@ -1,6 +1,7 @@
 """개별 READ 응답 검증과 기존 송신 가드의 명시적 토크 허가 연동. 장치를 열지 않는다."""
 import threading
 import time
+from communication_retry import RetryableWireError
 
 
 class ReplyRejected(RuntimeError):
@@ -10,7 +11,7 @@ class ReplyRejected(RuntimeError):
 
 
 class StrictIndividualReplies:
-    def __init__(self, handler, *, write_guard=None):
+    def __init__(self, handler, *, write_guard=None, retry=None):
         self.handler = handler
         self.write_guard = write_guard
         self.owner = threading.get_ident()
@@ -20,31 +21,42 @@ class StrictIndividualReplies:
         self.installed = False
         self.fault = None
         self.history = []
+        self.retry=retry
 
     def reject(self, reason, observed):
         self.fault = dict(reason=reason, **observed)
         raise ReplyRejected(reason, self.fault)
 
     def receive(self, port, request):
+        if self.retry is None:return self.receive_once(port,request)
+        if len(request)!=8 or request[4]!=2:return self.receive_once(port,request)
+        operation=f'read:{request[5]}:{request[6]}'
+        return self.retry.perform([request[2]],operation,lambda:self.receive_once(port,request),port=port)
+
+    def receive_once(self, port, request):
         if self.fault is not None:
             raise ReplyRejected("이전 응답 오류; 추가 통신 금지", self.fault)
         if threading.get_ident() != self.owner:
             self.reject("응답 소유 스레드 불일치", {})
         if isinstance(request,(list,tuple,bytes,bytearray)) and len(request)>4 and request[4]!=2:
             return self.forward_authorized_torque(port,request)
-        if len(request) != 8 or request[4] != 2 or type(request[2]) is not int or request[2] not in range(1, 7) or request[6] not in (1, 2, 4):
+        if len(request) != 8 or request[4] != 2 or type(request[2]) is not int or request[2] not in range(1, 7) or (request[6] not in (1, 2, 4) and (request[5],request[6]) not in ((33,38),(56,15))):
             self.reject("검토하지 않은 개별 READ 요청", {})
         motor, address, width = request[2], request[5], request[6]
-        row = dict(unix=time.time(), expected_id=motor, address=address, expected_bytes=width)
+        row = dict(unix=time.time(),request_started_monotonic_s=time.monotonic(), expected_id=motor, address=address, expected_bytes=width)
         try:
             packet, communication, error = self.original(port, request)
         except BaseException as cause:
             self.reject("개별 READ 수신 예외", dict(row, error_kind=type(cause).__name__))
         valid = isinstance(packet, (list, tuple, bytes, bytearray)) and all(type(v) is int and 0 <= v <= 255 for v in packet)
         raw = bytes(packet) if valid else b""
-        row.update(raw_hex=raw.hex()[:512], communication=communication, status=error)
+        row.update(raw_hex=raw.hex()[:512], communication=communication, status=error,
+                   observed_monotonic_s=time.monotonic())
         self.history.append(row)
         self.history = self.history[-32:]
+        if self.retry is not None:
+            self.retry.receive(motor,f'read:{address}:{width}',raw,communication)
+            if communication in (-6,-7):raise RetryableWireError('개별 READ 통신 실패',row)
         if type(communication) is not int or communication != 0:
             self.reject("개별 READ 통신 실패", row)
         if not valid or len(raw) != width + 6 or raw[:2] != b"\xff\xff" or raw[2] != motor or raw[3] != width + 2:

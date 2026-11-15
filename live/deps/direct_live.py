@@ -8,6 +8,7 @@ import signal
 import time
 import unittest
 from pathlib import Path
+from communication_retry import RetryableWireError
 
 JOINTS = ('shoulder_pan', 'shoulder_lift', 'elbow_flex', 'wrist_flex', 'wrist_roll', 'gripper')
 TASK = 'Put medicine bottle A into the blue basket'
@@ -60,6 +61,11 @@ def feedback_gate(sample):
 
 def parse_reply(packet, comm, mid, width):
     raw = bytes(packet or ())
+    observed=dict(expected_id=mid,expected_bytes=width,communication=comm,raw_hex=raw.hex(),
+                  received_id=raw[2] if len(raw)>2 else None,
+                  checksum_valid=len(raw)>=6 and sum(raw[2:])%256==255)
+    if comm in (-6,-7):
+        raise RetryableWireError(f'모터 응답 검증 실패: id={mid}, 통신 코드={comm}',observed)
     if (comm != 0 or len(raw) != width + 6 or raw[:2] != b'\xff\xff' or raw[2] != mid
             or raw[3] != width + 2 or sum(raw[2:]) % 256 != 255):
         received = raw[2] if len(raw) >= 3 and raw[:2] == b'\xff\xff' else None
@@ -69,20 +75,39 @@ def parse_reply(packet, comm, mid, width):
     return raw[5:-1]
 
 
-def read_sync_replies(handler, port, ids, address, width):
+def read_sync_replies(handler, port, ids, address, width, policy=None):
     replies = {}
     failure = None
+    retryable=[]
+    operation=f'read:{address}:{width}'
     for joint, mid in ids.items():
-        packet, comm = handler.rxPacket(port)
+        if policy is None:packet,comm=handler.rxPacket(port)
+        else:
+            with policy.packet_deadline(port,policy.clock()+.02):packet,comm=handler.rxPacket(port)
         # Consume the rest of this request before a new HOLD read. The SDK's
         # clearPort() flushes output and leaves unread status packets in RX.
-        if failure is None:
-            try:
-                replies[joint] = parse_reply(packet, comm, mid, width)
-            except Stop as exc:
-                failure = exc
+        if policy is not None:policy.receive(mid,operation,packet,comm)
+        try:
+            replies[joint] = parse_reply(packet, comm, mid, width)
+            if policy is not None:policy.good(mid,operation)
+        except RetryableWireError as exc:
+            if policy is None:failure=failure or exc
+            else:
+                policy.bad([mid],operation,exc);retryable.append((joint,mid))
+        except Stop as exc:
+            failure=failure or exc
     if failure is not None:
         raise Stop(f'{failure}, 읽기 주소={address}, 요청 폭={width}B') from failure
+    if policy is not None:
+        for joint,mid in retryable:
+            port.is_using=False
+            body=bytes((255,255,mid,4,2,address,width))
+            request=body+bytes(((~sum(body[2:]))&255,))
+            def once(mid=mid,request=request):
+                packet,comm,_=handler.txRxPacket(port,list(request))
+                policy.receive(mid,operation,packet,comm)
+                return parse_reply(packet,comm,mid,width)
+            replies[joint]=policy.perform([mid],operation,once,port=port,initial_failures=1)
     return replies
 
 
@@ -93,7 +118,8 @@ def wire_goals(packet):
 
 def try_hold(io):
     try:
-        io.hold()
+        result=io.hold()
+        if isinstance(result,dict):return result
         return {'status': 'CURRENT_POSITION_GOAL_TRANSMITTED'}
     except Exception as exc:
         return {'status': 'HOLD_NOT_CONFIRMED', 'reason': str(exc)}
@@ -237,8 +263,9 @@ def device_class():
             self.permission = Permission(self.bus.port_handler, allow_goal=True).install()
             self.bus.connect(handshake=False)
             fcntl.ioctl(self.bus.port_handler.ser.fileno(), termios.TIOCEXCL)
+            if hasattr(self,'configure_transport'):self.configure_transport()
             self.checked()
-            with StrictIndividualReplies(self.bus.packet_handler):
+            with StrictIndividualReplies(self.bus.packet_handler,retry=getattr(self,'communication',None)):
                 if not self.robot.is_calibrated:
                     raise Stop('모터와 저장된 보정 범위 불일치; 보정 쓰기 없음')
             self.check_start_mode()
@@ -255,11 +282,17 @@ def device_class():
 
         def read_block(self, address, width):
             bus = self.bus
-            mids = list(self.ids.values())
+            read_ids=getattr(self,'read_ids',self.ids)
+            mids = list(read_ids.values())
+            policy=getattr(self,'communication',None)
+            def once():
+                code=bus.packet_handler.syncReadTx(bus.port_handler,address,width,mids,len(mids))
+                if code in (-6,-7):raise RetryableWireError('센서 일괄 읽기 송신 오류',dict(communication=code,address=address,width=width))
+                if code!=0:raise Stop('센서 일괄 읽기 송신 오류')
+                return read_sync_replies(bus.packet_handler,bus.port_handler,read_ids,address,width,policy)
             try:
-                if bus.packet_handler.syncReadTx(bus.port_handler,address,width,mids,len(mids)) != 0:
-                    raise Stop('센서 일괄 읽기 송신 오류')
-                return read_sync_replies(bus.packet_handler, bus.port_handler, self.ids, address, width)
+                if policy is None:return once()
+                return policy.perform(mids,f'read:{address}:{width}',once,port=bus.port_handler,packet_timeout_s=None)
             finally:
                 bus.port_handler.is_using = False
 
