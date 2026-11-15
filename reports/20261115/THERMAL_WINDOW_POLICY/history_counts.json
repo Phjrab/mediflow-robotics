@@ -1,0 +1,110 @@
+{
+  "scope": "unique steps.jsonl and readings.jsonl under so101_vla; DRY/mock/sim excluded",
+  "unique_files": 16,
+  "joints": {
+    "shoulder_pan": {
+      "samples": 10568,
+      "raw_ge55_samples": 0,
+      "abrupt_suspect_samples": 0,
+      "peak_c": 37
+    },
+    "shoulder_lift": {
+      "samples": 10568,
+      "raw_ge55_samples": 3,
+      "abrupt_suspect_samples": 10,
+      "peak_c": 81
+    },
+    "elbow_flex": {
+      "samples": 10568,
+      "raw_ge55_samples": 0,
+      "abrupt_suspect_samples": 1,
+      "peak_c": 42
+    },
+    "wrist_flex": {
+      "samples": 10568,
+      "raw_ge55_samples": 1,
+      "abrupt_suspect_samples": 7,
+      "peak_c": 84
+    },
+    "wrist_roll": {
+      "samples": 10568,
+      "raw_ge55_samples": 0,
+      "abrupt_suspect_samples": 30,
+      "peak_c": 50
+    },
+    "gripper": {
+      "samples": 10568,
+      "raw_ge55_samples": 3,
+      "abrupt_suspect_samples": 33,
+      "peak_c": 62
+    }
+  },
+  "source_files": [
+    {
+      "path": "/home/jetson3/so101_vla/_archive/20261110/jetson/zero_step_runs/20261109_214423_HOLD__0steps_vla_stream_blue_1794228263513697874/steps.jsonl",
+      "sha256": "000a7415c89fbd3b66c177398357a8367f5c74f846403b6a682917a2533239df"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/_archive/20261110/jetson/zero_step_runs/20261110_143235_HOLD_communication_0steps_vla_stream_blue_1794288755678426849/steps.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/_archive/20261110/jetson/zero_step_runs/20261110_192859_HOLD__0steps_vla_stream_blue_1794306539888685101/steps.jsonl",
+      "sha256": "193a4515650db2dc30f5ebffe52fecc15cf53fcbc977214707a0957a14e800fe"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/_archive/20261110/jetson/zero_step_runs/20261111_155805_HOLD__0steps_vla_stream_blue_1794380285160499937/steps.jsonl",
+      "sha256": "4fe15002f9aadd99e60f463e84be3fb2d3e35ce17e3f4eedefd8ea4896d56a13"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/runs/20261109_212833_HOLD_temperature_317steps_vla_direct_blue_1794227313618277794/steps.jsonl",
+      "sha256": "49eb598fea694d79a9fd01102779e917e1661123b4ebf0be01298401272d0ec0"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/runs/20261109_215013_HOLD_temperature_296steps_vla_stream_blue_1794228613187797901/steps.jsonl",
+      "sha256": "4984dff8888e975bad33e70d2baedf7dcaa14446e8c0bf18bab91362f5423a83"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/runs/20261110_191852_HOLD_temperature_7steps_vla_stream_blue_1794305932407700647/steps.jsonl",
+      "sha256": "4d7b865591eea93fcbc8562b6f38b78d0a6623a2557cfdb5120036c1a793adc6"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/runs/20261110_201618_HOLD_communication_1082steps_vla_stream_blue_1794309378342258582/steps.jsonl",
+      "sha256": "3eb64cbd84864dfbab756ec4377f92dfac1171f6b8bc0e4cc8321bf8edce130e"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/runs/20261111_174131_HOLD_temperature_476steps_vla_stream_blue_1794386491484768209/steps.jsonl",
+      "sha256": "802534d7b0a1f3b9e606152f645afc37c2b6b3fa066235941ca4c8e82b41186c"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/runs/20261111_180136_HOLD_temperature_404steps_vla_stream_blue_1794387696614900087/steps.jsonl",
+      "sha256": "27d50a82b7a066cb0610e8c685113aff32db8dbf5b0f37630009f0f84261b2b1"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/runs/20261111_200151_HOLD_temperature_381steps_vla_stream_blue_1794394911695485729/steps.jsonl",
+      "sha256": "a70a3284329b271818b6d9c30d200e1c41369e5d02e1bf88e4ae08d88e0a2a82"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/runs/20261115_162129/steps.jsonl",
+      "sha256": "3dfd73ed06a79931fc25c0314c125b44732d6b0be5c49ba58bed9d23a221fff4"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/runs/20261115_170600/steps.jsonl",
+      "sha256": "8ac4cd86cc2d3094b4b5e6d8131283e631afc69e9e7ae30bbf16aea4510ec8d0"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/runs/PING_RECHECK_1794725692580032260/six_axis_120s/readings.jsonl",
+      "sha256": "c34ea60da47fb543aeb1df7da45d1ad8fcdacf12c1a9eddc0269c8d5ca68533b"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/runs/READ_RECHECK_1794724217753315670/six_axis_120s/readings.jsonl",
+      "sha256": "5d9cefc6a59e53e4c64290341b3b40f9f49010092731f7347020a73ecfbf4e1d"
+    },
+    {
+      "path": "/home/jetson3/so101_vla/runs/THERMAL_READONLY_1794723444796383271/readings.jsonl",
+      "sha256": "f410b5cd123311e9904206fdb45bd121fda069140be8175104e85f483da3907d"
+    }
+  ],
+  "hot_values_are_not_proof_of_physical_overheat": true,
+  "torque_note": "Old logs without a torque read are NOT_RECORDED; startup_readback is not simultaneous with temperature."
+}
