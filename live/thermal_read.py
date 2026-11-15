@@ -3,7 +3,7 @@ import time
 
 
 def read_temperatures(bus, ids, bulk, strict_factory, *, traces=None, last_requests=None,
-                      minimum_interval_s=.020, clock=time.monotonic, pause=time.sleep):
+                      minimum_interval_s=.020, clock=time.monotonic, pause=time.sleep,retry=None):
     """One new individual READ per axis, paced >=20ms from its previous READ.
 
     No sync-read cache is used for protection and no bulk/individual maximum is
@@ -14,7 +14,8 @@ def read_temperatures(bus, ids, bulk, strict_factory, *, traces=None, last_reque
         raise ValueError('개별 온도 읽기 간격은 20ms 이상')
     last_requests = {} if last_requests is None else last_requests
     temperatures, disagreements = {}, {}
-    with strict_factory(bus.packet_handler) as strict:
+    context=strict_factory(bus.packet_handler) if retry is None else strict_factory(bus.packet_handler,retry=retry)
+    with context as strict:
         def read(joint, mid):
             previous = last_requests.get(joint)
             if previous is not None:
@@ -43,6 +44,9 @@ def read_temperatures(bus, ids, bulk, strict_factory, *, traces=None, last_reque
                     or type(data[0]) is not int or not 0 <= data[0] <= 255):
                 raise RuntimeError('Individual temperature decode/communication/status mismatch')
             row = strict.history[-1]
+            if retry is not None:
+                requested=row['request_started_monotonic_s']
+                last_requests[joint]=requested
             # Exclude changing wall time to preserve the caller's changed-only logging.
             trace = {key: row[key] for key in (
                 'address', 'expected_id', 'expected_bytes', 'raw_hex', 'communication', 'status')}

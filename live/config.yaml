@@ -116,13 +116,22 @@
   "tracking_compensation": {
     "enabled_axes": ["elbow_flex"],
     "max_offset_deg": 3.0,
-    "integral_gain_per_s": 0.5,
-    "max_accumulation_deg_s": 0.75,
+    "integral_gain_per_s": 3.0,
+    "max_accumulation_deg_s": 4.0,
     "decay_per_s": 0.35,
-    "settle_s": 0.3,
+    "settle_s": 0.15,
     "error_deadband_deg": 0.15,
     "max_reference_speed_deg_s": 5.0,
     "reset_gap_s": 0.25
+  },
+  "communication": {
+    "max_retries": 3,
+    "consecutive_failures": 5,
+    "no_response_s": 0.2,
+    "hold_attempts": 5,
+    "bulk_address": 56,
+    "bulk_width": 15,
+    "read_order": [1, 2, 3, 4, 6, 5]
   },
   "gripper": {
     "positive_direction": "open",

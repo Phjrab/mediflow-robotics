@@ -11,8 +11,8 @@ JOINTS = load()['joint_names']
 SETTINGS = load()['tracking_compensation']
 
 
-def gravity_trial(enabled):
-    settings = copy.deepcopy(SETTINGS)
+def gravity_trial(enabled, settings=None):
+    settings = copy.deepcopy(SETTINGS if settings is None else settings)
     settings['enabled_axes'] = ['elbow_flex'] if enabled else []
     comp = TrackingCompensator(JOINTS, settings, bounds=[(-100., 100.)]*6)
     position = [0.]*6
@@ -33,6 +33,15 @@ def gravity_trial(enabled):
 
 
 class TrackingTests(unittest.TestCase):
+    def test_seventy_percent_within_one_second_and_old_new_comparison(self):
+        for error in (.5, 2., 4., 10.):
+            comp=TrackingCompensator(JOINTS,SETTINGS,bounds=[(-200.,200.)]*6)
+            for k in range(61):
+                _,meta=comp.apply([0.,0.,error,0.,0.,0.],[0.]*6,k/60)
+            self.assertGreaterEqual(meta['offset_deg'][2],min(.7*error,comp.cap))
+        old={**SETTINGS,'integral_gain_per_s':.5,'max_accumulation_deg_s':.75,'settle_s':.3}
+        self.assertGreater(gravity_trial(True)['final_reach_ratio'],gravity_trial(True,old)['final_reach_ratio'])
+
     def test_deadband_gravity_tracking_improves(self):
         before, after = gravity_trial(False), gravity_trial(True)
         self.assertLess(after['steady_mae_deg'], before['steady_mae_deg']*.65)

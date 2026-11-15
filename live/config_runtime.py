@@ -19,6 +19,9 @@ def load():
     assert c['port'].startswith('/dev/serial/by-id/') and '5AE6058306' in c['port']
     assert '5AE6085272' not in c['port']
     assert c['temperature']['stop_c'] == 55
+    if c.get('communication') != dict(max_retries=3,consecutive_failures=5,no_response_s=.2,
+                                     hold_attempts=5,bulk_address=56,bulk_width=15,read_order=[1,2,3,4,6,5]):
+        raise ValueError('승인된 통신 재시도·시간·읽기 범위 불일치')
     temperature = c['temperature']
     if (temperature.get('policy') != 'fresh_individual_2s_window'
             or temperature.get('sample_interval_s') != .02
