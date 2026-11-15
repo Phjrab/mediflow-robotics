@@ -9,9 +9,9 @@ export LD_LIBRARY_PATH="$HOME/smolvla-cusparselt-W9m8A2/libcusparse_lt-linux-aar
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 mode=--dry-run
 for argument in "$@"; do
-    case "$argument" in --live|--dry-run|--mock|--simulate|--policy-check|--offline-eval|--camera-check) mode=$argument;; esac
+    case "$argument" in --live|--dry-run|--mock|--simulate|--policy-check|--offline-eval|--camera-check|--recorded-replay) mode=$argument;; esac
 done
-if [[ $mode == --live && ${SO101_IN_TMUX-} != 1 ]]; then
+if [[ ( $mode == --live || $mode == --recorded-replay ) && ${SO101_IN_TMUX-} != 1 ]]; then
     command -v tmux >/dev/null || { echo 'tmux 미설치'; exit 2; }
     printf -v command 'env SO101_IN_TMUX=1 bash %q ' "$here/run.sh"
     printf -v args '%q ' "$@"
@@ -42,7 +42,11 @@ restore() {
 trap restore EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
-"$py" -B "$root/tools/stop_lelab_activity.py"
+if [[ $mode == --recorded-replay ]]; then
+    "$py" -B "$root/tools/replay_preflight.py"
+else
+    "$py" -B "$root/tools/stop_lelab_activity.py"
+fi
 systemctl --user stop lelab-jetson-py310.service
 sudo -n systemctl stop medicine-yolo-preview.service so101-camera-preview.service
 sudo -n systemctl start astra-v4l2-bridge.service

@@ -10,6 +10,8 @@ def main():
     p=argparse.ArgumentParser();c=load()
     modes=p.add_mutually_exclusive_group()
     for name in ['live','dry-run','mock','simulate','policy-check','offline-eval','camera-check']:modes.add_argument('--'+name,action='store_true')
+    modes.add_argument('--recorded-replay',type=Path)
+    p.add_argument('--execute',action='store_true');p.add_argument('--operator-present',action='store_true')
     p.add_argument('--duration',type=float,default=c['duration']);p.add_argument('--speed',type=float,default=c['speed'])
     p.add_argument('--release',action='store_true')
     p.add_argument('--web-corrections',action='store_true')
@@ -21,6 +23,11 @@ def main():
     # 홈 복귀도 실행 인자의 재생 속도를 따른다.
     import live_start
     live_start.ACTIVE_SPEED=args.speed
+    if args.recorded_replay:
+        if not args.execute or not args.operator_present:p.error('녹화 실기는 --execute --operator-present 필요')
+        os.environ['SO101_DIRECT_OPERATOR']='1'
+        from recorded_replay import run_operator
+        return run_operator(args.recorded_replay,args.speed)
     if args.mock:
         import unittest
         suite=unittest.defaultTestLoader.discover(str(Path(__file__).parents[1]/'sim'),pattern='test_unified.py')
