@@ -18,6 +18,7 @@ from vla_monitor import COMMAND_SOCKET, STATE_DIR
 
 
 ASSETS = Path(__file__).with_name("monitor_web")
+ALIGNMENT_ROLES = {"end_effector", "ceiling_vertical", "ceiling_oblique"}
 ACTIVE = {"observing", "predicting", "moving", "correcting", "saving_correction", "operator_ready"}
 CORRECTION_TEXT = {"조금 더 앞으로": "forward", "그리퍼 열어": "gripper_open"}
 CLIP_FILES = {"manifest.json", "frames.jsonl", *(f"{role}.mp4" for role in CAMERAS)}
@@ -134,7 +135,7 @@ class Viewer(BaseHTTPRequestHandler):
             self.send_header("Content-Disposition", f'attachment; filename="{filename}"')
         self.send_header("Content-Security-Policy",
                          "default-src 'none'; script-src 'self'; style-src 'self'; "
-                         "connect-src 'self'; img-src data:; frame-ancestors 'none'")
+                         "connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'")
         self.end_headers()
         self.wfile.write(body)
 
@@ -171,6 +172,28 @@ class Viewer(BaseHTTPRequestHandler):
         if self.path == "/api/observation":
             self.send_json(200, read_object(self.server.directory / "observation.json"))
             return
+        if self.path == "/api/alignment":
+            reference = read_object(ASSETS / "alignment" / "reference.json")
+            data = read_object(self.server.directory / "alignment.json")
+            stamp = data.get("captured", 0)
+            age = time.time()-stamp if type(stamp) in (int, float) else None
+            fresh = (data.get("phase") == "ready" and age is not None and 0 <= age < 2
+                     and set(data.get("images", {})) == ALIGNMENT_ROLES)
+            self.send_json(200, {**data, "reference": reference, "age_s": age, "fresh": fresh,
+                                 "server_time": time.time(), "images": data.get("images", {}) if fresh else {}})
+            return
+        if self.path.startswith("/api/alignment/reference/"):
+            name = self.path.rsplit("/", 1)[-1]
+            role = name.removesuffix(".png")
+            if role not in ALIGNMENT_ROLES or name != role+".png":
+                self.send_json(404, {"error": "지원하지 않는 학습 프레임"})
+                return
+            path = ASSETS / "alignment" / ("training_first_"+role+".png")
+            if not path.is_file():
+                self.send_json(404, {"error": "학습 첫 프레임 없음"})
+                return
+            self.respond(200, "image/png", path.read_bytes())
+            return
         if self.path.startswith("/api/corrections/"):
             parts = self.path.split("/")
             if (self.is_operator() and len(parts) == 5 and CLIP_ID.fullmatch(parts[3])
@@ -199,7 +222,8 @@ class Viewer(BaseHTTPRequestHandler):
             self.send_json(200, note, filename=f"so101-correction-{note_id}.json")
             return
         assets = {"/": ("index.html", "text/html"), "/screen.css": ("screen.css", "text/css"),
-                  "/screen.js": ("screen.js", "text/javascript")}
+                  "/screen.js": ("screen.js", "text/javascript"),
+                  "/alignment.js": ("alignment.js", "text/javascript")}
         if self.path not in assets:
             self.respond(404, "text/plain", b"Not found")
             return

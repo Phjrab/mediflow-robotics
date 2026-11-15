@@ -26,6 +26,7 @@ const labels = {idle: "실행 대기", warming: "모델 준비 중", connecting:
 let run, observation;
 let latest, marked, pendingHold, busy;
 let correctionPending, correctionTimer;
+let viewingAlignment = false;
 
 function displayStatus(text, tone) {
   byId("status").textContent = text;
@@ -68,7 +69,7 @@ function updateControls() {
   const operator = !!latest?.operator;
   byId("operator-access").textContent = operator ? "이 노트북에서 입력 가능" : "보기 전용";
   byId("hold").disabled = !latest?.can_hold || pendingHold === latest?.run;
-  byId("mark").disabled = !operator || !observation || observation.preview || !!busy;
+  byId("mark").disabled = !operator || !observation || observation.preview || viewingAlignment || !!busy;
   byId("instruction").disabled = !operator || !marked || !!busy;
   byId("save").disabled = !operator || !marked || !!busy || !byId("instruction").value.trim();
   const kinds = latest?.correction_kinds ?? [];
@@ -208,6 +209,9 @@ async function refresh() {
     byId("task").textContent = status.task || "VLA 실행을 기다리는 중";
     byId("step").textContent = number(status.step, 0);
     byId("inference").textContent = number(status.inference_seconds, 2, "초");
+    byId("joint-source").textContent = finished || stale || status.historical
+      ? "아래 관절값은 지난 실행의 기록입니다. 정렬 미리보기는 현재 관절값을 읽지 않습니다."
+      : "실행기가 마지막으로 게시한 관절값입니다.";
     showDiagnosis(status, stale);
     if (pendingHold && pendingHold === run && finished) {
       byId("hold-message").textContent = status.reason?.includes("관제 화면") ?
@@ -237,6 +241,23 @@ async function refresh() {
     byId("capture-age").textContent = observation ?
       (observation.preview ? "카메라 확인 영상 · " : finished || stale ? "마지막 입력 · " : "") +
       number(Math.max(0, status.server_time - observation.captured), 1, "초 전") : "—";
+    if (window.alignmentUi) {
+      try {
+        const alignment = await fetchJson("/api/alignment");
+        window.alignmentUi.update(alignment);
+        const wasViewing = viewingAlignment;
+        const running = !finished && status.phase !== "idle" && !stale;
+        viewingAlignment = alignment.fresh && !running;
+        if (viewingAlignment) {
+          displayImages(alignment.images);
+          byId("capture-age").textContent = "정렬 미리보기 · " + number(alignment.age_s, 1, "초 전");
+        } else if (wasViewing) displayImages(observation?.images);
+      } catch {
+        window.alignmentUi.unavailable();
+        if (viewingAlignment) displayImages(observation?.images);
+        viewingAlignment = false;
+      }
+    }
     for (const [joint, cells] of Object.entries(rows)) {
       const i = status.joints?.indexOf(joint);
       const unit = joint === "gripper" ? "점" : "°";

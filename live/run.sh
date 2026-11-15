@@ -24,6 +24,7 @@ exec {lock_fd}>"${XDG_RUNTIME_DIR:-/tmp}/so101-vla-live.lock"
 flock -n "$lock_fd" || { echo '다른 VLA 실행 중'; exit 2; }
 sudo -v
 services=(lelab-jetson-py310.service medicine-yolo-preview.service so101-camera-preview.service astra-v4l2-bridge.service)
+alignment_original=$(systemctl --user is-active so101-camera-alignment.service || true)
 original=()
 for s in "${services[@]}"; do
     if [[ $s == lelab-* ]]; then original+=("$(systemctl --user is-active "$s" || true)")
@@ -37,11 +38,17 @@ restore() {
     done
     if [[ ${original[3]} != active ]]; then sudo -n systemctl stop astra-v4l2-bridge.service || code=1; fi
     [[ ${original[0]} != active ]] || systemctl --user start lelab-jetson-py310.service || code=1
+    if [[ $alignment_original == active || $alignment_original == activating ]]; then
+        systemctl --user start so101-camera-alignment.service || code=1
+    fi
     exit "$code"
 }
 trap restore EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
+if [[ $alignment_original == active || $alignment_original == activating ]]; then
+    systemctl --user stop so101-camera-alignment.service
+fi
 if [[ $mode == --recorded-replay ]]; then
     "$py" -B "$root/tools/replay_preflight.py"
 else

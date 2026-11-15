@@ -1,0 +1,13 @@
+[Unit]
+Description=SO101 camera-only training alignment preview
+
+[Service]
+Type=simple
+Environment=PYTHONPATH=%h/so101_vla/live:%h/so101_vla/live/deps:%h/so101_vla/tools
+Environment=LD_LIBRARY_PATH=%h/smolvla-cusparselt-W9m8A2/libcusparse_lt-linux-aarch64-0.6.3.2-archive/lib
+Environment=HF_HUB_OFFLINE=1
+ExecStart=%h/venvs/smolvla-py310/bin/python -B %h/so101_vla/tools/camera_alignment_preview.py
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=15
+NoNewPrivileges=true
