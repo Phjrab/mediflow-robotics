@@ -70,7 +70,7 @@
     ],
     "elbow_flex": [
       880,
-      3082
+      3084
     ],
     "wrist_flex": [
       936,
@@ -86,7 +86,7 @@
     ]
   },
   "limit_evidence": {
-    "elbow_flex": "보정 상한3087에서5틱 안쪽. 명령 상한3082로 통일",
+    "elbow_flex": "학습137회 action 최대3093틱과 보정 상한3087-3 중 작은 값3084. reports/20261115/THERMAL_WINDOW_POLICY/training_elbow_bound.json",
     "shoulder_lift": "보정 하한796에서5틱 안쪽. 실제 스토퍼 위치·하중은 미확인"
   },
   "speed": 0.33,
@@ -106,8 +106,12 @@
     "resume_below_c": 45,
     "stop_c": 55,
     "poll_s": 10,
-    "hot_confirmation_reads": 2,
-    "emergency_c": 70
+    "policy": "fresh_individual_2s_window",
+    "sample_interval_s": 0.02,
+    "window_s": 2.0,
+    "continuous_hot_s": 2.0,
+    "median_warning_c": 50,
+    "max_sample_gap_s": 0.15
   },
   "tracking_compensation": {
     "enabled_axes": ["elbow_flex"],

@@ -9,6 +9,7 @@ import direct_live as base
 import live_start
 from stream_live import CameraStats, device_class, make_policy, start_policy_session, wait_until_cool
 from vla_monitor import Monitor
+from thermal_window import ThermalWindow
 
 CAMERAS = ('end_effector', 'ceiling_vertical', 'ceiling_oblique')
 from config_runtime import load
@@ -80,6 +81,8 @@ class SimulatedArm:
             self.clock, self.pause = clock.clock, clock.pause
             self.pool_factory = lambda **_: VirtualExecutor(self.clock, case == 'slow_inference')
         self.last_update = self.clock()
+        self.last_temperature_read = None
+        self.thermal_window = ThermalWindow(base.JOINTS,CONFIG['temperature'])
         self.present = dict(zip(base.JOINTS, HOME_TICKS))
         if case == 'outside_home':
             self.present['wrist_roll'] += round(15 / TICK_SIZE[4])
@@ -90,7 +93,7 @@ class SimulatedArm:
         if case == 'partial_off':
             self.torque.update(wrist_roll=0, gripper=0)
         self.arm_bounds = dict.fromkeys(base.JOINTS, (0, 4095))
-        self.arm_bounds['elbow_flex'] = (0, 3082)
+        self.arm_bounds['elbow_flex'] = (0, CONFIG['limits']['elbow_flex'][1])
         self.arm_bounds['gripper'] = (math.ceil(HOME_TICKS[-1] - home[-1] / TICK_SIZE[-1]),
                                       math.floor(HOME_TICKS[-1] + (100 - home[-1]) / TICK_SIZE[-1]))
         self.arm_bounds={j:tuple(row) for j,row in CONFIG['limits'].items()}
@@ -114,7 +117,10 @@ class SimulatedArm:
         return [((raw[j]-(lo+hi)/2)*360/4095 if i<5 else (raw[j]-lo)*100/(hi-lo)) for i,(j,(lo,hi)) in enumerate(CONFIG['calibration_ranges'].items())]
 
     def feedback(self):
+        if self.last_temperature_read is not None:
+            self.pause(max(0.,self.last_temperature_read+CONFIG['temperature']['sample_interval_s']-self.clock()))
         now = self.clock()
+        self.last_temperature_read = now
         follow = 1 - math.exp(-(now - self.last_update) / .065)
         self.last_update = now
         for j in base.JOINTS:
@@ -129,6 +135,7 @@ class SimulatedArm:
         self.gripper_peak = max(self.gripper_peak or 0, temps['gripper'])
         self.peak_temperatures = {j: max(v, self.peak_temperatures.get(j, 0)) for j, v in temps.items()}
         return {'state': self.normalize(raw), 'present_raw': raw, 'temperatures': temps,
+                'temperature_protection': {j:self.thermal_window.observe_axis(j,now,temps[j]) for j in base.JOINTS},
                 'statuses': dict.fromkeys(base.JOINTS, 0), 'loads': dict.fromkeys(base.JOINTS, 0),
                 'active_targets': self.target.copy(), 'modes': dict.fromkeys(base.JOINTS, 0), 'torque': self.torque.copy()}
 

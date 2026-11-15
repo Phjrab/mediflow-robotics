@@ -19,8 +19,13 @@ def load():
     assert c['port'].startswith('/dev/serial/by-id/') and '5AE6058306' in c['port']
     assert '5AE6085272' not in c['port']
     assert c['temperature']['stop_c'] == 55
-    if c['temperature'].get('hot_confirmation_reads', 2) != 2 or c['temperature'].get('emergency_c', 70) != 70:
-        raise ValueError('승인된 온도 재확인 횟수·기준 불일치')
+    temperature = c['temperature']
+    if (temperature.get('policy') != 'fresh_individual_2s_window'
+            or temperature.get('sample_interval_s') != .02
+            or temperature.get('window_s') != 2 or temperature.get('continuous_hot_s') != 2
+            or temperature.get('median_warning_c') != 50
+            or not .02 < temperature.get('max_sample_gap_s', 0) <= .15):
+        raise ValueError('승인된 20ms·2초 온도 창 기준 불일치')
     tracking = c.get('tracking_compensation', {})
     axes = tracking.get('enabled_axes', [])
     if not set(axes) <= set(c['joint_names'][:5]) or len(axes) != len(set(axes)):

@@ -2,11 +2,12 @@
 <title>SO-101 홈·시작 상태</title>
 <style>body{font:17px system-ui;background:#edf2f7;color:#163047;margin:30px}main{background:white;border-radius:16px;padding:28px;max-width:1050px;margin:auto}table{width:100%;border-collapse:collapse}td,th{text-align:right;padding:12px;border-bottom:1px solid #ddd}td:first-child,th:first-child{text-align:left}.ok{color:#08794f}.warn{color:#a54b16}h1{font-size:25px}</style>
 <main><h1>관절값 · 홈 정렬 · VLA 시작 상태</h1><p id="status">설정 읽는 중</p><table><thead><tr><th>관절</th><th>현재</th><th>홈 차이</th><th>현재 틱</th><th>명령 범위</th><th>시작 처리</th></tr></thead><tbody id="rows"></tbody></table><p>홈 허용폭은 공통 config.yaml을 읽습니다. 홈·범위 밖의 유효한 위치는 실행기가 저속 복구합니다. 모드·토크·온도·통신은 실행 시 별도 확인합니다.</p><a href="/">LeLab</a> · <a id="viewer">관제 화면</a>
-<section><h2>온도 원본 · 진단 필터</h2><p id="thermal-status">온도 기록 대기</p><table><thead><tr><th>관절</th><th>원본</th><th>진단값</th><th>전압</th><th>튐 횟수</th><th>원본 최고</th></tr></thead><tbody id="thermal-rows"></tbody></table><p>진단 필터는 보호 판정에 사용하지 않습니다. 실행기의 원본 온도 55°C 중단을 유지합니다. 별도 모터 읽기는 하지 않으며 텔레옵 방송에 온도가 없으면 대기로 표시합니다.</p></section></main>
+<section><h2>온도 원본 · 2초 창 판정</h2><p id="thermal-status">온도 기록 대기</p><table><thead><tr><th>관절</th><th>원본</th><th>2초 중앙값</th><th>전압</th><th>튐 횟수</th><th>원본 최고</th></tr></thead><tbody id="thermal-rows"></tbody></table><p>20ms 간격의 새 개별 온도로 판정합니다. 55°C 이상이 연속 2초 유지되거나, 2초 중앙값이 55°C 이상이면 중단합니다. 중앙값 50°C부터 경고합니다. 이 화면은 실행기 캐시만 읽습니다.</p></section></main>
 <script>
 const keys=['Rotation','Pitch','Elbow','Wrist_Pitch','Wrist_Roll','Jaw'];const labels=['어깨 회전','어깨 들기','팔꿈치','손목 굽힘','손목 회전','그리퍼'];
 let cfg,last=null,at=0;
 async function boot(){cfg=await(await fetch(`http://${location.hostname}:8767/config`)).json();document.querySelector('#viewer').href=`http://${location.hostname}:8766/`;connect();}
+setInterval(async()=>{try{cfg=await(await fetch(`http://${location.hostname}:8767/config`,{cache:'no-store',signal:AbortSignal.timeout(2000)})).json();}catch{}},2000);
 function connect(){const ws=new WebSocket(`${location.protocol==='https:'?'wss':'ws'}://${location.host}/ws/joint-data`);ws.onmessage=e=>{let m;try{m=JSON.parse(e.data)}catch{return}if(m.type!=='joint_update')return;const a=keys.map(k=>m.joints?.[k]);if(!a.every(Number.isFinite))return;last=a.map(v=>v*180/Math.PI);at=Date.now();};ws.onclose=()=>setTimeout(connect,1000);}
 setInterval(()=>{if(!cfg)return;const fresh=last&&Date.now()-at<1500;const tbody=document.querySelector('#rows');tbody.replaceChildren();let home=true,recovery=false;cfg.joint_names.forEach((j,i)=>{const tr=tbody.insertRow();const v=fresh?last[i]:null;const [lo,hi]=cfg.calibration_ranges[j];const raw=v===null?null:Math.round(i<5?v*4095/360+(lo+hi)/2:lo+v*(hi-lo)/100);const d=v===null?null:v-cfg.home.state[i];const [a,b]=cfg.limits[j];const inside=raw!==null&&a<=raw&&raw<=b;const aligned=d!==null&&Math.abs(d)<=cfg.home.tolerance_deg;home&&=aligned;recovery||=!inside||!aligned;[labels[i],v===null?'대기':v.toFixed(2)+(i<5?'°':'점'),d===null?'—':d.toFixed(2),raw??'—',`${a}~${b}`,v===null?'대기':inside&&aligned?'준비':'저속 자동 복구'].forEach(t=>tr.insertCell().textContent=t);tr.className=inside&&aligned?'ok':'warn';});document.querySelector('#status').textContent=!fresh?'텔레옵 관절값 대기':`홈 정렬 ${home?'OK':'조정 중'} · VLA 위치 검사 ${recovery?'자동 복구 필요':'준비'}`;},200);
 boot().catch(e=>document.querySelector('#status').textContent='공통 설정 서버 연결 실패: '+e.message);
@@ -15,11 +16,11 @@ async function thermal(){
  try{
   const data=await(await fetch(`http://${location.hostname}:8767/thermal`,{cache:'no-store',signal:AbortSignal.timeout(2000)})).json();
   body.replaceChildren();
-  document.querySelector('#thermal-status').textContent=data.available?'원본 55°C 보호 유지 · 필터는 진단용':(data.message||'온도 기록 대기');
+  document.querySelector('#thermal-status').textContent=data.available?'개별 온도 20ms · 연속 2초 또는 2초 중앙값 보호':(data.message||'온도 기록 대기');
   if(data.available&&cfg)cfg.joint_names.forEach((j,i)=>{
    const r=data.joints?.[j];if(!r)return;
-   const row=body.insertRow();row.className=r.suspected_spike||r.raw_hold_required?'warn':'ok';
-   [labels[i],`${r.raw_c}°C`,`${r.filtered_c}°C`,`${r.voltage_v}V`,r.spike_count,`${r.raw_peak_c}°C`].forEach(v=>row.insertCell().textContent=v);
+   const protection=data.protection?.[j];const row=body.insertRow();row.className=protection?.warning||protection?.hold||r.suspected_spike?'warn':'ok';
+   [labels[i],`${r.raw_c}°C`,protection?.window_ready?`${protection.median_c}°C`:'수집 중',`${r.voltage_v}V`,protection?.spike_count??r.spike_count,`${r.raw_peak_c}°C`].forEach(v=>row.insertCell().textContent=v);
   });
  }catch{body.replaceChildren();document.querySelector('#thermal-status').textContent='온도 기록 서버 연결 대기';}
  finally{setTimeout(thermal,500);}

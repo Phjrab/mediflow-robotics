@@ -42,8 +42,18 @@ def clip_to_bounds(values, bounds):
 
 
 def feedback_gate(sample):
+    protection = sample.get('temperature_protection')
+    if protection is not None and (set(protection) != set(JOINTS) or any(
+            type(row.get('hold')) is not bool or row.get('source') != 'fresh_individual_20ms'
+            for row in protection.values())):
+        raise Stop('온도 창 판정 형식 오류')
     bad = {j: {'status': sample['statuses'][j], 'temperature_c': sample['temperatures'][j]}
-           for j in JOINTS if sample['statuses'][j] or sample['temperatures'][j] >= load_config()['temperature']['stop_c']}
+           for j in JOINTS if sample['statuses'][j] or (
+               protection[j]['hold'] if protection is not None
+               else sample['temperatures'][j] >= load_config()['temperature']['stop_c'])}
+    if protection is not None:
+        for joint, row in bad.items():
+            row['temperature_protection'] = protection[joint]
     if bad:
         raise Stop('모터 상태코드/온도 중단: ' + json.dumps(bad, ensure_ascii=False))
 

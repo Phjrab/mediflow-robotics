@@ -18,6 +18,7 @@ def thermal_snapshot(path=None, now=None):
             return {'available': False, 'message': '새 온도 기록 대기', 'filter_controls_motion': False}
         return {'available': True, 'age_s': age, 'joints': diagnostics,
                 'temperature_c': data.get('temperature'), 'voltage_v': data.get('voltage_v'),
+                'protection': data.get('temperature_protection'),
                 'filter_controls_motion': False}
     except (OSError, ValueError, TypeError, KeyError):
         return {'available': False, 'message': '온도 기록 없음', 'filter_controls_motion': False}
@@ -27,7 +28,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == '/thermal':
             payload = thermal_snapshot()
         elif self.path in ('/', '/config'):
-            c=load();payload={k:c[k] for k in ['joint_names','home','limits','calibration_ranges']}
+            c=load();payload={k:c[k] for k in ['joint_names','home','limits','calibration_ranges','temperature']}
         else:
             self.send_error(404);return
         data=json.dumps(payload,ensure_ascii=False,allow_nan=False).encode()
