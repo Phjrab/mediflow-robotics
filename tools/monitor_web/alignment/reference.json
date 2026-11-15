@@ -1,0 +1,211 @@
+{
+  "schema": 1,
+  "label": "blue 통합93번 · 원본 episode_index=1 / 사용자 2회차 · 첫 프레임(0)",
+  "merged_episode_index": 93,
+  "source_repo_id": "Supermassive111/a_to_blue_20261103_193835",
+  "source_episode_index": 1,
+  "source_user_episode_number": 2,
+  "source_revision": "75544709366178c94a0d397f0807820b7afcac00",
+  "task": "Put medicine bottle A into the blue basket",
+  "width": 640,
+  "height": 480,
+  "target_px": 20,
+  "metric_note": "고정 기준판 ID0~3만 사용. 양수 가로=현재 화면에서 오른쪽, 양수 세로=아래. 양수 회전=화면에서 시계방향.",
+  "cameras": {
+    "end_effector": {
+      "filename": "training_first_end_effector.png",
+      "sha256": "485a59772185b8d30adc20f3db8b74996bbeb351a632fbaa2ed188d3075e9591",
+      "source_image_path": "/home/jetson3/so101_vla/reports/20261115/GRASP_CAUSE_7_EPISODES/full_frame_evaluation/training_first_end_effector.png"
+    },
+    "ceiling_vertical": {
+      "filename": "training_first_ceiling_vertical.png",
+      "sha256": "cc48d17da1f57481834587f3e434bd99a3c1f46ae7b0ad1621d0aac839acce3d",
+      "source_image_path": "/home/jetson3/so101_vla/reports/20261115/GRASP_CAUSE_7_EPISODES/full_frame_evaluation/training_first_ceiling_vertical.png"
+    },
+    "ceiling_oblique": {
+      "filename": "training_first_ceiling_oblique.png",
+      "sha256": "c97defeafaf5a9779aa71b4905e1782077dcf44b16c52e12c90f3fe9cd694417",
+      "source_image_path": "/home/jetson3/so101_vla/reports/20261115/GRASP_CAUSE_7_EPISODES/full_frame_evaluation/training_first_ceiling_oblique.png"
+    }
+  },
+  "vertical_outlines": [
+    {
+      "label": "약통 좌",
+      "color": "#67e8f9",
+      "points": [
+        [
+          308,
+          155
+        ],
+        [
+          330,
+          155
+        ],
+        [
+          334,
+          180
+        ],
+        [
+          330,
+          207
+        ],
+        [
+          311,
+          207
+        ],
+        [
+          306,
+          178
+        ]
+      ],
+      "label_at": [
+        282,
+        150
+      ],
+      "source": "manual_reference_visible_outline_not_current_object_detection"
+    },
+    {
+      "label": "약통 중",
+      "color": "#67e8f9",
+      "points": [
+        [
+          369,
+          169
+        ],
+        [
+          389,
+          176
+        ],
+        [
+          388,
+          207
+        ],
+        [
+          371,
+          208
+        ],
+        [
+          365,
+          183
+        ]
+      ],
+      "label_at": [
+        355,
+        165
+      ],
+      "source": "manual_reference_visible_outline_not_current_object_detection"
+    },
+    {
+      "label": "약통 우",
+      "color": "#67e8f9",
+      "points": [
+        [
+          431,
+          173
+        ],
+        [
+          450,
+          181
+        ],
+        [
+          446,
+          208
+        ],
+        [
+          428,
+          208
+        ],
+        [
+          426,
+          188
+        ]
+      ],
+      "label_at": [
+        432,
+        168
+      ],
+      "source": "manual_reference_visible_outline_not_current_object_detection"
+    },
+    {
+      "label": "파란 바구니",
+      "color": "#60a5fa",
+      "points": [
+        [
+          278,
+          207
+        ],
+        [
+          334,
+          209
+        ],
+        [
+          334,
+          262
+        ],
+        [
+          270,
+          261
+        ]
+      ],
+      "label_at": [
+        254,
+        201
+      ],
+      "source": "manual_reference_visible_outline_not_current_object_detection"
+    },
+    {
+      "label": "초록 바구니",
+      "color": "#6ee7b7",
+      "points": [
+        [
+          338,
+          209
+        ],
+        [
+          398,
+          210
+        ],
+        [
+          397,
+          263
+        ],
+        [
+          336,
+          262
+        ]
+      ],
+      "label_at": [
+        329,
+        323
+      ],
+      "source": "manual_reference_visible_outline_not_current_object_detection"
+    },
+    {
+      "label": "빨간 바구니",
+      "color": "#fda4af",
+      "points": [
+        [
+          404,
+          210
+        ],
+        [
+          458,
+          210
+        ],
+        [
+          465,
+          263
+        ],
+        [
+          402,
+          263
+        ]
+      ],
+      "label_at": [
+        408,
+        202
+      ],
+      "source": "manual_reference_visible_outline_not_current_object_detection"
+    }
+  ]
+}

@@ -69,3 +69,4 @@
 
 최초 폴더 정리에서는 실제 motor/serial을 열지 않았다. 후속 배선 비교는 운영자의DC ON 확인 후 READ만 수행했다. 카메라 dry-run은 serial open을 차단하고 가짜 모터를 사용했다. 후속 결과는 reports/20261112/CAMERA_WIRING_RECHECK.md를 따른다. 최초REPORT.md는 당시 차단 결과를 보존한다.
 2026-11-15 집기 원인 조사 DONE. blue5/red1/green1 전체3,050프레임 평가51.12분, 공식/실행기 입력·후처리 차이0. 가중 선두action MAE 0.611/1.859/2.161/1.170/0.385도·그리퍼1.539점. 사선카메라187.6~189.1px 구도차이와약통배치차이확인: 우선원인②. 단일카메라원인/모델정확성/실물집기성공은확정하지않음. 모델없는Goal_Position전용녹화재생기추가, 양쪽89모의PASS·전체438프레임가짜서보재생44.2초완료. 실제모터쓰기0회, 새live/replay NOT_RUN. 코드커밋40ca188/e835247, 상세 reports/20261115/GRASP_CAUSE_7_EPISODES/RESULT.md. 보고·기존기록보존및복제완료.
+2026-11-15 카메라 정렬 도구 DONE. 예상40분 대비21:26~21:46약20분. 학습blue93첫RGB3장 겹침·투명도·수직참조윤곽·고정판0~3실시간px/2D회전. 실측사선186.1px/-0.59°, 수직1px/+0.15°. 전용카메라서비스로YOLO미리보기정지/Astra가동, 로봇접근·쓰기0. Windows6PASS/1Linux전용SKIP, Jetson7PASS. 실제브라우저3대·겹침전환·사선확대확인, 스크린샷보존. “정렬 완료” 후 새모델평가/판정대기, 재생/live NOT_RUN. 상세 reports/20261115/CAMERA_ALIGNMENT_TOOL/RESULT.md.

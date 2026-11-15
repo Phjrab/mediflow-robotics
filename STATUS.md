@@ -1,5 +1,9 @@
 # SO-101 VLA 현황 — 2026-11-15
 
+**카메라 정렬 도구 가동: 관제8766에 학습 첫 프레임 겹침·투명도·수직 약통/바구니 참조 윤곽·사선 실시간px/회전 추가. 기준은 통합blue93/원본2회차(frame0). 실측 사선약186.1px·-0.59°, 수직약1px·+0.15°. 사선 목표≤20px까지 현장 정렬이 필요하다. 로봇 접근/쓰기0회, live·정렬 후 모델 재평가는 NOT_RUN_WAITING_ALIGNMENT.**
+
+상세 `reports/20261115/CAMERA_ALIGNMENT_TOOL/RESULT.md`. 사용자가 “정렬 완료”라고 하면 새50액션 비교를 진행한다. 현재 관절 표는 지난 실행 기록이며 카메라 정렬 미리보기는 모터를 읽지 않는다. `run.sh`는 정렬 카메라를 자동 해제·복구한다. Windows 새검사6PASS/1Linux전용SKIP, Jetson7PASS. 아래는 이전 조사·실기 기록이다.
+
 **집기 원인 조사 완료: 우선 원인② 실제 화면 조건 차이. blue5/red1/green1의3,050프레임 전체 평가에서 공식 LeRobot과 실행기 전처리·후처리 차이0, 시작/집기/끝 별도 재추론 차이0. 사선 카메라는 학습7회 대비187.6~189.1px 구도 차이, 수직은1.0~2.3px다. 사선 한 대만으로 단독 원인이라고 확정하지 않으며 모델 오차·실물 추종은 남는다.**
 
 상세 `reports/20261115/GRASP_CAUSE_7_EPISODES/RESULT.md`, 입력표 `INPUT_TABLE.md`, 비교 영상 `training_current_cameras.png`. 먼저 사선 구도와 약통 배치를 학습 영상에 맞춘다. 모델 없는 blue녹화 재생기 추가: `bash ~/so101_vla/tools/run_recorded_blue.sh --execute --operator-present`(0.33배·약44초, Goal_Position만,6축 토크ON 필요). Windows/Jetson 각89모의 PASS, 가짜 서보 전체 재생 완료. 실제 재생/live는 이번 작업에서 NOT_RUN. 코드 커밋 Windows40ca188/Jetson e835247. 아래는 이전 실기 기록을 보존한 것이다.
