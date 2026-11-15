@@ -105,7 +105,20 @@
     "wait_at_c": 50,
     "resume_below_c": 45,
     "stop_c": 55,
-    "poll_s": 10
+    "poll_s": 10,
+    "hot_confirmation_reads": 2,
+    "emergency_c": 70
+  },
+  "tracking_compensation": {
+    "enabled_axes": ["elbow_flex"],
+    "max_offset_deg": 3.0,
+    "integral_gain_per_s": 0.5,
+    "max_accumulation_deg_s": 0.75,
+    "decay_per_s": 0.35,
+    "settle_s": 0.3,
+    "error_deadband_deg": 0.15,
+    "max_reference_speed_deg_s": 5.0,
+    "reset_gap_s": 0.25
   },
   "gripper": {
     "positive_direction": "open",

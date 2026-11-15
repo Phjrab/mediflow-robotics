@@ -2,8 +2,16 @@
 import time
 
 
-def read_temperatures(bus, ids, bulk, strict_factory, *, traces=None):
-    """Return individual temperatures; repeat disagreements and retain the hotter read."""
+def read_temperatures(bus, ids, bulk, strict_factory, *, traces=None, stop_c=55, emergency_c=70):
+    """Confirm a hot reading on that axis before returning the protection input.
+
+    A hot bulk or individual read gets two immediate individual confirmations.
+    Either hot confirmation retains HOLD; two cool confirmations mark a spike.
+    At >=70C a second >=70C response ends confirmation after that first reread.
+    Invalid/failed replies always raise, including during confirmation.
+    """
+    if not 0 < stop_c < emergency_c <= 255:
+        raise ValueError('온도 재확인 기준 오류')
     temperatures, disagreements = {}, {}
     with strict_factory(bus.packet_handler) as strict:
         def read(joint, mid):
@@ -36,16 +44,40 @@ def read_temperatures(bus, ids, bulk, strict_factory, *, traces=None):
                                'observed_monotonic_s': time.monotonic()})
             return data[0], trace
         for joint, mid in ids.items():
-            first, trace = read(joint, mid)
-            values, reply_traces = [first], [trace]
-            value = first
-            if first != bulk[joint]:
-                second, trace = read(joint, mid)
-                values.append(second)
+            values, reply_traces = [], []
+
+            def take():
+                value, trace = read(joint, mid)
+                values.append(value)
                 reply_traces.append(trace)
-                value = max(first, second)
-            if first != bulk[joint] or first >= 55:
+                return value
+
+            trigger = bulk[joint] if bulk[joint] >= stop_c else None
+            trigger_source = 'bulk' if trigger is not None else None
+            if trigger is None:
+                value = take()
+                if value >= stop_c:
+                    trigger, trigger_source = value, 'individual'
+                elif value != bulk[joint]:
+                    second = take()
+                    value = max(value, second)
+                    if second >= stop_c:
+                        trigger, trigger_source = second, 'individual_disagreement'
+            confirmation = None
+            if trigger is not None:
+                rereads = [take()]
+                emergency = trigger >= emergency_c and rereads[0] >= emergency_c
+                if not emergency:
+                    rereads.append(take())
+                hot = [v for v in rereads if v >= stop_c]
+                value = max([trigger, *hot]) if hot else max(rereads)
+                confirmation = dict(trigger_c=trigger, trigger_source=trigger_source,
+                                    rereads_c=rereads, status='confirmed' if hot else 'spike',
+                                    emergency_fast_stop=emergency)
+            if trigger is not None or any(v != bulk[joint] for v in values):
                 disagreements[joint] = {'bulk_c': bulk[joint], 'individual_reads_c': values,
                                         'adopted_c': value, 'reply_trace': reply_traces}
+                if confirmation is not None:
+                    disagreements[joint]['confirmation'] = confirmation
             temperatures[joint] = value
     return temperatures, disagreements
