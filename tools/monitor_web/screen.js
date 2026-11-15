@@ -9,7 +9,7 @@ const rows = Object.fromEntries(Object.entries(joints).map(([key, name]) => {
   header.scope = "row";
   header.textContent = name;
   row.append(header);
-  const cells = Array.from({length: 6}, () => {
+  const cells = Array.from({length: 8}, () => {
     const cell = document.createElement("td");
     cell.textContent = "—";
     row.append(cell);
@@ -244,6 +244,8 @@ async function refresh() {
         number(observation?.state?.[i], 2, unit), number(status.state?.[i], 2, unit),
         number(status.ticks?.[joint], 0), number(status.model?.[i], 2, unit),
         number(status.sent?.[i], 2, unit), number(status.temperature?.[joint], 0, "°C"),
+        number(status.thermal_diagnostics?.[joint]?.filtered_c, 0, "°C"),
+        number(status.voltage_v?.[joint], 1, "V"),
       ];
       cells.forEach((cell, index) => { cell.textContent = values[index]; });
     }

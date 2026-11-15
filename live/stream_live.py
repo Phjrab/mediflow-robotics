@@ -15,6 +15,7 @@ from pathlib import Path
 import direct_live as base
 import live_start
 from thermal_read import read_temperatures
+from thermal_diagnostics import ThermalDiagnostics
 from vla_monitor import Monitor
 
 from config_runtime import load as load_config
@@ -391,6 +392,8 @@ def device_class():
             self.temperature_fault = None
             self.thermal_recheck = {}
             self.thermal_disagreement = {}
+            self.thermal_diagnostics = ThermalDiagnostics(base.JOINTS)
+            self.thermal_sequence = 0
             self.torque_off_writes = 0
             self.torque_on_writes = 0
             self.startup_pending = True
@@ -465,8 +468,11 @@ def device_class():
 
         def read_block(self, address, width):
             try:data = super().read_block(address, width)
-            except BaseException:
+            except BaseException as error:
                 self.wire_fault=True
+                self.log({'event': 'thermal_read_error', 'source': 'feedback_block',
+                          'address': address, 'width': width,
+                          **self.thermal_diagnostics.record_error(error)})
                 raise
             if address == 56:
                 self.feedback_bytes = data
@@ -474,13 +480,38 @@ def device_class():
 
         def feedback(self):
             sample = super().feedback()
+            bulk_observed_s = time.monotonic()
             sample['temperatures_bulk'] = dict(sample['temperatures'])
+            sample['voltage_raw'] = {j: self.feedback_bytes[j][6] for j in base.JOINTS}
+            sample['voltage_v'] = {j: value / 10 for j, value in sample['voltage_raw'].items()}
+            traces = []
             try:
                 sample['temperatures'], disagreement = read_temperatures(
-                    self.bus, self.ids, sample['temperatures_bulk'], StrictIndividualReplies)
+                    self.bus, self.ids, sample['temperatures_bulk'], StrictIndividualReplies, traces=traces)
             except Exception as exc:
                 self.wire_fault = True
+                self.log({'event': 'thermal_read_error', 'source': 'individual_temperature',
+                          'reply_trace': traces, 'temperature_bulk_c': sample['temperatures_bulk'],
+                          'voltage_v': sample['voltage_v'],
+                          'feedback_bytes_hex': {j: data.hex() for j, data in self.feedback_bytes.items()},
+                          **self.thermal_diagnostics.record_error(exc)})
                 raise base.Stop('개별 온도 응답 검증 실패; 추가 쓰기 금지: ' + str(exc)) from exc
+            # Diagnostic display only: never replace the existing protection input.
+            source_values = {j: [sample['temperatures_bulk'][j]] +
+                             [row['value_c'] for row in traces if row.get('joint') == j and 'value_c' in row]
+                             for j in base.JOINTS}
+            sample['thermal_diagnostics'] = self.thermal_diagnostics.observe(
+                time.monotonic(), sample['temperatures'], sample['voltage_v'], sample['statuses'], source_values)
+            self.thermal_sequence += 1
+            self.log({'event': 'thermal_cycle', 'sequence': self.thermal_sequence,
+                      'monotonic_s': time.monotonic(), 'temperature_raw_c': dict(sample['temperatures']),
+                      'temperature_bulk_c': sample['temperatures_bulk'], 'voltage_v': sample['voltage_v'],
+                      'bulk_observed_monotonic_s': bulk_observed_s,
+                      'voltage_association': 'same_packet_with_bulk_temperature_only',
+                      'statuses': dict(sample['statuses']), 'diagnostics': sample['thermal_diagnostics'],
+                      'reply_trace': traces,
+                      'feedback_bytes_hex': {j: data.hex() for j, data in self.feedback_bytes.items()},
+                      'error_counts': dict(self.thermal_diagnostics.errors), 'filter_controls_motion': False})
             if disagreement != self.thermal_disagreement:
                 if disagreement:
                     self.log({'event': 'thermal_source_disagreement', 'joints': disagreement})
@@ -888,6 +919,7 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
                 result.setdefault('camera', io.cameras_stats.summary())
                 result['gripper_limits_readonly'] = io.registers
                 result['thermal_recheck'] = io.thermal_recheck
+                result['thermal_diagnostics'] = io.thermal_diagnostics.summary()
                 result['startup_temperatures_c'] = getattr(io,'initial_temperatures',{})
                 result['goal_packet_attempts'] = getattr(getattr(io, 'permission', None), 'goal_packets', 0)
                 try:

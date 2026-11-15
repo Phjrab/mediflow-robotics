@@ -37,9 +37,10 @@
     <section aria-labelledby="joint-heading">
       <div class="section-heading"><h2 id="joint-heading">관절 상태와 예측 목표</h2><span>관절은 도, 그리퍼는 0–100점</span></div>
       <div class="table-wrap"><table>
-        <thead><tr><th scope="col">관절</th><th scope="col">추론 입력</th><th scope="col">현재값</th><th scope="col">현재 틱</th><th scope="col">정책 목표</th><th scope="col">전송 목표</th><th scope="col">온도</th></tr></thead>
+        <thead><tr><th scope="col">관절</th><th scope="col">추론 입력</th><th scope="col">현재값</th><th scope="col">현재 틱</th><th scope="col">정책 목표</th><th scope="col">전송 목표</th><th scope="col">원본 온도</th><th scope="col">진단 온도</th><th scope="col">전압</th></tr></thead>
         <tbody id="joints"></tbody>
       </table></div>
+      <p class="note">진단 온도는 비교용입니다. 원본 온도 55°C 중단을 유지하며, 필터값으로 과열 보호를 완화하지 않습니다.</p>
     </section>
     <section aria-labelledby="operator-heading">
       <div class="section-heading"><h2 id="operator-heading">운영자 입력</h2><span id="operator-access">접속 확인 중</span></div>

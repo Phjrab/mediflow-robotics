@@ -43,6 +43,8 @@ class Monitor:
             "updated": time.time(), "capture": self.capture_id, "step": step,
             "state": sample.get("state"), "ticks": sample.get("present_raw"),
             "temperature": sample.get("temperatures"), "model": model, "sent": sent,
+            "voltage_v": sample.get("voltage_v"),
+            "thermal_diagnostics": sample.get("thermal_diagnostics"),
             "inference_seconds": inference_seconds, "reason": reason,
             "correction_kinds": self.correction_kinds, "correction_result": self.correction_result,
             "latest_clip": self.latest_clip,
