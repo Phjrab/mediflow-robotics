@@ -16,6 +16,7 @@ import direct_live as base
 import live_start
 from thermal_read import read_temperatures
 from thermal_diagnostics import ThermalDiagnostics
+from tracking_compensation import TrackingCompensator
 from vla_monitor import Monitor
 
 from config_runtime import load as load_config
@@ -210,6 +211,13 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     observed = [[] for _ in base.JOINTS]
     commands = [[] for _ in base.JOINTS]
     relief = GripRelief()
+    compensation_bounds = getattr(io, 'bounds', None)
+    if compensation_bounds is None and hasattr(io, 'normalize') and hasattr(io, 'arm_bounds'):
+        low = io.normalize({j: io.arm_bounds[j][0] for j in base.JOINTS})
+        high = io.normalize({j: io.arm_bounds[j][1] for j in base.JOINTS})
+        compensation_bounds = [tuple(sorted(pair)) for pair in zip(low, high)]
+    compensator = TrackingCompensator(base.JOINTS, CONFIG.get('tracking_compensation', {}),
+                                     bounds=compensation_bounds)
     pool_factory = getattr(io, 'pool_factory', concurrent.futures.ThreadPoolExecutor)
     pool = pool_factory(max_workers=1)
     try:
@@ -297,7 +305,19 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
             model = interpolate(slots[lower], slots[upper], phase - lower)
             target = model.copy()
             target[-1] = relief.apply(target[-1], sample['state'][-1], phase / MODEL_HZ)
-            plan = io.plan(target)
+            reference_plan = io.plan(target)
+            compensated, compensation = compensator.apply(reference_plan['wire_normalized'],
+                                                          sample['state'], tick_started)
+            # Preserve the original SDK encoding on axes without a correction;
+            # normalizing and encoding the same integer again can lose one tick.
+            compensated = [original if offset == 0 else corrected for original, offset, corrected in
+                           zip(target, compensation['offset_deg'], compensated)]
+            plan = io.plan(compensated)
+            plan['clipped_joints'] = sorted(set(plan.get('clipped_joints', ())) |
+                                            set(reference_plan.get('clipped_joints', ())))
+            compensation['uncompensated_raw'] = reference_plan['wire_raw']
+            compensation['wire_offset_deg'] = [a-b for a, b in
+                                               zip(plan['wire_normalized'], reference_plan['wire_normalized'])]
             prepared = clock()
             if last_send is not None:
                 pause(max(0, min(deadline, last_send + 1 / hz) - prepared))
@@ -328,7 +348,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                  'gap_s': gap, 'hz_target': hz, 'loop_work_s': loop_work,
                  'model_phase': phase, 'playback_s': phase / MODEL_HZ,
                  'feedback': sample, 'model': model,
-                 'grip_relief': target[-1] != model[-1], **plan})
+                 'grip_relief': target[-1] != model[-1], 'tracking_compensation': compensation, **plan})
             count += 1
             last_send = sent
             last_model, last_wire = model, plan['wire_normalized']
@@ -368,7 +388,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
             'inference_s': {'mean': statistics.mean(inferences) if inferences else None, 'samples': inferences},
             'chunk_wait_s': {'max': max(waits, default=0), 'sum': sum(waits)},
             'transmission_hz': 1/statistics.mean(periods) if periods else None, 'final_rate_target': hz,
-            'tracking': tracking}
+            'tracking': tracking, 'tracking_compensation': compensator.summary()}
 
 
 def device_class():
@@ -392,6 +412,7 @@ def device_class():
             self.temperature_fault = None
             self.thermal_recheck = {}
             self.thermal_disagreement = {}
+            self.thermal_confirmation_counts = {j: dict(spike=0, confirmed=0) for j in base.JOINTS}
             self.thermal_diagnostics = ThermalDiagnostics(base.JOINTS)
             self.thermal_sequence = 0
             self.torque_off_writes = 0
@@ -487,7 +508,8 @@ def device_class():
             traces = []
             try:
                 sample['temperatures'], disagreement = read_temperatures(
-                    self.bus, self.ids, sample['temperatures_bulk'], StrictIndividualReplies, traces=traces)
+                    self.bus, self.ids, sample['temperatures_bulk'], StrictIndividualReplies, traces=traces,
+                    stop_c=CONFIG['temperature']['stop_c'], emergency_c=CONFIG['temperature'].get('emergency_c', 70))
             except Exception as exc:
                 self.wire_fault = True
                 self.log({'event': 'thermal_read_error', 'source': 'individual_temperature',
@@ -496,15 +518,27 @@ def device_class():
                           'feedback_bytes_hex': {j: data.hex() for j, data in self.feedback_bytes.items()},
                           **self.thermal_diagnostics.record_error(exc)})
                 raise base.Stop('개별 온도 응답 검증 실패; 추가 쓰기 금지: ' + str(exc)) from exc
-            # Diagnostic display only: never replace the existing protection input.
+            # The temporal diagnostic filter remains observation only. Protection
+            # uses the separately confirmed temperatures returned above.
             source_values = {j: [sample['temperatures_bulk'][j]] +
                              [row['value_c'] for row in traces if row.get('joint') == j and 'value_c' in row]
                              for j in base.JOINTS}
+            sample['temperatures_raw'] = {j: max(values) for j, values in source_values.items()}
+            sample['temperature_confirmation'] = {j: row['confirmation'] for j, row in disagreement.items()
+                                                  if 'confirmation' in row}
+            for joint, row in sample['temperature_confirmation'].items():
+                self.thermal_confirmation_counts[joint][row['status']] += 1
+                self.log({'event': 'thermal_confirmation', 'joint': joint, **row,
+                          'adopted_c': sample['temperatures'][joint],
+                          'bulk_c': sample['temperatures_bulk'][joint],
+                          'voltage_v': sample['voltage_v'][joint]})
             sample['thermal_diagnostics'] = self.thermal_diagnostics.observe(
-                time.monotonic(), sample['temperatures'], sample['voltage_v'], sample['statuses'], source_values)
+                time.monotonic(), sample['temperatures_raw'], sample['voltage_v'], sample['statuses'], source_values)
             self.thermal_sequence += 1
             self.log({'event': 'thermal_cycle', 'sequence': self.thermal_sequence,
-                      'monotonic_s': time.monotonic(), 'temperature_raw_c': dict(sample['temperatures']),
+                      'monotonic_s': time.monotonic(), 'temperature_raw_c': dict(sample['temperatures_raw']),
+                      'temperature_for_protection_c': dict(sample['temperatures']),
+                      'temperature_confirmation': sample['temperature_confirmation'],
                       'temperature_bulk_c': sample['temperatures_bulk'], 'voltage_v': sample['voltage_v'],
                       'bulk_observed_monotonic_s': bulk_observed_s,
                       'voltage_association': 'same_packet_with_bulk_temperature_only',
@@ -520,9 +554,9 @@ def device_class():
             for name, mid in self.ids.items():
                 value = int.from_bytes(self.feedback_bytes[name][13:15], 'little')
                 sample['current_raw'][name] = self.bus._decode_sign('Present_Current', {mid: value})[mid]
-            if not hasattr(self,'initial_temperatures'):self.initial_temperatures=dict(sample['temperatures'])
-            temperature = sample['temperatures']['gripper']
-            for joint, value in sample['temperatures'].items():
+            if not hasattr(self,'initial_temperatures'):self.initial_temperatures=dict(sample['temperatures_raw'])
+            temperature = sample['temperatures_raw']['gripper']
+            for joint, value in sample['temperatures_raw'].items():
                 self.peak_temperatures[joint] = max(value, self.peak_temperatures.get(joint, value))
             if self.gripper_peak is None:
                 self.log({'event': 'startup_temperatures', 'temperature_c': sample['temperatures']})
@@ -541,7 +575,9 @@ def device_class():
             if self.startup_pending:
                 def startup_sample():
                     feedback = self.feedback()
-                    if any(feedback['statuses'].values()):
+                    if (any(feedback['statuses'].values()) or any(
+                            row['status'] == 'confirmed'
+                            for row in feedback['temperature_confirmation'].values())):
                         base.feedback_gate(feedback)
                     return feedback
 
@@ -920,6 +956,9 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
                 result['gripper_limits_readonly'] = io.registers
                 result['thermal_recheck'] = io.thermal_recheck
                 result['thermal_diagnostics'] = io.thermal_diagnostics.summary()
+                result['thermal_confirmation'] = dict(stop_c=CONFIG['temperature']['stop_c'],
+                    emergency_c=CONFIG['temperature'].get('emergency_c', 70), normal_rechecks=2,
+                    counts=io.thermal_confirmation_counts)
                 result['startup_temperatures_c'] = getattr(io,'initial_temperatures',{})
                 result['goal_packet_attempts'] = getattr(getattr(io, 'permission', None), 'goal_packets', 0)
                 try:
@@ -956,20 +995,25 @@ class StreamingTests(unittest.TestCase):
 
         for case in SCENARIOS:
             with self.subTest(case=case):
-                result = run_case(case, 14, DEFAULT_SPEED, [0.] * 6, {'sample': True}, policy)
+                result = run_case(case, 14, DEFAULT_SPEED, CONFIG['home']['state'], {'sample': True}, policy)
                 self.assertTrue(result['passed'], result)
 
-    def test_unsafe_goal_readback_and_unverified_route_prevent_all_writes(self):
+    def test_invalid_position_and_mode_prevent_all_writes(self):
         from startup_simulation import SimulatedArm
 
-        io = SimulatedArm([0.] * 6, {}, lambda _: None, 'all_off')
-        io.target['elbow_flex'] = 3087
+        io = SimulatedArm(CONFIG['home']['state'], {}, lambda _: None, 'all_off')
+        io.present['elbow_flex'] = io.target['elbow_flex'] = 5000
         with self.assertRaisesRegex(base.Stop, 'elbow_flex'):
             live_start.prepare(io, io.home, lambda _: None)
         self.assertEqual(io.start_writes, [])
-        io = SimulatedArm([0.] * 6, {}, lambda _: None, 'outside_home')
-        io.home_path_verified = False
-        with self.assertRaisesRegex(base.Stop, '이동 경로 미검증'):
+        io = SimulatedArm(CONFIG['home']['state'], {}, lambda _: None, 'all_off')
+        original_snapshot = io.start_snapshot
+        def invalid_mode():
+            sample = original_snapshot()
+            sample['modes']['elbow_flex'] = 2
+            return sample
+        io.start_snapshot = invalid_mode
+        with self.assertRaisesRegex(base.Stop, '위치 모드'):
             live_start.prepare(io, io.home, lambda _: None)
         self.assertEqual(io.packet_count, 0)
 

@@ -19,6 +19,21 @@ def load():
     assert c['port'].startswith('/dev/serial/by-id/') and '5AE6058306' in c['port']
     assert '5AE6085272' not in c['port']
     assert c['temperature']['stop_c'] == 55
+    if c['temperature'].get('hot_confirmation_reads', 2) != 2 or c['temperature'].get('emergency_c', 70) != 70:
+        raise ValueError('승인된 온도 재확인 횟수·기준 불일치')
+    tracking = c.get('tracking_compensation', {})
+    axes = tracking.get('enabled_axes', [])
+    if not set(axes) <= set(c['joint_names'][:5]) or len(axes) != len(set(axes)):
+        raise ValueError('추종 보상 축 오류; 그리퍼는 조임 완화 경로 사용')
+    if tracking:
+        for key in ('max_offset_deg', 'integral_gain_per_s', 'max_accumulation_deg_s',
+                    'decay_per_s', 'settle_s', 'error_deadband_deg',
+                    'max_reference_speed_deg_s', 'reset_gap_s'):
+            value = tracking[key]
+            if type(value) not in (int, float) or not math.isfinite(value) or value <= 0:
+                raise ValueError('추종 보상 수치 오류: ' + key)
+        if tracking['max_offset_deg'] > 3:
+            raise ValueError('추종 보상 승인 상한 3도 초과')
     assert 0 < c['speed'] <= 1 and c['control_hz'] == 60
     assert len(c['joint_names']) == len(c['home']['state']) == 6
     expected=['shoulder_pan','shoulder_lift','elbow_flex','wrist_flex','wrist_roll','gripper']
