@@ -35,6 +35,20 @@ def decode_reply(raw, mid, width):
     return raw[5:-1]
 
 
+def require_unowned_port(port, runner=None):
+    import subprocess
+    if not str(port).startswith('/dev/'):
+        raise ValueError('절대 장치 경로만 점유 확인')
+    runner = runner or subprocess.run
+    # Jetson PSmisc 23.4 rejects the "--" operand separator. The device is an
+    # absolute /dev path, so no option separator or shell interpolation is needed.
+    owner = runner(['sudo', '-n', 'fuser', str(port)],
+                   text=True, capture_output=True, timeout=5)
+    if owner.returncode != 1 or owner.stdout.strip() or owner.stderr.strip():
+        raise ReadFault('포트 비점유 확인 실패; 장치 미연결',
+                        code=owner.returncode, owners=owner.stdout.strip(), error=owner.stderr.strip())
+
+
 class LinuxReadTransport:
     """Linux 포트를 단독 소유한다. READ 패킷 이외 전송, 입력 flush, 재시도는 없다."""
     def __init__(self, port):
@@ -48,13 +62,8 @@ class LinuxReadTransport:
 
     def open(self):
         import fcntl
-        import subprocess
         import termios
-        owner = subprocess.run(['sudo', '-n', 'fuser', '--', str(Path(self.port).resolve(strict=True))],
-                               text=True, capture_output=True, timeout=5)
-        if owner.returncode != 1 or owner.stdout.strip() or owner.stderr.strip():
-            raise ReadFault('포트 비점유 확인 실패; 장치 미연결',
-                            code=owner.returncode, owners=owner.stdout.strip(), error=owner.stderr.strip())
+        require_unowned_port(Path(self.port).resolve(strict=True))
         self.fd = os.open(self.port, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
         try:
             fcntl.flock(self.fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -130,8 +139,13 @@ def run(transport, log, duration=120, hz=30, *, clock=time.monotonic, pause=time
         nonlocal attempts
         tx = read_request(mid, address, width)
         attempts += 1
-        raw = transport.request(tx, width)
-        data = decode_reply(raw, mid, width)
+        try:
+            raw = transport.request(tx, width)
+            data = decode_reply(raw, mid, width)
+        except ReadFault as error:
+            error.observed = {'expected_id': mid, 'address': address, 'width': width,
+                              'tx_hex': tx.hex(), **error.observed}
+            raise
         return data, dict(id=mid, address=address, width=width, tx_hex=tx.hex(), rx_hex=raw.hex())
 
     try:

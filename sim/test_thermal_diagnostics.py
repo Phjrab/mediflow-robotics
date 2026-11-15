@@ -8,7 +8,7 @@ import unittest
 from types import SimpleNamespace
 
 from thermal_diagnostics import ThermalDiagnostics
-from servo_thermal_readonly import JOINTS, ReadFault, decode_reply, read_request, run
+from servo_thermal_readonly import JOINTS, LinuxReadTransport, ReadFault, decode_reply, read_request, require_unowned_port, run
 import direct_live as base
 from home_config_server import thermal_snapshot
 from thermal_read import read_temperatures
@@ -152,6 +152,24 @@ class ThermalDiagnosticTests(unittest.TestCase):
 
 
 class ReadonlyTransportTests(unittest.TestCase):
+    def test_jetson_fuser_free_port_without_unsupported_separator(self):
+        seen = []
+        def runner(argv, **kwargs):
+            seen.append(argv)
+            return SimpleNamespace(returncode=1, stdout='', stderr='')
+        require_unowned_port('/dev/ttyACM1', runner)
+        self.assertEqual(seen, [['sudo', '-n', 'fuser', '/dev/ttyACM1']])
+
+    def test_port_owner_or_query_error_still_refuses(self):
+        for code, stdout, stderr in [(0, '123', ''), (1, '', 'usage error'), (2, '', 'sudo required')]:
+            with self.subTest(code=code), self.assertRaises(ReadFault):
+                require_unowned_port('/dev/ttyACM1', lambda *a, **k: SimpleNamespace(returncode=code, stdout=stdout, stderr=stderr))
+
+    def test_leader_port_can_never_replace_follower(self):
+        for port in ['/dev/ttyACM0', '/dev/ttyACM1', '/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6085272-if00']:
+            with self.subTest(port=port), self.assertRaises(ValueError):
+                LinuxReadTransport(port)
+
     def simulate(self, scenario, duration=3):
         bus, clock, rows = FakeBus(scenario), Clock(), []
         result = run(bus, rows.append, duration, 10, clock=clock.time, pause=clock.sleep)
@@ -187,6 +205,9 @@ class ReadonlyTransportTests(unittest.TestCase):
                 self.assertEqual(result['status'], 'HOLD')
                 self.assertEqual(result['thermal_diagnostics']['errors'][kind], 1)
                 self.assertEqual(rows[-1]['event'], 'readonly_stop')
+                if scenario in ('communication', 'checksum'):
+                    self.assertIn('expected_id', result['error']['observed'])
+                    self.assertIn('tx_hex', result['error']['observed'])
 
     def test_torque_on_stops_without_turning_it_off(self):
         result, _ = self.simulate('torque_on')

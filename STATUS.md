@@ -1,8 +1,8 @@
 # SO-101 VLA 현황 — 2026-11-15
 
-**11/15 온도 진단·원문 추적·공통 화면을 배포하고 Windows/Jetson 대상 모의26개 PASS. 필터는 진단용이며 실제55°C 보호는 유지했다. 원래 팔로워 USB가 OS에 없어 새2분 실기 읽기·live는 NOT_RUN.**
+**11/15 팔로워 USB 복구 확인:5AE6058306→ttyACM1. 대상 모의29개 PASS 뒤 실제120초 READ를 시작했으나 첫ID1 응답 시간 초과(-6)로0.263초에 중단했다. 온도·전압 표본0,모터 쓰기0,포트해제.2분 완료·home 확인·live는 아직 못 했다.**
 
-운영자는 원래 배선 복원 완료와 두DC OFF를 알렸다. OS에는 리더USB `5AE6085272`만 보이고 팔로워USB `5AE6058306`은 없다. 리더 포트로 대체하지 않았다. 현재 LeLab은active, Astra는inactive였으며 이 작업에서 로봇·카메라를 열거나 LeLab/Astra를 재시작하지 않았다. 새 온도 실측값은 없다. 상세: `reports/20261115/THERMAL_DIAGNOSTICS.md`. 11/12 비교 원문은 `reports/20261112/FAULT_ISOLATION_RESULTS.md`에 보존했다.
+운영자는 원래 배선 복원과 두DC ON을 확인했다. OS에서 원래 리더/팔로워 시리얼을 각각 식별했고 config는 팔로워by-id 고정을 유지했다. LeLab 텔레옵·녹화·추론은 모두꺼져 있었고 해당 포트는 비점유였다. 모터 응답이 없어 토크·온도·home 현재값은 미확인이다. 오류 뒤 실제 serial 재시도는 없었다. 상세: `reports/20261115/READONLY_RECOVERY_RESULT.md`. 이전 진단·원문은 보존했다.
 
 현행은 Windows `자율설계/so101_vla/`, Jetson `~/so101_vla/`다. 실행기는 `live/`, 공통 설정은 `live/config.yaml`, 이동표는 `MOVES.md`, 원본 위치·해시는 `PATHS.md`다. 폴더를 삭제하지 않고 보관 위치로 이동했다.
 
