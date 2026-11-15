@@ -1,0 +1,524 @@
+{
+  "confirmation": {
+    "event": "thermal_confirmation",
+    "joint": "shoulder_lift",
+    "trigger_c": 60,
+    "trigger_source": "individual_disagreement",
+    "rereads_c": [
+      60,
+      33
+    ],
+    "status": "confirmed",
+    "emergency_fast_stop": false,
+    "adopted_c": 60,
+    "bulk_c": 34,
+    "voltage_v": 12.1
+  },
+  "hot_cycle": {
+    "event": "thermal_cycle",
+    "sequence": 265,
+    "monotonic_s": 10109.028554073,
+    "temperature_raw_c": {
+      "shoulder_pan": 31,
+      "shoulder_lift": 60,
+      "elbow_flex": 32,
+      "wrist_flex": 32,
+      "wrist_roll": 31,
+      "gripper": 34
+    },
+    "temperature_for_protection_c": {
+      "shoulder_pan": 31,
+      "shoulder_lift": 60,
+      "elbow_flex": 32,
+      "wrist_flex": 32,
+      "wrist_roll": 31,
+      "gripper": 34
+    },
+    "temperature_confirmation": {
+      "shoulder_lift": {
+        "trigger_c": 60,
+        "trigger_source": "individual_disagreement",
+        "rereads_c": [
+          60,
+          33
+        ],
+        "status": "confirmed",
+        "emergency_fast_stop": false
+      }
+    },
+    "temperature_bulk_c": {
+      "shoulder_pan": 31,
+      "shoulder_lift": 34,
+      "elbow_flex": 32,
+      "wrist_flex": 31,
+      "wrist_roll": 31,
+      "gripper": 34
+    },
+    "voltage_v": {
+      "shoulder_pan": 12.2,
+      "shoulder_lift": 12.1,
+      "elbow_flex": 12.1,
+      "wrist_flex": 12.2,
+      "wrist_roll": 12.2,
+      "gripper": 12.2
+    },
+    "bulk_observed_monotonic_s": 10109.022337495,
+    "voltage_association": "same_packet_with_bulk_temperature_only",
+    "statuses": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "diagnostics": {
+      "shoulder_pan": {
+        "raw_c": 31,
+        "filtered_c": 31,
+        "suspected_spike": false,
+        "spike_reasons": [],
+        "delta_previous_c": 0,
+        "rise_within_1s_c": 0,
+        "voltage_v": 12.2,
+        "status": 0,
+        "spike_count": 0,
+        "raw_peak_c": 32,
+        "filtered_peak_c": 32,
+        "candidate_filtered_hold": false,
+        "raw_hold_required": false,
+        "filter_controls_motion": false
+      },
+      "shoulder_lift": {
+        "raw_c": 60,
+        "filtered_c": 33,
+        "suspected_spike": true,
+        "spike_reasons": [
+          "previous_jump_gt_10c",
+          "rise_gt_5c_within_1s"
+        ],
+        "delta_previous_c": 27,
+        "rise_within_1s_c": 27,
+        "voltage_v": 12.1,
+        "status": 0,
+        "spike_count": 1,
+        "raw_peak_c": 60,
+        "filtered_peak_c": 34,
+        "candidate_filtered_hold": false,
+        "raw_hold_required": true,
+        "filter_controls_motion": false
+      },
+      "elbow_flex": {
+        "raw_c": 32,
+        "filtered_c": 32,
+        "suspected_spike": false,
+        "spike_reasons": [],
+        "delta_previous_c": 0,
+        "rise_within_1s_c": 0,
+        "voltage_v": 12.1,
+        "status": 0,
+        "spike_count": 0,
+        "raw_peak_c": 32,
+        "filtered_peak_c": 32,
+        "candidate_filtered_hold": false,
+        "raw_hold_required": false,
+        "filter_controls_motion": false
+      },
+      "wrist_flex": {
+        "raw_c": 32,
+        "filtered_c": 32,
+        "suspected_spike": false,
+        "spike_reasons": [],
+        "delta_previous_c": 0,
+        "rise_within_1s_c": 0,
+        "voltage_v": 12.2,
+        "status": 0,
+        "spike_count": 0,
+        "raw_peak_c": 33,
+        "filtered_peak_c": 33,
+        "candidate_filtered_hold": false,
+        "raw_hold_required": false,
+        "filter_controls_motion": false
+      },
+      "wrist_roll": {
+        "raw_c": 31,
+        "filtered_c": 31,
+        "suspected_spike": false,
+        "spike_reasons": [],
+        "delta_previous_c": 0,
+        "rise_within_1s_c": 0,
+        "voltage_v": 12.2,
+        "status": 0,
+        "spike_count": 1,
+        "raw_peak_c": 41,
+        "filtered_peak_c": 35,
+        "candidate_filtered_hold": false,
+        "raw_hold_required": false,
+        "filter_controls_motion": false
+      },
+      "gripper": {
+        "raw_c": 34,
+        "filtered_c": 34,
+        "suspected_spike": false,
+        "spike_reasons": [],
+        "delta_previous_c": 0,
+        "rise_within_1s_c": 0,
+        "voltage_v": 12.2,
+        "status": 0,
+        "spike_count": 0,
+        "raw_peak_c": 36,
+        "filtered_peak_c": 36,
+        "candidate_filtered_hold": false,
+        "raw_hold_required": false,
+        "filter_controls_motion": false
+      }
+    },
+    "reply_trace": [
+      {
+        "joint": "shoulder_pan",
+        "address": 63,
+        "expected_id": 1,
+        "expected_bytes": 1,
+        "raw_hex": "ffff0103001fdc",
+        "communication": 0,
+        "status": 0,
+        "queued_before_read": 0,
+        "value_c": 31,
+        "observed_monotonic_s": 10109.022947146
+      },
+      {
+        "joint": "shoulder_lift",
+        "address": 63,
+        "expected_id": 2,
+        "expected_bytes": 1,
+        "raw_hex": "ffff02030021d9",
+        "communication": 0,
+        "status": 0,
+        "queued_before_read": 0,
+        "value_c": 33,
+        "observed_monotonic_s": 10109.023498043
+      },
+      {
+        "joint": "shoulder_lift",
+        "address": 63,
+        "expected_id": 2,
+        "expected_bytes": 1,
+        "raw_hex": "ffff0203003cbe",
+        "communication": 0,
+        "status": 0,
+        "queued_before_read": 0,
+        "value_c": 60,
+        "observed_monotonic_s": 10109.024054445
+      },
+      {
+        "joint": "shoulder_lift",
+        "address": 63,
+        "expected_id": 2,
+        "expected_bytes": 1,
+        "raw_hex": "ffff0203003cbe",
+        "communication": 0,
+        "status": 0,
+        "queued_before_read": 0,
+        "value_c": 60,
+        "observed_monotonic_s": 10109.02453062
+      },
+      {
+        "joint": "shoulder_lift",
+        "address": 63,
+        "expected_id": 2,
+        "expected_bytes": 1,
+        "raw_hex": "ffff02030021d9",
+        "communication": 0,
+        "status": 0,
+        "queued_before_read": 0,
+        "value_c": 33,
+        "observed_monotonic_s": 10109.025019787
+      },
+      {
+        "joint": "elbow_flex",
+        "address": 63,
+        "expected_id": 3,
+        "expected_bytes": 1,
+        "raw_hex": "ffff03030020d9",
+        "communication": 0,
+        "status": 0,
+        "queued_before_read": 0,
+        "value_c": 32,
+        "observed_monotonic_s": 10109.025516026
+      },
+      {
+        "joint": "wrist_flex",
+        "address": 63,
+        "expected_id": 4,
+        "expected_bytes": 1,
+        "raw_hex": "ffff04030020d8",
+        "communication": 0,
+        "status": 0,
+        "queued_before_read": 0,
+        "value_c": 32,
+        "observed_monotonic_s": 10109.026001737
+      },
+      {
+        "joint": "wrist_flex",
+        "address": 63,
+        "expected_id": 4,
+        "expected_bytes": 1,
+        "raw_hex": "ffff04030020d8",
+        "communication": 0,
+        "status": 0,
+        "queued_before_read": 0,
+        "value_c": 32,
+        "observed_monotonic_s": 10109.026471032
+      },
+      {
+        "joint": "wrist_roll",
+        "address": 63,
+        "expected_id": 5,
+        "expected_bytes": 1,
+        "raw_hex": "ffff0503001fd8",
+        "communication": 0,
+        "status": 0,
+        "queued_before_read": 0,
+        "value_c": 31,
+        "observed_monotonic_s": 10109.027221423
+      },
+      {
+        "joint": "gripper",
+        "address": 63,
+        "expected_id": 6,
+        "expected_bytes": 1,
+        "raw_hex": "ffff06030022d4",
+        "communication": 0,
+        "status": 0,
+        "queued_before_read": 0,
+        "value_c": 34,
+        "observed_monotonic_s": 10109.027811777
+      }
+    ],
+    "feedback_bytes_hex": {
+      "shoulder_pan": "0a08000018007a1f00000007080000",
+      "shoulder_lift": "40030000480479220000004e030300",
+      "elbow_flex": "080c0000140479200000000a0c0000",
+      "wrist_flex": "040a00001c007a1f000000000a0100",
+      "wrist_roll": "1e07000000007a1f0000001e070000",
+      "gripper": "d201000014007a22000000d0010000"
+    },
+    "error_counts": {
+      "total": 0,
+      "communication": 0,
+      "checksum": 0,
+      "other": 0
+    },
+    "filter_controls_motion": false
+  },
+  "stop_feedback": {
+    "event": "stop_feedback",
+    "state": [
+      -3.8241758241758244,
+      -98.68131868131869,
+      96.3956043956044,
+      42.505494505494504,
+      -3.7362637362637363,
+      3.243574051407589
+    ],
+    "present_raw": {
+      "shoulder_pan": 2058,
+      "shoulder_lift": 832,
+      "elbow_flex": 3080,
+      "wrist_flex": 2564,
+      "wrist_roll": 1822,
+      "gripper": 466
+    },
+    "loads": {
+      "shoulder_pan": 24,
+      "shoulder_lift": -72,
+      "elbow_flex": -20,
+      "wrist_flex": 28,
+      "wrist_roll": 0,
+      "gripper": 20
+    },
+    "temperatures": {
+      "shoulder_pan": 31,
+      "shoulder_lift": 60,
+      "elbow_flex": 32,
+      "wrist_flex": 32,
+      "wrist_roll": 31,
+      "gripper": 34
+    },
+    "statuses": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "temperatures_bulk": {
+      "shoulder_pan": 31,
+      "shoulder_lift": 34,
+      "elbow_flex": 32,
+      "wrist_flex": 31,
+      "wrist_roll": 31,
+      "gripper": 34
+    },
+    "voltage_raw": {
+      "shoulder_pan": 122,
+      "shoulder_lift": 121,
+      "elbow_flex": 121,
+      "wrist_flex": 122,
+      "wrist_roll": 122,
+      "gripper": 122
+    },
+    "voltage_v": {
+      "shoulder_pan": 12.2,
+      "shoulder_lift": 12.1,
+      "elbow_flex": 12.1,
+      "wrist_flex": 12.2,
+      "wrist_roll": 12.2,
+      "gripper": 12.2
+    },
+    "temperatures_raw": {
+      "shoulder_pan": 31,
+      "shoulder_lift": 60,
+      "elbow_flex": 32,
+      "wrist_flex": 32,
+      "wrist_roll": 31,
+      "gripper": 34
+    },
+    "temperature_confirmation": {
+      "shoulder_lift": {
+        "trigger_c": 60,
+        "trigger_source": "individual_disagreement",
+        "rereads_c": [
+          60,
+          33
+        ],
+        "status": "confirmed",
+        "emergency_fast_stop": false
+      }
+    },
+    "thermal_diagnostics": {
+      "shoulder_pan": {
+        "raw_c": 31,
+        "filtered_c": 31,
+        "suspected_spike": false,
+        "spike_reasons": [],
+        "delta_previous_c": 0,
+        "rise_within_1s_c": 0,
+        "voltage_v": 12.2,
+        "status": 0,
+        "spike_count": 0,
+        "raw_peak_c": 32,
+        "filtered_peak_c": 32,
+        "candidate_filtered_hold": false,
+        "raw_hold_required": false,
+        "filter_controls_motion": false
+      },
+      "shoulder_lift": {
+        "raw_c": 60,
+        "filtered_c": 33,
+        "suspected_spike": true,
+        "spike_reasons": [
+          "previous_jump_gt_10c",
+          "rise_gt_5c_within_1s"
+        ],
+        "delta_previous_c": 27,
+        "rise_within_1s_c": 27,
+        "voltage_v": 12.1,
+        "status": 0,
+        "spike_count": 1,
+        "raw_peak_c": 60,
+        "filtered_peak_c": 34,
+        "candidate_filtered_hold": false,
+        "raw_hold_required": true,
+        "filter_controls_motion": false
+      },
+      "elbow_flex": {
+        "raw_c": 32,
+        "filtered_c": 32,
+        "suspected_spike": false,
+        "spike_reasons": [],
+        "delta_previous_c": 0,
+        "rise_within_1s_c": 0,
+        "voltage_v": 12.1,
+        "status": 0,
+        "spike_count": 0,
+        "raw_peak_c": 32,
+        "filtered_peak_c": 32,
+        "candidate_filtered_hold": false,
+        "raw_hold_required": false,
+        "filter_controls_motion": false
+      },
+      "wrist_flex": {
+        "raw_c": 32,
+        "filtered_c": 32,
+        "suspected_spike": false,
+        "spike_reasons": [],
+        "delta_previous_c": 0,
+        "rise_within_1s_c": 0,
+        "voltage_v": 12.2,
+        "status": 0,
+        "spike_count": 0,
+        "raw_peak_c": 33,
+        "filtered_peak_c": 33,
+        "candidate_filtered_hold": false,
+        "raw_hold_required": false,
+        "filter_controls_motion": false
+      },
+      "wrist_roll": {
+        "raw_c": 31,
+        "filtered_c": 31,
+        "suspected_spike": false,
+        "spike_reasons": [],
+        "delta_previous_c": 0,
+        "rise_within_1s_c": 0,
+        "voltage_v": 12.2,
+        "status": 0,
+        "spike_count": 1,
+        "raw_peak_c": 41,
+        "filtered_peak_c": 35,
+        "candidate_filtered_hold": false,
+        "raw_hold_required": false,
+        "filter_controls_motion": false
+      },
+      "gripper": {
+        "raw_c": 34,
+        "filtered_c": 34,
+        "suspected_spike": false,
+        "spike_reasons": [],
+        "delta_previous_c": 0,
+        "rise_within_1s_c": 0,
+        "voltage_v": 12.2,
+        "status": 0,
+        "spike_count": 0,
+        "raw_peak_c": 36,
+        "filtered_peak_c": 36,
+        "candidate_filtered_hold": false,
+        "raw_hold_required": false,
+        "filter_controls_motion": false
+      }
+    },
+    "current_raw": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 3,
+      "elbow_flex": 0,
+      "wrist_flex": 1,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "feedback_bytes_hex": {
+      "shoulder_pan": "0a08000018007a1f00000007080000",
+      "shoulder_lift": "40030000480479220000004e030300",
+      "elbow_flex": "080c0000140479200000000a0c0000",
+      "wrist_flex": "040a00001c007a1f000000000a0100",
+      "wrist_roll": "1e07000000007a1f0000001e070000",
+      "gripper": "d201000014007a22000000d0010000"
+    }
+  },
+  "goal_active_s": 0.3205710479996924,
+  "clipped_elbow_steps": 14,
+  "source_sha256": {
+    "steps.jsonl": "8ac4cd86cc2d3094b4b5e6d8131283e631afc69e9e7ae30bbf16aea4510ec8d0",
+    "summary.json": "e311c3531c8344d3e60aef31a0090d5591b3224cb97feff5b154f6a4c6b6b59b"
+  }
+}
