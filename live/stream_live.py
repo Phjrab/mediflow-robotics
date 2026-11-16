@@ -682,6 +682,11 @@ def device_class():
                     guarded = {**sample, 'temperatures': {**sample['temperatures'], **self.temperature_fault},
                                'temperature_protection': {**sample['temperature_protection'], **self.temperature_fault_decisions}}
                 base.feedback_gate(guarded)
+                position = live_start.validate_position(sample, CONFIG['limits'])
+                warnings = tuple(position['warnings'])
+                if warnings != getattr(self,'position_warnings',()):
+                    self.log(dict(event='observed_position_warning',**position))
+                    self.position_warnings=warnings
                 if self.motion_ready:
                     _, torque = self.read_modes()
                     sample['torque'] = torque

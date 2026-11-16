@@ -31,7 +31,24 @@
       -2.252025343804029,
       4.275478211632611
     ],
-    "tolerance_deg": 2.0
+    "tolerance_deg": 2.0,
+    "target_ticks": {
+      "shoulder_pan": 2058,
+      "shoulder_lift": 842,
+      "elbow_flex": 3081,
+      "wrist_flex": 2574,
+      "wrist_roll": 1838,
+      "gripper": 482
+    }
+  },
+  "position_checks": {
+    "observed_upper_margin_ticks": 3,
+    "home_tolerance_ticks": 6,
+    "gripper_tolerance_points": 2.0,
+    "stable_s": 0.5,
+    "max_sample_gap_s": 0.35,
+    "settle_timeout_s": 3.0,
+    "home_attempts": 3
   },
   "calibration_ranges": {
     "shoulder_pan": [
