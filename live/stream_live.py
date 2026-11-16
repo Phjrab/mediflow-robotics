@@ -91,7 +91,10 @@ def infer_due(phase, buffer_end, rate, estimated_seconds):
 
 
 def chunk_alignment(origin, elapsed, rate, first_unused, *, moving):
-    expired = math.floor(elapsed * rate) if moving else 0
+    # The model timeline pauses when the playback buffer is empty. Wall time
+    # can therefore overestimate consumed actions and discard a usable chunk.
+    # Keep elapsed/rate in the API for the independent wall-time diagnostic.
+    expired = max(0, first_unused - origin) if moving else 0
     return expired, max(first_unused, origin + expired)
 
 
@@ -270,6 +273,9 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                      'overlap': overlap, 'overlap_playback_s': overlap / MODEL_HZ,
                      'overlap_wall_s': overlap / rate, 'playback_hz': rate,
                      'elapsed_speed_actions': seconds * rate, 'expired_actions': expired,
+                     'wall_time_expired_actions': math.floor(seconds * request_rate) if request_moving else 0,
+                     'alignment_basis': 'actually_consumed_playback_actions',
+                     'first_unused_at_delivery': first_unused,
                      'skipped_actions': skip, 'discarded': discarded,
                      'blend_max_delta': blend_delta})
                 if seconds * rate * 1.1 > 50:
@@ -1152,7 +1158,7 @@ class StreamingTests(unittest.TestCase):
         self.assertFalse(infer_due(30, 49, rate, 1.4))
         self.assertTrue(infer_due(31, 49, rate, 1.4))
         self.assertEqual(chunk_alignment(31, 1.4, rate, 44, moving=True), (13,44))
-        self.assertEqual(chunk_alignment(31, 1.4, rate, 45, moving=True), (13,45))
+        self.assertEqual(chunk_alignment(31, 1.4, rate, 45, moving=True), (14,45))
         self.assertEqual(chunk_alignment(50, 1.4, rate, 50, moving=False), (0,50))
 
     def test_startup_cooling_and_exact_torque_off_packet(self):
