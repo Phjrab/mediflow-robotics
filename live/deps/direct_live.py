@@ -23,6 +23,14 @@ class Stop(Exception):
     pass
 
 
+class ServoStatusStop(Stop):
+    def __init__(self,mid,status,payload,packet):
+        super().__init__(f'모터 패킷 상태코드: id={mid}, status={status}')
+        self.mid,self.status,self.payload,self.packet=mid,status,bytes(payload),bytes(packet)
+        self.replies=None
+        self.address=self.width=None
+
+
 def vector(values, size):
     if len(values) != size:
         raise Stop('모델 액션 형식 불일치')
@@ -71,7 +79,7 @@ def parse_reply(packet, comm, mid, width):
         received = raw[2] if len(raw) >= 3 and raw[:2] == b'\xff\xff' else None
         raise Stop(f'모터 응답 검증 실패: id={mid}, 통신 코드={comm}, 받은 id={received}, 응답 {len(raw)}B')
     if raw[4]:
-        raise Stop(f'모터 패킷 상태코드: id={mid}, status={raw[4]}')
+        raise ServoStatusStop(mid,raw[4],raw[5:-1],raw)
     return raw[5:-1]
 
 
@@ -79,6 +87,7 @@ def read_sync_replies(handler, port, ids, address, width, policy=None):
     replies = {}
     failure = None
     retryable=[]
+    status_faults=[]
     operation=f'read:{address}:{width}'
     for joint, mid in ids.items():
         if policy is None:packet,comm=handler.rxPacket(port)
@@ -94,9 +103,16 @@ def read_sync_replies(handler, port, ids, address, width, policy=None):
             if policy is None:failure=failure or exc
             else:
                 policy.bad([mid],operation,exc);retryable.append((joint,mid))
+        except ServoStatusStop as exc:
+            status_faults.append(exc);replies[joint]=exc.payload
+            failure=failure or exc
         except Stop as exc:
             failure=failure or exc
     if failure is not None:
+        if (len(status_faults)==1 and failure is status_faults[0] and failure.mid==6 and failure.status==32
+                and set(replies)==set(ids)):
+            failure.replies=replies;failure.address=address;failure.width=width
+            raise failure
         raise Stop(f'{failure}, 읽기 주소={address}, 요청 폭={width}B') from failure
     if policy is not None:
         for joint,mid in retryable:

@@ -18,10 +18,12 @@ from thermal_read import read_temperatures
 from thermal_diagnostics import ThermalDiagnostics
 from tracking_compensation import TrackingCompensator
 from thermal_window import ThermalWindow
+from gripper_safety import OpeningGuard,recover_overload
+from grasp_offset import GraspOffset
 from communication_retry import CommunicationPolicy,CommunicationHold,confirmed_hold,retryable_write_error
 from vla_monitor import Monitor
 
-from config_runtime import load as load_config
+from config_runtime import load as load_config,command_limits
 CONFIG = load_config()
 OVERLAP = CONFIG['overlap_actions']
 LOOKAHEAD = CONFIG['lookahead_factor']
@@ -219,6 +221,8 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     observed = [[] for _ in base.JOINTS]
     commands = [[] for _ in base.JOINTS]
     relief = GripRelief()
+    opening_guard = OpeningGuard()
+    grasp_offset = GraspOffset()
     compensation_bounds = getattr(io, 'bounds', None)
     if compensation_bounds is None and hasattr(io, 'normalize') and hasattr(io, 'arm_bounds'):
         low = io.normalize({j: io.arm_bounds[j][0] for j in base.JOINTS})
@@ -315,7 +319,11 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                 continue
             model = interpolate(slots[lower], slots[upper], phase - lower)
             target = model.copy()
+            future=[slots[k] for k in range(upper+1,min(buffer_end+1,upper+math.ceil(rate)+1)) if k in slots] if grasp_offset.enabled else []
+            target,lateral=grasp_offset.apply(target,sample['state'],tick_started,future,rate)
             target[-1] = relief.apply(target[-1], sample['state'][-1], phase / MODEL_HZ)
+            closing_relief=target[-1]!=model[-1]
+            target[-1] = opening_guard.apply(target[-1],sample['state'][-1],sample.get('loads',{}).get('gripper',0),tick_started)
             reference_plan = io.plan(target)
             compensated, compensation = compensator.apply(reference_plan['wire_normalized'],
                                                           sample['state'], tick_started)
@@ -359,7 +367,10 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                  'gap_s': gap, 'hz_target': hz, 'loop_work_s': loop_work,
                  'model_phase': phase, 'playback_s': phase / MODEL_HZ,
                  'feedback': sample, 'model': model,
-                 'grip_relief': target[-1] != model[-1], 'tracking_compensation': compensation, **plan})
+                 'grip_relief': closing_relief,
+                 'gripper_opening':dict(cap_clipped=model[-1]>opening_guard.cap,limited_points=target[-1],load_hold_points=opening_guard.fixed),
+                 'lateral_correction':lateral,
+                 'tracking_compensation': compensation, **plan})
             count += 1
             last_send = sent
             last_model, last_wire = model, plan['wire_normalized']
@@ -399,7 +410,9 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
             'inference_s': {'mean': statistics.mean(inferences) if inferences else None, 'samples': inferences},
             'chunk_wait_s': {'max': max(waits, default=0), 'sum': sum(waits)},
             'transmission_hz': 1/statistics.mean(periods) if periods else None, 'final_rate_target': hz,
-            'tracking': tracking, 'tracking_compensation': compensator.summary()}
+            'tracking': tracking, 'tracking_compensation': compensator.summary(),
+            'gripper_opening_protection': opening_guard.summary(),
+            'lateral_correction':grasp_offset.summary()}
 
 
 def device_class():
@@ -437,6 +450,10 @@ def device_class():
             self.torque_on_writes = 0
             self.startup_pending = True
             self.motion_ready = False
+            self.arm_bounds=command_limits(CONFIG)
+            self.gripper_overload_fault=None
+            self.gripper_overload_recovery=None
+            self.recovering_gripper=False
             self.out = out
             self.saved_first_frames = False
             self.dark_cameras = set()
@@ -448,7 +465,7 @@ def device_class():
         def check_start_mode(self):
             if self.gripper_only:
                 return super().check_start_mode()
-            self.raw_bounds = {j:tuple(CONFIG['limits'][j]) for j in base.JOINTS}
+            self.raw_bounds = command_limits(CONFIG)
             self.arm_bounds = self.raw_bounds.copy()
             self.permission.READS = {**self.permission.READS, 67: 2}
             self.read_modes()
@@ -487,6 +504,9 @@ def device_class():
                 address, width = 42, 2
             elif register == 'Torque_Enable' and all(type(value) is int and value == 1 for value in goals.values()):
                 address, width = 40, 1
+            elif (register=='Torque_Enable' and getattr(self,'recovering_gripper',False)
+                    and goals=={'gripper':0}):
+                address,width=40,1
             else:
                 raise base.Stop('허용되지 않은 시작 레지스터 또는 값')
             expected = live_start.exact_sync_packet(address, width, {self.ids[j]: value for j, value in goals.items()})
@@ -500,6 +520,9 @@ def device_class():
                         and port is permission.port and threading.get_ident() == permission.owner and bytes(packet) == expected):
                     sent = True
                     if address == 40:
+                        if set(goals.values())=={0}:
+                            self.torque_off_writes+=1
+                            return 'torque_off'
                         self.torque_on_writes += 1
                         return 'torque_on'
                     return 'goal'
@@ -510,7 +533,7 @@ def device_class():
                 self.bus.sync_write(register, goals, normalize=False, num_retry=0)
                 if not sent:
                     raise base.Stop('검증된 시작 패킷을 보내지 못했습니다')
-                self.log({'event': 'startup_write', 'register': register, 'values': goals})
+                self.log({'event': 'gripper_recovery_write' if getattr(self,'recovering_gripper',False) else 'startup_write', 'register': register, 'values': goals})
             except Exception as error:
                 retry=retryable_write_error(error,dict(register=register,goals=goals))
                 if retry is not None:raise retry from error
@@ -523,6 +546,23 @@ def device_class():
             requested=(address,width)
             source=requested
             try:data = super().read_block(*source)
+            except base.ServoStatusStop as error:
+                packet=error.packet
+                eligible=(error.mid==6 and error.status==32 and error.replies is not None
+                          and set(error.replies)==set(base.JOINTS) and source in ((56,15),(33,8),(67,2))
+                          and len(packet)==width+6 and packet[:2]==b'\xff\xff' and packet[2:5]==bytes((6,width+2,32))
+                          and sum(packet[2:])%256==255 and all(len(row)==width for row in error.replies.values()))
+                if not eligible:
+                    self.wire_fault=True
+                    raise
+                self.gripper_overload_fault=error
+                self.log(dict(event='gripper_overload_response',address=address,width=width,
+                              response_id=6,status=32,raw_hex=error.packet.hex(),policy_continues=False))
+                if not getattr(self,'recovering_gripper',False):raise
+                # This acknowledges a validated transport reply, not a healthy
+                # servo. The overload latch still forces HOLD and never resume.
+                self.communication.good(6,f'read:{address}:{width}')
+                data=error.replies
             except BaseException as error:
                 if isinstance(error,CommunicationHold):self.communication_fault=True
                 else:self.wire_fault=True
@@ -541,6 +581,7 @@ def device_class():
             if self.gripper_only:return self._send_gripper_once(raw)
             if set(raw)!=set(base.JOINTS) or any(type(raw[j]) is not int or not lo<=raw[j]<=hi for j,(lo,hi) in self.raw_bounds.items()):
                 raise base.Stop('SDK 전송 전 정수 목표 범위 오류')
+            if raw['gripper']>command_limits(CONFIG)['gripper'][1]:raise base.Stop('그리퍼 열림 상한 초과 전송 금지')
             self.expected={self.ids[j]:raw[j] for j in base.JOINTS};self.goal_attempted=True
             try:
                 with self.permission.goal_once():self.bus.sync_write('Goal_Position',raw,normalize=False,num_retry=0)
@@ -557,11 +598,44 @@ def device_class():
                 port=self.bus.port_handler,response=False)
 
         def _hold_policy(self):
+            if getattr(self,'gripper_overload_fault',None) is not None and not self.wire_fault:
+                if self.gripper_overload_recovery is None:
+                    self.gripper_overload_recovery=recover_overload(self)
+                    self.log(dict(event='gripper_overload_hold',**self.gripper_overload_recovery))
+                return self.gripper_overload_recovery
             if self.wire_fault:raise base.Stop('비재시도 오류로 위치 유지 쓰기 금지')
             return confirmed_hold(self,self.communication,('gripper',) if self.gripper_only else base.JOINTS)
 
+        def write_recovery_gripper(self,register,value):
+            if not getattr(self,'recovering_gripper',False) or register not in ('Goal_Position','Torque_Enable'):
+                raise base.Stop('그리퍼 복구 쓰기 범위 위반')
+            self.write_start(register,{'gripper':value})
+
+        def recovery_snapshot(self):
+            if not self.recovering_gripper or self.wire_fault or self.temperature_fault:
+                raise base.Stop('그리퍼 복구 중 통신/온도 상태 불가')
+            data=self.read_block(56,15)
+            status={j:row[9] for j,row in data.items()}
+            if any(v not in ((0,32) if j=='gripper' else (0,)) for j,v in status.items()):
+                raise base.Stop('그리퍼 복구 대상 외 상태 오류: '+repr(status))
+            if any(row[7]>=CONFIG['temperature']['stop_c'] for row in data.values()):
+                raise base.Stop('그리퍼 복구 읽기의 고온 응답; 토크 재활성화 금지')
+            raw={j:int.from_bytes(row[:2],'little') for j,row in data.items()}
+            live_start.validate_position({'present_raw':raw},command_limits(CONFIG))
+            modes=self.read_block(33,8);goals=self.read_block(67,2)
+            return dict(present_raw=raw,statuses=status,modes={j:row[0] for j,row in modes.items()},
+                        torque={j:row[7] for j,row in modes.items()},
+                        active_targets={j:int.from_bytes(row,'little') for j,row in goals.items()})
+
+        def latch_gripper_status(self,sample):
+            status=sample['statuses']
+            if status.get('gripper')==32 and all(status.get(j)==0 for j in base.JOINTS if j!='gripper'):
+                self.gripper_overload_fault=dict(source='validated_feedback_status',status=32)
+                self.log(dict(event='gripper_overload_status',status=32,policy_continues=False))
+
         def feedback(self):
             sample = super().feedback()
+            self.latch_gripper_status(sample)
             bulk_observed_s = time.monotonic()
             self.read_block(33,8)
             sample['temperatures_bulk'] = dict(sample['temperatures'])
@@ -1030,7 +1104,7 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
                 except Exception as exc:
                     result.update(park='RELEASE_NOT_COMPLETED', release_error=str(exc))
         except (KeyboardInterrupt, Exception) as exc:
-            if io is not None and io.goal_attempted:
+            if io is not None and (io.goal_attempted or getattr(io,'gripper_overload_fault',None) is not None):
                 result['hold']=base.try_hold(io)
             result['reason'] = 'Ctrl+C' if isinstance(exc, KeyboardInterrupt) else str(exc)
             if isinstance(exc, KeyboardInterrupt):
@@ -1062,6 +1136,10 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
                     result['policy_cleanup_exception'] = str(exc)
             result['gripper_relief_count']=stats['relief']
             result['startup_auto_processed']=stats['startup']
+            result.setdefault('gripper_opening_protection',dict(open_cap_points=CONFIG['gripper']['max_open_points'],policy_open_cap_clips=0,opening_load_freezes=0))
+            result['gripper_open_clip_count']=result['gripper_opening_protection']['policy_open_cap_clips']
+            result.setdefault('lateral_correction',dict(enabled=CONFIG['lateral_correction']['enabled'],configured_offset_deg=CONFIG['lateral_correction']['offset_deg'],applied_steps=0,peak_abs_deg=0.))
+            result['gripper_overload_recovery']=getattr(io,'gripper_overload_recovery',None)
             result.update(output=str(out), torque_register_writes=(io.torque_off_writes + io.torque_on_writes) if io is not None else 0,
                           configuration_register_writes=0)
             if monitor is not None:

@@ -12,7 +12,7 @@ from vla_monitor import Monitor
 from thermal_window import ThermalWindow
 
 CAMERAS = ('end_effector', 'ceiling_vertical', 'ceiling_oblique')
-from config_runtime import load
+from config_runtime import load,command_limits
 CONFIG=load()
 HOME_TICKS=tuple(round((v*4095/360+(lo+hi)/2) if i<5 else lo+v*(hi-lo)/100) for i,(v,(lo,hi)) in enumerate(zip(CONFIG['home']['state'],CONFIG['calibration_ranges'].values())))
 TICK_SIZE = (360 / 4095,) * 5 + (100 / (CONFIG['calibration_ranges']['gripper'][1]-CONFIG['calibration_ranges']['gripper'][0]),)
@@ -97,7 +97,7 @@ class SimulatedArm:
         self.arm_bounds['elbow_flex'] = (0, CONFIG['limits']['elbow_flex'][1])
         self.arm_bounds['gripper'] = (math.ceil(HOME_TICKS[-1] - home[-1] / TICK_SIZE[-1]),
                                       math.floor(HOME_TICKS[-1] + (100 - home[-1]) / TICK_SIZE[-1]))
-        self.arm_bounds={j:tuple(row) for j,row in CONFIG['limits'].items()}
+        self.arm_bounds=command_limits(CONFIG)
         self.raw_bounds=self.arm_bounds.copy()
         self.policy_active = False
 
@@ -258,6 +258,9 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
     metrics = dict(evidence, status=result['status'], steps=result['steps'], elapsed_s=result['elapsed_s'], reason=result['reason'],
                    hold=result['hold'], chunk_wait_s=result['chunk_wait_s'], transmission_hz=result['transmission_hz'],
                    camera=result['camera'], home_peak_goal_speed=io.home_motion_speed, cooling_samples=io.cooling_samples)
+    metrics['gripper_opening_protection']=result['gripper_opening_protection']
+    metrics['gripper_open_clip_count']=result['gripper_opening_protection']['policy_open_cap_clips']
+    metrics['lateral_correction']=result['lateral_correction']
     specific = {'partial_off': io.attempts['gripper'] == 2 and io.attempts['wrist_roll'] == 1,
                 'outside_home': 0 < io.home_motion_speed <= 10,
                 'cooling': io.cooling_samples >= 2, 'busy_port': evidence['port_waits'] >= 2,

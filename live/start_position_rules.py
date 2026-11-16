@@ -1,6 +1,6 @@
 """Pure position rules shared by the controller and the home web service."""
 import math
-from config_runtime import load, criteria
+from config_runtime import load, criteria, command_limits
 
 
 def start_criteria(limits=None):
@@ -25,7 +25,7 @@ def position_check(present_raw, targets=None, c=None):
     rows = {}
     for j in c['joint_names']:
         value = present_raw.get(j)
-        lo, hi = c['limits'][j]
+        lo, hi = command_limits(c)[j]
         valid = type(value) is int and 0 <= value <= 4095
         safe = valid and observed[j][0] <= value <= observed[j][1]
         error = value - targets[j] if valid else None
