@@ -76,3 +76,5 @@
 2026-11-16 HOME_CHECK_SPLIT DONE: 0.05도 수렴 제거, 실제위치 상한+3틱/명령범위 분리, 6틱·그리퍼2점·0.5초 공유 판정, 최대3회 홈 재시도와 축별 잔차 기록. Jetson105PASS, Windows104PASS/1SKIP, 원본 로그 재생 정책28스텝, 실제 모델·카메라180초 dry8,584목표·48.57Hz·대기0초·실물쓰기0. reports/20261116/HOME_CHECK_SPLIT/RESULT.md.
 
 2026-11-16 GRIPPER_CAP_LATERAL: 공통 열림 목표49.612점/SDK1223틱、부하0.3초 잠금、ID6상태32 제한복구 DONE.137회63,551프레임 최대값 분석、6,667목표재생초과0、Jetson124PASS/Windows123PASS1SKIP、실제모델·3카메라180초dry8,590목표·48.615Hz·대기0·실물쓰기0。좌우분석 DONE/실제보정 BLOCKED_PHYSICAL_MAPPING: pan잔차−0.188°、명목0.369mm/틱、영상부호/TCP미검증으로오프셋0°/비활성。기존로그·모델·보정해시보존。카메라정렬서비스·관제캐시복원、3사이트HTTP200、serial비점유。상세 reports/20261116/GRIPPER_CAP_LATERAL/RESULT.md/PROGRESS.md。새live NOT_RUN。
+
+2026-11-16 PAN_DIRECTION: 운영자 집기직전자세·손경로이탈·검은마커한변30mm확인. 현재위치시드1패킷으로토크ON(별도Torque_Enable쓰기0), pan단독+6/복귀2패킷. 방향양수=화면오른쪽, 실제+4틱/약1.51mm. 집기구간모델오프셋+6틱적용. 보정/PID/가속도0쓰기. 모의Jetson134PASS/Windows133PASS1SKIP, 실카메라·모델30초/최종8초dryPASS. 옛6667스텝재생346스텝/9창최대6틱보정, 구간밖0. 원래목표와실제복귀잔차구별/전체TCP미검증/실물집기미검증명시. 카메라·관제캐시복원. 현재집기자세토크ON유지, 홈복귀·VLA live미실행. 단계별현장대기포함19:05부터진행. 상세 reports/20261116/PAN_DIRECTION/RESULT.md.

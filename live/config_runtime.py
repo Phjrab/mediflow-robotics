@@ -27,8 +27,8 @@ def load():
             or not math.isfinite(lateral.get('offset_deg',float('nan')))
             or abs(lateral['offset_deg'])>lateral['max_abs_offset_deg']):
         raise ValueError('좌우 보정 승인 범위 불일치')
-    if lateral.get('enabled') and not (lateral.get('direction_verified') and lateral.get('geometry_verified')):
-        raise ValueError('실제 카메라 좌우 부호·TCP 검증 전 좌우 보정 활성화 금지')
+    if lateral.get('enabled') and not (lateral.get('direction_verified') and lateral.get('scale_verified')):
+        raise ValueError('실제 카메라 좌우 부호·마커 평면 이동량 검증 전 좌우 보정 활성화 금지')
     assert '5AE6085272' not in c['port']
     assert c['temperature']['stop_c'] == 55
     if c.get('communication') != dict(max_retries=3,consecutive_failures=5,no_response_s=.2,

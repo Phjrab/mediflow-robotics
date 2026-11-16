@@ -193,15 +193,11 @@ class CameraStats(logging.Handler):
 def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_corrections=False):
     clock = getattr(io, 'clock', time.monotonic)
     pause = getattr(io, 'pause', time.sleep)
-    started = clock()
-    deadline = started + duration
     rate = MODEL_HZ * speed
     slots = {}
     phase = 0.0
     sent_phase = None
     previous_tick = None
-    next_tick = started
-    next_preview = started
     last_send = None
     hz = CONTROL_HZ
     estimate = getattr(policy, 'warm_rtc_estimate', 1.5)
@@ -232,6 +228,11 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                                      bounds=compensation_bounds)
     pool_factory = getattr(io, 'pool_factory', concurrent.futures.ThreadPoolExecutor)
     pool = pool_factory(max_workers=1)
+    # File/hash/FK setup does not consume the operator's motion-loop budget.
+    started = clock()
+    deadline = started + duration
+    next_tick = started
+    next_preview = started
     try:
         while count < max_steps:
             pause(max(0, min(deadline, next_tick) - clock()))
