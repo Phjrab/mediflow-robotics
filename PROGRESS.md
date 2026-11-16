@@ -74,3 +74,5 @@
 2026-11-16 출발/재생 타이밍 수정 DONE.137회63,551프레임의주요관절출발중앙값1.93초·source93은1.97초; 임의대기/앞액션삭제없음. 버퍼정지중벽시계만료오류수정, 동일지연모의최대공백9.977→4.157초/묶음폐기1→0. Jetson95모의PASS/Windows94PASS1SKIP. 실제모델·카메라/가짜모터180.024초·8,595목표·48.66Hz·대기0·첫phase0 PASS. 실물쓰기/live0, 카메라미리보기복구·보정/모델해시유지. 발표2장완성·렌더확인. 상세 reports/20261116/START_TIMING/RESULT.md. 실제집기성공은미검증.
 
 2026-11-16 HOME_CHECK_SPLIT DONE: 0.05도 수렴 제거, 실제위치 상한+3틱/명령범위 분리, 6틱·그리퍼2점·0.5초 공유 판정, 최대3회 홈 재시도와 축별 잔차 기록. Jetson105PASS, Windows104PASS/1SKIP, 원본 로그 재생 정책28스텝, 실제 모델·카메라180초 dry8,584목표·48.57Hz·대기0초·실물쓰기0. reports/20261116/HOME_CHECK_SPLIT/RESULT.md.
+
+2026-11-16 GRIPPER_CAP_LATERAL: 공통 열림 목표49.612점/SDK1223틱、부하0.3초 잠금、ID6상태32 제한복구 DONE.137회63,551프레임 최대값 분석、6,667목표재생초과0、Jetson124PASS/Windows123PASS1SKIP、실제모델·3카메라180초dry8,590목표·48.615Hz·대기0·실물쓰기0。좌우분석 DONE/실제보정 BLOCKED_PHYSICAL_MAPPING: pan잔차−0.188°、명목0.369mm/틱、영상부호/TCP미검증으로오프셋0°/비활성。기존로그·모델·보정해시보존。카메라정렬서비스·관제캐시복원、3사이트HTTP200、serial비점유。상세 reports/20261116/GRIPPER_CAP_LATERAL/RESULT.md/PROGRESS.md。새live NOT_RUN。

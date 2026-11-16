@@ -17,6 +17,18 @@ def load():
     except ImportError:c=json.loads(text)
     else:c=yaml.safe_load(text)
     assert c['port'].startswith('/dev/serial/by-id/') and '5AE6058306' in c['port']
+    grip=c['gripper']
+    if (grip.get('positive_direction')!='open' or not 0<grip.get('max_open_points',100)<50
+            or grip.get('opening_load_sign')!=-1 or grip.get('opening_load_threshold_raw')!=400
+            or grip.get('opening_load_hold_s')!=.3 or grip.get('overload_recovery_attempts')!=3):
+        raise ValueError('승인된 그리퍼 개방 보호 기준 불일치')
+    lateral=c.get('lateral_correction',{})
+    if (lateral.get('mode')!='model_grasp_offset' or not 0<lateral.get('max_abs_offset_deg',0)<=1.5
+            or not math.isfinite(lateral.get('offset_deg',float('nan')))
+            or abs(lateral['offset_deg'])>lateral['max_abs_offset_deg']):
+        raise ValueError('좌우 보정 승인 범위 불일치')
+    if lateral.get('enabled') and not (lateral.get('direction_verified') and lateral.get('geometry_verified')):
+        raise ValueError('실제 카메라 좌우 부호·TCP 검증 전 좌우 보정 활성화 금지')
     assert '5AE6085272' not in c['port']
     assert c['temperature']['stop_c'] == 55
     if c.get('communication') != dict(max_retries=3,consecutive_failures=5,no_response_s=.2,
@@ -60,6 +72,14 @@ def load():
 def path(value):
     return Path(value).expanduser()
 
+
+def command_limits(c=None):
+    c=c or load();result={j:tuple(row) for j,row in c['limits'].items()}
+    lo,hi=c['calibration_ranges']['gripper']
+    cap=math.floor(lo+c['gripper']['max_open_points']*(hi-lo)/100)
+    result['gripper']=(result['gripper'][0],min(result['gripper'][1],cap))
+    return result
+
 def contract(c=None):
     c = c or load()
     return dict(schema_version=1, rename_source='checkpoint.policy_preprocessor.json',
@@ -68,8 +88,8 @@ def contract(c=None):
 
 def criteria(c=None):
     c = c or load()
-    return {j:dict(command_range_ticks=limit, observed_range_ticks=[limit[0],min(4095,limit[1]+3)],
+    return {j:dict(command_range_ticks=list(limit), observed_range_ticks=[c['limits'][j][0],min(4095,c['limits'][j][1]+3)],
                    home_target_ticks=c['home']['target_ticks'][j], home_tolerance_ticks=6 if j!='gripper' else None,
                    gripper_tolerance_points=2 if j=='gripper' else None, stable_s=.5,
                    start_action='실제 안전범위 확인 후 틱 수렴; 필요 시 저속 홈 이동 최대3회')
-            for j,limit in c['limits'].items()}
+            for j,limit in command_limits(c).items()}

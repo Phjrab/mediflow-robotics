@@ -147,6 +147,7 @@ class RetryTests(unittest.TestCase):
         with fake_imports(mods,object):
             cls=stream_live.device_class();io=cls.__new__(cls);calls=[]
             raw=dict.fromkeys(JOINTS,2000)
+            raw['gripper']=1000
             def write(register,values,**kwargs):
                 calls.append((register,values.copy()))
                 if len(calls)==1:raise RetryableWireError('corrupt',{'communication':-7})

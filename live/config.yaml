@@ -152,9 +152,31 @@
   },
   "gripper": {
     "positive_direction": "open",
+    "max_open_points": 49.611995697021484,
+    "opening_load_sign": -1,
+    "opening_load_threshold_raw": 400,
+    "opening_load_hold_s": 0.3,
+    "overload_recovery_attempts": 3,
+    "cap_evidence": "137회 state최대50.611995697-1점; action최대67.075035095. GRIPPER_CAP_LATERAL/training_gripper.json",
     "relief_points": 4,
     "blocked_gap_points": 5,
     "blocked_playback_s": 0.5
+  },
+  "lateral_correction": {
+    "mode": "model_grasp_offset",
+    "enabled": false,
+    "direction_verified": false,
+    "geometry_verified": false,
+    "offset_deg": 0.0,
+    "max_abs_offset_deg": 1.5,
+    "lookahead_wall_s": 1.0,
+    "after_close_wall_s": 0.5,
+    "ramp_s": 0.2,
+    "height_range_mm": [115.7, 147.9],
+    "tcp_offset_mm": [-4.748354423376675, -12.03374105992054, -124.53173724769001],
+    "urdf": "~/so101_vla/live/assets/so101_new_calib.urdf",
+    "urdf_sha256": "443d38d756e01bac7d3455b24430047ddc6427105e0d3454b2003116f5f67236",
+    "disabled_reason": "손목 카메라 좌우-관절 부호와 실제 TCP 변환 미검증; 현재 로그만으로 모델/서보 원인 단정 금지"
   },
   "task": "Put medicine bottle A into the blue basket",
   "cameras": {

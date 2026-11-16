@@ -3,7 +3,7 @@ from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 import json
 import time
 from pathlib import Path
-from config_runtime import load,criteria
+from config_runtime import load,criteria,command_limits
 from start_position_rules import assess_history
 
 
@@ -29,7 +29,8 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == '/thermal':
             payload = thermal_snapshot()
         elif self.path in ('/', '/config'):
-            c=load();payload={k:c[k] for k in ['joint_names','home','limits','calibration_ranges','temperature','position_checks']}
+            c=load();payload={k:c[k] for k in ['joint_names','home','limits','calibration_ranges','temperature','position_checks','gripper']}
+            payload['limits']=command_limits(c)
         else:
             self.send_error(404);return
         data=json.dumps(payload,ensure_ascii=False,allow_nan=False).encode()
