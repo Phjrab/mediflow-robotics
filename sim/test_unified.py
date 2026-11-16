@@ -8,14 +8,15 @@ from startup_simulation import SimulatedArm,HOME_TICKS,SCENARIOS
 class UnifiedTests(unittest.TestCase):
     def test_startup_recovery_and_no_jump(self):
         c=load()
-        for case in ['all_off','partial_off','elbow_plus_1','elbow_plus_5','elbow_plus_20','wrist_plus10','wrist_minus10']:
+        for case in ['all_off','partial_off','elbow_plus_1','wrist_plus10','wrist_minus10']:
             with self.subTest(case=case):
                 io=SimulatedArm(c['home']['state'],{},lambda r:None,case)
                 io.connect();events=[]
                 live_start.prepare(io,c['home']['state'],events.append)
                 self.assertTrue(all(io.torque.values()))
-                for joint,(lo,hi) in c['limits'].items():
-                    self.assertTrue(lo<=io.target[joint]<=hi)
+                for register,values in io.start_writes:
+                    if register=='Goal_Position':
+                        for joint,value in values.items():self.assertTrue(c['limits'][joint][0]<=value<=c['limits'][joint][1])
                 self.assertLessEqual(io.home_motion_speed,10.1)
                 self.assertTrue(all(reg in ('Goal_Position','Torque_Enable') for reg,_ in io.start_writes))
                 for r in events:

@@ -74,6 +74,7 @@ class SimulatedArm:
         self.home_motion_speed = 0.
         self.previous_goal_at = None
         self.gripper_blocked = False
+        self.frame_requests = 0
         if real_time:
             self.clock, self.pause = time.monotonic, time.sleep
         else:
@@ -145,6 +146,7 @@ class SimulatedArm:
         if self.case=='usb_disconnect' and self.packet_count>=20:raise OSError('팔로워 USB 끊김')
         sample = self.feedback()
         base.feedback_gate(sample)
+        live_start.validate_position(sample,self.arm_bounds)
         return sample
 
     start_snapshot = checked
@@ -164,7 +166,8 @@ class SimulatedArm:
                 self.torque[j] = 1
 
     def fresh_frames(self):
-        if self.case == 'intermittent_camera' and self.clock() % 1 < .15:
+        self.frame_requests += 1
+        if self.case == 'intermittent_camera' and self.frame_requests % 3 == 1:
             self.cameras_stats.failures['ceiling_oblique'] += 1
             return None
         for name in CAMERAS:
@@ -242,7 +245,12 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
             grip_target = 30. if grip_chunks == 1 else 0.
             return [row[:-1] + [grip_target] for row in actions], seconds
         policy = closing_policy
-    result = start_policy_session(io, policy, home, log, duration, speed, monitor)
+    try:
+        result = start_policy_session(io, policy, home, log, duration, speed, monitor)
+    except base.Stop as exc:
+        if case not in ('elbow_plus_5','elbow_plus_20'):raise
+        return dict(case=case,passed='실제 위치 안전 범위 이탈' in str(exc) and not io.start_writes and io.packet_count==0,
+                    status='HOLD',steps=0,reason=str(exc),**evidence)
     expected_stop = {'ctrl_c': ('STOPPED', 'Ctrl+C'), 'overheat': ('HOLD', '모터 상태코드/온도 중단'), 'usb_disconnect':('HOLD','팔로워 USB 끊김')}.get(case)
     stopped = (expected_stop is not None and result['status'] == expected_stop[0]
                and (result['reason'] or '').startswith(expected_stop[1]))

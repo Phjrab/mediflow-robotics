@@ -48,6 +48,12 @@ def load():
     if c['joint_names']!=expected or c['home']['joint_names']!=expected:raise ValueError('관절 순서 불일치')
     if not all(math.isfinite(v) for v in c['home']['state']) or not 0<=c['home']['state'][5]<=100:raise ValueError('홈 수치 형식 오류')
     if any(not 0<=lo<hi<=4095 for lo,hi in c['limits'].values()):raise ValueError('명령 가동범위 오류')
+    if c.get('position_checks') != dict(observed_upper_margin_ticks=3,home_tolerance_ticks=6,
+            gripper_tolerance_points=2.,stable_s=.5,max_sample_gap_s=.35,settle_timeout_s=3.,home_attempts=3):
+        raise ValueError('승인된 실제 위치·틱 수렴 기준 불일치')
+    targets=c['home'].get('target_ticks',{})
+    if set(targets)!=set(expected) or any(type(targets[j]) is not int or not c['limits'][j][0]<=targets[j]<=c['limits'][j][1] for j in expected):
+        raise ValueError('공통 홈 목표 틱 오류')
     _cached,_stamp=c,stamp
     return c
 
@@ -62,5 +68,8 @@ def contract(c=None):
 
 def criteria(c=None):
     c = c or load()
-    return {j:dict(command_range_ticks=limit, start_action='현재 목표 일치 후 범위 안쪽·홈으로 저속 이동',
-                   home_tolerance=c['home']['tolerance_deg']) for j,limit in c['limits'].items()}
+    return {j:dict(command_range_ticks=limit, observed_range_ticks=[limit[0],min(4095,limit[1]+3)],
+                   home_target_ticks=c['home']['target_ticks'][j], home_tolerance_ticks=6 if j!='gripper' else None,
+                   gripper_tolerance_points=2 if j=='gripper' else None, stable_s=.5,
+                   start_action='실제 안전범위 확인 후 틱 수렴; 필요 시 저속 홈 이동 최대3회')
+            for j,limit in c['limits'].items()}
