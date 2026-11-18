@@ -1,0 +1,27 @@
+{
+  "cached_action_max_delta": 0.0,
+  "cpu": {
+    "scope": "PROCESS_ONLY",
+    "torch_before": 6,
+    "opencv_before": 6,
+    "torch_after": 1,
+    "opencv_after": 1
+  },
+  "latency": {
+    "legacy": {
+      "mean": 1.3429377782005758,
+      "median": 1.3434539339978073,
+      "p95": 1.355135114001314,
+      "max": 1.355135114001314,
+      "count": 5
+    },
+    "bulk": {
+      "mean": 1.3266532900001038,
+      "median": 1.325501195002289,
+      "p95": 1.3320359799981816,
+      "max": 1.3320359799981816,
+      "count": 5
+    }
+  },
+  "status": "OFFLINE_COMPUTE_PASS"
+}

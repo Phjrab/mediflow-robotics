@@ -1,0 +1,22 @@
+{
+  "status": "HOLD",
+  "error": {
+    "kind": "Hold",
+    "reason": "추론 timeout/전체 시간 상한: 결과 폐기, 추가 목표 전송 금지"
+  },
+  "chunks": 0,
+  "monitor_count": 25,
+  "read_packets": 830,
+  "goal_packets": 0,
+  "blocked_packets": 0,
+  "register_writes": 0,
+  "cleanup_errors": [],
+  "pending_policy_threads": 0,
+  "live_permitted": false,
+  "receipt_sha256": "f465a899cb752360814240c5a4458b6d73de9cc3791e2f40e4aa000517fbd167",
+  "record_inventory": {
+    "SERIAL_STOP.cleared_20261105_185629.json": "16bf71d5f09ebb246a573a22cbad1faae57e5f50c0ae6ed945f2443c94797f5c"
+  },
+  "model_precision_changed": false,
+  "chunk_timeout_seconds": 1.6666666666666667
+}

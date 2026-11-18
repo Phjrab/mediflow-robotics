@@ -21,6 +21,7 @@ from thermal_window import ThermalWindow
 from gripper_safety import OpeningGuard,recover_overload
 from grasp_offset import GraspOffset
 from grasp_recorder import GraspRecorder
+from loop_timing import LoopTiming, terminal_lines
 from communication_retry import CommunicationPolicy,CommunicationHold,confirmed_hold,retryable_write_error
 from vla_monitor import Monitor
 
@@ -277,6 +278,8 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     ready = None
     recorder = None
     recording = None
+    timing = None
+    timing_summary = None
     try:
         incoming, seconds, prime_s = prime_policy(io, policy, pool, log, monitor)
         slots.update(enumerate(incoming))
@@ -285,14 +288,15 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
         last_origin = 0
         # Model loading, warmup, first images and first inference are all outside
         # the duration. Only the ready policy loop consumes this deadline.
+        if getattr(io, 'out', None) is not None:
+            recorder = GraspRecorder(io.out, base.JOINTS, clock=clock)
         started = clock()
         deadline = started + duration
         next_tick = next_preview = started
-        if getattr(io, 'out', None) is not None:
-            recorder = GraspRecorder(io.out, base.JOINTS, clock=clock)
         ready = dict(event='ready', unix=time.time(), monotonic_s=started,
                      duration_s=duration, speed=speed, first_inference_s=seconds,
                      first_observation_and_inference_s=prime_s)
+        timing = LoopTiming(started, speed, log, clock=clock)
         print('READY ' + json.dumps(ready, ensure_ascii=False), flush=True)
         log(ready)
         log(dict(event='inference', origin=0, seconds=seconds, overlap=0,
@@ -304,167 +308,184 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
             tick_started = clock()
             if tick_started >= deadline:
                 break
-            if monitor is not None and monitor.hold_requested():
-                raise base.Stop(VIEWER_STOP)
-            if allow_corrections:
-                correction = monitor.take_correction()
-                if correction is not None:
-                    break
-            next_tick = tick_started + 1 / hz
-            sample = io.checked()
-            if recorder is not None and recorder.due(clock()):
-                captured_at = clock()
-                recorder.capture(io.camera_frames() if hasattr(io,'camera_frames') else None,
-                                 sample, time_s=captured_at-started, monotonic=captured_at)
-            if monitor is not None and tick_started >= next_preview:
-                view = io.camera_frames() if hasattr(io,'camera_frames') else None
-                if view is not None:monitor.capture(view,sample['state'])
-                next_preview=tick_started+.2
-            for track, value in zip(observed, sample['state']):
-                track.append(value)
-            buffer_end = max(slots, default=-1)
-            if previous_tick is not None and sent_phase is not None and buffer_end > phase:
-                phase = min(phase + (tick_started - previous_tick) * rate, buffer_end)
-            previous_tick = tick_started
-            first_unused = math.floor(phase) + 1 if sent_phase is not None else 0
-            for index in tuple(slots):
-                if index < math.floor(phase):
-                    del slots[index]
-            if job is not None and job.done():
-                actions, seconds = job.result()
-                inferences.append(seconds)
-                estimate = max(seconds, estimate * 0.85)
-                incoming = base.chunk(actions)
-                expired, usable = chunk_alignment(origin, seconds, request_rate, first_unused, moving=request_moving)
-                skip = usable - origin
-                # An expired chunk cannot bridge the current playback cursor. Refresh
-                # from the held pose if the existing buffer runs out.
-                discarded = skip >= len(incoming) or usable > buffer_end + 1
-                overlap = 0 if discarded else merge(slots, incoming, origin, usable)
-                blend_delta = [max((abs(slots[k][i] - incoming[k-origin][i])
-                                    for k in range(usable, usable+overlap)), default=0) for i in range(6)]
-                log({'event': 'inference', 'origin': origin, 'seconds': seconds,
-                     'time_s': clock()-started, 'incoming_actions': incoming,
-                     'overlap': overlap, 'overlap_playback_s': overlap / MODEL_HZ,
-                     'overlap_wall_s': overlap / rate, 'playback_hz': rate,
-                     'elapsed_speed_actions': seconds * rate, 'expired_actions': expired,
-                     'wall_time_expired_actions': math.floor(seconds * request_rate) if request_moving else 0,
-                     'alignment_basis': 'actually_consumed_playback_actions',
-                     'first_unused_at_delivery': first_unused,
-                     'skipped_actions': skip, 'discarded': discarded,
-                     'blend_max_delta': blend_delta})
-                if seconds * rate * 1.1 > 50:
-                    rate = min(rate, 50 / (seconds * 1.1))
-                    log({'event':'playback_rate_reduced','requested_speed':speed,'actual_playback_hz':rate})
-                job = None
-            if job is not None and tick_started - requested > 9:
-                raise base.Stop('정책 추론 응답 시간 초과')
-            buffer_end = max(slots, default=-1)
-            remaining = max(0, buffer_end - first_unused + 1)
-            if (job is None and infer_due(phase, buffer_end, rate, estimate)
-                    and (remaining == 0 or first_unused > last_origin)):
-                frames = io.fresh_frames()
-                if frames is not None:
-                    missing_since = None
-                    requested = clock()
-                    origin = first_unused
-                    last_origin = origin
-                    request_moving = sent_phase is not None and buffer_end > phase
-                    request_rate = rate
-                    delay = min(remaining, math.ceil(rate * estimate)) if request_moving else 0
-                    log(dict(event='inference_requested', time_s=requested-started,
-                             origin=origin, buffer_end=buffer_end, phase=phase,
-                             remaining_actions=remaining, remaining_wall_s=remaining/rate,
-                             estimated_inference_s=estimate, playback_hz=rate))
-                    job = pool.submit(policy, frames, sample['state'], origin, delay)
-                    if monitor is not None:
-                        monitor.capture(frames, sample['state'])
-                elif missing_since is None:
-                    missing_since = tick_started
-                elif tick_started - missing_since > 8:
-                    raise base.Stop('사용 가능한 카메라 영상 없음: 프레임 지연 또는 너무 어두운 영상')
-            lower, upper = math.floor(phase), math.ceil(phase)
-            if lower not in slots or upper not in slots or (phase == sent_phase and phase >= buffer_end):
-                if last_send is not None and underrun is None:
-                    underrun = tick_started
-                if monitor is not None:
-                    monitor.status('predicting' if job is not None else 'observing', step=count,
-                                   sample=sample, model=last_model, sent=last_wire,
-                                   inference_seconds=inferences[-1] if inferences else None)
-                continue
-            model = interpolate(slots[lower], slots[upper], phase - lower)
-            target = model.copy()
-            future=[slots[k] for k in range(upper+1,min(buffer_end+1,upper+math.ceil(rate)+1)) if k in slots] if grasp_offset.enabled else []
-            target,lateral=grasp_offset.apply(target,sample['state'],tick_started,future,rate)
-            target[-1] = relief.apply(target[-1], sample['state'][-1], phase / MODEL_HZ)
-            closing_relief=target[-1]!=model[-1]
-            target[-1] = opening_guard.apply(target[-1],sample['state'][-1],sample.get('loads',{}).get('gripper',0),tick_started)
-            reference_plan = io.plan(target)
-            compensated, compensation = compensator.apply(reference_plan['wire_normalized'],
-                                                          sample['state'], tick_started)
-            # Preserve the original SDK encoding on axes without a correction;
-            # normalizing and encoding the same integer again can lose one tick.
-            compensated = [original if offset == 0 else corrected for original, offset, corrected in
-                           zip(target, compensation['offset_deg'], compensated)]
-            plan = io.plan(compensated)
-            plan['clipped_joints'] = sorted(set(plan.get('clipped_joints', ())) |
-                                            set(reference_plan.get('clipped_joints', ())))
-            compensation['uncompensated_raw'] = reference_plan['wire_raw']
-            compensation['wire_offset_deg'] = [a-b for a, b in
-                                               zip(plan['wire_normalized'], reference_plan['wire_normalized'])]
-            prepared = clock()
-            if last_send is not None:
-                pause(max(0, min(deadline, last_send + 1 / hz) - prepared))
-            send_started = clock()
-            if send_started >= deadline:
-                break
-            if monitor is not None and monitor.hold_requested():
-                raise base.Stop(VIEWER_STOP)
-            if allow_corrections:
-                correction = monitor.take_correction()
-                if correction is not None:
-                    break
-            # Repeat a quantized target when the interpolated motion is smaller
-            # than one motor tick. Model speed must not lower the packet cadence.
-            io.send(plan['wire_raw'])
-            sent = clock()
-            sent_phase = phase
-            loop_work = prepared - tick_started + sent - send_started
-            gap = None if last_send is None else sent - last_send
-            if gap is not None and underrun is None:
-                periods.append(gap)
-            if underrun is not None:
-                waits.append(max(0, sent - underrun))
-                underrun = None
-            for track, value in zip(commands, plan['wire_normalized']):
-                track.append(value)
-            goal_record = {'event': 'goal_transmitted', 'step': count + 1, 'time_s': sent-started,
-                 'gap_s': gap, 'hz_target': hz, 'loop_work_s': loop_work,
-                 'model_phase': phase, 'playback_s': phase / MODEL_HZ,
-                 'feedback': sample, 'model': model,
-                 'grip_relief': closing_relief,
-                 'gripper_opening':dict(cap_clipped=model[-1]>opening_guard.cap,limited_points=target[-1],load_hold_points=opening_guard.fixed),
-                 'lateral_correction':lateral,
-                 'tracking_compensation': compensation, **plan}
-            log(goal_record)
-            if recorder is not None:
-                event = recorder.goal(plan['wire_normalized'][-1], goal_record,
-                                      time_s=sent-started, monotonic=sent)
-                if event is not None:
-                    log(dict(event='grasp_event', **event))
-            count += 1
-            last_send = sent
-            last_model, last_wire = model, plan['wire_normalized']
-            if monitor is not None:
-                monitor.status('moving', step=count, sample=sample, model=last_model, sent=last_wire,
-                               inference_seconds=inferences[-1] if inferences else None)
-            if hz == CONTROL_HZ and loop_work > 0.016:
-                hz = 50
+            tick = timing.begin(tick_started, sent_phase)
+            tick_failed = True
+            try:
+                if monitor is not None and monitor.hold_requested():
+                    raise base.Stop(VIEWER_STOP)
+                if allow_corrections:
+                    correction = monitor.take_correction()
+                    if correction is not None:
+                        tick_failed = False
+                        break
                 next_tick = tick_started + 1 / hz
-                log({'event': 'cadence_fallback', 'loop_work_s': loop_work, 'hz_target': hz})
+                sample = tick.call('serial_read', io.checked)
+                if recorder is not None and recorder.due(clock()):
+                    captured_at = clock()
+                    tick.call('recorder_enqueue', recorder.capture,
+                                 tick.call('camera', io.camera_frames) if hasattr(io,'camera_frames') else None,
+                                     sample, time_s=captured_at-started, monotonic=captured_at)
+                if monitor is not None and tick_started >= next_preview:
+                    view = tick.call('camera', io.camera_frames) if hasattr(io,'camera_frames') else None
+                    if view is not None:tick.call('preview_enqueue', monitor.capture, view, sample['state'])
+                    next_preview=tick_started+.2
+                for track, value in zip(observed, sample['state']):
+                    track.append(value)
+                buffer_end = max(slots, default=-1)
+                if previous_tick is not None and sent_phase is not None and buffer_end > phase:
+                    phase = min(phase + (tick_started - previous_tick) * rate, buffer_end)
+                previous_tick = tick_started
+                first_unused = math.floor(phase) + 1 if sent_phase is not None else 0
+                for index in tuple(slots):
+                    if index < math.floor(phase):
+                        del slots[index]
+                if job is not None and job.done():
+                    actions, seconds = tick.call('inference_blocking', job.result)
+                    tick.inference_ms = seconds*1000
+                    timing.inference(seconds)
+                    inferences.append(seconds)
+                    estimate = max(seconds, estimate * 0.85)
+                    incoming = base.chunk(actions)
+                    expired, usable = chunk_alignment(origin, seconds, request_rate, first_unused, moving=request_moving)
+                    skip = usable - origin
+                    # An expired chunk cannot bridge the current playback cursor. Refresh
+                    # from the held pose if the existing buffer runs out.
+                    discarded = skip >= len(incoming) or usable > buffer_end + 1
+                    overlap = 0 if discarded else merge(slots, incoming, origin, usable)
+                    blend_delta = [max((abs(slots[k][i] - incoming[k-origin][i])
+                                        for k in range(usable, usable+overlap)), default=0) for i in range(6)]
+                    log({'event': 'inference', 'origin': origin, 'seconds': seconds,
+                         'time_s': clock()-started, 'incoming_actions': incoming,
+                         'overlap': overlap, 'overlap_playback_s': overlap / MODEL_HZ,
+                         'overlap_wall_s': overlap / rate, 'playback_hz': rate,
+                         'elapsed_speed_actions': seconds * rate, 'expired_actions': expired,
+                         'wall_time_expired_actions': math.floor(seconds * request_rate) if request_moving else 0,
+                         'alignment_basis': 'actually_consumed_playback_actions',
+                         'first_unused_at_delivery': first_unused,
+                         'skipped_actions': skip, 'discarded': discarded,
+                         'blend_max_delta': blend_delta})
+                    if seconds * rate * 1.1 > 50:
+                        rate = min(rate, 50 / (seconds * 1.1))
+                        log({'event':'playback_rate_reduced','requested_speed':speed,'actual_playback_hz':rate})
+                    job = None
+                if job is not None and tick_started - requested > 9:
+                    raise base.Stop('정책 추론 응답 시간 초과')
+                buffer_end = max(slots, default=-1)
+                remaining = max(0, buffer_end - first_unused + 1)
+                if (job is None and infer_due(phase, buffer_end, rate, estimate)
+                        and (remaining == 0 or first_unused > last_origin)):
+                    frames = tick.call('camera', io.fresh_frames)
+                    if frames is not None:
+                        missing_since = None
+                        requested = clock()
+                        origin = first_unused
+                        last_origin = origin
+                        request_moving = sent_phase is not None and buffer_end > phase
+                        request_rate = rate
+                        delay = min(remaining, math.ceil(rate * estimate)) if request_moving else 0
+                        log(dict(event='inference_requested', time_s=requested-started,
+                                 origin=origin, buffer_end=buffer_end, phase=phase,
+                                 remaining_actions=remaining, remaining_wall_s=remaining/rate,
+                                 estimated_inference_s=estimate, playback_hz=rate))
+                        job = tick.call('inference_blocking', pool.submit, policy, frames, sample['state'], origin, delay)
+                        if monitor is not None:
+                            tick.call('preview_enqueue', monitor.capture, frames, sample['state'])
+                    elif missing_since is None:
+                        missing_since = tick_started
+                    elif tick_started - missing_since > 8:
+                        raise base.Stop('사용 가능한 카메라 영상 없음: 프레임 지연 또는 너무 어두운 영상')
+                lower, upper = math.floor(phase), math.ceil(phase)
+                if lower not in slots or upper not in slots or (phase == sent_phase and phase >= buffer_end):
+                    if last_send is not None and underrun is None:
+                        underrun = tick_started
+                    if monitor is not None:
+                        tick.call('preview_enqueue', monitor.status, 'predicting' if job is not None else 'observing', step=count,
+                                       sample=sample, model=last_model, sent=last_wire,
+                                       inference_seconds=inferences[-1] if inferences else None)
+                    tick.action_starved = True
+                    tick_failed = False
+                    continue
+                model = interpolate(slots[lower], slots[upper], phase - lower)
+                target = model.copy()
+                future=[slots[k] for k in range(upper+1,min(buffer_end+1,upper+math.ceil(rate)+1)) if k in slots] if grasp_offset.enabled else []
+                target,lateral=grasp_offset.apply(target,sample['state'],tick_started,future,rate)
+                target[-1] = relief.apply(target[-1], sample['state'][-1], phase / MODEL_HZ)
+                closing_relief=target[-1]!=model[-1]
+                target[-1] = opening_guard.apply(target[-1],sample['state'][-1],sample.get('loads',{}).get('gripper',0),tick_started)
+                reference_plan = io.plan(target)
+                compensated, compensation = compensator.apply(reference_plan['wire_normalized'],
+                                                              sample['state'], tick_started)
+                # Preserve the original SDK encoding on axes without a correction;
+                # normalizing and encoding the same integer again can lose one tick.
+                compensated = [original if offset == 0 else corrected for original, offset, corrected in
+                               zip(target, compensation['offset_deg'], compensated)]
+                plan = io.plan(compensated)
+                plan['clipped_joints'] = sorted(set(plan.get('clipped_joints', ())) |
+                                                set(reference_plan.get('clipped_joints', ())))
+                compensation['uncompensated_raw'] = reference_plan['wire_raw']
+                compensation['wire_offset_deg'] = [a-b for a, b in
+                                                   zip(plan['wire_normalized'], reference_plan['wire_normalized'])]
+                prepared = clock()
+                if last_send is not None:
+                    tick.call('cadence_wait', pause, max(0, min(deadline, last_send + 1 / hz) - prepared))
+                send_started = clock()
+                if send_started >= deadline:
+                    tick_failed = False
+                    break
+                if monitor is not None and monitor.hold_requested():
+                    raise base.Stop(VIEWER_STOP)
+                if allow_corrections:
+                    correction = monitor.take_correction()
+                    if correction is not None:
+                        tick_failed = False
+                        break
+                # Repeat a quantized target when the interpolated motion is smaller
+                # than one motor tick. Model speed must not lower the packet cadence.
+                tick.call('serial_write', io.send, plan['wire_raw'])
+                sent = clock()
+                sent_phase = phase
+                loop_work = prepared - tick_started + sent - send_started
+                gap = None if last_send is None else sent - last_send
+                if gap is not None and underrun is None:
+                    periods.append(gap)
+                if underrun is not None:
+                    waits.append(max(0, sent - underrun))
+                    underrun = None
+                for track, value in zip(commands, plan['wire_normalized']):
+                    track.append(value)
+                goal_record = {'event': 'goal_transmitted', 'step': count + 1, 'time_s': sent-started,
+                     'gap_s': gap, 'hz_target': hz, 'loop_work_s': loop_work,
+                     'model_phase': phase, 'playback_s': phase / MODEL_HZ,
+                     'feedback': sample, 'model': model,
+                     'grip_relief': closing_relief,
+                     'gripper_opening':dict(cap_clipped=model[-1]>opening_guard.cap,limited_points=target[-1],load_hold_points=opening_guard.fixed),
+                     'lateral_correction':lateral,
+                     'tracking_compensation': compensation, **plan}
+                log(goal_record)
+                if recorder is not None:
+                    event = tick.call('recorder_enqueue', recorder.goal, plan['wire_normalized'][-1], goal_record,
+                                          time_s=sent-started, monotonic=sent)
+                    if event is not None:
+                        log(dict(event='grasp_event', **event))
+                count += 1
+                last_send = sent
+                last_model, last_wire = model, plan['wire_normalized']
+                if monitor is not None:
+                    tick.call('preview_enqueue', monitor.status, 'moving', step=count, sample=sample, model=last_model, sent=last_wire,
+                                   inference_seconds=inferences[-1] if inferences else None)
+                if hz == CONTROL_HZ and loop_work > 0.016:
+                    hz = 50
+                    next_tick = tick_started + 1 / hz
+                    log({'event': 'cadence_fallback', 'loop_work_s': loop_work, 'hz_target': hz})
+                tick_failed = False
+            finally:
+                tick.inference_pending = job is not None
+                tick.camera_missing = missing_since is not None
+                tick.finish(phase=sent_phase, selected_phase=phase, failed=tick_failed)
     except (KeyboardInterrupt, Exception) as exc:
         reason = 'Ctrl+C' if isinstance(exc, KeyboardInterrupt) else str(exc)
     finally:
+        timing_ended = clock()
         if io.goal_attempted:
             hold = base.try_hold(io)
             if hasattr(io, 'confirm_thermal_stop'):
@@ -475,6 +496,9 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
             recording = recorder.close(reason=reason or 'run_end')
             print('집기 이벤트 ' + str(recording['event_count']) + '회 · 시각(READY 이후 초) ' +
                   ', '.join(f"{e['time_s']:.3f}" for e in recording['events']), flush=True)
+        if timing is not None:
+            timing_summary = timing.summary(timing_ended)
+            for line in terminal_lines(timing_summary): print(line, flush=True)
     if underrun is not None:
         waits.append(max(0, min(deadline, tick_started) - underrun))
     tracking = {}
@@ -490,6 +514,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
             'operator_request': correction,
             'ready': ready,
             'grasp_recording': recording,
+            'loop_timing': timing_summary,
             'steps': count, 'step_limit': max_steps, 'elapsed_s': loop_elapsed,
             'task_success': 'UNVERIFIED',
             'speed': speed, 'playback_hz': rate, 'playback_s': phase / MODEL_HZ,

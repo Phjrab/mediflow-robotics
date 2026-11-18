@@ -1,0 +1,191 @@
+{
+  "status": "CURRENT_POSE_HELD",
+  "home_movement": false,
+  "policy_motion": false,
+  "pan_probe": false,
+  "before": {
+    "present_raw": {
+      "shoulder_pan": 2186,
+      "shoulder_lift": 1300,
+      "elbow_flex": 2571,
+      "wrist_flex": 2540,
+      "wrist_roll": 1788,
+      "gripper": 1069
+    },
+    "loads": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "current_raw": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "temperatures": {
+      "shoulder_pan": 32,
+      "shoulder_lift": 33,
+      "elbow_flex": 32,
+      "wrist_flex": 32,
+      "wrist_roll": 33,
+      "gripper": 35
+    },
+    "voltage_raw": {
+      "shoulder_pan": 122,
+      "shoulder_lift": 121,
+      "elbow_flex": 122,
+      "wrist_flex": 122,
+      "wrist_roll": 122,
+      "gripper": 122
+    },
+    "modes": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "torque": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "statuses": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "active_targets": {
+      "shoulder_pan": 2186,
+      "shoulder_lift": 1300,
+      "elbow_flex": 2571,
+      "wrist_flex": 2540,
+      "wrist_roll": 1788,
+      "gripper": 1069
+    },
+    "state": [
+      7.428571428571429,
+      -57.53846153846154,
+      51.64835164835165,
+      40.395604395604394,
+      -6.725274725274725,
+      40.1468788249694
+    ],
+    "monotonic_s": 104202.490974148
+  },
+  "after": {
+    "present_raw": {
+      "shoulder_pan": 2186,
+      "shoulder_lift": 1300,
+      "elbow_flex": 2571,
+      "wrist_flex": 2540,
+      "wrist_roll": 1788,
+      "gripper": 1069
+    },
+    "loads": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "current_raw": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "temperatures": {
+      "shoulder_pan": 32,
+      "shoulder_lift": 33,
+      "elbow_flex": 32,
+      "wrist_flex": 32,
+      "wrist_roll": 33,
+      "gripper": 35
+    },
+    "voltage_raw": {
+      "shoulder_pan": 122,
+      "shoulder_lift": 121,
+      "elbow_flex": 122,
+      "wrist_flex": 122,
+      "wrist_roll": 122,
+      "gripper": 122
+    },
+    "modes": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "torque": {
+      "shoulder_pan": 1,
+      "shoulder_lift": 1,
+      "elbow_flex": 1,
+      "wrist_flex": 1,
+      "wrist_roll": 1,
+      "gripper": 1
+    },
+    "statuses": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "active_targets": {
+      "shoulder_pan": 2186,
+      "shoulder_lift": 1300,
+      "elbow_flex": 2571,
+      "wrist_flex": 2540,
+      "wrist_roll": 1788,
+      "gripper": 1069
+    },
+    "state": [
+      7.428571428571429,
+      -57.53846153846154,
+      51.64835164835165,
+      40.395604395604394,
+      -6.725274725274725,
+      40.1468788249694
+    ],
+    "monotonic_s": 104203.583339586
+  },
+  "max_post_arm_motion": {
+    "shoulder_pan": 0.0,
+    "shoulder_lift": 0.0,
+    "elbow_flex": 0.0,
+    "wrist_flex": 0.0,
+    "wrist_roll": 0.0,
+    "gripper": 0.0
+  },
+  "writes": [
+    {
+      "unix": 1794824116.7033868,
+      "packet_hex": "fffffe16832a02018a08021405030b0a04ec0905fc06062d043f",
+      "address": 42
+    }
+  ],
+  "port_closed": true,
+  "serial_owners_after": "",
+  "calibration_hash_after": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+  "output": "reports/20261116/PAN_DIRECTION/arm_current_1794824116626262428"
+}

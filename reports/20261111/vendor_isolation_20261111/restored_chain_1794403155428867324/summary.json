@@ -1,0 +1,147 @@
+{
+  "setup": "operator-confirmed original chain restored; DC ON; ID6-only READ40/63",
+  "source_sha256": "cb3b16272607b066253cbf1dbffebc29125712b3d0a11a7eb884b90831af1851",
+  "motor_register_writes": 0,
+  "phases": [
+    {
+      "hz": 30,
+      "exit_code": 0,
+      "temperatures": 301,
+      "min_c": 34,
+      "max_c": 45,
+      "torque_reads": [
+        0
+      ],
+      "cli": "serial speed 1000000\n{\"status\":\"COMPLETE\",\"reason\":\"\",\"samples\":302,\"peak_c\":45,\"read_packets\":302,\"blocked_packets\":0,\"motor_register_writes\":0,\"port_closed\":true}",
+      "log": "restored_30.jsonl",
+      "median_c": 34,
+      "above_median_8_c": 1,
+      "peak_neighbors": [
+        {
+          "monotonic_ns": 27740175378916,
+          "id": 6,
+          "address": 63,
+          "value": 34,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030022d4"
+        },
+        {
+          "monotonic_ns": 27740208671592,
+          "id": 6,
+          "address": 63,
+          "value": 45,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff0603002dc9"
+        },
+        {
+          "monotonic_ns": 27740242038158,
+          "id": 6,
+          "address": 63,
+          "value": 34,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030022d4"
+        }
+      ]
+    },
+    {
+      "hz": 180,
+      "exit_code": 0,
+      "temperatures": 1801,
+      "min_c": 34,
+      "max_c": 50,
+      "torque_reads": [
+        0
+      ],
+      "cli": "serial speed 1000000\n{\"status\":\"COMPLETE\",\"reason\":\"\",\"samples\":1802,\"peak_c\":50,\"read_packets\":1802,\"blocked_packets\":0,\"motor_register_writes\":0,\"port_closed\":true}",
+      "log": "restored_180.jsonl",
+      "median_c": 34,
+      "above_median_8_c": 1,
+      "peak_neighbors": [
+        {
+          "monotonic_ns": 27749905695624,
+          "id": 6,
+          "address": 63,
+          "value": 34,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030022d4"
+        },
+        {
+          "monotonic_ns": 27749911241102,
+          "id": 6,
+          "address": 63,
+          "value": 50,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030032c4"
+        },
+        {
+          "monotonic_ns": 27749916862166,
+          "id": 6,
+          "address": 63,
+          "value": 34,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030022d4"
+        }
+      ]
+    },
+    {
+      "hz": 360,
+      "exit_code": 0,
+      "temperatures": 3601,
+      "min_c": 33,
+      "max_c": 45,
+      "torque_reads": [
+        0
+      ],
+      "cli": "serial speed 1000000\n{\"status\":\"COMPLETE\",\"reason\":\"\",\"samples\":3602,\"peak_c\":45,\"read_packets\":3602,\"blocked_packets\":0,\"motor_register_writes\":0,\"port_closed\":true}",
+      "log": "restored_360.jsonl",
+      "median_c": 34,
+      "above_median_8_c": 2,
+      "peak_neighbors": [
+        {
+          "monotonic_ns": 27760686072040,
+          "id": 6,
+          "address": 63,
+          "value": 34,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030022d4"
+        },
+        {
+          "monotonic_ns": 27760688882172,
+          "id": 6,
+          "address": 63,
+          "value": 45,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff0603002dc9"
+        },
+        {
+          "monotonic_ns": 27760691640174,
+          "id": 6,
+          "address": 63,
+          "value": 34,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030022d4"
+        }
+      ]
+    }
+  ],
+  "port_free": true,
+  "output": "restored_chain_1794403155428867324"
+}

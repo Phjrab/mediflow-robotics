@@ -1,0 +1,705 @@
+{
+  "status": "FIRST_TRIAL_COMPLETE",
+  "mode": "live_from_hold",
+  "first_trial_only": true,
+  "task": "Put medicine bottle A into the blue basket",
+  "settings": {
+    "fps": 30.0,
+    "cap": 0.5,
+    "speed": 20.0,
+    "start_temperature": 50.0,
+    "stop_temperature": 55.0,
+    "first_jump": 10.0,
+    "load": 200.0,
+    "max_seconds": 5.0,
+    "max_steps": 10,
+    "frame_age": 0.25,
+    "camera_skew": 0.1
+  },
+  "output": "~/first_vla_from_hold_1794132963959272373",
+  "torque_register_writes": 0,
+  "evidence_files": {
+    ".cache/huggingface/lerobot/calibration/robots/so_follower/so-101.json": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+    "units_so101.json": "76a527b7702dee9a4dfb79d275d6f2bb4a937d3584860b5d2a51af8759561241",
+    "home_state_so101.json": "73ed963208beebe7080a681302350d35a20fc0cda412676dd547b7fc9f7d6074",
+    "v6_dry_rearm_worker_20261105_1793878117328/resolved_camera_config.json": "c9656776de83c11c6a7eb563f30763ad98af23b9d25435a8d90e65bf48573fe4",
+    "smolvla_model/pretrained_model/config.json": "dde0b224ce9655bc1774b26bf0721abb5a4ccea685c24cfd462355de6e545434",
+    "smolvla_model/pretrained_model/policy_preprocessor.json": "b841161e96458114d8ac58ab8baffb9ae8ef3189fcf41d94dd1a0f07d35e2cdf",
+    "smolvla_model/pretrained_model/policy_postprocessor.json": "f9dddc832597a49fef22a83d94f188776d1b8c8313f75d4f1c7344455fc7e4a3"
+  },
+  "camera_mapping": {
+    "observation.images.end_effector": "observation.images.camera1",
+    "observation.images.ceiling_vertical": "observation.images.camera2",
+    "observation.images.ceiling_oblique": "observation.images.camera3"
+  },
+  "hold_evidence": {
+    "hold_sha256": "4767b9cf28dce8ec3cbb7c0210d9ba8f0f73c74b18a00723bb6399c46f733183",
+    "hold_review_sha256": "742dc63e6ba15b9b8f23f6d16f512decc21126b04b0798901580abfed2310488",
+    "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "hold_only_receipt_is_not_live_permission": true,
+    "operator_live_review_required": true,
+    "reviewed_start_stop": {
+      "scope": "BOUNDED_CLIP_WARNING_TRIAL",
+      "result_sha256": "8268fd1008190afbe45d25e45aa1acbbac84257d29f08f230920be1d86f219d2",
+      "post_hold_stop_sha256": "c70c2909aacf31ce763b6a1b1fff0d072b42092af5a37c31c6156bdc95311ae7",
+      "prior_usage_sha256": "8c0028758824993cce426477e75302d89b5eee45bcd8d31cb753cfc0e7d4b7a5",
+      "max_raw_difference": 1,
+      "max_joint_degrees": 0.1,
+      "max_gripper_points": 0.1,
+      "fresh_operator_review_required": true,
+      "live_authorized": false,
+      "success_sha256": "4909135423bb0788c3f0da7ac329f892a92f582911a7a7b85fcd8a45b247936c",
+      "goal_writes_allowed": true,
+      "expected_last_goal": [
+        -5.763855934143066,
+        -98.74175824175825,
+        96.92307692307692,
+        43.06043956043956,
+        -4.4605183601379395,
+        7.522072792053223
+      ],
+      "encoder_margin_for_new_goals": true,
+      "tracking_allowance_one_count": true,
+      "clip_ratio_is_warning": true
+    }
+  },
+  "inspection": {
+    "status": "ARM_INSPECTION_READ_ONLY",
+    "snapshot": {
+      "torque": {
+        "shoulder_pan": 1,
+        "shoulder_lift": 1,
+        "elbow_flex": 1,
+        "wrist_flex": 1,
+        "wrist_roll": 1,
+        "gripper": 1
+      },
+      "modes": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "temperatures": {
+        "shoulder_pan": 30,
+        "shoulder_lift": 32,
+        "elbow_flex": 30,
+        "wrist_flex": 31,
+        "wrist_roll": 30,
+        "gripper": 34
+      },
+      "loads": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 32,
+        "elbow_flex": -28,
+        "wrist_flex": 32,
+        "wrist_roll": 0,
+        "gripper": 24
+      },
+      "statuses": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "state": [
+        -5.846153846153846,
+        -98.32967032967034,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.649938800489596
+      ],
+      "moving": false
+    },
+    "present_raw": {
+      "shoulder_pan": 2035,
+      "shoulder_lift": 836,
+      "elbow_flex": 3082,
+      "wrist_flex": 2575,
+      "wrist_roll": 1812,
+      "gripper": 538
+    },
+    "goal_raw": {
+      "shoulder_pan": 2035,
+      "shoulder_lift": 831,
+      "elbow_flex": 3086,
+      "wrist_flex": 2570,
+      "wrist_roll": 1813,
+      "gripper": 535
+    },
+    "goal_state": [
+      -5.846153846153846,
+      -98.76923076923077,
+      96.92307692307692,
+      43.032967032967036,
+      -4.527472527472527,
+      7.466340269277846
+    ],
+    "raw_delta": {
+      "shoulder_pan": 0,
+      "shoulder_lift": -5,
+      "elbow_flex": 4,
+      "wrist_flex": -5,
+      "wrist_roll": 1,
+      "gripper": -3
+    },
+    "goal_exact_match": false,
+    "target_feedback_raw": {
+      "shoulder_pan": 2035,
+      "shoulder_lift": 831,
+      "elbow_flex": 3086,
+      "wrist_flex": 2570,
+      "wrist_roll": 1813,
+      "gripper": 535
+    },
+    "target_feedback_state": [
+      -5.846153846153846,
+      -98.76923076923077,
+      96.92307692307692,
+      43.032967032967036,
+      -4.527472527472527,
+      7.466340269277846
+    ],
+    "active_target_exact_match": false,
+    "joint_bounds": [
+      [
+        -118.37362637362638,
+        118.37362637362638
+      ],
+      [
+        -101.84615384615384,
+        101.84615384615384
+      ],
+      [
+        -97.01098901098901,
+        97.01098901098901
+      ],
+      [
+        -100.61538461538461,
+        100.61538461538461
+      ],
+      [
+        -156.35164835164835,
+        156.35164835164835
+      ],
+      [
+        0.0,
+        100.0
+      ]
+    ],
+    "bounds_contain_current_and_active_target": true,
+    "start_agreement": {
+      "scope": "START_POSITION_AGREEMENT_ONLY",
+      "current_raw_exact": false,
+      "start_check_passed": false,
+      "max_raw_difference": 1,
+      "max_normalized_difference": 0.1,
+      "hardware_access": false,
+      "live_authorized": false,
+      "rows": [
+        {
+          "joint": "shoulder_pan",
+          "present_raw": 2035,
+          "target_raw": 2035,
+          "delta_raw": 0,
+          "delta": 0.0,
+          "unit": "degree",
+          "exact": true,
+          "check_passed": true,
+          "reasons": []
+        },
+        {
+          "joint": "shoulder_lift",
+          "present_raw": 836,
+          "target_raw": 831,
+          "delta_raw": -5,
+          "delta": -0.439560439560438,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        },
+        {
+          "joint": "elbow_flex",
+          "present_raw": 3082,
+          "target_raw": 3086,
+          "delta_raw": 4,
+          "delta": 0.3516483516483504,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        },
+        {
+          "joint": "wrist_flex",
+          "present_raw": 2575,
+          "target_raw": 2570,
+          "delta_raw": -5,
+          "delta": -0.439560439560438,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        },
+        {
+          "joint": "wrist_roll",
+          "present_raw": 1812,
+          "target_raw": 1813,
+          "delta_raw": 1,
+          "delta": 0.0879120879120876,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": true,
+          "reasons": []
+        },
+        {
+          "joint": "gripper",
+          "present_raw": 538,
+          "target_raw": 535,
+          "delta_raw": -3,
+          "delta": -0.18359853121175007,
+          "unit": "percent_0_100",
+          "exact": false,
+          "check_passed": false,
+          "reasons": [
+            "RAW_DIFFERENCE_GT_ONE",
+            "NORMALIZED_DIFFERENCE_GT_POINT_ONE"
+          ]
+        }
+      ]
+    },
+    "repeat_continuity": {
+      "scope": "PREVIOUS_SUCCESS_GOAL_CONTINUITY",
+      "passed": true,
+      "rows": [
+        {
+          "joint_index": 0,
+          "active_expected_delta": -0.0822979120107794,
+          "active_current_delta": 0.0,
+          "quantum": 0.08791208791208849,
+          "tracking_limit": 0.5879120879120885,
+          "passed": true
+        },
+        {
+          "joint_index": 1,
+          "active_expected_delta": -0.0274725274725256,
+          "active_current_delta": -0.439560439560438,
+          "quantum": 0.0879120879120876,
+          "tracking_limit": 0.5879120879120876,
+          "passed": true
+        },
+        {
+          "joint_index": 2,
+          "active_expected_delta": 0.0,
+          "active_current_delta": 0.3516483516483504,
+          "quantum": 0.0879120879120876,
+          "tracking_limit": 0.5879120879120876,
+          "passed": true
+        },
+        {
+          "joint_index": 3,
+          "active_expected_delta": -0.0274725274725256,
+          "active_current_delta": -0.439560439560438,
+          "quantum": 0.0879120879120947,
+          "tracking_limit": 0.5879120879120947,
+          "passed": true
+        },
+        {
+          "joint_index": 4,
+          "active_expected_delta": -0.06695416733458792,
+          "active_current_delta": 0.0879120879120876,
+          "quantum": 0.0879120879120876,
+          "tracking_limit": 0.5879120879120876,
+          "passed": true
+        },
+        {
+          "joint_index": 5,
+          "active_expected_delta": -0.05573252277537666,
+          "active_current_delta": -0.18359853121175007,
+          "quantum": 0.06119951040391669,
+          "tracking_limit": 2.0611995104039167,
+          "passed": true
+        }
+      ]
+    },
+    "arm_ready": true,
+    "register_writes": 0
+  },
+  "cleanup_errors": [],
+  "ports_closed": {
+    "io": true,
+    "probe": true
+  },
+  "motor_goal_packets": 10,
+  "hardware_started": true,
+  "targets": [
+    {
+      "step": 0,
+      "raw_action": [
+        -5.9177632331848145,
+        -99.04159545898438,
+        97.05459594726562,
+        42.96639633178711,
+        -4.5722975730896,
+        7.847005844116211
+      ],
+      "target": [
+        -5.9177632331848145,
+        -98.74175824175825,
+        96.92307692307692,
+        43.06043956043956,
+        -4.5722975730896,
+        7.847005844116211
+      ],
+      "state": [
+        -5.846153846153846,
+        -98.32967032967034,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.649938800489596
+      ],
+      "clip": true,
+      "sent_at": 26177.340662203
+    },
+    {
+      "step": 1,
+      "raw_action": [
+        -5.768808841705322,
+        -99.44050598144531,
+        97.32135009765625,
+        43.215126037597656,
+        -4.551497459411621,
+        7.888883590698242
+      ],
+      "target": [
+        -5.768808841705322,
+        -98.74175824175825,
+        96.92307692307692,
+        43.215126037597656,
+        -4.551497459411621,
+        7.888883590698242
+      ],
+      "state": [
+        -5.846153846153846,
+        -98.32967032967034,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.649938800489596
+      ],
+      "clip": true,
+      "sent_at": 26177.374075935
+    },
+    {
+      "step": 2,
+      "raw_action": [
+        -5.85189151763916,
+        -98.99961853027344,
+        96.93670654296875,
+        43.125457763671875,
+        -4.656551837921143,
+        7.889620780944824
+      ],
+      "target": [
+        -5.85189151763916,
+        -98.74175824175825,
+        96.92307692307692,
+        43.125457763671875,
+        -4.656551837921143,
+        7.889620780944824
+      ],
+      "state": [
+        -5.846153846153846,
+        -98.32967032967034,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.649938800489596
+      ],
+      "clip": true,
+      "sent_at": 26177.407502788
+    },
+    {
+      "step": 3,
+      "raw_action": [
+        -5.750039577484131,
+        -99.22978210449219,
+        97.10796356201172,
+        42.89806365966797,
+        -4.61562442779541,
+        7.856738090515137
+      ],
+      "target": [
+        -5.750039577484131,
+        -98.74175824175825,
+        96.92307692307692,
+        43.06043956043956,
+        -4.61562442779541,
+        7.856738090515137
+      ],
+      "state": [
+        -5.846153846153846,
+        -98.32967032967034,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.649938800489596
+      ],
+      "clip": true,
+      "sent_at": 26177.440919432
+    },
+    {
+      "step": 4,
+      "raw_action": [
+        -5.95809268951416,
+        -98.78530883789062,
+        97.07414245605469,
+        43.147796630859375,
+        -4.6160173416137695,
+        8.124216079711914
+      ],
+      "target": [
+        -5.95809268951416,
+        -98.74175824175825,
+        96.92307692307692,
+        43.147796630859375,
+        -4.6160173416137695,
+        8.124216079711914
+      ],
+      "state": [
+        -5.846153846153846,
+        -98.32967032967034,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.649938800489596
+      ],
+      "clip": true,
+      "sent_at": 26177.474334188
+    },
+    {
+      "step": 5,
+      "raw_action": [
+        -5.847142219543457,
+        -99.16511535644531,
+        97.84991455078125,
+        42.81770706176758,
+        -4.710484504699707,
+        7.781660079956055
+      ],
+      "target": [
+        -5.847142219543457,
+        -98.74175824175825,
+        96.92307692307692,
+        43.06043956043956,
+        -4.710484504699707,
+        7.781660079956055
+      ],
+      "state": [
+        -5.846153846153846,
+        -98.32967032967034,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.77233782129743
+      ],
+      "clip": true,
+      "sent_at": 26177.557316183
+    },
+    {
+      "step": 6,
+      "raw_action": [
+        -5.926187515258789,
+        -99.23233795166016,
+        97.74024200439453,
+        43.02596664428711,
+        -4.655113220214844,
+        7.960348129272461
+      ],
+      "target": [
+        -5.926187515258789,
+        -98.74175824175825,
+        96.92307692307692,
+        43.06043956043956,
+        -4.655113220214844,
+        7.960348129272461
+      ],
+      "state": [
+        -5.846153846153846,
+        -98.32967032967034,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.77233782129743
+      ],
+      "clip": true,
+      "sent_at": 26177.590738139
+    },
+    {
+      "step": 7,
+      "raw_action": [
+        -5.852869033813477,
+        -99.19612121582031,
+        97.61675262451172,
+        43.107643127441406,
+        -4.611445426940918,
+        7.9920654296875
+      ],
+      "target": [
+        -5.852869033813477,
+        -98.74175824175825,
+        96.92307692307692,
+        43.107643127441406,
+        -4.611445426940918,
+        7.9920654296875
+      ],
+      "state": [
+        -5.846153846153846,
+        -98.32967032967034,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.77233782129743
+      ],
+      "clip": true,
+      "sent_at": 26177.624157951
+    },
+    {
+      "step": 8,
+      "raw_action": [
+        -5.933037281036377,
+        -99.59061431884766,
+        96.79782104492188,
+        43.540565490722656,
+        -4.671026229858398,
+        8.027535438537598
+      ],
+      "target": [
+        -5.933037281036377,
+        -98.74175824175825,
+        96.79782104492188,
+        43.540565490722656,
+        -4.671026229858398,
+        8.027535438537598
+      ],
+      "state": [
+        -5.846153846153846,
+        -98.32967032967034,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.77233782129743
+      ],
+      "clip": true,
+      "sent_at": 26177.657582595
+    },
+    {
+      "step": 9,
+      "raw_action": [
+        -5.755800724029541,
+        -99.35975646972656,
+        97.08308410644531,
+        43.18832015991211,
+        -4.667402267456055,
+        8.073694229125977
+      ],
+      "target": [
+        -5.755800724029541,
+        -98.74175824175825,
+        96.92307692307692,
+        43.18832015991211,
+        -4.667402267456055,
+        8.073694229125977
+      ],
+      "state": [
+        -5.846153846153846,
+        -98.32967032967034,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.77233782129743
+      ],
+      "clip": true,
+      "sent_at": 26177.69101748
+    }
+  ],
+  "events": [
+    "connect",
+    "prepared_no_write",
+    "clip_ratio_warning",
+    "max_steps_completed",
+    "stop_new_commands_no_write",
+    "close_no_torque_change"
+  ],
+  "policy_chunk_saved": true,
+  "last_target_context": {
+    "step": 9,
+    "raw_action": [
+      -5.755800724029541,
+      -99.35975646972656,
+      97.08308410644531,
+      43.18832015991211,
+      -4.667402267456055,
+      8.073694229125977
+    ],
+    "measured_state": [
+      -5.846153846153846,
+      -98.32967032967034,
+      96.57142857142857,
+      43.472527472527474,
+      -4.615384615384615,
+      7.77233782129743
+    ],
+    "previous_target": [
+      -5.933037281036377,
+      -98.74175824175825,
+      96.79782104492188,
+      43.540565490722656,
+      -4.671026229858398,
+      8.027535438537598
+    ],
+    "bounds": [
+      [
+        -118.37362637362638,
+        118.37362637362638
+      ],
+      [
+        -101.84615384615384,
+        101.84615384615384
+      ],
+      [
+        -97.01098901098901,
+        97.01098901098901
+      ],
+      [
+        -100.61538461538461,
+        100.61538461538461
+      ],
+      [
+        -156.35164835164835,
+        156.35164835164835
+      ],
+      [
+        0.0,
+        100.0
+      ]
+    ],
+    "dt": 0.03333333333284827
+  },
+  "original_stop_preserved": true
+}

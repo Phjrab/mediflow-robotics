@@ -51,11 +51,16 @@ class StrictIndividualReplies:
         valid = isinstance(packet, (list, tuple, bytes, bytearray)) and all(type(v) is int and 0 <= v <= 255 for v in packet)
         raw = bytes(packet) if valid else b""
         row.update(raw_hex=raw.hex()[:512], communication=communication, status=error,
+                   received_id=raw[2] if len(raw)>2 else None,
+                   checksum_valid=len(raw)>=6 and sum(raw[2:])%256==255,
                    observed_monotonic_s=time.monotonic())
         self.history.append(row)
         self.history = self.history[-32:]
         if self.retry is not None:
             self.retry.receive(motor,f'read:{address}:{width}',raw,communication)
+            if (communication in (0,-6,-7) and valid and len(raw)==width+6 and raw[:2]==b'\xff\xff'
+                    and raw[3]==width+2 and sum(raw[2:])%256==255 and raw[2]!=motor):
+                raise RetryableWireError('개별 READ ID 불일치; 패킷 폐기',dict(row,kind='id_mismatch'))
             if communication in (-6,-7):raise RetryableWireError('개별 READ 통신 실패',row)
         if type(communication) is not int or communication != 0:
             self.reject("개별 READ 통신 실패", row)

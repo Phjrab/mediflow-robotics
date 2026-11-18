@@ -1,0 +1,29 @@
+{
+  "simulation_note": "가상 추종 성공/정지 모델이며 실제 마찰·모터 설정을 측정한 결과가 아니다.",
+  "ideal_tracking": {
+    "simulated": true,
+    "follows": true,
+    "status": "COMPLETE",
+    "sent": 161,
+    "observed_elbow": 80.0
+  },
+  "stationary_tracking": {
+    "simulated": true,
+    "follows": false,
+    "status": "HOLD",
+    "reason": "큰 목표 점프",
+    "sent": 101,
+    "observed_elbow": 96.0,
+    "raw_goal": 85.9
+  },
+  "field": {
+    "current_elbow": 96.04395604395604,
+    "next_raw_elbow": 83.65117645263672,
+    "previous_raw_elbow": 86.87045288085938,
+    "raw_adjacent_delta": 3.2192764282226562,
+    "nominal_raw_speed_degrees_per_second": 96.57829284667969,
+    "actual_goal_speed_limit": 20,
+    "current_to_raw_gap": 12.392779591319325
+  },
+  "conclusion": "같은 정책 궤적도 실제 관절 추종 여부에 따라 완료 또는 현재값 차이 HOLD가 된다. 연속 예측값 차이와 현재 관절 대비 오차를 구분해야 한다."
+}

@@ -1,0 +1,165 @@
+{
+  "status": "HOLD",
+  "sent_count": 284,
+  "torque_register_writes": 0,
+  "clipped_steps": 164,
+  "clip_fraction": 0.5774647887323944,
+  "final_observation_is_before_last_command": true,
+  "ports_closed": {
+    "io": true,
+    "probe": true
+  },
+  "cleanup_errors": [],
+  "stop_reason": "큰 목표 점프",
+  "offending_joints": [
+    {
+      "joint": "elbow_flex",
+      "unit": "degree",
+      "raw": 83.65117645263672,
+      "current": 96.04395604395604,
+      "previous": 94.13186813186813,
+      "raw_current_difference": 12.392779591319325,
+      "raw_previous_difference": 10.480691679231413,
+      "threshold": 10
+    }
+  ],
+  "joints": [
+    {
+      "joint": "shoulder_pan",
+      "unit": "degree",
+      "observed_change": -1.7582417582417582,
+      "observed_span": 1.9340659340659343,
+      "requested_target_span": 2.648404836654663,
+      "raw_policy_span": 5.406644701957703,
+      "requested_minus_current_mean_abs": 0.23274282392039894,
+      "requested_minus_current_p95_abs": 0.5574704901202697,
+      "requested_minus_current_max_abs": 1.0512847306333484,
+      "raw_minus_current_max_abs": 4.059362355169359,
+      "clipped_steps": 7
+    },
+    {
+      "joint": "shoulder_lift",
+      "unit": "degree",
+      "observed_change": 0.7912087912088026,
+      "observed_span": 2.021978021978029,
+      "requested_target_span": 3.1819610595703125,
+      "raw_policy_span": 3.728546142578125,
+      "requested_minus_current_mean_abs": 0.3770244769404833,
+      "requested_minus_current_p95_abs": 0.872100226433717,
+      "requested_minus_current_max_abs": 1.4725274725080766,
+      "raw_minus_current_max_abs": 2.5593015230619045,
+      "clipped_steps": 70
+    },
+    {
+      "joint": "elbow_flex",
+      "unit": "degree",
+      "observed_change": -0.2637362637362628,
+      "observed_span": 0.5274725274725256,
+      "requested_target_span": 2.7912087912087884,
+      "raw_policy_span": 11.16650390625,
+      "requested_minus_current_mean_abs": 0.5648563927000069,
+      "requested_minus_current_p95_abs": 1.4589317559225539,
+      "requested_minus_current_max_abs": 1.9120879120879124,
+      "raw_minus_current_max_abs": 9.173503163096669,
+      "clipped_steps": 125
+    },
+    {
+      "joint": "wrist_flex",
+      "unit": "degree",
+      "observed_change": -0.1758241758241752,
+      "observed_span": 0.7032967032967079,
+      "requested_target_span": 2.7196877587651898,
+      "raw_policy_span": 7.610851287841797,
+      "requested_minus_current_mean_abs": 0.5333172987531939,
+      "requested_minus_current_p95_abs": 1.088292853386849,
+      "requested_minus_current_max_abs": 1.5136727972345057,
+      "raw_minus_current_max_abs": 6.273002666431466,
+      "clipped_steps": 18
+    },
+    {
+      "joint": "wrist_roll",
+      "unit": "degree",
+      "observed_change": 2.4615384615384612,
+      "observed_span": 2.813186813186813,
+      "requested_target_span": 3.250896692276001,
+      "raw_policy_span": 4.35403037071228,
+      "requested_minus_current_mean_abs": 0.20421209735947632,
+      "requested_minus_current_p95_abs": 0.4817159427391299,
+      "requested_minus_current_max_abs": 1.9120879120879124,
+      "raw_minus_current_max_abs": 2.5507935796465193,
+      "clipped_steps": 7
+    },
+    {
+      "joint": "gripper",
+      "unit": "percent_0_100",
+      "observed_change": 4.406364749082009,
+      "observed_span": 4.712362301101594,
+      "requested_target_span": 5.325726509094238,
+      "raw_policy_span": 5.325726509094238,
+      "requested_minus_current_mean_abs": 0.2970693502748878,
+      "requested_minus_current_p95_abs": 0.6708580950336617,
+      "requested_minus_current_max_abs": 1.374873300223193,
+      "raw_minus_current_max_abs": 1.374873300223193,
+      "clipped_steps": 0
+    }
+  ],
+  "chunks": [
+    {
+      "chunk": 0,
+      "status": "COMPLETE",
+      "sent_count": 50,
+      "inference_seconds": 1.5043666359997587,
+      "cumulative_elapsed_seconds": 3.8614752020002925,
+      "command_hz": 22.828547427287397
+    },
+    {
+      "chunk": 1,
+      "status": "COMPLETE",
+      "sent_count": 50,
+      "inference_seconds": 1.4910797039992758,
+      "cumulative_elapsed_seconds": 7.6855737719997705,
+      "command_hz": 22.821145561919813
+    },
+    {
+      "chunk": 2,
+      "status": "COMPLETE",
+      "sent_count": 50,
+      "inference_seconds": 1.4853714159980882,
+      "cumulative_elapsed_seconds": 11.490242326999578,
+      "command_hz": 22.923791190909252
+    },
+    {
+      "chunk": 3,
+      "status": "COMPLETE",
+      "sent_count": 50,
+      "inference_seconds": 1.501312214997597,
+      "cumulative_elapsed_seconds": 15.30752096499782,
+      "command_hz": 23.02895813515737
+    },
+    {
+      "chunk": 4,
+      "status": "COMPLETE",
+      "sent_count": 50,
+      "inference_seconds": 1.5367337850002514,
+      "cumulative_elapsed_seconds": 19.137428502999683,
+      "command_hz": 23.03066750334286
+    },
+    {
+      "chunk": 5,
+      "status": "HOLD",
+      "sent_count": 34,
+      "inference_seconds": 1.5001447920003557,
+      "cumulative_elapsed_seconds": 22.307040627998504,
+      "command_hz": 22.83475507015581
+    }
+  ],
+  "successful_placement": "UNVERIFIED",
+  "mechanical_obstruction": "UNVERIFIED",
+  "servo_deadband_or_gain": "UNVERIFIED",
+  "sdk_returned_action_recorded": false,
+  "note": "target은 SDK 호출 전 요청값이며 send_action 반환값은 기록되지 않았다.",
+  "source_sha256": {
+    "RESULT.json": "c76bc807958dd4a759c00d8ba94be0572b385bf6d7ab92294f1c54cdcf0b48f4",
+    "session_chunks.json": "10c6b0da58a1fe755d095da31ecf110e792a47e750206ccf724935ff8c73e69b"
+  }
+}

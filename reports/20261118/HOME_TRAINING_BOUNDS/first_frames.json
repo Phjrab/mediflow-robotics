@@ -1,0 +1,96 @@
+{
+  "episodes": 137,
+  "joints": {
+    "shoulder_pan": {
+      "unit": "degree",
+      "mean": -3.743322378527509,
+      "min": -9.09890079498291,
+      "max": 1.3626374006271362,
+      "avg_ticks": 2058.919708029197,
+      "min_ticks": 1998,
+      "max_ticks": 2117,
+      "home_ticks": 2058,
+      "allowed_before_physical_clamp": [
+        2035,
+        2081
+      ]
+    },
+    "shoulder_lift": {
+      "unit": "degree",
+      "mean": -97.75278612122919,
+      "min": -100.0,
+      "max": -86.37362670898438,
+      "avg_ticks": 842.5620437956204,
+      "min_ticks": 817,
+      "max_ticks": 972,
+      "home_ticks": 842,
+      "allowed_before_physical_clamp": [
+        819,
+        865
+      ]
+    },
+    "elbow_flex": {
+      "unit": "degree",
+      "mean": 96.552176371108,
+      "min": 92.96703338623047,
+      "max": 97.010986328125,
+      "avg_ticks": 3081.78102189781,
+      "min_ticks": 3041,
+      "max_ticks": 3087,
+      "home_ticks": 3081,
+      "allowed_before_physical_clamp": [
+        3058,
+        3092
+      ]
+    },
+    "wrist_flex": {
+      "unit": "degree",
+      "mean": 43.45712672880966,
+      "min": 35.20878982543945,
+      "max": 56.30769348144531,
+      "avg_ticks": 2574.824817518248,
+      "min_ticks": 2481,
+      "max_ticks": 2721,
+      "home_ticks": 2574,
+      "allowed_before_physical_clamp": [
+        2551,
+        2597
+      ]
+    },
+    "wrist_roll": {
+      "unit": "degree",
+      "mean": -2.252025343804029,
+      "min": -11.736263275146484,
+      "max": 2.681318759918213,
+      "avg_ticks": 1838.8832116788321,
+      "min_ticks": 1731,
+      "max_ticks": 1895,
+      "home_ticks": 1838,
+      "allowed_before_physical_clamp": [
+        1815,
+        1861
+      ]
+    },
+    "gripper": {
+      "unit": "point",
+      "mean": 4.275478211632611,
+      "min": 1.0403916835784912,
+      "max": 33.2313346862793,
+      "avg_ticks": 482.86131386861314,
+      "min_ticks": 430,
+      "max_ticks": 956,
+      "home_ticks": 482,
+      "allowed_before_physical_clamp": null
+    }
+  },
+  "mapping_sha256": "d6b2c82317ff8a1652f5dd6d3eb14e43899421257d19a3bf78caa0450927821a",
+  "source_parquet_sha256": {
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_red_20261102_201029/data/chunk-000/file-000.parquet": "f799e22af6a7b141be1457e935c8902886468fb64ef99250e371e97728361292",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_red_20261102_210433/data/chunk-000/file-000.parquet": "6fdf565a638655982b9e0a575e99a64ae2e95dd1d20539f74ae94d1c0507485a",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_green_20261102_201804/data/chunk-000/file-000.parquet": "81dc6ebe7cd48d1a715a55bf5e12615af74fff1fccb62816bf9f5cea00a67ac6",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261102_212958/data/chunk-000/file-000.parquet": "a55e42ca90c9a4cfd66604660c136a239a204f0c6cad52aa8e328b02fbfb31bd",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261103_193835/data/chunk-000/file-000.parquet": "3ca854deaa401f312c364a42c85a2dc5e6209f2f189b2b5c15b8e64fbc285b1e",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261103_193353/data/chunk-000/file-000.parquet": "22813bc35cc95a42bb3af8dc4ac49f9fdef13d288bb625199ff3146a3330b850"
+  },
+  "calibration_sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e"
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "run": "20261118_181230",
+    "observed_ticks": {
+      "shoulder_pan": 2056,
+      "shoulder_lift": 855,
+      "elbow_flex": 3086,
+      "wrist_flex": 2572,
+      "gripper": 487,
+      "wrist_roll": 1836
+    },
+    "recorded_stable_s": 0.5602588910005579,
+    "status": "RUN_COMPLETE",
+    "simulated_policy_steps": 28,
+    "home_goal_packets": 0,
+    "physical_motor_writes": 0
+  },
+  {
+    "run": "20261118_181437",
+    "observed_ticks": {
+      "shoulder_pan": 2056,
+      "shoulder_lift": 855,
+      "elbow_flex": 3086,
+      "wrist_flex": 2572,
+      "gripper": 486,
+      "wrist_roll": 1837
+    },
+    "recorded_stable_s": 0.5092947920002189,
+    "status": "RUN_COMPLETE",
+    "simulated_policy_steps": 28,
+    "home_goal_packets": 0,
+    "physical_motor_writes": 0
+  }
+]

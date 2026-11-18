@@ -1,0 +1,19 @@
+sample,color,phase,task,recorded_inference_seconds,latency_gate_pass,first_action_max_body_delta,clip_steps,first_clip_ratio_stop_step,controller_decision,reason,register_writes,state_updates
+red_e000_start,red,start,Put medicine bottle A into the red basket,1.9895381380010804,False,0.32764434814453125,29,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+red_e000_middle,red,middle,Put medicine bottle A into the red basket,1.984041691001039,False,4.3325653076171875,50,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+red_e002_start,red,start,Put medicine bottle A into the red basket,1.9729991319982219,False,2.2681121826171875,35,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+red_e002_middle,red,middle,Put medicine bottle A into the red basket,1.9982343900010164,False,7.367702484130859,50,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+red_e003_start,red,start,Put medicine bottle A into the red basket,1.9930256320003537,False,1.494598388671875,39,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+red_e003_middle,red,middle,Put medicine bottle A into the red basket,1.987101814000198,False,2.1830711364746094,50,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+green_e000_start,green,start,Put medicine bottle A into the green basket,2.023330636002356,False,1.5894851684570312,24,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+green_e000_middle,green,middle,Put medicine bottle A into the green basket,2.008515808000084,False,2.173431396484375,47,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+green_e001_start,green,start,Put medicine bottle A into the green basket,2.0126853690017015,False,1.5831222534179688,36,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+green_e001_middle,green,middle,Put medicine bottle A into the green basket,1.9987007099989569,False,2.269512176513672,50,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+green_e002_start,green,start,Put medicine bottle A into the green basket,1.9913162410011864,False,2.7020797729492188,35,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+green_e002_middle,green,middle,Put medicine bottle A into the green basket,1.9800963009984116,False,5.257781982421875,49,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+blue_e001_start,blue,start,Put medicine bottle A into the blue basket,1.98428509400037,False,1.44500732421875,31,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+blue_e001_middle,blue,middle,Put medicine bottle A into the blue basket,1.9898017330015136,False,8.288939476013184,50,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+blue_e002_start,blue,start,Put medicine bottle A into the blue basket,1.991066378999676,False,1.6205978393554688,38,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+blue_e002_middle,blue,middle,Put medicine bottle A into the blue basket,1.993446511998627,False,4.131738662719727,50,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+blue_e005_start,blue,start,Put medicine bottle A into the blue basket,1.9917692480012192,False,1.7101287841796875,32,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0
+blue_e005_middle,blue,middle,Put medicine bottle A into the blue basket,1.9810704430019541,False,3.008880615234375,46,19,HOLD_NO_WRITE,모델/단위/카메라/현장 LIVE 확인 미충족,0,0

@@ -1,0 +1,35 @@
+{
+  "red_green": {
+    "steps": 20000,
+    "training_completed": true,
+    "recorded_reload_pass": true,
+    "colors": [
+      "red",
+      "green"
+    ],
+    "elapsed_seconds": 16727.422,
+    "local_model_hash_verified": false
+  },
+  "three_color": {
+    "steps": 20000,
+    "training_completed": true,
+    "recorded_reload_pass": true,
+    "colors": [
+      "red",
+      "green",
+      "blue"
+    ],
+    "elapsed_seconds": 10307.89,
+    "local_model_hash_verified": false
+  },
+  "archive_contains_weights": false,
+  "included_runner": "mock-only; live/shadow blocked",
+  "three_color_data": {
+    "episodes": 137,
+    "frames": 63551,
+    "red": 48,
+    "green": 45,
+    "blue": 44
+  },
+  "verification_scope": "Attached evidence consistency only. No local policy inference or model hash verification."
+}

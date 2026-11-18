@@ -1,0 +1,150 @@
+{
+  "paired-selected-30": {
+    "axes": {
+      "5": {
+        "samples": 600,
+        "temperature_min_median_max": [
+          29,
+          29.0,
+          30
+        ],
+        "spikes_ge_median_plus8": 0,
+        "max_adjacent_delta": 1,
+        "voltage_min_max_v": [
+          12.1,
+          12.3
+        ]
+      },
+      "6": {
+        "samples": 600,
+        "temperature_min_median_max": [
+          31,
+          32.0,
+          36
+        ],
+        "spikes_ge_median_plus8": 0,
+        "max_adjacent_delta": 4,
+        "voltage_min_max_v": [
+          12.2,
+          12.3
+        ]
+      }
+    },
+    "final": [
+      {
+        "id": 5,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 5,
+        "address": 62,
+        "value": 29,
+        "voltage_raw": 123
+      },
+      {
+        "id": 6,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 6,
+        "address": 62,
+        "value": 32,
+        "voltage_raw": 122
+      }
+    ]
+  },
+  "paired-target-180": {
+    "axes": {
+      "6": {
+        "samples": 3600,
+        "temperature_min_median_max": [
+          31,
+          32.0,
+          34
+        ],
+        "spikes_ge_median_plus8": 0,
+        "max_adjacent_delta": 2,
+        "voltage_min_max_v": [
+          11.8,
+          12.3
+        ]
+      }
+    },
+    "final": [
+      {
+        "id": 5,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 5,
+        "address": 62,
+        "value": 29,
+        "voltage_raw": 123
+      },
+      {
+        "id": 6,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 6,
+        "address": 62,
+        "value": 32,
+        "voltage_raw": 123
+      }
+    ]
+  },
+  "bracket-target-60": {
+    "axes": {
+      "6": {
+        "samples": 1200,
+        "temperature_min_median_max": [
+          30,
+          32.0,
+          36
+        ],
+        "spikes_ge_median_plus8": 0,
+        "max_adjacent_delta": 4,
+        "voltage_min_max_v": [
+          11.7,
+          12.4
+        ]
+      }
+    },
+    "final": [
+      {
+        "id": 5,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 5,
+        "address": 62,
+        "value": 29,
+        "voltage_raw": 123
+      },
+      {
+        "id": 6,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 6,
+        "address": 62,
+        "value": 33,
+        "voltage_raw": 123
+      }
+    ]
+  },
+  "validated_reads": 8544,
+  "motor_register_writes": 0
+}

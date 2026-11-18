@@ -1,0 +1,121 @@
+{
+  "status": "HOLD",
+  "reason": "사용 가능한 카메라 영상 없음: 프레임 지연 또는 너무 어두운 영상",
+  "hold": {
+    "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+  },
+  "operator_request": null,
+  "steps": 0,
+  "step_limit": 10800,
+  "elapsed_s": 8.04646189500636,
+  "task_success": "UNVERIFIED",
+  "speed": 0.33,
+  "playback_hz": 9.9,
+  "playback_s": 0.0,
+  "gripper_peak_c": 34,
+  "peak_temperatures_c": {
+    "shoulder_pan": 34,
+    "shoulder_lift": 34,
+    "elbow_flex": 34,
+    "wrist_flex": 34,
+    "wrist_roll": 34,
+    "gripper": 34
+  },
+  "camera": {
+    "end_effector": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.06705653300741687
+    },
+    "ceiling_vertical": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.04348327200568747
+    },
+    "ceiling_oblique": {
+      "read_failures": 3,
+      "max_frame_gap_s": 0.04534332900948357
+    }
+  },
+  "inference_s": {
+    "mean": null,
+    "samples": []
+  },
+  "chunk_wait_s": {
+    "max": 0,
+    "sum": 0
+  },
+  "transmission_hz": null,
+  "final_rate_target": 60,
+  "tracking": {
+    "shoulder_pan": {
+      "sent_span": 0,
+      "observed_span": 0.0,
+      "span_ratio": null
+    },
+    "shoulder_lift": {
+      "sent_span": 0,
+      "observed_span": 0.0,
+      "span_ratio": null
+    },
+    "elbow_flex": {
+      "sent_span": 0,
+      "observed_span": 0.0,
+      "span_ratio": null
+    },
+    "wrist_flex": {
+      "sent_span": 0,
+      "observed_span": 0.0,
+      "span_ratio": null
+    },
+    "wrist_roll": {
+      "sent_span": 0,
+      "observed_span": 0.0,
+      "span_ratio": null
+    },
+    "gripper": {
+      "sent_span": 0,
+      "observed_span": 0.0,
+      "span_ratio": null
+    }
+  },
+  "tracking_compensation": {
+    "enabled_axes": [
+      "elbow_flex"
+    ],
+    "steps": 0,
+    "requested_cap_deg": 3.0,
+    "effective_cap_deg": 2.912087912087912,
+    "max_abs_offset_deg": {
+      "shoulder_pan": 0.0,
+      "shoulder_lift": 0.0,
+      "elbow_flex": 0.0,
+      "wrist_flex": 0.0,
+      "wrist_roll": 0.0,
+      "gripper": 0.0
+    },
+    "final_offset_deg": {
+      "shoulder_pan": 0.0,
+      "shoulder_lift": 0.0,
+      "elbow_flex": 0.0,
+      "wrist_flex": 0.0,
+      "wrist_roll": 0.0,
+      "gripper": 0.0
+    }
+  },
+  "gripper_opening_protection": {
+    "open_cap_points": 49.611995697021484,
+    "policy_open_cap_clips": 0,
+    "opening_load_freezes": 0,
+    "opening_hold_target_points": null
+  },
+  "lateral_correction": {
+    "enabled": true,
+    "configured_offset_deg": 0.5274725274725275,
+    "applied_steps": 0,
+    "peak_abs_deg": 0.0,
+    "windows": 0,
+    "direction_verified": true,
+    "scale_verified": true,
+    "tcp_physically_calibrated": false,
+    "metric_scope": "bottle_top_camera_plane_at_measured_pose"
+  }
+}

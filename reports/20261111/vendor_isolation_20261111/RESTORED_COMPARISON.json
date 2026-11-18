@@ -1,0 +1,72 @@
+{
+  "validated_read_packets": 5706,
+  "motor_register_writes": 0,
+  "comparison": [
+    {
+      "hz": 30,
+      "direct_range_c": [
+        34,
+        34
+      ],
+      "restored_range_c": [
+        34,
+        45
+      ],
+      "direct_outliers": 0,
+      "restored_outliers": 1,
+      "restored_peak_neighbors_c": [
+        34,
+        45,
+        34
+      ],
+      "restored_peak_intervals_ms": [
+        33.292676,
+        33.366566
+      ]
+    },
+    {
+      "hz": 180,
+      "direct_range_c": [
+        33,
+        35
+      ],
+      "restored_range_c": [
+        34,
+        50
+      ],
+      "direct_outliers": 0,
+      "restored_outliers": 1,
+      "restored_peak_neighbors_c": [
+        34,
+        50,
+        34
+      ],
+      "restored_peak_intervals_ms": [
+        5.545478,
+        5.621064
+      ]
+    },
+    {
+      "hz": 360,
+      "direct_range_c": [
+        33,
+        36
+      ],
+      "restored_range_c": [
+        33,
+        45
+      ],
+      "direct_outliers": 0,
+      "restored_outliers": 2,
+      "restored_peak_neighbors_c": [
+        34,
+        45,
+        34
+      ],
+      "restored_peak_intervals_ms": [
+        2.810132,
+        2.758002
+      ]
+    }
+  ]
+}

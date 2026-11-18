@@ -1,0 +1,1199 @@
+{
+  "status": "BULK_TRANSPORT_READONLY_COMPLETE",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "port_closed": true,
+  "cycles": 119,
+  "mean_work_s": 0.020102045377970775,
+  "max_work_s": 0.021036672002082923,
+  "last_positions_raw": {
+    "shoulder_pan": 2058,
+    "shoulder_lift": 831,
+    "elbow_flex": 3080,
+    "wrist_flex": 2563,
+    "wrist_roll": 1832,
+    "gripper": 465
+  },
+  "temperatures": {
+    "shoulder_pan": 33,
+    "shoulder_lift": 34,
+    "elbow_flex": 32,
+    "wrist_flex": 33,
+    "wrist_roll": 31,
+    "gripper": 35
+  },
+  "torque": {
+    "shoulder_pan": 1,
+    "shoulder_lift": 1,
+    "elbow_flex": 1,
+    "wrist_flex": 1,
+    "wrist_roll": 1,
+    "gripper": 1
+  },
+  "modes": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 0,
+    "wrist_flex": 0,
+    "wrist_roll": 0,
+    "gripper": 0
+  },
+  "communication": {
+    "by_joint": {
+      "shoulder_pan": {
+        "-6": 0,
+        "-7": 0
+      },
+      "shoulder_lift": {
+        "-6": 0,
+        "-7": 0
+      },
+      "elbow_flex": {
+        "-6": 0,
+        "-7": 0
+      },
+      "wrist_flex": {
+        "-6": 0,
+        "-7": 0
+      },
+      "wrist_roll": {
+        "-6": 0,
+        "-7": 41
+      },
+      "gripper": {
+        "-6": 0,
+        "-7": 0
+      }
+    },
+    "errors": [
+      {
+        "event": "communication_error",
+        "monotonic_s": 16818.569556935,
+        "unix": 1794736732.7590926,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16818.793512197,
+        "unix": 1794736732.983048,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16818.833672267,
+        "unix": 1794736733.023208,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16818.854206204,
+        "unix": 1794736733.0437424,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16818.874085944,
+        "unix": 1794736733.0636215,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16818.896992753,
+        "unix": 1794736733.086529,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16818.91423859,
+        "unix": 1794736733.1037745,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16818.934708397,
+        "unix": 1794736733.124244,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16818.975875729,
+        "unix": 1794736733.1654115,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.035947765,
+        "unix": 1794736733.2254834,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000f6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.057348224,
+        "unix": 1794736733.2468843,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000f6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.077622441,
+        "unix": 1794736733.2671585,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.117689612,
+        "unix": 1794736733.307226,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.199397826,
+        "unix": 1794736733.388934,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.219238366,
+        "unix": 1794736733.408774,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.259519591,
+        "unix": 1794736733.4490552,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.27953012,
+        "unix": 1794736733.4690657,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.340202334,
+        "unix": 1794736733.529738,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f0000002907000066",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.523585673,
+        "unix": 1794736733.7131212,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.583957846,
+        "unix": 1794736733.7734935,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.644218143,
+        "unix": 1794736733.8337538,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.66428541,
+        "unix": 1794736733.853821,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.685545353,
+        "unix": 1794736733.8750813,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.706488422,
+        "unix": 1794736733.8960242,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.929572873,
+        "unix": 1794736734.1191087,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000ff",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16819.949493255,
+        "unix": 1794736734.139029,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.071328354,
+        "unix": 1794736734.260864,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.090693936,
+        "unix": 1794736734.2802296,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.13099385,
+        "unix": 1794736734.3205297,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.15106966,
+        "unix": 1794736734.3406055,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.25301545,
+        "unix": 1794736734.4425511,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.272897559,
+        "unix": 1794736734.4624333,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.395476937,
+        "unix": 1794736734.5850124,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000ee",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.455564685,
+        "unix": 1794736734.6451006,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.476178048,
+        "unix": 1794736734.665714,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.496345766,
+        "unix": 1794736734.6858814,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.537158399,
+        "unix": 1794736734.726694,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.57713104,
+        "unix": 1794736734.7666667,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.719550189,
+        "unix": 1794736734.909086,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.739759284,
+        "unix": 1794736734.929295,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 16820.801149728,
+        "unix": 1794736734.9906855,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      }
+    ],
+    "tx_packets": 874,
+    "rx_packets": 1469,
+    "tx_bytes": 7706,
+    "rx_bytes": 38218,
+    "elapsed_s": 2.5140132890010136,
+    "tx_packets_per_s": 347.65130471816195,
+    "total_packets_per_s": 931.9759804973153,
+    "tx_gap_s": {
+      "min": 0.0004881429995293729,
+      "max": 0.017009125996992225,
+      "mean": 0.002750171445590353
+    },
+    "settings": {
+      "max_retries": 3,
+      "consecutive_failures": 5,
+      "no_response_s": 0.2,
+      "hold_attempts": 5,
+      "bulk_address": 33,
+      "bulk_width": 38
+    },
+    "halt_reason": null
+  }
+}

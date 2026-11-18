@@ -1,0 +1,151 @@
+{
+  "cases": [
+    {
+      "chunk": 0,
+      "plant": "ideal",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 0,
+      "plant": "slow",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 0,
+      "plant": "stationary",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 1,
+      "plant": "ideal",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 1,
+      "plant": "slow",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 1,
+      "plant": "stationary",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 2,
+      "plant": "ideal",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 2,
+      "plant": "slow",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 2,
+      "plant": "stationary",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 3,
+      "plant": "ideal",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 3,
+      "plant": "slow",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 3,
+      "plant": "stationary",
+      "status": "HOLD",
+      "simulated_commands": 34,
+      "closed": true,
+      "error_code": "TRACKING_STALLED"
+    },
+    {
+      "chunk": 4,
+      "plant": "ideal",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 4,
+      "plant": "slow",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 4,
+      "plant": "stationary",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 5,
+      "plant": "ideal",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 5,
+      "plant": "slow",
+      "status": "MOCK_PACED_COMMAND_BUDGET",
+      "simulated_commands": 50,
+      "closed": true,
+      "error_code": null
+    },
+    {
+      "chunk": 5,
+      "plant": "stationary",
+      "status": "HOLD",
+      "simulated_commands": 34,
+      "closed": true,
+      "error_code": "TRACKING_STALLED"
+    }
+  ],
+  "hardware_access": false,
+  "inference": "NOT_RUN",
+  "note": "가상 관절 결과이며 실제 모터 응답이나 성공률이 아니다."
+}

@@ -23,6 +23,10 @@ class Stop(Exception):
     pass
 
 
+class IdMismatchReply(RetryableWireError, Stop):
+    """A valid foreign response is discarded; it is never another axis's state."""
+
+
 class ServoStatusStop(Stop):
     def __init__(self,mid,status,payload,packet):
         super().__init__(f'모터 패킷 상태코드: id={mid}, status={status}')
@@ -72,6 +76,10 @@ def parse_reply(packet, comm, mid, width):
     observed=dict(expected_id=mid,expected_bytes=width,communication=comm,raw_hex=raw.hex(),
                   received_id=raw[2] if len(raw)>2 else None,
                   checksum_valid=len(raw)>=6 and sum(raw[2:])%256==255)
+    if (comm in (0,-6,-7) and len(raw)==width+6 and raw[:2]==b'\xff\xff' and raw[3]==width+2
+            and sum(raw[2:])%256==255 and raw[2]!=mid):
+        raise IdMismatchReply(f'모터 응답 ID 불일치: 요청={mid}, 수신={raw[2]}; 패킷 폐기',
+                              dict(observed,kind='id_mismatch'))
     if comm in (-6,-7):
         raise RetryableWireError(f'모터 응답 검증 실패: id={mid}, 통신 코드={comm}',observed)
     if (comm != 0 or len(raw) != width + 6 or raw[:2] != b'\xff\xff' or raw[2] != mid
@@ -89,7 +97,8 @@ def read_sync_replies(handler, port, ids, address, width, policy=None):
     retryable=[]
     status_faults=[]
     operation=f'read:{address}:{width}'
-    for joint, mid in ids.items():
+    ordered=list(ids.items())
+    for index,(joint, mid) in enumerate(ordered):
         if policy is None:packet,comm=handler.rxPacket(port)
         else:
             with policy.packet_deadline(port,policy.clock()+.02):packet,comm=handler.rxPacket(port)
@@ -103,6 +112,16 @@ def read_sync_replies(handler, port, ids, address, width, policy=None):
             if policy is None:failure=failure or exc
             else:
                 policy.bad([mid],operation,exc);retryable.append((joint,mid))
+                if exc.observed.get('kind')=='id_mismatch':
+                    # A late reply shifted the SDK's positional response stream.
+                    # Abandon the rest of this batch, drain it, then re-request
+                    # only missing axes individually. Never relabel this packet.
+                    policy.log(dict(event='sync_batch_abandoned',address=address,width=width,
+                        expected_id=mid,received_id=exc.observed.get('received_id'),
+                        remaining_ids=[i for _,i in ordered[index+1:]]))
+                    retryable.extend(ordered[index+1:])
+                    policy.resynchronize(port,policy.deadline([i for _,i in retryable],policy.clock()))
+                    break
         except ServoStatusStop as exc:
             status_faults.append(exc);replies[joint]=exc.payload
             failure=failure or exc
@@ -123,7 +142,8 @@ def read_sync_replies(handler, port, ids, address, width, policy=None):
                 packet,comm,_=handler.txRxPacket(port,list(request))
                 policy.receive(mid,operation,packet,comm)
                 return parse_reply(packet,comm,mid,width)
-            replies[joint]=policy.perform([mid],operation,once,port=port,initial_failures=1)
+            replies[joint]=policy.perform([mid],operation,once,port=port,
+                initial_failures=1 if policy.streak.get((mid,operation),0) else 0)
     return replies
 
 

@@ -1,0 +1,109 @@
+{
+  "status": "BULK_TRANSPORT_READONLY_COMPLETE",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "port_closed": true,
+  "cycles": 99,
+  "layout": "split",
+  "read_order": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    5
+  ],
+  "mean_work_s": 0.02031040878787418,
+  "max_work_s": 0.037626288998581,
+  "last_positions_raw": {
+    "shoulder_pan": 2047,
+    "shoulder_lift": 831,
+    "elbow_flex": 3072,
+    "wrist_flex": 2568,
+    "gripper": 460,
+    "wrist_roll": 1838
+  },
+  "temperatures": {
+    "shoulder_pan": 31,
+    "shoulder_lift": 32,
+    "elbow_flex": 31,
+    "wrist_flex": 31,
+    "wrist_roll": 31,
+    "gripper": 34
+  },
+  "torque": {
+    "shoulder_pan": 1,
+    "shoulder_lift": 1,
+    "elbow_flex": 1,
+    "wrist_flex": 1,
+    "gripper": 1,
+    "wrist_roll": 1
+  },
+  "modes": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 0,
+    "wrist_flex": 0,
+    "gripper": 0,
+    "wrist_roll": 0
+  },
+  "communication": {
+    "by_joint": {
+      "shoulder_pan": {
+        "-6": 0,
+        "-7": 0
+      },
+      "shoulder_lift": {
+        "-6": 0,
+        "-7": 0
+      },
+      "elbow_flex": {
+        "-6": 0,
+        "-7": 0
+      },
+      "wrist_flex": {
+        "-6": 0,
+        "-7": 0
+      },
+      "wrist_roll": {
+        "-6": 0,
+        "-7": 0
+      },
+      "gripper": {
+        "-6": 0,
+        "-7": 0
+      }
+    },
+    "errors": [],
+    "tx_packets": 792,
+    "rx_packets": 1782,
+    "tx_bytes": 7524,
+    "rx_bytes": 24948,
+    "elapsed_s": 2.1287930180005787,
+    "tx_packets_per_s": 372.0418064617049,
+    "total_packets_per_s": 1209.1358710005409,
+    "tx_gap_s": {
+      "min": 0.000482382998598041,
+      "max": 0.020807287997740787,
+      "mean": 0.002551144183311357
+    },
+    "settings": {
+      "max_retries": 3,
+      "consecutive_failures": 5,
+      "no_response_s": 0.2,
+      "hold_attempts": 5,
+      "bulk_address": 56,
+      "bulk_width": 15,
+      "read_order": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        5
+      ]
+    },
+    "halt_reason": null,
+    "halt_observed": null
+  }
+}

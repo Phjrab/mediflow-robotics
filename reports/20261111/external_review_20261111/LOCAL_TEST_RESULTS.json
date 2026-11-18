@@ -1,0 +1,48 @@
+[
+  {
+    "command": [
+      "C:\\msys64\\ucrt64\\bin\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tmp/vla_direct_live_v3_20261109",
+      "-p",
+      "tests_thermal_read.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "output": "시작 온도(°C) {\"shoulder_pan\": 38, \"shoulder_lift\": 38, \"elbow_flex\": 38, \"wrist_flex\": 38, \"wrist_roll\": 38, \"gripper\": 38}\n시작 온도(°C) {\"shoulder_pan\": 55, \"shoulder_lift\": 55, \"elbow_flex\": 55, \"wrist_flex\": 55, \"wrist_roll\": 55, \"gripper\": 55}\n그리퍼 시작 온도 경고 55°C\n식히는 중 {\"shoulder_pan\": 55, \"shoulder_lift\": 55, \"elbow_flex\": 55, \"wrist_flex\": 55, \"wrist_roll\": 55, \"gripper\": 55}\n시작 온도(°C) {\"shoulder_pan\": 56, \"shoulder_lift\": 38, \"elbow_flex\": 38, \"wrist_flex\": 38, \"wrist_roll\": 38, \"gripper\": 38}\ntest_sources_and_changed_only_logs (tests_thermal_read.FeedbackIntegrationTests.test_sources_and_changed_only_logs) ... ok\ntest_startup55_cools_as_before_without_latch (tests_thermal_read.FeedbackIntegrationTests.test_startup55_cools_as_before_without_latch) ... ok\ntest_verified_hot_blocks_policy_but_allows_hold (tests_thermal_read.FeedbackIntegrationTests.test_verified_hot_blocks_policy_but_allows_hold) ... ok\ntest_wire_fault_stops (tests_thermal_read.FeedbackIntegrationTests.test_wire_fault_stops) ... ok\ntest_bulk62_individual38 (tests_thermal_read.ThermalTests.test_bulk62_individual38) ... ok\ntest_distinct_axes (tests_thermal_read.ThermalTests.test_distinct_axes) ... ok\ntest_hot_equal_bulk_traced_without_extra_read (tests_thermal_read.ThermalTests.test_hot_equal_bulk_traced_without_extra_read) ... ok\ntest_hot_first_not_erased (tests_thermal_read.ThermalTests.test_hot_first_not_erased) ... ok\ntest_hot_second_not_erased (tests_thermal_read.ThermalTests.test_hot_second_not_erased) ... ok\ntest_invalid_replies (tests_thermal_read.ThermalTests.test_invalid_replies) ... ok\ntest_valid56_then38_raw_trace_and_queue (tests_thermal_read.ThermalTests.test_valid56_then38_raw_trace_and_queue) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 0.585s\n\nOK\n"
+  },
+  {
+    "command": [
+      "C:\\msys64\\ucrt64\\bin\\python.exe",
+      "-B",
+      "reports/thermal_deep_20261111/tests_actual_sdk_replay.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "output": "Actual SDK source SHA256: {\"protocol_packet_handler.py\": \"9932c85b9e2ac671a7e33f39e8e80b05d6592280d9f2bcebd85103845e36e655\", \"scservo_def.py\": \"068f7ad5c453ad6e338543c706047253495fcd6bf9a632465501ace12fee0627\"}\nSDK source hashes stable: True\nTest file SHA256: 30e0ca30b9456c4f972dfc7b5b86d5ddba1693d28684e20b3fbc09f266009d3c\ntest_preserved_56_and_38_decoded_unchanged (__main__.ActualSDKReplayTests.test_preserved_56_and_38_decoded_unchanged) ... ok\ntest_split_reception_decodes_same_values (__main__.ActualSDKReplayTests.test_split_reception_decodes_same_values) ... ok\ntest_wrong_checksum_rejected (__main__.ActualSDKReplayTests.test_wrong_checksum_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.022s\n\nOK\n"
+  },
+  {
+    "command": [
+      "C:\\msys64\\ucrt64\\bin\\python.exe",
+      "-B",
+      "reports/thermal_deep_20261111/raw_temperature_probe.py",
+      "--mock"
+    ],
+    "exit_code": 0,
+    "output": "test_bad_response_no_retry (__main__.MockTests.test_bad_response_no_retry) ... ok\ntest_hot56_then38_and55_stops (__main__.MockTests.test_hot56_then38_and55_stops) ... ok\ntest_normal38 (__main__.MockTests.test_normal38) ... ok\ntest_residue_and_torque_on (__main__.MockTests.test_residue_and_torque_on) ... ok\ntest_tx_rejection (__main__.MockTests.test_tx_rejection) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.002s\n\nOK\n"
+  },
+  {
+    "command": [
+      "C:\\msys64\\ucrt64\\bin\\python.exe",
+      "-B",
+      "reports/external_review_20261111/tests_latest_thermal_trace.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "output": "시작 온도(°C) {\"shoulder_pan\": 38, \"shoulder_lift\": 38, \"elbow_flex\": 38, \"wrist_flex\": 38, \"wrist_roll\": 38, \"gripper\": 60}\n그리퍼 시작 온도 경고 60°C\ntest_60_stop_remains_after_38_and_only_hold_is_allowed (__main__.LatestThermalTraceTests.test_60_stop_remains_after_38_and_only_hold_is_allowed) ... ok\ntest_actual_sdk_retains_observed_60_38_57 (__main__.LatestThermalTraceTests.test_actual_sdk_retains_observed_60_38_57) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.069s\n\nOK\n"
+  }
+]

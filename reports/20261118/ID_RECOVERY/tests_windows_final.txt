@@ -1,0 +1,272 @@
+test_dashboard_stale_frames_hidden_and_reference_allowlist (test_alignment.AlignmentTests.test_dashboard_stale_frames_hidden_and_reference_allowlist) ... ok
+test_insufficient_markers_never_reports_ok (test_alignment.AlignmentTests.test_insufficient_markers_never_reports_ok) ... ok
+test_moving_bottle_markers_do_not_change_board_alignment (test_alignment.AlignmentTests.test_moving_bottle_markers_do_not_change_board_alignment) ... ok
+test_rotation_and_scale_are_image_plane_quantities (test_alignment.AlignmentTests.test_rotation_and_scale_are_image_plane_quantities) ... ok
+test_runner_releases_and_restores_alignment_cameras (test_alignment.AlignmentTests.test_runner_releases_and_restores_alignment_cameras) ... skipped 'Linux launch lease; run on Jetson with fake commands'
+test_serial_open_denied_but_cameras_allowed (test_alignment.AlignmentTests.test_serial_open_denied_but_cameras_allowed) ... ok
+test_translation_and_twenty_pixel_boundary (test_alignment.AlignmentTests.test_translation_and_twenty_pixel_boundary) ... ok
+test_confirmed_hold_readback_and_at_most_five_writes (test_communication_retry.RetryTests.test_confirmed_hold_readback_and_at_most_five_writes) ... ok
+test_individual_transient_does_not_latch_fault (test_communication_retry.RetryTests.test_individual_transient_does_not_latch_fault) ... ok
+test_nonretry_error_is_not_retried (test_communication_retry.RetryTests.test_nonretry_error_is_not_retried) ... ok
+test_real_streaming_send_retries_same_absolute_goal_without_hard_latch (test_communication_retry.RetryTests.test_real_streaming_send_retries_same_absolute_goal_without_hard_latch) ... ok
+test_reordered_sync_read_preserves_axis_identity (test_communication_retry.RetryTests.test_reordered_sync_read_preserves_axis_identity) ... ok
+test_streaming_io_real_method_dispatch_and_narrow_packet_layout (test_communication_retry.RetryTests.test_streaming_io_real_method_dispatch_and_narrow_packet_layout) ... ok
+test_sync_drains_all_six_and_retries_only_failed_id (test_communication_retry.RetryTests.test_sync_drains_all_six_and_retries_only_failed_id) ... ok
+test_temperature_retries_have_twenty_ms_spacing (test_communication_retry.RetryTests.test_temperature_retries_have_twenty_ms_spacing) ... ok
+test_transient_success_and_four_failures_defer_fifth_holds (test_communication_retry.RetryTests.test_transient_success_and_four_failures_defer_fifth_holds) ... ok
+test_watchdog_is_per_axis_and_tx_does_not_claim_response (test_communication_retry.RetryTests.test_watchdog_is_per_axis_and_tx_does_not_claim_response) ... ok
+READY {"event": "ready", "unix": 1794999922.4421902, "monotonic_s": 0.06000001999999999, "duration_s": 4.0, "speed": 0.33, "first_inference_s": 0.05, "first_observation_and_inference_s": 0.06000001999999999}
+타이밍 0~0.32s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.88 소요ms {'serial_read': 319.99996499999975, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+test_corrupt_confirmation_still_stops (test_control_revision.ControlRevisionTests.test_corrupt_confirmation_still_stops) ... ok
+test_readonly_probe_never_accepts_write_or_other_id (test_control_revision.ControlRevisionTests.test_readonly_probe_never_accepts_write_or_other_id) ... ok
+READY {"event": "ready", "unix": 1794999922.4606893, "monotonic_s": 0.06000001999999999, "duration_s": 4.0, "speed": 0.33, "first_inference_s": 0.05, "first_observation_and_inference_s": 0.06000001999999999}
+타이밍 0~1.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.98 소요ms {'serial_read': 979.9999039999987, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 1~2.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999924, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 2~3.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999926, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 3~4.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 0.98 소요ms {'serial_read': 999.9998999999917, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 4~4.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.00 소요ms {'serial_read': 19.999997999999408, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+test_single_spike_reaches_end_through_real_stream (test_control_revision.ControlRevisionTests.test_single_spike_reaches_end_through_real_stream) ... ok
+READY {"event": "ready", "unix": 1794999922.6767206, "monotonic_s": 0.06000001999999999, "duration_s": 4.0, "speed": 0.33, "first_inference_s": 0.05, "first_observation_and_inference_s": 0.06000001999999999}
+타이밍 0~1.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.98 소요ms {'serial_read': 979.9999039999987, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 1~1.94s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.98 소요ms {'serial_read': 959.9999039999927, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+test_sustained_heating_holds_after_some_goals (test_control_revision.ControlRevisionTests.test_sustained_heating_holds_after_some_goals) ... ok
+READY {"event": "ready", "unix": 1794999922.7701933, "monotonic_s": 0.06000001999999999, "duration_s": 4.0, "speed": 0.33, "first_inference_s": 0.05, "first_observation_and_inference_s": 0.06000001999999999}
+타이밍 0~1.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.98 소요ms {'serial_read': 979.9999039999987, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 1~2.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999924, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 2~3.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999926, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 3~4.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 0.98 소요ms {'serial_read': 999.9998999999917, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 4~4.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.00 소요ms {'serial_read': 19.999997999999408, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+test_two_hot_responses_continue_through_real_stream (test_control_revision.ControlRevisionTests.test_two_hot_responses_continue_through_real_stream) ... ok
+test_clipped_opening_targets_are_not_a_real_closure (test_grasp_offset.GraspOffsetTests.test_clipped_opening_targets_are_not_a_real_closure) ... ok
+test_disabled_physical_bias_unchanged (test_grasp_offset.GraspOffsetTests.test_disabled_physical_bias_unchanged) ... ok
+test_limit_and_nan_rejected (test_grasp_offset.GraspOffsetTests.test_limit_and_nan_rejected) ... ok
+test_measured_plus6_configuration_and_bad_hash_rejected (test_grasp_offset.GraspOffsetTests.test_measured_plus6_configuration_and_bad_hash_rejected) ... ok
+test_no_closure_in_one_second_and_non_grasp_pose_unchanged (test_grasp_offset.GraspOffsetTests.test_no_closure_in_one_second_and_non_grasp_pose_unchanged) ... ok
+test_pan_only_in_lookahead_closing_height_window (test_grasp_offset.GraspOffsetTests.test_pan_only_in_lookahead_closing_height_window) ... ok
+READY {"event": "ready", "unix": 1794999922.990298, "monotonic_s": 0.040000001, "duration_s": 3.0, "speed": 0.33, "first_inference_s": 0.02, "first_observation_and_inference_s": 0.040000001}
+타이밍 0~1.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.98 소요ms {'serial_read': 979.9999039999983, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 1~2.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999926, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 2~3.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.98 소요ms {'serial_read': 999.9998999999926, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 3~3.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.00 소요ms {'serial_read': 19.999997999999852, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+test_same_stream_sends_grasp_offset_only_to_pan (test_grasp_offset.GraspOffsetTests.test_same_stream_sends_grasp_offset_only_to_pan) ... ok
+READY {"event": "ready", "unix": 1794999923.0853286, "monotonic_s": 2.040000001, "duration_s": 0.2, "speed": 0.33, "first_inference_s": 0.02, "first_observation_and_inference_s": 0.04000000100000012}
+test_setup_time_does_not_expire_policy_loop (test_grasp_offset.GraspOffsetTests.test_setup_time_does_not_expire_policy_loop) ... ok
+타이밍 0~0.20s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.80 소요ms {'serial_read': 199.99998199999868, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+test_standard_library_nominal_height_matches_reference_fk (test_grasp_offset.GraspOffsetTests.test_standard_library_nominal_height_matches_reference_fk) ... ok
+test_unverified_direction_or_scale_blocks_activation (test_grasp_offset.GraspOffsetTests.test_unverified_direction_or_scale_blocks_activation) ... ok
+test_actual_jpeg_preserves_rgb_channel_order (test_grasp_recorder.GraspRecorderTests.test_actual_jpeg_preserves_rgb_channel_order) ... ok
+test_close_finalizes_partial_window_after_interrupt (test_grasp_recorder.GraspRecorderTests.test_close_finalizes_partial_window_after_interrupt) ... ok
+test_duplicates_stale_frames_and_capture_rate_not_relabelled (test_grasp_recorder.GraspRecorderTests.test_duplicates_stale_frames_and_capture_rate_not_relabelled) ... ok
+test_fixed_grid_achieves_ten_fps_at_44hz_without_catchup_bursts (test_grasp_recorder.GraspRecorderTests.test_fixed_grid_achieves_ten_fps_at_44hz_without_catchup_bursts) ... ok
+test_full_queue_event_loss_stays_visible_in_summary (test_grasp_recorder.GraspRecorderTests.test_full_queue_event_loss_stays_visible_in_summary) ... ok
+test_long_frame_gap_is_incomplete_even_when_control_runs_to_end (test_grasp_recorder.GraspRecorderTests.test_long_frame_gap_is_incomplete_even_when_control_runs_to_end) ... ok
+test_missing_camera_reported_without_fabricated_image (test_grasp_recorder.GraspRecorderTests.test_missing_camera_reported_without_fabricated_image) ... ok
+test_overlap_uses_same_encoded_frames_and_keeps_separate_events (test_grasp_recorder.GraspRecorderTests.test_overlap_uses_same_encoded_frames_and_keeps_separate_events) ... ok
+test_pre_three_post_two_seconds_and_exact_goal_metadata (test_grasp_recorder.GraspRecorderTests.test_pre_three_post_two_seconds_and_exact_goal_metadata) ... ok
+test_slow_cumulative_close_one_event_then_rearm_on_open (test_grasp_recorder.GraspRecorderTests.test_slow_cumulative_close_one_event_then_rearm_on_open) ... ok
+test_slow_writer_has_bounded_frame_queue_and_visible_drops (test_grasp_recorder.GraspRecorderTests.test_slow_writer_has_bounded_frame_queue_and_visible_drops) ... ok
+test_writer_failure_is_reported_without_raising_into_motor_loop (test_grasp_recorder.GraspRecorderTests.test_writer_failure_is_reported_without_raising_into_motor_loop) ... ok
+test_default_backend_is_spawn_process_and_flush_has_no_event_or_frame_loss (test_grasp_recorder.ProcessGraspRecorderTests.test_default_backend_is_spawn_process_and_flush_has_no_event_or_frame_loss) ... ok
+test_flush_timeout_terminates_only_evidence_process_and_releases_shared_memory (test_grasp_recorder.ProcessGraspRecorderTests.test_flush_timeout_terminates_only_evidence_process_and_releases_shared_memory) ... ok
+test_partial_pipe_body_worker_death_does_not_block_main_poll (test_grasp_recorder.ProcessGraspRecorderTests.test_partial_pipe_body_worker_death_does_not_block_main_poll) ... skipped 'raw pipe-header injection uses POSIX Connection; generic stalled relay tested on Windows'
+test_real_rgb_pixels_use_shared_slots_and_encode_only_in_child (test_grasp_recorder.ProcessGraspRecorderTests.test_real_rgb_pixels_use_shared_slots_and_encode_only_in_child) ... ok
+test_stalled_result_body_is_confined_to_daemon_relay (test_grasp_recorder.ProcessGraspRecorderTests.test_stalled_result_body_is_confined_to_daemon_relay) ... ok
+test_unexpected_child_death_records_error_and_pending_event_failure (test_grasp_recorder.ProcessGraspRecorderTests.test_unexpected_child_death_records_error_and_pending_event_failure) ... ok
+test_worker_encoding_error_visible_and_partial_event_still_flushed (test_grasp_recorder.ProcessGraspRecorderTests.test_worker_encoding_error_visible_and_partial_event_still_flushed) ... ok
+test_actual_recovery_packet_allowlist_only_id6_off_and_goals_within_cap (test_gripper_safety.GripperTests.test_actual_recovery_packet_allowlist_only_id6_off_and_goals_within_cap) ... ok
+test_close_direction_and_minimum_unchanged (test_gripper_safety.GripperTests.test_close_direction_and_minimum_unchanged) ... ok
+test_current_position_hold_without_torque_cycle (test_gripper_safety.GripperTests.test_current_position_hold_without_torque_cycle) ... ok
+test_cycle_only_id6_and_keep_five_other_axes (test_gripper_safety.GripperTests.test_cycle_only_id6_and_keep_five_other_axes) ... ok
+test_feedback_status32_routes_recovery_even_with_normal_packet_header (test_gripper_safety.GripperTests.test_feedback_status32_routes_recovery_even_with_normal_packet_header) ... ok
+test_nominal_48_5_and_data_adjusted_cap (test_gripper_safety.GripperTests.test_nominal_48_5_and_data_adjusted_cap) ... ok
+test_opening_load_freeze_at_0_3_wall_seconds_and_closing_release (test_gripper_safety.GripperTests.test_opening_load_freeze_at_0_3_wall_seconds_and_closing_release) ... ok
+test_opposite_load_or_short_pulse_does_not_latch (test_gripper_safety.GripperTests.test_opposite_load_or_short_pulse_does_not_latch) ... ok
+test_other_axis_or_corruption_cannot_enter_overload_recovery (test_gripper_safety.GripperTests.test_other_axis_or_corruption_cannot_enter_overload_recovery) ... ok
+test_persistent_overload_maximum_three_cycles (test_gripper_safety.GripperTests.test_persistent_overload_maximum_three_cycles) ... ok
+test_real_streaming_reader_only_exposes_overload_payload_inside_recovery (test_gripper_safety.GripperTests.test_real_streaming_reader_only_exposes_overload_payload_inside_recovery) ... ok
+시작 직전 {"torque": {"shoulder_pan": 1, "shoulder_lift": 1, "elbow_flex": 1, "wrist_flex": 1, "wrist_roll": 1, "gripper": 1}, "modes": {"shoulder_pan": 0, "shoulder_lift": 0, "elbow_flex": 0, "wrist_flex": 0, "wrist_roll": 0, "gripper": 0}, "temperature_c": {"shoulder_pan": 34, "shoulder_lift": 34, "elbow_flex": 34, "wrist_flex": 34, "wrist_roll": 34, "gripper": 34}, "home_delta": {"shoulder_pan": 0.08791208791208804, "shoulder_lift": 0.0879120879120876, "elbow_flex": 0.0879120879120876, "wrist_flex": 0.0879120879120876, "wrist_roll": 0.08791208791208804, "gripper": 0.06119951040391669}, "position_check": {"safe": true, "home_converged": true, "joints": {"shoulder_pan": {"present_ticks": 2059, "target_ticks": 2058, "command_range_ticks": [755, 3448], "observed_range_ticks": [755, 3451], "home_range_ticks": [2035, 2081], "valid": true, "safe": true, "above_command_upper": false, "residual_ticks": 1, "residual_units": 0.08791208791208792, "unit": "degree", "converged": true}, "shoulder_lift": {"present_ticks": 843, "target_ticks": 842, "command_range_ticks": [801, 3113], "observed_range_ticks": [801, 3116], "home_range_ticks": [819, 865], "valid": true, "safe": true, "above_command_upper": false, "residual_ticks": 1, "residual_units": 0.08791208791208792, "unit": "degree", "converged": true}, "elbow_flex": {"present_ticks": 3082, "target_ticks": 3081, "command_range_ticks": [880, 3084], "observed_range_ticks": [880, 3087], "home_range_ticks": [3058, 3087], "valid": true, "safe": true, "above_command_upper": false, "residual_ticks": 1, "residual_units": 0.08791208791208792, "unit": "degree", "converged": true}, "wrist_flex": {"present_ticks": 2575, "target_ticks": 2574, "command_range_ticks": [936, 3225], "observed_range_ticks": [936, 3228], "home_range_ticks": [2551, 2597], "valid": true, "safe": true, "above_command_upper": false, "residual_ticks": 1, "residual_units": 0.08791208791208792, "unit": "degree", "converged": true}, "wrist_roll": {"present_ticks": 1839, "target_ticks": 1838, "command_range_ticks": [86, 3643], "observed_range_ticks": [86, 3646], "home_range_ticks": [1815, 1861], "valid": true, "safe": true, "above_command_upper": false, "residual_ticks": 1, "residual_units": 0.08791208791208792, "unit": "degree", "converged": true}, "gripper": {"present_ticks": 483, "target_ticks": 482, "command_range_ticks": [413, 1205], "observed_range_ticks": [413, 2050], "home_range_ticks": [450, 514], "valid": true, "safe": true, "above_command_upper": false, "residual_ticks": 1, "residual_units": 0.06119951040391677, "unit": "point", "converged": true}}, "warnings": [], "blocked_joints": []}, "camera": {"end_effector": "READY", "ceiling_vertical": "READY", "ceiling_oblique": "READY"}, "auto_recovered": []}
+READY {"event": "ready", "unix": 1794999926.9089937, "monotonic_s": 0.6000000110000001, "duration_s": 4, "speed": 0.33, "first_inference_s": 0.02, "first_observation_and_inference_s": 0.060000001000000025}
+타이밍 0~1.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.98 소요ms {'serial_read': 979.9999039999972, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 1~2.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999926, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 2~3.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999926, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 3~4.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 20.00/20.00 진행률 0.98 소요ms {'serial_read': 999.9998999999793, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 4~4.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.00 소요ms {'serial_read': 19.999997999999408, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+test_same_stream_with_61_point_policy_never_reaches_50_point_stop (test_gripper_safety.GripperTests.test_same_stream_with_61_point_policy_never_reaches_50_point_stop) ... ok
+test_typed_overload_keeps_validated_payload_but_never_returns_normal_feedback (test_gripper_safety.GripperTests.test_typed_overload_keeps_validated_payload_but_never_returns_normal_feedback) ... ok
+test_3084_3085_3087_start_without_home_goal (test_home_checks.HomeChecks.test_3084_3085_3087_start_without_home_goal) ... ok
+test_3088_blocks_before_any_write (test_home_checks.HomeChecks.test_3088_blocks_before_any_write) ... ok
+시작 직전 {"torque": {"shoulder_pan": 1, "shoulder_lift": 1, "elbow_flex": 1, "wrist_flex": 1, "wrist_roll": 1, "gripper": 1}, "modes": {"shoulder_pan": 0, "shoulder_lift": 0, "elbow_flex": 0, "wrist_flex": 0, "wrist_roll": 0, "gripper": 0}, "temperature_c": {"shoulder_pan": 34, "shoulder_lift": 34, "elbow_flex": 34, "wrist_flex": 34, "wrist_roll": 34, "gripper": 34}, "home_delta": {"shoulder_pan": 0.0, "shoulder_lift": 0.0, "elbow_flex": 0.5274725274725256, "wrist_flex": 0.0, "wrist_roll": 0.0, "gripper": 0.0}, "position_check": {"safe": true, "home_converged": true, "joints": {"shoulder_pan": {"present_ticks": 2058, "target_ticks": 2058, "command_range_ticks": [755, 3448], "observed_range_ticks": [755, 3451], "home_range_ticks": [2035, 2081], "valid": true, "safe": true, "above_command_upper": false, "residual_ticks": 0, "residual_units": 0.0, "unit": "degree", "converged": true}, "shoulder_lift": {"present_ticks": 842, "target_ticks": 842, "command_range_ticks": [801, 3113], "observed_range_ticks": [801, 3116], "home_range_ticks": [819, 865], "valid": true, "safe": true, "above_command_upper": false, "residual_ticks": 0, "residual_units": 0.0, "unit": "degree", "converged": true}, "elbow_flex": {"present_ticks": 3087, "target_ticks": 3081, "command_range_ticks": [880, 3084], "observed_range_ticks": [880, 3087], "home_range_ticks": [3058, 3087], "valid": true, "safe": true, "above_command_upper": true, "residual_ticks": 6, "residual_units": 0.5274725274725275, "unit": "degree", "converged": true}, "wrist_flex": {"present_ticks": 2574, "target_ticks": 2574, "command_range_ticks": [936, 3225], "observed_range_ticks": [936, 3228], "home_range_ticks": [2551, 2597], "valid": true, "safe": true, "above_command_upper": false, "residual_ticks": 0, "residual_units": 0.0, "unit": "degree", "converged": true}, "wrist_roll": {"present_ticks": 1838, "target_ticks": 1838, "command_range_ticks": [86, 3643], "observed_range_ticks": [86, 3646], "home_range_ticks": [1815, 1861], "valid": true, "safe": true, "above_command_upper": false, "residual_ticks": 0, "residual_units": 0.0, "unit": "degree", "converged": true}, "gripper": {"present_ticks": 482, "target_ticks": 482, "command_range_ticks": [413, 1205], "observed_range_ticks": [413, 2050], "home_range_ticks": [450, 514], "valid": true, "safe": true, "above_command_upper": false, "residual_ticks": 0, "residual_units": 0.0, "unit": "point", "converged": true}}, "warnings": ["elbow_flex"], "blocked_joints": []}, "camera": {"end_effector": "READY", "ceiling_vertical": "READY", "ceiling_oblique": "READY"}, "auto_recovered": []}
+READY {"event": "ready", "unix": 1794999927.0583436, "monotonic_s": 0.6000000110000001, "duration_s": 0.2, "speed": 0.33, "first_inference_s": 0.02, "first_observation_and_inference_s": 0.060000001000000025}
+타이밍 0~0.20s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.80 소요ms {'serial_read': 199.9999820000007, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+test_accepted_margin_enters_same_policy_loop (test_home_checks.HomeChecks.test_accepted_margin_enters_same_policy_loop) ... ok
+test_command_bounds_do_not_expand_when_off_axis_is_above_upper (test_home_checks.HomeChecks.test_command_bounds_do_not_expand_when_off_axis_is_above_upper) ... ok
+test_four_ticks_pass_but_out_of_range_retries_three_times (test_home_checks.HomeChecks.test_four_ticks_pass_but_out_of_range_retries_three_times) ... ok
+test_gripper_two_points_uses_calibration_tick_scale (test_home_checks.HomeChecks.test_gripper_two_points_uses_calibration_tick_scale) ... ok
+test_half_second_and_fresh_samples_required (test_home_checks.HomeChecks.test_half_second_and_fresh_samples_required) ... ok
+test_outside_residual_resets_stability (test_home_checks.HomeChecks.test_outside_residual_resets_stability) ... ok
+test_upper_margin_does_not_change_lower_limit (test_home_checks.HomeChecks.test_upper_margin_does_not_change_lower_limit) ... ok
+test_website_and_controller_share_history_decision (test_home_checks.HomeChecks.test_website_and_controller_share_history_decision) ... ok
+test_home_hold_shows_joint_and_ticks_on_one_line (test_home_settle.ExitReportTests.test_home_hold_shows_joint_and_ticks_on_one_line) ... ok
+test_preflight_exit_is_reported_before_a_run_exists (test_home_settle.ExitReportTests.test_preflight_exit_is_reported_before_a_run_exists) ... ok
+test_receipt_points_to_this_run_and_preserves_output (test_home_settle.ExitReportTests.test_receipt_points_to_this_run_and_preserves_output) ... ok
+test_effective_ranges_apply_observed_safety_before_admitting_home (test_home_settle.TrainingHomeWindowTests.test_effective_ranges_apply_observed_safety_before_admitting_home) ... ok
+test_requested_gripper_cap (test_home_settle.TrainingHomeWindowTests.test_requested_gripper_cap) ... ok
+test_timing_not_shortened_for_new_window (test_home_settle.TrainingHomeWindowTests.test_timing_not_shortened_for_new_window) ... ok
+test_training_observation_cap_not_pass_for_972 (test_home_settle.TrainingHomeWindowTests.test_training_observation_cap_not_pass_for_972) ... ok
+test_beyond_capped_window_retries_same_goal_and_holds (test_home_trim.HomeRetryTests.test_beyond_capped_window_retries_same_goal_and_holds) ... ok
+test_health_faults_stop_home_motion (test_home_trim.HomeRetryTests.test_health_faults_stop_home_motion) ... ok
+test_recorded_lift_positions_start_without_home_motion (test_home_trim.HomeRetryTests.test_recorded_lift_positions_start_without_home_motion) ... ok
+test_stale_feedback_cannot_start_at_accepted_pose (test_home_trim.HomeRetryTests.test_stale_feedback_cannot_start_at_accepted_pose) ... ok
+test_1935_late_id1_abandons_shifted_batch_and_refreshes_missing_axes (test_id_recovery.IdRecoveryTests.test_1935_late_id1_abandons_shifted_batch_and_refreshes_missing_axes) ... ok
+test_bad_checksum_and_real_servo_status_still_fail_closed (test_id_recovery.IdRecoveryTests.test_bad_checksum_and_real_servo_status_still_fail_closed) ... ok
+test_five_foreign_responses_hold_without_returning_foreign_state (test_id_recovery.IdRecoveryTests.test_five_foreign_responses_hold_without_returning_foreign_state) ... ok
+test_fresh_individual_read_discards_foreign_response_and_reissues_exact_request (test_id_recovery.IdRecoveryTests.test_fresh_individual_read_discards_foreign_response_and_reissues_exact_request) ... ok
+test_healthy_sync_does_not_clear_between_axis_replies (test_id_recovery.IdRecoveryTests.test_healthy_sync_does_not_clear_between_axis_replies) ... ok
+test_hold_resets_input_before_position_hold_write_and_at_most_five_attempts (test_id_recovery.IdRecoveryTests.test_hold_resets_input_before_position_hold_write_and_at_most_five_attempts) ... ok
+test_id_recovery_does_not_extend_two_hundred_ms_watchdog (test_id_recovery.IdRecoveryTests.test_id_recovery_does_not_extend_two_hundred_ms_watchdog) ... ok
+test_sdk_minus7_foreign_packet_counts_both_without_accepting_it (test_id_recovery.IdRecoveryTests.test_sdk_minus7_foreign_packet_counts_both_without_accepting_it) ... ok
+test_temperature_pacing_flushes_bytes_that_arrive_during_wait (test_id_recovery.IdRecoveryTests.test_temperature_pacing_flushes_bytes_that_arrive_during_wait) ... ok
+test_partial_window_progress_and_inference_are_not_additive_work (test_loop_timing.LoopTimingTests.test_partial_window_progress_and_inference_are_not_additive_work) ... ok
+test_readonly_does_not_invent_inference_or_policy_progress (test_loop_timing.LoopTimingTests.test_readonly_does_not_invent_inference_or_policy_progress) ... ok
+test_stalled_timeline_and_low_p5_are_explicit (test_loop_timing.LoopTimingTests.test_stalled_timeline_and_low_p5_are_explicit) ... ok
+test_stream_logs_failed_read_and_holds_before_terminal_summary (test_loop_timing.LoopTimingTests.test_stream_logs_failed_read_and_holds_before_terminal_summary) ... ok
+test_camera_loss_holds_current_pan (test_pan_camera_probe.PanProbeTests.test_camera_loss_holds_current_pan) ... ok
+test_load_and_current_limits (test_pan_camera_probe.PanProbeTests.test_load_and_current_limits) ... ok
+test_no_probe_if_off_or_status_bad (test_pan_camera_probe.PanProbeTests.test_no_probe_if_off_or_status_bad) ... ok
+test_only_pan_plus6_and_return (test_pan_camera_probe.PanProbeTests.test_only_pan_plus6_and_return) ... ok
+test_other_joint_drift_is_a_stop (test_pan_camera_probe.PanProbeTests.test_other_joint_drift_is_a_stop) ... ok
+test_unapproved_delta_rejected (test_pan_camera_probe.PanProbeTests.test_unapproved_delta_rejected) ... ok
+test_all_six_respond (test_ping_readonly.PingReadonlyTests.test_all_six_respond) ... ok
+test_exact_ping_and_no_other_opcode (test_ping_readonly.PingReadonlyTests.test_exact_ping_and_no_other_opcode) ... ok
+test_id1_silence_does_not_skip_id2_through_id6 (test_ping_readonly.PingReadonlyTests.test_id1_silence_does_not_skip_id2_through_id6) ... ok
+test_reply_status_and_checksum (test_ping_readonly.PingReadonlyTests.test_reply_status_and_checksum) ... ok
+test_separate_id_errors_are_reported (test_ping_readonly.PingReadonlyTests.test_separate_id_errors_are_reported) ... ok
+test_missing_clock_or_samples_stays_unknown (test_read_latency_review.ReadLatencyTests.test_missing_clock_or_samples_stays_unknown) ... ok
+test_wrong_id_latency_is_never_counted_as_good (test_read_latency_review.ReadLatencyTests.test_wrong_id_latency_is_never_counted_as_good) ... ok
+test_ctrl_c_while_priming_blocks_all_goals (test_ready_budget.ReadyBudgetTests.test_ctrl_c_while_priming_blocks_all_goals) ... ok
+test_first_inference_is_outside_budget_and_first_action_is_zero (test_ready_budget.ReadyBudgetTests.test_first_inference_is_outside_budget_and_first_action_is_zero) ... ok
+test_health_fault_while_priming_blocks_all_goals (test_ready_budget.ReadyBudgetTests.test_health_fault_while_priming_blocks_all_goals) ... ok
+test_inference_watchdog_remains_active_before_ready (test_ready_budget.ReadyBudgetTests.test_inference_watchdog_remains_active_before_ready) ... ok
+test_no_camera_for_five_seconds_never_predicts_or_writes (test_ready_budget.ReadyBudgetTests.test_no_camera_for_five_seconds_never_predicts_or_writes) ... ok
+test_goal_only_guard_blocks_torque_pid_calibration_and_acceleration (test_recorded_replay.ReplayTests.test_goal_only_guard_blocks_torque_pid_calibration_and_acceleration) ... ok
+test_interrupt_temperature_usb_hold (test_recorded_replay.ReplayTests.test_interrupt_temperature_usb_hold) ... ok
+test_recorded_path_completes_at_point33_and_source_end (test_recorded_replay.ReplayTests.test_recorded_path_completes_at_point33_and_source_end) ... ok
+test_recording_contract_and_hash (test_recorded_replay.ReplayTests.test_recording_contract_and_hash) ... ok
+test_torque_off_refuses_without_any_write (test_recorded_replay.ReplayTests.test_torque_off_refuses_without_any_write) ... ok
+test_direct_port_close_falls_back_without_calling_torque_cleanup (test_recorder_bus_readonly.ReadonlyComparisonTests.test_direct_port_close_falls_back_without_calling_torque_cleanup) ... ok
+test_empty_timing_does_not_claim_zero_latency (test_recorder_bus_readonly.ReadonlyComparisonTests.test_empty_timing_does_not_claim_zero_latency) ... ok
+test_only_expected_fresh_reads_allowed (test_recorder_bus_readonly.ReadonlyComparisonTests.test_only_expected_fresh_reads_allowed) ... ok
+test_phase_cleanup_and_actual_packet_guard_with_recorder_fault (test_recorder_bus_readonly.ReadonlyComparisonTests.test_phase_cleanup_and_actual_packet_guard_with_recorder_fault) ... ok
+test_recorder_close_exception_is_reported_and_does_not_escape_phase (test_recorder_bus_readonly.ReadonlyComparisonTests.test_recorder_close_exception_is_reported_and_does_not_escape_phase) ... ok
+test_torque_on_or_temperature_or_status_never_silently_passes (test_recorder_bus_readonly.ReadonlyComparisonTests.test_torque_on_or_temperature_or_status_never_silently_passes) ... ok
+test_delivery_segments_count_phase_and_original_bytes (test_review_chunk_timing.ChunkLogReviewTests.test_delivery_segments_count_phase_and_original_bytes) ... ok
+test_empty_or_incomplete_log_is_not_reported_as_zero_motion_proof (test_review_chunk_timing.ChunkLogReviewTests.test_empty_or_incomplete_log_is_not_reported_as_zero_motion_proof) ... ok
+test_frozen_playback_does_not_consume_wall_clock_actions (test_start_timing.StartTimingTests.test_frozen_playback_does_not_consume_wall_clock_actions) ... ok
+READY {"event": "ready", "unix": 1794999927.959141, "monotonic_s": 5.800000288999984, "duration_s": 25.0, "speed": 0.33, "first_inference_s": 5.8, "first_observation_and_inference_s": 5.800000288999984}
+타이밍 0~1.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 0.98 소요ms {'serial_read': 979.9999039999711, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 1~2.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 2~3.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 3~4.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 4~5.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 5~6.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 6~7.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 7~8.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 8~9.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 9~10.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 10~11.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999722, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 11~12.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 12~13.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 13~14.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 14~15.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 15~16.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 16~17.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 17~18.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 18~19.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 19~20.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 20~21.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 21~22.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 22~23.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 23~24.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 24~25.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.98 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 25~25.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.00 소요ms {'serial_read': 19.999997999999408, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+test_long_initial_inference_starts_at_action_zero (test_start_timing.StartTimingTests.test_long_initial_inference_starts_at_action_zero) ... ok
+READY {"event": "ready", "unix": 1794999928.7771387, "monotonic_s": 0.060000002, "duration_s": 25.0, "speed": 0.33, "first_inference_s": 0.05, "first_observation_and_inference_s": 0.060000002}
+타이밍 0~1.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.98 소요ms {'serial_read': 979.9999039999983, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 1~2.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999926, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 2~3.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999926, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 3~4.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 1.00 소요ms {'serial_read': 999.9998999999913, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 4~5.00s 정상 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.97 소요ms {'serial_read': 1019.9998979999698, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 5~6.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 6~7.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 7~8.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.00 소요ms {'serial_read': 999.9998999999713, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 8~9.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.00 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 9~10.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 5800.00/5800.00 진행률 0.68 소요ms {'serial_read': 979.999901999971, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 10~11.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.79 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 11~12.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.79 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 12~13.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.79 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 13~14.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.28 소요ms {'serial_read': 1019.9998979999698, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 14~15.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 5800.00/5800.00 진행률 0.03 소요ms {'serial_read': 979.999901999971, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 15~16.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 0.79 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 16~17.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 0.79 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 17~18.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 0.79 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 18~19.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.79 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 19~20.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.79 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 20~21.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 0.79 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 21~22.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.79 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 22~23.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.79 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 23~24.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 50.00/50.00 진행률 0.79 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 24~25.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.78 소요ms {'serial_read': 999.9998999999705, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+타이밍 25~25.00s 루프 밀림 Hz 평균/p5/최소 50.00/50.00/50.00 추론ms 평균/최대 미측정/미측정 진행률 0.00 소요ms {'serial_read': 19.999997999999408, 'serial_write': 0.0, 'camera': 0.0, 'jpeg_enqueue_copy': 0.0, 'preview_enqueue': 0.0, 'inference_blocking': 0.0, 'other': 0.0}
+test_real_stream_keeps_usable_chunk_after_two_slow_inferences (test_start_timing.StartTimingTests.test_real_stream_keeps_usable_chunk_after_two_slow_inferences) ... ok
+test_bulk_high_never_substitutes_for_the_individual_register (test_thermal_diagnostics.ExistingReadIntegrationTests.test_bulk_high_never_substitutes_for_the_individual_register) ... ok
+test_every_reply_is_logged_without_changing_temperature (test_thermal_diagnostics.ExistingReadIntegrationTests.test_every_reply_is_logged_without_changing_temperature) ... ok
+test_fresh_individual_value_and_all_source_bytes_are_preserved (test_thermal_diagnostics.ExistingReadIntegrationTests.test_fresh_individual_value_and_all_source_bytes_are_preserved) ... ok
+test_invalid_reply_is_preserved_and_not_retried (test_thermal_diagnostics.ExistingReadIntegrationTests.test_invalid_reply_is_preserved_and_not_retried) ... ok
+test_missing_individual_response_remains_an_error (test_thermal_diagnostics.ExistingReadIntegrationTests.test_missing_individual_response_remains_an_error) ... ok
+test_same_axis_requests_are_at_least_20ms_apart (test_thermal_diagnostics.ExistingReadIntegrationTests.test_same_axis_requests_are_at_least_20ms_apart) ... ok
+test_corrupt_reply_rejected_with_raw_bytes (test_thermal_diagnostics.ReadonlyTransportTests.test_corrupt_reply_rejected_with_raw_bytes) ... ok
+test_ctrl_c_always_closes (test_thermal_diagnostics.ReadonlyTransportTests.test_ctrl_c_always_closes) ... ok
+test_faults_close_without_any_register_write (test_thermal_diagnostics.ReadonlyTransportTests.test_faults_close_without_any_register_write) ... ok
+test_full_120_seconds_virtual_read (test_thermal_diagnostics.ReadonlyTransportTests.test_full_120_seconds_virtual_read) ... ok
+test_gradual_heat_stops_at_raw_55 (test_thermal_diagnostics.ReadonlyTransportTests.test_gradual_heat_stops_at_raw_55) ... ok
+test_jetson_fuser_free_port_without_unsupported_separator (test_thermal_diagnostics.ReadonlyTransportTests.test_jetson_fuser_free_port_without_unsupported_separator) ... ok
+test_leader_port_can_never_replace_follower (test_thermal_diagnostics.ReadonlyTransportTests.test_leader_port_can_never_replace_follower) ... ok
+test_port_owner_or_query_error_still_refuses (test_thermal_diagnostics.ReadonlyTransportTests.test_port_owner_or_query_error_still_refuses) ... ok
+test_single_spike_stops_hardware_path_while_shadow_reports_it (test_thermal_diagnostics.ReadonlyTransportTests.test_single_spike_stops_hardware_path_while_shadow_reports_it) ... ok
+test_torque_on_stops_without_turning_it_off (test_thermal_diagnostics.ReadonlyTransportTests.test_torque_on_stops_without_turning_it_off) ... ok
+test_write_addresses_cannot_be_requested (test_thermal_diagnostics.ReadonlyTransportTests.test_write_addresses_cannot_be_requested) ... ok
+test_actual_55_gate_still_stops_single_81 (test_thermal_diagnostics.ThermalDiagnosticTests.test_actual_55_gate_still_stops_single_81) ... ok
+test_cached_site_data_never_opens_bus_and_expires (test_thermal_diagnostics.ThermalDiagnosticTests.test_cached_site_data_never_opens_bus_and_expires) ... ok
+test_candidate_needs_three_and_more_than_point_three_seconds (test_thermal_diagnostics.ThermalDiagnosticTests.test_candidate_needs_three_and_more_than_point_three_seconds) ... ok
+test_invalid_numbers_and_time (test_thermal_diagnostics.ThermalDiagnosticTests.test_invalid_numbers_and_time) ... ok
+test_other_axis_source_max_is_preserved (test_thermal_diagnostics.ThermalDiagnosticTests.test_other_axis_source_max_is_preserved) ... ok
+test_single_spike_is_visible_but_never_authorizes_motion (test_thermal_diagnostics.ThermalDiagnosticTests.test_single_spike_is_visible_but_never_authorizes_motion) ... ok
+test_slow_heating_is_not_rejected (test_thermal_diagnostics.ThermalDiagnosticTests.test_slow_heating_is_not_rejected) ... ok
+test_thresholds_are_strict (test_thermal_diagnostics.ThermalDiagnosticTests.test_thresholds_are_strict) ... ok
+test_two_raw_70_override_diagnostic_filter (test_thermal_diagnostics.ThermalDiagnosticTests.test_two_raw_70_override_diagnostic_filter) ... ok
+test_window_expires (test_thermal_diagnostics.ThermalDiagnosticTests.test_window_expires) ... ok
+test_invalid_or_incomplete_decision_is_not_fail_open (test_thermal_window.ThermalWindowTests.test_invalid_or_incomplete_decision_is_not_fail_open) ... ok
+test_median_warns_at_50_and_holds_with_intermittent_cool_samples (test_thermal_window.ThermalWindowTests.test_median_warns_at_50_and_holds_with_intermittent_cool_samples) ... ok
+test_missing_interval_cannot_count_as_continuous_hot (test_thermal_window.ThermalWindowTests.test_missing_interval_cannot_count_as_continuous_hot) ... ok
+test_return_to_normal_resets_continuous_hot_streak (test_thermal_window.ThermalWindowTests.test_return_to_normal_resets_continuous_hot_streak) ... ok
+test_samples_must_have_new_monotonic_times (test_thermal_window.ThermalWindowTests.test_samples_must_have_new_monotonic_times) ... ok
+test_single_and_two_consecutive_81c_bursts_continue (test_thermal_window.ThermalWindowTests.test_single_and_two_consecutive_81c_bursts_continue) ... ok
+test_slow_actual_temperature_rise_holds (test_thermal_window.ThermalWindowTests.test_slow_actual_temperature_rise_holds) ... ok
+test_status_error_still_stops_during_a_filtered_spike (test_thermal_window.ThermalWindowTests.test_status_error_still_stops_during_a_filtered_spike) ... ok
+test_two_seconds_all_hot_holds_at_boundary (test_thermal_window.ThermalWindowTests.test_two_seconds_all_hot_holds_at_boundary) ... ok
+test_cap_slew_and_other_axes_unchanged (test_tracking_compensation.TrackingTests.test_cap_slew_and_other_axes_unchanged) ... ok
+test_deadband_gravity_tracking_improves (test_tracking_compensation.TrackingTests.test_deadband_gravity_tracking_improves) ... ok
+test_nan_and_gripper_compensation_rejected (test_tracking_compensation.TrackingTests.test_nan_and_gripper_compensation_rejected) ... ok
+test_range_antiwindup_then_recovery (test_tracking_compensation.TrackingTests.test_range_antiwindup_then_recovery) ... ok
+test_reversed_error_unwinds_and_paused_loop_does_not_wind_up (test_tracking_compensation.TrackingTests.test_reversed_error_unwinds_and_paused_loop_does_not_wind_up) ... ok
+test_seventy_percent_within_one_second_and_old_new_comparison (test_tracking_compensation.TrackingTests.test_seventy_percent_within_one_second_and_old_new_comparison) ... ok
+test_closing_direction_and_open_release (test_unified.UnifiedTests.test_closing_direction_and_open_release) ... ok
+test_no_configuration_writes_in_start (test_unified.UnifiedTests.test_no_configuration_writes_in_start) ... ok
+test_shared_limits (test_unified.UnifiedTests.test_shared_limits) ... ok
+test_startup_recovery_and_no_jump (test_unified.UnifiedTests.test_startup_recovery_and_no_jump) ... ok
+test_thermal_and_status_guards (test_unified.UnifiedTests.test_thermal_and_status_guards) ... ok
+
+----------------------------------------------------------------------
+Ran 179 tests in 8.398s
+
+OK (skipped=2)

@@ -1,0 +1,111 @@
+{
+  "end_effector": {
+    "training_ids": [],
+    "current_ids": [],
+    "objects": {}
+  },
+  "ceiling_vertical": {
+    "training_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "current_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "objects": {
+      "4": {
+        "kind": "basket",
+        "center_difference_after_board_registration_px": 4.137767791748047
+      },
+      "5": {
+        "kind": "basket",
+        "center_difference_after_board_registration_px": 2.7279088497161865
+      },
+      "6": {
+        "kind": "basket",
+        "center_difference_after_board_registration_px": 2.920968532562256
+      },
+      "7": {
+        "kind": "bottle_lid",
+        "center_difference_after_board_registration_px": 3.784721612930298
+      },
+      "8": {
+        "kind": "bottle_lid",
+        "center_difference_after_board_registration_px": 3.9847218990325928
+      },
+      "9": {
+        "kind": "bottle_lid",
+        "center_difference_after_board_registration_px": 2.5603935718536377
+      }
+    }
+  },
+  "ceiling_oblique": {
+    "training_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "current_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "objects": {
+      "4": {
+        "kind": "basket",
+        "center_difference_after_board_registration_px": 3.092130184173584
+      },
+      "5": {
+        "kind": "basket",
+        "center_difference_after_board_registration_px": 2.598252058029175
+      },
+      "6": {
+        "kind": "basket",
+        "center_difference_after_board_registration_px": 3.685082197189331
+      },
+      "7": {
+        "kind": "bottle_lid",
+        "center_difference_after_board_registration_px": 4.683806896209717
+      },
+      "8": {
+        "kind": "bottle_lid",
+        "center_difference_after_board_registration_px": 4.027853488922119
+      },
+      "9": {
+        "kind": "bottle_lid",
+        "center_difference_after_board_registration_px": 2.8302316665649414
+      }
+    }
+  }
+}

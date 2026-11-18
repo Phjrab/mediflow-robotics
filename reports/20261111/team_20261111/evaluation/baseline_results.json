@@ -1,0 +1,279 @@
+{
+  "scope": "baseline only; no post-fix PASS",
+  "sources": {
+    "tmp\\vla_direct_live_v3_20261109\\live_start.py.bak_20261111_161059": "c063e02c87efaf2e0b5ffded7e7055c4a15101352dc88888c0d1380d307adba6",
+    "tmp\\servo_b_step_20261109\\home-joints.html": "4ad40dd14694a5c8629d502c44285abe29b3182fc84a2839677d9eafe5eb3802"
+  },
+  "runner_rows": [
+    {
+      "tick": "3082",
+      "degree": 96.5714,
+      "home_inside": true,
+      "runner_position": "ALLOW_POSITION"
+    },
+    {
+      "tick": "3083",
+      "degree": 96.6593,
+      "home_inside": true,
+      "runner_position": "ALLOW_POSITION"
+    },
+    {
+      "tick": "3084",
+      "degree": 96.7473,
+      "home_inside": true,
+      "runner_position": "HOLD_POSITION"
+    },
+    {
+      "tick": "879",
+      "degree": null,
+      "home_inside": null,
+      "runner_position": "HOLD_POSITION"
+    },
+    {
+      "tick": "880",
+      "degree": null,
+      "home_inside": null,
+      "runner_position": "ALLOW_POSITION"
+    },
+    {
+      "tick": "3083.0",
+      "degree": null,
+      "home_inside": null,
+      "runner_position": "HOLD_POSITION"
+    },
+    {
+      "tick": "None",
+      "degree": null,
+      "home_inside": null,
+      "runner_position": "HOLD_POSITION"
+    },
+    {
+      "tick": "nan",
+      "degree": null,
+      "home_inside": null,
+      "runner_position": "HOLD_POSITION"
+    }
+  ],
+  "ui_rows": [
+    {
+      "label": "elbow_3082",
+      "status": "6축 OK · home 허용 범위",
+      "elbow": [
+        "팔꿈치",
+        "96.57°",
+        "96.55°",
+        "+0.02°",
+        "안",
+        "3082"
+      ],
+      "gripper": [
+        "그리퍼",
+        "4.28점",
+        "4.28점",
+        "+0.00점",
+        "안",
+        "—"
+      ]
+    },
+    {
+      "label": "elbow_3083",
+      "status": "6축 OK · home 허용 범위",
+      "elbow": [
+        "팔꿈치",
+        "96.66°",
+        "96.55°",
+        "+0.11°",
+        "안",
+        "3083"
+      ],
+      "gripper": [
+        "그리퍼",
+        "4.28점",
+        "4.28점",
+        "+0.00점",
+        "안",
+        "—"
+      ]
+    },
+    {
+      "label": "elbow_3084",
+      "status": "6축 OK · home 허용 범위",
+      "elbow": [
+        "팔꿈치",
+        "96.75°",
+        "96.55°",
+        "+0.20°",
+        "안",
+        "3084"
+      ],
+      "gripper": [
+        "그리퍼",
+        "4.28점",
+        "4.28점",
+        "+0.00점",
+        "안",
+        "—"
+      ]
+    },
+    {
+      "label": "missing_ticks",
+      "status": "6축 OK · home 허용 범위",
+      "elbow": [
+        "팔꿈치",
+        "96.55°",
+        "96.55°",
+        "+0.00°",
+        "안",
+        "—"
+      ],
+      "gripper": [
+        "그리퍼",
+        "4.28점",
+        "4.28점",
+        "+0.00점",
+        "안",
+        "—"
+      ]
+    },
+    {
+      "label": "stale_1200ms",
+      "status": "연결됨 · 텔레옵 관절값 대기",
+      "elbow": [
+        "팔꿈치",
+        "—",
+        "96.55°",
+        "—",
+        "대기",
+        "—"
+      ],
+      "gripper": [
+        "그리퍼",
+        "—",
+        "4.28점",
+        "—",
+        "대기",
+        "—"
+      ]
+    },
+    {
+      "label": "fresh_home",
+      "status": "6축 OK · home 허용 범위",
+      "elbow": [
+        "팔꿈치",
+        "96.55°",
+        "96.55°",
+        "+0.00°",
+        "안",
+        "—"
+      ],
+      "gripper": [
+        "그리퍼",
+        "4.28점",
+        "4.28점",
+        "+0.00점",
+        "안",
+        "—"
+      ]
+    },
+    {
+      "label": "NaN_serializes_null_after_fresh",
+      "status": "6축 OK · home 허용 범위",
+      "elbow": [
+        "팔꿈치",
+        "96.55°",
+        "96.55°",
+        "+0.00°",
+        "안",
+        "—"
+      ],
+      "gripper": [
+        "그리퍼",
+        "4.28점",
+        "4.28점",
+        "+0.00점",
+        "안",
+        "—"
+      ]
+    },
+    {
+      "label": "gripper_0",
+      "status": "실시간 · home 맞추는 중",
+      "elbow": [
+        "팔꿈치",
+        "96.55°",
+        "96.55°",
+        "+0.00°",
+        "안",
+        "—"
+      ],
+      "gripper": [
+        "그리퍼",
+        "0.00점",
+        "4.28점",
+        "-4.28점",
+        "밖",
+        "—"
+      ]
+    },
+    {
+      "label": "gripper_2.275478211632611",
+      "status": "6축 OK · home 허용 범위",
+      "elbow": [
+        "팔꿈치",
+        "96.55°",
+        "96.55°",
+        "+0.00°",
+        "안",
+        "—"
+      ],
+      "gripper": [
+        "그리퍼",
+        "2.28점",
+        "4.28점",
+        "-2.00점",
+        "안",
+        "—"
+      ]
+    },
+    {
+      "label": "gripper_6.275478211632611",
+      "status": "6축 OK · home 허용 범위",
+      "elbow": [
+        "팔꿈치",
+        "96.55°",
+        "96.55°",
+        "+0.00°",
+        "안",
+        "—"
+      ],
+      "gripper": [
+        "그리퍼",
+        "6.28점",
+        "4.28점",
+        "+2.00점",
+        "안",
+        "—"
+      ]
+    },
+    {
+      "label": "gripper_100",
+      "status": "실시간 · home 맞추는 중",
+      "elbow": [
+        "팔꿈치",
+        "96.55°",
+        "96.55°",
+        "+0.00°",
+        "안",
+        "—"
+      ],
+      "gripper": [
+        "그리퍼",
+        "100.00점",
+        "4.28점",
+        "+95.72점",
+        "밖",
+        "—"
+      ]
+    }
+  ]
+}

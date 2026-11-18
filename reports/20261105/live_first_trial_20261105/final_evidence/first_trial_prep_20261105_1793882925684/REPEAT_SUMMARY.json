@@ -1,0 +1,34 @@
+{
+  "planned": 3,
+  "completed": 2,
+  "passed": 0,
+  "cases": [
+    {
+      "index": 0,
+      "status": "HOLD",
+      "exit_code": 2,
+      "seconds": 84.4177725315094,
+      "error": {
+        "kind": "Hold",
+        "reason": "추론 chunk 소비시간 상한: 결과 폐기, 추가 목표 전송 금지"
+      },
+      "register_writes": 0,
+      "post_checks": true,
+      "record_preserved": true,
+      "inference_seconds": 1.7536695460003102
+    },
+    {
+      "index": 1,
+      "status": "HOLD",
+      "exit_code": 2,
+      "seconds": 84.88294816017151,
+      "error": null,
+      "register_writes": 0,
+      "post_checks": true,
+      "record_preserved": true,
+      "inference_seconds": 1.6534019949976937
+    }
+  ],
+  "live": "NOT_RUN",
+  "all_pass": false
+}

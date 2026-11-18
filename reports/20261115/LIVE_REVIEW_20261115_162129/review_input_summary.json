@@ -1,0 +1,281 @@
+{
+  "status": "HOLD",
+  "reason": "모터 상태코드/온도 중단: {\"shoulder_lift\": {\"status\": 0, \"temperature_c\": 66}}",
+  "hold": {
+    "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+  },
+  "steps": 209,
+  "step_limit": 10800,
+  "elapsed_s": 7.781636605000131,
+  "task_success": "UNVERIFIED",
+  "speed": 0.33,
+  "playback_hz": 9.9,
+  "playback_s": 1.4651674161300514,
+  "gripper_peak_c": 38,
+  "peak_temperatures_c": {
+    "shoulder_pan": 32,
+    "shoulder_lift": 66,
+    "elbow_flex": 32,
+    "wrist_flex": 34,
+    "wrist_roll": 40,
+    "gripper": 38
+  },
+  "camera": {
+    "end_effector": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.04395818700049858
+    },
+    "ceiling_vertical": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.04706881100082683
+    },
+    "ceiling_oblique": {
+      "read_failures": 3,
+      "max_frame_gap_s": 0.050310957999499806
+    }
+  },
+  "inference_s": {
+    "mean": 1.467923158999838,
+    "samples": [
+      1.467923158999838
+    ]
+  },
+  "chunk_wait_s": {
+    "max": 0,
+    "sum": 0
+  },
+  "transmission_hz": 46.96962482199329,
+  "final_rate_target": 50,
+  "tracking": {
+    "shoulder_pan": {
+      "sent_span": 0.9670329670329672,
+      "observed_span": 0.43956043956043933,
+      "span_ratio": 0.45454545454545425
+    },
+    "shoulder_lift": {
+      "sent_span": 2.285714285714292,
+      "observed_span": 0.7032967032967008,
+      "span_ratio": 0.30769230769230577
+    },
+    "elbow_flex": {
+      "sent_span": 2.19780219780219,
+      "observed_span": 0.3516483516483504,
+      "span_ratio": 0.16
+    },
+    "wrist_flex": {
+      "sent_span": 1.9340659340659343,
+      "observed_span": 1.0549450549450512,
+      "span_ratio": 0.5454545454545434
+    },
+    "wrist_roll": {
+      "sent_span": 0.35164835164835173,
+      "observed_span": 0.08791208791208804,
+      "span_ratio": 0.25000000000000033
+    },
+    "gripper": {
+      "sent_span": 0.673194614443084,
+      "observed_span": 1.1015911872705018,
+      "span_ratio": 1.6363636363636374
+    }
+  },
+  "torque_off": "TORQUE_RETAINED",
+  "gripper_limits_readonly": {
+    "Max_Torque_Limit": 500,
+    "Torque_Limit": 500,
+    "Protection_Current": 250
+  },
+  "thermal_recheck": {
+    "shoulder_lift": {
+      "trigger_c": 66,
+      "register_63_reads_c": [
+        32,
+        33,
+        33
+      ]
+    }
+  },
+  "thermal_diagnostics": {
+    "mode": "observe_only",
+    "filter_controls_motion": false,
+    "rules": {
+      "mode": "observe_only",
+      "jump_gt_c": 10.0,
+      "rise_window_s": 1.0,
+      "rise_gt_c": 5.0,
+      "candidate_stop_c": 55.0,
+      "candidate_consecutive": 3,
+      "candidate_duration_gt_s": 0.3,
+      "candidate_raw_emergency_c": 70.0,
+      "candidate_raw_emergency_consecutive": 2
+    },
+    "errors": {
+      "total": 0,
+      "communication": 0,
+      "checksum": 0,
+      "other": 0
+    },
+    "joints": {
+      "shoulder_pan": {
+        "samples": 462,
+        "spike_count": 0,
+        "raw_peak_c": 32,
+        "filtered_peak_c": 32
+      },
+      "shoulder_lift": {
+        "samples": 462,
+        "spike_count": 1,
+        "raw_peak_c": 66,
+        "filtered_peak_c": 33
+      },
+      "elbow_flex": {
+        "samples": 462,
+        "spike_count": 0,
+        "raw_peak_c": 32,
+        "filtered_peak_c": 32
+      },
+      "wrist_flex": {
+        "samples": 462,
+        "spike_count": 0,
+        "raw_peak_c": 35,
+        "filtered_peak_c": 34
+      },
+      "wrist_roll": {
+        "samples": 462,
+        "spike_count": 1,
+        "raw_peak_c": 41,
+        "filtered_peak_c": 32
+      },
+      "gripper": {
+        "samples": 462,
+        "spike_count": 0,
+        "raw_peak_c": 45,
+        "filtered_peak_c": 38
+      }
+    }
+  },
+  "startup_temperatures_c": {
+    "shoulder_pan": 31,
+    "shoulder_lift": 32,
+    "elbow_flex": 31,
+    "wrist_flex": 31,
+    "wrist_roll": 31,
+    "gripper": 34
+  },
+  "goal_packet_attempts": 210,
+  "port_closed": true,
+  "cleanup_errors": [],
+  "gripper_relief_count": 0,
+  "startup_auto_processed": [
+    {
+      "event": "startup_temperatures",
+      "temperature_c": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 32,
+        "elbow_flex": 31,
+        "wrist_flex": 31,
+        "wrist_roll": 31,
+        "gripper": 34
+      }
+    },
+    {
+      "event": "startup_ready",
+      "torque": {
+        "shoulder_pan": 1,
+        "shoulder_lift": 1,
+        "elbow_flex": 1,
+        "wrist_flex": 1,
+        "wrist_roll": 1,
+        "gripper": 1
+      },
+      "modes": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "temperature_c": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 32,
+        "elbow_flex": 31,
+        "wrist_flex": 31,
+        "wrist_roll": 31,
+        "gripper": 34
+      },
+      "home_delta": {
+        "shoulder_pan": 0.1758241758241761,
+        "shoulder_lift": -0.9670329670329778,
+        "elbow_flex": 0.0,
+        "wrist_flex": -1.4945054945054963,
+        "wrist_roll": -1.3186813186813184,
+        "gripper": 0.6731946144430845
+      },
+      "camera": {
+        "end_effector": "READY",
+        "ceiling_vertical": "READY",
+        "ceiling_oblique": "READY"
+      },
+      "auto_recovered": []
+    },
+    {
+      "event": "startup_write",
+      "register": "Goal_Position",
+      "values": {
+        "shoulder_pan": 2058,
+        "shoulder_lift": 837,
+        "elbow_flex": 3073,
+        "wrist_flex": 2568,
+        "wrist_roll": 1822,
+        "gripper": 477
+      }
+    }
+  ],
+  "output": "/home/jetson3/so101_vla/runs/20261115_162129",
+  "torque_register_writes": 0,
+  "configuration_register_writes": 0,
+  "review_camera_metrics": {
+    "end_effector": {
+      "bytes": 19354,
+      "size": [
+        640,
+        480
+      ],
+      "mean_rgb": [
+        133.20689778645834,
+        130.99494791666666,
+        143.03108723958334
+      ],
+      "mean_luma": 133.03768880208332,
+      "near_black_fraction": 0.02943359375
+    },
+    "ceiling_vertical": {
+      "bytes": 48845,
+      "size": [
+        640,
+        480
+      ],
+      "mean_rgb": [
+        117.035478515625,
+        122.31463216145833,
+        107.90842447916667
+      ],
+      "mean_luma": 119.09892578125,
+      "near_black_fraction": 0.044837239583333334
+    },
+    "ceiling_oblique": {
+      "bytes": 32956,
+      "size": [
+        640,
+        480
+      ],
+      "mean_rgb": [
+        110.99350911458333,
+        102.99103190104167,
+        92.75147135416667
+      ],
+      "mean_luma": 104.22509114583333,
+      "near_black_fraction": 0.000263671875
+    }
+  }
+}

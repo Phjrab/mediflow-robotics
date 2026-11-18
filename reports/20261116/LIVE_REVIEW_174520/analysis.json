@@ -1,0 +1,1807 @@
+{
+  "run": "/home/jetson3/so101_vla/runs/20261116_174520",
+  "summary": {
+    "status": "HOLD",
+    "reason": "모터 패킷 상태코드: id=6, status=32, 읽기 주소=56, 요청 폭=15B",
+    "hold": {
+      "status": "HOLD_NOT_CONFIRMED",
+      "reason": "비재시도 오류로 위치 유지 쓰기 금지"
+    },
+    "steps": 6667,
+    "step_limit": 10800,
+    "elapsed_s": 151.6746394859947,
+    "task_success": "UNVERIFIED",
+    "speed": 0.33,
+    "playback_hz": 9.9,
+    "playback_s": 48.96397256057619,
+    "gripper_peak_c": 150,
+    "peak_temperatures_c": {
+      "shoulder_pan": 72,
+      "shoulder_lift": 150,
+      "elbow_flex": 150,
+      "wrist_flex": 142,
+      "wrist_roll": 48,
+      "gripper": 150
+    },
+    "camera": {
+      "end_effector": {
+        "read_failures": 0,
+        "max_frame_gap_s": 0.050919845001772046
+      },
+      "ceiling_vertical": {
+        "read_failures": 0,
+        "max_frame_gap_s": 0.052337297005578876
+      },
+      "ceiling_oblique": {
+        "read_failures": 3,
+        "max_frame_gap_s": 0.052703029999975115
+      }
+    },
+    "inference_s": {
+      "mean": 1.442086109425563,
+      "samples": [
+        1.419456342002377,
+        1.4088631210033782,
+        1.4051895220036386,
+        1.4084163810039172,
+        1.4254161270073382,
+        1.4012038119981298,
+        1.4238152750040172,
+        1.5822251380013768,
+        1.4163730000000214,
+        1.3976864139985992,
+        1.449097573000472,
+        1.431815732998075,
+        1.422040992998518,
+        1.4140979869989678,
+        1.4625652539980365,
+        1.4526908950065263,
+        1.4499520739918808,
+        1.4445879590057302,
+        1.437007778993575,
+        1.4408223680075025,
+        1.4381701410020469,
+        1.43276068099658,
+        1.4510310579935322,
+        1.4324409190012375,
+        1.4612102620012593,
+        1.4104912349866936,
+        1.4826740249991417,
+        1.4664918939961353,
+        1.4407010279974202,
+        1.434357012010878,
+        1.425629562989343,
+        1.4484393070015358,
+        1.4063784219906665,
+        1.5323057220084593,
+        1.4048611820035148,
+        1.4304814740025904,
+        1.4387947880022693,
+        1.5016065840027295,
+        1.4399761879903963,
+        1.5309877669933485,
+        1.4560733910038834,
+        1.4012852759915404,
+        1.4028693980071694,
+        1.3944174130010651,
+        1.4577442040026654,
+        1.4699967380001908,
+        1.4925477240030887
+      ]
+    },
+    "chunk_wait_s": {
+      "max": 0,
+      "sum": 0
+    },
+    "transmission_hz": 44.93253797475609,
+    "final_rate_target": 50,
+    "tracking": {
+      "shoulder_pan": {
+        "sent_span": 14.68131868131868,
+        "observed_span": 13.978021978021978,
+        "span_ratio": 0.9520958083832336
+      },
+      "shoulder_lift": {
+        "sent_span": 79.64835164835165,
+        "observed_span": 79.2967032967033,
+        "span_ratio": 0.9955849889624724
+      },
+      "elbow_flex": {
+        "sent_span": 95.56043956043956,
+        "observed_span": 91.78021978021978,
+        "span_ratio": 0.9604415823367065
+      },
+      "wrist_flex": {
+        "sent_span": 36.92307692307692,
+        "observed_span": 36.13186813186813,
+        "span_ratio": 0.9785714285714286
+      },
+      "wrist_roll": {
+        "sent_span": 18.197802197802197,
+        "observed_span": 17.23076923076923,
+        "span_ratio": 0.9468599033816425
+      },
+      "gripper": {
+        "sent_span": 63.831089351285186,
+        "observed_span": 50.061199510403924,
+        "span_ratio": 0.7842761265580059
+      }
+    },
+    "tracking_compensation": {
+      "enabled_axes": [
+        "elbow_flex"
+      ],
+      "steps": 6667,
+      "requested_cap_deg": 3.0,
+      "effective_cap_deg": 2.912087912087912,
+      "max_abs_offset_deg": {
+        "shoulder_pan": 0.0,
+        "shoulder_lift": 0.0,
+        "elbow_flex": 2.912087912087912,
+        "wrist_flex": 0.0,
+        "wrist_roll": 0.0,
+        "gripper": 0.0
+      },
+      "final_offset_deg": {
+        "shoulder_pan": 0.0,
+        "shoulder_lift": 0.0,
+        "elbow_flex": -0.05385931603308706,
+        "wrist_flex": 0.0,
+        "wrist_roll": 0.0,
+        "gripper": 0.0
+      }
+    },
+    "torque_off": "TORQUE_RETAINED",
+    "gripper_limits_readonly": {
+      "Max_Torque_Limit": 500,
+      "Torque_Limit": 500,
+      "Protection_Current": 250
+    },
+    "thermal_recheck": {},
+    "thermal_diagnostics": {
+      "mode": "observe_only",
+      "filter_controls_motion": false,
+      "rules": {
+        "mode": "observe_only",
+        "jump_gt_c": 10.0,
+        "rise_window_s": 1.0,
+        "rise_gt_c": 5.0,
+        "candidate_stop_c": 55.0,
+        "candidate_consecutive": 3,
+        "candidate_duration_gt_s": 0.3,
+        "candidate_raw_emergency_c": 70.0,
+        "candidate_raw_emergency_consecutive": 2
+      },
+      "errors": {
+        "total": 1,
+        "communication": 0,
+        "checksum": 0,
+        "other": 1
+      },
+      "joints": {
+        "shoulder_pan": {
+          "samples": 6897,
+          "spike_count": 5,
+          "raw_peak_c": 72,
+          "filtered_peak_c": 37
+        },
+        "shoulder_lift": {
+          "samples": 6897,
+          "spike_count": 28,
+          "raw_peak_c": 150,
+          "filtered_peak_c": 40
+        },
+        "elbow_flex": {
+          "samples": 6897,
+          "spike_count": 12,
+          "raw_peak_c": 150,
+          "filtered_peak_c": 38
+        },
+        "wrist_flex": {
+          "samples": 6897,
+          "spike_count": 12,
+          "raw_peak_c": 142,
+          "filtered_peak_c": 40
+        },
+        "wrist_roll": {
+          "samples": 6897,
+          "spike_count": 45,
+          "raw_peak_c": 48,
+          "filtered_peak_c": 38
+        },
+        "gripper": {
+          "samples": 6897,
+          "spike_count": 81,
+          "raw_peak_c": 150,
+          "filtered_peak_c": 41
+        }
+      }
+    },
+    "thermal_protection": {
+      "window_s": 2.0,
+      "continuous_hot_s": 2.0,
+      "stop_c": 55.0,
+      "median_warning_c": 50.0,
+      "joints": {
+        "shoulder_pan": {
+          "spike_count": 1,
+          "warning_count": 0,
+          "raw_peak_c": 72,
+          "median_peak_c": 34.0
+        },
+        "shoulder_lift": {
+          "spike_count": 2,
+          "warning_count": 0,
+          "raw_peak_c": 70,
+          "median_peak_c": 35.0
+        },
+        "elbow_flex": {
+          "spike_count": 2,
+          "warning_count": 0,
+          "raw_peak_c": 150,
+          "median_peak_c": 34
+        },
+        "wrist_flex": {
+          "spike_count": 3,
+          "warning_count": 0,
+          "raw_peak_c": 142,
+          "median_peak_c": 35.0
+        },
+        "wrist_roll": {
+          "spike_count": 0,
+          "warning_count": 0,
+          "raw_peak_c": 48,
+          "median_peak_c": 33.0
+        },
+        "gripper": {
+          "spike_count": 11,
+          "warning_count": 0,
+          "raw_peak_c": 150,
+          "median_peak_c": 37
+        }
+      }
+    },
+    "communication": {
+      "by_joint": {
+        "shoulder_pan": {
+          "-6": 0,
+          "-7": 0
+        },
+        "shoulder_lift": {
+          "-6": 0,
+          "-7": 0
+        },
+        "elbow_flex": {
+          "-6": 0,
+          "-7": 0
+        },
+        "wrist_flex": {
+          "-6": 0,
+          "-7": 0
+        },
+        "wrist_roll": {
+          "-6": 0,
+          "-7": 0
+        },
+        "gripper": {
+          "-6": 0,
+          "-7": 0
+        }
+      },
+      "errors": [],
+      "tx_packets": 61867,
+      "rx_packets": 124185,
+      "tx_bytes": 697724,
+      "rx_bytes": 1738434,
+      "elapsed_s": 161.79164200500236,
+      "tx_packets_per_s": 382.38687260549074,
+      "total_packets_per_s": 1149.948153652137,
+      "tx_gap_s": {
+        "min": 0.0005131350044393912,
+        "max": 1.8349483519996284,
+        "mean": 0.0026082228426921824
+      },
+      "settings": {
+        "max_retries": 3,
+        "consecutive_failures": 5,
+        "no_response_s": 0.2,
+        "hold_attempts": 5,
+        "bulk_address": 56,
+        "bulk_width": 15,
+        "read_order": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          5
+        ]
+      },
+      "halt_reason": null,
+      "halt_observed": null
+    },
+    "thermal_confirmation": {
+      "policy": "fresh_individual_2s_window",
+      "counts": {
+        "shoulder_pan": {
+          "spike": 1,
+          "confirmed": 0
+        },
+        "shoulder_lift": {
+          "spike": 2,
+          "confirmed": 0
+        },
+        "elbow_flex": {
+          "spike": 2,
+          "confirmed": 0
+        },
+        "wrist_flex": {
+          "spike": 3,
+          "confirmed": 0
+        },
+        "wrist_roll": {
+          "spike": 0,
+          "confirmed": 0
+        },
+        "gripper": {
+          "spike": 11,
+          "confirmed": 0
+        }
+      }
+    },
+    "startup_temperatures_c": {
+      "shoulder_pan": 34,
+      "shoulder_lift": 35,
+      "elbow_flex": 33,
+      "wrist_flex": 35,
+      "wrist_roll": 33,
+      "gripper": 36
+    },
+    "goal_packet_attempts": 6667,
+    "port_closed": true,
+    "cleanup_errors": [],
+    "gripper_relief_count": 0,
+    "startup_auto_processed": [
+      {
+        "event": "startup_temperatures",
+        "temperature_c": {
+          "shoulder_pan": 34,
+          "shoulder_lift": 35,
+          "elbow_flex": 33,
+          "wrist_flex": 35,
+          "wrist_roll": 33,
+          "gripper": 36
+        }
+      },
+      {
+        "event": "startup_home_converged",
+        "attempt": 0,
+        "safe": true,
+        "home_converged": true,
+        "joints": {
+          "shoulder_pan": {
+            "present_ticks": 2061,
+            "target_ticks": 2058,
+            "command_range_ticks": [
+              755,
+              3448
+            ],
+            "observed_range_ticks": [
+              755,
+              3451
+            ],
+            "valid": true,
+            "safe": true,
+            "above_command_upper": false,
+            "residual_ticks": 3,
+            "residual_units": 0.26373626373626374,
+            "unit": "degree",
+            "converged": true
+          },
+          "shoulder_lift": {
+            "present_ticks": 839,
+            "target_ticks": 842,
+            "command_range_ticks": [
+              801,
+              3113
+            ],
+            "observed_range_ticks": [
+              801,
+              3116
+            ],
+            "valid": true,
+            "safe": true,
+            "above_command_upper": false,
+            "residual_ticks": -3,
+            "residual_units": -0.26373626373626374,
+            "unit": "degree",
+            "converged": true
+          },
+          "elbow_flex": {
+            "present_ticks": 3083,
+            "target_ticks": 3081,
+            "command_range_ticks": [
+              880,
+              3084
+            ],
+            "observed_range_ticks": [
+              880,
+              3087
+            ],
+            "valid": true,
+            "safe": true,
+            "above_command_upper": false,
+            "residual_ticks": 2,
+            "residual_units": 0.17582417582417584,
+            "unit": "degree",
+            "converged": true
+          },
+          "wrist_flex": {
+            "present_ticks": 2578,
+            "target_ticks": 2574,
+            "command_range_ticks": [
+              936,
+              3225
+            ],
+            "observed_range_ticks": [
+              936,
+              3228
+            ],
+            "valid": true,
+            "safe": true,
+            "above_command_upper": false,
+            "residual_ticks": 4,
+            "residual_units": 0.3516483516483517,
+            "unit": "degree",
+            "converged": true
+          },
+          "wrist_roll": {
+            "present_ticks": 1842,
+            "target_ticks": 1838,
+            "command_range_ticks": [
+              86,
+              3643
+            ],
+            "observed_range_ticks": [
+              86,
+              3646
+            ],
+            "valid": true,
+            "safe": true,
+            "above_command_upper": false,
+            "residual_ticks": 4,
+            "residual_units": 0.3516483516483517,
+            "unit": "degree",
+            "converged": true
+          },
+          "gripper": {
+            "present_ticks": 484,
+            "target_ticks": 482,
+            "command_range_ticks": [
+              413,
+              2047
+            ],
+            "observed_range_ticks": [
+              413,
+              2050
+            ],
+            "valid": true,
+            "safe": true,
+            "above_command_upper": false,
+            "residual_ticks": 2,
+            "residual_units": 0.12239902080783353,
+            "unit": "point",
+            "converged": true
+          }
+        },
+        "warnings": [],
+        "blocked_joints": [],
+        "stable_seconds": 0.5223550920054549,
+        "ready": true
+      },
+      {
+        "event": "startup_ready",
+        "torque": {
+          "shoulder_pan": 1,
+          "shoulder_lift": 1,
+          "elbow_flex": 1,
+          "wrist_flex": 1,
+          "gripper": 1,
+          "wrist_roll": 1
+        },
+        "modes": {
+          "shoulder_pan": 0,
+          "shoulder_lift": 0,
+          "elbow_flex": 0,
+          "wrist_flex": 0,
+          "gripper": 0,
+          "wrist_roll": 0
+        },
+        "temperature_c": {
+          "shoulder_pan": 34,
+          "shoulder_lift": 35,
+          "elbow_flex": 33,
+          "wrist_flex": 35,
+          "wrist_roll": 33,
+          "gripper": 36
+        },
+        "home_delta": {
+          "shoulder_pan": 0.26373626373626413,
+          "shoulder_lift": -0.263736263736277,
+          "elbow_flex": 0.1758241758241752,
+          "wrist_flex": 0.3516483516483504,
+          "wrist_roll": 0.35164835164835173,
+          "gripper": 0.12239902080783338
+        },
+        "position_check": {
+          "safe": true,
+          "home_converged": true,
+          "joints": {
+            "shoulder_pan": {
+              "present_ticks": 2061,
+              "target_ticks": 2058,
+              "command_range_ticks": [
+                755,
+                3448
+              ],
+              "observed_range_ticks": [
+                755,
+                3451
+              ],
+              "valid": true,
+              "safe": true,
+              "above_command_upper": false,
+              "residual_ticks": 3,
+              "residual_units": 0.26373626373626374,
+              "unit": "degree",
+              "converged": true
+            },
+            "shoulder_lift": {
+              "present_ticks": 839,
+              "target_ticks": 842,
+              "command_range_ticks": [
+                801,
+                3113
+              ],
+              "observed_range_ticks": [
+                801,
+                3116
+              ],
+              "valid": true,
+              "safe": true,
+              "above_command_upper": false,
+              "residual_ticks": -3,
+              "residual_units": -0.26373626373626374,
+              "unit": "degree",
+              "converged": true
+            },
+            "elbow_flex": {
+              "present_ticks": 3083,
+              "target_ticks": 3081,
+              "command_range_ticks": [
+                880,
+                3084
+              ],
+              "observed_range_ticks": [
+                880,
+                3087
+              ],
+              "valid": true,
+              "safe": true,
+              "above_command_upper": false,
+              "residual_ticks": 2,
+              "residual_units": 0.17582417582417584,
+              "unit": "degree",
+              "converged": true
+            },
+            "wrist_flex": {
+              "present_ticks": 2578,
+              "target_ticks": 2574,
+              "command_range_ticks": [
+                936,
+                3225
+              ],
+              "observed_range_ticks": [
+                936,
+                3228
+              ],
+              "valid": true,
+              "safe": true,
+              "above_command_upper": false,
+              "residual_ticks": 4,
+              "residual_units": 0.3516483516483517,
+              "unit": "degree",
+              "converged": true
+            },
+            "wrist_roll": {
+              "present_ticks": 1842,
+              "target_ticks": 1838,
+              "command_range_ticks": [
+                86,
+                3643
+              ],
+              "observed_range_ticks": [
+                86,
+                3646
+              ],
+              "valid": true,
+              "safe": true,
+              "above_command_upper": false,
+              "residual_ticks": 4,
+              "residual_units": 0.3516483516483517,
+              "unit": "degree",
+              "converged": true
+            },
+            "gripper": {
+              "present_ticks": 484,
+              "target_ticks": 482,
+              "command_range_ticks": [
+                413,
+                2047
+              ],
+              "observed_range_ticks": [
+                413,
+                2050
+              ],
+              "valid": true,
+              "safe": true,
+              "above_command_upper": false,
+              "residual_ticks": 2,
+              "residual_units": 0.12239902080783353,
+              "unit": "point",
+              "converged": true
+            }
+          },
+          "warnings": [],
+          "blocked_joints": []
+        },
+        "camera": {
+          "end_effector": "READY",
+          "ceiling_vertical": "READY",
+          "ceiling_oblique": "READY"
+        },
+        "auto_recovered": []
+      }
+    ],
+    "output": "/home/jetson3/so101_vla/runs/20261116_174520",
+    "torque_register_writes": 0,
+    "configuration_register_writes": 0
+  },
+  "events": {
+    "wire_tx": 61867,
+    "wire_rx": 124185,
+    "thermal_cycle": 6897,
+    "startup_temperatures": 1,
+    "gripper_limits_readonly": 1,
+    "thermal_source_disagreement": 1651,
+    "start": 1,
+    "startup_home_converged": 1,
+    "startup_ready": 1,
+    "thermal_spike_context": 183,
+    "inference": 47,
+    "goal_transmitted": 6667,
+    "cadence_fallback": 1,
+    "thermal_window_event": 19,
+    "thermal_read_error": 1
+  },
+  "source_sha256": {
+    "steps": "2908e261108b5ed4203ac285f8e9037d8ef13fe6119febe32de1d312454a0e37",
+    "summary": "ce4b68183f3e76cc965a451ba3126d2dff88a71820e6c2b40e53149493ce1e3c"
+  },
+  "transport": {
+    "rx_code_counts": {
+      "0": 124185
+    },
+    "invalid_rx_count": 0,
+    "invalid_rx": [],
+    "error_events": [
+      {
+        "event": "thermal_read_error",
+        "source": "feedback_block",
+        "address": 56,
+        "width": 15,
+        "kind": "other",
+        "message": "모터 패킷 상태코드: id=6, status=32, 읽기 주소=56, 요청 폭=15B",
+        "observed": {},
+        "counts": {
+          "total": 1,
+          "communication": 0,
+          "checksum": 0,
+          "other": 1
+        }
+      }
+    ],
+    "hold_failures": [],
+    "tx_by_instruction_address": {
+      "130:56": 6898,
+      "130:33": 6897,
+      "2:63": 41382,
+      "2:9": 6,
+      "2:11": 6,
+      "2:31": 6,
+      "2:16": 1,
+      "2:48": 1,
+      "2:28": 1,
+      "130:67": 2,
+      "131:42": 6667
+    }
+  },
+  "thermal": {
+    "cycles": 6897,
+    "replayed_holds": 0,
+    "decision_mismatches": [],
+    "replay_summary": {
+      "window_s": 2.0,
+      "continuous_hot_s": 2.0,
+      "stop_c": 55.0,
+      "median_warning_c": 50.0,
+      "joints": {
+        "shoulder_pan": {
+          "spike_count": 1,
+          "warning_count": 0,
+          "raw_peak_c": 72,
+          "median_peak_c": 34.0
+        },
+        "shoulder_lift": {
+          "spike_count": 2,
+          "warning_count": 0,
+          "raw_peak_c": 70,
+          "median_peak_c": 35.0
+        },
+        "elbow_flex": {
+          "spike_count": 2,
+          "warning_count": 0,
+          "raw_peak_c": 150,
+          "median_peak_c": 34
+        },
+        "wrist_flex": {
+          "spike_count": 3,
+          "warning_count": 0,
+          "raw_peak_c": 142,
+          "median_peak_c": 35.0
+        },
+        "wrist_roll": {
+          "spike_count": 0,
+          "warning_count": 0,
+          "raw_peak_c": 48,
+          "median_peak_c": 33.0
+        },
+        "gripper": {
+          "spike_count": 11,
+          "warning_count": 0,
+          "raw_peak_c": 150,
+          "median_peak_c": 37
+        }
+      }
+    },
+    "individual_interval_min_s": 0.020050862993230112,
+    "individual_interval_max_s": 1.8444575909961713
+  },
+  "motion": {
+    "steps": 6667,
+    "model": {
+      "shoulder_pan": {
+        "min": -6.046068670153629,
+        "max": 8.596180588471332,
+        "span": 14.642249258624961
+      },
+      "shoulder_lift": {
+        "min": -100.29009685195454,
+        "max": -20.652117999989706,
+        "span": 79.63797885196485
+      },
+      "elbow_flex": {
+        "min": 1.7395055530604333,
+        "max": 98.74572721148154,
+        "span": 97.0062216584211
+      },
+      "wrist_flex": {
+        "min": 35.333425738116475,
+        "max": 72.28627974050883,
+        "span": 36.95285400239236
+      },
+      "wrist_roll": {
+        "min": -15.927603877066185,
+        "max": 2.2928299257940736,
+        "span": 18.220433802860256
+      },
+      "gripper": {
+        "min": -0.3110654318803265,
+        "max": 63.85400417092736,
+        "span": 64.16506960280769
+      }
+    },
+    "sent": {
+      "shoulder_pan": {
+        "min": -6.1098901098901095,
+        "max": 8.571428571428571,
+        "span": 14.68131868131868
+      },
+      "shoulder_lift": {
+        "min": -100.35164835164835,
+        "max": -20.703296703296704,
+        "span": 79.64835164835165
+      },
+      "elbow_flex": {
+        "min": 1.1868131868131868,
+        "max": 96.74725274725274,
+        "span": 95.56043956043956
+      },
+      "wrist_flex": {
+        "min": 35.2967032967033,
+        "max": 72.21978021978022,
+        "span": 36.92307692307692
+      },
+      "wrist_roll": {
+        "min": -15.956043956043956,
+        "max": 2.241758241758242,
+        "span": 18.197802197802197
+      },
+      "gripper": {
+        "min": 0.0,
+        "max": 63.831089351285186,
+        "span": 63.831089351285186
+      }
+    },
+    "observed": {
+      "shoulder_pan": {
+        "min": -5.670329670329671,
+        "max": 8.307692307692308,
+        "span": 13.978021978021978
+      },
+      "shoulder_lift": {
+        "min": -99.64835164835165,
+        "max": -20.35164835164835,
+        "span": 79.2967032967033
+      },
+      "elbow_flex": {
+        "min": 4.8791208791208796,
+        "max": 96.65934065934066,
+        "span": 91.78021978021978
+      },
+      "wrist_flex": {
+        "min": 35.824175824175825,
+        "max": 71.95604395604396,
+        "span": 36.13186813186813
+      },
+      "wrist_roll": {
+        "min": -15.428571428571429,
+        "max": 1.8021978021978022,
+        "span": 17.23076923076923
+      },
+      "gripper": {
+        "min": 0.24479804161566704,
+        "max": 50.30599755201959,
+        "span": 50.061199510403924
+      }
+    },
+    "elbow_same_frame_error_deg": {
+      "mean": 2.120320357608493,
+      "max": 16.263736263736263
+    }
+  },
+  "elbow_compensation": {
+    "nonzero_steps": 1808,
+    "max_abs_deg": 2.912087912087912,
+    "reasons": {
+      "decay": 5691,
+      "accumulate": 523,
+      "reverse_decay": 208,
+      "range_antiwindup": 245
+    }
+  },
+  "comparison": {
+    "previous_run": "/home/jetson3/so101_vla/runs/20261116_171500",
+    "previous_summary_tracking": {
+      "shoulder_pan": {
+        "sent_span": 16.967032967032967,
+        "observed_span": 15.12087912087912,
+        "span_ratio": 0.8911917098445595
+      },
+      "shoulder_lift": {
+        "sent_span": 106.54945054945054,
+        "observed_span": 105.93406593406593,
+        "span_ratio": 0.9942244224422443
+      },
+      "elbow_flex": {
+        "sent_span": 139.95604395604397,
+        "observed_span": 136.87912087912088,
+        "span_ratio": 0.9780150753768843
+      },
+      "wrist_flex": {
+        "sent_span": 61.8021978021978,
+        "observed_span": 60.57142857142857,
+        "span_ratio": 0.980085348506401
+      },
+      "wrist_roll": {
+        "sent_span": 12.483516483516484,
+        "observed_span": 11.340659340659341,
+        "span_ratio": 0.9084507042253521
+      },
+      "gripper": {
+        "sent_span": 54.77356181150551,
+        "observed_span": 49.20440636474908,
+        "span_ratio": 0.8983240223463688
+      }
+    },
+    "common_playback_s": 58.30333293444264,
+    "previous": {
+      "steps": 7935,
+      "model": {
+        "shoulder_pan": {
+          "min": -8.9996391909036,
+          "max": 7.964443496766349,
+          "span": 16.96408268766995
+        },
+        "shoulder_lift": {
+          "min": -100.99286075992873,
+          "max": 5.534906561851802,
+          "span": 106.52776732178053
+        },
+        "elbow_flex": {
+          "min": -43.05245710252895,
+          "max": 99.46776880075682,
+          "span": 142.52022590328576
+        },
+        "wrist_flex": {
+          "min": 38.86919742043194,
+          "max": 102.97760271212378,
+          "span": 64.10840529169184
+        },
+        "wrist_roll": {
+          "min": -7.737400482761396,
+          "max": 4.7163822253516905,
+          "span": 12.453782708113087
+        },
+        "gripper": {
+          "min": 0.5577073607164874,
+          "max": 55.34085338034876,
+          "span": 54.78314601963228
+        }
+      },
+      "sent": {
+        "shoulder_pan": {
+          "min": -9.010989010989011,
+          "max": 7.956043956043956,
+          "span": 16.967032967032967
+        },
+        "shoulder_lift": {
+          "min": -101.05494505494505,
+          "max": 5.4945054945054945,
+          "span": 106.54945054945054
+        },
+        "elbow_flex": {
+          "min": -43.20879120879121,
+          "max": 96.74725274725274,
+          "span": 139.95604395604397
+        },
+        "wrist_flex": {
+          "min": 38.81318681318681,
+          "max": 100.61538461538461,
+          "span": 61.8021978021978
+        },
+        "wrist_roll": {
+          "min": -7.78021978021978,
+          "max": 4.7032967032967035,
+          "span": 12.483516483516484
+        },
+        "gripper": {
+          "min": 0.550795593635251,
+          "max": 55.32435740514076,
+          "span": 54.77356181150551
+        }
+      },
+      "observed": {
+        "shoulder_pan": {
+          "min": -7.78021978021978,
+          "max": 7.34065934065934,
+          "span": 15.12087912087912
+        },
+        "shoulder_lift": {
+          "min": -100.0,
+          "max": 5.934065934065934,
+          "span": 105.93406593406593
+        },
+        "elbow_flex": {
+          "min": -40.21978021978022,
+          "max": 96.65934065934066,
+          "span": 136.87912087912088
+        },
+        "wrist_flex": {
+          "min": 39.78021978021978,
+          "max": 100.35164835164835,
+          "span": 60.57142857142857
+        },
+        "wrist_roll": {
+          "min": -7.164835164835165,
+          "max": 4.175824175824176,
+          "span": 11.340659340659341
+        },
+        "gripper": {
+          "min": 0.7343941248470013,
+          "max": 49.93880048959608,
+          "span": 49.20440636474908
+        }
+      },
+      "elbow_same_frame_error_deg": {
+        "mean": 1.9067007346780498,
+        "max": 16.087912087912084
+      }
+    },
+    "current_common_window": {
+      "steps": 6667,
+      "model": {
+        "shoulder_pan": {
+          "min": -6.046068670153629,
+          "max": 8.596180588471332,
+          "span": 14.642249258624961
+        },
+        "shoulder_lift": {
+          "min": -100.29009685195454,
+          "max": -20.652117999989706,
+          "span": 79.63797885196485
+        },
+        "elbow_flex": {
+          "min": 1.7395055530604333,
+          "max": 98.74572721148154,
+          "span": 97.0062216584211
+        },
+        "wrist_flex": {
+          "min": 35.333425738116475,
+          "max": 72.28627974050883,
+          "span": 36.95285400239236
+        },
+        "wrist_roll": {
+          "min": -15.927603877066185,
+          "max": 2.2928299257940736,
+          "span": 18.220433802860256
+        },
+        "gripper": {
+          "min": -0.3110654318803265,
+          "max": 63.85400417092736,
+          "span": 64.16506960280769
+        }
+      },
+      "sent": {
+        "shoulder_pan": {
+          "min": -6.1098901098901095,
+          "max": 8.571428571428571,
+          "span": 14.68131868131868
+        },
+        "shoulder_lift": {
+          "min": -100.35164835164835,
+          "max": -20.703296703296704,
+          "span": 79.64835164835165
+        },
+        "elbow_flex": {
+          "min": 1.1868131868131868,
+          "max": 96.74725274725274,
+          "span": 95.56043956043956
+        },
+        "wrist_flex": {
+          "min": 35.2967032967033,
+          "max": 72.21978021978022,
+          "span": 36.92307692307692
+        },
+        "wrist_roll": {
+          "min": -15.956043956043956,
+          "max": 2.241758241758242,
+          "span": 18.197802197802197
+        },
+        "gripper": {
+          "min": 0.0,
+          "max": 63.831089351285186,
+          "span": 63.831089351285186
+        }
+      },
+      "observed": {
+        "shoulder_pan": {
+          "min": -5.670329670329671,
+          "max": 8.307692307692308,
+          "span": 13.978021978021978
+        },
+        "shoulder_lift": {
+          "min": -99.64835164835165,
+          "max": -20.35164835164835,
+          "span": 79.2967032967033
+        },
+        "elbow_flex": {
+          "min": 4.8791208791208796,
+          "max": 96.65934065934066,
+          "span": 91.78021978021978
+        },
+        "wrist_flex": {
+          "min": 35.824175824175825,
+          "max": 71.95604395604396,
+          "span": 36.13186813186813
+        },
+        "wrist_roll": {
+          "min": -15.428571428571429,
+          "max": 1.8021978021978022,
+          "span": 17.23076923076923
+        },
+        "gripper": {
+          "min": 0.24479804161566704,
+          "max": 50.30599755201959,
+          "span": 50.061199510403924
+        }
+      },
+      "elbow_same_frame_error_deg": {
+        "mean": 2.120320357608493,
+        "max": 16.263736263736263
+      }
+    }
+  },
+  "training": {
+    "episodes": 44,
+    "closing_candidates": 44,
+    "candidate_time_s": {
+      "min": 4.233333333333333,
+      "p50": 5.833333333333333,
+      "max": 9.4
+    },
+    "action_at_closure": {
+      "shoulder_pan": {
+        "min": 1.4505494832992554,
+        "p50": 4.351648330688477,
+        "max": 6.373626232147217,
+        "p5": 1.7406593561172485,
+        "p95": 5.806593298912048
+      },
+      "shoulder_lift": {
+        "min": -32.43955993652344,
+        "p50": -17.05494499206543,
+        "max": 10.461538314819336,
+        "p5": -27.978022480010985,
+        "p95": -4.848351836204529
+      },
+      "elbow_flex": {
+        "min": -29.626373291015625,
+        "p50": 6.7252748012542725,
+        "max": 29.36263656616211,
+        "p5": -12.799999713897705,
+        "p95": 25.1164831161499
+      },
+      "wrist_flex": {
+        "min": 48.43955993652344,
+        "p50": 65.23076629638672,
+        "max": 92.48351287841797,
+        "p5": 50.16263751983642,
+        "p95": 82.27252769470215
+      },
+      "wrist_roll": {
+        "min": -23.648351669311523,
+        "p50": -9.758241653442383,
+        "max": 6.153846263885498,
+        "p5": -20.09230785369873,
+        "p95": 0.8659340739250184
+      },
+      "gripper": {
+        "min": 21.592649459838867,
+        "p50": 32.733537673950195,
+        "max": 45.405818939208984,
+        "p5": 25.620213890075682,
+        "p95": 40.18759613037109
+      }
+    },
+    "recorded_model_note": "model field is interpolated/merged action before compensation, not raw unmerged network chunks",
+    "nearest_candidate_comparisons": [
+      {
+        "episode": 93,
+        "candidate_time_s": 6.033333333333333,
+        "live_step": 3565,
+        "model_difference": [
+          2.3347948116111477,
+          -15.816952976185995,
+          18.55657542122505,
+          -12.114879440021312,
+          -10.765980928484527,
+          -1.3568352108518233
+        ]
+      },
+      {
+        "episode": 94,
+        "candidate_time_s": 5.933333333333334,
+        "live_step": 3028,
+        "model_difference": [
+          2.9364245028004676,
+          -4.499446974550818,
+          -7.66497630402292,
+          7.489460921247328,
+          6.896942685453219,
+          3.2540910324462544
+        ]
+      },
+      {
+        "episode": 95,
+        "candidate_time_s": 8.633333333333333,
+        "live_step": 3810,
+        "model_difference": [
+          -2.660703560496034,
+          -6.139436487941232,
+          -1.5440536984925153,
+          7.491650484968261,
+          11.807113694325594,
+          -1.2430225948633549
+        ]
+      },
+      {
+        "episode": 96,
+        "candidate_time_s": 6.566666666666666,
+        "live_step": 4886,
+        "model_difference": [
+          2.1107665900458352,
+          -11.15251435494607,
+          4.076582628963969,
+          -2.2588101466408546,
+          8.554214404009134,
+          0.13939462173440376
+        ]
+      },
+      {
+        "episode": 97,
+        "candidate_time_s": 5.666666666666667,
+        "live_step": 3528,
+        "model_difference": [
+          -1.8093737091507345,
+          -32.608252148709084,
+          31.55608524531865,
+          -21.36610389104922,
+          5.4746147850765965,
+          4.096880128219581
+        ]
+      },
+      {
+        "episode": 98,
+        "candidate_time_s": 7.933333333333334,
+        "live_step": 3565,
+        "model_difference": [
+          -2.060809441204099,
+          -10.19057968517037,
+          2.732399824987869,
+          3.885120559978688,
+          8.39885452454892,
+          4.309319650598372
+        ]
+      },
+      {
+        "episode": 99,
+        "candidate_time_s": 7.166666666666667,
+        "live_step": 3565,
+        "model_difference": [
+          -1.6212490278435032,
+          -15.729040893513876,
+          11.875257138143997,
+          -4.2907064663884995,
+          12.091161996777924,
+          -1.509976232580339
+        ]
+      },
+      {
+        "episode": 100,
+        "candidate_time_s": 6.5,
+        "live_step": 3442,
+        "model_difference": [
+          -0.6621908187200871,
+          -4.739034770505182,
+          -4.350390436826819,
+          9.952720585674314,
+          4.550721477955813,
+          -1.903583638874828
+        ]
+      },
+      {
+        "episode": 101,
+        "candidate_time_s": 6.766666666666667,
+        "live_step": 3565,
+        "model_difference": [
+          -0.9179523664665501,
+          -7.729041370351034,
+          1.413718584906082,
+          0.5444604647638442,
+          -5.403343468252746,
+          3.3904830569704423
+        ]
+      },
+      {
+        "episode": 102,
+        "candidate_time_s": 6.333333333333333,
+        "live_step": 6549,
+        "model_difference": [
+          -1.9532779971195895,
+          -5.329375779667952,
+          -3.0292563693943997,
+          12.605551781868797,
+          2.8819627857651504,
+          1.7526322793626363
+        ]
+      },
+      {
+        "episode": 103,
+        "candidate_time_s": 5.733333333333333,
+        "live_step": 4887,
+        "model_difference": [
+          0.9769835557661137,
+          -12.21788369842151,
+          7.207790474510112,
+          -2.821566280240468,
+          9.040035634772982,
+          0.2766144169109168
+        ]
+      },
+      {
+        "episode": 104,
+        "candidate_time_s": 7.6,
+        "live_step": 3424,
+        "model_difference": [
+          -0.4861127758219359,
+          0.025438421261373634,
+          -2.907823774250545,
+          6.817713400296256,
+          2.126623517179019,
+          0.0021382185277865062
+        ]
+      },
+      {
+        "episode": 105,
+        "candidate_time_s": 5.766666666666667,
+        "live_step": 3565,
+        "model_difference": [
+          -1.0937765318107884,
+          -12.827942165333944,
+          7.655476931463699,
+          -1.477519820880687,
+          4.179074556287201,
+          5.457865869470442
+        ]
+      },
+      {
+        "episode": 106,
+        "candidate_time_s": 4.766666666666667,
+        "live_step": 3565,
+        "model_difference": [
+          -1.6212490278435032,
+          -12.036732944447714,
+          7.8313010968079375,
+          -1.9170797574041245,
+          7.255996972974213,
+          -0.4380005245725265
+        ]
+      },
+      {
+        "episode": 107,
+        "candidate_time_s": 5.866666666666666,
+        "live_step": 3565,
+        "model_difference": [
+          -0.03883153974535869,
+          -4.476292880971151,
+          0.0071250237335966915,
+          4.9400674593927505,
+          8.926327020581635,
+          2.624787485071028
+        ]
+      },
+      {
+        "episode": 108,
+        "candidate_time_s": 5.8,
+        "live_step": 3424,
+        "model_difference": [
+          -2.7718269252970336,
+          -1.9965399570345248,
+          0.7844836979784588,
+          4.8836466278353186,
+          0.7200301944251128,
+          8.041954121237747
+        ]
+      },
+      {
+        "episode": 109,
+        "candidate_time_s": 6.6,
+        "live_step": 3565,
+        "model_difference": [
+          -0.4783919531059544,
+          -4.036732944447714,
+          0.09503710640571583,
+          3.7092935336115005,
+          3.563689500745209,
+          4.232751047082747
+        ]
+      },
+      {
+        "episode": 110,
+        "candidate_time_s": 4.8,
+        "live_step": 3424,
+        "model_difference": [
+          -1.4531456852152465,
+          -0.6778582401155795,
+          -2.7319996089063068,
+          8.136397024563834,
+          6.258491879605777,
+          0.8444043012914584
+        ]
+      },
+      {
+        "episode": 111,
+        "candidate_time_s": 7.533333333333333,
+        "live_step": 3565,
+        "model_difference": [
+          -1.7091611105156224,
+          -13.794975074727255,
+          8.007125262152176,
+          -1.9170797574041245,
+          6.464788705762299,
+          1.24653354830345
+        ]
+      },
+      {
+        "episode": 112,
+        "candidate_time_s": 5.233333333333333,
+        "live_step": 3565,
+        "model_difference": [
+          -0.5663040357780735,
+          -24.08068946262093,
+          25.76536620033882,
+          -16.158832381915843,
+          6.55270031159726,
+          5.764144098230208
+        ]
+      },
+      {
+        "episode": 113,
+        "candidate_time_s": 4.633333333333334,
+        "live_step": 3578,
+        "model_difference": [
+          0.5916004979540292,
+          -4.51564766649641,
+          1.1902462339250892,
+          3.143015022965727,
+          6.488808042422593,
+          0.5838694176696322
+        ]
+      },
+      {
+        "episode": 114,
+        "candidate_time_s": 4.533333333333333,
+        "live_step": 3424,
+        "model_difference": [
+          -0.39820069314981676,
+          -1.9965399570345248,
+          1.575691965190373,
+          0.4001337494173498,
+          6.6101402102942535,
+          0.9975434156713412
+        ]
+      },
+      {
+        "episode": 115,
+        "candidate_time_s": 5.6,
+        "live_step": 3582,
+        "model_difference": [
+          1.900735424997452,
+          -10.140948096197668,
+          6.403287121196604,
+          2.8882032354213294,
+          3.1588157764350386,
+          1.089672310127007
+        ]
+      },
+      {
+        "episode": 116,
+        "candidate_time_s": 6.166666666666667,
+        "live_step": 4043,
+        "model_difference": [
+          -2.9536168158109626,
+          -4.474302098900544,
+          4.382182525269634,
+          1.5372165099236312,
+          1.1480646752401187,
+          -7.342480903453666
+        ]
+      },
+      {
+        "episode": 117,
+        "candidate_time_s": 9.4,
+        "live_step": 3455,
+        "model_difference": [
+          2.264008843295623,
+          -3.5013993796865854,
+          -1.2355332186439405,
+          1.1994778943244455,
+          0.9567514168661377,
+          1.5713640299160545
+        ]
+      },
+      {
+        "episode": 118,
+        "candidate_time_s": 5.233333333333333,
+        "live_step": 3431,
+        "model_difference": [
+          -0.07700965792942505,
+          -2.282657621306047,
+          1.2511824284724433,
+          3.6222658202989493,
+          0.2804741387341938,
+          -0.7129905947749791
+        ]
+      },
+      {
+        "episode": 119,
+        "candidate_time_s": 4.233333333333333,
+        "live_step": 3456,
+        "model_difference": [
+          0.7577411790510573,
+          -3.6805781333032037,
+          3.407814092822159,
+          3.2337879038783797,
+          -3.883115260420765,
+          1.0169908976590776
+        ]
+      },
+      {
+        "episode": 120,
+        "candidate_time_s": 4.766666666666667,
+        "live_step": 3418,
+        "model_difference": [
+          -1.2623046805650069,
+          -0.5441249437232223,
+          -1.912972819560462,
+          3.0579134494670512,
+          2.4007008918940294,
+          -0.10452181760034662
+        ]
+      },
+      {
+        "episode": 121,
+        "candidate_time_s": 6.433333333333334,
+        "live_step": 3565,
+        "model_difference": [
+          -0.830040283794431,
+          -5.970799716908651,
+          2.4686635769715117,
+          1.6873208773615005,
+          0.22303035920468162,
+          0.021418725915754777
+        ]
+      },
+      {
+        "episode": 122,
+        "candidate_time_s": 5.166666666666667,
+        "live_step": 3578,
+        "model_difference": [
+          0.41577633260979097,
+          -4.8672969508592026,
+          1.1902462339250892,
+          5.340822334977446,
+          -0.5441590481840963,
+          0.8135790429137728
+        ]
+      },
+      {
+        "episode": 123,
+        "candidate_time_s": 4.4,
+        "live_step": 3876,
+        "model_difference": [
+          -1.066064618845255,
+          -3.8676296426268735,
+          4.481795242302418,
+          5.000508765176846,
+          1.74632729508621,
+          -1.043365543264457
+        ]
+      },
+      {
+        "episode": 124,
+        "candidate_time_s": 8.666666666666666,
+        "live_step": 3501,
+        "model_difference": [
+          -0.4489597833295971,
+          -11.854742985108938,
+          5.140893232731618,
+          0.4447774297232314,
+          -0.19005819720915706,
+          2.1604689486576873
+        ]
+      },
+      {
+        "episode": 125,
+        "candidate_time_s": 6.1,
+        "live_step": 3579,
+        "model_difference": [
+          -0.3836950930767049,
+          -5.744052934314432,
+          -0.3916053154004091,
+          7.602978494650401,
+          -0.5460297854863878,
+          -0.005715914167723213
+        ]
+      },
+      {
+        "episode": 126,
+        "candidate_time_s": 9.233333333333333,
+        "live_step": 3872,
+        "model_difference": [
+          -1.822900328937167,
+          -6.2982321251718645,
+          6.102425454106754,
+          2.6768571159370467,
+          6.316237910108478,
+          -3.1623627956403126
+        ]
+      },
+      {
+        "episode": 127,
+        "candidate_time_s": 6.733333333333333,
+        "live_step": 3426,
+        "model_difference": [
+          -1.7924551360609633,
+          -1.2064615577071933,
+          -3.086076073644916,
+          5.1906100238011135,
+          0.10833516880923888,
+          -0.347927715877141
+        ]
+      },
+      {
+        "episode": 128,
+        "candidate_time_s": 6.633333333333334,
+        "live_step": 4881,
+        "model_difference": [
+          -0.10177016668726857,
+          -10.96996981628898,
+          4.173818966794144,
+          -1.6245081415460731,
+          18.993183712714178,
+          -0.19149441642387188
+        ]
+      },
+      {
+        "episode": 129,
+        "candidate_time_s": 5.2,
+        "live_step": 3455,
+        "model_difference": [
+          -0.9008262521099555,
+          -2.182719570116273,
+          0.7864451596519579,
+          2.3423306775275705,
+          14.934773038570238,
+          1.8776422586758201
+        ]
+      },
+      {
+        "episode": 130,
+        "candidate_time_s": 5.366666666666666,
+        "live_step": 3565,
+        "model_difference": [
+          -1.6212490278435032,
+          -8.871897968251425,
+          4.13899332655571,
+          2.126880813884938,
+          13.761492044385346,
+          -2.7350891476194015
+        ]
+      },
+      {
+        "episode": 131,
+        "candidate_time_s": 4.866666666666666,
+        "live_step": 3563,
+        "model_difference": [
+          2.1686040840319936,
+          -7.814811541872832,
+          4.031879353941042,
+          0.7930442185663509,
+          17.36280092046976,
+          -2.6115050800828357
+        ]
+      },
+      {
+        "episode": 132,
+        "candidate_time_s": 5.533333333333333,
+        "live_step": 3312,
+        "model_difference": [
+          -0.9548464478448047,
+          -5.662655987155034,
+          1.5133164149041018,
+          2.132858677579833,
+          15.045906966296382,
+          -0.906105507860758
+        ]
+      },
+      {
+        "episode": 133,
+        "candidate_time_s": 8.266666666666667,
+        "live_step": 3565,
+        "model_difference": [
+          0.400728873615237,
+          -15.025744232136923,
+          11.787345055471878,
+          -4.026965926837718,
+          -7.7769698792138975,
+          8.214373743005599
+        ]
+      },
+      {
+        "episode": 134,
+        "candidate_time_s": 5.2,
+        "live_step": 3565,
+        "model_difference": [
+          0.6644651216315944,
+          -13.355414661366659,
+          10.204927567373733,
+          -8.510486434650218,
+          -3.733013778273193,
+          4.76873699373802
+        ]
+      },
+      {
+        "episode": 135,
+        "candidate_time_s": 4.666666666666667,
+        "live_step": 3428,
+        "model_difference": [
+          -1.138079762246834,
+          -1.852223632339765,
+          -0.21142199994380917,
+          3.9911864991046855,
+          12.332785088257339,
+          0.27325870154118803
+        ]
+      },
+      {
+        "episode": 136,
+        "candidate_time_s": 4.7,
+        "live_step": 3565,
+        "model_difference": [
+          -0.12674362241747783,
+          -5.179590496022421,
+          2.996136192213516,
+          -2.356639693927562,
+          -5.4912555509248655,
+          1.24653354830345
+        ]
+      }
+    ]
+  },
+  "inference": {
+    "count": 47,
+    "discarded": 0,
+    "overlap_max_delta": {
+      "shoulder_pan": 3.1944946289062504,
+      "shoulder_lift": 36.0843817392985,
+      "elbow_flex": 30.119080066680908,
+      "wrist_flex": 13.187973976135254,
+      "wrist_roll": 6.604756951332092,
+      "gripper": 18.896610260009766
+    },
+    "skip_min": 0,
+    "skip_max": 16
+  },
+  "monitor": {
+    "status_run": "20261116_174520",
+    "phase": "hold",
+    "step": 6667,
+    "observation_run": "20261116_174520",
+    "capture": 759,
+    "captured": 1794818931.419472,
+    "status_updated": 1794818932.947651,
+    "images": {
+      "end_effector": {
+        "width": 640,
+        "height": 480,
+        "bytes": 23283,
+        "sha256": "5183fda0bd89faac6bfaaec7db6b04c0cca6e0d8506856ea363f3d2941a583c3"
+      },
+      "ceiling_vertical": {
+        "width": 640,
+        "height": 480,
+        "bytes": 46885,
+        "sha256": "3bcda2cdfe3db571c425ab927358d5dcae4cbdaf29f9409e6e328c7b7989d8f2"
+      },
+      "ceiling_oblique": {
+        "width": 640,
+        "height": 480,
+        "bytes": 36278,
+        "sha256": "657f95393218fa0953c73a5032f86dba027497ce080ab73a18503b5c346cd35d"
+      }
+    },
+    "retrieved_unix": 1794819135.504125
+  }
+}

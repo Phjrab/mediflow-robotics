@@ -1,0 +1,2389 @@
+{
+  "duration_seconds": 20,
+  "cases": [
+    {
+      "case": "all_off",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 474
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 474
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 474
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2578,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2578,
+          "wrist_roll": 1842,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2579,
+          "wrist_roll": 1842,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 828,
+          "elbow_flex": 3082,
+          "wrist_flex": 2579,
+          "wrist_roll": 1842,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 828,
+          "elbow_flex": 3082,
+          "wrist_flex": 2579,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 830,
+          "elbow_flex": 3082,
+          "wrist_flex": 2578,
+          "wrist_roll": 1841,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 831,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1840,
+          "gripper": 474
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 1115,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.999999996767926,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.645505118998699
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.645520096004475
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.645521792001091
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 0
+    },
+    {
+      "case": "partial_off",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1840,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1840,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1840,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1840,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1839,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1839,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1839,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 828,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1839,
+          "gripper": 470
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 1114,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.99999999676503,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6212274990029982
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6212389880020055
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6212408120045438
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 0
+    },
+    {
+      "case": "outside_home",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1843,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1843,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1843,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1843,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1843,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 820,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 819,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 471
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 1114,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.99999999676684,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.631126503001724
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6311349840034381
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6311367439993774
+        }
+      },
+      "home_peak_goal_speed": 5.28000000000025,
+      "cooling_samples": 0
+    },
+    {
+      "case": "cooling",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 829,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 831,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 832,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 831,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 830,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2057,
+          "shoulder_lift": 828,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 472
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 1112,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.99999999676309,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.65560656299931
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6556164189969422
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6556182440035627
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 2
+    },
+    {
+      "case": "busy_port",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 820,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 820,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 471
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 8,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 1112,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.99999999675954,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6567772540001897
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6567886139964685
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6567905659976532
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 0
+    },
+    {
+      "case": "intermittent_camera",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1841,
+          "gripper": 473
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 1105,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.999999996738644,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.634156193002127
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6341660170000978
+        },
+        "ceiling_oblique": {
+          "read_failures": 17,
+          "max_frame_gap_s": 1.6341681289995904
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 0
+    },
+    {
+      "case": "slow_inference",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 470
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 714,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 2.283333334333447,
+        "sum": 2.283333334333447
+      },
+      "transmission_hz": 59.999999994943586,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.7166447890049312
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.716641653998522
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.7166417810003622
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 0
+    },
+    {
+      "case": "blocked_gripper",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 903
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 903
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 903
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 903
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 903
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1840,
+          "gripper": 903
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1840,
+          "gripper": 903
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1840,
+          "gripper": 903
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1840,
+          "gripper": 903
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1840,
+          "gripper": 903
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 746,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 1114,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.99999999676503,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6311913120007375
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6311908950010547
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.631191022999701
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 0
+    },
+    {
+      "case": "ctrl_c",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1842,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1842,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1842,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1842,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1842,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 468
+        }
+      ],
+      "model_chunks": 1,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "STOPPED",
+      "steps": 20,
+      "elapsed_s": 1.783333334333332,
+      "reason": "Ctrl+C",
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.99999981052652,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.526076150003064
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.5260736220006947
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.5260727260028943
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 0
+    },
+    {
+      "case": "overheat",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1840,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1840,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1840,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 471
+        }
+      ],
+      "model_chunks": 1,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "HOLD",
+      "steps": 20,
+      "elapsed_s": 1.8166666676666652,
+      "reason": "\ubaa8\ud130 \uc0c1\ud0dc\ucf54\ub4dc/\uc628\ub3c4 \uc911\ub2e8: {\"gripper\": {\"status\": 0, \"temperature_c\": 55}}",
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.99999981052652,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.550528335996205
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.5505251360009424
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.550524239995866
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 0
+    },
+    {
+      "case": "usb_disconnect",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1843,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1843,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1843,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1843,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1843,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 820,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1843,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 820,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1843,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 820,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1843,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1843,
+          "gripper": 470
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1843,
+          "gripper": 469
+        }
+      ],
+      "model_chunks": 1,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "HOLD",
+      "steps": 20,
+      "elapsed_s": 1.8166666676666652,
+      "reason": "\ud314\ub85c\uc6cc USB \ub04a\uae40",
+      "hold": {
+        "status": "HOLD_NOT_CONFIRMED",
+        "reason": "USB \ub04a\uae40: \uc720\uc9c0 \ubaa9\ud45c \uc804\ub2ec \ubd88\uac00"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.99999981052652,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.560057759998017
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.5600550719973398
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.5600542399988626
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 0
+    },
+    {
+      "case": "elbow_plus_1",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2571,
+          "wrist_roll": 1842,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2571,
+          "wrist_roll": 1842,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 474
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 475
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 475
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 475
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 474
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 473
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 1115,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.999999996767976,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6119812590040965
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6119902840000577
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6119921400022577
+        }
+      },
+      "home_peak_goal_speed": 5.274725274725276,
+      "cooling_samples": 0
+    },
+    {
+      "case": "elbow_plus_5",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 467
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 467
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 466
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1842,
+          "gripper": 466
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1842,
+          "gripper": 466
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1842,
+          "gripper": 466
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1842,
+          "gripper": 466
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1842,
+          "gripper": 467
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 1113,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.99999999676218,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6412143829948036
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6412230560017633
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6412251360015944
+        }
+      },
+      "home_peak_goal_speed": 5.274725274725276,
+      "cooling_samples": 0
+    },
+    {
+      "case": "elbow_plus_20",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2062,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1841,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1841,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1841,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1841,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1841,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1841,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1842,
+          "gripper": 471
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 1114,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.99999999676519,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6311943540058564
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6312034430011408
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6312052670036792
+        }
+      },
+      "home_peak_goal_speed": 5.280000000000003,
+      "cooling_samples": 0
+    },
+    {
+      "case": "wrist_plus10",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2058,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2057,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2577,
+          "wrist_roll": 1842,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2057,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1842,
+          "gripper": 473
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 1113,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.99999999676309,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.639449310998316
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.63945823800168
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.639459870995779
+        }
+      },
+      "home_peak_goal_speed": 5.28000000000025,
+      "cooling_samples": 0
+    },
+    {
+      "case": "wrist_minus10",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1840,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1840,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 829,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1840,
+          "gripper": 472
+        }
+      ],
+      "model_chunks": 6,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 1114,
+      "elapsed_s": 20.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.999999996766,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.630491167998116
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6304999359999783
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.630501728002855
+        }
+      },
+      "home_peak_goal_speed": 5.28000000000025,
+      "cooling_samples": 0
+    }
+  ],
+  "full_180_cases": [
+    {
+      "case": "all_off",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2055,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2569,
+          "wrist_roll": 1843,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2055,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2570,
+          "wrist_roll": 1842,
+          "gripper": 469
+        },
+        {
+          "shoulder_pan": 2055,
+          "shoulder_lift": 822,
+          "elbow_flex": 3082,
+          "wrist_flex": 2570,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2056,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2571,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2056,
+          "shoulder_lift": 820,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2057,
+          "shoulder_lift": 819,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2057,
+          "shoulder_lift": 818,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2057,
+          "shoulder_lift": 818,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2056,
+          "shoulder_lift": 819,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1842,
+          "gripper": 468
+        },
+        {
+          "shoulder_pan": 2056,
+          "shoulder_lift": 820,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1842,
+          "gripper": 468
+        }
+      ],
+      "model_chunks": 56,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 10718,
+      "elapsed_s": 180.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.9999999996522,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.638474553998094
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6384748420023243
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.6384746820040164
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 0
+    },
+    {
+      "case": "partial_off",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 823,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 821,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1842,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 819,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 817,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 817,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 818,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 820,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1841,
+          "gripper": 471
+        }
+      ],
+      "model_chunks": 56,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 10717,
+      "elapsed_s": 180.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.99999999965217,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.5809543039940763
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.5809550089979894
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.5809553610015428
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 0
+    },
+    {
+      "case": "outside_home",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1841,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1841,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2572,
+          "wrist_roll": 1841,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 826,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 474
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 474
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 474
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 475
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 824,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 475
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1841,
+          "gripper": 475
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 825,
+          "elbow_flex": 3082,
+          "wrist_flex": 2573,
+          "wrist_roll": 1841,
+          "gripper": 475
+        }
+      ],
+      "model_chunks": 56,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 10718,
+      "elapsed_s": 180.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.999999999649944,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.587848576993565
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.587848896997457
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.5878486729998258
+        }
+      },
+      "home_peak_goal_speed": 5.28000000000025,
+      "cooling_samples": 0
+    },
+    {
+      "case": "cooling",
+      "passed": true,
+      "first_targets": [
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 828,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 471
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1841,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1840,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2574,
+          "wrist_roll": 1840,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 827,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1840,
+          "gripper": 472
+        },
+        {
+          "shoulder_pan": 2060,
+          "shoulder_lift": 828,
+          "elbow_flex": 3082,
+          "wrist_flex": 2575,
+          "wrist_roll": 1840,
+          "gripper": 473
+        },
+        {
+          "shoulder_pan": 2059,
+          "shoulder_lift": 829,
+          "elbow_flex": 3082,
+          "wrist_flex": 2576,
+          "wrist_roll": 1840,
+          "gripper": 473
+        }
+      ],
+      "model_chunks": 56,
+      "relief_steps": 0,
+      "max_arm_error_ticks": 0,
+      "port_waits": 0,
+      "physical_motor_writes": 0,
+      "status": "RUN_COMPLETE",
+      "steps": 10717,
+      "elapsed_s": 180.0,
+      "reason": null,
+      "hold": {
+        "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+      },
+      "chunk_wait_s": {
+        "max": 0,
+        "sum": 0
+      },
+      "transmission_hz": 59.999999999646846,
+      "camera": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.5855592450025142
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.5855687500006752
+        },
+        "ceiling_oblique": {
+          "read_failures": 0,
+          "max_frame_gap_s": 1.5855705099966144
+        }
+      },
+      "home_peak_goal_speed": 0.0,
+      "cooling_samples": 2
+    }
+  ],
+  "physical_motor_writes": 0
+}

@@ -3,6 +3,7 @@ import json
 import os
 import sys
 from pathlib import Path
+from loop_timing import terminal_lines
 
 
 def record_run_directory(directory):
@@ -47,6 +48,8 @@ def report(receipt):
     print(summary)
     print(f'실행 폴더 {run}')
     if 'result' in locals() and isinstance(result, dict):
+        for line in terminal_lines(result.get('loop_timing')):
+            print(line)
         recording = result.get('grasp_recording') or {}
         if recording:
             times = ', '.join(f"{e['time_s']:.3f}초" for e in recording.get('events', [])) or '없음'

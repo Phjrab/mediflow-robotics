@@ -1,0 +1,286 @@
+{
+  "schema": "so101.recorder_fake_read_benchmark.v1",
+  "host": "Windows-11-10.0.26200-SP0",
+  "python": "3.14.5",
+  "numpy": "2.5.5",
+  "pillow": "13.0.0",
+  "pid": 1600,
+  "synthetic_camera_shape": [
+    3,
+    480,
+    640,
+    3
+  ],
+  "camera_fps": 10,
+  "requested_loop_hz": 60,
+  "seconds_per_case": 5.0,
+  "serial_access": false,
+  "motor_writes": 0,
+  "limitation": "Windows synthetic RGB and CPU-only fake reads; not Jetson bus A/B evidence.",
+  "cases": [
+    {
+      "mode": "off",
+      "steps": 300,
+      "loop_s": 5.000224200019147,
+      "main_process_cpu_s": 0.125,
+      "achieved_loop_hz": 59.995878142348374,
+      "fake_read_s": {
+        "count": 300,
+        "mean": 0.00011078433230674515,
+        "p50": 0.00011550000635907054,
+        "p95": 0.0001276250375667587,
+        "max": 0.0001433999859727919
+      },
+      "loop_work_s": {
+        "count": 300,
+        "mean": 0.00012819566705729813,
+        "p50": 0.000132500019390136,
+        "p95": 0.00015130998799577354,
+        "max": 0.00025179999647662044
+      },
+      "gap_s": {
+        "count": 299,
+        "mean": 0.016667811705786923,
+        "p50": 0.016660300025250763,
+        "p95": 0.017069799988530577,
+        "max": 0.017304199980571866
+      },
+      "scheduling_lateness_s": {
+        "count": 300,
+        "mean": 0.000424500999894614,
+        "p50": 0.00043736668885685503,
+        "p95": 0.0006773566245101393,
+        "max": 0.000978066644165665
+      },
+      "capture_call_s": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "recording": null
+    },
+    {
+      "mode": "thread",
+      "steps": 300,
+      "loop_s": 5.00020210002549,
+      "main_process_cpu_s": 1.375,
+      "achieved_loop_hz": 59.99351869339658,
+      "fake_read_s": {
+        "count": 300,
+        "mean": 0.0001079073321307078,
+        "p50": 0.00010880001354962587,
+        "p95": 0.0001428100367775187,
+        "max": 0.0002451999462209642
+      },
+      "loop_work_s": {
+        "count": 300,
+        "mean": 0.0005184949977168192,
+        "p50": 0.0002945000014733523,
+        "p95": 0.0016077950189355762,
+        "max": 0.005368900019675493
+      },
+      "gap_s": {
+        "count": 299,
+        "mean": 0.016668467224111475,
+        "p50": 0.016653899976518005,
+        "p95": 0.01706864999141544,
+        "max": 0.019657400029245764
+      },
+      "scheduling_lateness_s": {
+        "count": 300,
+        "mean": 0.0004238893425402542,
+        "p50": 0.0004041499923914671,
+        "p95": 0.0006922933214809747,
+        "max": 0.0033566333586350083
+      },
+      "capture_call_s": {
+        "count": 50,
+        "mean": 0.0013713559962343425,
+        "p50": 0.0013189500023145229,
+        "p95": 0.0016336850065272299,
+        "max": 0.005192300013732165
+      },
+      "recording": {
+        "event_count": 2,
+        "events": [
+          {
+            "id": 1,
+            "directory": "grasp_1",
+            "time_s": 1.250486200035084,
+            "unix": 1794999862.8886757,
+            "status": "complete",
+            "frames": 33,
+            "goals": 196,
+            "trigger_drop_points": 3.0058344004210085
+          },
+          {
+            "id": 2,
+            "directory": "grasp_2",
+            "time_s": 3.250461500021629,
+            "unix": 1794999864.888722,
+            "status": "partial",
+            "frames": 47,
+            "goals": 285,
+            "trigger_drop_points": 3.0055380002595484
+          }
+        ],
+        "counts": {
+          "capture_batches": 50,
+          "captured_images": 150,
+          "duplicate_images": 0,
+          "stale_images": 0,
+          "missing_images": 0,
+          "dropped_frames": 0,
+          "dropped_telemetry": 0,
+          "dropped_events": 0,
+          "encoded_images": 150,
+          "saved_images": 240,
+          "io_errors": 0
+        },
+        "errors": [],
+        "fps": 10,
+        "ring_seconds": 5,
+        "pre_seconds": 3,
+        "post_seconds": 2,
+        "writer_alive": false,
+        "backend": "thread",
+        "worker": {
+          "encode_s": 0.6835829999763519,
+          "write_s": 0.5753923997981474,
+          "cpu_s": 1.421875,
+          "wall_s": 5.092039400013164,
+          "cpu_scope": "writer_thread"
+        },
+        "client": {
+          "capture_calls": 50,
+          "capture_wall_s": 0.06772260006982833,
+          "capture_max_s": 0.0051812000456266105,
+          "enqueue_calls": 275,
+          "enqueue_wall_s": 0.008217600174248219,
+          "enqueue_max_s": 7.770000956952572e-05,
+          "shared_copy_bytes": 0,
+          "queue_cleanup": "drained",
+          "shared_memory_unlinked": false,
+          "forced_terminate": false,
+          "writer_ready_wait_s": 0.07225219998508692
+        },
+        "relay_error": null
+      }
+    },
+    {
+      "mode": "process",
+      "steps": 300,
+      "loop_s": 5.000386300031096,
+      "main_process_cpu_s": 0.109375,
+      "achieved_loop_hz": 59.99261468843404,
+      "fake_read_s": {
+        "count": 300,
+        "mean": 0.00010797233204357326,
+        "p50": 0.0001086000120267272,
+        "p95": 0.00014734501310158523,
+        "max": 0.0002364999963901937
+      },
+      "loop_work_s": {
+        "count": 300,
+        "mean": 0.0004944376680456723,
+        "p50": 0.0003246499691158533,
+        "p95": 0.0014259499730542302,
+        "max": 0.004052600008435547
+      },
+      "gap_s": {
+        "count": 299,
+        "mean": 0.01666871839464583,
+        "p50": 0.016656499996315688,
+        "p95": 0.017036069964524357,
+        "max": 0.017251400044187903
+      },
+      "scheduling_lateness_s": {
+        "count": 300,
+        "mean": 0.000394649343797937,
+        "p50": 0.0004036000173073262,
+        "p95": 0.0006273833336308599,
+        "max": 0.0008283666684292257
+      },
+      "capture_call_s": {
+        "count": 50,
+        "mean": 0.0011562059982679785,
+        "p50": 0.001064100011717528,
+        "p95": 0.001625920017249882,
+        "max": 0.003798999998252839
+      },
+      "recording": {
+        "event_count": 2,
+        "events": [
+          {
+            "id": 1,
+            "directory": "grasp_1",
+            "time_s": 1.2505812000017613,
+            "unix": 1794999868.8924727,
+            "status": "complete",
+            "frames": 33,
+            "goals": 196,
+            "trigger_drop_points": 3.006974400021136
+          },
+          {
+            "id": 2,
+            "directory": "grasp_2",
+            "time_s": 3.250426899990998,
+            "unix": 1794999870.8922887,
+            "status": "partial",
+            "frames": 47,
+            "goals": 285,
+            "trigger_drop_points": 3.0051227998919785
+          }
+        ],
+        "counts": {
+          "capture_batches": 50,
+          "captured_images": 150,
+          "duplicate_images": 0,
+          "stale_images": 0,
+          "missing_images": 0,
+          "dropped_frames": 0,
+          "dropped_telemetry": 0,
+          "dropped_events": 0,
+          "encoded_images": 150,
+          "saved_images": 240,
+          "io_errors": 0
+        },
+        "errors": [],
+        "fps": 10,
+        "ring_seconds": 5,
+        "pre_seconds": 3,
+        "post_seconds": 2,
+        "writer_alive": false,
+        "backend": "process",
+        "worker": {
+          "pid": 6528,
+          "parent_pid": 1600,
+          "nice": "unchanged",
+          "encode_s": 0.7030866998829879,
+          "write_s": 0.5833683995297179,
+          "cpu_s": 1.75,
+          "wall_s": 5.383317700005136,
+          "cpu_scope": "process"
+        },
+        "client": {
+          "capture_calls": 50,
+          "capture_wall_s": 0.05704230006085709,
+          "capture_max_s": 0.0037856000126339495,
+          "enqueue_calls": 275,
+          "enqueue_wall_s": 0.017513399303425103,
+          "enqueue_max_s": 0.0007575000054202974,
+          "shared_copy_bytes": 138240000,
+          "queue_cleanup": "closed",
+          "shared_memory_unlinked": true,
+          "forced_terminate": false,
+          "writer_ready_wait_s": 0.8999843000201508,
+          "worker_exitcode": 0,
+          "relay_alive_after_close": false
+        },
+        "relay_error": null
+      }
+    }
+  ]
+}

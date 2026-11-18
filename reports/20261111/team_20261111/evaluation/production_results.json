@@ -1,0 +1,481 @@
+{
+  "status": "PASS",
+  "source_hashes": {
+    "reports\\team_20261111\\jetson-start-criteria.json": "acb49870ee0bf36dc8bbd9099612d74ddd8cadb0a4e20e5b10b0d06c5f4d520e",
+    "reports\\team_20261111\\ui\\start-position-ui.js": "4ac0d8e295ae298e9304a5a0926590756d4d585f30182cd1d1871e90e5d519a7",
+    "tmp\\vla_direct_live_v3_20261109\\start_position_rules.py": "0b54c4a7850b038cf6c4a974d23cab351abb9fd7e7fad152541efffcea15a7fa"
+  },
+  "criteria_sources": {
+    "calibration": {
+      "filename": "so-101.json",
+      "role": "calibration",
+      "sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e"
+    },
+    "home": {
+      "filename": "home_state_so101.json",
+      "role": "home",
+      "sha256": "73ed963208beebe7080a681302350d35a20fc0cda412676dd547b7fc9f7d6074"
+    },
+    "base": {
+      "filename": "direct_live.py",
+      "role": "base",
+      "sha256": "f3942d08ca1a289fef1ef0e2230a08bb10fffdad1a5c8f09ebcdfbb52a7e0e28"
+    }
+  },
+  "home_exact_match": true,
+  "home_tolerance": 2,
+  "ranges": {
+    "shoulder_pan": {
+      "command_range_ticks": [
+        755,
+        3448
+      ],
+      "start_range_ticks": [
+        755,
+        3448
+      ],
+      "margin_ticks": 0,
+      "integer_ticks_only": true
+    },
+    "shoulder_lift": {
+      "command_range_ticks": [
+        796,
+        3113
+      ],
+      "start_range_ticks": [
+        796,
+        3113
+      ],
+      "margin_ticks": 0,
+      "integer_ticks_only": true
+    },
+    "elbow_flex": {
+      "command_range_ticks": [
+        880,
+        3082
+      ],
+      "start_range_ticks": [
+        880,
+        3083
+      ],
+      "margin_ticks": 1,
+      "integer_ticks_only": true
+    },
+    "wrist_flex": {
+      "command_range_ticks": [
+        936,
+        3225
+      ],
+      "start_range_ticks": [
+        936,
+        3225
+      ],
+      "margin_ticks": 0,
+      "integer_ticks_only": true
+    },
+    "wrist_roll": {
+      "command_range_ticks": [
+        86,
+        3643
+      ],
+      "start_range_ticks": [
+        86,
+        3643
+      ],
+      "margin_ticks": 0,
+      "integer_ticks_only": true
+    },
+    "gripper": {
+      "command_range_ticks": [
+        413,
+        2047
+      ],
+      "start_range_ticks": [
+        413,
+        2047
+      ],
+      "margin_ticks": 0,
+      "integer_ticks_only": true
+    }
+  },
+  "cases": [
+    {
+      "label": "shoulder_pan=754",
+      "ticks": {
+        "shoulder_pan": 754,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    },
+    {
+      "label": "shoulder_pan=755",
+      "ticks": {
+        "shoulder_pan": 755,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "shoulder_pan=3448",
+      "ticks": {
+        "shoulder_pan": 3448,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "shoulder_pan=3449",
+      "ticks": {
+        "shoulder_pan": 3449,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    },
+    {
+      "label": "shoulder_lift=795",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 795,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    },
+    {
+      "label": "shoulder_lift=796",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 796,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "shoulder_lift=3113",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 3113,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "shoulder_lift=3114",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 3114,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    },
+    {
+      "label": "elbow_flex=879",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 879,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    },
+    {
+      "label": "elbow_flex=880",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 880,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "elbow_flex=3083",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 3083,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "elbow_flex=3084",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 3084,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    },
+    {
+      "label": "wrist_flex=935",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 935,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    },
+    {
+      "label": "wrist_flex=936",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 936,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "wrist_flex=3225",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 3225,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "wrist_flex=3226",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 3226,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    },
+    {
+      "label": "wrist_roll=85",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 85,
+        "gripper": 1230
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    },
+    {
+      "label": "wrist_roll=86",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 86,
+        "gripper": 1230
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "wrist_roll=3643",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 3643,
+        "gripper": 1230
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "wrist_roll=3644",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 3644,
+        "gripper": 1230
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    },
+    {
+      "label": "gripper=412",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 412
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    },
+    {
+      "label": "gripper=413",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 413
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "gripper=2047",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 2047
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "gripper=2048",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 1981,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 2048
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    },
+    {
+      "label": "reported_elbow_3082",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 3082,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "reported_elbow_3083",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 3083,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": true,
+      "python_allow": true,
+      "js_state": "ok"
+    },
+    {
+      "label": "reported_elbow_3084",
+      "ticks": {
+        "shoulder_pan": 2101,
+        "shoulder_lift": 1954,
+        "elbow_flex": 3084,
+        "wrist_flex": 2080,
+        "wrist_roll": 1864,
+        "gripper": 1230
+      },
+      "expect": false,
+      "python_allow": false,
+      "js_state": "out"
+    }
+  ]
+}

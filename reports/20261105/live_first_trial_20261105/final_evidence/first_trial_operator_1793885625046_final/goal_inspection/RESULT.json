@@ -1,0 +1,154 @@
+{
+  "mode": "inspect",
+  "status": "READ_ONLY_COMPLETE",
+  "first_trial_only": true,
+  "task": "Put medicine bottle A into the blue basket",
+  "settings": {
+    "fps": 30.0,
+    "cap": 0.5,
+    "speed": 20.0,
+    "start_temperature": 50.0,
+    "stop_temperature": 55.0,
+    "first_jump": 10.0,
+    "load": 200.0,
+    "max_seconds": 5.0,
+    "max_steps": 10,
+    "frame_age": 0.25,
+    "camera_skew": 0.1
+  },
+  "evidence_files": {
+    ".cache/huggingface/lerobot/calibration/robots/so_follower/so-101.json": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+    "units_so101.json": "76a527b7702dee9a4dfb79d275d6f2bb4a937d3584860b5d2a51af8759561241",
+    "home_state_so101.json": "73ed963208beebe7080a681302350d35a20fc0cda412676dd547b7fc9f7d6074",
+    "v6_dry_rearm_worker_20261105_1793878117328/resolved_camera_config.json": "c9656776de83c11c6a7eb563f30763ad98af23b9d25435a8d90e65bf48573fe4",
+    "smolvla_model/pretrained_model/config.json": "dde0b224ce9655bc1774b26bf0721abb5a4ccea685c24cfd462355de6e545434",
+    "smolvla_model/pretrained_model/policy_preprocessor.json": "b841161e96458114d8ac58ab8baffb9ae8ef3189fcf41d94dd1a0f07d35e2cdf",
+    "smolvla_model/pretrained_model/policy_postprocessor.json": "f9dddc832597a49fef22a83d94f188776d1b8c8313f75d4f1c7344455fc7e4a3"
+  },
+  "camera_mapping": {
+    "observation.images.end_effector": "observation.images.camera1",
+    "observation.images.ceiling_vertical": "observation.images.camera2",
+    "observation.images.ceiling_oblique": "observation.images.camera3"
+  },
+  "inspection": {
+    "status": "ARM_INSPECTION_READ_ONLY",
+    "snapshot": {
+      "torque": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "modes": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "temperatures": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 32,
+        "elbow_flex": 30,
+        "wrist_flex": 32,
+        "wrist_roll": 32,
+        "gripper": 35
+      },
+      "loads": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "statuses": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "state": [
+        -3.208791208791209,
+        -97.36263736263736,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.1603427172582625
+      ],
+      "moving": false
+    },
+    "present_raw": {
+      "shoulder_pan": 2065,
+      "shoulder_lift": 847,
+      "elbow_flex": 3082,
+      "wrist_flex": 2575,
+      "wrist_roll": 1812,
+      "gripper": 530
+    },
+    "goal_raw": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "goal_state": [
+      -184.74725274725276,
+      -171.82417582417582,
+      -174.37362637362637,
+      -182.9010989010989,
+      -163.9120879120879,
+      0.0
+    ],
+    "raw_delta": {
+      "shoulder_pan": -2065,
+      "shoulder_lift": -847,
+      "elbow_flex": -3082,
+      "wrist_flex": -2575,
+      "wrist_roll": -1812,
+      "gripper": -530
+    },
+    "goal_exact_match": false,
+    "joint_bounds": [
+      [
+        -118.37362637362638,
+        118.37362637362638
+      ],
+      [
+        -101.84615384615384,
+        101.84615384615384
+      ],
+      [
+        -97.01098901098901,
+        97.01098901098901
+      ],
+      [
+        -100.61538461538461,
+        100.61538461538461
+      ],
+      [
+        -156.35164835164835,
+        156.35164835164835
+      ],
+      [
+        0.0,
+        100.0
+      ]
+    ],
+    "bounds_contain_current_and_goal": false,
+    "arm_ready": false,
+    "register_writes": 0
+  },
+  "motor_goal_packets": 0,
+  "cleanup_errors": [],
+  "stop_inventory": {
+    "SERIAL_STOP.cleared_20261105_185629.json": "16bf71d5f09ebb246a573a22cbad1faae57e5f50c0ae6ed945f2443c94797f5c"
+  }
+}

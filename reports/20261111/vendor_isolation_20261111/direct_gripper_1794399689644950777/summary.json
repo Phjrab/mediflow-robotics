@@ -1,0 +1,136 @@
+{
+  "setup": "operator-reported direct board-to-gripper ID6; DC ON; other axes disconnected",
+  "motor_register_writes": 0,
+  "phases": [
+    {
+      "hz": 30,
+      "exit_code": 0,
+      "temperatures": 301,
+      "min_c": 34,
+      "max_c": 34,
+      "torque_reads": [
+        0
+      ],
+      "cli": "serial speed 1000000\n{\"status\":\"COMPLETE\",\"reason\":\"\",\"samples\":302,\"peak_c\":34,\"read_packets\":302,\"blocked_packets\":0,\"motor_register_writes\":0,\"port_closed\":true}",
+      "log": "direct_30.jsonl",
+      "median_c": 34,
+      "above_median_8_c": 0,
+      "peak_neighbors": [
+        {
+          "monotonic_ns": 24269757472510,
+          "id": 6,
+          "address": 63,
+          "value": 34,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030022d4"
+        },
+        {
+          "monotonic_ns": 24269757798344,
+          "id": 6,
+          "address": 63,
+          "value": 34,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030022d4"
+        }
+      ]
+    },
+    {
+      "hz": 180,
+      "exit_code": 0,
+      "temperatures": 1801,
+      "min_c": 33,
+      "max_c": 35,
+      "torque_reads": [
+        0
+      ],
+      "cli": "serial speed 1000000\n{\"status\":\"COMPLETE\",\"reason\":\"\",\"samples\":1802,\"peak_c\":35,\"read_packets\":1802,\"blocked_packets\":0,\"motor_register_writes\":0,\"port_closed\":true}",
+      "log": "direct_180.jsonl",
+      "median_c": 34,
+      "above_median_8_c": 0,
+      "peak_neighbors": [
+        {
+          "monotonic_ns": 24281200986911,
+          "id": 6,
+          "address": 63,
+          "value": 34,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030022d4"
+        },
+        {
+          "monotonic_ns": 24281206503595,
+          "id": 6,
+          "address": 63,
+          "value": 35,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030023d3"
+        },
+        {
+          "monotonic_ns": 24281212089209,
+          "id": 6,
+          "address": 63,
+          "value": 34,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030022d4"
+        }
+      ]
+    },
+    {
+      "hz": 360,
+      "exit_code": 0,
+      "temperatures": 3601,
+      "min_c": 33,
+      "max_c": 36,
+      "torque_reads": [
+        0
+      ],
+      "cli": "serial speed 1000000\n{\"status\":\"COMPLETE\",\"reason\":\"\",\"samples\":3602,\"peak_c\":36,\"read_packets\":3602,\"blocked_packets\":0,\"motor_register_writes\":0,\"port_closed\":true}",
+      "log": "direct_360.jsonl",
+      "median_c": 35,
+      "above_median_8_c": 0,
+      "peak_neighbors": [
+        {
+          "monotonic_ns": 24291885087317,
+          "id": 6,
+          "address": 63,
+          "value": 34,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030022d4"
+        },
+        {
+          "monotonic_ns": 24291887738568,
+          "id": 6,
+          "address": 63,
+          "value": 36,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030024d2"
+        },
+        {
+          "monotonic_ns": 24291890499230,
+          "id": 6,
+          "address": 63,
+          "value": 35,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023f01b3",
+          "rx_hex": "ffff06030023d3"
+        }
+      ]
+    }
+  ],
+  "port_free": true,
+  "output": "direct_gripper_1794399689644950777"
+}

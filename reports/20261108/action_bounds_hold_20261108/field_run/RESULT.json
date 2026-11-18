@@ -1,0 +1,289 @@
+{
+  "status": "HOLD",
+  "mode": "live_from_hold",
+  "first_trial_only": true,
+  "task": "Put medicine bottle A into the blue basket",
+  "settings": {
+    "fps": 30.0,
+    "cap": 0.5,
+    "speed": 20.0,
+    "start_temperature": 50.0,
+    "stop_temperature": 55.0,
+    "first_jump": 10.0,
+    "load": 200.0,
+    "max_seconds": 5.0,
+    "max_steps": 10,
+    "frame_age": 0.25,
+    "camera_skew": 0.1
+  },
+  "output": "~/first_vla_from_hold_1794125680799432750",
+  "torque_register_writes": 0,
+  "evidence_files": {
+    ".cache/huggingface/lerobot/calibration/robots/so_follower/so-101.json": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+    "units_so101.json": "76a527b7702dee9a4dfb79d275d6f2bb4a937d3584860b5d2a51af8759561241",
+    "home_state_so101.json": "73ed963208beebe7080a681302350d35a20fc0cda412676dd547b7fc9f7d6074",
+    "v6_dry_rearm_worker_20261105_1793878117328/resolved_camera_config.json": "c9656776de83c11c6a7eb563f30763ad98af23b9d25435a8d90e65bf48573fe4",
+    "smolvla_model/pretrained_model/config.json": "dde0b224ce9655bc1774b26bf0721abb5a4ccea685c24cfd462355de6e545434",
+    "smolvla_model/pretrained_model/policy_preprocessor.json": "b841161e96458114d8ac58ab8baffb9ae8ef3189fcf41d94dd1a0f07d35e2cdf",
+    "smolvla_model/pretrained_model/policy_postprocessor.json": "f9dddc832597a49fef22a83d94f188776d1b8c8313f75d4f1c7344455fc7e4a3"
+  },
+  "camera_mapping": {
+    "observation.images.end_effector": "observation.images.camera1",
+    "observation.images.ceiling_vertical": "observation.images.camera2",
+    "observation.images.ceiling_oblique": "observation.images.camera3"
+  },
+  "hold_evidence": {
+    "hold_sha256": "4767b9cf28dce8ec3cbb7c0210d9ba8f0f73c74b18a00723bb6399c46f733183",
+    "hold_review_sha256": "742dc63e6ba15b9b8f23f6d16f512decc21126b04b0798901580abfed2310488",
+    "field_stop_sha256": "e8a2bf9eb72c676198483aa8b4e150058a4595f37c7b35f6015216798deee56c",
+    "hold_only_receipt_is_not_live_permission": true,
+    "operator_live_review_required": true,
+    "reviewed_start_stop": {
+      "scope": "REVIEWED_ZERO_WRITE_START_HOLD",
+      "result_sha256": "f2e4c81cb18473a4f091f49d9b12ed4944bce7a296e11bf1ee4caaaaf0bd9291",
+      "post_hold_stop_sha256": "3ed9dc4110dfbdcfb79b352a96e3b13be3bd5ec22c758fe0efd3efea973511bf",
+      "prior_usage_sha256": "971e05d27fa1a192500d189ec6c8c26b5c62254a7ca38f4343f1b10a4d28f189",
+      "max_raw_difference": 1,
+      "max_joint_degrees": 0.1,
+      "max_gripper_points": 0.1,
+      "fresh_operator_review_required": true,
+      "live_authorized": false
+    }
+  },
+  "inspection": {
+    "status": "ARM_INSPECTION_READ_ONLY",
+    "snapshot": {
+      "torque": {
+        "shoulder_pan": 1,
+        "shoulder_lift": 1,
+        "elbow_flex": 1,
+        "wrist_flex": 1,
+        "wrist_roll": 1,
+        "gripper": 1
+      },
+      "modes": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "temperatures": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 33,
+        "elbow_flex": 31,
+        "wrist_flex": 32,
+        "wrist_roll": 32,
+        "gripper": 35
+      },
+      "loads": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "statuses": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "state": [
+        -5.846153846153846,
+        -98.85714285714286,
+        96.57142857142857,
+        43.472527472527474,
+        -4.615384615384615,
+        7.221542227662178
+      ],
+      "moving": false
+    },
+    "present_raw": {
+      "shoulder_pan": 2035,
+      "shoulder_lift": 830,
+      "elbow_flex": 3082,
+      "wrist_flex": 2575,
+      "wrist_roll": 1812,
+      "gripper": 531
+    },
+    "goal_raw": {
+      "shoulder_pan": 0,
+      "shoulder_lift": 0,
+      "elbow_flex": 0,
+      "wrist_flex": 0,
+      "wrist_roll": 0,
+      "gripper": 0
+    },
+    "goal_state": [
+      -184.74725274725276,
+      -171.82417582417582,
+      -174.37362637362637,
+      -182.9010989010989,
+      -163.9120879120879,
+      0.0
+    ],
+    "raw_delta": {
+      "shoulder_pan": -2035,
+      "shoulder_lift": -830,
+      "elbow_flex": -3082,
+      "wrist_flex": -2575,
+      "wrist_roll": -1812,
+      "gripper": -531
+    },
+    "goal_exact_match": false,
+    "target_feedback_raw": {
+      "shoulder_pan": 2034,
+      "shoulder_lift": 831,
+      "elbow_flex": 3082,
+      "wrist_flex": 2575,
+      "wrist_roll": 1812,
+      "gripper": 531
+    },
+    "target_feedback_state": [
+      -5.934065934065934,
+      -98.76923076923077,
+      96.57142857142857,
+      43.472527472527474,
+      -4.615384615384615,
+      7.221542227662178
+    ],
+    "active_target_exact_match": false,
+    "joint_bounds": [
+      [
+        -118.37362637362638,
+        118.37362637362638
+      ],
+      [
+        -101.84615384615384,
+        101.84615384615384
+      ],
+      [
+        -97.01098901098901,
+        97.01098901098901
+      ],
+      [
+        -100.61538461538461,
+        100.61538461538461
+      ],
+      [
+        -156.35164835164835,
+        156.35164835164835
+      ],
+      [
+        0.0,
+        100.0
+      ]
+    ],
+    "bounds_contain_current_and_active_target": true,
+    "start_agreement": {
+      "scope": "START_POSITION_AGREEMENT_ONLY",
+      "current_raw_exact": false,
+      "start_check_passed": true,
+      "max_raw_difference": 1,
+      "max_normalized_difference": 0.1,
+      "hardware_access": false,
+      "live_authorized": false,
+      "rows": [
+        {
+          "joint": "shoulder_pan",
+          "present_raw": 2035,
+          "target_raw": 2034,
+          "delta_raw": -1,
+          "delta": -0.08791208791208849,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": true,
+          "reasons": []
+        },
+        {
+          "joint": "shoulder_lift",
+          "present_raw": 830,
+          "target_raw": 831,
+          "delta_raw": 1,
+          "delta": 0.0879120879120876,
+          "unit": "degree",
+          "exact": false,
+          "check_passed": true,
+          "reasons": []
+        },
+        {
+          "joint": "elbow_flex",
+          "present_raw": 3082,
+          "target_raw": 3082,
+          "delta_raw": 0,
+          "delta": 0.0,
+          "unit": "degree",
+          "exact": true,
+          "check_passed": true,
+          "reasons": []
+        },
+        {
+          "joint": "wrist_flex",
+          "present_raw": 2575,
+          "target_raw": 2575,
+          "delta_raw": 0,
+          "delta": 0.0,
+          "unit": "degree",
+          "exact": true,
+          "check_passed": true,
+          "reasons": []
+        },
+        {
+          "joint": "wrist_roll",
+          "present_raw": 1812,
+          "target_raw": 1812,
+          "delta_raw": 0,
+          "delta": 0.0,
+          "unit": "degree",
+          "exact": true,
+          "check_passed": true,
+          "reasons": []
+        },
+        {
+          "joint": "gripper",
+          "present_raw": 531,
+          "target_raw": 531,
+          "delta_raw": 0,
+          "delta": 0.0,
+          "unit": "percent_0_100",
+          "exact": true,
+          "check_passed": true,
+          "reasons": []
+        }
+      ]
+    },
+    "arm_ready": true,
+    "register_writes": 0
+  },
+  "error": {
+    "kind": "Hold",
+    "reason": "관절 한계/형식 이탈",
+    "observed": null,
+    "initialization_cleanup_error": null
+  },
+  "cleanup_errors": [],
+  "ports_closed": {
+    "io": true,
+    "probe": true
+  },
+  "motor_goal_packets": 0,
+  "hardware_started": true,
+  "targets": [],
+  "events": [
+    "connect",
+    "prepared_no_write",
+    "stop_new_commands_no_write",
+    "close_no_torque_change"
+  ],
+  "original_stop_preserved": true,
+  "new_stop_receipt": {
+    "created": true,
+    "name": "POST_START_REVIEW_STOP.json",
+    "sha256": "c70c2909aacf31ce763b6a1b1fff0d072b42092af5a37c31c6156bdc95311ae7"
+  }
+}

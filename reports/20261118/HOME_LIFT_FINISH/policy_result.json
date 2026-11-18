@@ -1,0 +1,179 @@
+{
+  "status": "RUN_COMPLETE",
+  "reason": null,
+  "hold": {
+    "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+  },
+  "operator_request": null,
+  "steps": 8572,
+  "step_limit": 10800,
+  "elapsed_s": 180.03898897200003,
+  "task_success": "UNVERIFIED",
+  "speed": 0.33,
+  "playback_hz": 9.9,
+  "playback_s": 58.29290757774001,
+  "gripper_peak_c": 34,
+  "peak_temperatures_c": {
+    "shoulder_pan": 34,
+    "shoulder_lift": 34,
+    "elbow_flex": 34,
+    "wrist_flex": 34,
+    "wrist_roll": 34,
+    "gripper": 34
+  },
+  "camera": {
+    "end_effector": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.05097476100002041
+    },
+    "ceiling_vertical": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.04836933800004317
+    },
+    "ceiling_oblique": {
+      "read_failures": 3,
+      "max_frame_gap_s": 0.05467466799996146
+    }
+  },
+  "inference_s": {
+    "mean": 1.4615239431052567,
+    "samples": [
+      1.4969918459999576,
+      1.4785806809999826,
+      1.4473111390000213,
+      1.5071783319999668,
+      1.4862950909999881,
+      1.4486246299999834,
+      1.5060630689999925,
+      1.5105410919999827,
+      1.5069789649999734,
+      1.4445508869999912,
+      1.4739903830000003,
+      1.4451122749999854,
+      1.4391255479999927,
+      1.44314796499998,
+      1.447321503000012,
+      1.4797322019999797,
+      1.4815715749999754,
+      1.4434391980000214,
+      1.4638666869999497,
+      1.4433134390000077,
+      1.4739060979999863,
+      1.4457783660000132,
+      1.4672780050000256,
+      1.4464782790000186,
+      1.4732548029999748,
+      1.479234617999964,
+      1.4417286009999657,
+      1.4365084679999995,
+      1.4766898490000244,
+      1.4784705330000065,
+      1.4391876440000146,
+      1.4394789739999965,
+      1.4564330339999856,
+      1.48576675999999,
+      1.4664406879999774,
+      1.4363050729999713,
+      1.4673257440000498,
+      1.4542209300000195,
+      1.4529541030000246,
+      1.4343962990000136,
+      1.4404348589999927,
+      1.5064474629999722,
+      1.4420969410000453,
+      1.465068935999966,
+      1.4321955440000238,
+      1.4384563779999553,
+      1.472915974999978,
+      1.4845061839999971,
+      1.4523067990000982,
+      1.4458325319999403,
+      1.44397565700001,
+      1.4271431170000142,
+      1.4464794430000438,
+      1.4347942109999394,
+      1.481478294999988,
+      1.4885057539999025,
+      1.4586532929999976
+    ]
+  },
+  "chunk_wait_s": {
+    "max": 0,
+    "sum": 0
+  },
+  "transmission_hz": 48.52695025668546,
+  "final_rate_target": 50,
+  "tracking": {
+    "shoulder_pan": {
+      "sent_span": 12.307692307692307,
+      "observed_span": 12.043956043956044,
+      "span_ratio": 0.9785714285714286
+    },
+    "shoulder_lift": {
+      "sent_span": 71.38461538461539,
+      "observed_span": 70.76923076923077,
+      "span_ratio": 0.9913793103448276
+    },
+    "elbow_flex": {
+      "sent_span": 95.56043956043956,
+      "observed_span": 95.12087912087912,
+      "span_ratio": 0.9954001839926403
+    },
+    "wrist_flex": {
+      "sent_span": 41.31868131868132,
+      "observed_span": 40.35164835164834,
+      "span_ratio": 0.9765957446808508
+    },
+    "wrist_roll": {
+      "sent_span": 14.065934065934066,
+      "observed_span": 13.802197802197801,
+      "span_ratio": 0.98125
+    },
+    "gripper": {
+      "sent_span": 48.776009791921666,
+      "observed_span": 48.28641370869033,
+      "span_ratio": 0.9899623588456713
+    }
+  },
+  "tracking_compensation": {
+    "enabled_axes": [
+      "elbow_flex"
+    ],
+    "steps": 8573,
+    "requested_cap_deg": 3.0,
+    "effective_cap_deg": 2.912087912087912,
+    "max_abs_offset_deg": {
+      "shoulder_pan": 0.0,
+      "shoulder_lift": 0.0,
+      "elbow_flex": 0.13638371215602785,
+      "wrist_flex": 0.0,
+      "wrist_roll": 0.0,
+      "gripper": 0.0
+    },
+    "final_offset_deg": {
+      "shoulder_pan": 0.0,
+      "shoulder_lift": 0.0,
+      "elbow_flex": 0.0,
+      "wrist_flex": 0.0,
+      "wrist_roll": 0.0,
+      "gripper": 0.0
+    }
+  },
+  "gripper_opening_protection": {
+    "open_cap_points": 49.611995697021484,
+    "policy_open_cap_clips": 6,
+    "opening_load_freezes": 0,
+    "opening_hold_target_points": null
+  },
+  "lateral_correction": {
+    "enabled": true,
+    "configured_offset_deg": 0.5274725274725275,
+    "applied_steps": 0,
+    "peak_abs_deg": 0.0,
+    "windows": 0,
+    "direction_verified": true,
+    "scale_verified": true,
+    "tcp_physically_calibrated": false,
+    "metric_scope": "bottle_top_camera_plane_at_measured_pose"
+  }
+}

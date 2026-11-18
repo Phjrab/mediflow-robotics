@@ -1,0 +1,81 @@
+{
+  "scope": "START_POSITION_AGREEMENT_PROPOSAL_ONLY",
+  "proposal_only": true,
+  "current_raw_exact": false,
+  "proposed_start_check_passed": true,
+  "max_raw_difference": 1,
+  "max_normalized_difference": 0.1,
+  "hardware_access": false,
+  "live_authorized": false,
+  "rows": [
+    {
+      "joint": "shoulder_pan",
+      "present_raw": 2035,
+      "target_raw": 2034,
+      "delta_raw": -1,
+      "delta": -0.08791208791208849,
+      "unit": "degree",
+      "exact": false,
+      "proposed_check_passed": true,
+      "reasons": []
+    },
+    {
+      "joint": "shoulder_lift",
+      "present_raw": 830,
+      "target_raw": 831,
+      "delta_raw": 1,
+      "delta": 0.0879120879120876,
+      "unit": "degree",
+      "exact": false,
+      "proposed_check_passed": true,
+      "reasons": []
+    },
+    {
+      "joint": "elbow_flex",
+      "present_raw": 3082,
+      "target_raw": 3082,
+      "delta_raw": 0,
+      "delta": 0.0,
+      "unit": "degree",
+      "exact": true,
+      "proposed_check_passed": true,
+      "reasons": []
+    },
+    {
+      "joint": "wrist_flex",
+      "present_raw": 2575,
+      "target_raw": 2575,
+      "delta_raw": 0,
+      "delta": 0.0,
+      "unit": "degree",
+      "exact": true,
+      "proposed_check_passed": true,
+      "reasons": []
+    },
+    {
+      "joint": "wrist_roll",
+      "present_raw": 1812,
+      "target_raw": 1812,
+      "delta_raw": 0,
+      "delta": 0.0,
+      "unit": "degree",
+      "exact": true,
+      "proposed_check_passed": true,
+      "reasons": []
+    },
+    {
+      "joint": "gripper",
+      "present_raw": 531,
+      "target_raw": 531,
+      "delta_raw": 0,
+      "delta": 0.0,
+      "unit": "percent_0_100",
+      "exact": true,
+      "proposed_check_passed": true,
+      "reasons": []
+    }
+  ],
+  "current_runtime_gate_changed": false,
+  "stop_records_changed": false,
+  "physical_origin_of_one_count_difference": "UNVERIFIED"
+}

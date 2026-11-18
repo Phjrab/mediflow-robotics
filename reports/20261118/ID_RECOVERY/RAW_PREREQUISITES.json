@@ -1,0 +1,377 @@
+{
+  "schema": "so101.raw_prerequisites.v1",
+  "date": "2026-11-18",
+  "status": "HISTORICAL_STATISTICS_AUDITED_FULL_RECOMPUTATION_NOT_RUN",
+  "scope": "Offline read-only audit. No SSH, robot device, raw code changes, tags or GitHub writes.",
+  "fps": {
+    "historical_training_fps": 30,
+    "matching_local_source_meta_fps": [
+      30
+    ],
+    "merged_dataset_info_found": false,
+    "full_training_meta_currently_reverified": false
+  },
+  "training": {
+    "episodes": 137,
+    "frames": 63551,
+    "adjacent_pairs": 63414,
+    "episode_counts_by_color": {
+      "red": 48,
+      "green": 45,
+      "blue": 44
+    },
+    "frames_by_color": {
+      "red": 22752,
+      "green": 21367,
+      "blue": 19432
+    },
+    "source_selection_counts": {
+      "a_to_red_20261102_201029": 9,
+      "a_to_red_20261102_210433": 39,
+      "a_to_green_20261102_201804": 10,
+      "a_to_blue_20261102_212958": 35,
+      "a_to_blue_20261103_193835": 35,
+      "a_to_blue_20261103_193353": 9
+    },
+    "statistics_field": "action",
+    "physical_quantity": "leader joint command; gripper normalized points, other joints degrees",
+    "state_used_for_delta": false,
+    "formula": "abs(action[t+1,j] - action[t,j]) inside each source episode after sorting by frame_index; max across all selected episode pairs; candidate = 1.5 * max",
+    "boundary_exclusion": "np.diff is performed separately per source episode before concatenation; all inter-episode pairs excluded",
+    "timestamp_validation": "Original script checks finite timestamp/action and dt within 0.001 s of 1/30 s. Per-second statistics use abs_delta / actual_dt.",
+    "trims": [
+      {
+        "source": "a_to_red_20261102_210433",
+        "episode": 39,
+        "kept_frames": 455
+      },
+      {
+        "source": "a_to_blue_20261102_212958",
+        "episode": 0,
+        "kept_frames": 516
+      }
+    ],
+    "not_recomputed_from_rows": true,
+    "source_selection_colors": {
+      "a_to_red_20261102_201029": {
+        "red": 9
+      },
+      "a_to_red_20261102_210433": {
+        "red": 39
+      },
+      "a_to_green_20261102_201804": {
+        "green": 10
+      },
+      "a_to_blue_20261102_212958": {
+        "green": 35
+      },
+      "a_to_blue_20261103_193835": {
+        "blue": 35
+      },
+      "a_to_blue_20261103_193353": {
+        "blue": 9
+      }
+    },
+    "source_name_note": "a_to_blue_20261102_212958 is named blue but episode_mapping.csv identifies source_id=green_additional40_named_blue and color=green; its 35 selected episodes belong to green."
+  },
+  "candidate_thresholds": {
+    "shoulder_pan": {
+      "unit": "degree",
+      "action_abs_delta_per_frame_max": 7.296703338623047,
+      "candidate_1_5x_per_frame": 10.94505500793457,
+      "p99_action_abs_delta_per_frame": 1.7582426071166992,
+      "basis": "archived 137-episode action statistics; not recomputed from all original rows in this audit",
+      "installed": false
+    },
+    "shoulder_lift": {
+      "unit": "degree",
+      "action_abs_delta_per_frame_max": 14.417579650878906,
+      "candidate_1_5x_per_frame": 21.62636947631836,
+      "p99_action_abs_delta_per_frame": 4.5714287757873535,
+      "basis": "archived 137-episode action statistics; not recomputed from all original rows in this audit",
+      "installed": false
+    },
+    "elbow_flex": {
+      "unit": "degree",
+      "action_abs_delta_per_frame_max": 15.824175357818604,
+      "candidate_1_5x_per_frame": 23.736263036727905,
+      "p99_action_abs_delta_per_frame": 5.890110015869141,
+      "basis": "archived 137-episode action statistics; not recomputed from all original rows in this audit",
+      "installed": false
+    },
+    "wrist_flex": {
+      "unit": "degree",
+      "action_abs_delta_per_frame_max": 12.307693481445312,
+      "candidate_1_5x_per_frame": 18.46154022216797,
+      "p99_action_abs_delta_per_frame": 3.0769271850585938,
+      "basis": "archived 137-episode action statistics; not recomputed from all original rows in this audit",
+      "installed": false
+    },
+    "wrist_roll": {
+      "unit": "degree",
+      "action_abs_delta_per_frame_max": 4.571428537368774,
+      "candidate_1_5x_per_frame": 6.857142806053162,
+      "p99_action_abs_delta_per_frame": 1.4065933227539062,
+      "basis": "archived 137-episode action statistics; not recomputed from all original rows in this audit",
+      "installed": false
+    },
+    "gripper": {
+      "unit": "gripper_point_0_100",
+      "action_abs_delta_per_frame_max": 16.003063201904297,
+      "candidate_1_5x_per_frame": 24.004594802856445,
+      "p99_action_abs_delta_per_frame": 4.670750617980957,
+      "basis": "archived 137-episode action statistics; not recomputed from all original rows in this audit",
+      "installed": false
+    }
+  },
+  "provenance": {
+    "statistics": {
+      "path": "so101_vla/reports/20261104/overnight_20261104/repo/smolvla_training/data_motion_20261109/training_motion_stats.json",
+      "sha256": "252d17501046f993510d044f56fe63c786d3a48ccbe4f7b64720d0abe6fff407"
+    },
+    "calculation_source": {
+      "path": "so101_vla/reports/20261104/overnight_20261104/repo/smolvla_training/v6_process_isolation_20261105/operator_candidate/training_motion_stats.py",
+      "sha256": "de1932924597bb7abce181531ed1e0d21fad7ff1f92da64834152d1ffcbf9f96"
+    },
+    "episode_mapping": {
+      "path": "so101_vla/_archive/20261110/windows/local/completed_handoff_20261104/smolvla_training/reports/training_completed_20261104/episode_mapping.csv",
+      "sha256": "d6b2c82317ff8a1652f5dd6d3eb14e43899421257d19a3bf78caa0450927821a",
+      "matches_statistics_record": true
+    },
+    "source_parquets": [
+      {
+        "source": "a_to_red_20261102_201029",
+        "selected_episodes": 9,
+        "expected_parquet_path": "a_to_red_20261102_201029/data/chunk-000/file-000.parquet",
+        "expected_parquet_sha256": "f799e22af6a7b141be1457e935c8902886468fb64ef99250e371e97728361292",
+        "local_status": "HASH_MATCH",
+        "local_matches": [
+          {
+            "parquet_path": ".local/three_color_checks_20261102_204203/red/data/chunk-000/file-000.parquet",
+            "parquet_sha256": "f799e22af6a7b141be1457e935c8902886468fb64ef99250e371e97728361292",
+            "info_path": ".local/three_color_checks_20261102_204203/red/meta/info.json",
+            "info_sha256": "1cf38fe55dee27ae7ee7822e0c104b4d2835b65c680a76bc8a47fdcb491e1197",
+            "fps": 30,
+            "metadata_total_episodes": 10,
+            "metadata_total_frames": 4628,
+            "action_feature": {
+              "dtype": "float32",
+              "shape": [
+                6
+              ],
+              "names": [
+                "shoulder_pan.pos",
+                "shoulder_lift.pos",
+                "elbow_flex.pos",
+                "wrist_flex.pos",
+                "wrist_roll.pos",
+                "gripper.pos"
+              ]
+            },
+            "state_feature": {
+              "dtype": "float32",
+              "shape": [
+                6
+              ],
+              "names": [
+                "shoulder_pan.pos",
+                "shoulder_lift.pos",
+                "elbow_flex.pos",
+                "wrist_flex.pos",
+                "wrist_roll.pos",
+                "gripper.pos"
+              ]
+            },
+            "note": "This metadata describes one source dataset, not the merged 137-episode dataset. Source total episodes differ from selected episodes after exclusions."
+          }
+        ],
+        "selected_colors": {
+          "red": 9
+        }
+      },
+      {
+        "source": "a_to_red_20261102_210433",
+        "selected_episodes": 39,
+        "expected_parquet_path": "a_to_red_20261102_210433/data/chunk-000/file-000.parquet",
+        "expected_parquet_sha256": "6fdf565a638655982b9e0a575e99a64ae2e95dd1d20539f74ae94d1c0507485a",
+        "local_status": "NOT_FOUND_IN_WORKSPACE",
+        "local_matches": [],
+        "selected_colors": {
+          "red": 39
+        }
+      },
+      {
+        "source": "a_to_green_20261102_201804",
+        "selected_episodes": 10,
+        "expected_parquet_path": "a_to_green_20261102_201804/data/chunk-000/file-000.parquet",
+        "expected_parquet_sha256": "81dc6ebe7cd48d1a715a55bf5e12615af74fff1fccb62816bf9f5cea00a67ac6",
+        "local_status": "HASH_MATCH",
+        "local_matches": [
+          {
+            "parquet_path": ".local/three_color_checks_20261102_204203/green/data/chunk-000/file-000.parquet",
+            "parquet_sha256": "81dc6ebe7cd48d1a715a55bf5e12615af74fff1fccb62816bf9f5cea00a67ac6",
+            "info_path": ".local/three_color_checks_20261102_204203/green/meta/info.json",
+            "info_sha256": "42bd002bbc7d631194a08c275079041d78bdfc7cb571b8400727a5db23629327",
+            "fps": 30,
+            "metadata_total_episodes": 10,
+            "metadata_total_frames": 5510,
+            "action_feature": {
+              "dtype": "float32",
+              "shape": [
+                6
+              ],
+              "names": [
+                "shoulder_pan.pos",
+                "shoulder_lift.pos",
+                "elbow_flex.pos",
+                "wrist_flex.pos",
+                "wrist_roll.pos",
+                "gripper.pos"
+              ]
+            },
+            "state_feature": {
+              "dtype": "float32",
+              "shape": [
+                6
+              ],
+              "names": [
+                "shoulder_pan.pos",
+                "shoulder_lift.pos",
+                "elbow_flex.pos",
+                "wrist_flex.pos",
+                "wrist_roll.pos",
+                "gripper.pos"
+              ]
+            },
+            "note": "This metadata describes one source dataset, not the merged 137-episode dataset. Source total episodes differ from selected episodes after exclusions."
+          }
+        ],
+        "selected_colors": {
+          "green": 10
+        }
+      },
+      {
+        "source": "a_to_blue_20261102_212958",
+        "selected_episodes": 35,
+        "expected_parquet_path": "a_to_blue_20261102_212958/data/chunk-000/file-000.parquet",
+        "expected_parquet_sha256": "a55e42ca90c9a4cfd66604660c136a239a204f0c6cad52aa8e328b02fbfb31bd",
+        "local_status": "NOT_FOUND_IN_WORKSPACE",
+        "local_matches": [],
+        "selected_colors": {
+          "green": 35
+        }
+      },
+      {
+        "source": "a_to_blue_20261103_193835",
+        "selected_episodes": 35,
+        "expected_parquet_path": "a_to_blue_20261103_193835/data/chunk-000/file-000.parquet",
+        "expected_parquet_sha256": "3ca854deaa401f312c364a42c85a2dc5e6209f2f189b2b5c15b8e64fbc285b1e",
+        "local_status": "HASH_MATCH",
+        "local_matches": [
+          {
+            "parquet_path": ".local/blue_update_20261103_200703/blue_41/data/chunk-000/file-000.parquet",
+            "parquet_sha256": "3ca854deaa401f312c364a42c85a2dc5e6209f2f189b2b5c15b8e64fbc285b1e",
+            "info_path": ".local/blue_update_20261103_200703/blue_41/meta/info.json",
+            "info_sha256": "fbacc328c796533728749b05cf31415d4ed4536a091fbfb222df95b486c7bb24",
+            "fps": 30,
+            "metadata_total_episodes": 41,
+            "metadata_total_frames": 19154,
+            "action_feature": {
+              "dtype": "float32",
+              "shape": [
+                6
+              ],
+              "names": [
+                "shoulder_pan.pos",
+                "shoulder_lift.pos",
+                "elbow_flex.pos",
+                "wrist_flex.pos",
+                "wrist_roll.pos",
+                "gripper.pos"
+              ]
+            },
+            "state_feature": {
+              "dtype": "float32",
+              "shape": [
+                6
+              ],
+              "names": [
+                "shoulder_pan.pos",
+                "shoulder_lift.pos",
+                "elbow_flex.pos",
+                "wrist_flex.pos",
+                "wrist_roll.pos",
+                "gripper.pos"
+              ]
+            },
+            "note": "This metadata describes one source dataset, not the merged 137-episode dataset. Source total episodes differ from selected episodes after exclusions."
+          }
+        ],
+        "selected_colors": {
+          "blue": 35
+        }
+      },
+      {
+        "source": "a_to_blue_20261103_193353",
+        "selected_episodes": 9,
+        "expected_parquet_path": "a_to_blue_20261103_193353/data/chunk-000/file-000.parquet",
+        "expected_parquet_sha256": "22813bc35cc95a42bb3af8dc4ac49f9fdef13d288bb625199ff3146a3330b850",
+        "local_status": "HASH_MATCH",
+        "local_matches": [
+          {
+            "parquet_path": ".local/blue_update_20261103_200703/blue_9/data/chunk-000/file-000.parquet",
+            "parquet_sha256": "22813bc35cc95a42bb3af8dc4ac49f9fdef13d288bb625199ff3146a3330b850",
+            "info_path": ".local/blue_update_20261103_200703/blue_9/meta/info.json",
+            "info_sha256": "9a04434ecfee44b220bac00d398a27537bbae9f0c737acfd96dba8c649e187b7",
+            "fps": 30,
+            "metadata_total_episodes": 9,
+            "metadata_total_frames": 3643,
+            "action_feature": {
+              "dtype": "float32",
+              "shape": [
+                6
+              ],
+              "names": [
+                "shoulder_pan.pos",
+                "shoulder_lift.pos",
+                "elbow_flex.pos",
+                "wrist_flex.pos",
+                "wrist_roll.pos",
+                "gripper.pos"
+              ]
+            },
+            "state_feature": {
+              "dtype": "float32",
+              "shape": [
+                6
+              ],
+              "names": [
+                "shoulder_pan.pos",
+                "shoulder_lift.pos",
+                "elbow_flex.pos",
+                "wrist_flex.pos",
+                "wrist_roll.pos",
+                "gripper.pos"
+              ]
+            },
+            "note": "This metadata describes one source dataset, not the merged 137-episode dataset. Source total episodes differ from selected episodes after exclusions."
+          }
+        ],
+        "selected_colors": {
+          "blue": 9
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Only four of six recorded source parquet SHA-256 values are present locally; two sources are missing. Full 137-episode recomputation was not performed.",
+    "Merged three_color meta/info.json was not found. Four matching local source info files show fps=30; their totals describe individual source datasets, not merged training metadata.",
+    "Current Python lacks numpy and pyarrow; no packages installed for this audit.",
+    "The historical report does not record the episode/frame of each maximum. A full recomputation is required to attach each maximum to exact source rows.",
+    "1.5x values are mathematical candidates requested for raw-mode review, not validated safe physical limits and not installed. Do not multiply these per-frame thresholds by speed or infer a 60 Hz per-packet limit without a defined sampling basis."
+  ],
+  "motor_writes": 0,
+  "raw_code_changed": false,
+  "git_tag_created": false,
+  "github_write": false
+}

@@ -1,0 +1,25 @@
+{
+  "status": "HOLD",
+  "error": {
+    "kind": "Hold",
+    "reason": "추론 timeout/전체 시간 상한: 결과 폐기, 추가 목표 전송 금지"
+  },
+  "chunks": 0,
+  "monitor_count": 24,
+  "read_packets": 800,
+  "goal_packets": 0,
+  "blocked_packets": 0,
+  "register_writes": 0,
+  "cleanup_errors": [],
+  "pending_policy_threads": 0,
+  "live_permitted": false,
+  "receipt_sha256": "3e5e1cda5ff6ee5749e01a1695d439577090ff533e88b9db7e5a062d5eed46ec",
+  "record_inventory": {
+    "SERIAL_STOP.cleared_20261105_185629.json": "16bf71d5f09ebb246a573a22cbad1faae57e5f50c0ae6ed945f2443c94797f5c"
+  },
+  "weights_converted": false,
+  "inference_use_amp": true,
+  "inference_autocast_dtype": "torch.float16",
+  "inference_settings_source": "checkpoint.config.json",
+  "chunk_timeout_seconds": 1.6666666666666667
+}

@@ -20,11 +20,12 @@ class CommunicationPolicy:
         self.joints=tuple(joints);self.settings=settings;self.log=log
         self.clock,self.pause=clock,pause;self.started=clock()
         self.last_good={i:self.started for i in range(1,len(joints)+1)}
-        self.streak={};self.counts={j:{'-6':0,'-7':0} for j in joints}
+        self.streak={};self.counts={j:{'-6':0,'-7':0,'id_mismatch':0} for j in joints}
         self.events=[];self.active=False;self.halted=None;self.hold_deadline=None
         self.port=None;self.original_write=None;self.previous_write=None;self.had_write=False
         self.tx_count=0;self.rx_count=0;self.tx_bytes=0;self.rx_bytes=0
         self.tx_times=[];self.last_pose=None;self.pose_at=None;self.last_temp_request={}
+        self.input_flushes=0;self.discarded_rx_bytes=0
 
     def update_pose(self,sample):
         self.last_pose={'state':list(sample['state']),'present_raw':dict(sample['present_raw'])}
@@ -73,13 +74,15 @@ class CommunicationPolicy:
     def bad(self,mids,operation,error):
         observed=getattr(error,'observed',{})
         code=observed.get('communication')
-        if code not in (-6,-7):raise error
+        mismatch=observed.get('kind')=='id_mismatch'
+        if code not in (-6,-7) and not mismatch:raise error
         for mid in mids:
-            self.counts[self.joints[mid-1]][str(code)]+=1
+            if code in (-6,-7):self.counts[self.joints[mid-1]][str(code)]+=1
+            if mismatch:self.counts[self.joints[mid-1]]['id_mismatch']+=1
             key=(mid,operation);self.streak[key]=self.streak.get(key,0)+1
         row=dict(event='communication_error',monotonic_s=self.clock(),unix=time.time(),
                  axes=[self.joints[i-1] for i in mids],operation=operation,
-                 communication=code,observed=observed,pose=self.context(),
+                 communication=code,kind='id_mismatch' if mismatch else 'sdk_error',observed=observed,pose=self.context(),
                  axis_attribution='reply_expected_id' if len(mids)==1 else 'broadcast_target_axes_not_individual_reply',
                  streak={self.joints[i-1]:self.streak[i,operation] for i in mids},
                  phase='hold' if self.hold_deadline is not None else 'normal')
@@ -111,17 +114,46 @@ class CommunicationPolicy:
             if had:port.isPacketTimeout=previous
             else:port.__dict__.pop('isPacketTimeout',None)
 
-    def resynchronize(self,port,deadline):
+    def flush_input(self,port,deadline):
+        """Discard RX only at a transaction boundary, never between sync replies."""
         port.is_using=False
+        serial=getattr(port,'ser',None)
+        reset=getattr(serial,'reset_input_buffer',None)
+        waiting=port.getBytesAvailable()
+        if reset is not None:
+            reset()
+            self.discarded_rx_bytes+=waiting
+        drained=0
+        # A bounded drain covers bytes that arrived while reset was running.
+        # Do not wait on the normal fast path: it must not add a quiet-time
+        # sleep before every healthy 60 Hz transaction.
+        for _ in range(16):
+            count=port.getBytesAvailable()
+            if not count:break
+            if self.clock()>=deadline:raise CommunicationHold('입력 버퍼 소진 시간 초과')
+            raw=bytes(port.readPort(min(count,1024)))
+            drained+=len(raw)
+            self.log(dict(event='rx_discard',monotonic_s=self.clock(),raw_hex=raw.hex()))
+            if not raw:break
+        if port.getBytesAvailable():raise CommunicationHold('입력 버퍼에 잔여 응답 지속; 새 요청 보류')
+        self.input_flushes+=1;self.discarded_rx_bytes+=drained
+        if waiting or drained:
+            self.log(dict(event='rx_input_reset',monotonic_s=self.clock(),
+                          reset_input_buffer=reset is not None,bytes_pending_before=waiting,drained_bytes=drained))
+
+    def resynchronize(self,port,deadline):
+        self.flush_input(port,deadline)
         quiet=self.clock();end=min(deadline,quiet+.006)
         while self.clock()<end:
             count=port.getBytesAvailable()
             if count:
                 raw=bytes(port.readPort(min(count,1024)))
+                self.discarded_rx_bytes+=len(raw)
                 self.log(dict(event='rx_resynchronization',monotonic_s=self.clock(),raw_hex=raw.hex()))
                 quiet=self.clock()
             elif self.clock()-quiet>=.002:return
             self.pause(.001)
+        self.flush_input(port,deadline)
 
     def perform(self,mids,operation,call,*,port=None,initial_failures=0,response=True,packet_timeout_s=.02):
         begin=self.clock();attempt=initial_failures;cycle=0
@@ -131,12 +163,18 @@ class CommunicationPolicy:
                 if self.hold_deadline is not None:raise CommunicationHold('HOLD 읽기 재시도 예산 소진')
                 self.log(dict(event='communication_cycle_deferred',operation=operation,cycle=cycle,pose=self.context()))
                 self.pause(.02);attempt=0;cycle+=1
-            deadline=self.deadline(mids,begin)
-            if port is not None and (attempt or cycle):self.resynchronize(port,deadline)
             if operation=='read:63:1':
                 last=self.last_temp_request.get(mids[0])
                 if last is not None:self.pause(max(0.,last+.02-self.clock()))
-                self.check(mids,begin);self.last_temp_request[mids[0]]=self.clock()
+            # Pacing can receive late bytes. Flush after all waits and immediately
+            # before sending, rather than clearing then sleeping for 20 ms.
+            self.check(mids,begin)
+            deadline=self.deadline(mids,begin)
+            if port is not None:
+                if attempt or cycle:self.resynchronize(port,deadline)
+                elif operation.startswith('read:'):self.flush_input(port,deadline)
+            self.check(mids,begin)
+            if operation=='read:63:1':self.last_temp_request[mids[0]]=self.clock()
             attempt+=1
             try:
                 if port is None:value=call()
@@ -159,7 +197,9 @@ class CommunicationPolicy:
     def summary(self):
         elapsed=max(self.clock()-self.started,1e-9)
         gaps=[b-a for a,b in zip(self.tx_times,self.tx_times[1:])]
-        return dict(by_joint=self.counts,errors=self.events,tx_packets=self.tx_count,rx_packets=self.rx_count,
+        return dict(by_joint=self.counts,id_mismatch_by_joint={j:c['id_mismatch'] for j,c in self.counts.items()},
+            input_flushes=self.input_flushes,discarded_rx_bytes=self.discarded_rx_bytes,
+            errors=self.events,tx_packets=self.tx_count,rx_packets=self.rx_count,
             tx_bytes=self.tx_bytes,rx_bytes=self.rx_bytes,elapsed_s=elapsed,
             tx_packets_per_s=self.tx_count/elapsed,total_packets_per_s=(self.tx_count+self.rx_count)/elapsed,
             tx_gap_s=dict(min=min(gaps,default=None),max=max(gaps,default=None),
@@ -186,6 +226,7 @@ def confirmed_hold(io,policy,joints):
             with policy.hold_attempt():
                 sample=io.feedback()
                 target={j:min(io.arm_bounds[j][1],max(io.arm_bounds[j][0],sample['present_raw'][j])) for j in joints}
+                if policy.port is not None:policy.resynchronize(policy.port,policy.hold_deadline)
                 io._send_once(target)
                 raw=io.read_block(67,2)
                 goals={j:int.from_bytes(raw[j],'little') for j in joints}

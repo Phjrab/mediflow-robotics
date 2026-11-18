@@ -1,0 +1,9 @@
+{
+  "kind": "single_pyserial_read40",
+  "motor_register_writes": 0,
+  "tx_hex": "ffff0104022801cf",
+  "dtr": true,
+  "rts": true,
+  "rx_hex": "ffff01030000fb",
+  "port_closed": true
+}
