@@ -223,6 +223,7 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
     io = SimulatedArm(home, frames, log, case, real_time=real_time)
     io.connect()
     if camera_source is not None:
+        io.out = camera_source.out
         camera_source.open_cameras(io.checked)
         io.fresh_frames = camera_source.fresh_frames
         io.camera_frames = camera_source.camera_frames
@@ -261,6 +262,8 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
     metrics['gripper_opening_protection']=result['gripper_opening_protection']
     metrics['gripper_open_clip_count']=result['gripper_opening_protection']['policy_open_cap_clips']
     metrics['lateral_correction']=result['lateral_correction']
+    metrics['ready']=result.get('ready')
+    metrics['grasp_recording']=result.get('grasp_recording')
     specific = {'partial_off': io.attempts['gripper'] == 2 and io.attempts['wrist_roll'] == 1,
                 'outside_home': 0 < io.home_motion_speed <= 10,
                 'cooling': io.cooling_samples >= 2, 'busy_port': evidence['port_waits'] >= 2,
