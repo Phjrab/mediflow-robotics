@@ -80,3 +80,9 @@
 2026-11-16 PAN_DIRECTION: 운영자 집기직전자세·손경로이탈·검은마커한변30mm확인. 현재위치시드1패킷으로토크ON(별도Torque_Enable쓰기0), pan단독+6/복귀2패킷. 방향양수=화면오른쪽, 실제+4틱/약1.51mm. 집기구간모델오프셋+6틱적용. 보정/PID/가속도0쓰기. 모의Jetson134PASS/Windows133PASS1SKIP, 실카메라·모델30초/최종8초dryPASS. 옛6667스텝재생346스텝/9창최대6틱보정, 구간밖0. 원래목표와실제복귀잔차구별/전체TCP미검증/실물집기미검증명시. 카메라·관제캐시복원. 현재집기자세토크ON유지, 홈복귀·VLA live미실행. 단계별현장대기포함19:05부터진행. 상세 reports/20261116/PAN_DIRECTION/RESULT.md.
 
 2026-11-16 LIVE_REVIEW_200615 DONE: 홈3회시도, lift잔차14/15/14틱으로정책시작전HOLD. 나머지5축통과/정책0/보정적용0/집기미시도. 온도HOLD0, 통신−6/−7세번복구, 종료HOLD_CONFIRMED/포트닫힘. 관제실제브라우저3영상640x480확인/원본영상별도검토. 최신관절표가초기관측기록이라는한계명시. 기록보존/복제, 모터접근쓰기재실행실행기변경없음. 상세 reports/20261116/LIVE_REVIEW_200615/RESULT.md.
+
+2026-11-16 HOME_LIFT_FIX START: 원인/설계5분, 수정/모의15분, Jetson배포/실제카메라·모델dry10분, 보고5분; 총예상35분. 실물모터접근·쓰기·live없음. 홈±6틱/0.5초·모든보호유지, shoulder_lift 한정 홈 목표보상 검토.
+
+2026-11-18 HOME_LIFT_FINISH START: 재접속/카메라복구5분, 실제카메라·모델180초dry10분, 기록/해시/커밋5분; 예상20분. 11/16 코드/모의146검사완료, dark-camera HOLD보존. 모터접근·쓰기·live0 유지.
+
+2026-11-18 HOME_LIFT_FINISH DONE: 예상20분/실제약15분. SSH Tailscale재접속, LeLab/관제HTTP200, Astra/카메라정렬서비스복구. 실제모델·현재3영상/가짜서보180.039초8572스텝48.527Hz대기0PASS; 가짜lift15틱오차→홈잔차0. Jetson146모의PASS/Windows145PASS1SKIP근거재확인. 오른쪽6틱설정유지; 녹화프레임모의382스텝적용/현재영상dry적용0. 실제모터접근·쓰기·live0. 실물수렴집기NOT_RUN. 상세reports/20261118/HOME_LIFT_FINISH/RESULT.md.

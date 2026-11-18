@@ -55,6 +55,9 @@ def load():
         if tracking['max_offset_deg'] > 3:
             raise ValueError('추종 보상 승인 상한 3도 초과')
     assert 0 < c['speed'] <= 1 and c['control_hz'] == 60
+    if c['startup'].get('home_trim') != dict(axes=['shoulder_lift'],max_step_ticks=8,
+            max_total_ticks=16,stable_s=.5,stable_span_ticks=2):
+        raise ValueError('홈 명령 보상 범위 오류; 어깨 들기만 8틱/회·총16틱')
     assert len(c['joint_names']) == len(c['home']['state']) == 6
     expected=['shoulder_pan','shoulder_lift','elbow_flex','wrist_flex','wrist_roll','gripper']
     if c['joint_names']!=expected or c['home']['joint_names']!=expected:raise ValueError('관절 순서 불일치')

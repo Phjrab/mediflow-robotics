@@ -116,7 +116,14 @@
     "max_deg_s": 10,
     "camera_first_frame_s": 5,
     "warmup_s": 3,
-    "torque_attempts": 3
+    "torque_attempts": 3,
+    "home_trim": {
+      "axes": ["shoulder_lift"],
+      "max_step_ticks": 8,
+      "max_total_ticks": 16,
+      "stable_s": 0.5,
+      "stable_span_ticks": 2
+    }
   },
   "temperature": {
     "wait_at_c": 50,
