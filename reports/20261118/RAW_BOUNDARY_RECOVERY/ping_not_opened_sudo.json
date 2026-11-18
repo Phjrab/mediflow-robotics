@@ -1,0 +1,95 @@
+{
+  "status": "PING_SCAN_COMPLETE",
+  "ids": [
+    {
+      "id": 1,
+      "status": "QUERY_ERROR",
+      "responded": false,
+      "normal": false,
+      "error": "포트 비점유 확인 실패; 장치 미연결",
+      "observed": {
+        "code": 1,
+        "owners": "",
+        "error": "sudo: a password is required"
+      },
+      "port_closed": true,
+      "cleanup_errors": []
+    },
+    {
+      "id": 2,
+      "status": "QUERY_ERROR",
+      "responded": false,
+      "normal": false,
+      "error": "포트 비점유 확인 실패; 장치 미연결",
+      "observed": {
+        "code": 1,
+        "owners": "",
+        "error": "sudo: a password is required"
+      },
+      "port_closed": true,
+      "cleanup_errors": []
+    },
+    {
+      "id": 3,
+      "status": "QUERY_ERROR",
+      "responded": false,
+      "normal": false,
+      "error": "포트 비점유 확인 실패; 장치 미연결",
+      "observed": {
+        "code": 1,
+        "owners": "",
+        "error": "sudo: a password is required"
+      },
+      "port_closed": true,
+      "cleanup_errors": []
+    },
+    {
+      "id": 4,
+      "status": "QUERY_ERROR",
+      "responded": false,
+      "normal": false,
+      "error": "포트 비점유 확인 실패; 장치 미연결",
+      "observed": {
+        "code": 1,
+        "owners": "",
+        "error": "sudo: a password is required"
+      },
+      "port_closed": true,
+      "cleanup_errors": []
+    },
+    {
+      "id": 5,
+      "status": "QUERY_ERROR",
+      "responded": false,
+      "normal": false,
+      "error": "포트 비점유 확인 실패; 장치 미연결",
+      "observed": {
+        "code": 1,
+        "owners": "",
+        "error": "sudo: a password is required"
+      },
+      "port_closed": true,
+      "cleanup_errors": []
+    },
+    {
+      "id": 6,
+      "status": "QUERY_ERROR",
+      "responded": false,
+      "normal": false,
+      "error": "포트 비점유 확인 실패; 장치 미연결",
+      "observed": {
+        "code": 1,
+        "owners": "",
+        "error": "sudo: a password is required"
+      },
+      "port_closed": true,
+      "cleanup_errors": []
+    }
+  ],
+  "responding_ids": [],
+  "normal_ids": [],
+  "all_normal": false,
+  "motor_register_writes": 0,
+  "live": "NOT_RUN",
+  "port": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6058306-if00"
+}
