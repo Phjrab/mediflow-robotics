@@ -17,7 +17,7 @@ Windows의 소프트웨어 검증 기준 커밋은 `c52504c2895176914bdfdd10356f
 
 검증 기준은 36커밋의 독립 이력이다. 이전 저장소 `gyeyeongjo-lgtm/so101-lelab-medicine-sorter`의 `vla/main`과 공통 조상이 없고 당시 차이는 로컬36/원격197이었다. 이것은 Windows와 Jetson의 이력 차이가 아니다.
 
-전용 SSH 키 등록 후 Jetson 접속에 성공했다. 현재 HEAD는 `6732695`, 미추적 출력 파일은 `review_191851_stdout.txt`, Git remote는 없는 상태다. 이 객체는 Windows 원본 이력에 없으며 미게시 수는 원격 기준이 없어 아직 판정하지 않았다. 이 문서 작성 시점의 Jetson 태그·배포·토크 OFF 상태 링버퍼 켬/끔 각 60초 실버스 읽기·실제 모델 dry-run은 NOT_RUN이다. Windows bundle을 Jetson 원본 이력 전체 백업으로 표시하지 않는다.
+전용 SSH 키 등록 후 Jetson 접속에 성공했다. 원래 HEAD `6732695`, 미추적 출력 파일 `review_191851_stdout.txt`, Git remote 없음 상태를 확인하고 Jetson 원본을 별도 bundle로 보존했다. 이후 Windows와 같은 `c52504c` 및 pre-raw 태그를 배포했고 Linux 테스트 179개가 통과했다. 토크 OFF 상태 링버퍼 켬/끔 각 60초 실버스 읽기·실제 모델 dry-run은 아직 NOT_RUN이다. Windows bundle과 Jetson 원본 bundle은 구분한다.
 
 과거 `911f3ee`·`1c59fdb`는 overnight Git 이력에 있고, 검증한 bundle로 보존한다. 별도 publish 이력의 `356d788`도 따로 보존한다. 분할 파일 복원과 SHA 검증은 `GITHUB_BACKUP.md` 및 `history/20261118/MANIFEST.json`을 따른다.
 
@@ -29,7 +29,7 @@ Windows의 소프트웨어 검증 기준 커밋은 `c52504c2895176914bdfdd10356f
 
 ## 공개 범위와 무결성
 
-현행 코드·설정·모의 테스트·선별 요약과 원래 Git 이력을 포함한다. 원본 실행 로그/영상/JPG, 학습 데이터 원본, 모델 가중치, 모터 보정 원본, 인증정보, 로컬 가상환경은 제외한다. `.gitignore`와 실제 추적 목록을 별도로 확인했다. 기존 Git 이력에 포함된 작은 카메라 PNG·기술 자료는 원본 커밋 보존의 일부다.
+현행 코드·설정·모의 테스트·선별 요약과 원래 Git 이력을 포함한다. runs 아래 대용량 실행 로그/영상/JPG, 학습 데이터 원본, 모델 가중치, 모터 보정 원본, 인증정보, 로컬 가상환경은 제외한다. `.gitignore`와 실제 추적 목록을 별도로 확인했다. 기존 Git 이력에 포함된 작은 카메라 PNG·기술 자료 및 Jetson의 558,261바이트 읽기 전용 온도 진단 표본은 원본 커밋 보존의 일부다.
 
 | 항목 | SHA-256 | 확인 범위 |
 |---|---|---|
