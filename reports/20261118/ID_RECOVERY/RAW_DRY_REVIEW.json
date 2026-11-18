@@ -1,0 +1,109 @@
+{
+  "status": "HOLD",
+  "reason": "raw 학습 최대 변화 1.5배 초과: {\"kind\": \"model\", \"joint\": \"shoulder_lift\", \"previous\": -72.00016784667969, \"target\": -99.30259704589844, \"delta\": 27.30242919921875, \"limit\": 21.62636947631836}",
+  "steps": 4900,
+  "minimum_goal_gap_s": 0.033415923000575276,
+  "last_goals": [
+    {
+      "action_index": 4898,
+      "time_s": 165.6263884559994,
+      "model": [
+        0.3113241195678711,
+        -73.25006866455078,
+        52.51614761352539,
+        60.965675354003906,
+        -8.141172409057617,
+        6.060120582580566
+      ],
+      "wire_raw": {
+        "shoulder_pan": 2105,
+        "shoulder_lift": 1121,
+        "elbow_flex": 2581,
+        "wrist_flex": 2774,
+        "wrist_roll": 1772,
+        "gripper": 512
+      },
+      "observation_age_s": 3.2665306919989234
+    },
+    {
+      "action_index": 4899,
+      "time_s": 165.65988831700088,
+      "model": [
+        0.42992734909057617,
+        -72.00016784667969,
+        50.662567138671875,
+        60.50556945800781,
+        -7.300485610961914,
+        5.183540344238281
+      ],
+      "wire_raw": {
+        "shoulder_pan": 2106,
+        "shoulder_lift": 1135,
+        "elbow_flex": 2560,
+        "wrist_flex": 2769,
+        "wrist_roll": 1781,
+        "gripper": 498
+      },
+      "observation_age_s": 3.2999898150010267
+    }
+  ],
+  "next_chunk_request": {
+    "event": "inference_requested",
+    "time_s": 164.02497991400014,
+    "origin": 4900,
+    "remaining_actions": 49,
+    "remaining_wall_s": 1.6333333333333333,
+    "estimated_inference_s": 1.441188572000101,
+    "playback_hz": 30.0,
+    "prefix_skip": false
+  },
+  "next_chunk": {
+    "origin": 4900,
+    "seconds": 1.4155773379970924,
+    "time_s": 165.46248459100025,
+    "delivery_observation_age_s": 1.4375053820003814,
+    "skipped_actions": 0,
+    "overlap": 0,
+    "first_action": [
+      -4.2386698722839355,
+      -99.30259704589844,
+      97.24363708496094,
+      44.073211669921875,
+      2.4748806953430176,
+      2.0142440795898438
+    ]
+  },
+  "recorder": {
+    "event_count": 1,
+    "errors": [],
+    "writer_alive": false,
+    "worker": {
+      "pid": 28967,
+      "parent_pid": 28750,
+      "nice": 5,
+      "encode_s": 30.075123157970665,
+      "write_s": 0.1411384779821674,
+      "cpu_s": 31.499339199999998,
+      "wall_s": 165.8591928149981,
+      "cpu_scope": "process"
+    },
+    "frames_saved": null,
+    "frames_dropped": null
+  },
+  "camera": {
+    "end_effector": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.1694322369985457
+    },
+    "ceiling_vertical": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.18858064700179966
+    },
+    "ceiling_oblique": {
+      "read_failures": 3,
+      "max_frame_gap_s": 0.1796903510003176
+    }
+  },
+  "physical_motor_writes": 0,
+  "interpretation": "The next chunk first action exceeded the unchanged 1.5x training maximum; no physical motor was opened. Current physical camera frames and simulated state are not a real closed-loop rollout."
+}
