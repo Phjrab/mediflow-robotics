@@ -1,60 +1,40 @@
-# GitHub 동기화 준비 상태
+# GitHub 동기화 상태
 
-확인일: 2026-11-18. 상태: **NOT_PUSHED / 권한 대기**.
+확인일: 2026-11-18. **최종 목적지 변경 완료 / 원격 스냅샷 업로드 PENDING**.
 
-## 목적지와 원격 상태
+## 최종 목적지
 
-- 지정 저장소: `gyeyeongjo-lgtm/so101-lelab-medicine-sorter` (public).
-- 요청 브랜치: `vla/live-202611`. 확인 시 원격에 아직 없다.
-- `main`: `8dd6761a3a1332791cb80db5ed7480fc675b1f9d`.
-- 기존 VLA 기록 브랜치 `vla/main`: `ad9bc48e378497fa2e9b1a22b1a4c0eb3425b926`.
-- `fix/usb-recording`: `5f03c571e223f86f422b6eb68af94a6ff05c78db`.
-- 두 연결 계정 모두 `pull=true`, `push=false`. CLI에도 사용 가능한 저장 인증이 없어 공개 업로드를 완료하지 못했다.
-- 이 확인 과정에서 GitHub 브랜치·파일·설정을 변경하지 않았다. `main` 강제 덮어쓰기는 하지 않는다.
+- 사용자 최종 지정: `Phjrab/mediflow-robotics` (public).
+- 새 보존 브랜치: `vla/live-202611`. 기존 `main`과 기존 브랜치는 강제 변경하지 않는다.
+- 연결 계정 `gunho7677-gif`의 `push=true`를 GitHub 도구로 다시 확인했다.
+- Windows CLI는 저장 인증이 없으므로 연결된 GitHub 도구의 blob/tree/commit 경로를 사용한다.
+- API로 만든 스냅샷 SHA와 Windows 원본 SHA는 구분한다. 원본 커밋·태그는 검증한 Git bundle로 함께 보존한다.
+- 브랜치 생성 및 원격 파일/해시 조회가 끝나기 전까지 완료로 표시하지 않는다. 최종 원격 SHA는 업로드 완료 기록에 남긴다.
 
-원격의 `AGENTS.md`, `docs/STATUS.md`, 최신 `docs/sessions/` 기록을 읽었다.
-`vla/main`의 최신 상태는 2026-10-29 VLA 평가 도구 준비이며, 이 Windows 실행기와 동일한 배포본이 아니다.
-Windows의 `origin`을 지정 저장소로 등록하고 `main`, `vla/main`을 fetch했다.
-`git merge-base HEAD origin/vla/main`은 공통 조상을 찾지 못했고, 수정 전 차이는 로컬35/원격197커밋이다.
-기존 원격 이력은 그대로 두며, 현행 프로젝트 자체의 독립 이력을 새 `vla/live-202611` 브랜치로 보존한다.
-기존 `main`이나 `vla/main`에 이 독립 이력을 강제 덮어쓰거나 합치지 않는다.
-`git push --dry-run`도 저장 인증이 없어 실패했으며 비밀번호를 추측하거나 입력하지 않았다.
+## 원본 이력과 태그
 
-## 로컬 이력과 확인 범위
+Windows의 소프트웨어 검증 기준 커밋은 `c52504c2895176914bdfdd10356f5799e8bd8773`, 당시 브랜치는 `vla/live-202611`이다. 로컬 `pre-raw-20261118` 태그의 대상도 같다. 이후 백업 문서 커밋은 실행 알고리즘 변경과 구분한다.
 
-감사 기준 Windows HEAD: `1e6a745ee8ea6e58ca485c40e242ff2defa9559b`.
-이 기준에 도달하는 Git 커밋은 35개이고 단일 루트는 `0e631c79de89b9327defcb6289d09262428a1b04`다.
-지정 저장소에서 루트와 HEAD를 각각 조회했으나 둘 다 `No commit found`였다.
-따라서 이 로컬 이력 35개가 지정 저장소의 브랜치에 보존돼 있다고 볼 수 없다.
-35개 전체를 각각 API로 조회한 것은 아니며, 단일 루트·HEAD와 원격 3개 브랜치 확인에 근거한 판단이다.
-감사 이후 수정·커밋은 최종 커밋 기록과 별도로 대조해야 한다.
+검증 기준은 36커밋의 독립 이력이다. 이전 저장소 `gyeyeongjo-lgtm/so101-lelab-medicine-sorter`의 `vla/main`과 공통 조상이 없고 당시 차이는 로컬36/원격197이었다. 이것은 Windows와 Jetson의 이력 차이가 아니다.
 
-Jetson의 마지막 알려진 `6732695` 객체는 이 Windows 저장소에 없다.
-이번 감사에서 Jetson에 접속하거나 원격 원본 Git 이력을 가져오지 않았으므로,
-Windows와 Jetson의 실제 커밋 공통 조상·미동기화 커밋 수는 **미확인**이다.
-Windows 스냅샷 업로드를 Jetson 원본 이력 업로드로 표시하지 않는다.
+전용 SSH 키 등록 후 Jetson 접속에 성공했다. 현재 HEAD는 `6732695`, 미추적 출력 파일은 `review_191851_stdout.txt`, Git remote는 없는 상태다. 이 객체는 Windows 원본 이력에 없으며 미게시 수는 원격 기준이 없어 아직 판정하지 않았다. 이 문서 작성 시점의 Jetson 태그·배포·토크 OFF 상태 링버퍼 켬/끔 각 60초 실버스 읽기·실제 모델 dry-run은 NOT_RUN이다. Windows bundle을 Jetson 원본 이력 전체 백업으로 표시하지 않는다.
 
-구형 작업의 `911f3ee`와 `1c59fdb`를 포함한 보관 저장소는 로컬 Git bundle로 검증·보존했다.
-이 bundle은 공개 업로드 대상에서 제외한 로컬 백업이다.
-과거 목적지의 이력과 지정 저장소의 이력은 구분하며, 다른 저장소에 추가 업로드하지 않는다.
+과거 `911f3ee`·`1c59fdb`는 overnight Git 이력에 있고, 검증한 bundle로 보존한다. 별도 publish 이력의 `356d788`도 따로 보존한다. 분할 파일 복원과 SHA 검증은 `GITHUB_BACKUP.md` 및 `history/20261118/MANIFEST.json`을 따른다.
 
-## 공개 대상과 제외 대상
+원격 스냅샷 커밋은 원래 authored metadata를 재현한 native push가 아니다. 원본 SHA·태그 복구는 bundle로 가능하며 GitHub 원격 tag ref 생성 여부와 구분한다.
 
-- 대상: 현행 코드, 설정 구조, 하드웨어 없는 테스트, 비밀정보를 검사한 결과 요약.
-- 제외: 원본 로그·매 스텝 기록, 영상, 원본 데이터셋, 모델 가중치, 비밀번호·키·토큰, 개인 환경 설정, 원본 보정 JSON.
-- `.gitignore`에 원본 보정·모델·데이터·영상·로그·인증정보·대용량 백업 제외 규칙을 추가했다.
-- 기존 추적 파일은 `.gitignore`만으로 빠지지 않으므로 별도 목록 검사했다.
-  감사 기준에서 추적된 `so-101.json`, `.env`, 개인키, 모델 가중치, Parquet, JSONL, 동영상은 없었다.
-- 코드 안의 관절 범위·홈 기준과 `live/config.yaml`은 실행 설정이다. 원본 모터 보정 파일 업로드와 구분한다.
-- 모델·보정 파일 자체 대신 `PATHS.md`에 위치와 검증 해시만 기록한다.
+## 이전 목적지 기록
 
-## 무결성 기록
+직전 지정 저장소 `gyeyeongjo-lgtm/so101-lelab-medicine-sorter`는 두 연결 계정 모두 `push=false`였다. 그곳에는 새 브랜치·태그·파일을 올리지 않았다. main `8dd6761a3a1332791cb80db5ed7480fc675b1f9d`, vla/main `ad9bc48e378497fa2e9b1a22b1a4c0eb3425b926`는 그대로다. 사용자의 후속 지시로 현재 목적지를 Phjrab 저장소로 변경했다.
+
+## 공개 범위와 무결성
+
+현행 코드·설정·모의 테스트·선별 요약과 원래 Git 이력을 포함한다. 원본 실행 로그/영상/JPG, 학습 데이터 원본, 모델 가중치, 모터 보정 원본, 인증정보, 로컬 가상환경은 제외한다. `.gitignore`와 실제 추적 목록을 별도로 확인했다. 기존 Git 이력에 포함된 작은 카메라 PNG·기술 자료는 원본 커밋 보존의 일부다.
 
 | 항목 | SHA-256 | 확인 범위 |
 |---|---|---|
-| `live/config.yaml` | `0cb647eeea9e85399b4f9094130699eb40a1e3a17113fe117a45069cf810f5cf` | 이 Windows 파일 재계산 |
-| 팔로워 보정 `so-101.json` | `2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e` | 저장소 밖 Windows 보정 확인 사본 재계산; 원본 미수정·미포함 |
-| 모델 가중치 | `b84b15c70ee711ce3ec5780e8498073852f28c43ccc6a726e9196761d05a7654` | 기존 `PATHS.md` 검증값; 이번 재계산 아님 |
+| `live/config.yaml` | `0cb647eeea9e85399b4f9094130699eb40a1e3a17113fe117a45069cf810f5cf` | Windows 파일 확인; 설정 변경 없음 |
+| 팔로워 보정 `so-101.json` | `2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e` | 저장소 밖 Windows 확인 사본; 원본 미수정·미포함 |
+| 모델 가중치 | `b84b15c70ee711ce3ec5780e8498073852f28c43ccc6a726e9196761d05a7654` | 기존 검증값; 이번 가중치 재계산 아님 |
 
-원격 브랜치가 실제로 생성되고 조회로 확인되기 전까지 상태는 **NOT_PUSHED**다.
-GitHub 커넥터로 스냅샷 커밋을 만들 경우 원본 Windows 커밋 SHA와 GitHub 스냅샷 SHA를 따로 기록해야 한다.
+홈 기준, 그리퍼48.5점, 집기 오른쪽+6틱, speed0.33, READY 후180초 및 안전 설정은 유지했다. raw는 양쪽 태그·백업·선행 검증이 끝나기 전까지 구현하지 않는다.
