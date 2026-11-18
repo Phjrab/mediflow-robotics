@@ -1,0 +1,292 @@
+{
+  "status": "HOLD",
+  "reason": "모터 상태코드/온도 중단: {\"shoulder_lift\": {\"status\": 0, \"temperature_c\": 60}}",
+  "hold": {
+    "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+  },
+  "steps": 17,
+  "step_limit": 10800,
+  "elapsed_s": 3.5647769320003135,
+  "task_success": "UNVERIFIED",
+  "speed": 0.33,
+  "playback_hz": 9.9,
+  "playback_s": 0.10280073869957049,
+  "gripper_peak_c": 36,
+  "peak_temperatures_c": {
+    "shoulder_pan": 32,
+    "shoulder_lift": 60,
+    "elbow_flex": 32,
+    "wrist_flex": 33,
+    "wrist_roll": 41,
+    "gripper": 36
+  },
+  "camera": {
+    "end_effector": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.04228269000122964
+    },
+    "ceiling_vertical": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.0473246379988268
+    },
+    "ceiling_oblique": {
+      "read_failures": 3,
+      "max_frame_gap_s": 0.04717001000062737
+    }
+  },
+  "inference_s": {
+    "mean": 1.4008397470006457,
+    "samples": [
+      1.4008397470006457
+    ]
+  },
+  "chunk_wait_s": {
+    "max": 0,
+    "sum": 0
+  },
+  "transmission_hz": 49.91093269288421,
+  "final_rate_target": 50,
+  "tracking": {
+    "shoulder_pan": {
+      "sent_span": 0.0879120879120876,
+      "observed_span": 0.0,
+      "span_ratio": 0.0
+    },
+    "shoulder_lift": {
+      "sent_span": 1.8461538461538538,
+      "observed_span": 0.439560439560438,
+      "span_ratio": 0.23809523809523625
+    },
+    "elbow_flex": {
+      "sent_span": 0.3516483516483504,
+      "observed_span": 0.439560439560438,
+      "span_ratio": 1.25
+    },
+    "wrist_flex": {
+      "sent_span": 0.5274725274725256,
+      "observed_span": 0.2637362637362628,
+      "span_ratio": 0.5
+    },
+    "wrist_roll": {
+      "sent_span": 0.08791208791208804,
+      "observed_span": 0.0,
+      "span_ratio": 0.0
+    },
+    "gripper": {
+      "sent_span": 0.3671970624235006,
+      "observed_span": 0.6731946144430836,
+      "span_ratio": 1.833333333333331
+    }
+  },
+  "tracking_compensation": {
+    "enabled_axes": [
+      "elbow_flex"
+    ],
+    "steps": 17,
+    "requested_cap_deg": 3.0,
+    "effective_cap_deg": 2.912087912087912,
+    "max_abs_offset_deg": {
+      "shoulder_pan": 0.0,
+      "shoulder_lift": 0.0,
+      "elbow_flex": 0.0,
+      "wrist_flex": 0.0,
+      "wrist_roll": 0.0,
+      "gripper": 0.0
+    },
+    "final_offset_deg": {
+      "shoulder_pan": 0.0,
+      "shoulder_lift": 0.0,
+      "elbow_flex": 0.0,
+      "wrist_flex": 0.0,
+      "wrist_roll": 0.0,
+      "gripper": 0.0
+    }
+  },
+  "torque_off": "TORQUE_RETAINED",
+  "gripper_limits_readonly": {
+    "Max_Torque_Limit": 500,
+    "Torque_Limit": 500,
+    "Protection_Current": 250
+  },
+  "thermal_recheck": {
+    "shoulder_lift": {
+      "trigger_c": 60,
+      "register_63_reads_c": [
+        33,
+        33,
+        33
+      ]
+    }
+  },
+  "thermal_diagnostics": {
+    "mode": "observe_only",
+    "filter_controls_motion": false,
+    "rules": {
+      "mode": "observe_only",
+      "jump_gt_c": 10.0,
+      "rise_window_s": 1.0,
+      "rise_gt_c": 5.0,
+      "candidate_stop_c": 55.0,
+      "candidate_consecutive": 3,
+      "candidate_duration_gt_s": 0.3,
+      "candidate_raw_emergency_c": 70.0,
+      "candidate_raw_emergency_consecutive": 2
+    },
+    "errors": {
+      "total": 0,
+      "communication": 0,
+      "checksum": 0,
+      "other": 0
+    },
+    "joints": {
+      "shoulder_pan": {
+        "samples": 266,
+        "spike_count": 0,
+        "raw_peak_c": 32,
+        "filtered_peak_c": 32
+      },
+      "shoulder_lift": {
+        "samples": 266,
+        "spike_count": 1,
+        "raw_peak_c": 60,
+        "filtered_peak_c": 34
+      },
+      "elbow_flex": {
+        "samples": 266,
+        "spike_count": 0,
+        "raw_peak_c": 32,
+        "filtered_peak_c": 32
+      },
+      "wrist_flex": {
+        "samples": 266,
+        "spike_count": 0,
+        "raw_peak_c": 33,
+        "filtered_peak_c": 33
+      },
+      "wrist_roll": {
+        "samples": 266,
+        "spike_count": 1,
+        "raw_peak_c": 41,
+        "filtered_peak_c": 35
+      },
+      "gripper": {
+        "samples": 266,
+        "spike_count": 0,
+        "raw_peak_c": 36,
+        "filtered_peak_c": 36
+      }
+    }
+  },
+  "thermal_confirmation": {
+    "stop_c": 55,
+    "emergency_c": 70,
+    "normal_rechecks": 2,
+    "counts": {
+      "shoulder_pan": {
+        "spike": 0,
+        "confirmed": 0
+      },
+      "shoulder_lift": {
+        "spike": 0,
+        "confirmed": 1
+      },
+      "elbow_flex": {
+        "spike": 0,
+        "confirmed": 0
+      },
+      "wrist_flex": {
+        "spike": 0,
+        "confirmed": 0
+      },
+      "wrist_roll": {
+        "spike": 0,
+        "confirmed": 0
+      },
+      "gripper": {
+        "spike": 0,
+        "confirmed": 0
+      }
+    }
+  },
+  "startup_temperatures_c": {
+    "shoulder_pan": 31,
+    "shoulder_lift": 33,
+    "elbow_flex": 32,
+    "wrist_flex": 32,
+    "wrist_roll": 31,
+    "gripper": 34
+  },
+  "goal_packet_attempts": 18,
+  "port_closed": true,
+  "cleanup_errors": [],
+  "gripper_relief_count": 0,
+  "startup_auto_processed": [
+    {
+      "event": "startup_temperatures",
+      "temperature_c": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 33,
+        "elbow_flex": 32,
+        "wrist_flex": 32,
+        "wrist_roll": 31,
+        "gripper": 34
+      }
+    },
+    {
+      "event": "startup_ready",
+      "torque": {
+        "shoulder_pan": 1,
+        "shoulder_lift": 1,
+        "elbow_flex": 1,
+        "wrist_flex": 1,
+        "wrist_roll": 1,
+        "gripper": 1
+      },
+      "modes": {
+        "shoulder_pan": 0,
+        "shoulder_lift": 0,
+        "elbow_flex": 0,
+        "wrist_flex": 0,
+        "wrist_roll": 0,
+        "gripper": 0
+      },
+      "temperature_c": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 33,
+        "elbow_flex": 32,
+        "wrist_flex": 32,
+        "wrist_roll": 31,
+        "gripper": 34
+      },
+      "home_delta": {
+        "shoulder_pan": 0.0,
+        "shoulder_lift": -0.6153846153846274,
+        "elbow_flex": -0.5274725274725256,
+        "wrist_flex": -0.5274725274725327,
+        "wrist_roll": -1.4065934065934065,
+        "gripper": -0.30599755201958434
+      },
+      "camera": {
+        "end_effector": "READY",
+        "ceiling_vertical": "READY",
+        "ceiling_oblique": "READY"
+      },
+      "auto_recovered": []
+    },
+    {
+      "event": "startup_write",
+      "register": "Goal_Position",
+      "values": {
+        "shoulder_pan": 2058,
+        "shoulder_lift": 832,
+        "elbow_flex": 3080,
+        "wrist_flex": 2563,
+        "wrist_roll": 1822,
+        "gripper": 466
+      }
+    }
+  ],
+  "output": "/home/jetson3/so101_vla/runs/20261115_170600",
+  "torque_register_writes": 0,
+  "configuration_register_writes": 0
+}

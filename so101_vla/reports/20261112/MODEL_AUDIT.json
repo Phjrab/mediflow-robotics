@@ -1,0 +1,141 @@
+{
+  "task": "Put medicine bottle A into the blue basket",
+  "config_comparison": {
+    "use_amp": {
+      "checkpoint": true,
+      "training": true,
+      "same": true
+    },
+    "num_steps": {
+      "checkpoint": 10,
+      "training": 10,
+      "same": true
+    },
+    "num_vlm_layers": {
+      "checkpoint": 16,
+      "training": 16,
+      "same": true
+    },
+    "vlm_model_name": {
+      "checkpoint": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+      "training": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+      "same": true
+    },
+    "chunk_size": {
+      "checkpoint": 50,
+      "training": 50,
+      "same": true
+    },
+    "n_action_steps": {
+      "checkpoint": 50,
+      "training": 50,
+      "same": true
+    },
+    "normalization_mapping": {
+      "checkpoint": {
+        "VISUAL": "IDENTITY",
+        "STATE": "MEAN_STD",
+        "ACTION": "MEAN_STD"
+      },
+      "training": {
+        "VISUAL": "IDENTITY",
+        "STATE": "MEAN_STD",
+        "ACTION": "MEAN_STD"
+      },
+      "same": true
+    },
+    "resize_imgs_with_padding": {
+      "checkpoint": [
+        512,
+        512
+      ],
+      "training": [
+        512,
+        512
+      ],
+      "same": true
+    }
+  },
+  "rtc": false,
+  "preprocessing": "saved processors, rename once, RGB640x480 /255, state degree\u00d75 + gripper0..100",
+  "episodes": [
+    {
+      "episode": 25,
+      "observations": 3,
+      "compared_actions": 150,
+      "chunk_mae": [
+        0.8887073747068643,
+        3.3236960411071776,
+        4.580940526326497,
+        1.8606668599446614,
+        1.8889171938598155,
+        0.9826494789123535
+      ],
+      "first_action_mae": [
+        0.4797021945317586,
+        1.1446774800618489,
+        1.4142252604166667,
+        1.217699686686198,
+        1.7193185538053513,
+        0.48198668162027997
+      ],
+      "inference_s": [
+        1.4612601429980714,
+        1.4256243409981835,
+        1.424918657001399
+      ]
+    },
+    {
+      "episode": 36,
+      "observations": 3,
+      "compared_actions": 150,
+      "chunk_mae": [
+        1.0654190456867219,
+        1.9307310765981673,
+        3.7773695119222004,
+        1.352321065266927,
+        0.40394052346547443,
+        1.1759532674153645
+      ],
+      "first_action_mae": [
+        0.5658462842305502,
+        2.0651647249857583,
+        0.7334073384602865,
+        0.31671142578125,
+        0.2897740999857585,
+        0.7322932879130045
+      ],
+      "inference_s": [
+        1.4462070410008891,
+        1.4489517600013642,
+        1.4100915449962486
+      ]
+    },
+    {
+      "episode": 19,
+      "observations": 3,
+      "compared_actions": 150,
+      "chunk_mae": [
+        1.140259824593862,
+        3.1309681073824565,
+        5.947000090281168,
+        2.1567194112141927,
+        0.18069526036580405,
+        2.4283160877227785
+      ],
+      "first_action_mae": [
+        0.911065936088562,
+        0.8587697347005209,
+        2.8811779022216797,
+        1.7435277303059895,
+        0.13008403778076172,
+        2.7375049591064453
+      ],
+      "inference_s": [
+        1.4320517250016565,
+        1.4437174659979064,
+        1.4320443980031996
+      ]
+    }
+  ]
+}

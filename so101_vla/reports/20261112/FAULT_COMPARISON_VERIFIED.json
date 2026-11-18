@@ -1,0 +1,47 @@
+{
+  "syntax": "PASS",
+  "cases": [
+    {
+      "case": "unused_connector",
+      "validated_read_pairs": 11244,
+      "final_torque": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0
+      },
+      "source": "FAULT_UNUSED_CONNECTOR_SUMMARY.json"
+    },
+    {
+      "case": "replacement_board",
+      "validated_read_pairs": 11244,
+      "final_torque": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0
+      },
+      "source": "FAULT_REPLACEMENT_BOARD_SUMMARY.json"
+    },
+    {
+      "case": "replacement_board_alt_usb",
+      "validated_read_pairs": 11244,
+      "final_torque": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0
+      },
+      "source": "FAULT_ALT_USB_SUMMARY.json"
+    }
+  ],
+  "raw_sha256": "e486c10187220793be158004c92af035c9b68fe8b882e7e914cb36a003add8a3",
+  "live": "NOT_RUN",
+  "hardware_access_this_verification": false
+}

@@ -1,0 +1,49 @@
+{
+  "status": "HOLD",
+  "cycles": 0,
+  "motor_register_writes": 0,
+  "live": "NOT_RUN",
+  "requested_seconds": 120.0,
+  "requested_hz": 30,
+  "error": {
+    "kind": "communication",
+    "message": "READ 통신 timeout; 재시도 없음",
+    "observed": {
+      "raw_hex": "",
+      "communication": -6
+    },
+    "counts": {
+      "total": 1,
+      "communication": 1,
+      "checksum": 0,
+      "other": 0
+    }
+  },
+  "elapsed_s": 0.2634136840001702,
+  "read_packet_attempts": 1,
+  "thermal_diagnostics": {
+    "mode": "observe_only",
+    "filter_controls_motion": false,
+    "rules": {
+      "mode": "observe_only",
+      "jump_gt_c": 10.0,
+      "rise_window_s": 1.0,
+      "rise_gt_c": 5.0,
+      "candidate_stop_c": 55.0,
+      "candidate_consecutive": 3,
+      "candidate_duration_gt_s": 0.3,
+      "candidate_raw_emergency_c": 70.0,
+      "candidate_raw_emergency_consecutive": 2
+    },
+    "errors": {
+      "total": 1,
+      "communication": 1,
+      "checksum": 0,
+      "other": 0
+    },
+    "joints": {}
+  },
+  "port_closed": true,
+  "cleanup_errors": [],
+  "output": "/home/jetson3/so101_vla/runs/THERMAL_READONLY_1794723444796383271"
+}

@@ -1,0 +1,100 @@
+{
+  "previous_late_True": {
+    "status": "HOLD",
+    "positions": [
+      856,
+      854,
+      851
+    ],
+    "command_ticks": [
+      842,
+      834,
+      826
+    ],
+    "settle_s": [
+      null,
+      null,
+      null
+    ],
+    "extension": [],
+    "physical_motor_writes": 0
+  },
+  "previous_late_False": {
+    "status": "HOLD",
+    "positions": [
+      856,
+      854,
+      851
+    ],
+    "command_ticks": [
+      842,
+      834,
+      826
+    ],
+    "settle_s": [
+      null,
+      null,
+      null
+    ],
+    "extension": [],
+    "physical_motor_writes": 0
+  },
+  "fixed_late_True": {
+    "status": "PASS",
+    "positions": [
+      856,
+      854,
+      848
+    ],
+    "command_ticks": [
+      842,
+      834,
+      826
+    ],
+    "settle_s": [
+      1.270000025000002,
+      1.2700000249999976,
+      5.020000100000018
+    ],
+    "extension": [
+      {
+        "event": "startup_home_settle_extension",
+        "attempt": 3,
+        "active_target_ticks": 826,
+        "residual_ticks": 8,
+        "recent_progress_ticks": 1,
+        "read_only_remaining_s": 3.189999885000006
+      }
+    ],
+    "physical_motor_writes": 0
+  },
+  "fixed_late_False": {
+    "status": "HOLD",
+    "positions": [
+      856,
+      854,
+      850
+    ],
+    "command_ticks": [
+      842,
+      834,
+      826
+    ],
+    "settle_s": [
+      1.270000025000002,
+      1.2700000249999976,
+      6.470000129000041
+    ],
+    "extension": [
+      {
+        "event": "startup_home_settle_extension",
+        "attempt": 3,
+        "active_target_ticks": 826,
+        "residual_ticks": 8,
+        "recent_progress_ticks": 1,
+        "read_only_remaining_s": 3.189999885000006
+      }
+    ],
+    "physical_motor_writes": 0
+  }
+}

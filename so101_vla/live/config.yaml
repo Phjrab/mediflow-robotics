@@ -1,0 +1,240 @@
+{
+  "schema": 1,
+  "port": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6058306-if00",
+  "leader_serial": "5AE6085272",
+  "checkpoint": "~/smolvla_model/pretrained_model",
+  "calibration": "~/.cache/huggingface/lerobot/calibration/robots/so_follower/so-101.json",
+  "model_sha256": "b84b15c70ee711ce3ec5780e8498073852f28c43ccc6a726e9196761d05a7654",
+  "calibration_sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+  "joint_names": [
+    "shoulder_pan",
+    "shoulder_lift",
+    "elbow_flex",
+    "wrist_flex",
+    "wrist_roll",
+    "gripper"
+  ],
+  "home": {
+    "joint_names": [
+      "shoulder_pan",
+      "shoulder_lift",
+      "elbow_flex",
+      "wrist_flex",
+      "wrist_roll",
+      "gripper"
+    ],
+    "state": [
+      -3.743322378527509,
+      -97.75278612122919,
+      96.552176371108,
+      43.45712672880966,
+      -2.252025343804029,
+      4.275478211632611
+    ],
+    "tolerance_deg": 2.0,
+    "target_ticks": {
+      "shoulder_pan": 2058,
+      "shoulder_lift": 842,
+      "elbow_flex": 3081,
+      "wrist_flex": 2574,
+      "wrist_roll": 1838,
+      "gripper": 482
+    }
+  },
+  "position_checks": {
+    "observed_upper_margin_ticks": 3,
+    "home_margin_ticks": 5,
+    "home_cap_ticks": 23,
+    "training_first_frame_ranges_ticks": {
+      "shoulder_pan": [1998, 2117],
+      "shoulder_lift": [817, 972],
+      "elbow_flex": [3041, 3087],
+      "wrist_flex": [2481, 2721],
+      "wrist_roll": [1731, 1895]
+    },
+    "gripper_tolerance_points": 2.0,
+    "stable_s": 0.5,
+    "max_sample_gap_s": 0.35,
+    "settle_timeout_s": 3.0,
+    "home_attempts": 3
+  },
+  "calibration_ranges": {
+    "shoulder_pan": [
+      755,
+      3448
+    ],
+    "shoulder_lift": [
+      796,
+      3113
+    ],
+    "elbow_flex": [
+      880,
+      3087
+    ],
+    "wrist_flex": [
+      936,
+      3225
+    ],
+    "wrist_roll": [
+      86,
+      3643
+    ],
+    "gripper": [
+      413,
+      2047
+    ]
+  },
+  "limits": {
+    "shoulder_pan": [
+      755,
+      3448
+    ],
+    "shoulder_lift": [
+      801,
+      3113
+    ],
+    "elbow_flex": [
+      880,
+      3084
+    ],
+    "wrist_flex": [
+      936,
+      3225
+    ],
+    "wrist_roll": [
+      86,
+      3643
+    ],
+    "gripper": [
+      413,
+      2047
+    ]
+  },
+  "limit_evidence": {
+    "elbow_flex": "학습137회 action 최대3093틱과 보정 상한3087-3 중 작은 값3084. reports/20261115/THERMAL_WINDOW_POLICY/training_elbow_bound.json",
+    "shoulder_lift": "보정 하한796에서5틱 안쪽. 실제 스토퍼 위치·하중은 미확인"
+  },
+  "speed": 0.33,
+  "control_hz": 60,
+  "model_hz": 30,
+  "duration": 180,
+  "overlap_actions": 10,
+  "lookahead_factor": 1.3,
+  "startup": {
+    "max_deg_s": 10,
+    "camera_first_frame_s": 5,
+    "warmup_s": 3,
+    "torque_attempts": 3
+  },
+  "temperature": {
+    "wait_at_c": 50,
+    "resume_below_c": 45,
+    "stop_c": 55,
+    "poll_s": 10,
+    "policy": "fresh_individual_2s_window",
+    "sample_interval_s": 0.02,
+    "window_s": 2.0,
+    "continuous_hot_s": 2.0,
+    "median_warning_c": 50,
+    "max_sample_gap_s": 0.15
+  },
+  "tracking_compensation": {
+    "enabled_axes": [
+      "elbow_flex"
+    ],
+    "max_offset_deg": 3.0,
+    "integral_gain_per_s": 3.0,
+    "max_accumulation_deg_s": 4.0,
+    "decay_per_s": 0.35,
+    "settle_s": 0.15,
+    "error_deadband_deg": 0.15,
+    "max_reference_speed_deg_s": 5.0,
+    "reset_gap_s": 0.25
+  },
+  "communication": {
+    "max_retries": 3,
+    "consecutive_failures": 5,
+    "no_response_s": 0.2,
+    "hold_attempts": 5,
+    "bulk_address": 56,
+    "bulk_width": 15,
+    "read_order": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      5
+    ]
+  },
+  "gripper": {
+    "positive_direction": "open",
+    "max_open_points": 48.5,
+    "opening_load_sign": -1,
+    "opening_load_threshold_raw": 400,
+    "opening_load_hold_s": 0.3,
+    "overload_recovery_attempts": 3,
+    "cap_evidence": "운영자 승인 열림 상한 48.5점 (2026-11-18)",
+    "relief_points": 4,
+    "blocked_gap_points": 5,
+    "blocked_playback_s": 0.5
+  },
+  "lateral_correction": {
+    "mode": "model_grasp_offset",
+    "enabled": true,
+    "direction_verified": true,
+    "geometry_verified": false,
+    "offset_deg": 0.5274725274725275,
+    "max_abs_offset_deg": 1.5,
+    "lookahead_wall_s": 1.0,
+    "after_close_wall_s": 0.5,
+    "ramp_s": 0.2,
+    "height_range_mm": [
+      115.7,
+      147.9
+    ],
+    "tcp_offset_mm": [
+      -4.748354423376675,
+      -12.03374105992054,
+      -124.53173724769
+    ],
+    "urdf": "~/so101_vla/live/assets/so101_new_calib.urdf",
+    "urdf_sha256": "443d38d756e01bac7d3455b24430047ddc6427105e0d3454b2003116f5f67236",
+    "scale_verified": true,
+    "measurement_file": "assets/pan_camera_calibration_20261116.json",
+    "measurement_sha256": "b34d9259640f5ad227a6434c6c6f761eb13e5fe852b32e6feb97a735ff443fe7",
+    "height_basis": "nominal_FK_additional_pose_gate_not_physically_calibrated_TCP",
+    "metric_scope": "bottle_top_camera_plane_at_measured_pose"
+  },
+  "task": "Put medicine bottle A into the blue basket",
+  "cameras": {
+    "end_effector": {
+      "path": "/dev/v4l/by-path/platform-3610000.usb-usb-0:2.2:1.0-video-index0",
+      "model_key": "camera1",
+      "fourcc": null,
+      "identity": {
+        "interface": "00",
+        "vendor": "0bda",
+        "product": "5844",
+        "serial": "200901010001"
+      }
+    },
+    "ceiling_vertical": {
+      "path": "/dev/v4l/by-path/so101-astra-loopback-video-index0",
+      "model_key": "camera2",
+      "fourcc": null,
+      "expected_loopback_name": "Astra"
+    },
+    "ceiling_oblique": {
+      "path": "/dev/v4l/by-path/platform-3610000.usb-usb-0:1.1.2:1.3-video-index0",
+      "model_key": "camera3",
+      "fourcc": "YUYV",
+      "identity": {
+        "interface": "03",
+        "vendor": "8086",
+        "product": "0b07",
+        "serial": "236223023645"
+      }
+    }
+  }
+}

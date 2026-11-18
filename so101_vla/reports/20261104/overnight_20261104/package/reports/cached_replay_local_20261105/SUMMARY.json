@@ -1,0 +1,68 @@
+{
+  "status": "CACHED_REPLAY_COMPLETE_NOT_HARDWARE_READY",
+  "samples": 18,
+  "colors": {
+    "red": 6,
+    "green": 6,
+    "blue": 6
+  },
+  "latency_gate_failed": 18,
+  "clip_diagnostic_stop_candidates": 18,
+  "controller_hold_count": 18,
+  "software_preflight": {
+    "status": "SOFTWARE_CONFIG_PASS",
+    "hardware_ready": false,
+    "mode": "OFFLINE_ONLY",
+    "serial_stop_present": false,
+    "serial_stop_scope": "THIS_COPY_ONLY_NOT_REMOTE_ROBOT_STATUS",
+    "model_weights_file_present": false,
+    "model_loading": "NOT_RUN_METADATA_ONLY",
+    "camera_config_sha256": "6a8905faebd344779f235d27c37dd0001b4dd31c419eb4e44111016ebd89aaa1",
+    "camera_paths": {
+      "end_effector": "/dev/v4l/by-id/usb-Generic_USB_Camera_200901010001-video-index0",
+      "ceiling_vertical": "/dev/video8",
+      "ceiling_oblique": "/dev/v4l/by-id/usb-Intel_R__RealSense_TM__Depth_Camera_435_Intel_R__RealSense_TM__Depth_Camera_435-video-index0"
+    },
+    "warmup_seconds": 3.0,
+    "source_resolution": [
+      640,
+      480,
+      3
+    ],
+    "model_resolution": [
+      3,
+      256,
+      256
+    ],
+    "camera_mapping": {
+      "observation.images.end_effector": "observation.images.camera1",
+      "observation.images.ceiling_vertical": "observation.images.camera2",
+      "observation.images.ceiling_oblique": "observation.images.camera3"
+    },
+    "rename_application": "SAVED_PREPROCESSOR_EXACTLY_ONCE",
+    "normalization_files": [
+      "policy_preprocessor_step_5_normalizer_processor.safetensors",
+      "policy_postprocessor_step_0_unnormalizer_processor.safetensors"
+    ],
+    "state_dimension": 6,
+    "action_dimension": 6,
+    "hardware_execution": "NOT_RUN",
+    "policy_inference": "NOT_RUN",
+    "unverified": [
+      "현재 관절 상태",
+      "실기 관절 단위/보정",
+      "현장 구도",
+      "단일 물리 제어 경로"
+    ]
+  },
+  "register_writes": 0,
+  "hardware_execution": "NOT_RUN",
+  "actual_policy_inference": "NOT_RUN_REUSING_PREVIOUS_PREDICTIONS",
+  "current_robot_state": "NOT_READ",
+  "source_hashes": {
+    "predictions": "d87a2ad8bc5cf0cd31129e215afa69ff700433a1dfdcff9813b41bf7bba200c7",
+    "manifest": "85426fec882eba98a1389893d4205d3eb166081e7968a1e1904ece29615119e9",
+    "timings": "f289df8be36b4fdd1d3304b8e48f7577a241ccae630741fe3143e0b3b9b71e17"
+  },
+  "limit_diagnostic": "완벽 추종 가정의 제한 계산. 지연/현장 gate를 해제하거나 모터에 보내지 않음"
+}

@@ -1,0 +1,227 @@
+{
+  "summary": {
+    "status": "READONLY_COMPLETE",
+    "cycles": 3598,
+    "motor_register_writes": 0,
+    "live": "NOT_RUN",
+    "requested_seconds": 120.0,
+    "requested_hz": 30,
+    "elapsed_s": 120.02060700699985,
+    "read_packet_attempts": 43176,
+    "thermal_diagnostics": {
+      "mode": "observe_only",
+      "filter_controls_motion": false,
+      "rules": {
+        "mode": "observe_only",
+        "jump_gt_c": 10.0,
+        "rise_window_s": 1.0,
+        "rise_gt_c": 5.0,
+        "candidate_stop_c": 55.0,
+        "candidate_consecutive": 3,
+        "candidate_duration_gt_s": 0.3,
+        "candidate_raw_emergency_c": 70.0,
+        "candidate_raw_emergency_consecutive": 2
+      },
+      "errors": {
+        "total": 0,
+        "communication": 0,
+        "checksum": 0,
+        "other": 0
+      },
+      "joints": {
+        "shoulder_pan": {
+          "samples": 3598,
+          "spike_count": 0,
+          "raw_peak_c": 30,
+          "filtered_peak_c": 30
+        },
+        "shoulder_lift": {
+          "samples": 3598,
+          "spike_count": 0,
+          "raw_peak_c": 31,
+          "filtered_peak_c": 31
+        },
+        "elbow_flex": {
+          "samples": 3598,
+          "spike_count": 0,
+          "raw_peak_c": 31,
+          "filtered_peak_c": 31
+        },
+        "wrist_flex": {
+          "samples": 3598,
+          "spike_count": 0,
+          "raw_peak_c": 34,
+          "filtered_peak_c": 34
+        },
+        "wrist_roll": {
+          "samples": 3598,
+          "spike_count": 4,
+          "raw_peak_c": 38,
+          "filtered_peak_c": 34
+        },
+        "gripper": {
+          "samples": 3598,
+          "spike_count": 10,
+          "raw_peak_c": 48,
+          "filtered_peak_c": 37
+        }
+      }
+    },
+    "port_closed": true,
+    "cleanup_errors": [],
+    "output": "/home/jetson3/so101_vla/runs/PING_RECHECK_1794725692580032260/six_axis_120s"
+  },
+  "responding_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "normal_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "verified_read_pairs": 43176,
+  "joints": [
+    {
+      "joint": "shoulder_pan",
+      "current_ticks": 2038,
+      "current": -5.582417582417582,
+      "home": -3.743322378527509,
+      "home_delta": -1.8390952038900732,
+      "home_inside": true,
+      "temperature_min_max_c": [
+        28,
+        30
+      ],
+      "spike_count": 0,
+      "spike_voltages_v": [],
+      "voltage_min_max_v": [
+        12.1,
+        12.2
+      ]
+    },
+    {
+      "joint": "shoulder_lift",
+      "current_ticks": 974,
+      "current": -86.1978021978022,
+      "home": -97.75278612122919,
+      "home_delta": 11.554983923426988,
+      "home_inside": false,
+      "temperature_min_max_c": [
+        29,
+        31
+      ],
+      "spike_count": 0,
+      "spike_voltages_v": [],
+      "voltage_min_max_v": [
+        12.1,
+        12.2
+      ]
+    },
+    {
+      "joint": "elbow_flex",
+      "current_ticks": 3083,
+      "current": 96.65934065934066,
+      "home": 96.552176371108,
+      "home_delta": 0.1071642882326529,
+      "home_inside": true,
+      "temperature_min_max_c": [
+        28,
+        31
+      ],
+      "spike_count": 0,
+      "spike_voltages_v": [],
+      "voltage_min_max_v": [
+        12.0,
+        12.2
+      ]
+    },
+    {
+      "joint": "wrist_flex",
+      "current_ticks": 2818,
+      "current": 64.83516483516483,
+      "home": 43.45712672880966,
+      "home_delta": 21.37803810635517,
+      "home_inside": false,
+      "temperature_min_max_c": [
+        28,
+        34
+      ],
+      "spike_count": 0,
+      "spike_voltages_v": [],
+      "voltage_min_max_v": [
+        11.8,
+        12.2
+      ]
+    },
+    {
+      "joint": "wrist_roll",
+      "current_ticks": 1764,
+      "current": -8.835164835164836,
+      "home": -2.252025343804029,
+      "home_delta": -6.583139491360807,
+      "home_inside": false,
+      "temperature_min_max_c": [
+        28,
+        38
+      ],
+      "spike_count": 4,
+      "spike_voltages_v": [
+        12.2,
+        12.2,
+        12.2,
+        12.2
+      ],
+      "voltage_min_max_v": [
+        10.9,
+        12.3
+      ]
+    },
+    {
+      "joint": "gripper",
+      "current_ticks": 545,
+      "current": 8.078335373317014,
+      "home": 4.275478211632611,
+      "home_delta": 3.802857161684403,
+      "home_inside": false,
+      "temperature_min_max_c": [
+        31,
+        48
+      ],
+      "spike_count": 10,
+      "spike_voltages_v": [
+        12.2,
+        12.2,
+        12.2,
+        12.2,
+        12.2,
+        12.2,
+        12.2,
+        12.2,
+        12.2,
+        12.2
+      ],
+      "voltage_min_max_v": [
+        10.6,
+        12.3
+      ]
+    }
+  ],
+  "all_home": false,
+  "post_owners": {
+    "code": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "motor_register_writes": 0,
+  "live": "NOT_RUN",
+  "follower_by_id": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6058306-if00",
+  "resolved": "/dev/ttyACM0"
+}

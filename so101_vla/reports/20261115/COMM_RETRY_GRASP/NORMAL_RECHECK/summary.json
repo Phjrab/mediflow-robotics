@@ -1,0 +1,2536 @@
+{
+  "status": "BULK_TRANSPORT_READONLY_COMPLETE",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "port_closed": true,
+  "cycles": 148,
+  "layout": "combined",
+  "read_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "mean_work_s": 0.020258951040518326,
+  "max_work_s": 0.03398344200104475,
+  "last_positions_raw": {
+    "shoulder_pan": 2058,
+    "shoulder_lift": 831,
+    "elbow_flex": 3080,
+    "wrist_flex": 2563,
+    "gripper": 465,
+    "wrist_roll": 1832
+  },
+  "temperatures": {
+    "shoulder_pan": 33,
+    "shoulder_lift": 34,
+    "elbow_flex": 31,
+    "wrist_flex": 33,
+    "wrist_roll": 31,
+    "gripper": 35
+  },
+  "torque": {
+    "shoulder_pan": 1,
+    "shoulder_lift": 1,
+    "elbow_flex": 1,
+    "wrist_flex": 1,
+    "gripper": 1,
+    "wrist_roll": 1
+  },
+  "modes": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 0,
+    "wrist_flex": 0,
+    "gripper": 0,
+    "wrist_roll": 0
+  },
+  "communication": {
+    "by_joint": {
+      "shoulder_pan": {
+        "-6": 0,
+        "-7": 0
+      },
+      "shoulder_lift": {
+        "-6": 0,
+        "-7": 0
+      },
+      "elbow_flex": {
+        "-6": 0,
+        "-7": 0
+      },
+      "wrist_flex": {
+        "-6": 0,
+        "-7": 0
+      },
+      "wrist_roll": {
+        "-6": 0,
+        "-7": 57
+      },
+      "gripper": {
+        "-6": 0,
+        "-7": 0
+      }
+    },
+    "errors": [
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.143002891,
+        "unix": 1794737042.3325386,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "pose_age_s": null,
+          "wrist_roll_deg": null,
+          "wrist_flex_deg": null
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.174690071,
+        "unix": 1794737042.3642259,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019760094000957906,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.21523173,
+        "unix": 1794737042.4047675,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000ff",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.02008103199841571,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.315588088,
+        "unix": 1794737042.5051239,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019817022999632172,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.396710096,
+        "unix": 1794737042.5862458,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000f6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.020140810000157217,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.422974198,
+        "unix": 1794737042.61251,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.022629174000030616,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.443562509,
+        "unix": 1794737042.6330981,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.01675261000127648,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.463771097,
+        "unix": 1794737042.6533067,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.016228913998929784,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.483963044,
+        "unix": 1794737042.6734986,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.01638847000140231,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.503964297,
+        "unix": 1794737042.6934998,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.015912840000964934,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.524189302,
+        "unix": 1794737042.713725,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.01661663800041424,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.564210753,
+        "unix": 1794737042.7537465,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019443155997578287,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.584418861,
+        "unix": 1794737042.7739546,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.016376341998693533,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.625587803,
+        "unix": 1794737042.8151236,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000f6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.02005853499940713,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.668362619,
+        "unix": 1794737042.8578985,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.02256481999938842,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.766446907,
+        "unix": 1794737042.9559824,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019660410998767475,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.847352365,
+        "unix": 1794737043.0368881,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019709883999894373,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.881845327,
+        "unix": 1794737043.071381,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.030809232997853542,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17128.983426042,
+        "unix": 1794737043.1729617,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.01981059100216953,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.10980115,
+        "unix": 1794737043.299337,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.02427863200136926,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.129987817,
+        "unix": 1794737043.3195238,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.016381686000386253,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.150087217,
+        "unix": 1794737043.339623,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.016216881998843746,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.170630408,
+        "unix": 1794737043.360166,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.01689872600036324,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.252028104,
+        "unix": 1794737043.4415638,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.020427955001650844,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.291991794,
+        "unix": 1794737043.4815276,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019605594003223814,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.332855063,
+        "unix": 1794737043.5223908,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.020278542000596644,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.373258926,
+        "unix": 1794737043.562795,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.020146249000390526,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.393170225,
+        "unix": 1794737043.582706,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.015985641999577638,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.514939847,
+        "unix": 1794737043.7044754,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.02003507900008117,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.534636483,
+        "unix": 1794737043.724172,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.016299252001772402,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.555302973,
+        "unix": 1794737043.7448387,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.016363637998438207,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.635650077,
+        "unix": 1794737043.8251858,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019532534999598283,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.737208456,
+        "unix": 1794737043.9267442,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019536216001142748,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.757533944,
+        "unix": 1794737043.9470696,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.016194897001696518,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17129.797590852,
+        "unix": 1794737043.9871266,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019707356001163134,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.061169336,
+        "unix": 1794737044.250705,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019748541002627462,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.182035411,
+        "unix": 1794737044.3715708,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.02000870899792062,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.201850099,
+        "unix": 1794737044.3913858,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.016289203998894664,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.262573433,
+        "unix": 1794737044.4521093,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019728797000425402,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.303510177,
+        "unix": 1794737044.493046,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019795167001575464,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.344222113,
+        "unix": 1794737044.5337582,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019887202000973048,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.364423725,
+        "unix": 1794737044.5539596,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.016267090999463107,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.485450989,
+        "unix": 1794737044.6749866,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019719997002539458,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.505635864,
+        "unix": 1794737044.6951716,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.016367894000723027,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.526312658,
+        "unix": 1794737044.7158484,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.017012585001793923,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.545932332,
+        "unix": 1794737044.7354681,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.01608673299779184,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.647515479,
+        "unix": 1794737044.8370512,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.0196086979995016,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.688216056,
+        "unix": 1794737044.877752,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019941188002121635,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.708570024,
+        "unix": 1794737044.8981056,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.01636229399809963,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.809241239,
+        "unix": 1794737044.9987772,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.020063528001628583,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.8499494,
+        "unix": 1794737045.039485,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000f6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.0204056180009502,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.871392138,
+        "unix": 1794737045.0609276,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.01804196100056288,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.89045941,
+        "unix": 1794737045.0799952,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.015378071999293752,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.9306729,
+        "unix": 1794737045.120209,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000a6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019783710999035975,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17130.971525769,
+        "unix": 1794737045.161062,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019929507001506863,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17131.012814395,
+        "unix": 1794737045.2023504,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000fe",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.02051131700136466,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17131.13283014,
+        "unix": 1794737045.3223662,
+        "axes": [
+          "wrist_roll"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 5,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0528000014c8190ac8c801fe290700000000f4010000000000012807000000007a1f00000029070000e6",
+          "received_id": 5,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "wrist_roll": 1832,
+            "gripper": 465
+          },
+          "pose_age_s": 0.019551926998246927,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_roll": 1
+        },
+        "phase": "normal"
+      }
+    ],
+    "tx_packets": 1093,
+    "rx_packets": 1833,
+    "tx_bytes": 9632,
+    "rx_bytes": 47796,
+    "elapsed_s": 3.1151298440017854,
+    "tx_packets_per_s": 350.86819963687316,
+    "total_packets_per_s": 939.2866899702569,
+    "tx_gap_s": {
+      "min": 0.0005048160019214265,
+      "max": 0.020625400000426453,
+      "mean": 0.0027564746062272365
+    },
+    "settings": {
+      "max_retries": 3,
+      "consecutive_failures": 5,
+      "no_response_s": 0.2,
+      "hold_attempts": 5,
+      "bulk_address": 33,
+      "bulk_width": 38
+    },
+    "halt_reason": null
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "before": {
+    "name": "so-101",
+    "leader_port": "/dev/ttyACM0",
+    "follower_port": "/dev/ttyACM1",
+    "leader_config": "so-101.json",
+    "follower_config": "so-101.json",
+    "cameras": [
+      {
+        "id": "camera_8",
+        "name": "ceiling_vertical",
+        "type": "opencv",
+        "camera_index": 8,
+        "device_id": "",
+        "width": 640,
+        "height": 480,
+        "fps": 30,
+        "fourcc": "YUYV",
+        "backend": "V4L2"
+      },
+      {
+        "id": "camera_1788679869310",
+        "name": "ceiling_oblique",
+        "type": "opencv",
+        "camera_index": 6,
+        "device_id": "",
+        "width": 640,
+        "height": 480,
+        "fps": 30,
+        "fourcc": "MJPG",
+        "backend": "V4L2"
+      },
+      {
+        "id": "camera_1790498554333",
+        "name": "end_effector",
+        "type": "opencv",
+        "camera_index": 0,
+        "device_id": "",
+        "width": 640,
+        "height": 480,
+        "fps": 30,
+        "fourcc": "MJPG",
+        "backend": "V4L2"
+      }
+    ],
+    "is_clean": true
+  },
+  "after": {
+    "name": "so-101",
+    "leader_port": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6085272-if00",
+    "follower_port": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6058306-if00",
+    "leader_config": "so-101.json",
+    "follower_config": "so-101.json",
+    "cameras": [
+      {
+        "id": "camera_8",
+        "name": "ceiling_vertical",
+        "type": "opencv",
+        "camera_index": 8,
+        "device_id": "",
+        "width": 640,
+        "height": 480,
+        "fps": 30,
+        "fourcc": "YUYV",
+        "backend": "V4L2"
+      },
+      {
+        "id": "camera_1788679869310",
+        "name": "ceiling_oblique",
+        "type": "opencv",
+        "camera_index": 6,
+        "device_id": "",
+        "width": 640,
+        "height": 480,
+        "fps": 30,
+        "fourcc": "MJPG",
+        "backend": "V4L2"
+      },
+      {
+        "id": "camera_1790498554333",
+        "name": "end_effector",
+        "type": "opencv",
+        "camera_index": 0,
+        "device_id": "",
+        "width": 640,
+        "height": 480,
+        "fps": 30,
+        "fourcc": "MJPG",
+        "backend": "V4L2"
+      }
+    ],
+    "is_clean": true
+  },
+  "backup": "/home/jetson3/.cache/huggingface/lerobot/robots/so-101.json.bak_20261115_161110",
+  "guard_validation": [
+    "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6085272-if00",
+    "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6058306-if00"
+  ],
+  "reversed_ports_rejected": true,
+  "calibration_sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e",
+  "motor_register_writes": 0,
+  "teleoperation_started": false
+}

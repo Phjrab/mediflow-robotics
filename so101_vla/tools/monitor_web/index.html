@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SO-101 | SmolVLA 관제</title>
+  <link rel="stylesheet" href="/screen.css">
+  <script src="/screen.js" defer></script>
+  <script src="/alignment.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <div><p class="eyebrow">SO-101 / SMOLVLA</p><h1>로봇이 보는 화면</h1></div>
+      <span id="status" class="status" role="status">연결 중</span>
+    </header>
+    <p id="task" class="task">VLA 실행을 기다리는 중</p>
+    <div class="readouts">
+      <div><span>전송 스텝</span><strong id="step">—</strong></div>
+      <div><span>최근 추론</span><strong id="inference">—</strong></div>
+      <div><span>영상 업데이트</span><strong id="capture-age">—</strong></div>
+    </div>
+    <aside id="diagnosis" class="reason" aria-live="polite" hidden>
+      <strong id="reason-title"></strong>
+      <p id="reason-tip"></p>
+      <p id="hold-result" hidden></p>
+      <details id="raw-reason"><summary>오류 원문</summary><p id="reason"></p></details>
+    </aside>
+    <section aria-labelledby="camera-heading">
+      <div class="section-heading"><h2 id="camera-heading">카메라 입력</h2><span>시작 확인 영상과 추론 입력</span></div>
+      <div class="alignment-controls">
+        <div><b>학습 구도 맞추기</b><p id="alignment-reference" class="note">학습 첫 프레임 확인 중</p></div>
+        <label><input id="alignment-visible" type="checkbox" checked> 학습 첫 프레임 겹쳐 보기</label>
+        <label for="alignment-opacity">학습 영상 투명도 <output id="alignment-opacity-value">35%</output>
+          <input id="alignment-opacity" type="range" min="0" max="80" value="35"></label>
+        <p id="alignment-status" class="note" role="status">카메라 전용 정렬 미리보기 연결 중</p>
+        <details class="note"><summary>기준 에피소드·첫 프레임 이미지 경로</summary><p id="alignment-source"></p><ul id="alignment-paths"></ul></details>
+      </div>
+      <div class="cameras">
+        <figure data-camera="end_effector"><div class="frame"><img alt="손목 카메라" hidden><span>입력 대기</span></div><figcaption><b>손목</b><code>end_effector</code></figcaption></figure>
+        <figure data-camera="ceiling_vertical"><div class="frame"><img alt="천장 수직 카메라" hidden><span>입력 대기</span></div><figcaption><b>천장 수직</b><code>ceiling_vertical</code></figcaption></figure>
+        <figure data-camera="ceiling_oblique"><div class="frame"><img alt="천장 사선 카메라" hidden><span>입력 대기</span></div><figcaption><b>천장 사선</b><code>ceiling_oblique</code></figcaption></figure>
+      </div>
+      <p class="note">정렬 수치는 원본 640×480 화면의 고정 기준판 마커0~3을 비교합니다. 사선 목표 ≤20px. 회전은 영상 안의 각도이며, 손목은 겹친 영상으로 직접 맞춥니다. 수직 윤곽선은 학습 때의 약통·바구니 위치이며 현재 물체 검출 결과가 아닙니다.</p>
+      <p class="note">추론이 시작되면 모델에 전달한 영상으로 갱신합니다.</p>
+    </section>
+    <section aria-labelledby="joint-heading">
+      <div class="section-heading"><h2 id="joint-heading">관절 상태와 예측 목표</h2><span>관절은 도, 그리퍼는 0–100점</span></div>
+      <p id="joint-source" class="note"></p>
+      <div class="table-wrap"><table>
+        <thead><tr><th scope="col">관절</th><th scope="col">추론 입력</th><th scope="col">현재값</th><th scope="col">현재 틱</th><th scope="col">정책 목표</th><th scope="col">전송 목표</th><th scope="col">원본 온도</th><th scope="col">진단 온도</th><th scope="col">전압</th></tr></thead>
+        <tbody id="joints"></tbody>
+      </table></div>
+      <p class="note">진단 온도는 비교용입니다. 과열 판정은 실행기의 현행 2초 온도 보호 규칙을 따릅니다. 카메라 정렬 도구는 모터를 읽거나 쓰지 않습니다.</p>
+    </section>
+    <section aria-labelledby="operator-heading">
+      <div class="section-heading"><h2 id="operator-heading">운영자 입력</h2><span id="operator-access">접속 확인 중</span></div>
+      <div class="operator">
+        <div>
+          <h3>동작 정지</h3>
+          <p class="note">실행 중 누르면 새 정책 목표 전송을 중단합니다. 화면에서 위치 유지 결과를 확인할 수 있습니다.</p>
+          <button type="button" id="hold" class="danger" disabled>정지 요청</button>
+          <p class="note" id="hold-message" role="status"></p>
+        </div>
+        <form id="correction">
+          <h3>동작 교정과 녹화</h3>
+          <p class="note" id="correction-access">현장 교정 모드 대기</p>
+          <label for="correction-text">동작 명령</label>
+          <input id="correction-text" maxlength="30" list="correction-commands" placeholder="그리퍼 열어" disabled>
+          <datalist id="correction-commands"><option value="그리퍼 열어"></option><option value="조금 더 앞으로"></option></datalist>
+          <label><input type="checkbox" id="supervised" disabled> 현장에서 이동 경로와 놓일 물체를 확인했고 즉시 멈출 수 있음</label>
+          <button type="submit" id="send-correction" disabled>교정 동작 보내기</button>
+          <p class="note" id="correction-message" role="status"></p>
+          <div id="clip-links" hidden>
+            <span id="clip-status"></span>
+            <a data-clip="end_effector.mp4">손목 영상</a><a data-clip="ceiling_vertical.mp4">천장 수직 영상</a>
+            <a data-clip="ceiling_oblique.mp4">천장 사선 영상</a><a data-clip="frames.jsonl">관절 기록</a>
+            <a data-clip="manifest.json">녹화 정보</a>
+          </div>
+        </form>
+        <form id="feedback">
+          <h3>학습용 교정 메모</h3>
+          <p class="note">장면을 고정한 뒤 이 자세에서 했어야 할 동작을 기록하세요.</p>
+          <button type="button" id="mark" disabled>현재 장면 고정</button>
+          <p class="note" id="marked" role="status">고정된 장면 없음</p>
+          <label for="instruction">교정 지시</label>
+          <textarea id="instruction" rows="3" maxlength="600" placeholder="예: 그리퍼를 연 채 병의 중앙으로 조금 더 접근" disabled></textarea>
+          <button type="submit" id="save" disabled>교정 메모 저장</button>
+          <a id="download" hidden>기록 JSON 받기</a>
+          <p class="note" id="feedback-message" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

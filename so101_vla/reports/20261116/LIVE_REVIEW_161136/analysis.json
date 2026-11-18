@@ -1,0 +1,1027 @@
+{
+  "run": "/home/jetson3/so101_vla/runs/20261116_161136",
+  "summary": {
+    "status": "HOLD",
+    "steps": 0,
+    "task_success": "UNVERIFIED",
+    "speed": 0.33,
+    "playback_hz": 9.9,
+    "hold": {
+      "status": "HOLD_CONFIRMED",
+      "attempts": 2,
+      "target_raw": {
+        "shoulder_pan": 2061,
+        "shoulder_lift": 841,
+        "elbow_flex": 3085,
+        "wrist_flex": 2573,
+        "wrist_roll": 1834,
+        "gripper": 486
+      },
+      "goal_feedback_raw": {
+        "shoulder_pan": 2061,
+        "shoulder_lift": 841,
+        "elbow_flex": 3085,
+        "wrist_flex": 2573,
+        "wrist_roll": 1834,
+        "gripper": 486
+      },
+      "final_present_raw": {
+        "shoulder_pan": 2061,
+        "shoulder_lift": 841,
+        "elbow_flex": 3085,
+        "wrist_flex": 2573,
+        "wrist_roll": 1834,
+        "gripper": 486
+      },
+      "confirmation": "goal_readback_and_position_stability"
+    },
+    "reason": "홈 이동 후 위치 확인 실패",
+    "gripper_peak_c": 49,
+    "peak_temperatures_c": {
+      "shoulder_pan": 34,
+      "shoulder_lift": 36,
+      "elbow_flex": 35,
+      "wrist_flex": 35,
+      "wrist_roll": 45,
+      "gripper": 49
+    },
+    "camera": {
+      "end_effector": {
+        "read_failures": 0,
+        "max_frame_gap_s": 0.04018400299537461
+      },
+      "ceiling_vertical": {
+        "read_failures": 0,
+        "max_frame_gap_s": 0.03729044100327883
+      },
+      "ceiling_oblique": {
+        "read_failures": 3,
+        "max_frame_gap_s": 0.04575204699358437
+      }
+    },
+    "gripper_limits_readonly": {
+      "Max_Torque_Limit": 500,
+      "Torque_Limit": 500,
+      "Protection_Current": 250
+    },
+    "thermal_recheck": {},
+    "thermal_diagnostics": {
+      "mode": "observe_only",
+      "filter_controls_motion": false,
+      "rules": {
+        "mode": "observe_only",
+        "jump_gt_c": 10.0,
+        "rise_window_s": 1.0,
+        "rise_gt_c": 5.0,
+        "candidate_stop_c": 55.0,
+        "candidate_consecutive": 3,
+        "candidate_duration_gt_s": 0.3,
+        "candidate_raw_emergency_c": 70.0,
+        "candidate_raw_emergency_consecutive": 2
+      },
+      "errors": {
+        "total": 0,
+        "communication": 0,
+        "checksum": 0,
+        "other": 0
+      },
+      "joints": {
+        "shoulder_pan": {
+          "samples": 456,
+          "spike_count": 0,
+          "raw_peak_c": 34,
+          "filtered_peak_c": 34
+        },
+        "shoulder_lift": {
+          "samples": 456,
+          "spike_count": 0,
+          "raw_peak_c": 36,
+          "filtered_peak_c": 36
+        },
+        "elbow_flex": {
+          "samples": 456,
+          "spike_count": 0,
+          "raw_peak_c": 35,
+          "filtered_peak_c": 35
+        },
+        "wrist_flex": {
+          "samples": 456,
+          "spike_count": 0,
+          "raw_peak_c": 35,
+          "filtered_peak_c": 35
+        },
+        "wrist_roll": {
+          "samples": 456,
+          "spike_count": 4,
+          "raw_peak_c": 45,
+          "filtered_peak_c": 38
+        },
+        "gripper": {
+          "samples": 456,
+          "spike_count": 4,
+          "raw_peak_c": 49,
+          "filtered_peak_c": 42
+        }
+      }
+    },
+    "thermal_protection": {
+      "window_s": 2.0,
+      "continuous_hot_s": 2.0,
+      "stop_c": 55.0,
+      "median_warning_c": 50.0,
+      "joints": {
+        "shoulder_pan": {
+          "spike_count": 0,
+          "warning_count": 0,
+          "raw_peak_c": 34,
+          "median_peak_c": 33.0
+        },
+        "shoulder_lift": {
+          "spike_count": 0,
+          "warning_count": 0,
+          "raw_peak_c": 36,
+          "median_peak_c": 35.0
+        },
+        "elbow_flex": {
+          "spike_count": 0,
+          "warning_count": 0,
+          "raw_peak_c": 35,
+          "median_peak_c": 33.0
+        },
+        "wrist_flex": {
+          "spike_count": 0,
+          "warning_count": 0,
+          "raw_peak_c": 35,
+          "median_peak_c": 33.0
+        },
+        "wrist_roll": {
+          "spike_count": 0,
+          "warning_count": 0,
+          "raw_peak_c": 33,
+          "median_peak_c": 33.0
+        },
+        "gripper": {
+          "spike_count": 0,
+          "warning_count": 0,
+          "raw_peak_c": 48,
+          "median_peak_c": 37.0
+        }
+      }
+    },
+    "communication": {
+      "by_joint": {
+        "shoulder_pan": {
+          "-6": 0,
+          "-7": 0
+        },
+        "shoulder_lift": {
+          "-6": 0,
+          "-7": 0
+        },
+        "elbow_flex": {
+          "-6": 0,
+          "-7": 0
+        },
+        "wrist_flex": {
+          "-6": 0,
+          "-7": 0
+        },
+        "wrist_roll": {
+          "-6": 0,
+          "-7": 0
+        },
+        "gripper": {
+          "-6": 0,
+          "-7": 0
+        }
+      },
+      "errors": [],
+      "tx_packets": 3920,
+      "rx_packets": 8247,
+      "tx_bytes": 41314,
+      "rx_bytes": 115224,
+      "elapsed_s": 17.796603597991634,
+      "tx_packets_per_s": 220.2667480014207,
+      "total_packets_per_s": 683.6697762584912,
+      "tx_gap_s": {
+        "min": 0.00038097200740594417,
+        "max": 0.05372775199066382,
+        "mean": 0.004438207468740845
+      },
+      "settings": {
+        "max_retries": 3,
+        "consecutive_failures": 5,
+        "no_response_s": 0.2,
+        "hold_attempts": 5,
+        "bulk_address": 56,
+        "bulk_width": 15,
+        "read_order": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          5
+        ]
+      },
+      "halt_reason": null,
+      "halt_observed": null
+    },
+    "thermal_confirmation": {
+      "policy": "fresh_individual_2s_window",
+      "counts": {
+        "shoulder_pan": {
+          "spike": 0,
+          "confirmed": 0
+        },
+        "shoulder_lift": {
+          "spike": 0,
+          "confirmed": 0
+        },
+        "elbow_flex": {
+          "spike": 0,
+          "confirmed": 0
+        },
+        "wrist_flex": {
+          "spike": 0,
+          "confirmed": 0
+        },
+        "wrist_roll": {
+          "spike": 0,
+          "confirmed": 0
+        },
+        "gripper": {
+          "spike": 0,
+          "confirmed": 0
+        }
+      }
+    },
+    "startup_temperatures_c": {
+      "shoulder_pan": 33,
+      "shoulder_lift": 35,
+      "elbow_flex": 33,
+      "wrist_flex": 33,
+      "wrist_roll": 33,
+      "gripper": 37
+    },
+    "goal_packet_attempts": 248,
+    "port_closed": true,
+    "cleanup_errors": [],
+    "gripper_relief_count": 0,
+    "startup_auto_processed": [
+      {
+        "event": "startup_temperatures",
+        "temperature_c": {
+          "shoulder_pan": 33,
+          "shoulder_lift": 35,
+          "elbow_flex": 33,
+          "wrist_flex": 33,
+          "wrist_roll": 33,
+          "gripper": 37
+        }
+      },
+      {
+        "event": "startup_range_recovery",
+        "joints": [
+          "elbow_flex"
+        ],
+        "current": {
+          "shoulder_pan": 2140,
+          "shoulder_lift": 841,
+          "elbow_flex": 3085,
+          "wrist_flex": 2568,
+          "wrist_roll": 1826,
+          "gripper": 581
+        }
+      }
+    ],
+    "output": "/home/jetson3/so101_vla/runs/20261116_161136",
+    "torque_register_writes": 0,
+    "configuration_register_writes": 0
+  },
+  "events": {
+    "wire_tx": 3920,
+    "wire_rx": 8247,
+    "thermal_cycle": 456,
+    "startup_temperatures": 1,
+    "gripper_limits_readonly": 1,
+    "thermal_source_disagreement": 124,
+    "thermal_spike_context": 8,
+    "start": 1,
+    "startup_range_recovery": 1,
+    "hold_attempt_failed": 1
+  },
+  "startup_rows": [
+    {
+      "joint": "shoulder_pan",
+      "start_ticks": 2140,
+      "last_home_target_ticks": 2058,
+      "prehold_ticks": 2061,
+      "error_ticks": 3,
+      "error_units": 0.26373626373626374,
+      "unit": "degree",
+      "sent_change_ticks": -82,
+      "actual_change_ticks": -79
+    },
+    {
+      "joint": "shoulder_lift",
+      "start_ticks": 841,
+      "last_home_target_ticks": 842,
+      "prehold_ticks": 841,
+      "error_ticks": -1,
+      "error_units": -0.08791208791208792,
+      "unit": "degree",
+      "sent_change_ticks": 1,
+      "actual_change_ticks": 0
+    },
+    {
+      "joint": "elbow_flex",
+      "start_ticks": 3085,
+      "last_home_target_ticks": 3081,
+      "prehold_ticks": 3085,
+      "error_ticks": 4,
+      "error_units": 0.3516483516483517,
+      "unit": "degree",
+      "sent_change_ticks": -4,
+      "actual_change_ticks": 0
+    },
+    {
+      "joint": "wrist_flex",
+      "start_ticks": 2568,
+      "last_home_target_ticks": 2574,
+      "prehold_ticks": 2573,
+      "error_ticks": -1,
+      "error_units": -0.08791208791208792,
+      "unit": "degree",
+      "sent_change_ticks": 6,
+      "actual_change_ticks": 5
+    },
+    {
+      "joint": "wrist_roll",
+      "start_ticks": 1826,
+      "last_home_target_ticks": 1838,
+      "prehold_ticks": 1834,
+      "error_ticks": -4,
+      "error_units": -0.3516483516483517,
+      "unit": "degree",
+      "sent_change_ticks": 12,
+      "actual_change_ticks": 8
+    },
+    {
+      "joint": "gripper",
+      "start_ticks": 581,
+      "last_home_target_ticks": 482,
+      "prehold_ticks": 486,
+      "error_ticks": 4,
+      "error_units": 0.24479804161566707,
+      "unit": "point",
+      "sent_change_ticks": -99,
+      "actual_change_ticks": -95
+    }
+  ],
+  "startup_goal_packets": 246,
+  "hold_goal_packets": 2,
+  "startup_elapsed_s": 17.26145163900219,
+  "motion_duration_s": 5.029568448997452,
+  "api": {
+    "status": {
+      "run": "20261116_161136",
+      "task": "Put medicine bottle A into the blue basket",
+      "joints": [
+        "shoulder_pan",
+        "shoulder_lift",
+        "elbow_flex",
+        "wrist_flex",
+        "wrist_roll",
+        "gripper"
+      ],
+      "phase": "hold",
+      "updated": 1794813165.8185687,
+      "capture": 1,
+      "step": 0,
+      "state": [
+        3.3846153846153846,
+        -97.89010989010988,
+        96.83516483516483,
+        42.857142857142854,
+        -3.3846153846153846,
+        10.281517747858016
+      ],
+      "ticks": {
+        "shoulder_pan": 2140,
+        "shoulder_lift": 841,
+        "elbow_flex": 3085,
+        "wrist_flex": 2568,
+        "wrist_roll": 1826,
+        "gripper": 581
+      },
+      "temperature": {
+        "shoulder_pan": 33,
+        "shoulder_lift": 35,
+        "elbow_flex": 33,
+        "wrist_flex": 33,
+        "wrist_roll": 33,
+        "gripper": 37
+      },
+      "model": null,
+      "sent": null,
+      "voltage_v": {
+        "shoulder_pan": 12.2,
+        "shoulder_lift": 12.1,
+        "elbow_flex": 12.2,
+        "wrist_flex": 12.2,
+        "wrist_roll": 12.2,
+        "gripper": 12.2
+      },
+      "thermal_diagnostics": {
+        "shoulder_pan": {
+          "raw_c": 33,
+          "filtered_c": 33,
+          "suspected_spike": false,
+          "spike_reasons": [],
+          "delta_previous_c": 0,
+          "rise_within_1s_c": 0,
+          "voltage_v": 12.2,
+          "status": 0,
+          "spike_count": 0,
+          "raw_peak_c": 33,
+          "filtered_peak_c": 33,
+          "candidate_filtered_hold": false,
+          "raw_hold_required": false,
+          "filter_controls_motion": false
+        },
+        "shoulder_lift": {
+          "raw_c": 35,
+          "filtered_c": 35,
+          "suspected_spike": false,
+          "spike_reasons": [],
+          "delta_previous_c": 0,
+          "rise_within_1s_c": 0,
+          "voltage_v": 12.1,
+          "status": 0,
+          "spike_count": 0,
+          "raw_peak_c": 35,
+          "filtered_peak_c": 35,
+          "candidate_filtered_hold": false,
+          "raw_hold_required": false,
+          "filter_controls_motion": false
+        },
+        "elbow_flex": {
+          "raw_c": 33,
+          "filtered_c": 33,
+          "suspected_spike": false,
+          "spike_reasons": [],
+          "delta_previous_c": 0,
+          "rise_within_1s_c": 0,
+          "voltage_v": 12.2,
+          "status": 0,
+          "spike_count": 0,
+          "raw_peak_c": 34,
+          "filtered_peak_c": 34,
+          "candidate_filtered_hold": false,
+          "raw_hold_required": false,
+          "filter_controls_motion": false
+        },
+        "wrist_flex": {
+          "raw_c": 33,
+          "filtered_c": 33,
+          "suspected_spike": false,
+          "spike_reasons": [],
+          "delta_previous_c": 0,
+          "rise_within_1s_c": 0,
+          "voltage_v": 12.2,
+          "status": 0,
+          "spike_count": 0,
+          "raw_peak_c": 35,
+          "filtered_peak_c": 35,
+          "candidate_filtered_hold": false,
+          "raw_hold_required": false,
+          "filter_controls_motion": false
+        },
+        "wrist_roll": {
+          "raw_c": 33,
+          "filtered_c": 33,
+          "suspected_spike": false,
+          "spike_reasons": [],
+          "delta_previous_c": 0,
+          "rise_within_1s_c": 0,
+          "voltage_v": 12.2,
+          "status": 0,
+          "spike_count": 1,
+          "raw_peak_c": 43,
+          "filtered_peak_c": 38,
+          "candidate_filtered_hold": false,
+          "raw_hold_required": false,
+          "filter_controls_motion": false
+        },
+        "gripper": {
+          "raw_c": 37,
+          "filtered_c": 37,
+          "suspected_spike": false,
+          "spike_reasons": [],
+          "delta_previous_c": 0,
+          "rise_within_1s_c": 0,
+          "voltage_v": 12.2,
+          "status": 0,
+          "spike_count": 0,
+          "raw_peak_c": 39,
+          "filtered_peak_c": 39,
+          "candidate_filtered_hold": false,
+          "raw_hold_required": false,
+          "filter_controls_motion": false
+        }
+      },
+      "temperature_protection": {
+        "shoulder_pan": {
+          "source": "fresh_individual_20ms",
+          "raw_c": 33,
+          "observed_monotonic_s": 93241.996891684,
+          "window_s": 2.0,
+          "window_ready": true,
+          "samples": 33,
+          "median_c": 33,
+          "continuous_hot_s": 0.0,
+          "warning": false,
+          "warning_started": false,
+          "hold": false,
+          "reason": null,
+          "ended_spike": null,
+          "spike_count": 0,
+          "sample_gap_reset": false
+        },
+        "shoulder_lift": {
+          "source": "fresh_individual_20ms",
+          "raw_c": 35,
+          "observed_monotonic_s": 93241.997635708,
+          "window_s": 2.0,
+          "window_ready": true,
+          "samples": 33,
+          "median_c": 35,
+          "continuous_hot_s": 0.0,
+          "warning": false,
+          "warning_started": false,
+          "hold": false,
+          "reason": null,
+          "ended_spike": null,
+          "spike_count": 0,
+          "sample_gap_reset": false
+        },
+        "elbow_flex": {
+          "source": "fresh_individual_20ms",
+          "raw_c": 33,
+          "observed_monotonic_s": 93241.998389523,
+          "window_s": 2.0,
+          "window_ready": true,
+          "samples": 33,
+          "median_c": 33,
+          "continuous_hot_s": 0.0,
+          "warning": false,
+          "warning_started": false,
+          "hold": false,
+          "reason": null,
+          "ended_spike": null,
+          "spike_count": 0,
+          "sample_gap_reset": false
+        },
+        "wrist_flex": {
+          "source": "fresh_individual_20ms",
+          "raw_c": 33,
+          "observed_monotonic_s": 93241.999231085,
+          "window_s": 2.0,
+          "window_ready": true,
+          "samples": 33,
+          "median_c": 33,
+          "continuous_hot_s": 0.0,
+          "warning": false,
+          "warning_started": false,
+          "hold": false,
+          "reason": null,
+          "ended_spike": null,
+          "spike_count": 0,
+          "sample_gap_reset": false
+        },
+        "wrist_roll": {
+          "source": "fresh_individual_20ms",
+          "raw_c": 33,
+          "observed_monotonic_s": 93242.000064167,
+          "window_s": 2.0,
+          "window_ready": true,
+          "samples": 33,
+          "median_c": 33,
+          "continuous_hot_s": 0.0,
+          "warning": false,
+          "warning_started": false,
+          "hold": false,
+          "reason": null,
+          "ended_spike": null,
+          "spike_count": 0,
+          "sample_gap_reset": false
+        },
+        "gripper": {
+          "source": "fresh_individual_20ms",
+          "raw_c": 37,
+          "observed_monotonic_s": 93242.000904801,
+          "window_s": 2.0,
+          "window_ready": true,
+          "samples": 33,
+          "median_c": 37,
+          "continuous_hot_s": 0.0,
+          "warning": false,
+          "warning_started": false,
+          "hold": false,
+          "reason": null,
+          "ended_spike": null,
+          "spike_count": 0,
+          "sample_gap_reset": false
+        }
+      },
+      "inference_seconds": null,
+      "reason": "홈 이동 후 위치 확인 실패",
+      "correction_kinds": [],
+      "correction_result": null,
+      "latest_clip": null,
+      "hold": {
+        "status": "HOLD_CONFIRMED",
+        "attempts": 2,
+        "target_raw": {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 841,
+          "elbow_flex": 3085,
+          "wrist_flex": 2573,
+          "wrist_roll": 1834,
+          "gripper": 486
+        },
+        "goal_feedback_raw": {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 841,
+          "elbow_flex": 3085,
+          "wrist_flex": 2573,
+          "wrist_roll": 1834,
+          "gripper": 486
+        },
+        "final_present_raw": {
+          "shoulder_pan": 2061,
+          "shoulder_lift": 841,
+          "elbow_flex": 3085,
+          "wrist_flex": 2573,
+          "wrist_roll": 1834,
+          "gripper": 486
+        },
+        "confirmation": "goal_readback_and_position_stability"
+      },
+      "server_time": 1794813536.8887577,
+      "diagnosis": {
+        "title": "실행기 중단",
+        "followup": "아래 오류 원문에서 중단된 검사나 장치를 확인하세요."
+      },
+      "operator": false,
+      "can_hold": false,
+      "can_correct": false
+    },
+    "alignment": {
+      "schema": 1,
+      "phase": "ready",
+      "captured": 1794813536.5288544,
+      "motor_access": false,
+      "register_writes": 0,
+      "cameras": {
+        "end_effector": {
+          "common_ids": [],
+          "missing_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "target_px": 20,
+          "position_difference_px": null,
+          "rotation_deg": null,
+          "shift_x_px": null,
+          "shift_y_px": null,
+          "scale": null,
+          "within_target": null,
+          "method": "fixed_board_ids_0_3_raw_corners_and_similarity_fit",
+          "status": "insufficient_markers",
+          "brightness": 134.63989908854165,
+          "reference_brightness": 135.72000434027777,
+          "rgb_mean": [
+            134.20353515625,
+            129.45652018229165,
+            140.25964192708332
+          ],
+          "reference_rgb_mean": [
+            135.08978515625,
+            130.63122395833332,
+            141.43900390625
+          ]
+        },
+        "ceiling_vertical": {
+          "common_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "missing_ids": [],
+          "target_px": 20,
+          "position_difference_px": 1.0,
+          "rotation_deg": 0.1252392675202282,
+          "shift_x_px": 0.0,
+          "shift_y_px": -1.0,
+          "scale": 1.00232106310146,
+          "within_target": true,
+          "method": "fixed_board_ids_0_3_raw_corners_and_similarity_fit",
+          "status": "measured",
+          "brightness": 111.6739236111111,
+          "reference_brightness": 118.22602973090278,
+          "rgb_mean": [
+            111.99810546875,
+            116.21692057291666,
+            106.80674479166667
+          ],
+          "reference_rgb_mean": [
+            119.26630533854167,
+            124.54253580729167,
+            110.869248046875
+          ]
+        },
+        "ceiling_oblique": {
+          "common_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "missing_ids": [],
+          "target_px": 20,
+          "position_difference_px": 8.573164506180078,
+          "rotation_deg": -0.372785390078373,
+          "shift_x_px": -8.0,
+          "shift_y_px": 3.5,
+          "scale": 1.0013338551125788,
+          "within_target": true,
+          "method": "fixed_board_ids_0_3_raw_corners_and_similarity_fit",
+          "status": "measured",
+          "brightness": 98.8312521701389,
+          "reference_brightness": 106.30767252604167,
+          "rgb_mean": [
+            108.11084635416667,
+            100.47630208333334,
+            87.90660807291667
+          ],
+          "reference_rgb_mean": [
+            112.9343359375,
+            107.68963541666666,
+            98.29904622395833
+          ]
+        }
+      },
+      "camera_stats": {
+        "end_effector": {
+          "read_failures": 0,
+          "max_frame_gap_s": 0.0430897470068885
+        },
+        "ceiling_vertical": {
+          "read_failures": 0,
+          "max_frame_gap_s": 0.042625959002180025
+        },
+        "ceiling_oblique": {
+          "read_failures": 3,
+          "max_frame_gap_s": 0.03880408099212218
+        }
+      },
+      "reference": {
+        "schema": 1,
+        "label": "blue 통합93번 · 원본 episode_index=1 / 사용자 2회차 · 첫 프레임(0)",
+        "merged_episode_index": 93,
+        "source_repo_id": "Supermassive111/a_to_blue_20261103_193835",
+        "source_episode_index": 1,
+        "source_user_episode_number": 2,
+        "source_revision": "75544709366178c94a0d397f0807820b7afcac00",
+        "task": "Put medicine bottle A into the blue basket",
+        "width": 640,
+        "height": 480,
+        "target_px": 20,
+        "metric_note": "고정 기준판 ID0~3만 사용. 양수 가로=현재 화면에서 오른쪽, 양수 세로=아래. 양수 회전=화면에서 시계방향.",
+        "cameras": {
+          "end_effector": {
+            "filename": "training_first_end_effector.png",
+            "sha256": "485a59772185b8d30adc20f3db8b74996bbeb351a632fbaa2ed188d3075e9591",
+            "source_image_path": "/home/jetson3/so101_vla/reports/20261115/GRASP_CAUSE_7_EPISODES/full_frame_evaluation/training_first_end_effector.png"
+          },
+          "ceiling_vertical": {
+            "filename": "training_first_ceiling_vertical.png",
+            "sha256": "cc48d17da1f57481834587f3e434bd99a3c1f46ae7b0ad1621d0aac839acce3d",
+            "source_image_path": "/home/jetson3/so101_vla/reports/20261115/GRASP_CAUSE_7_EPISODES/full_frame_evaluation/training_first_ceiling_vertical.png"
+          },
+          "ceiling_oblique": {
+            "filename": "training_first_ceiling_oblique.png",
+            "sha256": "c97defeafaf5a9779aa71b4905e1782077dcf44b16c52e12c90f3fe9cd694417",
+            "source_image_path": "/home/jetson3/so101_vla/reports/20261115/GRASP_CAUSE_7_EPISODES/full_frame_evaluation/training_first_ceiling_oblique.png"
+          }
+        },
+        "vertical_outlines": [
+          {
+            "label": "약통 좌",
+            "color": "#67e8f9",
+            "points": [
+              [
+                308,
+                155
+              ],
+              [
+                330,
+                155
+              ],
+              [
+                334,
+                180
+              ],
+              [
+                330,
+                207
+              ],
+              [
+                311,
+                207
+              ],
+              [
+                306,
+                178
+              ]
+            ],
+            "label_at": [
+              282,
+              150
+            ],
+            "source": "manual_reference_visible_outline_not_current_object_detection"
+          },
+          {
+            "label": "약통 중",
+            "color": "#67e8f9",
+            "points": [
+              [
+                369,
+                169
+              ],
+              [
+                389,
+                176
+              ],
+              [
+                388,
+                207
+              ],
+              [
+                371,
+                208
+              ],
+              [
+                365,
+                183
+              ]
+            ],
+            "label_at": [
+              355,
+              165
+            ],
+            "source": "manual_reference_visible_outline_not_current_object_detection"
+          },
+          {
+            "label": "약통 우",
+            "color": "#67e8f9",
+            "points": [
+              [
+                431,
+                173
+              ],
+              [
+                450,
+                181
+              ],
+              [
+                446,
+                208
+              ],
+              [
+                428,
+                208
+              ],
+              [
+                426,
+                188
+              ]
+            ],
+            "label_at": [
+              432,
+              168
+            ],
+            "source": "manual_reference_visible_outline_not_current_object_detection"
+          },
+          {
+            "label": "파란 바구니",
+            "color": "#60a5fa",
+            "points": [
+              [
+                278,
+                207
+              ],
+              [
+                334,
+                209
+              ],
+              [
+                334,
+                262
+              ],
+              [
+                270,
+                261
+              ]
+            ],
+            "label_at": [
+              254,
+              201
+            ],
+            "source": "manual_reference_visible_outline_not_current_object_detection"
+          },
+          {
+            "label": "초록 바구니",
+            "color": "#6ee7b7",
+            "points": [
+              [
+                338,
+                209
+              ],
+              [
+                398,
+                210
+              ],
+              [
+                397,
+                263
+              ],
+              [
+                336,
+                262
+              ]
+            ],
+            "label_at": [
+              329,
+              323
+            ],
+            "source": "manual_reference_visible_outline_not_current_object_detection"
+          },
+          {
+            "label": "빨간 바구니",
+            "color": "#fda4af",
+            "points": [
+              [
+                404,
+                210
+              ],
+              [
+                458,
+                210
+              ],
+              [
+                465,
+                263
+              ],
+              [
+                402,
+                263
+              ]
+            ],
+            "label_at": [
+              408,
+              202
+            ],
+            "source": "manual_reference_visible_outline_not_current_object_detection"
+          }
+        ]
+      },
+      "age_s": 0.3640925884246826,
+      "fresh": true,
+      "server_time": 1794813536.8929567
+    },
+    "observation": {
+      "run": "20261116_161136",
+      "capture": 1,
+      "captured": 1794813156.191662,
+      "state": [
+        3.3846153846153846,
+        -97.89010989010988,
+        96.83516483516483,
+        42.857142857142854,
+        -3.3846153846153846,
+        10.281517747858016
+      ],
+      "preview": true
+    }
+  },
+  "steps_sha256": "0e29ac5ab744bfe7526520c58fe8730f940f90faff6879c3d3c6ba0a7d831324",
+  "review_motor_access": false,
+  "review_motor_writes": 0,
+  "source_hash": "6b91c5633373953f7d50ffda0286061cad9f67dd3badc13bc3bfe38b57ecc7a4"
+}

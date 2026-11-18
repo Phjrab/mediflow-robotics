@@ -1,0 +1,22 @@
+{
+  "sha256": {
+    "live/config.yaml": "0f3a8954284e33f68de530970bf7c1fb149b581967da68669e2fa475498d2620",
+    "live/config_runtime.py": "2a6abe016715f85af36244bd62d7dc4343584787498abfda780d542d64b178a5",
+    "live/deps/direct_live.py": "1181010859d17e6c5cb3f9cc81701e7c44bbf935f53e9d638ae33f104f391488",
+    "live/stream_live.py": "4e1b75c6bf5ceb8aa1a1eebf0a061d35fd44c1681c011602676518c1646cb5f1",
+    "live/thermal_read.py": "907bfa91347c79f6684df8562ce5974e8da6ec63b807d4291913dc355431f581",
+    "live/thermal_window.py": "849626b69b31ab5c0acc8de7e9440dc5f15844d1761e52d22f8bb7cb7e2af124",
+    "live/vla_monitor.py": "4db77732baf15af48aaeef86073ba8dd0f2cd9e6a723109dced3531d58afb6f7",
+    "sim/startup_simulation.py": "6fb48734f26aa195832f0f4dbbfb5b96a1abce9d9cfb20baaf36a3e190693ccf",
+    "sim/test_control_revision.py": "bd52ff05cde6026094419cbda03812b04e8172401482b95a0680d2a4037e570b",
+    "sim/test_thermal_diagnostics.py": "7cf2f9b13ddcf9cf24f776c683c2a337e3423e605f9625ee69ea505c0f408d0b",
+    "sim/test_thermal_window.py": "1409af1aac98ee332dfe29a1f50fe9514d9e9aa53e039cb04a951ff13485f8cf",
+    "sim/test_unified.py": "259fb69fb8d5389348abfcf529f25318a164c297f271fe16f076fcd1a18aa9ce",
+    "tools/home-joints.html": "9aeb6c7d3ab2a2f74caf1dfc7309c4be33fb741c61eca5906dfc90320f02fea5",
+    "tools/home_config_server.py": "aa44eee295487c58bed53a950ab545e38002aa2fe2e63bdcc87953986054594a",
+    "tools/temperature_window_readonly.py": "24633ff1963666034dede1c00f87f9e813936253a34419dc4d93ed22687ec3b8",
+    "analysis/training_elbow_bound.py": "eee1b0d5c157271d1cc0a8b89095a19a0f7437bd8ed586762c670d8907d0bc95",
+    "analysis/thermal_history_audit.py": "682aaa7bd321334ebf9f256dabf7de2aa6424aef46013356b8b5d96f509e66a1"
+  },
+  "calibration_sha256": "2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e"
+}

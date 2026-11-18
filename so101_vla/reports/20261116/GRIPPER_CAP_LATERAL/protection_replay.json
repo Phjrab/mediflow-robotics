@@ -1,0 +1,249 @@
+{
+  "source": "runs/20261116_174520",
+  "source_sha256": "2908e261108b5ed4203ac285f8e9037d8ef13fe6119febe32de1d312454a0e37",
+  "steps": 6667,
+  "cap_points": 49.611995697021484,
+  "cap_raw": 1223,
+  "sdk_cap_points": 49.57160342717258,
+  "model_goals_over_cap": 122,
+  "original_wire_goals_over_cap": 121,
+  "new_wire_peak_raw": 1223,
+  "new_wire_goals_over_cap": 0,
+  "opening_guard": {
+    "open_cap_points": 49.611995697021484,
+    "policy_open_cap_clips": 121,
+    "opening_load_freezes": 0,
+    "opening_hold_target_points": null
+  },
+  "last_seconds": [
+    {
+      "time_s": 145.01975169700745,
+      "old_model": 46.377693371091674,
+      "old_sent": 46.328029375765,
+      "old_actual": 45.28763769889841,
+      "new_target": 46.32802937576499,
+      "new_raw": 1170,
+      "old_load": -44
+    },
+    {
+      "time_s": 145.48357881300035,
+      "old_model": 47.54718220094057,
+      "old_sent": 47.49082007343941,
+      "old_actual": 47.735618115055075,
+      "new_target": 47.490820073439416,
+      "new_raw": 1189,
+      "old_load": -52
+    },
+    {
+      "time_s": 145.9335892609961,
+      "old_model": 46.43205027319002,
+      "old_sent": 46.38922888616891,
+      "old_actual": 47.06242350061199,
+      "new_target": 46.38922888616891,
+      "new_raw": 1171,
+      "old_load": 20
+    },
+    {
+      "time_s": 146.40335117799987,
+      "old_model": 40.514718234148624,
+      "old_sent": 40.514075887392906,
+      "old_actual": 40.45287637698898,
+      "new_target": 40.5140758873929,
+      "new_raw": 1075,
+      "old_load": -32
+    },
+    {
+      "time_s": 146.86937323999882,
+      "old_model": 44.935595197965554,
+      "old_sent": 44.92044063647491,
+      "old_actual": 43.512851897184824,
+      "new_target": 44.92044063647491,
+      "new_raw": 1147,
+      "old_load": -24
+    },
+    {
+      "time_s": 147.33649223099928,
+      "old_model": 47.96579398596463,
+      "old_sent": 47.91921664626683,
+      "old_actual": 46.94002447980416,
+      "new_target": 47.91921664626683,
+      "new_raw": 1196,
+      "old_load": -56
+    },
+    {
+      "time_s": 147.79470644600224,
+      "old_model": 45.89103045955089,
+      "old_sent": 45.83843329253366,
+      "old_actual": 46.87882496940025,
+      "new_target": 45.83843329253366,
+      "new_raw": 1162,
+      "old_load": 40
+    },
+    {
+      "time_s": 148.2581088470033,
+      "old_model": 46.104250354460945,
+      "old_sent": 46.083231334149325,
+      "old_actual": 45.96083231334149,
+      "new_target": 46.083231334149325,
+      "new_raw": 1166,
+      "old_load": 0
+    },
+    {
+      "time_s": 148.72753552500217,
+      "old_model": 46.00590268752071,
+      "old_sent": 45.96083231334149,
+      "old_actual": 46.634026927784575,
+      "new_target": 45.96083231334149,
+      "new_raw": 1164,
+      "old_load": 40
+    },
+    {
+      "time_s": 149.18452109600184,
+      "old_model": 45.486959007343835,
+      "old_sent": 45.47123623011016,
+      "old_actual": 43.329253365973074,
+      "new_target": 45.47123623011016,
+      "new_raw": 1156,
+      "old_load": -168
+    },
+    {
+      "time_s": 149.64807364800072,
+      "old_model": 53.5922076600076,
+      "old_sent": 53.54957160342717,
+      "old_actual": 49.87760097919217,
+      "new_target": 49.57160342717258,
+      "new_raw": 1223,
+      "old_load": -228
+    },
+    {
+      "time_s": 150.11192966499948,
+      "old_model": 63.05560428453659,
+      "old_sent": 63.035495716034276,
+      "old_actual": 50.30599755201959,
+      "new_target": 49.57160342717258,
+      "new_raw": 1223,
+      "old_load": -500
+    },
+    {
+      "time_s": 150.56224911900063,
+      "old_model": 60.94465309810906,
+      "old_sent": 60.89351285189718,
+      "old_actual": 50.30599755201959,
+      "new_target": 49.57160342717258,
+      "new_raw": 1223,
+      "old_load": -500
+    },
+    {
+      "time_s": 151.01882101599767,
+      "old_model": 60.050961339878114,
+      "old_sent": 60.036719706242344,
+      "old_actual": 50.30599755201959,
+      "new_target": 49.57160342717258,
+      "new_raw": 1223,
+      "old_load": -500
+    },
+    {
+      "time_s": 151.4720151490037,
+      "old_model": 61.20015200812499,
+      "old_sent": 61.19951040391677,
+      "old_actual": 50.30599755201959,
+      "new_target": 49.57160342717258,
+      "new_raw": 1223,
+      "old_load": -500
+    }
+  ],
+  "attempts_model": {
+    "closures": [
+      {
+        "time_s": 78.97381506300007,
+        "step": 3403,
+        "pose": [
+          3.640113916785122,
+          -23.38588485974215,
+          12.089314523813215,
+          67.11180979843903,
+          -4.858265266349532,
+          36.624171784713724
+        ]
+      },
+      {
+        "time_s": 82.41955537800095,
+        "step": 3558,
+        "pose": [
+          3.9042215211285862,
+          -21.53392624190058,
+          5.032545778222595,
+          70.69773673643276,
+          -4.639827971289787,
+          37.70535649908387
+        ]
+      },
+      {
+        "time_s": 101.49495834199479,
+        "step": 4419,
+        "pose": [
+          -0.7999167529597097,
+          -31.90380637308093,
+          24.090814092260402,
+          46.43374444292631,
+          1.7871206887366216,
+          12.474274753265101
+        ]
+      }
+    ],
+    "visit_starts_s": [
+      78.97381506300007,
+      101.49495834199479
+    ],
+    "definition": "open excursion>=10points, fall>=max(5,20%excursion), blue pose range and .3s persistence; closures <8s apart grouped",
+    "physical_contact_count": "UNVERIFIED_NO_FULL_VIDEO"
+  },
+  "attempts_actual": {
+    "closures": [
+      {
+        "time_s": 79.07883529100218,
+        "step": 3408,
+        "pose": [
+          3.7362637362637363,
+          -22.725274725274726,
+          13.31868131868132,
+          67.03296703296704,
+          -5.230769230769231,
+          36.71970624235006
+        ]
+      },
+      {
+        "time_s": 82.52408580100746,
+        "step": 3563,
+        "pose": [
+          3.7362637362637363,
+          -21.054945054945055,
+          6.461538461538462,
+          70.81318681318682,
+          -4.8791208791208796,
+          38.98408812729498
+        ]
+      },
+      {
+        "time_s": 101.5787938519934,
+        "step": 4423,
+        "pose": [
+          -0.5714285714285714,
+          -32.13186813186813,
+          29.23076923076923,
+          46.285714285714285,
+          1.4505494505494505,
+          12.056303549571604
+        ]
+      }
+    ],
+    "visit_starts_s": [
+      79.07883529100218,
+      101.5787938519934
+    ],
+    "definition": "open excursion>=10points, fall>=max(5,20%excursion), blue pose range and .3s persistence; closures <8s apart grouped",
+    "physical_contact_count": "UNVERIFIED_NO_FULL_VIDEO"
+  },
+  "physical_motor_writes": 0,
+  "limitation": "new target arithmetic only; original observations and overload remain original evidence, not counterfactual measured movement"
+}

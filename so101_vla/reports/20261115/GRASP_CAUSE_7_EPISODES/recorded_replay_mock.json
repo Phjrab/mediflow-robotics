@@ -1,0 +1,59 @@
+{
+  "status": "RUN_COMPLETE",
+  "reason": null,
+  "replay": true,
+  "model_used": false,
+  "steps": 2209,
+  "speed": 0.33,
+  "source_frames": 438,
+  "planned_duration_s": 44.14141414141414,
+  "elapsed_s": 44.20000000000131,
+  "hold": {
+    "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+  },
+  "tracking": {
+    "shoulder_pan": {
+      "sent_span": 16.0,
+      "observed_span": 16.0,
+      "span_ratio": 1.0
+    },
+    "shoulder_lift": {
+      "sent_span": 126.24175824175825,
+      "observed_span": 125.53846153846155,
+      "span_ratio": 0.9944289693593314
+    },
+    "elbow_flex": {
+      "sent_span": 165.80219780219778,
+      "observed_span": 165.71428571428572,
+      "span_ratio": 0.9994697773064689
+    },
+    "wrist_flex": {
+      "sent_span": 66.19780219780219,
+      "observed_span": 66.19780219780219,
+      "span_ratio": 1.0
+    },
+    "wrist_roll": {
+      "sent_span": 14.505494505494505,
+      "observed_span": 15.12087912087912,
+      "span_ratio": 1.0424242424242425
+    },
+    "gripper": {
+      "sent_span": 38.06609547123623,
+      "observed_span": 38.06609547123623,
+      "span_ratio": 1.0
+    }
+  },
+  "range_clip_counts": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 537,
+    "wrist_flex": 75,
+    "wrist_roll": 0,
+    "gripper": 0
+  },
+  "transmission_hz": 49.999999999998515,
+  "final_rate_target": 50,
+  "task_success": "OPERATOR_REVIEW_REQUIRED",
+  "physical_motor_writes": 0,
+  "torque_writes": []
+}

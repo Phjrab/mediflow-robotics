@@ -1,0 +1,233 @@
+{
+  "status": "BULK_TRANSPORT_READONLY_COMPLETE",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "port_closed": true,
+  "cycles": 493,
+  "layout": "combined",
+  "read_order": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    5
+  ],
+  "mean_work_s": 0.020229392730149866,
+  "max_work_s": 0.0435939769995457,
+  "last_positions_raw": {
+    "shoulder_pan": 2058,
+    "shoulder_lift": 831,
+    "elbow_flex": 3080,
+    "wrist_flex": 2563,
+    "gripper": 465,
+    "wrist_roll": 1832
+  },
+  "temperatures": {
+    "shoulder_pan": 33,
+    "shoulder_lift": 34,
+    "elbow_flex": 31,
+    "wrist_flex": 33,
+    "wrist_roll": 31,
+    "gripper": 35
+  },
+  "torque": {
+    "shoulder_pan": 1,
+    "shoulder_lift": 1,
+    "elbow_flex": 1,
+    "wrist_flex": 1,
+    "gripper": 1,
+    "wrist_roll": 1
+  },
+  "modes": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 0,
+    "wrist_flex": 0,
+    "gripper": 0,
+    "wrist_roll": 0
+  },
+  "communication": {
+    "by_joint": {
+      "shoulder_pan": {
+        "-6": 0,
+        "-7": 0
+      },
+      "shoulder_lift": {
+        "-6": 0,
+        "-7": 0
+      },
+      "elbow_flex": {
+        "-6": 0,
+        "-7": 0
+      },
+      "wrist_flex": {
+        "-6": 0,
+        "-7": 2
+      },
+      "wrist_roll": {
+        "-6": 0,
+        "-7": 0
+      },
+      "gripper": {
+        "-6": 1,
+        "-7": 0
+      }
+    },
+    "errors": [
+      {
+        "event": "communication_error",
+        "monotonic_s": 17138.87291219,
+        "unix": 1794737053.0624478,
+        "axes": [
+          "gripper"
+        ],
+        "operation": "read:63:1",
+        "communication": -6,
+        "observed": {
+          "unix": 1794737053.0418608,
+          "request_started_monotonic_s": 17138.852326214,
+          "expected_id": 6,
+          "address": 63,
+          "expected_bytes": 1,
+          "raw_hex": "",
+          "communication": -6,
+          "status": 0,
+          "observed_monotonic_s": 17138.872649493
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.03660608299833257,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "gripper": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17142.265726411,
+        "unix": 1794737056.4552622,
+        "axes": [
+          "wrist_flex"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 4,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0428000014c8500ac8c801fe070a00000000e803000000000001030a00001c047a21000000070a0000b8",
+          "received_id": 4,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.01898202200027299,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_flex": 1
+        },
+        "phase": "normal"
+      },
+      {
+        "event": "communication_error",
+        "monotonic_s": 17145.127030445,
+        "unix": 1794737059.316566,
+        "axes": [
+          "wrist_flex"
+        ],
+        "operation": "read:33:38",
+        "communication": -7,
+        "observed": {
+          "expected_id": 4,
+          "expected_bytes": 38,
+          "communication": -7,
+          "raw_hex": "ffff0428000014c8500ac8c801fe070a00000000e803000000000001030a00001c047a21000000070a0100b7",
+          "received_id": 4,
+          "checksum_valid": false
+        },
+        "pose": {
+          "state": [
+            -3.8241758241758244,
+            -98.76923076923077,
+            96.3956043956044,
+            42.417582417582416,
+            -2.857142857142857,
+            3.182374541003672
+          ],
+          "present_raw": {
+            "shoulder_pan": 2058,
+            "shoulder_lift": 831,
+            "elbow_flex": 3080,
+            "wrist_flex": 2563,
+            "gripper": 465,
+            "wrist_roll": 1832
+          },
+          "pose_age_s": 0.01890656400064472,
+          "wrist_roll_deg": -2.857142857142857,
+          "wrist_flex_deg": 42.417582417582416
+        },
+        "streak": {
+          "wrist_flex": 1
+        },
+        "phase": "normal"
+      }
+    ],
+    "tx_packets": 3454,
+    "rx_packets": 5919,
+    "tx_bytes": 30590,
+    "rx_bytes": 150946,
+    "elapsed_s": 10.11490014300216,
+    "tx_packets_per_s": 341.4764309254795,
+    "total_packets_per_s": 926.6527466892065,
+    "tx_gap_s": {
+      "min": 0.00047252700096578337,
+      "max": 0.02319463100138819,
+      "mean": 0.002900092327830988
+    },
+    "settings": {
+      "max_retries": 3,
+      "consecutive_failures": 5,
+      "no_response_s": 0.2,
+      "hold_attempts": 5,
+      "bulk_address": 33,
+      "bulk_width": 38
+    },
+    "halt_reason": null
+  }
+}

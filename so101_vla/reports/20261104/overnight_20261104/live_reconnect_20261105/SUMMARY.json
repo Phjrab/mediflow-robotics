@@ -1,0 +1,89 @@
+{
+  "model_load_seconds": 33.997420776999206,
+  "parameter_dtypes": {
+    "torch.float32": 225,
+    "torch.bfloat16": 275
+  },
+  "saved_use_amp": true,
+  "modes": [
+    {
+      "mode": "no_autocast",
+      "status": "MEASURED",
+      "first_seconds": 2.94307572300022,
+      "warm_mean": 1.979822825199517,
+      "warm_max": 1.9978572280015214,
+      "warm_median": 1.9813736350006366,
+      "warm_repeats": 5,
+      "peak_gpu_bytes": 1280764928,
+      "rss_bytes": 3869593600,
+      "system_available_bytes": 2858418176,
+      "jetson_temperatures": {
+        "cpu-thermal": 49.875,
+        "soc2-thermal": 47.468,
+        "soc0-thermal": 47.875,
+        "gpu-thermal": 48.968,
+        "tj-thermal": 49.875,
+        "soc1-thermal": 48.156
+      },
+      "chunk_consumption_seconds": 1.6666666666666667,
+      "within_nominal_consumption": false
+    },
+    {
+      "mode": "cuda_fp16",
+      "status": "MEASURED",
+      "first_seconds": 1.6343302510031208,
+      "warm_mean": 1.3446767270004785,
+      "warm_max": 1.364206786001887,
+      "warm_median": 1.3406599240006472,
+      "warm_repeats": 5,
+      "peak_gpu_bytes": 1274842112,
+      "rss_bytes": 4059426816,
+      "system_available_bytes": 2682683392,
+      "jetson_temperatures": {
+        "cpu-thermal": 50.656,
+        "soc2-thermal": 48.031,
+        "soc0-thermal": 48.125,
+        "gpu-thermal": 49.687,
+        "tj-thermal": 50.656,
+        "soc1-thermal": 48.718
+      },
+      "chunk_consumption_seconds": 1.6666666666666667,
+      "within_nominal_consumption": true
+    },
+    {
+      "mode": "cuda_bf16",
+      "status": "MEASURED",
+      "first_seconds": 1.333121020001272,
+      "warm_mean": 1.238848900800076,
+      "warm_max": 1.2457406210014597,
+      "warm_median": 1.2389761740014364,
+      "warm_repeats": 5,
+      "peak_gpu_bytes": 1274842112,
+      "rss_bytes": 4077113344,
+      "system_available_bytes": 2661675008,
+      "jetson_temperatures": {
+        "cpu-thermal": 50.843,
+        "soc2-thermal": 48.093,
+        "soc0-thermal": 48.5,
+        "gpu-thermal": 49.531,
+        "tj-thermal": 50.843,
+        "soc1-thermal": 48.906
+      },
+      "chunk_consumption_seconds": 1.6666666666666667,
+      "within_nominal_consumption": true
+    }
+  ],
+  "camera_mapping": {
+    "observation.images.end_effector": "observation.images.camera1",
+    "observation.images.ceiling_vertical": "observation.images.camera2",
+    "observation.images.ceiling_oblique": "observation.images.camera3"
+  },
+  "seed": 101,
+  "serial_stop_present": true,
+  "state_source": "RECORDED_DATASET_ONLY",
+  "current_robot_state": "NOT_READ",
+  "hardware_execution": "NOT_RUN",
+  "register_writes": 0,
+  "deployment_precision_changed": false,
+  "limitation": "오프라인 수치/지연이며 실기 성공률 아님. 자동 정밀도 선택 없음"
+}

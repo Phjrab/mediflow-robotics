@@ -1,0 +1,696 @@
+{
+  "paired-selected-30": {
+    "axes": {
+      "1": {
+        "samples": 600,
+        "temperature_min_median_max": [
+          25,
+          25.0,
+          26
+        ],
+        "voltage_min_max_v": [
+          12.1,
+          12.2
+        ],
+        "spikes_ge_median_plus8": 0,
+        "spike_neighbors": []
+      },
+      "2": {
+        "samples": 600,
+        "temperature_min_median_max": [
+          26,
+          27.0,
+          27
+        ],
+        "voltage_min_max_v": [
+          12.1,
+          12.2
+        ],
+        "spikes_ge_median_plus8": 0,
+        "spike_neighbors": []
+      },
+      "3": {
+        "samples": 600,
+        "temperature_min_median_max": [
+          25,
+          26.0,
+          28
+        ],
+        "voltage_min_max_v": [
+          12.2,
+          12.2
+        ],
+        "spikes_ge_median_plus8": 0,
+        "spike_neighbors": []
+      },
+      "4": {
+        "samples": 600,
+        "temperature_min_median_max": [
+          25,
+          26.0,
+          30
+        ],
+        "voltage_min_max_v": [
+          12.1,
+          12.2
+        ],
+        "spikes_ge_median_plus8": 0,
+        "spike_neighbors": []
+      },
+      "5": {
+        "samples": 600,
+        "temperature_min_median_max": [
+          27,
+          28.0,
+          38
+        ],
+        "voltage_min_max_v": [
+          11.7,
+          12.2
+        ],
+        "spikes_ge_median_plus8": 1,
+        "spike_neighbors": [
+          [
+            {
+              "event": "read",
+              "sequence": 941,
+              "phase": "paired",
+              "cycle": 149,
+              "id": 5,
+              "address": 62,
+              "width": 2,
+              "started_ns": 86146702297053,
+              "monotonic_ns": 86146702637031,
+              "elapsed_ns": 339978,
+              "timeout_ms": 150,
+              "value": 28,
+              "voltage_raw": 122,
+              "status": 0,
+              "vendor_error": 0,
+              "os_error": 0,
+              "os_operation": "",
+              "poll_revents": 1,
+              "queued_bytes": 0,
+              "tx_complete": true,
+              "deadline_expired": false,
+              "interrupted": false,
+              "received_bytes": 8,
+              "tx_hex": "ffff0504023e02b4",
+              "rx_hex": "ffff0504007a1c60",
+              "reason": ""
+            },
+            {
+              "event": "read",
+              "sequence": 953,
+              "phase": "paired",
+              "cycle": 150,
+              "id": 5,
+              "address": 62,
+              "width": 2,
+              "started_ns": 86146737804457,
+              "monotonic_ns": 86146738160403,
+              "elapsed_ns": 355946,
+              "timeout_ms": 150,
+              "value": 38,
+              "voltage_raw": 122,
+              "status": 0,
+              "vendor_error": 0,
+              "os_error": 0,
+              "os_operation": "",
+              "poll_revents": 1,
+              "queued_bytes": 0,
+              "tx_complete": true,
+              "deadline_expired": false,
+              "interrupted": false,
+              "received_bytes": 8,
+              "tx_hex": "ffff0504023e02b4",
+              "rx_hex": "ffff0504007a2656",
+              "reason": ""
+            },
+            {
+              "event": "read",
+              "sequence": 959,
+              "phase": "paired",
+              "cycle": 151,
+              "id": 5,
+              "address": 62,
+              "width": 2,
+              "started_ns": 86146768952282,
+              "monotonic_ns": 86146769278819,
+              "elapsed_ns": 326537,
+              "timeout_ms": 150,
+              "value": 28,
+              "voltage_raw": 122,
+              "status": 0,
+              "vendor_error": 0,
+              "os_error": 0,
+              "os_operation": "",
+              "poll_revents": 1,
+              "queued_bytes": 0,
+              "tx_complete": true,
+              "deadline_expired": false,
+              "interrupted": false,
+              "received_bytes": 8,
+              "tx_hex": "ffff0504023e02b4",
+              "rx_hex": "ffff0504007a1c60",
+              "reason": ""
+            }
+          ]
+        ]
+      },
+      "6": {
+        "samples": 600,
+        "temperature_min_median_max": [
+          29,
+          30.0,
+          37
+        ],
+        "voltage_min_max_v": [
+          11.2,
+          12.3
+        ],
+        "spikes_ge_median_plus8": 0,
+        "spike_neighbors": []
+      }
+    },
+    "final": [
+      {
+        "id": 1,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 1,
+        "address": 62,
+        "value": 25,
+        "voltage_raw": 122
+      },
+      {
+        "id": 2,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 2,
+        "address": 62,
+        "value": 27,
+        "voltage_raw": 122
+      },
+      {
+        "id": 3,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 3,
+        "address": 62,
+        "value": 26,
+        "voltage_raw": 122
+      },
+      {
+        "id": 4,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 4,
+        "address": 62,
+        "value": 26,
+        "voltage_raw": 122
+      },
+      {
+        "id": 5,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 5,
+        "address": 62,
+        "value": 28,
+        "voltage_raw": 122
+      },
+      {
+        "id": 6,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 6,
+        "address": 62,
+        "value": 30,
+        "voltage_raw": 122
+      }
+    ]
+  },
+  "paired-target-180": {
+    "axes": {
+      "6": {
+        "samples": 3600,
+        "temperature_min_median_max": [
+          30,
+          31.0,
+          44
+        ],
+        "voltage_min_max_v": [
+          10.6,
+          12.3
+        ],
+        "spikes_ge_median_plus8": 3,
+        "spike_neighbors": [
+          [
+            {
+              "event": "read",
+              "sequence": 976,
+              "phase": "paired",
+              "cycle": 927,
+              "id": 6,
+              "address": 62,
+              "width": 2,
+              "started_ns": 86166903963409,
+              "monotonic_ns": 86166904310555,
+              "elapsed_ns": 347146,
+              "timeout_ms": 150,
+              "value": 31,
+              "voltage_raw": 122,
+              "status": 0,
+              "vendor_error": 0,
+              "os_error": 0,
+              "os_operation": "",
+              "poll_revents": 1,
+              "queued_bytes": 0,
+              "tx_complete": true,
+              "deadline_expired": false,
+              "interrupted": false,
+              "received_bytes": 8,
+              "tx_hex": "ffff0604023e02b3",
+              "rx_hex": "ffff0604007a1f5c",
+              "reason": ""
+            },
+            {
+              "event": "read",
+              "sequence": 977,
+              "phase": "paired",
+              "cycle": 928,
+              "id": 6,
+              "address": 62,
+              "width": 2,
+              "started_ns": 86166909525454,
+              "monotonic_ns": 86166909883832,
+              "elapsed_ns": 358378,
+              "timeout_ms": 150,
+              "value": 41,
+              "voltage_raw": 122,
+              "status": 0,
+              "vendor_error": 0,
+              "os_error": 0,
+              "os_operation": "",
+              "poll_revents": 1,
+              "queued_bytes": 0,
+              "tx_complete": true,
+              "deadline_expired": false,
+              "interrupted": false,
+              "received_bytes": 8,
+              "tx_hex": "ffff0604023e02b3",
+              "rx_hex": "ffff0604007a2952",
+              "reason": ""
+            },
+            {
+              "event": "read",
+              "sequence": 978,
+              "phase": "paired",
+              "cycle": 929,
+              "id": 6,
+              "address": 62,
+              "width": 2,
+              "started_ns": 86166915091212,
+              "monotonic_ns": 86166915490103,
+              "elapsed_ns": 398891,
+              "timeout_ms": 150,
+              "value": 31,
+              "voltage_raw": 122,
+              "status": 0,
+              "vendor_error": 0,
+              "os_error": 0,
+              "os_operation": "",
+              "poll_revents": 1,
+              "queued_bytes": 0,
+              "tx_complete": true,
+              "deadline_expired": false,
+              "interrupted": false,
+              "received_bytes": 8,
+              "tx_hex": "ffff0604023e02b3",
+              "rx_hex": "ffff0604007a1f5c",
+              "reason": ""
+            }
+          ],
+          [
+            {
+              "event": "read",
+              "sequence": 2641,
+              "phase": "paired",
+              "cycle": 2538,
+              "id": 6,
+              "address": 62,
+              "width": 2,
+              "started_ns": 86175853964697,
+              "monotonic_ns": 86175854317603,
+              "elapsed_ns": 352906,
+              "timeout_ms": 150,
+              "value": 31,
+              "voltage_raw": 122,
+              "status": 0,
+              "vendor_error": 0,
+              "os_error": 0,
+              "os_operation": "",
+              "poll_revents": 1,
+              "queued_bytes": 0,
+              "tx_complete": true,
+              "deadline_expired": false,
+              "interrupted": false,
+              "received_bytes": 8,
+              "tx_hex": "ffff0604023e02b3",
+              "rx_hex": "ffff0604007a1f5c",
+              "reason": ""
+            },
+            {
+              "event": "read",
+              "sequence": 2642,
+              "phase": "paired",
+              "cycle": 2539,
+              "id": 6,
+              "address": 62,
+              "width": 2,
+              "started_ns": 86175859519286,
+              "monotonic_ns": 86175859856032,
+              "elapsed_ns": 336746,
+              "timeout_ms": 150,
+              "value": 44,
+              "voltage_raw": 122,
+              "status": 0,
+              "vendor_error": 0,
+              "os_error": 0,
+              "os_operation": "",
+              "poll_revents": 1,
+              "queued_bytes": 0,
+              "tx_complete": true,
+              "deadline_expired": false,
+              "interrupted": false,
+              "received_bytes": 8,
+              "tx_hex": "ffff0604023e02b3",
+              "rx_hex": "ffff0604007a2c4f",
+              "reason": ""
+            },
+            {
+              "event": "read",
+              "sequence": 2643,
+              "phase": "paired",
+              "cycle": 2540,
+              "id": 6,
+              "address": 62,
+              "width": 2,
+              "started_ns": 86175865075475,
+              "monotonic_ns": 86175865415325,
+              "elapsed_ns": 339850,
+              "timeout_ms": 150,
+              "value": 31,
+              "voltage_raw": 122,
+              "status": 0,
+              "vendor_error": 0,
+              "os_error": 0,
+              "os_operation": "",
+              "poll_revents": 1,
+              "queued_bytes": 0,
+              "tx_complete": true,
+              "deadline_expired": false,
+              "interrupted": false,
+              "received_bytes": 8,
+              "tx_hex": "ffff0604023e02b3",
+              "rx_hex": "ffff0604007a1f5c",
+              "reason": ""
+            }
+          ],
+          [
+            {
+              "event": "read",
+              "sequence": 3517,
+              "phase": "paired",
+              "cycle": 3390,
+              "id": 6,
+              "address": 62,
+              "width": 2,
+              "started_ns": 86180587300689,
+              "monotonic_ns": 86180587630459,
+              "elapsed_ns": 329770,
+              "timeout_ms": 150,
+              "value": 31,
+              "voltage_raw": 122,
+              "status": 0,
+              "vendor_error": 0,
+              "os_error": 0,
+              "os_operation": "",
+              "poll_revents": 1,
+              "queued_bytes": 0,
+              "tx_complete": true,
+              "deadline_expired": false,
+              "interrupted": false,
+              "received_bytes": 8,
+              "tx_hex": "ffff0604023e02b3",
+              "rx_hex": "ffff0604007a1f5c",
+              "reason": ""
+            },
+            {
+              "event": "read",
+              "sequence": 3518,
+              "phase": "paired",
+              "cycle": 3391,
+              "id": 6,
+              "address": 62,
+              "width": 2,
+              "started_ns": 86180592858735,
+              "monotonic_ns": 86180593209625,
+              "elapsed_ns": 350890,
+              "timeout_ms": 150,
+              "value": 44,
+              "voltage_raw": 122,
+              "status": 0,
+              "vendor_error": 0,
+              "os_error": 0,
+              "os_operation": "",
+              "poll_revents": 1,
+              "queued_bytes": 0,
+              "tx_complete": true,
+              "deadline_expired": false,
+              "interrupted": false,
+              "received_bytes": 8,
+              "tx_hex": "ffff0604023e02b3",
+              "rx_hex": "ffff0604007a2c4f",
+              "reason": ""
+            },
+            {
+              "event": "read",
+              "sequence": 3519,
+              "phase": "paired",
+              "cycle": 3392,
+              "id": 6,
+              "address": 62,
+              "width": 2,
+              "started_ns": 86180598413004,
+              "monotonic_ns": 86180598757686,
+              "elapsed_ns": 344682,
+              "timeout_ms": 150,
+              "value": 31,
+              "voltage_raw": 122,
+              "status": 0,
+              "vendor_error": 0,
+              "os_error": 0,
+              "os_operation": "",
+              "poll_revents": 1,
+              "queued_bytes": 0,
+              "tx_complete": true,
+              "deadline_expired": false,
+              "interrupted": false,
+              "received_bytes": 8,
+              "tx_hex": "ffff0604023e02b3",
+              "rx_hex": "ffff0604007a1f5c",
+              "reason": ""
+            }
+          ]
+        ]
+      }
+    },
+    "final": [
+      {
+        "id": 1,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 1,
+        "address": 62,
+        "value": 26,
+        "voltage_raw": 122
+      },
+      {
+        "id": 2,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 2,
+        "address": 62,
+        "value": 27,
+        "voltage_raw": 122
+      },
+      {
+        "id": 3,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 3,
+        "address": 62,
+        "value": 26,
+        "voltage_raw": 122
+      },
+      {
+        "id": 4,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 4,
+        "address": 62,
+        "value": 26,
+        "voltage_raw": 122
+      },
+      {
+        "id": 5,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 5,
+        "address": 62,
+        "value": 28,
+        "voltage_raw": 122
+      },
+      {
+        "id": 6,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 6,
+        "address": 62,
+        "value": 31,
+        "voltage_raw": 122
+      }
+    ]
+  },
+  "bracket-target-60": {
+    "axes": {
+      "6": {
+        "samples": 1200,
+        "temperature_min_median_max": [
+          30,
+          31.0,
+          36
+        ],
+        "voltage_min_max_v": [
+          10.7,
+          12.3
+        ],
+        "spikes_ge_median_plus8": 0,
+        "spike_neighbors": []
+      }
+    },
+    "final": [
+      {
+        "id": 1,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 1,
+        "address": 62,
+        "value": 26,
+        "voltage_raw": 122
+      },
+      {
+        "id": 2,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 2,
+        "address": 62,
+        "value": 27,
+        "voltage_raw": 122
+      },
+      {
+        "id": 3,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 3,
+        "address": 62,
+        "value": 27,
+        "voltage_raw": 122
+      },
+      {
+        "id": 4,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 4,
+        "address": 62,
+        "value": 26,
+        "voltage_raw": 122
+      },
+      {
+        "id": 5,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 5,
+        "address": 62,
+        "value": 28,
+        "voltage_raw": 122
+      },
+      {
+        "id": 6,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1
+      },
+      {
+        "id": 6,
+        "address": 62,
+        "value": 31,
+        "voltage_raw": 123
+      }
+    ]
+  },
+  "validated_reads": 11232,
+  "motor_register_writes": 0
+}

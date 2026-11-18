@@ -1,0 +1,1470 @@
+{
+  "validated_read_pairs": 11232,
+  "profiles": {
+    "bracket_id6_60.jsonl": {
+      "read_pairs": 3744,
+      "stops": [],
+      "joints": {},
+      "bracket": {
+        "samples": 1200,
+        "temperature_range_c": [
+          31,
+          43
+        ],
+        "temperature_median_c": 32.0,
+        "voltage_range_v": [
+          10.7,
+          12.2
+        ],
+        "spike_cycles": [
+          [
+            {
+              "monotonic_ns": 33772357957426,
+              "id": 6,
+              "address": 62,
+              "width": 1,
+              "value": 122,
+              "voltage_raw": 122,
+              "phase": "voltage_before",
+              "cycle": 680,
+              "vendor_error": 0,
+              "status": 0,
+              "tx_hex": "ffff0604023e01b4",
+              "rx_hex": "ffff0603007a7c"
+            },
+            {
+              "monotonic_ns": 33772358331005,
+              "id": 6,
+              "address": 63,
+              "width": 1,
+              "value": 43,
+              "voltage_raw": -1,
+              "phase": "temperature",
+              "cycle": 680,
+              "vendor_error": 0,
+              "status": 0,
+              "tx_hex": "ffff0604023f01b3",
+              "rx_hex": "ffff0603002bcb"
+            },
+            {
+              "monotonic_ns": 33772358731113,
+              "id": 6,
+              "address": 62,
+              "width": 1,
+              "value": 122,
+              "voltage_raw": 122,
+              "phase": "voltage_after",
+              "cycle": 680,
+              "vendor_error": 0,
+              "status": 0,
+              "tx_hex": "ffff0604023e01b4",
+              "rx_hex": "ffff0603007a7c"
+            }
+          ],
+          [
+            {
+              "monotonic_ns": 33780357966176,
+              "id": 6,
+              "address": 62,
+              "width": 1,
+              "value": 122,
+              "voltage_raw": 122,
+              "phase": "voltage_before",
+              "cycle": 1160,
+              "vendor_error": 0,
+              "status": 0,
+              "tx_hex": "ffff0604023e01b4",
+              "rx_hex": "ffff0603007a7c"
+            },
+            {
+              "monotonic_ns": 33780358303754,
+              "id": 6,
+              "address": 63,
+              "width": 1,
+              "value": 41,
+              "voltage_raw": -1,
+              "phase": "temperature",
+              "cycle": 1160,
+              "vendor_error": 0,
+              "status": 0,
+              "tx_hex": "ffff0604023f01b3",
+              "rx_hex": "ffff06030029cd"
+            },
+            {
+              "monotonic_ns": 33780358628500,
+              "id": 6,
+              "address": 62,
+              "width": 1,
+              "value": 122,
+              "voltage_raw": 122,
+              "phase": "voltage_after",
+              "cycle": 1160,
+              "vendor_error": 0,
+              "status": 0,
+              "tx_hex": "ffff0604023e01b4",
+              "rx_hex": "ffff0603007a7c"
+            }
+          ]
+        ]
+      },
+      "final_snapshot": [
+        {
+          "monotonic_ns": 33781024625851,
+          "id": 1,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0104022801cf",
+          "rx_hex": "ffff01030000fb"
+        },
+        {
+          "monotonic_ns": 33781025012903,
+          "id": 1,
+          "address": 62,
+          "width": 2,
+          "value": 29,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0104023e02b8",
+          "rx_hex": "ffff0104007a1d63"
+        },
+        {
+          "monotonic_ns": 33781025364369,
+          "id": 2,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0204022801ce",
+          "rx_hex": "ffff02030000fa"
+        },
+        {
+          "monotonic_ns": 33781025799646,
+          "id": 2,
+          "address": 62,
+          "width": 2,
+          "value": 30,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0204023e02b7",
+          "rx_hex": "ffff0204007a1e61"
+        },
+        {
+          "monotonic_ns": 33781026124008,
+          "id": 3,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0304022801cd",
+          "rx_hex": "ffff03030000f9"
+        },
+        {
+          "monotonic_ns": 33781026462354,
+          "id": 3,
+          "address": 62,
+          "width": 2,
+          "value": 29,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0304023e02b6",
+          "rx_hex": "ffff0304007a1d61"
+        },
+        {
+          "monotonic_ns": 33781026782012,
+          "id": 4,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0404022801cc",
+          "rx_hex": "ffff04030000f8"
+        },
+        {
+          "monotonic_ns": 33781027131590,
+          "id": 4,
+          "address": 62,
+          "width": 2,
+          "value": 30,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0404023e02b5",
+          "rx_hex": "ffff0404007a1e5f"
+        },
+        {
+          "monotonic_ns": 33781027468593,
+          "id": 5,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0504022801cb",
+          "rx_hex": "ffff05030000f7"
+        },
+        {
+          "monotonic_ns": 33781027820123,
+          "id": 5,
+          "address": 62,
+          "width": 2,
+          "value": 29,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0504023e02b4",
+          "rx_hex": "ffff0504007a1d5f"
+        },
+        {
+          "monotonic_ns": 33781028147429,
+          "id": 6,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604022801ca",
+          "rx_hex": "ffff06030000f6"
+        },
+        {
+          "monotonic_ns": 33781028508368,
+          "id": 6,
+          "address": 62,
+          "width": 2,
+          "value": 32,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023e02b3",
+          "rx_hex": "ffff0604007a205b"
+        }
+      ]
+    },
+    "paired_all_30.jsonl": {
+      "read_pairs": 3744,
+      "stops": [],
+      "joints": {
+        "shoulder_pan": {
+          "samples": 600,
+          "temperature_range_c": [
+            29,
+            29
+          ],
+          "temperature_median_c": 29.0,
+          "voltage_range_v": [
+            12.1,
+            12.2
+          ],
+          "voltage_median_v": 12.2,
+          "temperature_spikes_ge_median_plus8": 0,
+          "temperature_spike_neighbors": [],
+          "voltage_dips_ge_0_2v": 0,
+          "voltage_dip_neighbors": [],
+          "same_reply_temperature_spike_and_voltage_dip": 0
+        },
+        "shoulder_lift": {
+          "samples": 600,
+          "temperature_range_c": [
+            30,
+            31
+          ],
+          "temperature_median_c": 30.0,
+          "voltage_range_v": [
+            12.2,
+            12.2
+          ],
+          "voltage_median_v": 12.2,
+          "temperature_spikes_ge_median_plus8": 0,
+          "temperature_spike_neighbors": [],
+          "voltage_dips_ge_0_2v": 0,
+          "voltage_dip_neighbors": [],
+          "same_reply_temperature_spike_and_voltage_dip": 0
+        },
+        "elbow_flex": {
+          "samples": 600,
+          "temperature_range_c": [
+            28,
+            30
+          ],
+          "temperature_median_c": 29.0,
+          "voltage_range_v": [
+            12.0,
+            12.2
+          ],
+          "voltage_median_v": 12.2,
+          "temperature_spikes_ge_median_plus8": 0,
+          "temperature_spike_neighbors": [],
+          "voltage_dips_ge_0_2v": 1,
+          "voltage_dip_neighbors": [
+            [
+              {
+                "monotonic_ns": 33746795412677,
+                "id": 3,
+                "address": 62,
+                "width": 2,
+                "value": 29,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 179,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0304023e02b6",
+                "rx_hex": "ffff0304007a1d61"
+              },
+              {
+                "monotonic_ns": 33746830820369,
+                "id": 3,
+                "address": 62,
+                "width": 2,
+                "value": 29,
+                "voltage_raw": 120,
+                "phase": "paired",
+                "cycle": 180,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0304023e02b6",
+                "rx_hex": "ffff030400781d63"
+              },
+              {
+                "monotonic_ns": 33746862100991,
+                "id": 3,
+                "address": 62,
+                "width": 2,
+                "value": 29,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 181,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0304023e02b6",
+                "rx_hex": "ffff0304007a1d61"
+              }
+            ]
+          ],
+          "same_reply_temperature_spike_and_voltage_dip": 0
+        },
+        "wrist_flex": {
+          "samples": 600,
+          "temperature_range_c": [
+            29,
+            30
+          ],
+          "temperature_median_c": 29.0,
+          "voltage_range_v": [
+            12.1,
+            12.2
+          ],
+          "voltage_median_v": 12.2,
+          "temperature_spikes_ge_median_plus8": 0,
+          "temperature_spike_neighbors": [],
+          "voltage_dips_ge_0_2v": 0,
+          "voltage_dip_neighbors": [],
+          "same_reply_temperature_spike_and_voltage_dip": 0
+        },
+        "wrist_roll": {
+          "samples": 600,
+          "temperature_range_c": [
+            29,
+            31
+          ],
+          "temperature_median_c": 29.0,
+          "voltage_range_v": [
+            11.0,
+            12.2
+          ],
+          "voltage_median_v": 12.2,
+          "temperature_spikes_ge_median_plus8": 0,
+          "temperature_spike_neighbors": [],
+          "voltage_dips_ge_0_2v": 2,
+          "voltage_dip_neighbors": [
+            [
+              {
+                "monotonic_ns": 33743362892705,
+                "id": 5,
+                "address": 62,
+                "width": 2,
+                "value": 29,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 76,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0504023e02b4",
+                "rx_hex": "ffff0504007a1d5f"
+              },
+              {
+                "monotonic_ns": 33743396222477,
+                "id": 5,
+                "address": 62,
+                "width": 2,
+                "value": 29,
+                "voltage_raw": 110,
+                "phase": "paired",
+                "cycle": 77,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0504023e02b4",
+                "rx_hex": "ffff0504006e1d6b"
+              },
+              {
+                "monotonic_ns": 33743429571771,
+                "id": 5,
+                "address": 62,
+                "width": 2,
+                "value": 29,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 78,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0504023e02b4",
+                "rx_hex": "ffff0504007a1d5f"
+              }
+            ],
+            [
+              {
+                "monotonic_ns": 33755496137194,
+                "id": 5,
+                "address": 62,
+                "width": 2,
+                "value": 29,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 440,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0504023e02b4",
+                "rx_hex": "ffff0504007a1d5f"
+              },
+              {
+                "monotonic_ns": 33755529489143,
+                "id": 5,
+                "address": 62,
+                "width": 2,
+                "value": 29,
+                "voltage_raw": 120,
+                "phase": "paired",
+                "cycle": 441,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0504023e02b4",
+                "rx_hex": "ffff050400781d61"
+              },
+              {
+                "monotonic_ns": 33755563123565,
+                "id": 5,
+                "address": 62,
+                "width": 2,
+                "value": 29,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 442,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0504023e02b4",
+                "rx_hex": "ffff0504007a1d5f"
+              }
+            ]
+          ],
+          "same_reply_temperature_spike_and_voltage_dip": 0
+        },
+        "gripper": {
+          "samples": 600,
+          "temperature_range_c": [
+            32,
+            35
+          ],
+          "temperature_median_c": 32.0,
+          "voltage_range_v": [
+            11.7,
+            12.2
+          ],
+          "voltage_median_v": 12.2,
+          "temperature_spikes_ge_median_plus8": 0,
+          "temperature_spike_neighbors": [],
+          "voltage_dips_ge_0_2v": 2,
+          "voltage_dip_neighbors": [
+            [
+              {
+                "monotonic_ns": 33754996488855,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 425,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33755030008329,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 117,
+                "phase": "paired",
+                "cycle": 426,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff060400752060"
+              },
+              {
+                "monotonic_ns": 33755063334965,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 427,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ],
+            [
+              {
+                "monotonic_ns": 33756063391123,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 457,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33756096468120,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 33,
+                "voltage_raw": 120,
+                "phase": "paired",
+                "cycle": 458,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff06040078215c"
+              },
+              {
+                "monotonic_ns": 33756129881991,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 459,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ]
+          ],
+          "same_reply_temperature_spike_and_voltage_dip": 0
+        }
+      },
+      "final_snapshot": [
+        {
+          "monotonic_ns": 33760827960038,
+          "id": 1,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0104022801cf",
+          "rx_hex": "ffff01030000fb"
+        },
+        {
+          "monotonic_ns": 33760828310865,
+          "id": 1,
+          "address": 62,
+          "width": 2,
+          "value": 29,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0104023e02b8",
+          "rx_hex": "ffff0104007a1d63"
+        },
+        {
+          "monotonic_ns": 33760828649595,
+          "id": 2,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0204022801ce",
+          "rx_hex": "ffff02030000fa"
+        },
+        {
+          "monotonic_ns": 33760829016390,
+          "id": 2,
+          "address": 62,
+          "width": 2,
+          "value": 30,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0204023e02b7",
+          "rx_hex": "ffff0204007a1e61"
+        },
+        {
+          "monotonic_ns": 33760829382385,
+          "id": 3,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0304022801cd",
+          "rx_hex": "ffff03030000f9"
+        },
+        {
+          "monotonic_ns": 33760829785757,
+          "id": 3,
+          "address": 62,
+          "width": 2,
+          "value": 29,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0304023e02b6",
+          "rx_hex": "ffff0304007a1d61"
+        },
+        {
+          "monotonic_ns": 33760830171849,
+          "id": 4,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0404022801cc",
+          "rx_hex": "ffff04030000f8"
+        },
+        {
+          "monotonic_ns": 33760830522003,
+          "id": 4,
+          "address": 62,
+          "width": 2,
+          "value": 29,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0404023e02b5",
+          "rx_hex": "ffff0404007a1d60"
+        },
+        {
+          "monotonic_ns": 33760830846333,
+          "id": 5,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0504022801cb",
+          "rx_hex": "ffff05030000f7"
+        },
+        {
+          "monotonic_ns": 33760831207528,
+          "id": 5,
+          "address": 62,
+          "width": 2,
+          "value": 29,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0504023e02b4",
+          "rx_hex": "ffff0504007a1d5f"
+        },
+        {
+          "monotonic_ns": 33760831558258,
+          "id": 6,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604022801ca",
+          "rx_hex": "ffff06030000f6"
+        },
+        {
+          "monotonic_ns": 33760831898621,
+          "id": 6,
+          "address": 62,
+          "width": 2,
+          "value": 32,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023e02b3",
+          "rx_hex": "ffff0604007a205b"
+        }
+      ]
+    },
+    "paired_id6_180.jsonl": {
+      "read_pairs": 3744,
+      "stops": [],
+      "joints": {
+        "gripper": {
+          "samples": 3600,
+          "temperature_range_c": [
+            30,
+            47
+          ],
+          "temperature_median_c": 32.0,
+          "voltage_range_v": [
+            10.5,
+            12.3
+          ],
+          "voltage_median_v": 12.2,
+          "temperature_spikes_ge_median_plus8": 3,
+          "temperature_spike_neighbors": [
+            [
+              {
+                "monotonic_ns": 33734929623501,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 2574,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33734935131347,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 47,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 2575,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a2f4c"
+              },
+              {
+                "monotonic_ns": 33734940708027,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 2576,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ],
+            [
+              {
+                "monotonic_ns": 33737112953792,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 2967,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33737118510760,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 46,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 2968,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a2e4d"
+              },
+              {
+                "monotonic_ns": 33737124041134,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 2969,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ],
+            [
+              {
+                "monotonic_ns": 33738712962756,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 3255,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33738718522955,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 47,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 3256,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a2f4c"
+              },
+              {
+                "monotonic_ns": 33738724031377,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 3257,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ]
+          ],
+          "voltage_dips_ge_0_2v": 8,
+          "voltage_dip_neighbors": [
+            [
+              {
+                "monotonic_ns": 33728235214544,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 1369,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33728240713750,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 120,
+                "phase": "paired",
+                "cycle": 1370,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff06040078205d"
+              },
+              {
+                "monotonic_ns": 33728246252029,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 1371,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ],
+            [
+              {
+                "monotonic_ns": 33731612918951,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 1977,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33731618538992,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 34,
+                "voltage_raw": 105,
+                "phase": "paired",
+                "cycle": 1978,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff06040069226a"
+              },
+              {
+                "monotonic_ns": 33731624038646,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 1979,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ],
+            [
+              {
+                "monotonic_ns": 33733329565063,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 2286,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33733335129807,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 34,
+                "voltage_raw": 109,
+                "phase": "paired",
+                "cycle": 2287,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604006d2266"
+              },
+              {
+                "monotonic_ns": 33733340683862,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 2288,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ],
+            [
+              {
+                "monotonic_ns": 33734407466546,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 2480,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33734413057275,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 110,
+                "phase": "paired",
+                "cycle": 2481,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604006e2067"
+              },
+              {
+                "monotonic_ns": 33734418503519,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 2482,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ],
+            [
+              {
+                "monotonic_ns": 33737229610108,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 2988,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33737235189636,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 120,
+                "phase": "paired",
+                "cycle": 2989,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff06040078205d"
+              },
+              {
+                "monotonic_ns": 33737240764044,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 2990,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ],
+            [
+              {
+                "monotonic_ns": 33739368538932,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 3373,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33739374027770,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 34,
+                "voltage_raw": 116,
+                "phase": "paired",
+                "cycle": 3374,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff06040074225f"
+              },
+              {
+                "monotonic_ns": 33739379590241,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 3375,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ],
+            [
+              {
+                "monotonic_ns": 33740024287914,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 3491,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33740029650635,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 34,
+                "voltage_raw": 109,
+                "phase": "paired",
+                "cycle": 3492,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604006d2266"
+              },
+              {
+                "monotonic_ns": 33740035161329,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 3493,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ],
+            [
+              {
+                "monotonic_ns": 33740518472537,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 3580,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              },
+              {
+                "monotonic_ns": 33740524049185,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 110,
+                "phase": "paired",
+                "cycle": 3581,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604006e2067"
+              },
+              {
+                "monotonic_ns": 33740529600681,
+                "id": 6,
+                "address": 62,
+                "width": 2,
+                "value": 32,
+                "voltage_raw": 122,
+                "phase": "paired",
+                "cycle": 3582,
+                "vendor_error": 0,
+                "status": 0,
+                "tx_hex": "ffff0604023e02b3",
+                "rx_hex": "ffff0604007a205b"
+              }
+            ]
+          ],
+          "same_reply_temperature_spike_and_voltage_dip": 0
+        }
+      },
+      "final_snapshot": [
+        {
+          "monotonic_ns": 33740629571598,
+          "id": 1,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0104022801cf",
+          "rx_hex": "ffff01030000fb"
+        },
+        {
+          "monotonic_ns": 33740629937113,
+          "id": 1,
+          "address": 62,
+          "width": 2,
+          "value": 29,
+          "voltage_raw": 121,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0104023e02b8",
+          "rx_hex": "ffff010400791d64"
+        },
+        {
+          "monotonic_ns": 33740630284739,
+          "id": 2,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0204022801ce",
+          "rx_hex": "ffff02030000fa"
+        },
+        {
+          "monotonic_ns": 33740630627950,
+          "id": 2,
+          "address": 62,
+          "width": 2,
+          "value": 30,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0204023e02b7",
+          "rx_hex": "ffff0204007a1e61"
+        },
+        {
+          "monotonic_ns": 33740630952728,
+          "id": 3,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0304022801cd",
+          "rx_hex": "ffff03030000f9"
+        },
+        {
+          "monotonic_ns": 33740631332195,
+          "id": 3,
+          "address": 62,
+          "width": 2,
+          "value": 29,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0304023e02b6",
+          "rx_hex": "ffff0304007a1d61"
+        },
+        {
+          "monotonic_ns": 33740631663981,
+          "id": 4,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0404022801cc",
+          "rx_hex": "ffff04030000f8"
+        },
+        {
+          "monotonic_ns": 33740632035672,
+          "id": 4,
+          "address": 62,
+          "width": 2,
+          "value": 29,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0404023e02b5",
+          "rx_hex": "ffff0404007a1d60"
+        },
+        {
+          "monotonic_ns": 33740632374754,
+          "id": 5,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0504022801cb",
+          "rx_hex": "ffff05030000f7"
+        },
+        {
+          "monotonic_ns": 33740632789711,
+          "id": 5,
+          "address": 62,
+          "width": 2,
+          "value": 29,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0504023e02b4",
+          "rx_hex": "ffff0504007a1d5f"
+        },
+        {
+          "monotonic_ns": 33740633127673,
+          "id": 6,
+          "address": 40,
+          "width": 1,
+          "value": 0,
+          "voltage_raw": -1,
+          "phase": "final_torque",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604022801ca",
+          "rx_hex": "ffff06030000f6"
+        },
+        {
+          "monotonic_ns": 33740633469667,
+          "id": 6,
+          "address": 62,
+          "width": 2,
+          "value": 32,
+          "voltage_raw": 122,
+          "phase": "final_pair",
+          "cycle": -1,
+          "vendor_error": 0,
+          "status": 0,
+          "tx_hex": "ffff0604023e02b3",
+          "rx_hex": "ffff0604007a205b"
+        }
+      ]
+    }
+  },
+  "motor_register_writes": 0
+}

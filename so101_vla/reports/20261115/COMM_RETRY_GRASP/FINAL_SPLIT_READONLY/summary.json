@@ -1,0 +1,108 @@
+{
+  "status": "BULK_TRANSPORT_READONLY_COMPLETE",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "port_closed": true,
+  "cycles": 493,
+  "layout": "split",
+  "read_order": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    5
+  ],
+  "mean_work_s": 0.020168719926934784,
+  "max_work_s": 0.023903294000774622,
+  "last_positions_raw": {
+    "shoulder_pan": 2058,
+    "shoulder_lift": 831,
+    "elbow_flex": 3080,
+    "wrist_flex": 2563,
+    "gripper": 465,
+    "wrist_roll": 1832
+  },
+  "temperatures": {
+    "shoulder_pan": 33,
+    "shoulder_lift": 34,
+    "elbow_flex": 32,
+    "wrist_flex": 33,
+    "wrist_roll": 31,
+    "gripper": 35
+  },
+  "torque": {
+    "shoulder_pan": 1,
+    "shoulder_lift": 1,
+    "elbow_flex": 1,
+    "wrist_flex": 1,
+    "gripper": 1,
+    "wrist_roll": 1
+  },
+  "modes": {
+    "shoulder_pan": 0,
+    "shoulder_lift": 0,
+    "elbow_flex": 0,
+    "wrist_flex": 0,
+    "gripper": 0,
+    "wrist_roll": 0
+  },
+  "communication": {
+    "by_joint": {
+      "shoulder_pan": {
+        "-6": 0,
+        "-7": 0
+      },
+      "shoulder_lift": {
+        "-6": 0,
+        "-7": 0
+      },
+      "elbow_flex": {
+        "-6": 0,
+        "-7": 0
+      },
+      "wrist_flex": {
+        "-6": 0,
+        "-7": 0
+      },
+      "wrist_roll": {
+        "-6": 0,
+        "-7": 0
+      },
+      "gripper": {
+        "-6": 0,
+        "-7": 0
+      }
+    },
+    "errors": [],
+    "tx_packets": 3944,
+    "rx_packets": 8874,
+    "tx_bytes": 37468,
+    "rx_bytes": 124236,
+    "elapsed_s": 10.10827568699824,
+    "tx_packets_per_s": 390.1753495972578,
+    "total_packets_per_s": 1268.069886191088,
+    "tx_gap_s": {
+      "min": 0.0004621259977284353,
+      "max": 0.0204532690004271,
+      "mean": 0.002536855299264288
+    },
+    "settings": {
+      "max_retries": 3,
+      "consecutive_failures": 5,
+      "no_response_s": 0.2,
+      "hold_attempts": 5,
+      "bulk_address": 56,
+      "bulk_width": 15,
+      "read_order": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        5
+      ]
+    },
+    "halt_reason": null
+  }
+}

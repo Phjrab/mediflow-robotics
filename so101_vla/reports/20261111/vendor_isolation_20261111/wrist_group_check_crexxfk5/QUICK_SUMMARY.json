@@ -1,0 +1,160 @@
+{
+  "paired-selected-30": {
+    "axes": {
+      "5": {
+        "n": 600,
+        "t_min_med_max": [
+          27,
+          28.0,
+          29
+        ],
+        "v_min_max": [
+          12.2,
+          12.3
+        ],
+        "spikes_ge_median_plus8": 0,
+        "max_adjacent_temperature_delta": 1
+      },
+      "6": {
+        "n": 600,
+        "t_min_med_max": [
+          30,
+          30.0,
+          34
+        ],
+        "v_min_max": [
+          12.2,
+          12.4
+        ],
+        "spikes_ge_median_plus8": 0,
+        "max_adjacent_temperature_delta": 4
+      }
+    },
+    "final": [
+      {
+        "id": 5,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1,
+        "status": 0
+      },
+      {
+        "id": 5,
+        "address": 62,
+        "value": 28,
+        "voltage_raw": 122,
+        "status": 0
+      },
+      {
+        "id": 6,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1,
+        "status": 0
+      },
+      {
+        "id": 6,
+        "address": 62,
+        "value": 30,
+        "voltage_raw": 123,
+        "status": 0
+      }
+    ]
+  },
+  "paired-target-180": {
+    "axes": {
+      "6": {
+        "n": 3600,
+        "t_min_med_max": [
+          28,
+          30.0,
+          34
+        ],
+        "v_min_max": [
+          12.0,
+          12.4
+        ],
+        "spikes_ge_median_plus8": 0,
+        "max_adjacent_temperature_delta": 4
+      }
+    },
+    "final": [
+      {
+        "id": 5,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1,
+        "status": 0
+      },
+      {
+        "id": 5,
+        "address": 62,
+        "value": 28,
+        "voltage_raw": 123,
+        "status": 0
+      },
+      {
+        "id": 6,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1,
+        "status": 0
+      },
+      {
+        "id": 6,
+        "address": 62,
+        "value": 31,
+        "voltage_raw": 122,
+        "status": 0
+      }
+    ]
+  },
+  "bracket-target-60": {
+    "axes": {
+      "6": {
+        "n": 1200,
+        "t_min_med_max": [
+          30,
+          31.0,
+          34
+        ],
+        "v_min_max": [
+          11.7,
+          12.3
+        ],
+        "spikes_ge_median_plus8": 0,
+        "max_adjacent_temperature_delta": 3
+      }
+    },
+    "final": [
+      {
+        "id": 5,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1,
+        "status": 0
+      },
+      {
+        "id": 5,
+        "address": 62,
+        "value": 28,
+        "voltage_raw": 123,
+        "status": 0
+      },
+      {
+        "id": 6,
+        "address": 40,
+        "value": 0,
+        "voltage_raw": -1,
+        "status": 0
+      },
+      {
+        "id": 6,
+        "address": 62,
+        "value": 31,
+        "voltage_raw": 123,
+        "status": 0
+      }
+    ]
+  }
+}

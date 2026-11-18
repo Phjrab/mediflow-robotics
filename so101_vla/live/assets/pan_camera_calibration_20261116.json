@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "source_probe": "reports/20261116/PAN_DIRECTION/probe_1794824482176501091",
+  "camera": "end_effector",
+  "marker_id": 9,
+  "marker_black_outer_side_mm": 30.0,
+  "side_confirmation": "operator clarified entire black square side is3cm/30mm, not initial3mm",
+  "image_mirrored": false,
+  "aim_pixel": [320.0, 240.0],
+  "command_delta_ticks": 6,
+  "observed_pan_delta_ticks": 4.0,
+  "bottle_marker_shift_px": [-7.0, -1.125],
+  "aim_screen_right_marker_units": 0.0502577954903245,
+  "aim_screen_right_mm": 1.507733864709735,
+  "positive_pan_is_screen_right": true,
+  "return_command_raw": 2186,
+  "return_actual_raw": 2190,
+  "steady_baseline_raw": [2186, 1308, 2581, 2543, 1790, 1070],
+  "tcp_physically_calibrated": false,
+  "scope": "local projected aim displacement on bottle-top marker plane at tested pose; full3D TCP and other-pose metric displacement unverified",
+  "method": "ArUco9 corner homographies, image aim320/240, projection onto baseline image-right direction; actual joint readback; all other joints steady"
+}

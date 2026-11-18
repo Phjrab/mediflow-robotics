@@ -1,0 +1,11 @@
+{
+  "phase": "SOURCE_SNAPSHOT",
+  "source_commit": "a29e8ba58399d8e1a8502c3d48a9071f5b261d0c",
+  "source_tag_commit": "c52504c2895176914bdfdd10356f5799e8bd8773",
+  "github_native_tag_ref_created": false,
+  "history_upload": "PENDING_AUTOMATIC_APPROVAL_REVIEW",
+  "native_bundles": "Preserved and verified locally; not complete on GitHub yet",
+  "live_execution": "NOT_RUN",
+  "target": "Phjrab/mediflow-robotics",
+  "branch": "vla/live-202611"
+}

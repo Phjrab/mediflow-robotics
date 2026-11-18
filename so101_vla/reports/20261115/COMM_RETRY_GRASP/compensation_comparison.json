@@ -1,0 +1,33 @@
+{
+  "no_compensation": {
+    "steady_mae_deg": 2.400000000000005,
+    "final_reach_ratio": 0.7599999999999996,
+    "max_offset_deg": 0.0,
+    "final_position_deg": 7.599999999999995
+  },
+  "previous": {
+    "steady_mae_deg": 0.8977246377543917,
+    "final_reach_ratio": 0.9102275362245609,
+    "max_offset_deg": 1.5303182711769874,
+    "final_position_deg": 9.102275362245608
+  },
+  "revised": {
+    "steady_mae_deg": 0.22180315423125307,
+    "final_reach_ratio": 0.9778196845768747,
+    "max_offset_deg": 2.6101428485362774,
+    "final_position_deg": 9.778196845768747
+  },
+  "settings": {
+    "enabled_axes": [
+      "elbow_flex"
+    ],
+    "max_offset_deg": 3.0,
+    "integral_gain_per_s": 3.0,
+    "max_accumulation_deg_s": 4.0,
+    "decay_per_s": 0.35,
+    "settle_s": 0.15,
+    "error_deadband_deg": 0.15,
+    "max_reference_speed_deg_s": 5.0,
+    "reset_gap_s": 0.25
+  }
+}

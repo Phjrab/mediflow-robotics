@@ -1,0 +1,24 @@
+{
+  "local_commit": "c52504c2895176914bdfdd10356f5799e8bd8773",
+  "local_branch": "vla/live-202611",
+  "local_tag": "pre-raw-20261118",
+  "tag_commit": "c52504c2895176914bdfdd10356f5799e8bd8773",
+  "git_worktree_clean": true,
+  "local_commits_not_in_origin_vla_main": 36,
+  "origin_vla_main_commits_not_in_local": 197,
+  "common_ancestor": null,
+  "github_repository": "gyeyeongjo-lgtm/so101-lelab-medicine-sorter",
+  "push_status": "NOT_PUSHED_WRITE_ACCESS_MISSING",
+  "jetson_deployment": "NOT_RUN_SSH_AUTHENTICATION_INCOMPLETE",
+  "real_bus_ab_60s": "NOT_RUN",
+  "new_model_camera_dry_run": "NOT_RUN",
+  "raw_mode": "NOT_IMPLEMENTED_PREREQUISITE_BACKUP_BLOCKED",
+  "tests": {
+    "sim_pass": 177,
+    "sim_platform_skip": 2,
+    "executor_pass": 17
+  },
+  "bundle_sha256": "1f6dda029ece523707514832c824d8bb335273c8525eff373e6c69dbd71e107d",
+  "bundle_complete_history": true,
+  "motor_register_writes": 0
+}

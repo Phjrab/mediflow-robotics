@@ -1,0 +1,121 @@
+{
+  "case": "camera_dry",
+  "passed": true,
+  "first_targets": [
+    {
+      "shoulder_pan": 2055,
+      "shoulder_lift": 829,
+      "elbow_flex": 3084,
+      "wrist_flex": 2568,
+      "wrist_roll": 1840,
+      "gripper": 468
+    },
+    {
+      "shoulder_pan": 2055,
+      "shoulder_lift": 829,
+      "elbow_flex": 3084,
+      "wrist_flex": 2568,
+      "wrist_roll": 1840,
+      "gripper": 468
+    },
+    {
+      "shoulder_pan": 2055,
+      "shoulder_lift": 829,
+      "elbow_flex": 3084,
+      "wrist_flex": 2567,
+      "wrist_roll": 1840,
+      "gripper": 467
+    },
+    {
+      "shoulder_pan": 2055,
+      "shoulder_lift": 829,
+      "elbow_flex": 3084,
+      "wrist_flex": 2567,
+      "wrist_roll": 1840,
+      "gripper": 467
+    },
+    {
+      "shoulder_pan": 2055,
+      "shoulder_lift": 829,
+      "elbow_flex": 3084,
+      "wrist_flex": 2566,
+      "wrist_roll": 1839,
+      "gripper": 466
+    },
+    {
+      "shoulder_pan": 2055,
+      "shoulder_lift": 829,
+      "elbow_flex": 3083,
+      "wrist_flex": 2566,
+      "wrist_roll": 1839,
+      "gripper": 466
+    },
+    {
+      "shoulder_pan": 2055,
+      "shoulder_lift": 829,
+      "elbow_flex": 3083,
+      "wrist_flex": 2567,
+      "wrist_roll": 1839,
+      "gripper": 466
+    },
+    {
+      "shoulder_pan": 2055,
+      "shoulder_lift": 828,
+      "elbow_flex": 3082,
+      "wrist_flex": 2568,
+      "wrist_roll": 1840,
+      "gripper": 465
+    },
+    {
+      "shoulder_pan": 2056,
+      "shoulder_lift": 828,
+      "elbow_flex": 3081,
+      "wrist_flex": 2570,
+      "wrist_roll": 1841,
+      "gripper": 465
+    },
+    {
+      "shoulder_pan": 2056,
+      "shoulder_lift": 828,
+      "elbow_flex": 3081,
+      "wrist_flex": 2571,
+      "wrist_roll": 1841,
+      "gripper": 465
+    }
+  ],
+  "model_chunks": 2,
+  "relief_steps": 0,
+  "max_arm_error_ticks": 0,
+  "port_waits": 0,
+  "physical_motor_writes": 0,
+  "status": "RUN_COMPLETE",
+  "steps": 223,
+  "elapsed_s": 8.014456369999607,
+  "reason": null,
+  "hold": {
+    "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+  },
+  "chunk_wait_s": {
+    "max": 0,
+    "sum": 0
+  },
+  "transmission_hz": 48.511418619243926,
+  "camera": {
+    "end_effector": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.04421156299940776
+    },
+    "ceiling_vertical": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.04150688200024888
+    },
+    "ceiling_oblique": {
+      "read_failures": 3,
+      "max_frame_gap_s": 0.05036350400041556
+    }
+  },
+  "home_peak_goal_speed": 0.0,
+  "cooling_samples": 0,
+  "output": "/home/jetson3/so101_vla/runs/DRY_1794732165783306765",
+  "camera_cleanup_errors": []
+}

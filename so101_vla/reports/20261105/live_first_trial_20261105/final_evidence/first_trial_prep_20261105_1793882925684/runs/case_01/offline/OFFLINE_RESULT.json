@@ -1,0 +1,98 @@
+{
+  "status": "OFFLINE_COMPUTE_PASS",
+  "sample_source": "PREVIOUS_READ_ONLY_CAPTURE_NOT_CURRENT_ROBOT",
+  "source_hashes": {
+    "state_start.json": "cf9e10e067ab35efe1f7d749c38726c23e024297b0f17d309bb2a23904a13815",
+    "end_effector_start.png": "030e96ce8f0b9b1c333a22c1d8502699929dae8d7e5fae63def564a44049f1b0",
+    "ceiling_vertical_start.png": "ca6d753d0955b083927533cec9caf2432a3b5d9981e3e83500c04204b859f6cd",
+    "ceiling_oblique_start.png": "68a6ffb4aa56bafb7afe7f885517eba3774f3cde957f490cee2805ce3be5bd6f"
+  },
+  "source_unchanged": true,
+  "parity": {
+    "max_abs": 0.0,
+    "joint_max_abs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "allclose": true
+  },
+  "latency": {
+    "legacy": {
+      "mean": 1.364172327199776,
+      "median": 1.367225010999391,
+      "p95": 1.3728806489998533,
+      "max": 1.3728806489998533,
+      "count": 5
+    },
+    "bulk": {
+      "mean": 1.3544879219989525,
+      "median": 1.3502212639978097,
+      "p95": 1.365444798997487,
+      "max": 1.365444798997487,
+      "count": 5
+    }
+  },
+  "stage_profiles": [
+    {
+      "mode": "legacy",
+      "preprocess_seconds": 0.003811883001617389,
+      "model_seconds": 1.3422641559991462,
+      "postprocess_seconds": 0.016175748001842294,
+      "profiling_synchronizations_added": true
+    },
+    {
+      "mode": "bulk",
+      "preprocess_seconds": 0.00374199299767497,
+      "model_seconds": 1.3480880000024626,
+      "postprocess_seconds": 0.0007565329979115631,
+      "profiling_synchronizations_added": true
+    }
+  ],
+  "capture_to_tensor_seconds": 0.01151062599819852,
+  "model_load_seconds": 33.50751064999713,
+  "peak_gpu_bytes": 1274842112,
+  "saved_use_amp": true,
+  "autocast_dtype": "torch.float16",
+  "model_weights_converted": false,
+  "chunk_shape": [
+    50,
+    6
+  ],
+  "first_action": [
+    -3.4138848781585693,
+    -98.07005310058594,
+    97.49195861816406,
+    42.15422058105469,
+    -4.683167457580566,
+    6.9960737228393555
+  ],
+  "captured_state": [
+    -3.208791208791209,
+    -97.36263736263736,
+    96.65934065934066,
+    43.56043956043956,
+    -4.615384615384615,
+    7.1603427172582625
+  ],
+  "first_delta": [
+    -0.2050936693673604,
+    -0.7074157379485797,
+    0.8326179588234055,
+    -1.4062189793848745,
+    -0.06778284219595143,
+    -0.16426899441890708
+  ],
+  "issues": [],
+  "seed": 101,
+  "live_budget_seconds": 1.6666666666666667,
+  "bulk_all_within_live_budget": true,
+  "robot_camera_serial_opened": false,
+  "register_writes": 0,
+  "live_authorized": false,
+  "limitation": "분리 오프라인 계산 결과. 실시간 감시 포함 live 지연/안전/성공률 근거 아님",
+  "policy_worker_closed": true
+}

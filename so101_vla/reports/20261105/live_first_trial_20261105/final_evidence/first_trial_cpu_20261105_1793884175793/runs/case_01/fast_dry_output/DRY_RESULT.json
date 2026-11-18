@@ -1,0 +1,55 @@
+{
+  "status": "HOLD",
+  "error": {
+    "kind": "Hold",
+    "reason": "추론 chunk 소비시간 상한: 결과 폐기, 추가 목표 전송 금지"
+  },
+  "chunks": 0,
+  "monitor_count": 29,
+  "read_packets": 175,
+  "goal_packets": 0,
+  "blocked_packets": 0,
+  "register_writes": 0,
+  "cleanup_errors": [],
+  "pending_policy_threads": 0,
+  "live_permitted": false,
+  "receipt_sha256": "000b1d1fca06b4997a225798fb0002fc47d7b2926d11366bb501acc328155ba1",
+  "record_inventory": {
+    "SERIAL_STOP.cleared_20261105_185629.json": "16bf71d5f09ebb246a573a22cbad1faae57e5f50c0ae6ed945f2443c94797f5c"
+  },
+  "weights_converted": false,
+  "inference_use_amp": true,
+  "inference_autocast_dtype": "torch.float16",
+  "inference_settings_source": "checkpoint.config.json",
+  "chunk_timeout_seconds": 1.6666666666666667,
+  "gpu_worker_history": [
+    {
+      "label": "synthetic_warmup",
+      "seconds": 2.1488822589999472,
+      "thread_id": 281470950306080
+    },
+    {
+      "label": "synthetic_warmup",
+      "seconds": 1.3507103989977622,
+      "thread_id": 281470950306080
+    },
+    {
+      "label": "reset_after_warmup",
+      "seconds": 6.179300180519931e-05,
+      "thread_id": 281470950306080
+    },
+    {
+      "label": "current_observation_chunk",
+      "seconds": 1.6847466500003065,
+      "thread_id": 281470950306080
+    }
+  ],
+  "phase_metrics": [
+    {
+      "capture_seconds": 0.007767234001221368,
+      "remaining_before_inference": 4.9915586989991425,
+      "inference_wait_budget": 1.6666666666666667,
+      "wait_elapsed_until_error": 1.6896734490001108
+    }
+  ]
+}

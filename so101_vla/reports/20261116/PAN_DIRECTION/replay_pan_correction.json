@@ -1,0 +1,136 @@
+{
+  "source": "runs/20261116_174520/steps.jsonl",
+  "source_sha256": "2908e261108b5ed4203ac285f8e9037d8ef13fe6119febe32de1d312454a0e37",
+  "steps": 6667,
+  "summary": {
+    "enabled": true,
+    "configured_offset_deg": 0.5274725274725275,
+    "applied_steps": 346,
+    "peak_abs_deg": 0.5274725274725275,
+    "windows": 9,
+    "direction_verified": true,
+    "scale_verified": true,
+    "tcp_physically_calibrated": false,
+    "metric_scope": "bottle_top_camera_plane_at_measured_pose"
+  },
+  "peak_integer_pan_offset": 6,
+  "outside_gate": [],
+  "changed_examples": [
+    {
+      "time_s": 71.44713864500227,
+      "step": 3065,
+      "applied_deg": 0.0160420610962589,
+      "raw_delta_ticks": 1,
+      "nominal_height_mm": 147.3129672898644
+    },
+    {
+      "time_s": 71.4680048309965,
+      "step": 3066,
+      "applied_deg": 0.05934133867763263,
+      "raw_delta_ticks": 1,
+      "nominal_height_mm": 147.3129672898644
+    },
+    {
+      "time_s": 71.48881642200286,
+      "step": 3067,
+      "applied_deg": 0.12252389394374089,
+      "raw_delta_ticks": 1,
+      "nominal_height_mm": 147.31296632848355
+    },
+    {
+      "time_s": 71.5096282059967,
+      "step": 3068,
+      "applied_deg": 0.19853940039446055,
+      "raw_delta_ticks": 2,
+      "nominal_height_mm": 147.63128176130147
+    },
+    {
+      "time_s": 71.53085136199661,
+      "step": 3069,
+      "applied_deg": 0.28187950327000116,
+      "raw_delta_ticks": 3,
+      "nominal_height_mm": 147.63128176130147
+    },
+    {
+      "time_s": 71.71586659499735,
+      "step": 3077,
+      "applied_deg": 0.5274725274725275,
+      "raw_delta_ticks": 6,
+      "nominal_height_mm": 146.99465602115671
+    },
+    {
+      "time_s": 71.73722015500243,
+      "step": 3078,
+      "applied_deg": 0.5274725274725275,
+      "raw_delta_ticks": 6,
+      "nominal_height_mm": 146.35804897362237
+    },
+    {
+      "time_s": 71.758119428996,
+      "step": 3079,
+      "applied_deg": 0.5274725274725275,
+      "raw_delta_ticks": 6,
+      "nominal_height_mm": 146.03975469352534
+    },
+    {
+      "time_s": 149.3396420019999,
+      "step": 6563,
+      "applied_deg": 0.489888573065514,
+      "raw_delta_ticks": 6,
+      "nominal_height_mm": 133.181978758655
+    },
+    {
+      "time_s": 149.3605115829996,
+      "step": 6564,
+      "applied_deg": 0.4343709610203317,
+      "raw_delta_ticks": 4,
+      "nominal_height_mm": 134.33715937555382
+    },
+    {
+      "time_s": 149.38127044099383,
+      "step": 6565,
+      "applied_deg": 0.3632454681912064,
+      "raw_delta_ticks": 4,
+      "nominal_height_mm": 135.7106813056809
+    },
+    {
+      "time_s": 149.40205633999722,
+      "step": 6566,
+      "applied_deg": 0.2832435669646257,
+      "raw_delta_ticks": 3,
+      "nominal_height_mm": 136.174150858339
+    },
+    {
+      "time_s": 149.4229330579983,
+      "step": 6567,
+      "applied_deg": 0.20120445098964942,
+      "raw_delta_ticks": 3,
+      "nominal_height_mm": 136.98541489599882
+    },
+    {
+      "time_s": 149.4437566859997,
+      "step": 6568,
+      "applied_deg": 0.12484424042973752,
+      "raw_delta_ticks": 2,
+      "nominal_height_mm": 138.13403854954595
+    },
+    {
+      "time_s": 149.46457948100579,
+      "step": 6569,
+      "applied_deg": 0.06109992747559272,
+      "raw_delta_ticks": 1,
+      "nominal_height_mm": 139.48035719258363
+    },
+    {
+      "time_s": 149.4855794670002,
+      "step": 6570,
+      "applied_deg": 0.016842731247408853,
+      "raw_delta_ticks": 0,
+      "nominal_height_mm": 140.47609564494712
+    }
+  ],
+  "first_change_s": 71.44713864500227,
+  "last_change_s": 149.4855794670002,
+  "physical_motor_writes": 0,
+  "limitation": "recorded future goals sampled as a proxy for runtime queue; counterfactual arithmetic, not actual movement"
+}

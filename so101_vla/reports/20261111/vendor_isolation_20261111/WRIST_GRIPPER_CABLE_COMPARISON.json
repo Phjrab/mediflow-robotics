@@ -1,0 +1,109 @@
+{
+  "before": "voltage_temperature_m4rfN29n",
+  "after": "wrist_gripper_spare_9e6frkyu",
+  "changed_cable": "wrist_to_gripper",
+  "motor_register_writes": 0,
+  "profiles": [
+    {
+      "before_file": "paired_id6_180_after_idle.jsonl",
+      "after_file": "paired_id6_180.jsonl",
+      "read_pairs_each": 3744,
+      "before": {
+        "samples": 3600,
+        "temperature_range_c": [
+          31,
+          49
+        ],
+        "temperature_median_c": 33.0,
+        "voltage_range_v": [
+          11.5,
+          12.2
+        ],
+        "temperature_spikes_ge_median_plus8": 1,
+        "voltage_dips_ge_0_2v": 2,
+        "all_joints_temperature_spikes": 1
+      },
+      "after": {
+        "samples": 3600,
+        "temperature_range_c": [
+          30,
+          47
+        ],
+        "temperature_median_c": 32.0,
+        "voltage_range_v": [
+          10.5,
+          12.3
+        ],
+        "temperature_spikes_ge_median_plus8": 3,
+        "voltage_dips_ge_0_2v": 8,
+        "all_joints_temperature_spikes": 3
+      }
+    },
+    {
+      "before_file": "paired_all_30.jsonl",
+      "after_file": "paired_all_30.jsonl",
+      "read_pairs_each": 3744,
+      "before": {
+        "samples": 600,
+        "temperature_range_c": [
+          31,
+          49
+        ],
+        "temperature_median_c": 33.0,
+        "voltage_range_v": [
+          11.6,
+          12.2
+        ],
+        "temperature_spikes_ge_median_plus8": 4,
+        "voltage_dips_ge_0_2v": 1,
+        "all_joints_temperature_spikes": 5
+      },
+      "after": {
+        "samples": 600,
+        "temperature_range_c": [
+          32,
+          35
+        ],
+        "temperature_median_c": 32.0,
+        "voltage_range_v": [
+          11.7,
+          12.2
+        ],
+        "temperature_spikes_ge_median_plus8": 0,
+        "voltage_dips_ge_0_2v": 2,
+        "all_joints_temperature_spikes": 0
+      }
+    },
+    {
+      "before_file": "bracket_id6_60.jsonl",
+      "after_file": "bracket_id6_60.jsonl",
+      "read_pairs_each": 3744,
+      "before": {
+        "samples": 1200,
+        "temperature_range_c": [
+          32,
+          48
+        ],
+        "temperature_median_c": 33.0,
+        "voltage_range_v": [
+          10.6,
+          12.3
+        ],
+        "temperature_spikes_ge_median_plus8": 2
+      },
+      "after": {
+        "samples": 1200,
+        "temperature_range_c": [
+          31,
+          43
+        ],
+        "temperature_median_c": 32.0,
+        "voltage_range_v": [
+          10.7,
+          12.2
+        ],
+        "temperature_spikes_ge_median_plus8": 2
+      }
+    }
+  ]
+}

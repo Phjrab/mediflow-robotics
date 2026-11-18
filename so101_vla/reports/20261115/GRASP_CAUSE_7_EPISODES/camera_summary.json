@@ -1,0 +1,77 @@
+{
+  "end_effector": {
+    "shape": [
+      480,
+      640,
+      3
+    ],
+    "dtype": "uint8",
+    "mode": "RGB",
+    "pixel_min": 0,
+    "pixel_max": 255,
+    "current": {
+      "mean_rgb": 137.78041666666667,
+      "p99_max_rgb": 243.0
+    },
+    "training": {
+      "mean_rgb": 140.15125,
+      "p99_max_rgb": 254.0
+    }
+  },
+  "ceiling_vertical": {
+    "shape": [
+      480,
+      640,
+      3
+    ],
+    "dtype": "uint8",
+    "mode": "RGB",
+    "pixel_min": 0,
+    "pixel_max": 255,
+    "current": {
+      "mean_rgb": 112.92833333333333,
+      "p99_max_rgb": 255.0
+    },
+    "training": {
+      "mean_rgb": 121.10201388888889,
+      "p99_max_rgb": 255.0
+    }
+  },
+  "ceiling_oblique": {
+    "shape": [
+      480,
+      640,
+      3
+    ],
+    "dtype": "uint8",
+    "mode": "RGB",
+    "pixel_min": 0,
+    "pixel_max": 255,
+    "current": {
+      "mean_rgb": 109.48840277777778,
+      "p99_max_rgb": 224.0
+    },
+    "training": {
+      "mean_rgb": 108.789375,
+      "p99_max_rgb": 216.0
+    }
+  },
+  "camera_stats": {
+    "end_effector": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.044787073999032145
+    },
+    "ceiling_vertical": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.04980432199954521
+    },
+    "ceiling_oblique": {
+      "read_failures": 3,
+      "max_frame_gap_s": 0.06860460700045223
+    }
+  },
+  "physical_motor_writes": 0,
+  "serial_opened": false,
+  "cleanup_errors": [],
+  "output": "/home/jetson3/so101_vla/reports/20261115/camera_check_1794740503844413141"
+}

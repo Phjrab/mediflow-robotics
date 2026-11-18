@@ -1,0 +1,69 @@
+{
+  "status": "FIRST_TRIAL_COMPLETE",
+  "motor_goal_packets": 10,
+  "torque_register_writes": 0,
+  "ports_closed": {
+    "io": true,
+    "probe": true
+  },
+  "cleanup_errors": [],
+  "original_stop_preserved": true,
+  "predicted_actions": 50,
+  "executed_steps": 10,
+  "inference_seconds": 1.488567370997771,
+  "target_span_seconds": 0.5657551920012338,
+  "measured_command_hz": 15.907940620331722,
+  "configured_fps": 30.0,
+  "median_interval_seconds": 0.05601385800036951,
+  "max_interval_seconds": 0.11919691100047203,
+  "clipped_steps": 5,
+  "result_sha256": "4909135423bb0788c3f0da7ac329f892a92f582911a7a7b85fcd8a45b247936c",
+  "joint_results": [
+    {
+      "joint": "shoulder_pan",
+      "unit": "degree",
+      "measured_change": 0.0,
+      "max_target_current_difference": 0.270882973304162
+    },
+    {
+      "joint": "shoulder_lift",
+      "unit": "degree",
+      "measured_change": 0.6153846153846132,
+      "max_target_current_difference": 0.5
+    },
+    {
+      "joint": "elbow_flex",
+      "unit": "degree",
+      "measured_change": 0.0,
+      "max_target_current_difference": 0.4657461983816944
+    },
+    {
+      "joint": "wrist_flex",
+      "unit": "degree",
+      "measured_change": 0.0,
+      "max_target_current_difference": 0.5
+    },
+    {
+      "joint": "wrist_roll",
+      "unit": "degree",
+      "measured_change": 0.0,
+      "max_target_current_difference": 0.11471465917733958
+    },
+    {
+      "joint": "gripper",
+      "unit": "percent_0_100",
+      "measured_change": 0.0,
+      "max_target_current_difference": 0.38249314984026306
+    }
+  ],
+  "first_elbow": {
+    "raw_prediction": 97.0845947265625,
+    "transmitted_target": 97.01098901098901,
+    "upper_bound": 97.01098901098901
+  },
+  "scope": "FIRST_SHORT_LIVE_TRIAL_ONLY",
+  "grasp_and_placement": "UNVERIFIED",
+  "agent_hardware_access": false,
+  "additional_live": "NOT_RUN",
+  "push": "NOT_PUSHED"
+}

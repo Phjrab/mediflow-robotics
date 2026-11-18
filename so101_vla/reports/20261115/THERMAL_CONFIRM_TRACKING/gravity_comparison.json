@@ -1,0 +1,14 @@
+{
+  "baseline": {
+    "steady_mae_deg": 2.400000000000005,
+    "final_reach_ratio": 0.7599999999999996,
+    "max_offset_deg": 0.0,
+    "final_position_deg": 7.599999999999995
+  },
+  "compensated": {
+    "steady_mae_deg": 0.8977246377543917,
+    "final_reach_ratio": 0.9102275362245609,
+    "max_offset_deg": 1.5303182711769874,
+    "final_position_deg": 9.102275362245608
+  }
+}

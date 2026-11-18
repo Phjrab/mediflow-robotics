@@ -1,0 +1,552 @@
+{
+  "case": "camera_dry",
+  "passed": true,
+  "first_targets": [
+    {
+      "shoulder_pan": 2059,
+      "shoulder_lift": 837,
+      "elbow_flex": 3055,
+      "wrist_flex": 2569,
+      "wrist_roll": 1840,
+      "gripper": 472
+    },
+    {
+      "shoulder_pan": 2059,
+      "shoulder_lift": 836,
+      "elbow_flex": 3056,
+      "wrist_flex": 2569,
+      "wrist_roll": 1840,
+      "gripper": 472
+    },
+    {
+      "shoulder_pan": 2059,
+      "shoulder_lift": 835,
+      "elbow_flex": 3057,
+      "wrist_flex": 2569,
+      "wrist_roll": 1840,
+      "gripper": 474
+    },
+    {
+      "shoulder_pan": 2059,
+      "shoulder_lift": 834,
+      "elbow_flex": 3059,
+      "wrist_flex": 2569,
+      "wrist_roll": 1840,
+      "gripper": 475
+    },
+    {
+      "shoulder_pan": 2059,
+      "shoulder_lift": 834,
+      "elbow_flex": 3060,
+      "wrist_flex": 2569,
+      "wrist_roll": 1840,
+      "gripper": 475
+    },
+    {
+      "shoulder_pan": 2059,
+      "shoulder_lift": 834,
+      "elbow_flex": 3060,
+      "wrist_flex": 2569,
+      "wrist_roll": 1840,
+      "gripper": 475
+    },
+    {
+      "shoulder_pan": 2058,
+      "shoulder_lift": 835,
+      "elbow_flex": 3058,
+      "wrist_flex": 2569,
+      "wrist_roll": 1840,
+      "gripper": 475
+    },
+    {
+      "shoulder_pan": 2058,
+      "shoulder_lift": 837,
+      "elbow_flex": 3055,
+      "wrist_flex": 2569,
+      "wrist_roll": 1840,
+      "gripper": 474
+    },
+    {
+      "shoulder_pan": 2058,
+      "shoulder_lift": 839,
+      "elbow_flex": 3052,
+      "wrist_flex": 2569,
+      "wrist_roll": 1840,
+      "gripper": 474
+    },
+    {
+      "shoulder_pan": 2058,
+      "shoulder_lift": 840,
+      "elbow_flex": 3051,
+      "wrist_flex": 2569,
+      "wrist_roll": 1840,
+      "gripper": 473
+    }
+  ],
+  "model_chunks": 58,
+  "relief_steps": 0,
+  "max_arm_error_ticks": 0,
+  "port_waits": 0,
+  "physical_motor_writes": 0,
+  "status": "RUN_COMPLETE",
+  "steps": 8425,
+  "elapsed_s": 180.01671997599988,
+  "reason": null,
+  "hold": {
+    "status": "CURRENT_POSITION_GOAL_TRANSMITTED"
+  },
+  "chunk_wait_s": {
+    "max": 0,
+    "sum": 0
+  },
+  "transmission_hz": 46.806295611621735,
+  "camera": {
+    "end_effector": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.21930674600116618
+    },
+    "ceiling_vertical": {
+      "read_failures": 0,
+      "max_frame_gap_s": 0.20528647100036324
+    },
+    "ceiling_oblique": {
+      "read_failures": 3,
+      "max_frame_gap_s": 0.21698578299947258
+    }
+  },
+  "home_peak_goal_speed": 0.0,
+  "cooling_samples": 0,
+  "gripper_opening_protection": {
+    "open_cap_points": 48.5,
+    "policy_open_cap_clips": 662,
+    "opening_load_freezes": 0,
+    "opening_hold_target_points": null
+  },
+  "gripper_open_clip_count": 662,
+  "lateral_correction": {
+    "enabled": true,
+    "configured_offset_deg": 0.5274725274725275,
+    "applied_steps": 251,
+    "peak_abs_deg": 0.5274725274725275,
+    "windows": 7,
+    "direction_verified": true,
+    "scale_verified": true,
+    "tcp_physically_calibrated": false,
+    "metric_scope": "bottle_top_camera_plane_at_measured_pose"
+  },
+  "ready": {
+    "event": "ready",
+    "unix": 1794996871.248526,
+    "monotonic_s": 11880.466694893,
+    "duration_s": 180.0,
+    "speed": 0.33,
+    "first_inference_s": 1.4235205169989058,
+    "first_observation_and_inference_s": 3.288175900001079
+  },
+  "grasp_recording": {
+    "event_count": 38,
+    "events": [
+      {
+        "id": 1,
+        "directory": "grasp_1",
+        "time_s": 10.612734473999808,
+        "unix": 1794996881.860456,
+        "status": "complete",
+        "frames": 50,
+        "goals": 239,
+        "trigger_drop_points": 3.1211750305997557
+      },
+      {
+        "id": 2,
+        "directory": "grasp_2",
+        "time_s": 11.079407875999095,
+        "unix": 1794996882.3271801,
+        "status": "complete",
+        "frames": 50,
+        "goals": 237,
+        "trigger_drop_points": 3.42717258261934
+      },
+      {
+        "id": 3,
+        "directory": "grasp_3",
+        "time_s": 13.520901426998535,
+        "unix": 1794996884.768646,
+        "status": "complete",
+        "frames": 50,
+        "goals": 232,
+        "trigger_drop_points": 3.977968176254592
+      },
+      {
+        "id": 4,
+        "directory": "grasp_4",
+        "time_s": 13.950486928999453,
+        "unix": 1794996885.19824,
+        "status": "complete",
+        "frames": 50,
+        "goals": 229,
+        "trigger_drop_points": 3.549571603427168
+      },
+      {
+        "id": 5,
+        "directory": "grasp_5",
+        "time_s": 16.71301087899883,
+        "unix": 1794996887.9607658,
+        "status": "complete",
+        "frames": 50,
+        "goals": 233,
+        "trigger_drop_points": 3.0599755201958416
+      },
+      {
+        "id": 6,
+        "directory": "grasp_6",
+        "time_s": 33.82266133399935,
+        "unix": 1794996905.070422,
+        "status": "complete",
+        "frames": 50,
+        "goals": 239,
+        "trigger_drop_points": 4.895960832313335
+      },
+      {
+        "id": 7,
+        "directory": "grasp_7",
+        "time_s": 35.119731576998674,
+        "unix": 1794996906.3674881,
+        "status": "complete",
+        "frames": 50,
+        "goals": 236,
+        "trigger_drop_points": 3.4271725826193347
+      },
+      {
+        "id": 8,
+        "directory": "grasp_8",
+        "time_s": 47.76282136499867,
+        "unix": 1794996919.010542,
+        "status": "complete",
+        "frames": 50,
+        "goals": 236,
+        "trigger_drop_points": 3.4883720930232514
+      },
+      {
+        "id": 9,
+        "directory": "grasp_9",
+        "time_s": 49.2438579819991,
+        "unix": 1794996920.4915829,
+        "status": "complete",
+        "frames": 50,
+        "goals": 234,
+        "trigger_drop_points": 3.365973072215418
+      },
+      {
+        "id": 10,
+        "directory": "grasp_10",
+        "time_s": 49.9912059269991,
+        "unix": 1794996921.2390149,
+        "status": "complete",
+        "frames": 50,
+        "goals": 233,
+        "trigger_drop_points": 3.9167686658506753
+      },
+      {
+        "id": 11,
+        "directory": "grasp_11",
+        "time_s": 51.91759298699981,
+        "unix": 1794996923.165347,
+        "status": "complete",
+        "frames": 50,
+        "goals": 231,
+        "trigger_drop_points": 3.365973072215425
+      },
+      {
+        "id": 12,
+        "directory": "grasp_12",
+        "time_s": 61.41152852399864,
+        "unix": 1794996932.659282,
+        "status": "complete",
+        "frames": 50,
+        "goals": 236,
+        "trigger_drop_points": 3.3047735618115084
+      },
+      {
+        "id": 13,
+        "directory": "grasp_13",
+        "time_s": 63.80100654999842,
+        "unix": 1794996935.048744,
+        "status": "complete",
+        "frames": 50,
+        "goals": 234,
+        "trigger_drop_points": 3.182374541003668
+      },
+      {
+        "id": 14,
+        "directory": "grasp_14",
+        "time_s": 64.45347164799932,
+        "unix": 1794996935.701225,
+        "status": "complete",
+        "frames": 50,
+        "goals": 230,
+        "trigger_drop_points": 3.182374541003675
+      },
+      {
+        "id": 15,
+        "directory": "grasp_15",
+        "time_s": 65.75854722699842,
+        "unix": 1794996937.0062795,
+        "status": "complete",
+        "frames": 50,
+        "goals": 230,
+        "trigger_drop_points": 3.2435740514075917
+      },
+      {
+        "id": 16,
+        "directory": "grasp_16",
+        "time_s": 66.35856660499849,
+        "unix": 1794996937.6063166,
+        "status": "complete",
+        "frames": 50,
+        "goals": 226,
+        "trigger_drop_points": 3.0599755201958416
+      },
+      {
+        "id": 17,
+        "directory": "grasp_17",
+        "time_s": 73.41981910399954,
+        "unix": 1794996944.6675644,
+        "status": "complete",
+        "frames": 50,
+        "goals": 237,
+        "trigger_drop_points": 3.2435740514075917
+      },
+      {
+        "id": 18,
+        "directory": "grasp_18",
+        "time_s": 79.6814661849985,
+        "unix": 1794996950.9292238,
+        "status": "complete",
+        "frames": 50,
+        "goals": 240,
+        "trigger_drop_points": 4.222766217870259
+      },
+      {
+        "id": 19,
+        "directory": "grasp_19",
+        "time_s": 88.96194894899963,
+        "unix": 1794996960.2096887,
+        "status": "complete",
+        "frames": 50,
+        "goals": 236,
+        "trigger_drop_points": 3.1211750305997583
+      },
+      {
+        "id": 20,
+        "directory": "grasp_20",
+        "time_s": 94.89603305399942,
+        "unix": 1794996966.1437893,
+        "status": "complete",
+        "frames": 50,
+        "goals": 235,
+        "trigger_drop_points": 3.4883720930232585
+      },
+      {
+        "id": 21,
+        "directory": "grasp_21",
+        "time_s": 96.52885946899914,
+        "unix": 1794996967.7766054,
+        "status": "complete",
+        "frames": 51,
+        "goals": 236,
+        "trigger_drop_points": 3.2435740514075917
+      },
+      {
+        "id": 22,
+        "directory": "grasp_22",
+        "time_s": 98.8042030659999,
+        "unix": 1794996970.0519354,
+        "status": "complete",
+        "frames": 50,
+        "goals": 234,
+        "trigger_drop_points": 3.3047735618115013
+      },
+      {
+        "id": 23,
+        "directory": "grasp_23",
+        "time_s": 101.37875373599854,
+        "unix": 1794996972.6264515,
+        "status": "complete",
+        "frames": 50,
+        "goals": 235,
+        "trigger_drop_points": 3.3047735618115013
+      },
+      {
+        "id": 24,
+        "directory": "grasp_24",
+        "time_s": 103.92328887099939,
+        "unix": 1794996975.1710413,
+        "status": "complete",
+        "frames": 51,
+        "goals": 233,
+        "trigger_drop_points": 3.916768665850668
+      },
+      {
+        "id": 25,
+        "directory": "grasp_25",
+        "time_s": 107.86555336699894,
+        "unix": 1794996979.1132941,
+        "status": "complete",
+        "frames": 50,
+        "goals": 233,
+        "trigger_drop_points": 3.121175030599751
+      },
+      {
+        "id": 26,
+        "directory": "grasp_26",
+        "time_s": 111.52315219999946,
+        "unix": 1794996982.770896,
+        "status": "complete",
+        "frames": 51,
+        "goals": 235,
+        "trigger_drop_points": 3.2435740514075917
+      },
+      {
+        "id": 27,
+        "directory": "grasp_27",
+        "time_s": 123.91796962099943,
+        "unix": 1794996995.16571,
+        "status": "complete",
+        "frames": 50,
+        "goals": 235,
+        "trigger_drop_points": 3.610771113831092
+      },
+      {
+        "id": 28,
+        "directory": "grasp_28",
+        "time_s": 128.66141656999935,
+        "unix": 1794996999.9091635,
+        "status": "complete",
+        "frames": 50,
+        "goals": 233,
+        "trigger_drop_points": 4.039167686658502
+      },
+      {
+        "id": 29,
+        "directory": "grasp_29",
+        "time_s": 133.70052625099925,
+        "unix": 1794997004.9482641,
+        "status": "complete",
+        "frames": 50,
+        "goals": 233,
+        "trigger_drop_points": 3.2435740514075846
+      },
+      {
+        "id": 30,
+        "directory": "grasp_30",
+        "time_s": 142.08011407199956,
+        "unix": 1794997013.3278706,
+        "status": "complete",
+        "frames": 50,
+        "goals": 237,
+        "trigger_drop_points": 3.549571603427168
+      },
+      {
+        "id": 31,
+        "directory": "grasp_31",
+        "time_s": 150.61725994900007,
+        "unix": 1794997021.8650477,
+        "status": "complete",
+        "frames": 50,
+        "goals": 236,
+        "trigger_drop_points": 3.182374541003675
+      },
+      {
+        "id": 32,
+        "directory": "grasp_32",
+        "time_s": 151.18521543099996,
+        "unix": 1794997022.4330602,
+        "status": "complete",
+        "frames": 50,
+        "goals": 235,
+        "trigger_drop_points": 4.589963280293759
+      },
+      {
+        "id": 33,
+        "directory": "grasp_33",
+        "time_s": 154.7663916799993,
+        "unix": 1794997026.0141532,
+        "status": "complete",
+        "frames": 50,
+        "goals": 229,
+        "trigger_drop_points": 3.182374541003668
+      },
+      {
+        "id": 34,
+        "directory": "grasp_34",
+        "time_s": 161.62689204899834,
+        "unix": 1794997032.8746514,
+        "status": "complete",
+        "frames": 50,
+        "goals": 236,
+        "trigger_drop_points": 3.3047735618115084
+      },
+      {
+        "id": 35,
+        "directory": "grasp_35",
+        "time_s": 167.96295597899916,
+        "unix": 1794997039.210684,
+        "status": "complete",
+        "frames": 50,
+        "goals": 236,
+        "trigger_drop_points": 3.3047735618115084
+      },
+      {
+        "id": 36,
+        "directory": "grasp_36",
+        "time_s": 170.18637446999855,
+        "unix": 1794997041.434095,
+        "status": "complete",
+        "frames": 50,
+        "goals": 235,
+        "trigger_drop_points": 4.957160342717259
+      },
+      {
+        "id": 37,
+        "directory": "grasp_37",
+        "time_s": 175.44774264899934,
+        "unix": 1794997046.6954944,
+        "status": "complete",
+        "frames": 50,
+        "goals": 235,
+        "trigger_drop_points": 3.8555691554467586
+      },
+      {
+        "id": 38,
+        "directory": "grasp_38",
+        "time_s": 178.7600661259985,
+        "unix": 1794997050.0078104,
+        "status": "partial",
+        "frames": 42,
+        "goals": 200,
+        "trigger_drop_points": 3.3047735618115084
+      }
+    ],
+    "counts": {
+      "capture_batches": 1798,
+      "captured_images": 5394,
+      "duplicate_images": 0,
+      "stale_images": 0,
+      "missing_images": 0,
+      "dropped_frames": 0,
+      "dropped_telemetry": 0,
+      "dropped_events": 0,
+      "encoded_images": 5394,
+      "saved_images": 5685,
+      "io_errors": 0
+    },
+    "errors": [],
+    "fps": 10,
+    "ring_seconds": 5,
+    "pre_seconds": 3,
+    "post_seconds": 2,
+    "writer_alive": false
+  },
+  "output": "/home/jetson3/so101_vla/runs/DRY_1794996808687921321",
+  "camera_cleanup_errors": []
+}

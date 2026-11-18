@@ -1,0 +1,1 @@
+SUBSYSTEM=="video4linux", ATTR{name}=="Astra", SYMLINK+="v4l/by-path/so101-astra-loopback-video-index0"

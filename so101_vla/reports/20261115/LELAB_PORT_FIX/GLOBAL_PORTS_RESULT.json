@@ -1,0 +1,14 @@
+[
+  {
+    "role": "leader",
+    "before": "/dev/ttyACM0",
+    "after": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6085272-if00",
+    "backup": "/home/jetson3/.cache/huggingface/lerobot/ports/leader_port.txt.bak_20261115_161335"
+  },
+  {
+    "role": "follower",
+    "before": "/dev/ttyACM1",
+    "after": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6058306-if00",
+    "backup": "/home/jetson3/.cache/huggingface/lerobot/ports/follower_port.txt.bak_20261115_161335"
+  }
+]

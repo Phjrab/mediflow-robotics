@@ -1,0 +1,198 @@
+{
+  "unique_physical_step_files": 14,
+  "runs": [
+    {
+      "run": "/home/jetson3/so101_vla/runs/20261109_215013_HOLD_temperature_296steps_vla_stream_blue_1794228613187797901",
+      "sha256": "4984dff8888e975bad33e70d2baedf7dcaa14446e8c0bf18bab91362f5423a83",
+      "steps": 296,
+      "summary_steps": 296,
+      "last_model_time_s": null
+    },
+    {
+      "run": "/home/jetson3/so101_vla/runs/20261110_201618_HOLD_communication_1082steps_vla_stream_blue_1794309378342258582",
+      "sha256": "3eb64cbd84864dfbab756ec4377f92dfac1171f6b8bc0e4cc8321bf8edce130e",
+      "steps": 1082,
+      "summary_steps": 1082,
+      "last_model_time_s": 6.854284688131008
+    },
+    {
+      "run": "/home/jetson3/so101_vla/runs/20261111_174131_HOLD_temperature_476steps_vla_stream_blue_1794386491484768209",
+      "sha256": "802534d7b0a1f3b9e606152f645afc37c2b6b3fa066235941ca4c8e82b41186c",
+      "steps": 476,
+      "summary_steps": 476,
+      "last_model_time_s": 2.88892145289019
+    },
+    {
+      "run": "/home/jetson3/so101_vla/runs/20261111_180136_HOLD_temperature_404steps_vla_stream_blue_1794387696614900087",
+      "sha256": "27d50a82b7a066cb0610e8c685113aff32db8dbf5b0f37630009f0f84261b2b1",
+      "steps": 404,
+      "summary_steps": 404,
+      "last_model_time_s": 2.5647811850096898
+    },
+    {
+      "run": "/home/jetson3/so101_vla/runs/20261111_200151_HOLD_temperature_381steps_vla_stream_blue_1794394911695485729",
+      "sha256": "a70a3284329b271818b6d9c30d200e1c41369e5d02e1bf88e4ae08d88e0a2a82",
+      "steps": 381,
+      "summary_steps": 381,
+      "last_model_time_s": 2.4229911228598207
+    },
+    {
+      "run": "/home/jetson3/so101_vla/runs/20261115_162129",
+      "sha256": "3dfd73ed06a79931fc25c0314c125b44732d6b0be5c49ba58bed9d23a221fff4",
+      "steps": 209,
+      "summary_steps": 209,
+      "last_model_time_s": 1.4651674161300514
+    },
+    {
+      "run": "/home/jetson3/so101_vla/runs/20261115_170600",
+      "sha256": "8ac4cd86cc2d3094b4b5e6d8131283e631afc69e9e7ae30bbf16aea4510ec8d0",
+      "steps": 17,
+      "summary_steps": 17,
+      "last_model_time_s": 0.10280073869957049
+    },
+    {
+      "run": "/home/jetson3/so101_vla/runs/20261115_181130",
+      "sha256": "e18136e24e8f074be9eccf39f8cedc5861a68c361eb7e6d51059e37eba604050",
+      "steps": 1041,
+      "summary_steps": 1041,
+      "last_model_time_s": 7.492767105780185
+    }
+  ],
+  "communication_incidents": [
+    {
+      "run": "/home/jetson3/so101_vla/_archive/20261110/jetson/zero_step_runs/20261110_143235_HOLD_communication_0steps_vla_stream_blue_1794288755678426849",
+      "joint": "shoulder_pan",
+      "motor_id": 1,
+      "communication": -6,
+      "elapsed_s": null,
+      "goal_steps": 0,
+      "cached_pose": null,
+      "last_valid_temperatures": null,
+      "last_valid_voltages": null,
+      "cached_wrist_velocity_deg_s": null,
+      "simultaneous_other_axis_errors": "NOT_CAPTURED_AT_FAILED_TRANSACTION",
+      "raw_failed_packet": "NOT_CAPTURED_IN_OLD_SUMMARY",
+      "occurrence_count": "one incident per run/code/axis; retries not recorded in old logs"
+    },
+    {
+      "run": "/home/jetson3/so101_vla/runs/20261110_201618_HOLD_communication_1082steps_vla_stream_blue_1794309378342258582",
+      "joint": "wrist_roll",
+      "motor_id": 5,
+      "communication": -7,
+      "elapsed_s": 24.24190819900832,
+      "goal_steps": 1082,
+      "cached_pose": [
+        3.7362637362637363,
+        -14.989010989010989,
+        1.5384615384615385,
+        72.48351648351648,
+        -4.8791208791208796,
+        27.47858017135863
+      ],
+      "last_valid_temperatures": null,
+      "last_valid_voltages": null,
+      "cached_wrist_velocity_deg_s": {
+        "wrist_flex": 0.0,
+        "wrist_roll": 0.0
+      },
+      "simultaneous_other_axis_errors": "NOT_CAPTURED_AT_FAILED_TRANSACTION",
+      "raw_failed_packet": "NOT_CAPTURED_IN_OLD_SUMMARY",
+      "occurrence_count": "one incident per run/code/axis; retries not recorded in old logs"
+    },
+    {
+      "run": "/home/jetson3/so101_vla/runs/20261115_181130",
+      "joint": "wrist_roll",
+      "motor_id": 5,
+      "communication": -7,
+      "elapsed_s": 26.003404987999602,
+      "goal_steps": 1041,
+      "cached_pose": [
+        -3.8241758241758244,
+        -98.76923076923077,
+        96.3956043956044,
+        42.15384615384615,
+        -2.9450549450549453,
+        3.121175030599755
+      ],
+      "last_valid_temperatures": {
+        "shoulder_pan": 31,
+        "shoulder_lift": 33,
+        "elbow_flex": 31,
+        "wrist_flex": 32,
+        "wrist_roll": 31,
+        "gripper": 34
+      },
+      "last_valid_voltages": {
+        "shoulder_pan": 12.2,
+        "shoulder_lift": 12.1,
+        "elbow_flex": 12.2,
+        "wrist_flex": 12.2,
+        "wrist_roll": 12.2,
+        "gripper": 12.2
+      },
+      "cached_wrist_velocity_deg_s": {
+        "wrist_flex": 0.0,
+        "wrist_roll": 4.234321217669357
+      },
+      "simultaneous_other_axis_errors": "NOT_CAPTURED_AT_FAILED_TRANSACTION",
+      "raw_failed_packet": "NOT_CAPTURED_IN_OLD_SUMMARY",
+      "occurrence_count": "one incident per run/code/axis; retries not recorded in old logs"
+    }
+  ],
+  "incident_counts_by_axis": {
+    "shoulder_pan": {
+      "-6": 1
+    },
+    "shoulder_lift": {},
+    "elbow_flex": {},
+    "wrist_flex": {},
+    "wrist_roll": {
+      "-7": 2
+    },
+    "gripper": {}
+  },
+  "temperature_hot_or_suspected_rows": 25,
+  "hot_counts_by_axis": {
+    "wrist_roll": 9,
+    "shoulder_lift": 12,
+    "gripper": 4
+  },
+  "multiple_hot_axes_same_bulk_cycle": 0,
+  "wrist_motion_all_steps": {
+    "wrist_flex": {
+      "p50": 0.0,
+      "p95": 15.18837262410593,
+      "max": 65.17299450495337
+    },
+    "wrist_roll": {
+      "p50": 0.0,
+      "p95": 10.101420050398229,
+      "max": 45.62375965937381
+    }
+  },
+  "limitations": [
+    "No failed raw packets or request-level timestamps in older logs: exact cross-axis simultaneity cannot be reconstructed.",
+    "Cached pose/speed precedes event and is not simultaneous. Counts are deduplicated run incidents, not wire error totals.",
+    "Temperature bulk measurements may be corrupt despite SDK status success. Voltage in same payload is not an independent electrical measurement.",
+    "Sparse communication incidents cannot establish cable motion causality."
+  ],
+  "bus_budget": {
+    "old_per_cycle_packets": 27,
+    "deployed_per_cycle_packets": 27,
+    "old_per_cycle_bytes": 354,
+    "deployed_per_cycle_bytes": 354,
+    "rejected_combined_trial": {
+      "packets_per_cycle": 20,
+      "bytes_per_cycle": 394
+    },
+    "note": "Includes six replies, six fresh individual temperatures and one goal. Wide READ33..70 trial had more corrupt replies; deployed runner retains narrow READ56:15 plus READ33:8.",
+    "at_50hz": {
+      "old_packets_s": 1350,
+      "deployed_packets_s": 1350,
+      "old_line_occupancy_percent": 17.7,
+      "deployed_line_occupancy_percent": 17.7
+    },
+    "baud": 1000000,
+    "bits_per_byte": 10
+  }
+}
