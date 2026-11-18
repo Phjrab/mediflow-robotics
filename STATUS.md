@@ -1,4 +1,4 @@
-**2026-11-18 ID 불일치 복구·기록기 프로세스 분리·1초 타이밍 계측 로컬 검증 완료(전체177 PASS/2플랫폼 SKIP + 실행기17 PASS). 현재 Windows 후보이며 Jetson 배포/실버스 검증 NOT_RUN, GitHub 지정 저장소 쓰기 권한 없음으로 NOT_PUSHED. 홈·그리퍼48.5점·오른쪽+6틱·speed0.33·READY 뒤180초 유지. 최신 근거 reports/20261118/ID_RECOVERY/RESULT.md 및 GITHUB_SYNC_STATUS.md를 먼저 확인.**
+**2026-11-18 SSH 복구 및 Jetson ID 복구·기록기 프로세스 분리·타이밍 수정 배포 완료. Jetson 회귀179 PASS, 실제 모델·3카메라 legacy dry60초 2,914목표·48.56Hz·묶음 대기0·모터 쓰기0. Windows와 Jetson의 `pre-raw-20261118`은 `c52504c`를 가리킨다. GitHub 최종 대상은 `Phjrab/mediflow-robotics`, `vla/live-202611`이며 현행 소스가 게시됐다. 원본 이력 bundle/원격 native tag 보존 상태는 GITHUB_SYNC_STATUS.md와 원격 게시 receipt를 따르며 전체 native push 완료로 해석하지 않는다. 실제 버스 비교는 6축 -6·수신0바이트로 최초 읽기에서 HOLD, 토크 상태 미확인·제어 Hz 측정 불가·쓰기0·포트 닫힘. raw 모드 추가 검증 중이며 live 미실행. 홈·그리퍼48.5점·오른쪽+6틱·legacy speed0.33·READY 뒤180초 유지.**
 
 **2026-11-18 집기 기록·READY 적용. 3카메라10fps/최근5초 링버퍼, 닫힘3점 초과마다 전3초/후2초 JPEG·관절값 저장. 첫 실제 영상/추론까지 READY 전에 완료한 뒤180초 시작. 홈·48.5점·오른쪽+6틱·보호 유지. 18:46/11월16일 비교 추론18회·1.43초·간격3.2초 동일, 목표 궤적 차이 확인; 스케줄/0.33 유지. Jetson164모의PASS, 실제 모델·3카메라dry180.017초8425목표·46.81Hz·대기0·실물쓰기0, 기록38개(37완료/1종료부분). 상세 reports/20261118/GRASP_READY_TIMING/RESULT.md 및 DRY_RESULT.md.**
 

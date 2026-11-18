@@ -1,0 +1,177 @@
+{
+  "schema": "so101.raw_action_reference.v1",
+  "date": "2026-11-18",
+  "status": "FULL_137_RECOMPUTED_READONLY",
+  "fps": 30,
+  "fps_basis": "all six source meta/info.json files re-read; merged metadata absent from Jetson",
+  "episodes": 137,
+  "frames": 63551,
+  "adjacent_pairs": 63414,
+  "episode_counts_by_color": {
+    "red": 48,
+    "green": 45,
+    "blue": 44
+  },
+  "max_timestamp_period_error_s": 1.3987223307296293e-06,
+  "joint_order": [
+    "shoulder_pan",
+    "shoulder_lift",
+    "elbow_flex",
+    "wrist_flex",
+    "wrist_roll",
+    "gripper"
+  ],
+  "max_action_delta": {
+    "shoulder_pan": 7.296703338623047,
+    "shoulder_lift": 14.417579650878906,
+    "elbow_flex": 15.824175357818604,
+    "wrist_flex": 12.307693481445312,
+    "wrist_roll": 4.571428537368774,
+    "gripper": 16.003063201904297
+  },
+  "raw_guard_1_5": {
+    "shoulder_pan": 10.94505500793457,
+    "shoulder_lift": 21.62636947631836,
+    "elbow_flex": 23.736263036727905,
+    "wrist_flex": 18.46154022216797,
+    "wrist_roll": 6.857142806053162,
+    "gripper": 24.004594802856445
+  },
+  "units": {
+    "shoulder_pan": "degree",
+    "shoulder_lift": "degree",
+    "elbow_flex": "degree",
+    "wrist_flex": "degree",
+    "wrist_roll": "degree",
+    "gripper": "percent_0_100"
+  },
+  "max_provenance": {
+    "shoulder_pan": {
+      "source": "a_to_red_20261102_201029",
+      "source_episode": 3,
+      "merged_episode": 2,
+      "from_frame": 169,
+      "to_frame": 170,
+      "from_action": 4.879120826721191,
+      "to_action": -2.4175825119018555
+    },
+    "shoulder_lift": {
+      "source": "a_to_red_20261102_210433",
+      "source_episode": 4,
+      "merged_episode": 13,
+      "from_frame": 223,
+      "to_frame": 224,
+      "from_action": -85.53845977783203,
+      "to_action": -71.12088012695312
+    },
+    "elbow_flex": {
+      "source": "a_to_blue_20261102_212958",
+      "source_episode": 19,
+      "merged_episode": 76,
+      "from_frame": 269,
+      "to_frame": 270,
+      "from_action": 6.153846263885498,
+      "to_action": 21.9780216217041
+    },
+    "wrist_flex": {
+      "source": "a_to_blue_20261102_212958",
+      "source_episode": 14,
+      "merged_episode": 71,
+      "from_frame": 363,
+      "to_frame": 364,
+      "from_action": 53.4505500793457,
+      "to_action": 41.14285659790039
+    },
+    "wrist_roll": {
+      "source": "a_to_red_20261102_210433",
+      "source_episode": 15,
+      "merged_episode": 24,
+      "from_frame": 41,
+      "to_frame": 42,
+      "from_action": -3.164835214614868,
+      "to_action": -7.736263751983643
+    },
+    "gripper": {
+      "source": "a_to_blue_20261102_212958",
+      "source_episode": 16,
+      "merged_episode": 73,
+      "from_frame": 294,
+      "to_frame": 295,
+      "from_action": 26.49310874938965,
+      "to_action": 10.490045547485352
+    }
+  },
+  "source_metadata": [
+    {
+      "source": "a_to_red_20261102_201029",
+      "path": "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_red_20261102_201029/meta/info.json",
+      "sha256": "1cf38fe55dee27ae7ee7822e0c104b4d2835b65c680a76bc8a47fdcb491e1197",
+      "fps": 30,
+      "selected_episodes": 9
+    },
+    {
+      "source": "a_to_red_20261102_210433",
+      "path": "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_red_20261102_210433/meta/info.json",
+      "sha256": "6aa1e63ad4ac286f8f56d990e66d66df38164e2356f86c30d85b1d5f83b3ea17",
+      "fps": 30,
+      "selected_episodes": 39
+    },
+    {
+      "source": "a_to_green_20261102_201804",
+      "path": "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_green_20261102_201804/meta/info.json",
+      "sha256": "42bd002bbc7d631194a08c275079041d78bdfc7cb571b8400727a5db23629327",
+      "fps": 30,
+      "selected_episodes": 10
+    },
+    {
+      "source": "a_to_blue_20261102_212958",
+      "path": "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261102_212958/meta/info.json",
+      "sha256": "6466bf67c0f23f8b4108fa31994113d918c7d86e49bc8007c627b381c4f21edb",
+      "fps": 30,
+      "selected_episodes": 35
+    },
+    {
+      "source": "a_to_blue_20261103_193835",
+      "path": "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261103_193835/meta/info.json",
+      "sha256": "fbacc328c796533728749b05cf31415d4ed4536a091fbfb222df95b486c7bb24",
+      "fps": 30,
+      "selected_episodes": 35
+    },
+    {
+      "source": "a_to_blue_20261103_193353",
+      "path": "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261103_193353/meta/info.json",
+      "sha256": "9a04434ecfee44b220bac00d398a27537bbae9f0c737acfd96dba8c649e187b7",
+      "fps": 30,
+      "selected_episodes": 9
+    }
+  ],
+  "source_parquet_sha256": {
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_red_20261102_201029/data/chunk-000/file-000.parquet": "f799e22af6a7b141be1457e935c8902886468fb64ef99250e371e97728361292",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_red_20261102_210433/data/chunk-000/file-000.parquet": "6fdf565a638655982b9e0a575e99a64ae2e95dd1d20539f74ae94d1c0507485a",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_green_20261102_201804/data/chunk-000/file-000.parquet": "81dc6ebe7cd48d1a715a55bf5e12615af74fff1fccb62816bf9f5cea00a67ac6",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261102_212958/data/chunk-000/file-000.parquet": "a55e42ca90c9a4cfd66604660c136a239a204f0c6cad52aa8e328b02fbfb31bd",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261103_193835/data/chunk-000/file-000.parquet": "3ca854deaa401f312c364a42c85a2dc5e6209f2f189b2b5c15b8e64fbc285b1e",
+    "/home/jetson3/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261103_193353/data/chunk-000/file-000.parquet": "22813bc35cc95a42bb3af8dc4ac49f9fdef13d288bb625199ff3146a3330b850"
+  },
+  "mapping_path": "/home/jetson3/so101_vla/_archive/20261110/jetson/home/motion_limits_20261109_1794202196649/episode_mapping.csv",
+  "mapping_sha256": "d6b2c82317ff8a1652f5dd6d3eb14e43899421257d19a3bf78caa0450927821a",
+  "historical_statistics_path": "/home/jetson3/so101_vla/_archive/20261110/jetson/home/motion_limits_20261109_1794202196649/training_motion_stats.json",
+  "historical_statistics_sha256": "252d17501046f993510d044f56fe63c786d3a48ccbe4f7b64720d0abe6fff407",
+  "checkpoint_dataset_repo_id": "local/a_red_green_blue_137_exclude10_20261103",
+  "checkpoint_dataset_root": "C:\\Users\\user\\Documents\\Codex\\2026-11-03\\https-github-com-phjrab-mediflow-robotics\\work\\three_color_20261103\\prepared_137_v1\\merged",
+  "method": "float64 abs diff of original float32 action within each source episode sorted by frame_index; exclude episode boundaries; apply original training trims",
+  "trims": [
+    {
+      "source": "a_to_red_20261102_210433",
+      "episode": 39,
+      "kept_frames": 455
+    },
+    {
+      "source": "a_to_blue_20261102_212958",
+      "episode": 0,
+      "kept_frames": 516
+    }
+  ],
+  "source_name_note": "a_to_blue_20261102_212958 is mapped to green training episodes",
+  "motor_writes": 0
+}

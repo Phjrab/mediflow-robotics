@@ -1,0 +1,454 @@
+{
+  "status": "HOLD",
+  "live": "NOT_RUN",
+  "motor_register_writes": 0,
+  "frame_source": "saved_identical_RGB_no_camera_acquisition",
+  "phases": [
+    {
+      "name": "ring_off",
+      "completed": false,
+      "cleanup_errors": [],
+      "mode_cache_max_age_s": 0.05,
+      "individual_temperature_interval_s": 0.02,
+      "thermal_stop_rule": "diagnostic_raw_or_individual_55C_no_thermal_window",
+      "elapsed_s": 0.1613258319994202,
+      "work_s": {
+        "n": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "cycle_s": {
+        "n": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "read_s": {
+        "n": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "recorder_enqueue_s": {
+        "n": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "main_process_cpu_pct": 81.93423604998073,
+      "communication": {
+        "by_joint": {
+          "shoulder_pan": {
+            "-6": 5,
+            "-7": 0,
+            "id_mismatch": 0
+          },
+          "shoulder_lift": {
+            "-6": 1,
+            "-7": 0,
+            "id_mismatch": 0
+          },
+          "elbow_flex": {
+            "-6": 1,
+            "-7": 0,
+            "id_mismatch": 0
+          },
+          "wrist_flex": {
+            "-6": 1,
+            "-7": 0,
+            "id_mismatch": 0
+          },
+          "wrist_roll": {
+            "-6": 1,
+            "-7": 0,
+            "id_mismatch": 0
+          },
+          "gripper": {
+            "-6": 1,
+            "-7": 0,
+            "id_mismatch": 0
+          }
+        },
+        "id_mismatch_by_joint": {
+          "shoulder_pan": 0,
+          "shoulder_lift": 0,
+          "elbow_flex": 0,
+          "wrist_flex": 0,
+          "wrist_roll": 0,
+          "gripper": 0
+        },
+        "input_flushes": 5,
+        "discarded_rx_bytes": 0,
+        "errors": [
+          {
+            "event": "communication_error",
+            "monotonic_s": 16347.958638805,
+            "unix": 1795001338.7396057,
+            "axes": [
+              "shoulder_pan"
+            ],
+            "operation": "read:33:8",
+            "communication": -6,
+            "kind": "sdk_error",
+            "observed": {
+              "expected_id": 1,
+              "expected_bytes": 8,
+              "communication": -6,
+              "raw_hex": "",
+              "received_id": null,
+              "checksum_valid": false
+            },
+            "pose": {
+              "pose_age_s": null,
+              "wrist_roll_deg": null,
+              "wrist_flex_deg": null
+            },
+            "axis_attribution": "reply_expected_id",
+            "streak": {
+              "shoulder_pan": 1
+            },
+            "phase": "normal"
+          },
+          {
+            "event": "communication_error",
+            "monotonic_s": 16347.978783702,
+            "unix": 1795001338.7597506,
+            "axes": [
+              "shoulder_lift"
+            ],
+            "operation": "read:33:8",
+            "communication": -6,
+            "kind": "sdk_error",
+            "observed": {
+              "expected_id": 2,
+              "expected_bytes": 8,
+              "communication": -6,
+              "raw_hex": "",
+              "received_id": null,
+              "checksum_valid": false
+            },
+            "pose": {
+              "pose_age_s": null,
+              "wrist_roll_deg": null,
+              "wrist_flex_deg": null
+            },
+            "axis_attribution": "reply_expected_id",
+            "streak": {
+              "shoulder_lift": 1
+            },
+            "phase": "normal"
+          },
+          {
+            "event": "communication_error",
+            "monotonic_s": 16347.989425943,
+            "unix": 1795001338.770393,
+            "axes": [
+              "elbow_flex"
+            ],
+            "operation": "read:33:8",
+            "communication": -6,
+            "kind": "sdk_error",
+            "observed": {
+              "expected_id": 3,
+              "expected_bytes": 8,
+              "communication": -6,
+              "raw_hex": "",
+              "received_id": null,
+              "checksum_valid": false
+            },
+            "pose": {
+              "pose_age_s": null,
+              "wrist_roll_deg": null,
+              "wrist_flex_deg": null
+            },
+            "axis_attribution": "reply_expected_id",
+            "streak": {
+              "elbow_flex": 1
+            },
+            "phase": "normal"
+          },
+          {
+            "event": "communication_error",
+            "monotonic_s": 16347.989531834,
+            "unix": 1795001338.7704988,
+            "axes": [
+              "wrist_flex"
+            ],
+            "operation": "read:33:8",
+            "communication": -6,
+            "kind": "sdk_error",
+            "observed": {
+              "expected_id": 4,
+              "expected_bytes": 8,
+              "communication": -6,
+              "raw_hex": "",
+              "received_id": null,
+              "checksum_valid": false
+            },
+            "pose": {
+              "pose_age_s": null,
+              "wrist_roll_deg": null,
+              "wrist_flex_deg": null
+            },
+            "axis_attribution": "reply_expected_id",
+            "streak": {
+              "wrist_flex": 1
+            },
+            "phase": "normal"
+          },
+          {
+            "event": "communication_error",
+            "monotonic_s": 16347.989637917,
+            "unix": 1795001338.7706048,
+            "axes": [
+              "gripper"
+            ],
+            "operation": "read:33:8",
+            "communication": -6,
+            "kind": "sdk_error",
+            "observed": {
+              "expected_id": 6,
+              "expected_bytes": 8,
+              "communication": -6,
+              "raw_hex": "",
+              "received_id": null,
+              "checksum_valid": false
+            },
+            "pose": {
+              "pose_age_s": null,
+              "wrist_roll_deg": null,
+              "wrist_flex_deg": null
+            },
+            "axis_attribution": "reply_expected_id",
+            "streak": {
+              "gripper": 1
+            },
+            "phase": "normal"
+          },
+          {
+            "event": "communication_error",
+            "monotonic_s": 16347.989727552,
+            "unix": 1795001338.7706945,
+            "axes": [
+              "wrist_roll"
+            ],
+            "operation": "read:33:8",
+            "communication": -6,
+            "kind": "sdk_error",
+            "observed": {
+              "expected_id": 5,
+              "expected_bytes": 8,
+              "communication": -6,
+              "raw_hex": "",
+              "received_id": null,
+              "checksum_valid": false
+            },
+            "pose": {
+              "pose_age_s": null,
+              "wrist_roll_deg": null,
+              "wrist_flex_deg": null
+            },
+            "axis_attribution": "reply_expected_id",
+            "streak": {
+              "wrist_roll": 1
+            },
+            "phase": "normal"
+          },
+          {
+            "event": "communication_error",
+            "monotonic_s": 16348.012095748,
+            "unix": 1795001338.7930627,
+            "axes": [
+              "shoulder_pan"
+            ],
+            "operation": "read:33:8",
+            "communication": -6,
+            "kind": "sdk_error",
+            "observed": {
+              "expected_id": 1,
+              "expected_bytes": 8,
+              "communication": -6,
+              "raw_hex": "",
+              "received_id": null,
+              "checksum_valid": false
+            },
+            "pose": {
+              "pose_age_s": null,
+              "wrist_roll_deg": null,
+              "wrist_flex_deg": null
+            },
+            "axis_attribution": "reply_expected_id",
+            "streak": {
+              "shoulder_pan": 2
+            },
+            "phase": "normal"
+          },
+          {
+            "event": "communication_error",
+            "monotonic_s": 16348.034418758,
+            "unix": 1795001338.8153856,
+            "axes": [
+              "shoulder_pan"
+            ],
+            "operation": "read:33:8",
+            "communication": -6,
+            "kind": "sdk_error",
+            "observed": {
+              "expected_id": 1,
+              "expected_bytes": 8,
+              "communication": -6,
+              "raw_hex": "",
+              "received_id": null,
+              "checksum_valid": false
+            },
+            "pose": {
+              "pose_age_s": null,
+              "wrist_roll_deg": null,
+              "wrist_flex_deg": null
+            },
+            "axis_attribution": "reply_expected_id",
+            "streak": {
+              "shoulder_pan": 3
+            },
+            "phase": "normal"
+          },
+          {
+            "event": "communication_error",
+            "monotonic_s": 16348.056713255,
+            "unix": 1795001338.83768,
+            "axes": [
+              "shoulder_pan"
+            ],
+            "operation": "read:33:8",
+            "communication": -6,
+            "kind": "sdk_error",
+            "observed": {
+              "expected_id": 1,
+              "expected_bytes": 8,
+              "communication": -6,
+              "raw_hex": "",
+              "received_id": null,
+              "checksum_valid": false
+            },
+            "pose": {
+              "pose_age_s": null,
+              "wrist_roll_deg": null,
+              "wrist_flex_deg": null
+            },
+            "axis_attribution": "reply_expected_id",
+            "streak": {
+              "shoulder_pan": 4
+            },
+            "phase": "normal"
+          },
+          {
+            "event": "communication_error",
+            "monotonic_s": 16348.099114631,
+            "unix": 1795001338.8800817,
+            "axes": [
+              "shoulder_pan"
+            ],
+            "operation": "read:33:8",
+            "communication": -6,
+            "kind": "sdk_error",
+            "observed": {
+              "expected_id": 1,
+              "expected_bytes": 8,
+              "communication": -6,
+              "raw_hex": "",
+              "received_id": null,
+              "checksum_valid": false
+            },
+            "pose": {
+              "pose_age_s": null,
+              "wrist_roll_deg": null,
+              "wrist_flex_deg": null
+            },
+            "axis_attribution": "reply_expected_id",
+            "streak": {
+              "shoulder_pan": 5
+            },
+            "phase": "normal"
+          }
+        ],
+        "tx_packets": 5,
+        "rx_packets": 10,
+        "tx_bytes": 46,
+        "rx_bytes": 0,
+        "elapsed_s": 0.1612076840010559,
+        "tx_packets_per_s": 31.015891277038943,
+        "total_packets_per_s": 93.04767383111682,
+        "tx_gap_s": {
+          "min": 0.022296961000392912,
+          "max": 0.05381388200112269,
+          "mean": 0.03520740725025462
+        },
+        "settings": {
+          "max_retries": 3,
+          "consecutive_failures": 5,
+          "no_response_s": 0.2,
+          "hold_attempts": 5,
+          "bulk_address": 56,
+          "bulk_width": 15,
+          "read_order": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            5
+          ]
+        },
+        "halt_reason": "동일 축·요청 연속5회 통신 실패",
+        "halt_observed": {
+          "event": "communication_error",
+          "monotonic_s": 16348.099114631,
+          "unix": 1795001338.8800817,
+          "axes": [
+            "shoulder_pan"
+          ],
+          "operation": "read:33:8",
+          "communication": -6,
+          "kind": "sdk_error",
+          "observed": {
+            "expected_id": 1,
+            "expected_bytes": 8,
+            "communication": -6,
+            "raw_hex": "",
+            "received_id": null,
+            "checksum_valid": false
+          },
+          "pose": {
+            "pose_age_s": null,
+            "wrist_roll_deg": null,
+            "wrist_flex_deg": null
+          },
+          "axis_attribution": "reply_expected_id",
+          "streak": {
+            "shoulder_pan": 5
+          },
+          "phase": "normal"
+        }
+      },
+      "error": {
+        "kind": "CommunicationHold",
+        "reason": "동일 축·요청 연속5회 통신 실패"
+      }
+    }
+  ],
+  "cleanup_errors": [],
+  "error": {
+    "kind": "RuntimeError",
+    "reason": "읽기 비교 중단: {\"kind\": \"CommunicationHold\", \"reason\": \"\\ub3d9\\uc77c \\ucd95\\u00b7\\uc694\\uccad \\uc5f0\\uc18d5\\ud68c \\ud1b5\\uc2e0 \\uc2e4\\ud328\"}"
+  },
+  "port_closed": true
+}

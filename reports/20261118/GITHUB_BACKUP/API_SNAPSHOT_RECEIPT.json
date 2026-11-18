@@ -1,0 +1,30 @@
+{
+  "target": "Phjrab/mediflow-robotics",
+  "branch": "vla/live-202611",
+  "first_source_snapshot": "0df34a4dd3a3fe9769dc30c8af69bf960f851c0f",
+  "last_api_commit": "ccd827cd4a1b597a2876d52bf07ea0753452cf25",
+  "last_api_tree": "75e0ec12ca1b8f4b02e7526b0249eb97d9290925",
+  "native_windows_source": "a29e8ba58399d8e1a8502c3d48a9071f5b261d0c",
+  "pre_raw_native_commit": "c52504c2895176914bdfdd10356f5799e8bd8773",
+  "config_remote_blob_sha": "79e430611433ba429c446812f87cc73d3be97c43",
+  "config_remote_matches_native": true,
+  "main_mutated": false,
+  "api_native_tag_ref_created": false,
+  "native_history_transfer_via_api": "INCOMPLETE_AUTOMATIC_APPROVAL_REVIEW",
+  "rejected_parts": [
+    "jetson-before-sync.bundle.part002",
+    "vla-live-202611.bundle.part003"
+  ],
+  "reason": "Review could not verify identity and exclusions of opaque base64; complete content inventories and hashes subsequently published. One evidence-backed retry was terminated when root obtained native Git credentials. No bypass method used.",
+  "handoff": "Root has authenticated Git Credential Manager; native Git push will preserve original commit graph and tag. No further API mutations after last_api_commit.",
+  "local_native_bundles": "Verified and preserved; not deleted",
+  "audit": "5 complete native bundle inventories; secret pattern matches 0; excluded model/dataset/video/calibration-original findings 0; parts reassemble byte-identically",
+  "live_execution": "NOT_RUN",
+  "resolution": {
+    "status": "RESOLVED_BY_AUTHENTICATED_NATIVE_GIT_PUSH",
+    "commit": "340c57ffb3adc1beff28d52ee21b989d3b22e2cb",
+    "original_tag_preserved": true,
+    "split_bundle_api_completion_claimed": false,
+    "receipt": "NATIVE_PUSH_RECEIPT.json"
+  }
+}

@@ -1,5 +1,11 @@
 # 원본 경로와 공통 설정
 
+## raw 도입 전 상태로 복구
+
+옵션 복구: `bash ~/so101_vla/live/run.sh --mode legacy --dry-run` (raw 추가 후에도 기본 모드는 legacy).
+코드 복구: 작업 변경을 보존하고 실행 프로세스를 종료한 뒤 `git -C ~/so101_vla checkout pre-raw-20261118`.
+태그 원본: Windows·Jetson 모두 `c52504c2895176914bdfdd10356f5799e8bd8773`; 원격 tag ref와 bundle 게시 여부는 `GITHUB_SYNC_STATUS.md`를 확인한다.
+
 기준은 Windows `자율설계/`, Jetson `~/`다. 보정·모델·원본 데이터는 이동하지 않았다.
 
 | 용도 | Windows | Jetson |
