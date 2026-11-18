@@ -20,6 +20,7 @@ from tracking_compensation import TrackingCompensator
 from thermal_window import ThermalWindow
 from gripper_safety import OpeningGuard,recover_overload
 from grasp_offset import GraspOffset
+from grasp_recorder import GraspRecorder
 from communication_retry import CommunicationPolicy,CommunicationHold,confirmed_hold,retryable_write_error
 from vla_monitor import Monitor
 
@@ -190,6 +191,46 @@ class CameraStats(logging.Handler):
                 for name in self.paths}
 
 
+def prime_policy(io, policy, pool, log, monitor=None):
+    """Validate live images and predict action zero before starting the run budget.
+
+    The control thread continues the existing health/stop checks while the
+    inference worker is busy. It does not issue motor goals.
+    """
+    clock = getattr(io, 'clock', time.monotonic)
+    pause = getattr(io, 'pause', time.sleep)
+    began = clock()
+    frames = None
+    while frames is None:
+        if monitor is not None and monitor.hold_requested():
+            raise base.Stop(VIEWER_STOP)
+        sample = io.checked()
+        frames = io.fresh_frames()
+        if frames is None:
+            if clock()-began >= 5:
+                raise base.Stop('READY 전 카메라 첫 유효 프레임 5초 초과')
+            pause(.02)
+    if monitor is not None:
+        monitor.capture(frames, sample['state'])
+        monitor.status('predicting', sample=sample, force=True)
+    requested = clock()
+    job = pool.submit(policy, frames, sample['state'], 0, 0)
+    while not job.done():
+        if monitor is not None and monitor.hold_requested():
+            raise base.Stop(VIEWER_STOP)
+        io.checked()
+        if clock()-requested > 9:
+            raise base.Stop('정책 추론 응답 시간 초과')
+        pause(.02)
+    actions, seconds = job.result()
+    chunk = base.chunk(actions)
+    # Re-check before READY; a completed worker is not a health certificate.
+    io.checked()
+    log(dict(event='policy_prime', wall_s=clock()-began, inference_s=seconds,
+             frames_verified=True, origin=0, skipped_actions=0))
+    return chunk, seconds, clock()-began
+
+
 def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_corrections=False):
     clock = getattr(io, 'clock', time.monotonic)
     pause = getattr(io, 'pause', time.sleep)
@@ -233,7 +274,31 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     deadline = started + duration
     next_tick = started
     next_preview = started
+    ready = None
+    recorder = None
+    recording = None
     try:
+        incoming, seconds, prime_s = prime_policy(io, policy, pool, log, monitor)
+        slots.update(enumerate(incoming))
+        inferences.append(seconds)
+        estimate = max(seconds, estimate*.85)
+        last_origin = 0
+        # Model loading, warmup, first images and first inference are all outside
+        # the duration. Only the ready policy loop consumes this deadline.
+        started = clock()
+        deadline = started + duration
+        next_tick = next_preview = started
+        if getattr(io, 'out', None) is not None:
+            recorder = GraspRecorder(io.out, base.JOINTS, clock=clock)
+        ready = dict(event='ready', unix=time.time(), monotonic_s=started,
+                     duration_s=duration, speed=speed, first_inference_s=seconds,
+                     first_observation_and_inference_s=prime_s)
+        print('READY ' + json.dumps(ready, ensure_ascii=False), flush=True)
+        log(ready)
+        log(dict(event='inference', origin=0, seconds=seconds, overlap=0,
+                 skipped_actions=0, expired_actions=0, discarded=False,
+                 wall_time_expired_actions=0, first_unused_at_delivery=0,
+                 incoming_actions=incoming, time_s=0., primed_before_ready=True))
         while count < max_steps:
             pause(max(0, min(deadline, next_tick) - clock()))
             tick_started = clock()
@@ -247,6 +312,10 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                     break
             next_tick = tick_started + 1 / hz
             sample = io.checked()
+            if recorder is not None and recorder.due(clock()):
+                captured_at = clock()
+                recorder.capture(io.camera_frames() if hasattr(io,'camera_frames') else None,
+                                 sample, time_s=captured_at-started, monotonic=captured_at)
             if monitor is not None and tick_started >= next_preview:
                 view = io.camera_frames() if hasattr(io,'camera_frames') else None
                 if view is not None:monitor.capture(view,sample['state'])
@@ -275,6 +344,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                 blend_delta = [max((abs(slots[k][i] - incoming[k-origin][i])
                                     for k in range(usable, usable+overlap)), default=0) for i in range(6)]
                 log({'event': 'inference', 'origin': origin, 'seconds': seconds,
+                     'time_s': clock()-started, 'incoming_actions': incoming,
                      'overlap': overlap, 'overlap_playback_s': overlap / MODEL_HZ,
                      'overlap_wall_s': overlap / rate, 'playback_hz': rate,
                      'elapsed_speed_actions': seconds * rate, 'expired_actions': expired,
@@ -302,6 +372,10 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                     request_moving = sent_phase is not None and buffer_end > phase
                     request_rate = rate
                     delay = min(remaining, math.ceil(rate * estimate)) if request_moving else 0
+                    log(dict(event='inference_requested', time_s=requested-started,
+                             origin=origin, buffer_end=buffer_end, phase=phase,
+                             remaining_actions=remaining, remaining_wall_s=remaining/rate,
+                             estimated_inference_s=estimate, playback_hz=rate))
                     job = pool.submit(policy, frames, sample['state'], origin, delay)
                     if monitor is not None:
                         monitor.capture(frames, sample['state'])
@@ -364,14 +438,20 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                 underrun = None
             for track, value in zip(commands, plan['wire_normalized']):
                 track.append(value)
-            log({'event': 'goal_transmitted', 'step': count + 1, 'time_s': sent-started,
+            goal_record = {'event': 'goal_transmitted', 'step': count + 1, 'time_s': sent-started,
                  'gap_s': gap, 'hz_target': hz, 'loop_work_s': loop_work,
                  'model_phase': phase, 'playback_s': phase / MODEL_HZ,
                  'feedback': sample, 'model': model,
                  'grip_relief': closing_relief,
                  'gripper_opening':dict(cap_clipped=model[-1]>opening_guard.cap,limited_points=target[-1],load_hold_points=opening_guard.fixed),
                  'lateral_correction':lateral,
-                 'tracking_compensation': compensation, **plan})
+                 'tracking_compensation': compensation, **plan}
+            log(goal_record)
+            if recorder is not None:
+                event = recorder.goal(plan['wire_normalized'][-1], goal_record,
+                                      time_s=sent-started, monotonic=sent)
+                if event is not None:
+                    log(dict(event='grasp_event', **event))
             count += 1
             last_send = sent
             last_model, last_wire = model, plan['wire_normalized']
@@ -390,6 +470,11 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
             if hasattr(io, 'confirm_thermal_stop'):
                 io.confirm_thermal_stop()
         pool.shutdown(wait=False, cancel_futures=True)
+        loop_elapsed = clock()-started
+        if recorder is not None:
+            recording = recorder.close(reason=reason or 'run_end')
+            print('집기 이벤트 ' + str(recording['event_count']) + '회 · 시각(READY 이후 초) ' +
+                  ', '.join(f"{e['time_s']:.3f}" for e in recording['events']), flush=True)
     if underrun is not None:
         waits.append(max(0, min(deadline, tick_started) - underrun))
     tracking = {}
@@ -403,7 +488,9 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     status = 'STOPPED' if reason == 'Ctrl+C' else 'HOLD' if reason else 'RUN_COMPLETE'
     return {'status': status, 'reason': reason, 'hold': hold,
             'operator_request': correction,
-            'steps': count, 'step_limit': max_steps, 'elapsed_s': clock() - started,
+            'ready': ready,
+            'grasp_recording': recording,
+            'steps': count, 'step_limit': max_steps, 'elapsed_s': loop_elapsed,
             'task_success': 'UNVERIFIED',
             'speed': speed, 'playback_hz': rate, 'playback_s': phase / MODEL_HZ,
             'gripper_peak_c': io.gripper_peak, 'peak_temperatures_c': dict(io.peak_temperatures),
@@ -901,7 +988,7 @@ def device_class():
                 if pixels is None or timestamp is None or now - timestamp > 1:
                     return None
                 # The producer replaces the frame reference instead of modifying the frame.
-                result[name] = {'pixels': pixels}
+                result[name] = {'pixels': pixels, 'timestamp': timestamp}
             return result
 
         def fresh_frames(self):
@@ -1063,7 +1150,7 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
         def log(row):
             if row.get('event')=='goal_transmitted':stats['relief']+=int(row.get('grip_relief',False))
             if row.get('event','').startswith('startup_'):stats['startup'].append(row)
-            trace.write(json.dumps(row, ensure_ascii=False, allow_nan=False) + '\n')
+            trace.write(json.dumps(row, ensure_ascii=False, allow_nan=False, separators=(',', ':')) + '\n')
 
         try:
             task = 'Open the gripper' if gripper_test else base.TASK
@@ -1071,10 +1158,15 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
             if not gripper_test:
                 print(f'재생 속도 {speed:g}배, 초당 모델 액션 {MODEL_HZ*speed:g}개', flush=True)
                 monitor.status('warming', force=True)
+                stage_started = time.monotonic()
+                log(dict(event='startup_model_begin', unix=time.time()))
                 policy = make_policy(context)
+                log(dict(event='startup_model_complete', seconds=time.monotonic()-stage_started, unix=time.time()))
             monitor.status('connecting', force=True)
             io = device_class()(context, log, out, gripper_only=gripper_test)
+            stage_started = time.monotonic()
             io.connect()
+            log(dict(event='startup_devices_complete', seconds=time.monotonic()-stage_started, unix=time.time()))
             preview = io.camera_frames()
             if preview is not None:
                 sample = io.checked()
@@ -1095,7 +1187,8 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
                         raise base.Stop('기존 정책 목표를 정지하지 못해 교정하지 않았습니다')
                     result.update(status='HOLD', reason='운영자 교정으로 정책 실행 종료')
                     result['corrections'], result['hold'] = corrections.session(
-                        io, monitor, request, forward, min(deadline, time.monotonic() + 30), log)
+                        io, monitor, request, forward,
+                        min(result['ready']['monotonic_s']+duration, time.monotonic() + 30), log)
             result['torque_off'] = 'TORQUE_RETAINED'
             if (supported_home and (result['status'] == 'RUN_COMPLETE' or result['reason'] == 'Ctrl+C')
                     and result['hold']['status'] in ('CURRENT_POSITION_GOAL_TRANSMITTED','HOLD_CONFIRMED')):

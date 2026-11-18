@@ -46,6 +46,11 @@ def report(receipt):
             summary = 'tmux 시작 오류 또는 세션 분리'
     print(summary)
     print(f'실행 폴더 {run}')
+    if 'result' in locals() and isinstance(result, dict):
+        recording = result.get('grasp_recording') or {}
+        if recording:
+            times = ', '.join(f"{e['time_s']:.3f}초" for e in recording.get('events', [])) or '없음'
+            print(f"집기 이벤트 {recording.get('event_count',0)}회 · READY 이후 {times}")
 
 
 if __name__ == '__main__':
