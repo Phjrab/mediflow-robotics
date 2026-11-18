@@ -42,16 +42,16 @@ class HomeChecks(unittest.TestCase):
             live_start.prepare(io,io.home,events.append)
         self.assertEqual(io.start_writes,[]);self.assertEqual(io.packet_count,0)
 
-    def test_four_ticks_pass_but_seven_retry_three_times(self):
+    def test_four_ticks_pass_but_out_of_range_retries_three_times(self):
         io,events=self.arm({'wrist_roll':home_targets()['wrist_roll']+4})
         live_start.prepare(io,io.home,events.append)
         self.assertEqual(io.packet_count,0)
-        io,events=self.arm({'wrist_roll':home_targets()['wrist_roll']+7})
+        io,events=self.arm({'wrist_roll':home_targets()['wrist_roll']+24})
         with self.assertRaisesRegex(base.Stop,'홈 이동 후 위치 확인 실패:') as error:
             live_start.prepare(io,io.home,events.append)
         detail=json.loads(str(error.exception).split(': ',1)[1])
         self.assertEqual(detail['attempts'],3)
-        self.assertEqual(detail['joints']['wrist_roll']['residual_ticks'],7)
+        self.assertEqual(detail['joints']['wrist_roll']['residual_ticks'],24)
         self.assertEqual(sum(r['event']=='startup_home_attempt' for r in events),3)
 
     def test_half_second_and_fresh_samples_required(self):
@@ -64,7 +64,7 @@ class HomeChecks(unittest.TestCase):
     def test_outside_residual_resets_stability(self):
         raw=home_targets();window=HomeConvergence()
         for t in (0,.2,.4):window.observe(raw,t)
-        bad={**raw,'wrist_roll':raw['wrist_roll']+7}
+        bad={**raw,'wrist_roll':raw['wrist_roll']+24}
         self.assertFalse(window.observe(bad,.5)['ready'])
         self.assertFalse(window.observe(raw,.6)['ready'])
 

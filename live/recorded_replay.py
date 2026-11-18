@@ -76,8 +76,10 @@ def replay(io,actions,log,speed=.33,monitor=None):
 
 def run_operator(path,speed=.33):
     from trial_runtime import static_context
+    from run_exit_report import record_run_directory
     source=load_recording(path);context=static_context();root=Path(__file__).parents[1]
     out=root/'runs'/('REPLAY_BLUE_'+time.strftime('%Y%m%d_%H%M%S'));out.mkdir(exist_ok=False)
+    record_run_directory(out)
     print(f'모델 없이 녹화 blue 액션 {len(source["actions"])}프레임을 {speed}배로 재생합니다. 가동범위 클리핑은 유지합니다.',flush=True)
     print('큰 동작 경로와 약통/바구니 위치를 확인하고 팔 주변을 비우세요. Ctrl+C로 현재 위치 유지 후 종료합니다.',flush=True)
     io=monitor=None;result=dict(status='HOLD',steps=0,model_used=False)

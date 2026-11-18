@@ -1,18 +1,13 @@
-"""Bounded home trim regressions. All servo and time operations are in memory."""
+"""Home start and fixed-target recovery, using an in-memory servo fixture."""
 import math
 import json
-import tempfile
 import unittest
-from pathlib import Path
-from unittest.mock import patch
 
-import config_runtime
 from config_runtime import load, command_limits
-from start_position_rules import home_targets, position_check
+from start_position_rules import home_targets
 from startup_simulation import SimulatedArm
 import direct_live as base
 import live_start
-from stream_live import start_policy_session
 
 
 class BiasedHomeArm(SimulatedArm):
@@ -75,151 +70,50 @@ class BiasedHomeArm(SimulatedArm):
         super().send(raw)
 
 
-class HomeTrimTests(unittest.TestCase):
-    def prepare(self, io):
-        return live_start.prepare(io, io.home, io.record)
+class HomeRetryTests(unittest.TestCase):
+    def test_recorded_lift_positions_start_without_home_motion(self):
+        for lift in (850, 856):
+            with self.subTest(lift=lift):
+                io = BiasedHomeArm(lift-842)
+                result = live_start.prepare(io, io.home, io.record)
+                self.assertEqual(io.sent, [])
+                self.assertEqual(result['position_check']['joints']['shoulder_lift']['present_ticks'], lift)
+                self.assertGreaterEqual(io.clock(), .5)
 
-    def assert_bounds_and_scope(self, io):
-        canonical = home_targets()
-        limits = command_limits()
-        for row in io.sent:
-            self.assertTrue(all(limits[j][0] <= raw <= limits[j][1] for j, raw in row['raw'].items()))
-            self.assertTrue(all(row['raw'][j] == canonical[j] for j in canonical if j != 'shoulder_lift'))
-        self.assertTrue(all(reg in ('Goal_Position', 'Torque_Enable') for reg, _ in io.start_writes))
-        trim = getattr(io, 'home_command_trim', {})
-        self.assertLessEqual(abs(trim.get('shoulder_lift', 0)), 16)
-        self.assertTrue(all(value == 0 for joint, value in trim.items() if joint != 'shoulder_lift'))
-
-    def test_recorded_fourteen_and_fifteen_tick_bias_reach_true_home(self):
-        for bias in (14, 15):
-            with self.subTest(bias=bias):
-                io = BiasedHomeArm(bias)
-                self.prepare(io)
-                final = position_check(io.checked()['present_raw'])
-                self.assertTrue(final['home_converged'])
-                self.assertEqual(final['joints']['shoulder_lift']['target_ticks'], 842)
-                self.assertLessEqual(abs(final['joints']['shoulder_lift']['residual_ticks']), 6)
-                self.assertLess(getattr(io, 'home_command_trim', {}).get('shoulder_lift', 0), 0)
-                self.assertTrue(any(row['event'] == 'startup_home_trim' for row in io.events))
-                self.assert_bounds_and_scope(io)
-
-    def test_correct_home_uses_no_trim_and_no_goal_packet(self):
-        io = BiasedHomeArm(0)
-        self.prepare(io)
-        self.assertEqual(io.sent, [])
-        self.assertFalse(any(row['event'] == 'startup_home_trim' for row in io.events))
-        self.assertTrue(all(value == 0 for value in getattr(io, 'home_command_trim', {}).values()))
-
-    def test_negative_static_residual_trims_in_positive_direction(self):
-        io = BiasedHomeArm(-14)
-        self.prepare(io)
-        self.assertGreater(io.home_command_trim['shoulder_lift'], 0)
-        self.assertTrue(position_check(io.checked()['present_raw'])['home_converged'])
-        self.assert_bounds_and_scope(io)
-
-    def test_twenty_five_tick_bias_cannot_escape_six_tick_rule_at_trim_cap(self):
-        io = BiasedHomeArm(25)
+    def test_beyond_capped_window_retries_same_goal_and_holds(self):
+        io = BiasedHomeArm(24, frozen=True)
         with self.assertRaisesRegex(base.Stop, '홈 이동 후 위치 확인 실패') as error:
-            self.prepare(io)
-        detail = json.loads(str(error.exception).split(': ', 1)[1])
-        self.assertEqual(io.home_command_trim['shoulder_lift'], -16)
-        self.assertGreater(detail['joints']['shoulder_lift']['residual_ticks'], 6)
-        self.assertEqual(sum(row['event'] == 'startup_home_attempt' for row in io.events), 3)
-        self.assert_bounds_and_scope(io)
+            live_start.prepare(io, io.home, io.record)
+        detail = json.loads(str(error.exception).split(': ',1)[1])
+        self.assertEqual(detail['attempts'], 3)
+        self.assertEqual(detail['joints']['shoulder_lift']['present_ticks'], 866)
+        self.assertEqual([r['raw'] for r in io.sent if r['attempt'] >= 2],
+                         [home_targets(), home_targets()])
+        self.assertEqual([e['command_ticks'] for e in io.events if e['event']=='startup_home_attempt'],
+                         [home_targets()] * 3)
+        for row in io.sent:
+            for joint, ticks in row['raw'].items():
+                lo, hi = command_limits()[joint]
+                self.assertLessEqual(lo, ticks)
+                self.assertLessEqual(ticks, hi)
 
-    def test_disappearing_bias_does_not_create_false_home_success(self):
-        class DisappearingBiasArm(BiasedHomeArm):
-            def __init__(self):
-                self.observed = []
-                super().__init__(14)
-            def feedback(self):
-                if self.attempt >= 2:
-                    self.bias = 0
-                sample = super().feedback()
-                self.observed.append(dict(sample['present_raw']))
-                return sample
-        io = DisappearingBiasArm()
-        self.prepare(io)
-        self.assertTrue(position_check(io.checked()['present_raw'])['home_converged'])
-        self.assertTrue(all(position_check(raw)['safe'] for raw in io.observed))
-        self.assert_bounds_and_scope(io)
+    def test_health_faults_stop_home_motion(self):
+        for fault, error_type in (('temperature', base.Stop), ('status', base.Stop),
+                                  ('communication', OSError), ('ctrl_c', KeyboardInterrupt)):
+            with self.subTest(fault=fault):
+                io = BiasedHomeArm(24, fault=fault)
+                with self.assertRaises(error_type):
+                    live_start.prepare(io, io.home, io.record)
+                self.assertEqual(io.packet_count, 5)
 
-    def test_config_cannot_expand_trim_axes_amount_or_stability(self):
-        original = json.loads(json.dumps(load()))
-        for key, value in (('axes', ['shoulder_lift', 'wrist_roll']),
-                           ('max_step_ticks', 9), ('max_total_ticks', 17),
-                           ('stable_s', .1), ('stable_span_ticks', 3)):
-            with self.subTest(key=key), tempfile.TemporaryDirectory() as directory:
-                config = json.loads(json.dumps(original))
-                config['startup']['home_trim'][key] = value
-                path = Path(directory) / 'config.yaml'
-                path.write_text(json.dumps(config), encoding='utf-8')
-                with patch.multiple(config_runtime, PATH=path, _cached=None, _stamp=None):
-                    with self.assertRaisesRegex(ValueError, '홈 명령 보상 범위 오류'):
-                        config_runtime.load()
-
-    def test_retry_starts_at_previous_command_without_reset_to_observation(self):
-        io = BiasedHomeArm(15)
-        self.prepare(io)
-        boundaries = []
-        for previous, row in zip(io.sent, io.sent[1:]):
-            if row['attempt'] > previous['attempt']:
-                boundaries.append((previous, row))
-                self.assertLessEqual(abs(row['raw']['shoulder_lift'] - previous['raw']['shoulder_lift']), 1)
-            if row['attempt'] >= 2:
-                elapsed = row['time'] - previous['time']
-                # Integer encoding permits one tick beyond the continuous bound.
-                budget = 10 * load()['speed'] * elapsed * 4095 / 360 + 1
-                self.assertLessEqual(abs(row['raw']['shoulder_lift'] - previous['raw']['shoulder_lift']), budget + 1e-6)
-        self.assertTrue(boundaries)
-
-    def test_frozen_lift_fails_with_bounded_trim_after_three_attempts(self):
-        io = BiasedHomeArm(14, frozen=True)
-        with self.assertRaisesRegex(base.Stop, '홈 이동 후 위치 확인 실패'):
-            self.prepare(io)
-        self.assertEqual(sum(row['event'] == 'startup_home_attempt' for row in io.events), 3)
-        self.assertEqual(round(io.present['shoulder_lift']), 856)
-        self.assert_bounds_and_scope(io)
-
-    def test_moving_residual_does_not_accumulate_trim(self):
-        io = BiasedHomeArm(30, moving=True)
-        with self.assertRaisesRegex(base.Stop, '홈 이동 후 위치 확인 실패'):
-            self.prepare(io)
-        self.assertEqual(getattr(io, 'home_command_trim', {}).get('shoulder_lift', 0), 0)
-        self.assert_bounds_and_scope(io)
-
-    def test_gapped_samples_cannot_establish_stable_trim_evidence(self):
+    def test_stale_feedback_cannot_start_at_accepted_pose(self):
         class GappedArm(BiasedHomeArm):
             def checked(self):
-                self.pause(.4)  # Larger than the unchanged 0.35s freshness bound.
+                self.pause(.4)
                 return super().checked()
             start_snapshot = checked
+
         io = GappedArm(14, frozen=True)
         with self.assertRaisesRegex(base.Stop, '홈 이동 후 위치 확인 실패'):
-            self.prepare(io)
-        self.assertEqual(getattr(io, 'home_command_trim', {}).get('shoulder_lift', 0), 0)
-        self.assert_bounds_and_scope(io)
-
-    def test_protection_and_interrupt_are_not_swallowed_by_trim(self):
-        for fault, error in (('temperature', base.Stop), ('status', base.Stop),
-                             ('communication', OSError), ('ctrl_c', KeyboardInterrupt)):
-            with self.subTest(fault=fault):
-                io = BiasedHomeArm(14, fault=fault)
-                with self.assertRaises(error):
-                    self.prepare(io)
-                self.assertEqual(len(io.sent), 5)
-                self.assertEqual(getattr(io, 'home_command_trim', {}).get('shoulder_lift', 0), 0)
-                self.assert_bounds_and_scope(io)
-
-    def test_home_recovery_enters_same_policy_loop(self):
-        io = BiasedHomeArm(15)
-        def policy(frames, state, origin, delay):
-            return [io.home[:] for _ in range(50)], .02
-        result = start_policy_session(io, policy, io.home, io.record, .3, .33)
-        self.assertEqual(result['status'], 'RUN_COMPLETE')
-        self.assertGreater(result['steps'], 0)
-        self.assertTrue(any(row['event'] == 'startup_home_converged' for row in io.events))
-
-
-if __name__ == '__main__':
-    unittest.main()
+            live_start.prepare(io, io.home, io.record)
+        self.assertFalse(any(r['event']=='startup_ready' for r in io.events))

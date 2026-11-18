@@ -31,6 +31,7 @@ class Handler(BaseHTTPRequestHandler):
         elif self.path in ('/', '/config'):
             c=load();payload={k:c[k] for k in ['joint_names','home','limits','calibration_ranges','temperature','position_checks','gripper']}
             payload['limits']=command_limits(c)
+            payload['home_criteria']=criteria(c)
         else:
             self.send_error(404);return
         data=json.dumps(payload,ensure_ascii=False,allow_nan=False).encode()

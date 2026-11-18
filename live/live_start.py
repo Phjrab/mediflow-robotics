@@ -2,16 +2,9 @@
 import math
 import time
 import json
-from collections import deque
-from statistics import median
 from config_runtime import load
 from direct_live import JOINTS, Stop, feedback_gate
 from start_position_rules import HomeConvergence, home_targets, validate_position as check_position
-
-EARLY_LIFT_SETTLE_S = 1.25
-LATE_LIFT_PROGRESS_S = 0.75
-LATE_LIFT_EXTRA_RESIDUAL_TICKS = 3
-LATE_LIFT_PROBE_S = 0.25
 
 def exact_sync_packet(address, width, values):
     parameters=bytes((address,width))+b''.join(bytes((mid,))+value.to_bytes(width,'little') for mid,value in values.items())
@@ -64,133 +57,74 @@ def arm(io,sample,log):
     if pending:raise Stop('토크 자동ON 실패: '+','.join(pending))
     return sample
 
-def return_home(io,sample,home,tolerance=None,*,clock=None,pause=None,log=None):
-    # Legacy degree tolerance callers now use the same configured tick rule.
-    clock=clock or io.clock;pause=pause or io.pause
-    log=log or getattr(io,'log',lambda _:None)
-    c=load();targets=home_targets(c)
-    velocity=c['startup']['max_deg_s']*globals().get('ACTIVE_SPEED',c['speed'])
-    trim=c['startup']['home_trim']
-    checks=c['position_checks']
-    settle_timeout=checks['settle_timeout_s']
-    final_attempt=checks['home_attempts']
-    command=dict(targets)
-    io.home_command_trim=dict.fromkeys(trim['axes'],0)
-    def settle(attempt,saved=0.):
-        window=HomeConvergence(targets,c)
-        start=clock()
-        normal_deadline=start+settle_timeout
-        until=normal_deadline
-        reserved_deadline=normal_deadline+saved
-        probed=False
-        extended=False
-        history=deque()
+def return_home(io, sample, home, tolerance=None, *, clock=None, pause=None, log=None):
+    clock = clock or io.clock
+    pause = pause or io.pause
+    log = log or getattr(io, 'log', lambda _: None)
+    config = load()
+    targets = home_targets(config)
+    checks = config['position_checks']
+    velocity = config['startup']['max_deg_s'] * globals().get('ACTIVE_SPEED', config['speed'])
+
+    def settle(attempt):
+        window = HomeConvergence(targets, config)
+        deadline = clock() + checks['settle_timeout_s']
         while True:
-            sample=io.start_snapshot()
-            ensure_health(sample)
-            if any(value != 1 for value in sample['torque'].values()):
-                raise Stop('홈 정착 중 토크 상태 변경: '+repr(sample['torque']))
-            validate_position(sample,io.arm_bounds)
-            now=clock()
-            active=sample['active_targets']['shoulder_lift']
-            acknowledged=attempt==0 or active==command['shoulder_lift']
-            if not acknowledged or (history and (now<=history[-1][0] or now-history[-1][0]>checks['max_sample_gap_s'])):
-                history.clear()
-            lift=sample['present_raw']['shoulder_lift']
-            if acknowledged:
-                history.append((now,lift))
-            # Keep enough history to distinguish late progress from a plateau.
-            while len(history)>1 and history[1][0]<=now-LATE_LIFT_PROGRESS_S:
-                history.popleft()
-            result=window.observe(sample['present_raw'],now)
-            if not acknowledged:
-                window=HomeConvergence(targets,c)
-                result.update(ready=False,stable_seconds=0.)
-            lift_home=targets['shoulder_lift']
-            # Include one sample just before the stability boundary.
-            stable_rows=list(history)
-            while len(stable_rows)>1 and stable_rows[1][0]<=now-trim['stable_s']:
-                stable_rows.pop(0)
-            values=[value for _,value in stable_rows]
-            span=max(values)-min(values) if values else None
-            residual=lift-lift_home
-            stable=bool(values and now-stable_rows[0][0]+1e-9>=trim['stable_s']
-                        and span<=trim['stable_span_ticks'])
-            result['trim_evidence']={'shoulder_lift':dict(
-                stable=stable,span_ticks=span,residual_ticks=round(median(values))-lift_home if values else residual,
-                active_target_ticks=active,active_target_confirmed=acknowledged)}
-            result['settle_elapsed_s']=now-start
-            lift_only=all(row['converged'] for name,row in result['joints'].items() if name!='shoulder_lift')
-            tolerance_ticks=checks['home_tolerance_ticks']
+            feedback = io.start_snapshot()
+            ensure_health(feedback)
+            if any(v != 1 for v in feedback['torque'].values()):
+                raise Stop('홈 정착 중 토크 상태 변경: ' + repr(feedback['torque']))
+            validate_position(feedback, io.arm_bounds)
+            active = feedback['active_targets']
+            now = clock()
+            result = window.observe(feedback['present_raw'], now)
+            # An already aligned arm does not need a new command. After sending
+            # one, wait for motor readback before counting a stable window.
+            mismatch = {j: active.get(j) for j in JOINTS if active.get(j) != targets[j]} if attempt else {}
+            if mismatch:
+                window = HomeConvergence(targets, config)
+                result.update(ready=False, stable_seconds=0.)
+            result['active_target_mismatch_ticks'] = mismatch
             if result['ready']:
-                log(dict(event='startup_home_converged',attempt=attempt,**result))
-                return sample,result
-            if 0<attempt<final_attempt and now<until and now-start>=EARLY_LIFT_SETTLE_S and (
-                    lift_only and stable and span==0 and abs(residual)>tolerance_ticks):
-                result['settle_early']='stable_lift_only'
-                return sample,result
-            if now>=until:
-                if not acknowledged:
-                    raise Stop(f'홈 어깨 들기 목표 응답 불일치: 전송 {command["shoulder_lift"]}틱, 활성 {active}틱')
-                gained=abs(history[0][1]-lift_home)-abs(residual) if history else 0
-                near_home=abs(residual)<=tolerance_ticks+LATE_LIFT_EXTRA_RESIDUAL_TICKS
-                can_wait=(attempt==final_attempt and not extended and saved>0 and lift_only
-                          and near_home and now<reserved_deadline)
-                if can_wait and (result['home_converged'] or gained>=1):
-                    extended=True
-                    until=reserved_deadline
-                    log(dict(event='startup_home_settle_extension',attempt=attempt,
-                        active_target_ticks=active,residual_ticks=residual,recent_progress_ticks=gained,
-                        read_only_remaining_s=until-now))
-                elif can_wait and not probed and now<normal_deadline+LATE_LIFT_PROBE_S:
-                    probed=True
-                    until=min(reserved_deadline,normal_deadline+LATE_LIFT_PROBE_S)
-                else:
-                    return sample,result
+                log(dict(event='startup_home_converged', attempt=attempt, **result))
+                return feedback, result
+            if now >= deadline:
+                return feedback, result
             pause(.05)
-    saved=0.
+
     if check_position(sample['present_raw'])['home_converged']:
-        sample,result=settle(0)
-        if result['ready']:return False
-    for attempt in range(1,final_attempt+1):
-        validate_position(sample,io.arm_bounds)
-        # A retry continues the previous command. Restarting at measured position
-        # would unwind the correction and jump 14 ticks in the reported failure.
-        start=list(sample['state']) if attempt==1 else io.normalize(previous_command)
-        if attempt>1:
-            for j in trim['axes']:
-                evidence=result['trim_evidence'][j]
-                error=evidence['residual_ticks']
-                if not evidence['stable'] or abs(error)<=c['position_checks']['home_tolerance_ticks']:
-                    continue
-                offset=io.home_command_trim[j]-max(-trim['max_step_ticks'],min(trim['max_step_ticks'],error))
-                offset=max(-trim['max_total_ticks'],min(trim['max_total_ticks'],offset))
-                lo,hi=io.arm_bounds[j]
-                command[j]=max(lo,min(hi,targets[j]+offset))
-                io.home_command_trim[j]=command[j]-targets[j]
-                log(dict(event='startup_home_trim',attempt=attempt,joint=j,
-                    canonical_target_ticks=targets[j],commanded_target_ticks=command[j],
-                    offset_ticks=io.home_command_trim[j],residual_ticks=error,
-                    stable_span_ticks=evidence['span_ticks']))
-        goal=io.normalize(command);delta=[h-v for h,v in zip(goal,start)]
-        duration=max(.3,1.875*max(map(abs,delta))/velocity)
-        steps=math.ceil(duration*60);begin=clock()
-        log(dict(event='startup_home_attempt',attempt=attempt,start_ticks=sample['present_raw'],
-            target_ticks=targets,command_ticks=dict(command),home_command_trim=dict(io.home_command_trim)))
-        for n in range(1,steps+1):
-            pause(max(0,begin+n*duration/steps-clock()));validate_position(io.checked(),io.arm_bounds)
-            t=n/steps;f=t*t*t*(10+t*(-15+6*t))
-            # Send the exact final command integer; convergence stays canonical.
-            raw=dict(command) if n==steps else io.plan([v+d*f for v,d in zip(start,delta)])['wire_raw']
-            io.send(raw)
-        previous_command=dict(command)
-        sample,result=settle(attempt,saved)
-        if result.get('settle_early'):
-            saved+=settle_timeout-result['settle_elapsed_s']
-        log(dict(event='startup_home_result',attempt=attempt,command_ticks=dict(command),
-            home_command_trim=dict(io.home_command_trim),settle_saved_s=saved,**result))
-        if result['ready']:return True
-    raise Stop('홈 이동 후 위치 확인 실패: '+json.dumps(dict(attempts=attempt,**result),ensure_ascii=False))
+        sample, result = settle(0)
+        if result['ready']:
+            return False
+
+    start = list(sample['state'])
+    delta = [goal-value for goal, value in zip(io.normalize(targets), start)]
+    duration = max(.3, 1.875 * max(map(abs, delta)) / velocity)
+    steps = math.ceil(duration*60)
+    for attempt in range(1, checks['home_attempts']+1):
+        validate_position(sample, io.arm_bounds)
+        log(dict(event='startup_home_attempt', attempt=attempt, start_ticks=sample['present_raw'],
+                 target_ticks=targets, command_ticks=targets))
+        if attempt == 1:
+            begin = clock()
+            for n in range(1, steps+1):
+                pause(max(0, begin+n*duration/steps-clock()))
+                validate_position(io.checked(), io.arm_bounds)
+                t = n/steps
+                weight = t*t*t*(10+t*(-15+6*t))
+                raw = targets if n==steps else io.plan([v+d*weight for v,d in zip(start,delta)])['wire_raw']
+                io.send(raw)
+        else:
+            # The only retry target is the original home. Never shift it to
+            # overcome stalled motion or replay the approach trajectory.
+            validate_position(io.checked(), io.arm_bounds)
+            io.send(targets)
+        sample, result = settle(attempt)
+        log(dict(event='startup_home_result', attempt=attempt, command_ticks=targets, **result))
+        if result['ready']:
+            return True
+    raise Stop('홈 이동 후 위치 확인 실패: '+json.dumps(dict(attempts=attempt, **result), ensure_ascii=False))
+
 
 def prepare(io,home,log):
     c=load();sample=io.start_snapshot();ensure_health(sample);validate_position(sample,io.arm_bounds)
@@ -210,6 +144,5 @@ def prepare(io,home,log):
         raise Stop('홈 수렴 후 새 표본 잔차 이탈: '+json.dumps(final_position,ensure_ascii=False))
     summary=dict(torque=sample['torque'],modes=sample['modes'],temperature_c=sample['temperatures'],
                  home_delta=home_delta(sample,target),position_check=final_position,
-                 home_command_trim=dict(io.home_command_trim),
                  camera=dict.fromkeys(io.camera_map,'READY'),auto_recovered=['home'] if moved else [])
     log(dict(event='startup_ready',**summary));return summary
