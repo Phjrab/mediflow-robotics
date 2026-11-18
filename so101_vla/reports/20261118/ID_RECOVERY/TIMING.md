@@ -1,5 +1,7 @@
 # 1초 타이밍 계측
 
+후속 SSH 키 접속으로19:35/18:46 원본 로그를 확보해 계산했다. 아래 초기 미확인 항목의 후속 수치는 `HISTORICAL_TIMING.md`와 `historical_timing_compact.json`을 따른다. 실제 매 루프 타이밍과 CPU 자체가 없었던 항목은 여전히 추정하지 않는다.
+
 수정본은 매 루프 `loop_timing` JSONL에 시작 기준 주기(ms), 읽기·쓰기·카메라 접근·JPEG 공유메모리 복사/큐·관제 큐·추론 submit/result에서 막힌 시간(ms), 완료된 추론 총소요(ms), 마지막 전송 액션 인덱스와 선택 액션 인덱스를 기록한다. 중간 읽기 오류로 끝나는 루프도 finally에서 소요 시간을 남긴다. 절대 monotonic 시작/종료와 unix 시각도 함께 남겨 다른 기록과 연결한다. 실기 `serial_read`는 순수 UART 대기만이 아니라 `io.checked()` 내 파싱·안전 검사·동기 패킷 JSON 기록까지 포함한다.
 
 READY부터1초 구간별로 summary.json의 `loop_timing.windows`와 종료 터미널에 다음을 표시한다.

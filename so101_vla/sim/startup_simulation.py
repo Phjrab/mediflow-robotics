@@ -256,7 +256,8 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
     stopped = (expected_stop is not None and result['status'] == expected_stop[0]
                and (result['reason'] or '').startswith(expected_stop[1]))
     completed = result['status'] == 'RUN_COMPLETE' and result['elapsed_s'] >= duration - .05
-    metrics = dict(evidence, status=result['status'], steps=result['steps'], elapsed_s=result['elapsed_s'], reason=result['reason'],
+    metrics = dict(evidence, mode='legacy', fps=CONFIG['model_hz'], speed=speed,
+                   status=result['status'], steps=result['steps'], elapsed_s=result['elapsed_s'], reason=result['reason'],
                    hold=result['hold'], chunk_wait_s=result['chunk_wait_s'], transmission_hz=result['transmission_hz'],
                    camera=result['camera'], home_peak_goal_speed=io.home_motion_speed, cooling_samples=io.cooling_samples)
     metrics['gripper_opening_protection']=result['gripper_opening_protection']

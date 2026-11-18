@@ -1,11 +1,42 @@
 {
-  "phase": "SOURCE_SNAPSHOT",
+  "schema": "so101.github.native-preservation.v1",
+  "status": "NATIVE_HISTORY_AND_TAG_PUSH_COMPLETE",
+  "target": "Phjrab/mediflow-robotics",
+  "branch": "vla/live-202611",
+  "preservation_commit": "340c57ffb3adc1beff28d52ee21b989d3b22e2cb",
   "source_commit": "a29e8ba58399d8e1a8502c3d48a9071f5b261d0c",
   "source_tag_commit": "c52504c2895176914bdfdd10356f5799e8bd8773",
-  "github_native_tag_ref_created": false,
-  "history_upload": "PENDING_AUTOMATIC_APPROVAL_REVIEW",
-  "native_bundles": "Preserved and verified locally; not complete on GitHub yet",
-  "live_execution": "NOT_RUN",
-  "target": "Phjrab/mediflow-robotics",
-  "branch": "vla/live-202611"
+  "native_tag_object": "5c4f5fb3902cb5970995feeb193db6517f2f9691",
+  "github_native_tag_ref_created": true,
+  "history_upload": "COMPLETE_VIA_AUTHENTICATED_NATIVE_GIT_PUSH",
+  "native_bundles": "Verified local redundant backups; split parts NOT fully uploaded by API",
+  "preserved_heads": {
+    "windows": "a29e8ba58399d8e1a8502c3d48a9071f5b261d0c",
+    "jetson_original": "67326955761f35de1038226fd844b8e86571d33c",
+    "overnight": "ed8537b83b3a52eee4562e2950eea347ed778f80",
+    "red_green": "356d788823d7d3d4fb98fcf711fb3c042608f863",
+    "blue": "2a72321f55effb215f2a3e144c1ff0f12ee207b8"
+  },
+  "historical_commits_ancestor_verified": [
+    "911f3ee33a880336dad2294a4c1e69c380e4b217",
+    "1c59fdba815de05d92b731756857ffc3a27486d0"
+  ],
+  "archive_branches": [
+    "archive/windows-overnight-20261118",
+    "archive/windows-red-green-20261118",
+    "archive/windows-blue-20261118"
+  ],
+  "main_sha_unchanged": "9089808a9b0e424baa7403a2344f94bdbeb338c9",
+  "force_push": false,
+  "remote_branch_tag_and_target_verified_via_github_api": true,
+  "pre_raw_tests": {
+    "windows": {
+      "passed": 177,
+      "skipped": 2,
+      "executor_passed": 17
+    },
+    "jetson_linux_passed": 179
+  },
+  "live_execution": "NOT_RUN_BY_BACKUP_TASK",
+  "scope": "Backup receipt; subsequent development commits and hardware validation have separate reports."
 }

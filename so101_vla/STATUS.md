@@ -1,4 +1,4 @@
-**2026-11-18 ID 불일치 복구·기록기 프로세스 분리·1초 타이밍 계측 로컬 검증 완료(전체177 PASS/2플랫폼 SKIP + 실행기17 PASS). 현재 Windows 후보이며 Jetson 배포/실버스 검증 NOT_RUN, GitHub 지정 저장소 쓰기 권한 없음으로 NOT_PUSHED. 홈·그리퍼48.5점·오른쪽+6틱·speed0.33·READY 뒤180초 유지. 최신 근거 reports/20261118/ID_RECOVERY/RESULT.md 및 GITHUB_SYNC_STATUS.md를 먼저 확인.**
+**2026-11-18 raw 구현·GitHub 원본 이력 보존 완료. 기본 legacy 유지, raw는 학습 원본30Hz·무보간·FIFO 전송. Jetson206회귀 PASS(독립raw27개 포함), 기존 실행기17 PASS. Legacy 실제 모델·3카메라 dry60 PASS(2,914목표·48.56Hz·대기0). Raw dry180은4,900목표/165.663초에 shoulder_lift 새 묶음27.30도 점프>한계21.63도로 HOLD: 타이밍은29.58목표/초·대기0이나180초 전체통과 아님. 실제 버스는6축-6·수신0바이트로 최초읽기HOLD, 토크미확인. 모든 실제 모터쓰기0/live미실행. 최신 보고 reports/20261118/ID_RECOVERY/RAW_RESULT.md. Windows·Jetson pre-raw태그c525는 GitHub에도 원본 그대로 게시했으며 main미변경. 홈·48.5점·오른쪽+6틱·기존 보호 유지.**
 
 **2026-11-18 집기 기록·READY 적용. 3카메라10fps/최근5초 링버퍼, 닫힘3점 초과마다 전3초/후2초 JPEG·관절값 저장. 첫 실제 영상/추론까지 READY 전에 완료한 뒤180초 시작. 홈·48.5점·오른쪽+6틱·보호 유지. 18:46/11월16일 비교 추론18회·1.43초·간격3.2초 동일, 목표 궤적 차이 확인; 스케줄/0.33 유지. Jetson164모의PASS, 실제 모델·3카메라dry180.017초8425목표·46.81Hz·대기0·실물쓰기0, 기록38개(37완료/1종료부분). 상세 reports/20261118/GRASP_READY_TIMING/RESULT.md 및 DRY_RESULT.md.**
 
