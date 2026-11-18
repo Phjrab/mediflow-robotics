@@ -13,11 +13,14 @@ def main():
     parser.add_argument('--duration', type=float, default=180)
     parser.add_argument('--speed', type=float, default=.33)
     parser.add_argument('--bias-ticks', type=int, default=15)
+    parser.add_argument('--loaded-lift', action='store_true',
+                        help='Simulate the 11/18 measured home plateaus with a late-response scenario.')
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     sys.addaudithook(deny_serial)
     import startup_simulation as simulation
     import entry
+    from home_lift_fixture import LoadedLiftArm
     from start_position_rules import home_targets
 
     original_arm = simulation.SimulatedArm
@@ -46,9 +49,11 @@ def main():
             return sample
 
     with (args.out / 'dry_trace.jsonl').open('x', encoding='utf-8') as trace:
+        fixture = ('20261118_161810 plateaus with simulated movement past the cutoff'
+                   if args.loaded_lift else '20261116_200615 final home result; simulated response thereafter')
         trace.write(json.dumps(dict(event='dry_trace_header', physical_motor_writes=0,
-            serial_access='DENIED', simulated_lift_bias_ticks=args.bias_ticks,
-            fixture='20261116_200615 final home result; simulated response thereafter'))+'\n')
+            serial_access='DENIED', simulated_lift_bias_ticks=None if args.loaded_lift else args.bias_ticks,
+            fixture=fixture))+'\n')
 
         def observe(io, policy, home, log, *values, **options):
             def traced(row):
@@ -59,7 +64,7 @@ def main():
                 ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
             return result
 
-        simulation.SimulatedArm = RecordedBiasArm
+        simulation.SimulatedArm = LoadedLiftArm if args.loaded_lift else RecordedBiasArm
         simulation.start_policy_session = observe
         simulation.Monitor = isolated_monitor
         sys.argv = ['entry.py', '--dry-run', '--duration', str(args.duration), '--speed', str(args.speed)]
