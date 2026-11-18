@@ -1,87 +1,76 @@
-"""Regressions for the measured slow shoulder response and fixed home budget."""
+"""Check the effective home windows and the terminal outcome formatter."""
+import json
+import tempfile
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
+from pathlib import Path
 
-from config_runtime import load
-from home_lift_fixture import LoadedLiftArm
-from start_position_rules import home_targets
-from startup_simulation import SimulatedArm
-import direct_live as base
-import live_start
+from config_runtime import criteria, load
+from run_exit_report import describe, report
+from start_position_rules import HomeConvergence, home_targets, position_check
 
 
-class HomeSettleTests(unittest.TestCase):
-    def prepare(self, late_progress=True, arm_type=LoadedLiftArm):
-        events = []
-        io = arm_type(load()['home']['state'], {}, events.append, 'all_off',
-                      late_progress=late_progress)
-        return io, events
+class TrainingHomeWindowTests(unittest.TestCase):
+    def test_effective_ranges_apply_observed_safety_before_admitting_home(self):
+        limits = {j: v['home_range_ticks'] for j, v in criteria().items()}
+        self.assertEqual(limits, {
+            'shoulder_pan': [2035, 2081], 'shoulder_lift': [819, 865],
+            'elbow_flex': [3058, 3087], 'wrist_flex': [2551, 2597],
+            'wrist_roll': [1815, 1861], 'gripper': [450, 514],
+        })
+        for joint, (lo, hi) in limits.items():
+            for value, accepted in ((lo, True), (hi, True), (lo-1, False), (hi+1, False)):
+                with self.subTest(joint=joint, value=value):
+                    result = position_check({**home_targets(), joint: value})
+                    self.assertEqual(result['home_converged'], accepted)
 
-    def test_late_progress_uses_saved_time_at_same_goal_then_confirms_home(self):
-        io, events = self.prepare()
-        result = live_start.prepare(io, io.home, events.append)
-        tries = [e for e in events if e['event']=='startup_home_attempt']
-        self.assertEqual([e['command_ticks']['shoulder_lift'] for e in tries], [842, 834, 826])
-        extension = next(e for e in events if e['event']=='startup_home_settle_extension')
-        self.assertGreaterEqual(extension['recent_progress_ticks'], 1)
-        self.assertEqual(extension['active_target_ticks'], 826)
-        rows = [e for e in events if e['event']=='startup_home_result']
-        self.assertLess(sum(e['settle_elapsed_s'] for e in rows), 9.)
-        self.assertEqual(result['position_check']['joints']['shoulder_lift']['residual_ticks'], 6)
-        confirmed = next(e for e in events if e['event']=='startup_home_converged')
-        self.assertGreaterEqual(confirmed['stable_seconds']+1e-9, .5)
+    def test_training_observation_cap_not_pass_for_972(self):
+        result = position_check({**home_targets(), 'shoulder_lift': 972})
+        self.assertTrue(result['safe'])
+        self.assertFalse(result['home_converged'])
 
-    def test_plateau_remains_hold_even_with_additional_observation(self):
-        io, events = self.prepare(late_progress=False)
-        with self.assertRaisesRegex(base.Stop, '홈 이동 후 위치 확인 실패'):
-            live_start.prepare(io, io.home, events.append)
-        attempts = [e for e in events if e['event']=='startup_home_result']
-        self.assertEqual(len(attempts), 3)
-        self.assertEqual(attempts[-1]['joints']['shoulder_lift']['residual_ticks'], 8)
-        self.assertLessEqual(sum(e['settle_elapsed_s'] for e in attempts), 9.051)
-        self.assertFalse(any(e['event']=='startup_ready' for e in events))
+    def test_timing_not_shortened_for_new_window(self):
+        sample = {**home_targets(), 'shoulder_lift': 856}
+        window = HomeConvergence()
+        self.assertFalse(window.observe(sample, 0)['ready'])
+        self.assertFalse(window.observe(sample, .25)['ready'])
+        self.assertFalse(window.observe(sample, .49)['ready'])
+        self.assertTrue(window.observe(sample, .5)['ready'])
 
-    def test_target_feedback_mismatch_does_not_advance_trim(self):
-        class MissingTargetReadback(LoadedLiftArm):
-            def start_snapshot(self):
-                sample = super().start_snapshot()
-                if self.packet_count:
-                    sample['active_targets']['shoulder_lift'] = 858
-                return sample
+    def test_requested_gripper_cap(self):
+        c = load()
+        self.assertEqual(c['gripper']['max_open_points'], 48.5)
+        self.assertEqual(criteria(c)['gripper']['command_range_ticks'][1], 1205)
 
-        io, events = self.prepare(arm_type=MissingTargetReadback)
-        with self.assertRaisesRegex(base.Stop, '목표 응답 불일치'):
-            live_start.prepare(io, io.home, events.append)
-        self.assertFalse(any(e['event']=='startup_home_trim' for e in events))
 
-    def test_extended_settle_checks_health_and_does_not_send_more_goals(self):
-        class StopsWithTemperature(LoadedLiftArm):
-            def start_snapshot(self):
-                sample = super().start_snapshot()
-                if self.target['shoulder_lift']==826 and self.clock()-self.last_lift_send_at>3.45:
-                    sample['temperature_protection']['shoulder_lift']['hold']=True
-                return sample
+class ExitReportTests(unittest.TestCase):
+    def test_home_hold_shows_joint_and_ticks_on_one_line(self):
+        data = {'joints': {'shoulder_lift': {
+            'present_ticks': 866, 'target_ticks': 842, 'converged': False}}}
+        reason = '홈 이동 후 위치 확인 실패: '+json.dumps(data)
+        self.assertEqual(describe({'status': 'HOLD', 'reason': reason}),
+                         'HOLD home shoulder_lift 866/842')
 
-        io, events = self.prepare(arm_type=StopsWithTemperature)
-        sent_at_extension = []
-        def record(event):
-            events.append(event)
-            if event['event']=='startup_home_settle_extension':
-                sent_at_extension.append(io.packet_count)
-        with self.assertRaisesRegex(base.Stop, '상태코드/온도'):
-            live_start.prepare(io, io.home, record)
-        self.assertEqual(sent_at_extension, [io.packet_count])
+    def test_receipt_points_to_this_run_and_preserves_output(self):
+        with tempfile.TemporaryDirectory() as root:
+            parent = Path(root)
+            launch = parent/'launch'
+            launch.mkdir()
+            run = parent/'recent run'
+            run.mkdir()
+            (launch/'run_path').write_text(str(run), encoding='utf-8')
+            (run/'summary.json').write_text(json.dumps({'status':'HOLD','reason':'serial timeout'}))
+            console = StringIO()
+            with redirect_stdout(console):
+                report(launch)
+            self.assertEqual(console.getvalue().splitlines(), ['HOLD serial timeout', f'실행 폴더 {run}'])
 
-    def test_other_axis_does_not_use_lift_wait_budget(self):
-        class FixedWrist(SimulatedArm):
-            def feedback(self):
-                sample = super().feedback()
-                sample['present_raw']['wrist_roll'] = home_targets()['wrist_roll']+7
-                sample['state'] = self.normalize(sample['present_raw'])
-                return sample
-
-        events = []
-        io = FixedWrist(load()['home']['state'], {}, events.append, 'camera_dry')
-        with self.assertRaisesRegex(base.Stop, '홈 이동 후 위치 확인 실패'):
-            live_start.prepare(io, io.home, events.append)
-        self.assertFalse(any(e.get('settle_early') or e['event']=='startup_home_settle_extension'
-                             for e in events))
+    def test_preflight_exit_is_reported_before_a_run_exists(self):
+        with tempfile.TemporaryDirectory() as root:
+            launch = Path(root)
+            (launch/'end_stage').write_text('EXIT sudo 인증 (코드 1)\n', encoding='utf-8')
+            console = StringIO()
+            with redirect_stdout(console):
+                report(launch)
+            self.assertEqual(console.getvalue().splitlines(), ['EXIT sudo 인증 (코드 1)', f'실행 폴더 {launch}'])

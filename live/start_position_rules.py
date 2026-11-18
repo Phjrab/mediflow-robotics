@@ -1,6 +1,6 @@
 """Pure position rules shared by the controller and the home web service."""
 import math
-from config_runtime import load, criteria, command_limits
+from config_runtime import load, criteria, command_limits, home_ranges, observed_ranges
 
 
 def start_criteria(limits=None):
@@ -12,30 +12,30 @@ def home_targets(c=None):
 
 
 def observed_limits(c=None):
-    c = c or load()
-    margin = c['position_checks']['observed_upper_margin_ticks']
-    # Lower limits are unchanged. The approved margin is upper-only.
-    return {j: (lo, min(4095, hi + margin)) for j, (lo, hi) in c['limits'].items()}
+    return observed_ranges(c or load())
 
 
 def position_check(present_raw, targets=None, c=None):
     c = c or load()
     targets = home_targets(c) if targets is None else targets
     observed = observed_limits(c)
+    allowed = home_ranges(c, targets)
+    commands = command_limits(c)
     rows = {}
     for j in c['joint_names']:
         value = present_raw.get(j)
-        lo, hi = command_limits(c)[j]
+        lo, hi = commands[j]
         valid = type(value) is int and 0 <= value <= 4095
         safe = valid and observed[j][0] <= value <= observed[j][1]
         error = value - targets[j] if valid else None
         grip = j == 'gripper'
         unit_per_tick = 100 / (c['calibration_ranges'][j][1] - c['calibration_ranges'][j][0]) if grip else 360 / 4095
         error_units = error * unit_per_tick if valid else None
-        converged = valid and (abs(error_units) <= c['position_checks']['gripper_tolerance_points']
-                              if grip else abs(error) <= c['position_checks']['home_tolerance_ticks'])
+        home_lo, home_hi = allowed[j]
+        converged = valid and home_lo <= value <= home_hi
         rows[j] = dict(present_ticks=value if valid else None, target_ticks=targets[j],
                        command_range_ticks=[lo, hi], observed_range_ticks=list(observed[j]),
+                       home_range_ticks=[home_lo, home_hi],
                        valid=valid, safe=safe, above_command_upper=bool(valid and value > hi),
                        residual_ticks=error, residual_units=error_units,
                        unit='point' if grip else 'degree', converged=bool(converged))

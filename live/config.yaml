@@ -43,7 +43,15 @@
   },
   "position_checks": {
     "observed_upper_margin_ticks": 3,
-    "home_tolerance_ticks": 6,
+    "home_margin_ticks": 5,
+    "home_cap_ticks": 23,
+    "training_first_frame_ranges_ticks": {
+      "shoulder_pan": [1998, 2117],
+      "shoulder_lift": [817, 972],
+      "elbow_flex": [3041, 3087],
+      "wrist_flex": [2481, 2721],
+      "wrist_roll": [1731, 1895]
+    },
     "gripper_tolerance_points": 2.0,
     "stable_s": 0.5,
     "max_sample_gap_s": 0.35,
@@ -116,14 +124,7 @@
     "max_deg_s": 10,
     "camera_first_frame_s": 5,
     "warmup_s": 3,
-    "torque_attempts": 3,
-    "home_trim": {
-      "axes": ["shoulder_lift"],
-      "max_step_ticks": 8,
-      "max_total_ticks": 16,
-      "stable_s": 0.5,
-      "stable_span_ticks": 2
-    }
+    "torque_attempts": 3
   },
   "temperature": {
     "wait_at_c": 50,
@@ -168,12 +169,12 @@
   },
   "gripper": {
     "positive_direction": "open",
-    "max_open_points": 49.611995697021484,
+    "max_open_points": 48.5,
     "opening_load_sign": -1,
     "opening_load_threshold_raw": 400,
     "opening_load_hold_s": 0.3,
     "overload_recovery_attempts": 3,
-    "cap_evidence": "137회 state최대50.611995697-1점; action최대67.075035095. GRIPPER_CAP_LATERAL/training_gripper.json",
+    "cap_evidence": "운영자 승인 열림 상한 48.5점 (2026-11-18)",
     "relief_points": 4,
     "blocked_gap_points": 5,
     "blocked_playback_s": 0.5

@@ -18,7 +18,7 @@ def load():
     else:c=yaml.safe_load(text)
     assert c['port'].startswith('/dev/serial/by-id/') and '5AE6058306' in c['port']
     grip=c['gripper']
-    if (grip.get('positive_direction')!='open' or not 0<grip.get('max_open_points',100)<50
+    if (grip.get('positive_direction')!='open' or not 0<grip.get('max_open_points',100)<=48.5
             or grip.get('opening_load_sign')!=-1 or grip.get('opening_load_threshold_raw')!=400
             or grip.get('opening_load_hold_s')!=.3 or grip.get('overload_recovery_attempts')!=3):
         raise ValueError('승인된 그리퍼 개방 보호 기준 불일치')
@@ -55,20 +55,26 @@ def load():
         if tracking['max_offset_deg'] > 3:
             raise ValueError('추종 보상 승인 상한 3도 초과')
     assert 0 < c['speed'] <= 1 and c['control_hz'] == 60
-    if c['startup'].get('home_trim') != dict(axes=['shoulder_lift'],max_step_ticks=8,
-            max_total_ticks=16,stable_s=.5,stable_span_ticks=2):
-        raise ValueError('홈 명령 보상 범위 오류; 어깨 들기만 8틱/회·총16틱')
     assert len(c['joint_names']) == len(c['home']['state']) == 6
     expected=['shoulder_pan','shoulder_lift','elbow_flex','wrist_flex','wrist_roll','gripper']
     if c['joint_names']!=expected or c['home']['joint_names']!=expected:raise ValueError('관절 순서 불일치')
     if not all(math.isfinite(v) for v in c['home']['state']) or not 0<=c['home']['state'][5]<=100:raise ValueError('홈 수치 형식 오류')
     if any(not 0<=lo<hi<=4095 for lo,hi in c['limits'].values()):raise ValueError('명령 가동범위 오류')
-    if c.get('position_checks') != dict(observed_upper_margin_ticks=3,home_tolerance_ticks=6,
+    checks = dict(c['position_checks'])
+    frame_ranges = checks.pop('training_first_frame_ranges_ticks', None)
+    if checks != dict(observed_upper_margin_ticks=3,home_margin_ticks=5,home_cap_ticks=23,
             gripper_tolerance_points=2.,stable_s=.5,max_sample_gap_s=.35,settle_timeout_s=3.,home_attempts=3):
         raise ValueError('승인된 실제 위치·틱 수렴 기준 불일치')
     targets=c['home'].get('target_ticks',{})
     if set(targets)!=set(expected) or any(type(targets[j]) is not int or not c['limits'][j][0]<=targets[j]<=c['limits'][j][1] for j in expected):
         raise ValueError('공통 홈 목표 틱 오류')
+    if not isinstance(frame_ranges, dict) or set(frame_ranges) != set(expected[:-1]):
+        raise ValueError('학습 첫 프레임 관절 범위 누락')
+    for joint, bounds in frame_ranges.items():
+        if (not isinstance(bounds, list) or len(bounds) != 2
+                or any(type(v) is not int for v in bounds)
+                or not 0 <= bounds[0] <= targets[joint] <= bounds[1] <= 4095):
+            raise ValueError('학습 첫 프레임 관절 범위 오류: '+joint)
     _cached,_stamp=c,stamp
     return c
 
@@ -91,8 +97,36 @@ def contract(c=None):
 
 def criteria(c=None):
     c = c or load()
-    return {j:dict(command_range_ticks=list(limit), observed_range_ticks=[c['limits'][j][0],min(4095,c['limits'][j][1]+3)],
-                   home_target_ticks=c['home']['target_ticks'][j], home_tolerance_ticks=6 if j!='gripper' else None,
-                   gripper_tolerance_points=2 if j=='gripper' else None, stable_s=.5,
-                   start_action='실제 안전범위 확인 후 틱 수렴; 필요 시 저속 홈 이동 최대3회')
+    home = home_ranges(c)
+    return {j:dict(command_range_ticks=list(limit), home_range_ticks=list(home[j]),
+                   home_target_ticks=c['home']['target_ticks'][j], stable_s=c['position_checks']['stable_s'])
             for j,limit in command_limits(c).items()}
+
+
+def observed_ranges(c):
+    margin = c['position_checks']['observed_upper_margin_ticks']
+    return {j: (lo, min(4095, hi+margin)) for j, (lo, hi) in c['limits'].items()}
+
+
+def home_ranges(c, targets=None):
+    """Intersection of the padded training window, home cap, and observed safety."""
+    checks = c['position_checks']
+    nominal = c['home']['target_ticks']
+    targets = nominal if targets is None else targets
+    observed = observed_ranges(c)
+    result = {}
+    for joint in c['joint_names']:
+        target = targets[joint]
+        if joint == 'gripper':
+            lo, hi = c['calibration_ranges'][joint]
+            radius = math.floor(checks['gripper_tolerance_points']*(hi-lo)/100)
+            lower, upper = target-radius, target+radius
+        else:
+            lo, hi = checks['training_first_frame_ranges_ticks'][joint]
+            shift = target-nominal[joint]
+            margin, cap = checks['home_margin_ticks'], checks['home_cap_ticks']
+            lower = max(lo+shift-margin, target-cap)
+            upper = min(hi+shift+margin, target+cap)
+        safe_lo, safe_hi = observed[joint]
+        result[joint] = (max(lower, safe_lo), min(upper, safe_hi))
+    return result

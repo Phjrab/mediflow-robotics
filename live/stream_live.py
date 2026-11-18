@@ -1045,6 +1045,7 @@ def start_policy_session(io, policy, home, log, duration, speed, monitor=None, a
 def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=False,
          taught_forward=None, gripper_test=False):
     from trial_runtime import static_context
+    from run_exit_report import record_run_directory
     import corrections
 
     context = static_context()
@@ -1053,6 +1054,7 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
     out = Path(__file__).resolve().parents[1] / 'runs' / time.strftime('%Y%m%d_%H%M%S')
     if out.exists():out=out.with_name(out.name+'_'+str(time.time_ns()))
     out.mkdir()
+    record_run_directory(out)
     result = {'status': 'HOLD', 'steps': 0, 'task_success': 'UNVERIFIED',
               'speed': speed, 'playback_hz': MODEL_HZ * speed}
     io = policy = monitor = None

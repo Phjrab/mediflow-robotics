@@ -90,3 +90,5 @@
 2026-11-18 HOME_SETTLE_161810 START. 예상: 로그 분석 6분, 수정과 모의 테스트 10분, Jetson dry-run과 보고 8분. 실물 모터 접근·쓰기 없음.
 
 2026-11-18 HOME_SETTLE_161810 DONE. 16:18 원본 로그의 ID2 위치·목표·부하 비교, 정착시간 배분과 목표 확인 수정. Jetson 모의 151 PASS, Windows 150 PASS·1 SKIP, 실제카메라·모델 dry 180.036초·8580스텝·실물쓰기0. 미리보기 복구, 안전·보정 및 모델 해시 유지. 실물 live 미실행. 상세 reports/20261118/HOME_SETTLE_161810/RESULT.md.
+
+2026-11-18 HOME_TRAINING_BOUNDS DONE. 학습137회 첫 프레임 범위 및 사이트 공통 홈 판정, 정수 목표 동일 재시도, 종료 사유 표시. 18:12/18:14 로그 재생 각각 정책28스텝, Jetson145모의 PASS, Windows144 PASS·1 SKIP, 30.011초 실카메라·모델 dry1293스텝·쓰기0. API와 종료 모의 확인. live NOT_RUN. 상세 reports/20261118/HOME_TRAINING_BOUNDS/RESULT.md.
