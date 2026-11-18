@@ -86,3 +86,7 @@
 2026-11-18 HOME_LIFT_FINISH START: 재접속/카메라복구5분, 실제카메라·모델180초dry10분, 기록/해시/커밋5분; 예상20분. 11/16 코드/모의146검사완료, dark-camera HOLD보존. 모터접근·쓰기·live0 유지.
 
 2026-11-18 HOME_LIFT_FINISH DONE: 예상20분/실제약15분. SSH Tailscale재접속, LeLab/관제HTTP200, Astra/카메라정렬서비스복구. 실제모델·현재3영상/가짜서보180.039초8572스텝48.527Hz대기0PASS; 가짜lift15틱오차→홈잔차0. Jetson146모의PASS/Windows145PASS1SKIP근거재확인. 오른쪽6틱설정유지; 녹화프레임모의382스텝적용/현재영상dry적용0. 실제모터접근·쓰기·live0. 실물수렴집기NOT_RUN. 상세reports/20261118/HOME_LIFT_FINISH/RESULT.md.
+
+2026-11-18 HOME_SETTLE_161810 START. 예상: 로그 분석 6분, 수정과 모의 테스트 10분, Jetson dry-run과 보고 8분. 실물 모터 접근·쓰기 없음.
+
+2026-11-18 HOME_SETTLE_161810 DONE. 16:18 원본 로그의 ID2 위치·목표·부하 비교, 정착시간 배분과 목표 확인 수정. Jetson 모의 151 PASS, Windows 150 PASS·1 SKIP, 실제카메라·모델 dry 180.036초·8580스텝·실물쓰기0. 미리보기 복구, 안전·보정 및 모델 해시 유지. 실물 live 미실행. 상세 reports/20261118/HOME_SETTLE_161810/RESULT.md.

@@ -8,6 +8,11 @@ from config_runtime import load
 from direct_live import JOINTS, Stop, feedback_gate
 from start_position_rules import HomeConvergence, home_targets, validate_position as check_position
 
+EARLY_LIFT_SETTLE_S = 1.25
+LATE_LIFT_PROGRESS_S = 0.75
+LATE_LIFT_EXTRA_RESIDUAL_TICKS = 3
+LATE_LIFT_PROBE_S = 0.25
+
 def exact_sync_packet(address, width, values):
     parameters=bytes((address,width))+b''.join(bytes((mid,))+value.to_bytes(width,'little') for mid,value in values.items())
     body=bytes((254,len(parameters)+2,131))+parameters
@@ -63,39 +68,91 @@ def return_home(io,sample,home,tolerance=None,*,clock=None,pause=None,log=None):
     # Legacy degree tolerance callers now use the same configured tick rule.
     clock=clock or io.clock;pause=pause or io.pause
     log=log or getattr(io,'log',lambda _:None)
-    c=load();targets=home_targets(c);home=io.normalize(targets)
+    c=load();targets=home_targets(c)
     velocity=c['startup']['max_deg_s']*globals().get('ACTIVE_SPEED',c['speed'])
     trim=c['startup']['home_trim']
+    checks=c['position_checks']
+    settle_timeout=checks['settle_timeout_s']
+    final_attempt=checks['home_attempts']
     command=dict(targets)
     io.home_command_trim=dict.fromkeys(trim['axes'],0)
-    def settle(sample,attempt):
-        window=HomeConvergence(targets,c);until=clock()+c['position_checks']['settle_timeout_s']
+    def settle(attempt,saved=0.):
+        window=HomeConvergence(targets,c)
+        start=clock()
+        normal_deadline=start+settle_timeout
+        until=normal_deadline
+        reserved_deadline=normal_deadline+saved
+        probed=False
+        extended=False
         history=deque()
         while True:
+            sample=io.start_snapshot()
+            ensure_health(sample)
+            if any(value != 1 for value in sample['torque'].values()):
+                raise Stop('홈 정착 중 토크 상태 변경: '+repr(sample['torque']))
             validate_position(sample,io.arm_bounds)
             now=clock()
-            if history and (now<=history[-1][0] or now-history[-1][0]>c['position_checks']['max_sample_gap_s']):
+            active=sample['active_targets']['shoulder_lift']
+            acknowledged=attempt==0 or active==command['shoulder_lift']
+            if not acknowledged or (history and (now<=history[-1][0] or now-history[-1][0]>checks['max_sample_gap_s'])):
                 history.clear()
-            history.append((now,dict(sample['present_raw'])))
-            # Keep one sample just before the half-second boundary.
-            while len(history)>1 and history[1][0]<=now-trim['stable_s']:
+            lift=sample['present_raw']['shoulder_lift']
+            if acknowledged:
+                history.append((now,lift))
+            # Keep enough history to distinguish late progress from a plateau.
+            while len(history)>1 and history[1][0]<=now-LATE_LIFT_PROGRESS_S:
                 history.popleft()
             result=window.observe(sample['present_raw'],now)
-            result['trim_evidence']={}
-            for j in trim['axes']:
-                values=[row[j] for _,row in history]
-                span=max(values)-min(values)
-                result['trim_evidence'][j]=dict(stable=bool(now-history[0][0]+1e-9>=trim['stable_s']
-                    and span<=trim['stable_span_ticks']),span_ticks=span,
-                    residual_ticks=round(median(values))-targets[j])
+            if not acknowledged:
+                window=HomeConvergence(targets,c)
+                result.update(ready=False,stable_seconds=0.)
+            lift_home=targets['shoulder_lift']
+            # Include one sample just before the stability boundary.
+            stable_rows=list(history)
+            while len(stable_rows)>1 and stable_rows[1][0]<=now-trim['stable_s']:
+                stable_rows.pop(0)
+            values=[value for _,value in stable_rows]
+            span=max(values)-min(values) if values else None
+            residual=lift-lift_home
+            stable=bool(values and now-stable_rows[0][0]+1e-9>=trim['stable_s']
+                        and span<=trim['stable_span_ticks'])
+            result['trim_evidence']={'shoulder_lift':dict(
+                stable=stable,span_ticks=span,residual_ticks=round(median(values))-lift_home if values else residual,
+                active_target_ticks=active,active_target_confirmed=acknowledged)}
+            result['settle_elapsed_s']=now-start
+            lift_only=all(row['converged'] for name,row in result['joints'].items() if name!='shoulder_lift')
+            tolerance_ticks=checks['home_tolerance_ticks']
             if result['ready']:
-                log(dict(event='startup_home_converged',attempt=attempt,**result));return sample,result
-            if clock()>=until:return sample,result
-            pause(.05);sample=io.checked()
+                log(dict(event='startup_home_converged',attempt=attempt,**result))
+                return sample,result
+            if 0<attempt<final_attempt and now<until and now-start>=EARLY_LIFT_SETTLE_S and (
+                    lift_only and stable and span==0 and abs(residual)>tolerance_ticks):
+                result['settle_early']='stable_lift_only'
+                return sample,result
+            if now>=until:
+                if not acknowledged:
+                    raise Stop(f'홈 어깨 들기 목표 응답 불일치: 전송 {command["shoulder_lift"]}틱, 활성 {active}틱')
+                gained=abs(history[0][1]-lift_home)-abs(residual) if history else 0
+                near_home=abs(residual)<=tolerance_ticks+LATE_LIFT_EXTRA_RESIDUAL_TICKS
+                can_wait=(attempt==final_attempt and not extended and saved>0 and lift_only
+                          and near_home and now<reserved_deadline)
+                if can_wait and (result['home_converged'] or gained>=1):
+                    extended=True
+                    until=reserved_deadline
+                    log(dict(event='startup_home_settle_extension',attempt=attempt,
+                        active_target_ticks=active,residual_ticks=residual,recent_progress_ticks=gained,
+                        read_only_remaining_s=until-now))
+                elif can_wait and not probed and now<normal_deadline+LATE_LIFT_PROBE_S:
+                    probed=True
+                    until=min(reserved_deadline,normal_deadline+LATE_LIFT_PROBE_S)
+                else:
+                    return sample,result
+            pause(.05)
+    saved=0.
     if check_position(sample['present_raw'])['home_converged']:
-        sample,result=settle(sample,0)
+        sample,result=settle(0)
         if result['ready']:return False
-    for attempt in range(1,c['position_checks']['home_attempts']+1):
+    for attempt in range(1,final_attempt+1):
         validate_position(sample,io.arm_bounds)
         # A retry continues the previous command. Restarting at measured position
         # would unwind the correction and jump 14 ticks in the reported failure.
@@ -127,9 +184,11 @@ def return_home(io,sample,home,tolerance=None,*,clock=None,pause=None,log=None):
             raw=dict(command) if n==steps else io.plan([v+d*f for v,d in zip(start,delta)])['wire_raw']
             io.send(raw)
         previous_command=dict(command)
-        sample,result=settle(io.checked(),attempt)
+        sample,result=settle(attempt,saved)
+        if result.get('settle_early'):
+            saved+=settle_timeout-result['settle_elapsed_s']
         log(dict(event='startup_home_result',attempt=attempt,command_ticks=dict(command),
-            home_command_trim=dict(io.home_command_trim),**result))
+            home_command_trim=dict(io.home_command_trim),settle_saved_s=saved,**result))
         if result['ready']:return True
     raise Stop('홈 이동 후 위치 확인 실패: '+json.dumps(dict(attempts=attempt,**result),ensure_ascii=False))
 
