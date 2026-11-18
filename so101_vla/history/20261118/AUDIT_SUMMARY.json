@@ -1,0 +1,63 @@
+[
+  {
+    "bundle": "vla-live-202611.bundle",
+    "object_counts": {
+      "commit": 38,
+      "tag": 1,
+      "tree": 342,
+      "blob": 654
+    },
+    "secret_matches": 0,
+    "excluded_findings": [],
+    "bytes": 1915989,
+    "sha256": "9e22aea512e7507847d29f0d98e6b6ffb7c9dbf493ae3d3c52c4799465982c0e"
+  },
+  {
+    "bundle": "legacy-overnight.bundle",
+    "object_counts": {
+      "commit": 54,
+      "tree": 389,
+      "blob": 1159
+    },
+    "secret_matches": 0,
+    "excluded_findings": [],
+    "bytes": 8608806,
+    "sha256": "07d48578ac8d74de677517c98994710293ebab40e5adffe29ff49b9bdac379a7"
+  },
+  {
+    "bundle": "legacy-red-green-publish.bundle",
+    "object_counts": {
+      "commit": 7,
+      "tree": 96,
+      "blob": 452
+    },
+    "secret_matches": 0,
+    "excluded_findings": [],
+    "bytes": 1958640,
+    "sha256": "f4e6e65ca2c1d34341361ca174a4d4f1aadf1f857db1567dbeaa5ac00b6ff008"
+  },
+  {
+    "bundle": "legacy-blue-publish.bundle",
+    "object_counts": {
+      "commit": 8,
+      "tree": 99,
+      "blob": 457
+    },
+    "secret_matches": 0,
+    "excluded_findings": [],
+    "bytes": 1964807,
+    "sha256": "7cadff029726d3287c19197973331ccd9fa0649a57dcaa5c5c38a4100c01d0b5"
+  },
+  {
+    "bundle": "jetson-before-sync.bundle",
+    "object_counts": {
+      "commit": 36,
+      "tree": 171,
+      "blob": 357
+    },
+    "secret_matches": 0,
+    "excluded_findings": [],
+    "bytes": 1293261,
+    "sha256": "895b27f9d2fc3b1ec3ee8de06733f88b0dc9954a516b0255d495e3d755d697fe"
+  }
+]
