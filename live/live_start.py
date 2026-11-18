@@ -2,6 +2,8 @@
 import math
 import time
 import json
+from collections import deque
+from statistics import median
 from config_runtime import load
 from direct_live import JOINTS, Stop, feedback_gate
 from start_position_rules import HomeConvergence, home_targets, validate_position as check_position
@@ -63,11 +65,29 @@ def return_home(io,sample,home,tolerance=None,*,clock=None,pause=None,log=None):
     log=log or getattr(io,'log',lambda _:None)
     c=load();targets=home_targets(c);home=io.normalize(targets)
     velocity=c['startup']['max_deg_s']*globals().get('ACTIVE_SPEED',c['speed'])
+    trim=c['startup']['home_trim']
+    command=dict(targets)
+    io.home_command_trim=dict.fromkeys(trim['axes'],0)
     def settle(sample,attempt):
         window=HomeConvergence(targets,c);until=clock()+c['position_checks']['settle_timeout_s']
+        history=deque()
         while True:
             validate_position(sample,io.arm_bounds)
-            result=window.observe(sample['present_raw'],clock())
+            now=clock()
+            if history and (now<=history[-1][0] or now-history[-1][0]>c['position_checks']['max_sample_gap_s']):
+                history.clear()
+            history.append((now,dict(sample['present_raw'])))
+            # Keep one sample just before the half-second boundary.
+            while len(history)>1 and history[1][0]<=now-trim['stable_s']:
+                history.popleft()
+            result=window.observe(sample['present_raw'],now)
+            result['trim_evidence']={}
+            for j in trim['axes']:
+                values=[row[j] for _,row in history]
+                span=max(values)-min(values)
+                result['trim_evidence'][j]=dict(stable=bool(now-history[0][0]+1e-9>=trim['stable_s']
+                    and span<=trim['stable_span_ticks']),span_ticks=span,
+                    residual_ticks=round(median(values))-targets[j])
             if result['ready']:
                 log(dict(event='startup_home_converged',attempt=attempt,**result));return sample,result
             if clock()>=until:return sample,result
@@ -77,18 +97,39 @@ def return_home(io,sample,home,tolerance=None,*,clock=None,pause=None,log=None):
         if result['ready']:return False
     for attempt in range(1,c['position_checks']['home_attempts']+1):
         validate_position(sample,io.arm_bounds)
-        start=list(sample['state']);delta=[h-v for h,v in zip(home,start)]
+        # A retry continues the previous command. Restarting at measured position
+        # would unwind the correction and jump 14 ticks in the reported failure.
+        start=list(sample['state']) if attempt==1 else io.normalize(previous_command)
+        if attempt>1:
+            for j in trim['axes']:
+                evidence=result['trim_evidence'][j]
+                error=evidence['residual_ticks']
+                if not evidence['stable'] or abs(error)<=c['position_checks']['home_tolerance_ticks']:
+                    continue
+                offset=io.home_command_trim[j]-max(-trim['max_step_ticks'],min(trim['max_step_ticks'],error))
+                offset=max(-trim['max_total_ticks'],min(trim['max_total_ticks'],offset))
+                lo,hi=io.arm_bounds[j]
+                command[j]=max(lo,min(hi,targets[j]+offset))
+                io.home_command_trim[j]=command[j]-targets[j]
+                log(dict(event='startup_home_trim',attempt=attempt,joint=j,
+                    canonical_target_ticks=targets[j],commanded_target_ticks=command[j],
+                    offset_ticks=io.home_command_trim[j],residual_ticks=error,
+                    stable_span_ticks=evidence['span_ticks']))
+        goal=io.normalize(command);delta=[h-v for h,v in zip(goal,start)]
         duration=max(.3,1.875*max(map(abs,delta))/velocity)
         steps=math.ceil(duration*60);begin=clock()
-        log(dict(event='startup_home_attempt',attempt=attempt,start_ticks=sample['present_raw'],target_ticks=targets))
+        log(dict(event='startup_home_attempt',attempt=attempt,start_ticks=sample['present_raw'],
+            target_ticks=targets,command_ticks=dict(command),home_command_trim=dict(io.home_command_trim)))
         for n in range(1,steps+1):
             pause(max(0,begin+n*duration/steps-clock()));validate_position(io.checked(),io.arm_bounds)
             t=n/steps;f=t*t*t*(10+t*(-15+6*t))
-            # Use the canonical final integer, avoiding another float round-trip.
-            raw=targets if n==steps else io.plan([v+d*f for v,d in zip(start,delta)])['wire_raw']
+            # Send the exact final command integer; convergence stays canonical.
+            raw=dict(command) if n==steps else io.plan([v+d*f for v,d in zip(start,delta)])['wire_raw']
             io.send(raw)
+        previous_command=dict(command)
         sample,result=settle(io.checked(),attempt)
-        log(dict(event='startup_home_result',attempt=attempt,**result))
+        log(dict(event='startup_home_result',attempt=attempt,command_ticks=dict(command),
+            home_command_trim=dict(io.home_command_trim),**result))
         if result['ready']:return True
     raise Stop('홈 이동 후 위치 확인 실패: '+json.dumps(dict(attempts=attempt,**result),ensure_ascii=False))
 
@@ -110,5 +151,6 @@ def prepare(io,home,log):
         raise Stop('홈 수렴 후 새 표본 잔차 이탈: '+json.dumps(final_position,ensure_ascii=False))
     summary=dict(torque=sample['torque'],modes=sample['modes'],temperature_c=sample['temperatures'],
                  home_delta=home_delta(sample,target),position_check=final_position,
+                 home_command_trim=dict(io.home_command_trim),
                  camera=dict.fromkeys(io.camera_map,'READY'),auto_recovered=['home'] if moved else [])
     log(dict(event='startup_ready',**summary));return summary
