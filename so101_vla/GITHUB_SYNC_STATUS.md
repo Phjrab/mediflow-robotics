@@ -24,7 +24,8 @@ Jetson에는 검증 코드 `c52504c`와 같은 pre-raw 태그를 배포했고 Li
 
 | 기준 파일 | SHA-256 | 검증 범위 |
 |---|---|---|
-| pre-raw `live/config.yaml` | `0cb647eeea9e85399b4f9094130699eb40a1e3a17113fe117a45069cf810f5cf` | c525 배포 전후 및 GitHub 원본 일치 |
+| pre-raw `live/config.yaml` 작업 파일(CRLF) | `0cb647eeea9e85399b4f9094130699eb40a1e3a17113fe117a45069cf810f5cf` | Windows·Jetson 배포 파일 일치 |
+| 같은 config의 Git 원본 blob(LF) | `5f453d6533d13438a3ee22f3a5232a0eafc283daa7e86f663b393e1f7001d7a7` | pre-raw·현행·GitHub blob 동일; 줄끝 변환만 다름 |
 | 보정 `so-101.json` | `2f74c1303b2fce03576eff539329e1185a652e2d551caa1ec82b026dafe29c2e` | 원본 미수정·Git 미포함 |
 | 모델 가중치 | `b84b15c70ee711ce3ec5780e8498073852f28c43ccc6a726e9196761d05a7654` | 기존 검증값; 이번 가중치 재계산 아님 |
 

@@ -3,14 +3,12 @@
   "status": "NATIVE_COMMIT_CANDIDATE",
   "target": "Phjrab/mediflow-robotics",
   "branch": "vla/live-202611",
-  "source_commit": "0207f1d94e570ad85b8d3d96427eeda781da6b9c",
-  "expected_remote_parent": "340c57ffb3adc1beff28d52ee21b989d3b22e2cb",
+  "source_commit": "7157103e83c033e0cb3c1e8b27a58ed1d1ff3487",
+  "expected_remote_parent": "6c69be680ed88e7e4d664f75ea42559d97e9a9b7",
   "source_tag_commit": "c52504c2895176914bdfdd10356f5799e8bd8773",
   "native_history": "Preserved as real Git parents and refs, not dependent on split-bundle upload",
   "secret_text_pattern_matches": 0,
-  "removed_previous_source_paths": [
-    "so101_vla/reports/20261118/ID_RECOVERY/COMMIT_RECEIPT.json"
-  ],
+  "removed_previous_source_paths": [],
   "files": [
     {
       "path": "so101_vla/.gitattributes",
@@ -43,9 +41,9 @@
     {
       "path": "so101_vla/GITHUB_SYNC_STATUS.md",
       "mode": "100644",
-      "git_blob_sha1": "61cfed3740ff92b313bec9fdc972fd875a9a4902",
-      "sha256": "93fcfd04e6ccdd8df36bfba7f791bf39d5df3a2b9f7a1a080baffc14d269bf53",
-      "bytes": 3096
+      "git_blob_sha1": "7f40392447f2f23cd56c973ad6ea6fce975719af",
+      "sha256": "08a1caa2f8617a0cf4a70847b50ed0e12fecc71402dea83aa0a1175f6b3a493c",
+      "bytes": 3282
     },
     {
       "path": "so101_vla/MOVES.md",
