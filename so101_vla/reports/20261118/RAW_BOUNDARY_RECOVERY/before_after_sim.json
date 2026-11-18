@@ -1,0 +1,44 @@
+{
+  "scenario": "state-conditioned policy: shoulder_lift ramps +0.6deg for50 actions; inference1.4s",
+  "before": {
+    "status": "HOLD",
+    "reason": "raw 학습 최대 변화 1.5배 초과: {\"kind\": \"model\", \"joint\": \"shoulder_lift\", \"previous\": -68.31428571428572, \"target\": -97.71428571428571, \"delta\": 29.39999999999999, \"limit\": 21.62636947631836}",
+    "steps": 50,
+    "observation_after_packets": [
+      0,
+      0
+    ],
+    "observation_shoulder_lift": [
+      -97.71428571428571,
+      -97.71428571428571
+    ],
+    "skipped_policy_actions": 0,
+    "chunk_wait_s": {
+      "max": 0.0,
+      "sum": 0
+    },
+    "physical_motor_writes": 0
+  },
+  "after": {
+    "status": "RUN_COMPLETE",
+    "reason": null,
+    "steps": 100,
+    "observation_after_packets": [
+      0,
+      50,
+      100
+    ],
+    "observation_shoulder_lift": [
+      -97.71428571428571,
+      -69.23076923076923,
+      -40.747252747252745
+    ],
+    "skipped_policy_actions": 0,
+    "chunk_wait_s": {
+      "max": 1.4333333353333289,
+      "sum": 2.666666670666658
+    },
+    "physical_motor_writes": 0
+  },
+  "guard_shoulder_lift": 21.62636947631836
+}

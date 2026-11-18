@@ -187,10 +187,14 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
     hold = {'status': 'NOT_NEEDED'}
     ready = recorder = recording = timing = scheduler = None
     job = None
-    waits, inferences, periods, ages = [], [], [], []
+    waits, inferences, periods, active_periods, ages = [], [], [], [], []
     observed = [[] for _ in base.JOINTS]
     commands = [[] for _ in base.JOINTS]
     previous_send = starvation = missing_since = None
+    previous_policy_send = None
+    last_requested_gripper = None
+    last_wire_raw = None
+    safety_events = []
     started = clock()
     loop_elapsed = 0.
     slot = {}
@@ -244,6 +248,7 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                 if monitor is not None and monitor.hold_requested():
                     raise base.Stop(legacy.VIEWER_STOP)
                 sample = tick.call('serial_read', io.checked)
+                state_observed_at = clock()
                 for history, value in zip(observed, sample['state']):
                     history.append(value)
                 if recorder is not None and recorder.due(clock()):
@@ -266,20 +271,34 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                     log(dict(event='inference', origin=request_origin, seconds=seconds,
                              time_s=clock() - started, incoming_actions=actions,
                              skipped_actions=0, overlap=0, delivery_observation_age_s=clock() - requested,
-                             scheduling='fifo_all_n_action_steps'))
+                             scheduling='fresh_observation_after_chunk_exhausted'))
                     job = None
                 if job is not None and now - requested > 9:
                     raise base.Stop('정책 추론 응답 시간 초과')
-                if job is None and not fifo.has_pending and fifo.remaining / fps <= estimate * 1.3:
+                # RTC is disabled for raw. Its ordinary prediction starts at the
+                # observation time: an origin number does NOT condition the model
+                # on a future state. Prefetching at the start of the current chunk
+                # and appending all 50 new actions therefore replays an old pose.
+                # Execute the complete unchanged chunk, then observe and infer.
+                # While inference is pending, this loop keeps checking safety at
+                # dataset FPS and sends no duplicate/extra goals.
+                if job is None and not fifo.has_pending and fifo.remaining == 0:
                     frames = tick.call('camera', io.fresh_frames)
                     if frames is not None:
                         missing_since = None
                         requested = clock()
-                        request_origin = fifo.index + fifo.remaining
+                        request_origin = fifo.index
                         log(dict(event='inference_requested', time_s=requested - started,
                                  origin=request_origin, remaining_actions=fifo.remaining,
                                  remaining_wall_s=fifo.remaining / fps, estimated_inference_s=estimate,
-                                 playback_hz=fps, prefix_skip=False))
+                                 playback_hz=fps, prefix_skip=False,
+                                 scheduling='fresh_observation_after_chunk_exhausted',
+                                 observation_state=list(sample['state']),
+                                 observation_ticks=sample.get('present_raw'),
+                                 state_observation_age_s=requested-state_observed_at,
+                                 frame_timestamps={name: frame.get('timestamp') if isinstance(frame, dict) else None
+                                                   for name, frame in frames.items()},
+                                 previous_sent_action_index=count-1 if count else None))
                         job = tick.call('inference_blocking', pool.submit, policy,
                                         frames, sample['state'], request_origin, 0)
                     elif missing_since is None:
@@ -290,6 +309,47 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                 if selected is None:
                     if starvation is None:
                         starvation = now
+                    # No policy goal is repeated while inference runs. Gripper
+                    # protection nevertheless uses elapsed physical seconds in
+                    # raw (speed=1), including the inference wait. Only an actual
+                    # safety change gets one new goal; the other five integers
+                    # stay identical and the policy cursor does not advance.
+                    if last_wire_raw is not None:
+                        protective = list(guard.wire)
+                        relieved_target = relief.apply(last_requested_gripper, sample['state'][-1],
+                                                       clock()-started)
+                        protective[-1] = opening.apply(min(relieved_target, opening.cap),
+                                                        sample['state'][-1],
+                                                        sample.get('loads', {}).get('gripper', 0), now)
+                        safety_plan = io.plan(protective)
+                        safety_raw = dict(last_wire_raw)
+                        safety_raw['gripper'] = safety_plan['wire_raw']['gripper']
+                        safety_wire = list(guard.wire)
+                        safety_wire[-1] = safety_plan['wire_normalized'][-1]
+                        if safety_raw['gripper'] != last_wire_raw['gripper']:
+                            guard.check(guard.model, safety_wire)
+                            tick.call('cadence_wait', pause,
+                                      max(0., min(end, previous_send + 1/fps)-clock()))
+                            if clock() >= end:
+                                failed = False
+                                break
+                            if monitor is not None and monitor.hold_requested():
+                                raise base.Stop(legacy.VIEWER_STOP)
+                            tick.call('serial_write', io.send, safety_raw)
+                            previous_send = clock()
+                            guard.commit(guard.model, safety_wire)
+                            last_wire_raw = safety_raw
+                            event = dict(event='gripper_safety_goal', step=count,
+                                         action_index=count-1, time_s=previous_send-started,
+                                         during='inference_or_camera_wait', policy_index_advanced=False,
+                                         reason='opening_load_freeze' if opening.fixed is not None else 'closing_relief',
+                                         wire_raw=safety_raw, wire_normalized=safety_wire,
+                                         requested_gripper=last_requested_gripper,
+                                         present_gripper=sample['state'][-1],
+                                         load_raw=sample.get('loads', {}).get('gripper', 0))
+                            safety_events.append(event)
+                            log(event)
+                            relief_count += int(relieved_target != last_requested_gripper)
                     tick.action_starved = True
                     if monitor is not None:
                         tick.call('preview_enqueue', monitor.status, 'predicting', step=count, sample=sample)
@@ -298,12 +358,19 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                 index, model, age = selected
                 target, offset = lateral.apply(model, sample['state'], now,
                                                 fifo.future(math.ceil(fps)), fps)
-                target[-1] = relief.apply(target[-1], sample['state'][-1], index / fps)
+                target[-1] = relief.apply(target[-1], sample['state'][-1], clock()-started)
                 relieved = target[-1] != model[-1]
                 target[-1] = opening.apply(target[-1], sample['state'][-1],
                                             sample.get('loads', {}).get('gripper', 0), now)
                 plan = io.plan(target)
-                guard.check(model, plan['wire_normalized'])
+                try:
+                    guard.check(model, plan['wire_normalized'])
+                except base.Stop as exc:
+                    log(dict(event='raw_guard_rejected', action_index=index, time_s=clock()-started,
+                             reason=str(exc), model=model, wire_normalized=plan['wire_normalized'],
+                             last_model=guard.model, last_wire=guard.wire,
+                             observation_age_s=age, state=sample['state']))
+                    raise
                 # A late read must not be followed by two back-to-back writes.
                 # Retain the absolute slot schedule and drop elapsed time slots,
                 # but also enforce the minimum wire cadence after a delayed send.
@@ -318,9 +385,14 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                 tick.call('serial_write', io.send, plan['wire_raw'])
                 sent = clock()
                 guard.commit(model, plan['wire_normalized'])
-                if previous_send is not None:
-                    periods.append(sent - previous_send)
+                if previous_policy_send is not None:
+                    periods.append(sent - previous_policy_send)
+                    if index % n_action_steps != 0:
+                        active_periods.append(sent - previous_policy_send)
                 previous_send = sent
+                previous_policy_send = sent
+                last_requested_gripper = model[-1]
+                last_wire_raw = dict(plan['wire_raw'])
                 if starvation is not None:
                     waits.append(sent - starvation)
                     starvation = None
@@ -396,6 +468,7 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                 reason=reason, hold=hold, mode='raw', fps=fps, speed=1.0,
                 requested_speed=requested_speed, home_speed=requested_speed,
                 interpolation=False, speed_scaling=False, n_action_steps=n_action_steps,
+                inference_scheduling='fresh_observation_after_chunk_exhausted',
                 steps=count, step_limit=math.ceil(duration * fps), elapsed_s=loop_elapsed,
                 task_success='UNVERIFIED', ready=ready, playback_hz=fps,
                 playback_s=count / fps, skipped_loops=scheduler.skipped if scheduler else 0,
@@ -407,8 +480,12 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                 chunk_wait_s=dict(max=max(waits, default=0.), sum=sum(waits)),
                 observation_age_s=distribution(ages),
                 transmission_hz=1 / statistics.mean(periods) if periods else None,
+                active_chunk_transmission_hz=1 / statistics.mean(active_periods) if active_periods else None,
+                overall_action_hz=count / loop_elapsed if loop_elapsed else 0.,
+                active_chunk_period_ms=distribution([gap*1000 for gap in active_periods]),
                 final_rate_target=fps, tracking=tracking, grasp_recording=recording,
                 gripper_relief_count=relief_count, gripper_opening_protection=opening.summary(),
+                gripper_safety_goal_packets=len(safety_events), gripper_safety_events=safety_events,
                 lateral_correction=lateral.summary(), camera=io.cameras_stats.summary(),
                 gripper_peak_c=io.gripper_peak, peak_temperatures_c=dict(io.peak_temperatures))
 
@@ -484,7 +561,11 @@ def run_dry(duration, requested_speed=.33):
                 cleanup += camera_source.cleanup_errors
             result.update(output=str(out), physical_motor_writes=0, serial_open_blocked=True,
                           first_targets=first_targets, max_arm_error_ticks=max(arm_errors, default=0),
-                          camera_cleanup_errors=cleanup)
+                          camera_cleanup_errors=cleanup,
+                          observation_scope=dict(images='actual stationary robot cameras',
+                                                 state='simulated follower response',
+                                                 physically_closed_loop=False,
+                                                 limitation='Camera images do not follow simulated arm motion; this validates software execution, not physical grasp success.'))
             result['functional_passed'] = (result['status'] == 'RUN_COMPLETE' and result['steps'] > 0
                                            and result['elapsed_s'] >= duration - .05 and not cleanup
                                            and result['max_arm_error_ticks'] <= 3)

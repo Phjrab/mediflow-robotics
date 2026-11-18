@@ -3,8 +3,8 @@
   "status": "NATIVE_COMMIT_CANDIDATE",
   "target": "Phjrab/mediflow-robotics",
   "branch": "vla/live-202611",
-  "source_commit": "7157103e83c033e0cb3c1e8b27a58ed1d1ff3487",
-  "expected_remote_parent": "6c69be680ed88e7e4d664f75ea42559d97e9a9b7",
+  "source_commit": "92ba835b255ab400e31da856596d336fee4979a2",
+  "expected_remote_parent": "d302f57000e50649fce2394075bccf5a388b82f2",
   "source_tag_commit": "c52504c2895176914bdfdd10356f5799e8bd8773",
   "native_history": "Preserved as real Git parents and refs, not dependent on split-bundle upload",
   "secret_text_pattern_matches": 0,
@@ -76,9 +76,9 @@
     {
       "path": "so101_vla/STATUS.md",
       "mode": "100644",
-      "git_blob_sha1": "1697104b10970122b44b761b02fde1fd9f00eeb2",
-      "sha256": "5d23e53420b4c24d0b42acb1410210186f714dc6f31f845079510d95729d2c43",
-      "bytes": 18760
+      "git_blob_sha1": "d8f6cf4b83039c41c45ce31134927e9918273813",
+      "sha256": "b3e1f31f839bc6df498e61a887c6a5f60cd7a9ecb7e92ad6095e239643f6fe47",
+      "bytes": 19537
     },
     {
       "path": "so101_vla/analysis/alignment_recheck.py",
@@ -573,9 +573,9 @@
     {
       "path": "so101_vla/live/raw_live.py",
       "mode": "100644",
-      "git_blob_sha1": "d04bd9eb1fbc11e3aad0b94a46e45b74d323b5c4",
-      "sha256": "5c6137eaf4bafb2fff2078f03d9449032dca2bfc32d34c11d95c345e0cda3d49",
-      "bytes": 35446
+      "git_blob_sha1": "14af1c9eeef3f6f23c8cba8b8955199a482f8a46",
+      "sha256": "f3968937e58e015aa1e054605596ecbd8c52e6173ae92173bc1d64b69a0efe1a",
+      "bytes": 41439
     },
     {
       "path": "so101_vla/live/recorded_replay.py",
@@ -3063,6 +3063,104 @@
       "bytes": 3510
     },
     {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/RESULT.md",
+      "mode": "100644",
+      "git_blob_sha1": "9709fe6d028d7701ee269e68b4a922864cfbb4ec",
+      "sha256": "3c0b779d03e6b87e6a6452c1759432cc8c02a302641bff8b69fb24a90f2bef11",
+      "bytes": 5173
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/TODAY_SUMMARY.md",
+      "mode": "100644",
+      "git_blob_sha1": "c1df6a383ce784c4ffa6231407cb58a39fa5e819",
+      "sha256": "e3234786b92f8c774a3510f5e801351c338986bab50f79a79d89ee1524f45a13",
+      "bytes": 4761
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/audit_new_dry.py",
+      "mode": "100644",
+      "git_blob_sha1": "5d773c2af11310f9c419cbdeb8c032381cfdd3ba",
+      "sha256": "f428e56377b4aec018b6307bebe1d286466ec20fcd176c5c6881817c3320f6b3",
+      "bytes": 15053
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/before_after_sim.json",
+      "mode": "100644",
+      "git_blob_sha1": "a98cd17e0c09d6b7ee2e18e8c5de83006215ef23",
+      "sha256": "2b21e18b2436237f661dac6d2ad48e5869e12a719b06459291e00b2b6962d800",
+      "bytes": 1152
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/dry169_audit.json",
+      "mode": "100644",
+      "git_blob_sha1": "2215bd0f863d9ad6a38f8ea2c4d808a8480247ed",
+      "sha256": "80633c24c6cd584cd077df7b41ba11b037644648426767df6c92fd9f6b2a4d36",
+      "bytes": 22827
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/dry169_boundaries.json",
+      "mode": "100644",
+      "git_blob_sha1": "e4d32384eb2a3f3ac70e06ca86f5a4021b33ae6c",
+      "sha256": "74d1467074111b2e2ad779c4ba462d40245731de591872f1281f133bbe8f8067",
+      "bytes": 72572
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/dry169_summary.json",
+      "mode": "100644",
+      "git_blob_sha1": "5dc7d0cd3b992675aaf2a82831bf61daaf2dcc15",
+      "sha256": "f42376fa7dd5bd9837383072e39e43ebdc25fda15f4ac1c0a9dd5515d05b8776",
+      "bytes": 250564
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/independent_tests.txt",
+      "mode": "100644",
+      "git_blob_sha1": "be57df2e758c5ecad01c3db5e82ec1f219775177",
+      "sha256": "150dbb8d917a288b89d5ce55d218bea541f68917710e29e25aaea6fd9ab8ac6f",
+      "bytes": 5486
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/ping_not_opened_sudo.json",
+      "mode": "100644",
+      "git_blob_sha1": "166e18b72b634febc72dfd9696e5d003fc574987",
+      "sha256": "a48cd3e7da76bb462b1f88e9eaaf6a043080c3aa65dbcc4a551e8c94b94ac12b",
+      "bytes": 2325
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/review_boundaries.py",
+      "mode": "100644",
+      "git_blob_sha1": "fa5d8a4a72ce6deb515a4c0cb18de431aa567154",
+      "sha256": "561b2f07bd5a1dcfefd05c94808c2c2a6c3f34636f5dce12913bffc46f22d117",
+      "bytes": 2983
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/run_ping_only.sh",
+      "mode": "100644",
+      "git_blob_sha1": "7391e9c81d344501b586f8a782c01b1a4ae6189c",
+      "sha256": "f996c40874d230d1ef0120992a3f8dabeb763ad4767925101adc7884b66759b5",
+      "bytes": 1450
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/run_raw_dry_180.sh",
+      "mode": "100644",
+      "git_blob_sha1": "f689a1398336d9402c89b31ac5c83caa9adf28de",
+      "sha256": "61884f573f8c481e395acc794acd09145b1a149581ca0172b57997ddda595000",
+      "bytes": 1800
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/tests_jetson.txt",
+      "mode": "100644",
+      "git_blob_sha1": "2064e1f6eb97a5d65d87bc7266adf1e973815d09",
+      "sha256": "97f1544757f2e0073226be37693b9e9a145692127994fdb1fd31740148d33440",
+      "bytes": 30014
+    },
+    {
+      "path": "so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/tests_windows.txt",
+      "mode": "100644",
+      "git_blob_sha1": "691125fe89b5ee2d16d200d7f252afc50dc7119a",
+      "sha256": "4ba972598b50e8fa3392c1b333d05f6338b6e50cfffab84db445936b79e4671e",
+      "bytes": 30031
+    },
+    {
       "path": "so101_vla/reports/undated/ONSITE_RUNBOOK.md",
       "mode": "100644",
       "git_blob_sha1": "811faf6bdbae52ac8a9a8074cab3fa517608ca5c",
@@ -3205,9 +3303,9 @@
     {
       "path": "so101_vla/sim/test_raw_mode.py",
       "mode": "100644",
-      "git_blob_sha1": "e11d9573311fac1bae95d5a8e6455ea2de8e2e22",
-      "sha256": "2a2af5e4a13562b81c2ee8946f8ae5442f2dd7501fe30157209f80ca01025dea",
-      "bytes": 17751
+      "git_blob_sha1": "0bb158104f32b41e00a01f3d60518b111c604d6b",
+      "sha256": "a76e603c7f82bb67367fc15e6d2a07b9cbaf22d9d002acbf85cd00686fd3900e",
+      "bytes": 25520
     },
     {
       "path": "so101_vla/sim/test_read_latency_review.py",
