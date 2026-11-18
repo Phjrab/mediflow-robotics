@@ -142,7 +142,7 @@ class RecordingPolicy:
 class RawStreamTests(unittest.TestCase):
     def run_stream(self, trajectory=None, *, duration=.3, case='camera_dry',
                    n_action_steps=50, read_delay=0, limits=None, arm_setup=None,
-                   inference_seconds=.001):
+                   inference_seconds=.001,policy_factory=None):
         from raw_live import raw_stream
         from startup_simulation import SimulatedArm
         rows=[]
@@ -166,7 +166,8 @@ class RawStreamTests(unittest.TestCase):
             def trajectory(index):
                 target=list(HOME);target[2]-=.1*index
                 return target
-        policy=RecordingPolicy(trajectory,n_action_steps,inference_seconds)
+        policy=(RecordingPolicy(trajectory,n_action_steps,inference_seconds)
+                if policy_factory is None else policy_factory(arm))
         reference=dict(fps=30,raw_guard_1_5=limits or dict.fromkeys(JOINTS,1.))
         with contextlib.redirect_stdout(io.StringIO()):
             result=raw_stream(arm,policy,rows.append,duration,requested_speed=.33,
@@ -228,6 +229,142 @@ class RawStreamTests(unittest.TestCase):
         self.assertGreater(len(sent),3)
         for index,row in enumerate(sent):
             self.assertEqual(row['raw'],arm.plan(trajectory(index))['wire_raw'])
+
+    def boundary_policy(self, arm, inference_seconds=1.4):
+        class StatePolicy:
+            n_action_steps=50
+            def __init__(self):self.calls=[]
+            def __call__(self,frames,state,origin=0,delay=0):
+                self.calls.append(dict(sent_count=arm.packet_count,state=list(state),
+                                       frames=copy.deepcopy(frames),at=arm.clock()))
+                chunk=[]
+                for index in range(50):
+                    row=list(state);row[1]+=.6*index;chunk.append(row)
+                return chunk,inference_seconds
+        return StatePolicy()
+
+    def training_jump_limits(self):
+        path=Path(__file__).resolve().parents[1]/'analysis/raw_action_reference.json'
+        return load_reference(path,verify_metadata=False)['raw_guard_1_5']
+
+    def test_state_conditioned_chunks_observe_after_previous_chunk_finishes(self):
+        def setup(arm):
+            arm.fresh_frames=lambda:{'test_camera':{'frame_packet_count':arm.packet_count,'timestamp':arm.clock()}}
+        result,rows,sent,arm,policy,_=self.run_stream(duration=6.,arm_setup=setup,
+                                                   policy_factory=self.boundary_policy,
+                                                   limits=self.training_jump_limits())
+        self.assertEqual(result['status'],'RUN_COMPLETE',result.get('reason'))
+        self.assertGreater(len(sent),50)
+        self.assertGreaterEqual(len(policy.calls),2)
+        for index,call in enumerate(policy.calls):
+            self.assertEqual(call['sent_count'],index*50)
+            self.assertEqual(call['frames']['test_camera']['frame_packet_count'],index*50)
+        self.assertGreater(policy.calls[1]['state'][1]-policy.calls[0]['state'][1],25.)
+        # Every model action remains byte-for-value unchanged through scheduling.
+        goals=[row for row in rows if row.get('event')=='goal_transmitted']
+        self.assertEqual([row['action_index'] for row in goals],list(range(len(sent))))
+        for index,row in enumerate(goals):
+            expected=list(policy.calls[index//50]['state']);expected[1]+=.6*(index%50)
+            self.assertEqual(row['model'],expected)
+        requests=[row for row in rows if row.get('event')=='inference_requested']
+        self.assertTrue(requests)
+        self.assertTrue(all(row['remaining_actions']==0 for row in requests))
+
+    def test_recorded_27_degree_boundary_jump_still_holds_unchanged(self):
+        limits=self.training_jump_limits()
+        self.assertAlmostEqual(limits['shoulder_lift'],21.62636947631836)
+        previous=list(HOME);previous[1]=-72.00016784667969
+        incoming=list(previous);incoming[1]=-99.30259704589844
+        guard=JumpGuard(limits,previous,previous)
+        with self.assertRaisesRegex(base.Stop,'shoulder_lift'):
+            guard.check(incoming,incoming)
+
+    def test_boundary_inference_wait_keeps_safety_and_ctrl_c_checks_active(self):
+        for interruption in ('temperature','ctrl_c'):
+            with self.subTest(interruption=interruption):
+                calls=[]
+                def setup(arm):
+                    checked=arm.checked;first_wait=None
+                    def interrupt():
+                        nonlocal first_wait
+                        if arm.packet_count>=50:
+                            if first_wait is None:first_wait=arm.clock()
+                            calls.append(arm.clock())
+                            if arm.clock()-first_wait>.15:
+                                if interruption=='ctrl_c':raise KeyboardInterrupt
+                                raise base.Stop('fixture temperature HOLD during boundary inference')
+                        return checked()
+                    arm.checked=interrupt
+                result,rows,sent,arm,policy,_=self.run_stream(duration=6.,arm_setup=setup,
+                                                           policy_factory=self.boundary_policy,
+                                                           limits=self.training_jump_limits())
+                self.assertEqual(result['status'],'STOPPED' if interruption=='ctrl_c' else 'HOLD')
+                self.assertEqual(len(sent),50)
+                self.assertGreaterEqual(len(calls),4)
+
+    def test_duration_expires_during_boundary_inference_without_extra_targets(self):
+        result,rows,sent,arm,policy,_=self.run_stream(duration=2.1,
+                                                   policy_factory=self.boundary_policy,
+                                                   limits=self.training_jump_limits())
+        self.assertEqual(result['status'],'RUN_COMPLETE',result.get('reason'))
+        self.assertEqual(len(sent),50)
+        self.assertGreater(result['chunk_wait_s']['sum'],.2)
+        self.assertLess(result['elapsed_s'],2.2)
+        self.assertEqual(result['skipped_policy_actions'],0)
+
+    def run_blocked_gripper_wait(self, opening):
+        def setup(arm):
+            send=arm.send;feedback=arm.feedback
+            def send_and_block(raw):
+                result=send(raw)
+                if arm.packet_count==50:arm.gripper_blocked=True
+                return result
+            def loaded():
+                sample=feedback()
+                if arm.gripper_blocked and opening:sample['loads']['gripper']=-450
+                return sample
+            arm.send=send_and_block;arm.feedback=loaded
+        def factory(arm):
+            class GripperPolicy:
+                n_action_steps=50
+                def __call__(self,frames,state,origin=0,delay=0):
+                    chunk=[HOME[:-1]+[20.] for _ in range(50)]
+                    chunk[-1][-1]=40. if opening else 0.
+                    return chunk,1.4
+            return GripperPolicy()
+        return self.run_stream(duration=2.7,arm_setup=setup,policy_factory=factory,
+                               limits=self.training_jump_limits())
+
+    def test_opening_load_guard_can_relieve_only_gripper_during_inference_wait(self):
+        result,rows,sent,arm,_,_=self.run_blocked_gripper_wait(opening=True)
+        self.assertEqual(result['status'],'RUN_COMPLETE',result.get('reason'))
+        goals=[row for row in rows if row.get('event')=='goal_transmitted']
+        relief=[row for row in rows if row.get('event')=='gripper_safety_goal']
+        self.assertEqual(result['steps'],50)
+        self.assertEqual(len(goals),50)
+        self.assertEqual(len(sent),51)
+        self.assertEqual(result['gripper_safety_goal_packets'],1)
+        self.assertEqual(len(relief),1)
+        self.assertGreaterEqual(sent[-1]['at']-sent[-2]['at'],.3)
+        self.assertLess(sent[-1]['raw']['gripper'],sent[-2]['raw']['gripper'])
+        for joint in JOINTS[:-1]:
+            self.assertEqual(sent[-1]['raw'][joint],sent[-2]['raw'][joint])
+        self.assertEqual(arm.start_writes,[])
+        self.assertEqual([row['action_index'] for row in goals],list(range(50)))
+
+    def test_closing_relief_timer_advances_and_never_retightens_while_waiting(self):
+        result,rows,sent,arm,_,_=self.run_blocked_gripper_wait(opening=False)
+        self.assertEqual(result['status'],'RUN_COMPLETE',result.get('reason'))
+        goals=[row for row in rows if row.get('event')=='goal_transmitted']
+        self.assertEqual(result['steps'],50)
+        self.assertEqual(len(goals),50)
+        self.assertEqual(len(sent),51)
+        self.assertEqual(result['gripper_safety_goal_packets'],1)
+        self.assertGreaterEqual(sent[-1]['at']-sent[-2]['at'],.5-1e-8)
+        self.assertGreater(sent[-1]['raw']['gripper'],sent[-2]['raw']['gripper'])
+        for joint in JOINTS[:-1]:
+            self.assertEqual(sent[-1]['raw'][joint],sent[-2]['raw'][joint])
+        self.assertEqual(arm.start_writes,[])
 
     def test_first_policy_jump_and_nan_are_stopped_before_any_goal(self):
         for value in (HOME[2]+3,float('nan')):
