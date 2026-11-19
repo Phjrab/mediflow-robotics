@@ -19,6 +19,7 @@ import stream_live as legacy
 from grasp_offset import GraspOffset
 from grasp_recorder import GraspRecorder
 from gripper_safety import OpeningGuard
+from gripper_arrival import GripperArrivalGate, gripper_ticks, record_gripper_packet
 from loop_timing import LoopTiming, distribution
 from vla_monitor import Monitor
 
@@ -182,6 +183,8 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
     pool = getattr(io, 'pool_factory', concurrent.futures.ThreadPoolExecutor)(max_workers=1)
     fifo = FifoChunkCursor(n_action_steps)
     relief, opening, lateral = legacy.GripRelief(), OpeningGuard(), GraspOffset()
+    close_gate = GripperArrivalGate(log)
+    grip_bounds = getattr(io, 'raw_bounds', getattr(io, 'arm_bounds', {})).get('gripper')
     count = relief_count = 0
     reason = None
     hold = {'status': 'NOT_NEEDED'}
@@ -193,6 +196,8 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
     previous_send = starvation = missing_since = None
     previous_policy_send = None
     last_requested_gripper = None
+    last_gated_gripper = None
+    last_requested_ticks = None
     last_wire_raw = None
     safety_events = []
     started = clock()
@@ -316,12 +321,20 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                     # stay identical and the policy cursor does not advance.
                     if last_wire_raw is not None:
                         protective = list(guard.wire)
-                        relieved_target = relief.apply(last_requested_gripper, sample['state'][-1],
+                        was_waiting = close_gate.started is not None
+                        if was_waiting:
+                            last_index = count-1
+                            last_gated_gripper = close_gate.apply(
+                                guard.model, sample['state'], clock()-started,
+                                knot_index=last_index, knot_origin=last_index-last_index % n_action_steps,
+                                requested_ticks=last_requested_ticks, present_ticks=sample.get('present_raw', {}).get('gripper'))
+                        relieved_target = relief.apply(last_gated_gripper, sample['state'][-1],
                                                        clock()-started)
                         protective[-1] = opening.apply(min(relieved_target, opening.cap),
                                                         sample['state'][-1],
                                                         sample.get('loads', {}).get('gripper', 0), now)
                         safety_plan = io.plan(protective)
+                        close_gate.preserve_held_tick(safety_plan, protective[-1], grip_bounds)
                         safety_raw = dict(last_wire_raw)
                         safety_raw['gripper'] = safety_plan['wire_raw']['gripper']
                         safety_wire = list(guard.wire)
@@ -342,14 +355,19 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                             event = dict(event='gripper_safety_goal', step=count,
                                          action_index=count-1, time_s=previous_send-started,
                                          during='inference_or_camera_wait', policy_index_advanced=False,
-                                         reason='opening_load_freeze' if opening.fixed is not None else 'closing_relief',
+                                         reason=('opening_load_freeze' if opening.fixed is not None else
+                                                 'gripper_close_wait_release' if was_waiting and close_gate.started is None
+                                                 else 'closing_relief'),
                                          wire_raw=safety_raw, wire_normalized=safety_wire,
+                                         model=guard.model, feedback=sample, model_phase=count-1, playback_s=(count-1)/fps,
+                                         protected_points=protective[-1],
                                          requested_gripper=last_requested_gripper,
+                                         gripper_gate_points=last_gated_gripper,
                                          present_gripper=sample['state'][-1],
                                          load_raw=sample.get('loads', {}).get('gripper', 0))
                             safety_events.append(event)
-                            log(event)
-                            relief_count += int(relieved_target != last_requested_gripper)
+                            record_gripper_packet(tick, log, recorder, event, previous_send)
+                            relief_count += int(relieved_target != last_gated_gripper)
                     tick.action_starved = True
                     if monitor is not None:
                         tick.call('preview_enqueue', monitor.status, 'predicting', step=count, sample=sample)
@@ -358,11 +376,17 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                 index, model, age = selected
                 target, offset = lateral.apply(model, sample['state'], now,
                                                 fifo.future(math.ceil(fps)), fps)
-                target[-1] = relief.apply(target[-1], sample['state'][-1], clock()-started)
-                relieved = target[-1] != model[-1]
+                policy_plan = io.plan(target)
+                requested_ticks = gripper_ticks(policy_plan)
+                gated_points = close_gate.apply(model, sample['state'], clock()-started,
+                                                knot_index=index, knot_origin=index-index % n_action_steps,
+                                                requested_ticks=requested_ticks, present_ticks=sample.get('present_raw', {}).get('gripper'))
+                target[-1] = relief.apply(gated_points, sample['state'][-1], clock()-started)
+                relieved = target[-1] != gated_points
                 target[-1] = opening.apply(target[-1], sample['state'][-1],
                                             sample.get('loads', {}).get('gripper', 0), now)
-                plan = io.plan(target)
+                plan = policy_plan if target[-1] == model[-1] else io.plan(target)
+                close_gate.preserve_held_tick(plan, target[-1], grip_bounds)
                 try:
                     guard.check(model, plan['wire_normalized'])
                 except base.Stop as exc:
@@ -392,6 +416,8 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                 previous_send = sent
                 previous_policy_send = sent
                 last_requested_gripper = model[-1]
+                last_requested_ticks = requested_ticks
+                last_gated_gripper = gated_points
                 last_wire_raw = dict(plan['wire_raw'])
                 if starvation is not None:
                     waits.append(sent - starvation)
@@ -404,6 +430,8 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                 row = dict(event='goal_transmitted', mode='raw', step=count, time_s=sent - started,
                            action_index=index, model_phase=index, playback_s=index / fps,
                            hz_target=fps, model=model, feedback=sample, grip_relief=relieved,
+                           gripper_gate_points=gated_points, gripper_waiting=close_gate.started is not None,
+                           policy_gripper_ticks=requested_ticks,
                            observation_age_s=age, lateral_correction=offset,
                            gripper_opening=dict(cap_clipped=model[-1] > opening.cap,
                                                 limited_points=target[-1], load_hold_points=opening.fixed),
@@ -442,6 +470,7 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
         reason = 'Ctrl+C' if isinstance(exc, KeyboardInterrupt) else str(exc)
     finally:
         ended = clock()
+        close_gate.finish(ended-started)
         loop_elapsed = max(0., ended - started)
         if starvation is not None:
             waits.append(max(0., ended - starvation))
@@ -485,6 +514,7 @@ def raw_stream(io, policy, log, duration, requested_speed=.33, monitor=None, ref
                 active_chunk_period_ms=distribution([gap*1000 for gap in active_periods]),
                 final_rate_target=fps, tracking=tracking, grasp_recording=recording,
                 gripper_relief_count=relief_count, gripper_opening_protection=opening.summary(),
+                gripper_close_wait=close_gate.summary(),
                 gripper_safety_goal_packets=len(safety_events), gripper_safety_events=safety_events,
                 lateral_correction=lateral.summary(), camera=io.cameras_stats.summary(),
                 gripper_peak_c=io.gripper_peak, peak_temperatures_c=dict(io.peak_temperatures))
@@ -511,6 +541,7 @@ def make_raw_policy(context):
 
 
 def _write_summary(out, result):
+    result.setdefault('gripper_close_wait', GripperArrivalGate().summary())
     (out / 'summary.json').write_text(json.dumps(result, ensure_ascii=False, indent=2,
                                                 allow_nan=False) + '\n', encoding='utf-8')
     print(json.dumps(result, ensure_ascii=False), flush=True)
@@ -520,7 +551,6 @@ def run_dry(duration, requested_speed=.33):
     from startup_simulation import SimulatedArm
     from trial_runtime import static_context
 
-    reference, context = load_reference(), static_context()
     out = ROOT / 'runs' / f'DRY_RAW_{time.time_ns()}'
     out.mkdir()
     result = dict(mode='raw', passed=False, steps=0, status='HOLD', reason=None)
@@ -534,6 +564,7 @@ def run_dry(duration, requested_speed=.33):
             if row.get('event') == 'startup_torque_readback':
                 arm_errors.extend(row['goal_error_ticks'].values())
         try:
+            reference, context = load_reference(), static_context()
             monitor = Monitor(out.name, 'RAW 카메라·모델 실제 / 모터 모의', base.JOINTS, controls=False)
             monitor.status('warming', force=True)
             policy = make_raw_policy(context)
@@ -640,6 +671,7 @@ def run_simulations(duration, requested_speed=.33):
                 passed &= result.get('gripper_relief_count', 0) > 0
             result.update(mode='raw', case=case, passed=bool(passed), physical_motor_writes=0,
                           max_arm_error_ticks=max(errors, default=0))
+            result.setdefault('gripper_close_wait', GripperArrivalGate().summary())
             print(json.dumps(result, ensure_ascii=False), flush=True)
             success &= passed
     finally:

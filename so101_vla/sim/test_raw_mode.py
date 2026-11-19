@@ -174,6 +174,60 @@ class RawStreamTests(unittest.TestCase):
                               reference=reference)
         return result,rows,sent,arm,policy,trajectory
 
+    def test_gripper_wait_releases_during_fifo_gap_without_advancing_arm(self):
+        for outcome in ('arrived', 'timeout'):
+            with self.subTest(outcome=outcome):
+                def setup(arm):
+                    checked = arm.checked
+                    def feedback():
+                        sample = checked()
+                        state = list(HOME)
+                        state[-1] = 25
+                        if outcome == 'arrived' and arm.clock() >= .7:
+                            state[0] += 6
+                        pose = arm.plan(state)
+                        sample.update(state=pose['wire_normalized'], present_raw=pose['wire_raw'])
+                        return sample
+                    arm.checked = feedback
+                def policy_for(arm):
+                    def policy(frames, state, origin=0, delay=0):
+                        target = list(HOME)
+                        target[0] += 6
+                        target[-1] = 15
+                        return [target[:] for _ in range(50)], .001 if origin == 0 else 3.
+                    policy.n_action_steps = 1
+                    return policy
+                result, rows, sent, _, _, _ = self.run_stream(duration=1.9, arm_setup=setup,
+                    policy_factory=policy_for, limits=dict.fromkeys(JOINTS, 30.))
+                self.assertEqual(result['status'], 'RUN_COMPLETE', result['reason'])
+                self.assertEqual(result['steps'], 1)
+                # This fixture holds the actual gripper at 25 points after the
+                # release. A sufficiently long blocked close invokes GripRelief.
+                safety = result['gripper_safety_events']
+                expected = ['gripper_close_wait_release']
+                if outcome == 'arrived':
+                    expected.append('closing_relief')
+                self.assertEqual([e['reason'] for e in safety], expected)
+                self.assertEqual(len(sent), 1+len(expected))
+                hold, release = [r['raw'] for r in sent[:2]]
+                self.assertLess(release['gripper'], hold['gripper'])
+                for packet in sent[1:]:
+                    self.assertTrue(all(hold[j] == packet['raw'][j] for j in JOINTS[:-1]))
+                if outcome == 'arrived':
+                    self.assertGreater(sent[-1]['raw']['gripper'], release['gripper'])
+                event = safety[0]
+                self.assertFalse(event['policy_index_advanced'])
+                self.assertEqual(event['reason'], 'gripper_close_wait_release')
+                wait = result['gripper_close_wait']
+                self.assertEqual(wait['outcomes'][outcome], 1)
+                if outcome == 'timeout':
+                    self.assertGreaterEqual(wait['max_wait_s'], 1.5)
+                    self.assertLessEqual(wait['max_wait_s'], 1.5+1/30)
+                goal, = [r for r in rows if r['event'] == 'goal_transmitted']
+                self.assertEqual(goal['wire_raw']['gripper'], goal['feedback']['present_raw']['gripper'])
+                self.assertEqual(goal['model'][-1], 15)
+                self.assertNotEqual(goal['wire_raw']['shoulder_pan'], goal['feedback']['present_raw']['shoulder_pan'])
+
     def test_original_actions_are_sent_once_in_order_without_interpolation(self):
         result,rows,sent,arm,policy,trajectory=self.run_stream()
         self.assertEqual(result['status'],'RUN_COMPLETE')

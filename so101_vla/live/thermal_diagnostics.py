@@ -1,5 +1,6 @@
 """온도 원문과 진단용 필터를 비교한다. 필터는 모터 보호 판정에 사용하지 않는다."""
 from collections import deque
+from contextlib import contextmanager
 import math
 
 
@@ -15,6 +16,13 @@ RULES = {
     'candidate_raw_emergency_consecutive': 2,
 }
 
+READ_ERROR_THRESHOLD_C = 100
+# Operation -> (source, reply data width, temperature offset in payload).
+TEMPERATURE_WIRE_READS = {
+    'read:56:15': ('feedback_block', 15, 7),
+    'read:63:1': ('individual_temperature', 1, 0),
+}
+
 
 class ThermalDiagnostics:
     """단위·전압 원문을 보존하고, 제안된 필터의 결과만 관찰한다.
@@ -28,6 +36,46 @@ class ThermalDiagnostics:
         self.axes = {}
         self.last = {}
         self.errors = dict(total=0, communication=0, checksum=0, other=0)
+        self._temperature_replies = {joint: [] for joint in self.joints}
+        self._seen_temperature_replies = set()
+        self._read_phase = 'direct'
+
+    @contextmanager
+    def recheck(self):
+        """Mark wire observations during an existing HOLD confirmation READ."""
+        previous = self._read_phase
+        self._read_phase = 'recheck'
+        try:
+            yield
+        finally:
+            self._read_phase = previous
+
+    def record_wire_reply(self, row, *, sequence):
+        """Record one attributable wire reply, without feeding any protection input."""
+        if row.get('event') != 'wire_rx' or row.get('communication') != 0:
+            return
+        operation = row.get('operation')
+        if operation not in TEMPERATURE_WIRE_READS:
+            return
+        source, width, offset = TEMPERATURE_WIRE_READS[operation]
+        mid, raw_hex = row.get('expected_id'), row.get('raw_hex')
+        if type(mid) is not int or not 1 <= mid <= len(self.joints) or not isinstance(raw_hex, str):
+            return
+        try:
+            raw = bytes.fromhex(raw_hex)
+        except ValueError:
+            return
+        if (len(raw) != width + 6 or raw[:2] != b'\xff\xff' or raw[2] != mid
+                or raw[3] != width + 2 or sum(raw[2:]) % 256 != 255):
+            return
+        value = raw[5 + offset]
+        if value < READ_ERROR_THRESHOLD_C or sequence in self._seen_temperature_replies:
+            return
+        self._seen_temperature_replies.add(sequence)
+        self._temperature_replies[self.joints[mid - 1]].append(dict(
+            sequence=sequence, phase=self._read_phase, source=source, operation=operation,
+            monotonic_s=row.get('monotonic_s'), unix=row.get('unix'), expected_id=mid,
+            received_id=raw[2], status=raw[4], temperature_c=value, raw_hex=raw.hex()))
 
     def record_error(self, error):
         observed = getattr(error, 'observed', {}) or {}
@@ -111,8 +159,18 @@ class ThermalDiagnostics:
                 for joint in self.joints}
 
     def summary(self):
+        read_errors = {}
+        for joint, packets in self._temperature_replies.items():
+            rechecks = sum(row['phase'] == 'recheck' for row in packets)
+            read_errors[joint] = dict(count=len(packets), direct_count=len(packets) - rechecks,
+                                      recheck_count=rechecks, packets=[dict(row) for row in packets])
         return {'mode': 'observe_only', 'filter_controls_motion': False, 'rules': dict(RULES),
                 'errors': dict(self.errors),
+                'temperature_read_errors_100c': {
+                    'threshold_c': READ_ERROR_THRESHOLD_C,
+                    'count': sum(axis['count'] for axis in read_errors.values()),
+                    'joints': read_errors,
+                },
                 'joints': {joint: {'samples': a['samples'], 'spike_count': a['spikes'],
                                    'raw_peak_c': a['raw_peak'], 'filtered_peak_c': a['filtered_peak']}
                            for joint, a in self.axes.items()}}

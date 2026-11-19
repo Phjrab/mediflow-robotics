@@ -3,9 +3,11 @@ import ast
 import copy
 import json
 from pathlib import Path
+import sys
 import tempfile
 import unittest
-from types import SimpleNamespace
+from types import ModuleType, SimpleNamespace
+from unittest.mock import patch
 
 from thermal_diagnostics import ThermalDiagnostics
 from servo_thermal_readonly import JOINTS, LinuxReadTransport, ReadFault, decode_reply, read_request, require_unowned_port, run
@@ -71,6 +73,62 @@ class FakeBus:
 class ThermalDiagnosticTests(unittest.TestCase):
     def axis(self, observer, now, temp):
         return observer.observe_axis('gripper', now, temp, 12.2)
+
+    @staticmethod
+    def wire_reply(mid, address, width, value, *, status=0):
+        payload = bytearray(width)
+        payload[63 - address] = value
+        head = bytes((255, 255, mid, width + 2, status)) + payload
+        return head + bytes(((~sum(head[2:])) & 255,))
+
+    def test_high_wire_reads_are_matched_by_packet_and_deduplicated_by_sequence(self):
+        d = ThermalDiagnostics(JOINTS)
+        direct = self.wire_reply(2, 56, 15, 100)
+        individual = self.wire_reply(2, 63, 1, 109)
+        base_event = {'event': 'wire_rx', 'expected_id': 2, 'communication': 0,
+                      'monotonic_s': 1.0, 'unix': 2.0}
+        block = dict(base_event, operation='read:56:15', raw_hex=direct.hex())
+        read = dict(base_event, operation='read:63:1', raw_hex=individual.hex())
+        d.record_wire_reply(block, sequence=1)
+        d.record_wire_reply(block, sequence=1)
+        d.record_wire_reply(read, sequence=2)
+        with self.assertRaisesRegex(RuntimeError, 'later read'), d.recheck():
+            d.record_wire_reply(read, sequence=2)
+            d.record_wire_reply(read, sequence=3)
+            raise RuntimeError('later read')
+        d.record_wire_reply(read, sequence=4)
+        summary = json.loads(json.dumps(d.summary(), allow_nan=False))['temperature_read_errors_100c']
+        self.assertEqual((summary['threshold_c'], summary['count']), (100, 4))
+        joint = summary['joints']['shoulder_lift']
+        self.assertEqual((joint['count'], joint['direct_count'], joint['recheck_count']), (4, 3, 1))
+        self.assertEqual([packet['phase'] for packet in joint['packets']], ['direct', 'direct', 'recheck', 'direct'])
+        self.assertEqual([packet['raw_hex'] for packet in joint['packets']], [direct.hex(), *[individual.hex()] * 3])
+        self.assertEqual([packet['temperature_c'] for packet in joint['packets']], [100, 109, 109, 109])
+        self.assertEqual(summary['joints']['gripper']['packets'], [])
+
+    def test_does_not_attribute_unmatched_or_corrupt_wire_replies(self):
+        d = ThermalDiagnostics(JOINTS)
+        packet = self.wire_reply(2, 63, 1, 120)
+        event = {'event': 'wire_rx', 'operation': 'read:63:1', 'expected_id': 2,
+                 'communication': 0, 'raw_hex': packet.hex()}
+        for sequence, changed in enumerate((
+            {'raw_hex': ''}, {'raw_hex': 'invalid'}, {'raw_hex': packet[:-1].hex()},
+            {'raw_hex': (packet[:-1] + bytes((packet[-1] ^ 1,))).hex()},
+            {'operation': 'read:33:8'}, {'operation': 'read:56:15'},
+            {'expected_id': 4}, {'communication': -7}, {'event': 'thermal_cycle'},
+            {'raw_hex': self.wire_reply(2, 63, 1, 99).hex()},
+        ), 1):
+            d.record_wire_reply(dict(event, **changed), sequence=sequence)
+        self.assertEqual(d.summary()['temperature_read_errors_100c']['count'], 0)
+
+    def test_valid_high_reply_with_status_is_preserved_without_overriding_status_handling(self):
+        d = ThermalDiagnostics(JOINTS)
+        packet = self.wire_reply(6, 56, 15, 150, status=32)
+        d.record_wire_reply({'event': 'wire_rx', 'operation': 'read:56:15', 'expected_id': 6,
+                             'communication': 0, 'raw_hex': packet.hex()}, sequence=1)
+        row, = d.summary()['temperature_read_errors_100c']['joints']['gripper']['packets']
+        self.assertEqual((row['status'], row['temperature_c'], row['raw_hex']), (32, 150, packet.hex()))
+        self.assertEqual(d.errors['total'], 0)
 
     def test_single_spike_is_visible_but_never_authorizes_motion(self):
         d = ThermalDiagnostics(JOINTS)
@@ -302,6 +360,83 @@ class ExistingReadIntegrationTests(unittest.TestCase):
                               StrictIndividualReplies, traces=traces)
         self.assertEqual(len(bus.packet_handler.requests), 1)
         self.assertIn('raw_hex', traces[0]['observed'])
+
+
+class LiveTemperatureSummaryTests(unittest.TestCase):
+    def test_shared_io_preserves_matching_replies_even_when_a_later_read_fails(self):
+        import raw_live
+        import stream_live
+
+        clock, logged = Clock(), []
+
+        class MockBaseIO:
+            def __init__(self, context, policy):
+                self.wire_fault = False
+
+        camera_modules = {name: ModuleType(name) for name in (
+            'lerobot', 'lerobot.cameras', 'lerobot.cameras.opencv', 'lerobot.cameras.opencv.camera_opencv',
+        )}
+        camera_modules['lerobot.cameras.opencv'].OpenCVCameraConfig = object
+        camera_modules['lerobot.cameras.opencv.camera_opencv'].OpenCVCamera = object
+        with patch.dict(sys.modules, camera_modules), patch.object(base, 'device_class', return_value=MockBaseIO):
+            self.assertIs(raw_live.legacy.device_class, stream_live.device_class)
+            io_class = stream_live.device_class()
+        io_class.clock, io_class.pause = staticmethod(clock.time), staticmethod(clock.sleep)
+        io = io_class({'contract': {'cameras': {}}}, logged.append, None)
+        self.addCleanup(io.camera_logger.removeHandler, io.cameras_stats)
+        io.ids = dict(zip(JOINTS, range(1, 7)))
+
+        reply = ThermalDiagnosticTests.wire_reply
+        block = reply(2, 56, 15, 120)
+        healthy_checksum = reply(2, 63, 1, 120)
+        corrupt = healthy_checksum[:-1] + bytes((healthy_checksum[-1] ^ 1,))
+        later_direct = reply(2, 63, 1, 121)
+        bulk = iter(((block, 0), (reply(3, 56, 15, 130)[:-1], 0)))
+        individual = iter((healthy_checksum, corrupt, later_direct))
+
+        class Handler:
+            def rxPacket(self, port):
+                return next(bulk)
+
+            def txRxPacket(self, port, request):
+                return next(individual), 0, 0
+
+            def readTxRx(self, port, motor, address, width):
+                packet, communication, status = self.txRxPacket(port, bytes((255, 255, motor, 4, 2, address, width, 0)))
+                return packet[5:-1], communication, status
+
+        port = SimpleNamespace(isPacketTimeout=lambda: False, getBytesAvailable=lambda: 0, is_using=False)
+        handler = Handler()
+        io.bus = SimpleNamespace(packet_handler=handler, port_handler=port)
+        with self.assertRaises(base.Stop):
+            base.read_sync_replies(handler, port, {'shoulder_lift': 2, 'elbow_flex': 3}, 56, 15, io.communication)
+        io.temperature_fault = {'shoulder_lift': 120}
+        io.confirm_thermal_stop()
+        self.assertIn('read_error', io.thermal_recheck['shoulder_lift'])
+        self.assertEqual(io.thermal_recheck['shoulder_lift']['reply_trace'][0]['raw_hex'], healthy_checksum.hex())
+        temps, _ = read_temperatures(io.bus, {'shoulder_lift': 2}, {'shoulder_lift': 34},
+                                     StrictIndividualReplies, last_requests=io.temperature_last_requests,
+                                     clock=clock.time, pause=clock.sleep, retry=io.communication)
+        self.assertEqual(temps['shoulder_lift'], 121)
+        data = json.loads(json.dumps({'thermal_diagnostics': io.thermal_diagnostics.summary()}, allow_nan=False))
+        totals = data['thermal_diagnostics']['temperature_read_errors_100c']
+        self.assertEqual(totals['count'], 3)
+        axis = totals['joints']['shoulder_lift']
+        self.assertEqual((axis['direct_count'], axis['recheck_count']), (2, 1))
+        self.assertEqual([p['raw_hex'] for p in axis['packets']], [block.hex(), healthy_checksum.hex(), later_direct.hex()])
+        self.assertEqual([p['sequence'] for p in axis['packets']], [1, 3, 5])
+        self.assertEqual(totals['joints']['elbow_flex']['count'], 0)
+        self.assertEqual(sum(row['event'] == 'wire_rx' for row in logged), 5)
+
+    def test_live_entrypoints_export_the_same_diagnostics_summary(self):
+        import raw_live
+        import stream_live
+
+        for module in (raw_live, stream_live):
+            with self.subTest(entry=module.__name__):
+                tree = ast.parse(Path(module.__file__).read_text(encoding='utf-8'))
+                live = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == 'live')
+                self.assertIn('io.thermal_diagnostics.summary()', ast.unparse(live))
 
 
 if __name__ == '__main__':

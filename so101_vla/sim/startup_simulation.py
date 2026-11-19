@@ -7,6 +7,7 @@ from types import SimpleNamespace
 
 import direct_live as base
 import live_start
+from gripper_arrival import GripperArrivalGate
 from stream_live import CameraStats, device_class, make_policy, start_policy_session, wait_until_cool
 from vla_monitor import Monitor
 from thermal_window import ThermalWindow
@@ -251,7 +252,7 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
     except base.Stop as exc:
         if case not in ('elbow_plus_5','elbow_plus_20'):raise
         return dict(case=case,passed='실제 위치 안전 범위 이탈' in str(exc) and not io.start_writes and io.packet_count==0,
-                    status='HOLD',steps=0,reason=str(exc),**evidence)
+                    status='HOLD',steps=0,reason=str(exc),gripper_close_wait=GripperArrivalGate().summary(),**evidence)
     expected_stop = {'ctrl_c': ('STOPPED', 'Ctrl+C'), 'overheat': ('HOLD', '모터 상태코드/온도 중단'), 'usb_disconnect':('HOLD','팔로워 USB 끊김')}.get(case)
     stopped = (expected_stop is not None and result['status'] == expected_stop[0]
                and (result['reason'] or '').startswith(expected_stop[1]))
@@ -261,6 +262,7 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
                    hold=result['hold'], chunk_wait_s=result['chunk_wait_s'], transmission_hz=result['transmission_hz'],
                    camera=result['camera'], home_peak_goal_speed=io.home_motion_speed, cooling_samples=io.cooling_samples)
     metrics['gripper_opening_protection']=result['gripper_opening_protection']
+    metrics['gripper_close_wait']=result['gripper_close_wait']
     metrics['gripper_open_clip_count']=result['gripper_opening_protection']['policy_open_cap_clips']
     metrics['lateral_correction']=result['lateral_correction']
     metrics['ready']=result.get('ready')
@@ -299,30 +301,36 @@ def run_simulations(duration, speed):
 def run_dry(duration, speed):
     from trial_runtime import static_context
 
-    context = static_context()
     out = Path(__file__).resolve().parents[1] / 'runs' / f'DRY_{time.time_ns()}'
     out.mkdir()
-    camera_source = device_class()(context, lambda row: print(json.dumps(row, ensure_ascii=False), flush=True), out)
-    monitor = Monitor(out.name, '카메라 확인 · 모터 모의', base.JOINTS, controls=False)
-    monitor.status('warming', force=True)
-    result = {'passed': False, 'steps': 0}
-    policy = None
+    result = {'passed': False, 'steps': 0, 'gripper_close_wait': GripperArrivalGate().summary()}
+    policy = camera_source = monitor = None
     try:
+        context = static_context()
+        camera_source = device_class()(context, lambda row: print(json.dumps(row, ensure_ascii=False), flush=True), out)
+        monitor = Monitor(out.name, '카메라 확인 · 모터 모의', base.JOINTS, controls=False)
+        monitor.status('warming', force=True)
         policy = make_policy(context)
         result = run_case('camera_dry', duration, speed, context['home']['state'], {}, policy, real_time=True,
                           camera_source=camera_source, monitor=monitor)
+    except (KeyboardInterrupt, Exception) as exc:
+        result.update(status='STOPPED' if isinstance(exc, KeyboardInterrupt) else 'HOLD',
+                      reason='Ctrl+C' if isinstance(exc, KeyboardInterrupt) else str(exc))
     finally:
-        try:
-            camera_source.close()
-        finally:
-            try:
-                if policy is not None:
-                    policy.close()
-            finally:
-                monitor.finish('run_complete' if result['passed'] and not camera_source.cleanup_errors else 'hold',
-                               result.get('reason'), result['steps'])
+        cleanup = []
+        for name, resource in (('camera', camera_source), ('policy', policy)):
+            if resource is not None:
+                try:
+                    resource.close()
+                except Exception as exc:
+                    cleanup.append(name + ': ' + str(exc))
+        if camera_source is not None:
+            cleanup.extend(camera_source.cleanup_errors)
+        if monitor is not None:
+            monitor.finish('run_complete' if result['passed'] and not cleanup else 'hold',
+                           result.get('reason'), result['steps'])
     result['output'] = str(out)
-    result['camera_cleanup_errors'] = camera_source.cleanup_errors
+    result['camera_cleanup_errors'] = cleanup
     result['passed'] &= not result['camera_cleanup_errors']
     (out / 'summary.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(result, ensure_ascii=False), flush=True)

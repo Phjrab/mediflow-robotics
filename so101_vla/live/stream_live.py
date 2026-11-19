@@ -19,6 +19,7 @@ from thermal_diagnostics import ThermalDiagnostics
 from tracking_compensation import TrackingCompensator
 from thermal_window import ThermalWindow
 from gripper_safety import OpeningGuard,recover_overload
+from gripper_arrival import GripperArrivalGate, gripper_ticks, record_gripper_packet
 from grasp_offset import GraspOffset
 from grasp_recorder import GraspRecorder
 from loop_timing import LoopTiming, terminal_lines
@@ -69,7 +70,7 @@ def blend(a, b, fraction):
     return [x + (y - x) * fraction for x, y in zip(a, b, strict=True)]
 
 
-def merge(queue, incoming, origin, first_unused):
+def merge(queue, incoming, origin, first_unused, *, raw_knots=None):
     offset = max(0, first_unused - origin)
     if offset >= len(incoming):
         return 0
@@ -80,6 +81,8 @@ def merge(queue, incoming, origin, first_unused):
         overlap += 1
     for k, target in enumerate(incoming[offset:]):
         index = origin + offset + k
+        if raw_knots is not None:
+            raw_knots[index] = (origin, tuple(target))
         queue[index] = blend(queue[index], target, (k + 1) / overlap) if k < overlap else target
     return overlap
 
@@ -237,10 +240,13 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     pause = getattr(io, 'pause', time.sleep)
     rate = MODEL_HZ * speed
     slots = {}
+    raw_knots = {}
     phase = 0.0
     sent_phase = None
     previous_tick = None
     last_send = None
+    last_packet_at = last_wire_raw = None
+    gap_gripper_packets = 0
     hz = CONTROL_HZ
     estimate = getattr(policy, 'warm_rtc_estimate', 1.5)
     inferences = []
@@ -255,11 +261,14 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     reason = None
     hold = {'status': 'NOT_NEEDED'}
     last_model = last_wire = None
+    last_knot = None
     correction = None
     observed = [[] for _ in base.JOINTS]
     commands = [[] for _ in base.JOINTS]
     relief = GripRelief()
     opening_guard = OpeningGuard()
+    close_gate = GripperArrivalGate(log)
+    grip_bounds = getattr(io, 'raw_bounds', getattr(io, 'arm_bounds', {})).get('gripper')
     grasp_offset = GraspOffset()
     compensation_bounds = getattr(io, 'bounds', None)
     if compensation_bounds is None and hasattr(io, 'normalize') and hasattr(io, 'arm_bounds'):
@@ -283,6 +292,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     try:
         incoming, seconds, prime_s = prime_policy(io, policy, pool, log, monitor)
         slots.update(enumerate(incoming))
+        raw_knots.update((index, (0, tuple(row))) for index, row in enumerate(incoming))
         inferences.append(seconds)
         estimate = max(seconds, estimate*.85)
         last_origin = 0
@@ -339,6 +349,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                 for index in tuple(slots):
                     if index < math.floor(phase):
                         del slots[index]
+                        del raw_knots[index]
                 if job is not None and job.done():
                     actions, seconds = tick.call('inference_blocking', job.result)
                     tick.inference_ms = seconds*1000
@@ -351,7 +362,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                     # An expired chunk cannot bridge the current playback cursor. Refresh
                     # from the held pose if the existing buffer runs out.
                     discarded = skip >= len(incoming) or usable > buffer_end + 1
-                    overlap = 0 if discarded else merge(slots, incoming, origin, usable)
+                    overlap = 0 if discarded else merge(slots, incoming, origin, usable, raw_knots=raw_knots)
                     blend_delta = [max((abs(slots[k][i] - incoming[k-origin][i])
                                         for k in range(usable, usable+overlap)), default=0) for i in range(6)]
                     log({'event': 'inference', 'origin': origin, 'seconds': seconds,
@@ -396,6 +407,45 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                         raise base.Stop('사용 가능한 카메라 영상 없음: 프레임 지연 또는 너무 어두운 영상')
                 lower, upper = math.floor(phase), math.ceil(phase)
                 if lower not in slots or upper not in slots or (phase == sent_phase and phase >= buffer_end):
+                    if close_gate.started is not None and last_knot is not None:
+                        # Complete an already requested close using fresh feedback.
+                        # No new policy phase or arm goal is consumed during a gap.
+                        saved_index, saved_origin, knot, requested_ticks = last_knot
+                        gated = close_gate.apply(last_model, sample['state'], clock()-started,
+                                                 policy_knot=knot, knot_index=saved_index, knot_origin=saved_origin,
+                                                 requested_ticks=requested_ticks, present_ticks=sample.get('present_raw', {}).get('gripper'))
+                        if close_gate.started is None:
+                            relieved = relief.apply(gated, sample['state'][-1], sent_phase / MODEL_HZ)
+                            protected = opening_guard.apply(relieved, sample['state'][-1],
+                                                            sample.get('loads', {}).get('gripper', 0), clock())
+                            grip_plan = io.plan([*last_wire[:-1], protected])
+                            wire = dict(last_wire_raw, gripper=grip_plan['wire_raw']['gripper'])
+                            if wire != last_wire_raw:
+                                tick.call('cadence_wait', pause, max(0., min(deadline, last_packet_at+1/hz)-clock()))
+                                if clock() >= deadline:
+                                    tick_failed = False
+                                    break
+                                if monitor is not None and monitor.hold_requested():
+                                    raise base.Stop(VIEWER_STOP)
+                                if allow_corrections:
+                                    correction = monitor.take_correction()
+                                    if correction is not None:
+                                        tick_failed = False
+                                        break
+                                tick.call('serial_write', io.send, wire)
+                                last_packet_at = clock()
+                                last_wire_raw = wire
+                                last_wire = [*last_wire[:-1], grip_plan['wire_normalized'][-1]]
+                                gap_gripper_packets += 1
+                                row = dict(event='gripper_safety_goal', reason='gripper_close_wait_release',
+                                           decision=close_gate.events[-1]['decision'], mode='legacy', step=count,
+                                           model_phase=sent_phase, playback_s=sent_phase/MODEL_HZ,
+                                           policy_index_advanced=False, time_s=last_packet_at-started,
+                                           model=last_model, feedback=sample, raw_upper=knot,
+                                           raw_upper_index=saved_index, raw_upper_origin=saved_origin,
+                                           gripper_gate_points=gated, protected_points=protected,
+                                           grip_relief=relieved!=gated, wire_raw=wire, wire_normalized=last_wire)
+                                record_gripper_packet(tick, log, recorder, row, last_packet_at)
                     if last_send is not None and underrun is None:
                         underrun = tick_started
                     if monitor is not None:
@@ -409,10 +459,17 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                 target = model.copy()
                 future=[slots[k] for k in range(upper+1,min(buffer_end+1,upper+math.ceil(rate)+1)) if k in slots] if grasp_offset.enabled else []
                 target,lateral=grasp_offset.apply(target,sample['state'],tick_started,future,rate)
-                target[-1] = relief.apply(target[-1], sample['state'][-1], phase / MODEL_HZ)
-                closing_relief=target[-1]!=model[-1]
+                policy_plan = io.plan(target)
+                requested_ticks = gripper_ticks(policy_plan)
+                knot_origin, raw_upper = raw_knots[upper]
+                gated_points = close_gate.apply(model, sample['state'], clock()-started, policy_knot=raw_upper,
+                                                knot_index=upper, knot_origin=knot_origin, requested_ticks=requested_ticks,
+                                                present_ticks=sample.get('present_raw', {}).get('gripper'))
+                target[-1] = relief.apply(gated_points, sample['state'][-1], phase / MODEL_HZ)
+                closing_relief=target[-1]!=gated_points
                 target[-1] = opening_guard.apply(target[-1],sample['state'][-1],sample.get('loads',{}).get('gripper',0),tick_started)
-                reference_plan = io.plan(target)
+                reference_plan = policy_plan if target[-1] == model[-1] else io.plan(target)
+                close_gate.preserve_held_tick(reference_plan, target[-1], grip_bounds)
                 compensated, compensation = compensator.apply(reference_plan['wire_normalized'],
                                                               sample['state'], tick_started)
                 # Preserve the original SDK encoding on axes without a correction;
@@ -420,6 +477,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                 compensated = [original if offset == 0 else corrected for original, offset, corrected in
                                zip(target, compensation['offset_deg'], compensated)]
                 plan = io.plan(compensated)
+                close_gate.preserve_held_tick(plan, compensated[-1], grip_bounds)
                 plan['clipped_joints'] = sorted(set(plan.get('clipped_joints', ())) |
                                                 set(reference_plan.get('clipped_joints', ())))
                 compensation['uncompensated_raw'] = reference_plan['wire_raw']
@@ -427,7 +485,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                                                    zip(plan['wire_normalized'], reference_plan['wire_normalized'])]
                 prepared = clock()
                 if last_send is not None:
-                    tick.call('cadence_wait', pause, max(0, min(deadline, last_send + 1 / hz) - prepared))
+                    tick.call('cadence_wait', pause, max(0, min(deadline, last_packet_at + 1 / hz) - prepared))
                 send_started = clock()
                 if send_started >= deadline:
                     tick_failed = False
@@ -457,6 +515,9 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                      'gap_s': gap, 'hz_target': hz, 'loop_work_s': loop_work,
                      'model_phase': phase, 'playback_s': phase / MODEL_HZ,
                      'feedback': sample, 'model': model,
+                     'raw_upper': raw_upper, 'raw_upper_index': upper, 'raw_upper_origin': knot_origin,
+                     'policy_gripper_ticks': requested_ticks,
+                     'gripper_gate_points': gated_points, 'gripper_waiting': close_gate.started is not None,
                      'grip_relief': closing_relief,
                      'gripper_opening':dict(cap_clipped=model[-1]>opening_guard.cap,limited_points=target[-1],load_hold_points=opening_guard.fixed),
                      'lateral_correction':lateral,
@@ -469,7 +530,9 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                         log(dict(event='grasp_event', **event))
                 count += 1
                 last_send = sent
+                last_packet_at, last_wire_raw = sent, plan['wire_raw']
                 last_model, last_wire = model, plan['wire_normalized']
+                last_knot = (upper, knot_origin, raw_upper, requested_ticks)
                 if monitor is not None:
                     tick.call('preview_enqueue', monitor.status, 'moving', step=count, sample=sample, model=last_model, sent=last_wire,
                                    inference_seconds=inferences[-1] if inferences else None)
@@ -486,6 +549,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
         reason = 'Ctrl+C' if isinstance(exc, KeyboardInterrupt) else str(exc)
     finally:
         timing_ended = clock()
+        close_gate.finish(timing_ended-started)
         if io.goal_attempted:
             hold = base.try_hold(io)
             if hasattr(io, 'confirm_thermal_stop'):
@@ -524,6 +588,8 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
             'chunk_wait_s': {'max': max(waits, default=0), 'sum': sum(waits)},
             'transmission_hz': 1/statistics.mean(periods) if periods else None, 'final_rate_target': hz,
             'tracking': tracking, 'tracking_compensation': compensator.summary(),
+            'gripper_close_wait': close_gate.summary(),
+            'gripper_close_gap_packets': gap_gripper_packets,
             'gripper_opening_protection': opening_guard.summary(),
             'lateral_correction':grasp_offset.summary()}
 
@@ -555,7 +621,8 @@ def device_class():
             self.temperature_fault_decisions = {}
             self.thermal_diagnostics = ThermalDiagnostics(base.JOINTS)
             self.thermal_sequence = 0
-            self.communication=CommunicationPolicy(base.JOINTS,CONFIG['communication'],log,clock=self.clock,pause=self.pause)
+            self.communication=CommunicationPolicy(base.JOINTS,CONFIG['communication'],self._log_wire_event,
+                                                   clock=self.clock,pause=self.pause)
             self.communication_fault=False
             self.mode_cache=None
             self.mode_cached_at=None
@@ -574,6 +641,11 @@ def device_class():
             self.cameras_stats = CameraStats(context['contract']['cameras'])
             self.camera_logger = logging.getLogger('lerobot.cameras.opencv.camera_opencv')
             self.camera_logger.addHandler(self.cameras_stats)
+
+        def _log_wire_event(self, row):
+            if row.get('event') == 'wire_rx':
+                self.thermal_diagnostics.record_wire_reply(row, sequence=self.communication.rx_count)
+            self.log(row)
 
         def check_start_mode(self):
             if self.gripper_only:
@@ -894,18 +966,19 @@ def device_class():
             if not self.temperature_fault or self.wire_fault:
                 return
             bus = self.bus
-            for joint, trigger in self.temperature_fault.items():
-                trace, samples = [], []
-                try:
-                    for _ in range(3):
-                        values, _ = read_temperatures(bus,{joint:self.ids[joint]},{joint:trigger},StrictIndividualReplies,
-                            traces=trace,last_requests=self.temperature_last_requests,
-                            minimum_interval_s=CONFIG['temperature']['sample_interval_s'],clock=self.clock,pause=self.pause,
-                            retry=self.communication)
-                        samples.append(values[joint])
-                    self.thermal_recheck[joint] = {'trigger_c':trigger,'register_63_reads_c':samples,'reply_trace':trace}
-                except Exception as error:
-                    self.thermal_recheck[joint] = {'trigger_c':trigger,'read_error':str(error),'reply_trace':trace}
+            with self.thermal_diagnostics.recheck():
+                for joint, trigger in self.temperature_fault.items():
+                    trace, samples = [], []
+                    try:
+                        for _ in range(3):
+                            values, _ = read_temperatures(bus,{joint:self.ids[joint]},{joint:trigger},StrictIndividualReplies,
+                                traces=trace,last_requests=self.temperature_last_requests,
+                                minimum_interval_s=CONFIG['temperature']['sample_interval_s'],clock=self.clock,pause=self.pause,
+                                retry=self.communication)
+                            samples.append(values[joint])
+                        self.thermal_recheck[joint] = {'trigger_c':trigger,'register_63_reads_c':samples,'reply_trace':trace}
+                    except Exception as error:
+                        self.thermal_recheck[joint] = {'trigger_c':trigger,'read_error':str(error),'reply_trace':trace}
             self.log({'event':'thermal_recheck', **self.thermal_recheck})
 
         def release_if_supported_home(self, operator_supported):
@@ -1256,6 +1329,7 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
                 except Exception as exc:
                     result['policy_cleanup_exception'] = str(exc)
             result['gripper_relief_count']=stats['relief']
+            result.setdefault('gripper_close_wait', GripperArrivalGate().summary())
             result['startup_auto_processed']=stats['startup']
             result.setdefault('gripper_opening_protection',dict(open_cap_points=CONFIG['gripper']['max_open_points'],policy_open_cap_clips=0,opening_load_freezes=0))
             result['gripper_open_clip_count']=result['gripper_opening_protection']['policy_open_cap_clips']
