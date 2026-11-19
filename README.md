@@ -1,10 +1,18 @@
 # MediFlow SO-ARM101 자율 약통 분류 프로젝트
 
+## 최신 SmolVLA 작업 — 2026-11-19
+
+약통 A를 파란 바구니로 옮기는 정책의 학습, Jetson 배포, 집기 구간 보정, 통신 복구, 30Hz raw 실행까지의 작업을 갱신했습니다.
+
+- [11월 19일 180초 검증](so101_vla/reports/20261119/RAW_180_RETEST/RESULT.md)
+- [현재 상태](docs/smolvla/CURRENT_STATUS.md) · [누적 작업 일지](docs/smolvla/WORK_LOG.md)
+- [실행 코드](https://github.com/Phjrab/mediflow-robotics/tree/vla/live-202611/so101_vla/live) · [11월 18일 작업 정리](https://github.com/Phjrab/mediflow-robotics/blob/vla/live-202611/so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/TODAY_SUMMARY.md) · [검증 보고서](https://github.com/Phjrab/mediflow-robotics/blob/vla/live-202611/so101_vla/reports/20261118/RAW_BOUNDARY_RECOVERY/RESULT.md) · [복구 태그](https://github.com/Phjrab/mediflow-robotics/tree/pre-raw-20261118)
+
 기존 저장소 소개: SO-101 robot control, ROS 2 integration, and safe mock medication logistics.
 
 3대의 카메라와 SO-ARM101 로봇팔을 이용해 약통 A/B/C를 인식하고 지정된 바구니로 옮기는 자율설계 프로젝트입니다. 이미지 기반 상태 판단에는 Qwen3-VL 계열 VLM을, 시연 동작 학습에는 LeRobot ACT 정책을 사용했습니다.
 
-## 2026-11-04 SmolVLA 진행 상황
+## 2026-11-04 SmolVLA 보존 기록
 
 약통 A의 빨강·초록·파랑 **137회 / 63,551프레임, 20,000-step 학습 완료** 기록과 Windows 모델 해시를 확인했습니다. 운영자가 실행한 Jetson v4 dry-run은 **행동 계산 1회, 모터 목표 전송 0회**로 통과했습니다. 현재는 **첫 live 시험 준비 중**이며 실제 투입 성공은 아직 확인하지 않았습니다.
 
@@ -87,4 +95,3 @@ Git 이력에는 재현 가능한 코드·설정·평가 결과·그래프를 �
 ## 주의
 
 이 저장소의 모델은 연구·교육용입니다. 실로봇 실행은 작업 공간 확인, 시작 자세 검증, 카메라 실시간성 확인, 물리적 전원 차단 준비와 사람의 명시적 승인 후에만 수행해야 합니다.
-
