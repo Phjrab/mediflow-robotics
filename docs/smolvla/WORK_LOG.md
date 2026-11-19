@@ -6,6 +6,7 @@
 - 저장된 dry-run 요약과 감사 JSON의 스텝 수·실행 시간·실물 쓰기 횟수를 대조했습니다. 직전 묶음이 소진된 뒤 요청한 후속 추론은 56회였습니다. 평균 추론은 1.491초이고 묶음 대기는 전체 180초 중 85.15초였습니다. 실제 집기와 바구니 투입은 미검증입니다.
 - Windows의 하드웨어 없는 `unittest`에서 `test_raw_mode.RawPrimitivesTests`, `test_loop_timing`, `test_read_latency_review`, `test_review_chunk_timing` 14개가 통과했습니다. 범위는 FIFO·경계 보호, 계측, 응답 ID 해석, 기록 분석입니다. 기존 Jetson 212개는 그 당시의 결과입니다.
 - 현재 우선순위는 6축 응답 원인 분리와 SmolVLA 기준 재현입니다. 동일 GPU에서 학습·성능 측정을 직렬화하고, 독립 데이터와 공통 동작 계약이 준비되면 X-VLA부터 비교합니다.
+- [첫 모의 검사 기록 커밋](https://github.com/Phjrab/mediflow-robotics/commit/cf7f82c20481008f2d9f77b6c11b42104f20ebd0) 이후 11월 19일 PING 저장 원본을 대조해 6축 무응답과 쓰기 0회를 확인했습니다. 모델 가중치 SHA-256은 양쪽 모두 `b84b15c70ee711ce3ec5780e8498073852f28c43ccc6a726e9196761d05a7654`였고 관련 설정·processor 6개도 일치했습니다. 이 검증에서 새 PING·실물 구동은 수행하지 않았습니다.
 
 ## 2026-11-18 ~ 2026-11-19 — 홈·집기 기록·통신·raw 검증
 
