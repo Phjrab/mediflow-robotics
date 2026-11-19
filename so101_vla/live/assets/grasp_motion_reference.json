@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "baseline": "0498532",
+  "dataset_episodes": 137,
+  "dataset_frames": 63551,
+  "adjacent_pairs": 63414,
+  "speed": 0.5,
+  "source_fps": 30,
+  "joint_order": [
+    "shoulder_pan",
+    "shoulder_lift",
+    "elbow_flex",
+    "wrist_flex",
+    "wrist_roll",
+    "gripper"
+  ],
+  "axis_units": {
+    "shoulder_pan": "deg",
+    "shoulder_lift": "deg",
+    "elbow_flex": "deg",
+    "wrist_flex": "deg",
+    "wrist_roll": "deg",
+    "gripper": "point"
+  },
+  "speed_definition": "absolute adjacent within-episode change divided by source timestamp delta, multiplied by playback speed; pooled numpy linear quantiles; theoretical time scaling, not measured robot replay",
+  "speed_abs": {
+    "action": {
+      "shoulder_pan": {
+        "p95": 13.186643492690184,
+        "p99": 26.374041542687113,
+        "max": 109.45065445962378,
+        "unit": "deg/s"
+      },
+      "shoulder_lift": {
+        "p95": 42.19723628873058,
+        "p99": 68.57244220645457,
+        "max": 216.26390100851154,
+        "unit": "deg/s"
+      },
+      "elbow_flex": {
+        "p95": 50.10994921679422,
+        "p99": 88.35299839780271,
+        "max": 237.3594612765714,
+        "unit": "deg/s"
+      },
+      "wrist_flex": {
+        "p95": 27.691929162017566,
+        "p99": 46.154612039368274,
+        "max": 184.61821927214464,
+        "unit": "deg/s"
+      },
+      "wrist_roll": {
+        "p95": 7.9120949860525,
+        "p99": 21.09861814436529,
+        "max": 68.57149345540377,
+        "unit": "deg/s"
+      },
+      "gripper": {
+        "p95": 32.15927329947786,
+        "p99": 70.06132608540162,
+        "max": 240.04961089494162,
+        "unit": "point/s"
+      }
+    },
+    "actual": {
+      "shoulder_pan": {
+        "p95": 11.868142479078749,
+        "p99": 25.055325875486382,
+        "max": 89.67041699449253,
+        "unit": "deg/s"
+      },
+      "shoulder_lift": {
+        "p95": 42.19783992561333,
+        "p99": 68.57058736016937,
+        "max": 172.74488598975768,
+        "unit": "deg/s"
+      },
+      "elbow_flex": {
+        "p95": 48.79125956655461,
+        "p99": 88.35299839780271,
+        "max": 237.35946842903329,
+        "unit": "deg/s"
+      },
+      "wrist_flex": {
+        "p95": 25.055390249485008,
+        "p99": 44.834549251852486,
+        "max": 130.55138475623713,
+        "unit": "deg/s"
+      },
+      "wrist_roll": {
+        "p95": 7.9120949860525,
+        "p99": 17.143117704280154,
+        "max": 48.79055445884473,
+        "unit": "deg/s"
+      },
+      "gripper": {
+        "p95": 29.37579572276661,
+        "p99": 58.750751008497126,
+        "max": 134.94312362315108,
+        "unit": "point/s"
+      }
+    }
+  },
+  "closing_definition": "existing grasp_diagnosis.closing_candidate: first sustained three-frame closure after >10-point opening with elbow below 70 degrees; candidate, not contact confirmation",
+  "closing_candidates": {
+    "all": {
+      "count": 135,
+      "median": {
+        "action": {
+          "shoulder_pan": 4.439560413360596,
+          "shoulder_lift": -21.186813354492188,
+          "elbow_flex": 14.857142448425293,
+          "wrist_flex": 60.0439567565918,
+          "wrist_roll": -10.285714149475098,
+          "gripper": 32.848392486572266
+        },
+        "actual": {
+          "shoulder_pan": 4.439560413360596,
+          "shoulder_lift": -20.879121780395508,
+          "elbow_flex": 16.395605087280273,
+          "wrist_flex": 60.35165023803711,
+          "wrist_roll": -10.505494117736816,
+          "gripper": 41.06487274169922
+        }
+      }
+    },
+    "red": {
+      "count": 47,
+      "median": {
+        "action": {
+          "shoulder_pan": 4.703296661376953,
+          "shoulder_lift": -24.439559936523438,
+          "elbow_flex": 19.69230842590332,
+          "wrist_flex": 55.20878982543945,
+          "wrist_roll": -10.725275039672852,
+          "gripper": 32.235836029052734
+        },
+        "actual": {
+          "shoulder_pan": 4.439560413360596,
+          "shoulder_lift": -24.131868362426758,
+          "elbow_flex": 20.791208267211914,
+          "wrist_flex": 55.868133544921875,
+          "wrist_roll": -10.681318283081055,
+          "gripper": 41.06487274169922
+        }
+      }
+    },
+    "green": {
+      "count": 44,
+      "median": {
+        "action": {
+          "shoulder_pan": 4.483516454696655,
+          "shoulder_lift": -21.758241653442383,
+          "elbow_flex": 15.12087869644165,
+          "wrist_flex": 60.08791160583496,
+          "wrist_roll": -9.934065818786621,
+          "gripper": 34.226646423339844
+        },
+        "actual": {
+          "shoulder_pan": 4.439560413360596,
+          "shoulder_lift": -21.230769157409668,
+          "elbow_flex": 17.18681240081787,
+          "wrist_flex": 60.703298568725586,
+          "wrist_roll": -9.89011001586914,
+          "gripper": 41.86046600341797
+        }
+      }
+    },
+    "blue": {
+      "count": 44,
+      "median": {
+        "action": {
+          "shoulder_pan": 4.351648330688477,
+          "shoulder_lift": -17.05494499206543,
+          "elbow_flex": 6.7252748012542725,
+          "wrist_flex": 65.23076629638672,
+          "wrist_roll": -9.758241653442383,
+          "gripper": 32.733537673950195
+        },
+        "actual": {
+          "shoulder_pan": 4.263736248016357,
+          "shoulder_lift": -16.79120922088623,
+          "elbow_flex": 10.02197790145874,
+          "wrist_flex": 65.62637329101562,
+          "wrist_roll": -9.714285850524902,
+          "gripper": 40.758872985839844
+        }
+      }
+    }
+  },
+  "representative_blue": {
+    "selection": "ep93 is the existing camera alignment reference; compared against all 44 blue traces",
+    "identity": {
+      "episode": 93,
+      "color": "blue",
+      "frames": 438,
+      "source": "a_to_blue_20261103_193835",
+      "source_episode": 1,
+      "revision": "75544709366178c94a0d397f0807820b7afcac00",
+      "file": "private/ep_093.json",
+      "sha256": "d6f9601df3965d3ef0edad057733768eb8e2d4748be4343dc2f372aad94acef0"
+    },
+    "ranks": {
+      "frames": {
+        "value": 438,
+        "blue_median": 437.5,
+        "blue_percentile_midrank": 51.13636363636363,
+        "sample_count": 44
+      },
+      "action_p95_arm_max": {
+        "value": 47.73671154405119,
+        "blue_median": 53.0113713883962,
+        "blue_percentile_midrank": 30.681818181818183,
+        "sample_count": 44
+      },
+      "actual_p95_arm_max": {
+        "value": 42.197960656443975,
+        "blue_median": 52.74705467953305,
+        "blue_percentile_midrank": 12.5,
+        "sample_count": 44
+      },
+      "closing_frame": {
+        "value": 181,
+        "blue_median": 175.0,
+        "blue_percentile_midrank": 55.68181818181818,
+        "sample_count": 44
+      }
+    },
+    "first_frame_bottle_a_lid": {
+      "end_effector": {
+        "status": "not_measurable_no_unique_id9",
+        "center_xy_px": null,
+        "pts_s": 31.233333333333334,
+        "bgr_sha256": "da86c55d9a6be4e4ca18d74ce4bebb03b75ff26e242fc29242c8e0d43bbc1b6d",
+        "source_video_sha256": "afcd4c845c961b045f0e30514ddf1309d0554b778f0734eb5613dbcced69750d"
+      },
+      "ceiling_vertical": {
+        "status": "detected",
+        "center_xy_px": [
+          318.9372253417969,
+          164.59793090820312
+        ],
+        "pts_s": 31.233333333333334,
+        "bgr_sha256": "5dd89de54aaafee41f552ff199ccb1a2b4f6cbfa04dffc587a5aeb19e173c054",
+        "source_video_sha256": "af760addaae42e1e90c928d80b7ff78663be1422dabc8f60afd211535e5fd5fb"
+      },
+      "ceiling_oblique": {
+        "status": "detected",
+        "center_xy_px": [
+          312.5218505859375,
+          225.36672973632812
+        ],
+        "pts_s": 31.233333333333334,
+        "bgr_sha256": "c5b02ff28a595e68a18aef2b1edb5605849d70839bc10c4f160447c81ff85cf4",
+        "source_video_sha256": "5c2ad08ced5f116370c0d8c98a51a2c7284fbf92fac46b138f0d649dac1a230f"
+      }
+    },
+    "coordinate_resolution": [
+      640,
+      480
+    ],
+    "coordinate_origin": "top-left"
+  },
+  "replay_manifest_sha256": "be885ecf14ae8a2c32148096f695905fa91282ebfd49c9439f025a530d70f1dd",
+  "joint_names": [
+    "shoulder_pan",
+    "shoulder_lift",
+    "elbow_flex",
+    "wrist_flex",
+    "wrist_roll",
+    "gripper"
+  ],
+  "action_p99_per_s": [
+    26.374041542687113,
+    68.57244220645457,
+    88.35299839780271,
+    46.154612039368274,
+    21.09861814436529,
+    70.06132608540162
+  ],
+  "close_median": [
+    4.439560413360596,
+    -21.186813354492188,
+    14.857142448425293,
+    60.0439567565918,
+    -10.285714149475098,
+    32.848392486572266
+  ],
+  "actual_close_median": [
+    4.439560413360596,
+    -20.879121780395508,
+    16.395605087280273,
+    60.35165023803711,
+    -10.505494117736816,
+    41.06487274169922
+  ],
+  "replay_target": {
+    "episode": 93,
+    "first_cap_xy": {
+      "end_effector": null,
+      "ceiling_vertical": [
+        318.9372253417969,
+        164.59793090820312
+      ],
+      "ceiling_oblique": [
+        312.5218505859375,
+        225.36672973632812
+      ]
+    }
+  }
+}

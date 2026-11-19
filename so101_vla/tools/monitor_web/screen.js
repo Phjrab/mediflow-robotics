@@ -244,10 +244,10 @@ async function refresh() {
     if (window.alignmentUi) {
       try {
         const alignment = await fetchJson("/api/alignment");
-        window.alignmentUi.update(alignment);
         const wasViewing = viewingAlignment;
         const running = !finished && status.phase !== "idle" && !stale;
         viewingAlignment = alignment.fresh && !running;
+        window.alignmentUi.update(alignment, viewingAlignment);
         if (viewingAlignment) {
           displayImages(alignment.images);
           byId("capture-age").textContent = "정렬 미리보기 · " + number(alignment.age_s, 1, "초 전");
@@ -271,6 +271,7 @@ async function refresh() {
       cells.forEach((cell, index) => { cell.textContent = values[index]; });
     }
   } catch {
+    window.alignmentUi?.unavailable();
     latest = undefined;
     displayStatus("연결 끊김", "warning");
     byId("capture-age").textContent = observation ? "마지막 입력 · 연결 끊김" : "—";

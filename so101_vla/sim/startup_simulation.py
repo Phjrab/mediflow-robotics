@@ -8,6 +8,7 @@ from types import SimpleNamespace
 import direct_live as base
 import live_start
 from gripper_arrival import GripperArrivalGate
+from legacy_motion_options import load_options
 from stream_live import CameraStats, device_class, make_policy, start_policy_session, wait_until_cool
 from vla_monitor import Monitor
 from thermal_window import ThermalWindow
@@ -204,11 +205,14 @@ class SimulatedArm:
         self.target.update(self.feedback()['present_raw'])
 
 
-def run_case(case, duration, speed, home, frames, policy, *, real_time=False, camera_source=None, monitor=None):
+def run_case(case, duration, speed, home, frames, policy, *, real_time=False, camera_source=None, monitor=None,
+             motion_options=None, goal_log=None):
     evidence = {'first_targets': [], 'model_chunks': 0, 'relief_steps': 0, 'max_arm_error_ticks': 0,
                 'port_waits': 0, 'physical_motor_writes': 0}
     def log(row):
         event = row['event']
+        if goal_log is not None and event in ('goal_transmitted', 'gripper_safety_goal', 'gripper_close_wait'):
+            goal_log(row)
         if event == 'goal_transmitted':
             if len(evidence['first_targets']) < 10:
                 evidence['first_targets'].append(row['wire_raw'])
@@ -248,11 +252,13 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
             return [row[:-1] + [grip_target] for row in actions], seconds
         policy = closing_policy
     try:
-        result = start_policy_session(io, policy, home, log, duration, speed, monitor)
+        result = start_policy_session(io, policy, home, log, duration, speed, monitor,
+                                      **({'motion_options': motion_options} if motion_options else {}))
     except base.Stop as exc:
         if case not in ('elbow_plus_5','elbow_plus_20'):raise
         return dict(case=case,passed='실제 위치 안전 범위 이탈' in str(exc) and not io.start_writes and io.packet_count==0,
-                    status='HOLD',steps=0,reason=str(exc),gripper_close_wait=GripperArrivalGate().summary(),**evidence)
+                    status='HOLD',steps=0,reason=str(exc),gripper_close_wait=GripperArrivalGate().summary(),**evidence,
+                    **({'motion_options': motion_options.metadata()} if motion_options else {}))
     expected_stop = {'ctrl_c': ('STOPPED', 'Ctrl+C'), 'overheat': ('HOLD', '모터 상태코드/온도 중단'), 'usb_disconnect':('HOLD','팔로워 USB 끊김')}.get(case)
     stopped = (expected_stop is not None and result['status'] == expected_stop[0]
                and (result['reason'] or '').startswith(expected_stop[1]))
@@ -266,6 +272,9 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
     metrics['gripper_open_clip_count']=result['gripper_opening_protection']['policy_open_cap_clips']
     metrics['lateral_correction']=result['lateral_correction']
     metrics['ready']=result.get('ready')
+    for key in ('motion_options', 'grasp_assist'):
+        if key in result:
+            metrics[key] = result[key]
     metrics['grasp_recording']=result.get('grasp_recording')
     specific = {'partial_off': io.attempts['gripper'] == 2 and io.attempts['wrist_roll'] == 1,
                 'outside_home': 0 < io.home_motion_speed <= 10,
@@ -277,11 +286,12 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
     return dict(case=case, passed=passed, **metrics)
 
 
-def run_simulations(duration, speed):
+def run_simulations(duration, speed, *, assist_grasp=False, vel_limit=None):
     import numpy as np
     from PIL import Image
     from trial_runtime import static_context
 
+    options = load_options(assist_grasp, vel_limit, speed)
     context = static_context()
     preview = Path(__file__).resolve().parents[1] / 'analysis/vla_v3_blue_eval_preview'
     frames = {name: {'pixels': np.array(Image.open(preview / f'training_{name}.png').convert('RGB'))} for name in CAMERAS}
@@ -290,7 +300,8 @@ def run_simulations(duration, speed):
     try:
         for case in SCENARIOS:
             policy.reset()
-            result = run_case(case, duration, speed, context['home']['state'], frames, policy)
+            result = run_case(case, duration, speed, context['home']['state'], frames, policy,
+                              **({'motion_options': options} if options else {}))
             passed &= result['passed']
             print(json.dumps(result, ensure_ascii=False), flush=True)
     finally:
@@ -298,25 +309,34 @@ def run_simulations(duration, speed):
     return 0 if passed else 1
 
 
-def run_dry(duration, speed):
+def run_dry(duration, speed, *, assist_grasp=False, vel_limit=None):
     from trial_runtime import static_context
 
     out = Path(__file__).resolve().parents[1] / 'runs' / f'DRY_{time.time_ns()}'
     out.mkdir()
     result = {'passed': False, 'steps': 0, 'gripper_close_wait': GripperArrivalGate().summary()}
     policy = camera_source = monitor = None
+    trace = None
     try:
+        options = load_options(assist_grasp, vel_limit, speed)
+        kwargs = {}
+        if options:
+            result['motion_options'] = options.metadata()
+            trace = (out / 'steps.jsonl').open('x', encoding='utf-8', buffering=1)
+            kwargs = dict(motion_options=options, goal_log=lambda row: trace.write(json.dumps(row, ensure_ascii=False)+'\n'))
         context = static_context()
         camera_source = device_class()(context, lambda row: print(json.dumps(row, ensure_ascii=False), flush=True), out)
         monitor = Monitor(out.name, '카메라 확인 · 모터 모의', base.JOINTS, controls=False)
         monitor.status('warming', force=True)
         policy = make_policy(context)
         result = run_case('camera_dry', duration, speed, context['home']['state'], {}, policy, real_time=True,
-                          camera_source=camera_source, monitor=monitor)
+                          camera_source=camera_source, monitor=monitor, **kwargs)
     except (KeyboardInterrupt, Exception) as exc:
         result.update(status='STOPPED' if isinstance(exc, KeyboardInterrupt) else 'HOLD',
                       reason='Ctrl+C' if isinstance(exc, KeyboardInterrupt) else str(exc))
     finally:
+        if trace is not None:
+            trace.close()
         cleanup = []
         for name, resource in (('camera', camera_source), ('policy', policy)):
             if resource is not None:

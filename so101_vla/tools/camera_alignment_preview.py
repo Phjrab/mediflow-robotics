@@ -10,6 +10,7 @@ import threading
 import time
 from pathlib import Path
 from alignment_metrics import compare_markers, detect_markers, deny_serial
+from scene_alignment import RIM_CORNERS, object_positions, rim_reference, wrist_difference, wrist_landmarks
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT/'tools/monitor_web/alignment'
@@ -44,6 +45,8 @@ def main():
     from stream_live import device_class
     c = load()
     metadata = json.loads((ASSETS/'reference.json').read_text())
+    baselines = json.loads((ASSETS/'object_means.json').read_text())
+    replay_target = json.loads((ROOT/'live/assets/grasp_motion_reference.json').read_text())['replay_target']
     references = {}
     for role, row in metadata['cameras'].items():
         path = ASSETS/row['filename']
@@ -51,6 +54,8 @@ def main():
             raise ValueError('학습 첫 프레임 해시 불일치: '+role)
         pixels = np.asarray(Image.open(path).convert('RGB'))
         references[role] = (pixels, detect_markers(pixels))
+    wrist_reference = wrist_landmarks(references['end_effector'][0])
+    rims = {role: rim_reference(references[role][0], role) for role in RIM_CORNERS}
     DIRECTORY.mkdir(parents=True, exist_ok=True, mode=0o700)
     stop = threading.Event()
     for name in (signal.SIGTERM, signal.SIGINT):
@@ -70,12 +75,17 @@ def main():
             frames = device.camera_frames()
             stamp = time.time()
             state = dict(schema=1, phase='ready' if frames is not None else 'no_fresh_frame',
-                         captured=stamp, motor_access=False, register_writes=0, images={}, cameras={})
+                         captured=stamp, motor_access=False, register_writes=0, images={}, cameras={},
+                         replay_target=replay_target)
             if frames is not None:
                 for role, row in frames.items():
                     pixels = row['pixels']
                     reference, markers = references[role]
                     metric = compare_markers(markers, detect_markers(pixels))
+                    if role == 'end_effector':
+                        metric['wrist_landmarks'] = wrist_difference(wrist_reference, pixels)
+                    else:
+                        metric['objects'] = object_positions(pixels, baselines[role], rims[role])
                     metric.update(brightness=float(pixels.mean()), reference_brightness=float(reference.mean()),
                                   rgb_mean=pixels.mean((0, 1)).tolist(), reference_rgb_mean=reference.mean((0, 1)).tolist())
                     output = io.BytesIO()

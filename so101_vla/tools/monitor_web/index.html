@@ -26,13 +26,14 @@
       <p id="hold-result" hidden></p>
       <details id="raw-reason"><summary>오류 원문</summary><p id="reason"></p></details>
     </aside>
-    <section aria-labelledby="camera-heading">
+    <section id="alignment" aria-labelledby="camera-heading">
       <div class="section-heading"><h2 id="camera-heading">카메라 입력</h2><span>시작 확인 영상과 추론 입력</span></div>
       <div class="alignment-controls">
-        <div><b>학습 구도 맞추기</b><p id="alignment-reference" class="note">학습 첫 프레임 확인 중</p></div>
-        <label><input id="alignment-visible" type="checkbox" checked> 학습 첫 프레임 겹쳐 보기</label>
-        <label for="alignment-opacity">학습 영상 투명도 <output id="alignment-opacity-value">35%</output>
-          <input id="alignment-opacity" type="range" min="0" max="80" value="35"></label>
+        <div><b>학습 화면 정렬</b><p id="alignment-reference" class="note">학습 첫 프레임 확인 중</p></div>
+        <label><input id="alignment-visible" type="checkbox" checked> 학습 겹쳐보기</label>
+        <label><input id="replay-target" type="checkbox"> 녹화 재생용 약통 A 위치</label>
+        <label for="alignment-opacity">학습 영상 비율 <output id="alignment-opacity-value">50%</output>
+          <input id="alignment-opacity" type="range" min="0" max="100" value="50"></label>
         <p id="alignment-status" class="note" role="status">카메라 전용 정렬 미리보기 연결 중</p>
         <details class="note"><summary>기준 에피소드·첫 프레임 이미지 경로</summary><p id="alignment-source"></p><ul id="alignment-paths"></ul></details>
       </div>
@@ -41,7 +42,7 @@
         <figure data-camera="ceiling_vertical"><div class="frame"><img alt="천장 수직 카메라" hidden><span>입력 대기</span></div><figcaption><b>천장 수직</b><code>ceiling_vertical</code></figcaption></figure>
         <figure data-camera="ceiling_oblique"><div class="frame"><img alt="천장 사선 카메라" hidden><span>입력 대기</span></div><figcaption><b>천장 사선</b><code>ceiling_oblique</code></figcaption></figure>
       </div>
-      <p class="note">정렬 수치는 원본 640×480 화면의 고정 기준판 마커0~3을 비교합니다. 사선 목표 ≤20px. 회전은 영상 안의 각도이며, 손목은 겹친 영상으로 직접 맞춥니다. 수직 윤곽선은 학습 때의 약통·바구니 위치이며 현재 물체 검출 결과가 아닙니다.</p>
+      <p class="note">640×480 원본 기준입니다. 천장 구도는 고정판, 손목 구도는 화면 상단 두 병의 보이는 하단 끝점을 비교합니다. 약통 A는 뚜껑 중심, 바구니 입구는 네 모서리의 대각선 교점으로 학습 첫 프레임의 검출 평균과 비교합니다. 십자는 학습 위치, 원은 현재 위치입니다.</p>
       <p class="note">추론이 시작되면 모델에 전달한 영상으로 갱신합니다.</p>
     </section>
     <section aria-labelledby="joint-heading">

@@ -1,0 +1,54 @@
+{
+  "ceiling_vertical": {
+    "bottle_cap": {
+      "mean_xy": [
+        318.2501401758906,
+        166.702938592256
+      ],
+      "detected": 134,
+      "episodes": 137
+    },
+    "basket_opening": {
+      "mean_xy": [
+        305.73632700976685,
+        230.71085373599172
+      ],
+      "detected": 121,
+      "episodes": 137
+    },
+    "basket_tag": {
+      "mean_xy": [
+        290.8538299337791,
+        287.13339255674043
+      ],
+      "detected": 137,
+      "episodes": 137
+    }
+  },
+  "ceiling_oblique": {
+    "bottle_cap": {
+      "mean_xy": [
+        312.25481021765506,
+        227.86233439589992
+      ],
+      "detected": 132,
+      "episodes": 137
+    },
+    "basket_opening": {
+      "mean_xy": [
+        302.0041577780612,
+        303.7906867863487
+      ],
+      "detected": 122,
+      "episodes": 137
+    },
+    "basket_tag": {
+      "mean_xy": [
+        311.39954170171364,
+        363.29767781278514
+      ],
+      "detected": 137,
+      "episodes": 137
+    }
+  }
+}

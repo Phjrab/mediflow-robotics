@@ -21,6 +21,7 @@ from thermal_window import ThermalWindow
 from gripper_safety import OpeningGuard,recover_overload
 from gripper_arrival import GripperArrivalGate, gripper_ticks, record_gripper_packet
 from grasp_offset import GraspOffset
+from legacy_motion_options import GraspAssist, WireRateLimit, load_options
 from grasp_recorder import GraspRecorder
 from loop_timing import LoopTiming, terminal_lines
 from communication_retry import CommunicationPolicy,CommunicationHold,confirmed_hold,retryable_write_error
@@ -235,7 +236,7 @@ def prime_policy(io, policy, pool, log, monitor=None):
     return chunk, seconds, clock()-began
 
 
-def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_corrections=False):
+def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_corrections=False, *, motion_options=None):
     clock = getattr(io, 'clock', time.monotonic)
     pause = getattr(io, 'pause', time.sleep)
     rate = MODEL_HZ * speed
@@ -268,6 +269,11 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     relief = GripRelief()
     opening_guard = OpeningGuard()
     close_gate = GripperArrivalGate(log)
+    assist = GraspAssist(motion_options.close_median) if motion_options and motion_options.assist_grasp else None
+    limiter = WireRateLimit(io, motion_options.rates) if motion_options and motion_options.rates else None
+    option_meta = {'motion_options': motion_options.metadata()} if motion_options else {}
+    assist_row = None
+    pending_assist_until = None
     grip_bounds = getattr(io, 'raw_bounds', getattr(io, 'arm_bounds', {})).get('gripper')
     grasp_offset = GraspOffset()
     compensation_bounds = getattr(io, 'bounds', None)
@@ -305,7 +311,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
         next_tick = next_preview = started
         ready = dict(event='ready', unix=time.time(), monotonic_s=started,
                      duration_s=duration, speed=speed, first_inference_s=seconds,
-                     first_observation_and_inference_s=prime_s)
+                     first_observation_and_inference_s=prime_s, **option_meta)
         timing = LoopTiming(started, speed, log, clock=clock)
         print('READY ' + json.dumps(ready, ensure_ascii=False), flush=True)
         log(ready)
@@ -407,18 +413,26 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                         raise base.Stop('사용 가능한 카메라 영상 없음: 프레임 지연 또는 너무 어두운 영상')
                 lower, upper = math.floor(phase), math.ceil(phase)
                 if lower not in slots or upper not in slots or (phase == sent_phase and phase >= buffer_end):
-                    if close_gate.started is not None and last_knot is not None:
+                    assist_due = pending_assist_until is not None and clock() >= pending_assist_until
+                    if (close_gate.started is not None or assist_due) and last_knot is not None:
                         # Complete an already requested close using fresh feedback.
                         # No new policy phase or arm goal is consumed during a gap.
                         saved_index, saved_origin, knot, requested_ticks = last_knot
+                        gate_was_waiting = close_gate.started is not None
                         gated = close_gate.apply(last_model, sample['state'], clock()-started,
                                                  policy_knot=knot, knot_index=saved_index, knot_origin=saved_origin,
                                                  requested_ticks=requested_ticks, present_ticks=sample.get('present_raw', {}).get('gripper'))
-                        if close_gate.started is None:
+                        if close_gate.started is None and (pending_assist_until is None or assist_due):
+                            pending_assist_until = None
                             relieved = relief.apply(gated, sample['state'][-1], sent_phase / MODEL_HZ)
                             protected = opening_guard.apply(relieved, sample['state'][-1],
                                                             sample.get('loads', {}).get('gripper', 0), clock())
                             grip_plan = io.plan([*last_wire[:-1], protected])
+                            rate_row = None
+                            if limiter:
+                                grip_plan['wire_raw'] = dict(last_wire_raw, gripper=grip_plan['wire_raw']['gripper'])
+                                rate_row = limiter.apply(grip_plan, sample, last_wire_raw, min(1/hz, clock()-last_packet_at),
+                                                         protect_gripper=relieved!=gated or opening_guard.fixed is not None)
                             wire = dict(last_wire_raw, gripper=grip_plan['wire_raw']['gripper'])
                             if wire != last_wire_raw:
                                 tick.call('cadence_wait', pause, max(0., min(deadline, last_packet_at+1/hz)-clock()))
@@ -437,14 +451,21 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                                 last_wire_raw = wire
                                 last_wire = [*last_wire[:-1], grip_plan['wire_normalized'][-1]]
                                 gap_gripper_packets += 1
-                                row = dict(event='gripper_safety_goal', reason='gripper_close_wait_release',
-                                           decision=close_gate.events[-1]['decision'], mode='legacy', step=count,
+                                row = dict(event='gripper_safety_goal',
+                                           reason='gripper_close_wait_release' if gate_was_waiting else 'grasp_assist_release',
+                                           decision=close_gate.events[-1]['decision'] if gate_was_waiting else 'assist_hold_complete',
+                                           mode='legacy', step=count,
                                            model_phase=sent_phase, playback_s=sent_phase/MODEL_HZ,
                                            policy_index_advanced=False, time_s=last_packet_at-started,
                                            model=last_model, feedback=sample, raw_upper=knot,
                                            raw_upper_index=saved_index, raw_upper_origin=saved_origin,
                                            gripper_gate_points=gated, protected_points=protected,
-                                           grip_relief=relieved!=gated, wire_raw=wire, wire_normalized=last_wire)
+                                           grip_relief=relieved!=gated, wire_raw=wire, wire_normalized=last_wire,
+                                           **option_meta)
+                                if assist_row is not None:
+                                    row['grasp_assist'] = dict(assist_row, holding=False)
+                                if rate_row is not None:
+                                    row['data_velocity_limit'] = rate_row
                                 record_gripper_packet(tick, log, recorder, row, last_packet_at)
                     if last_send is not None and underrun is None:
                         underrun = tick_started
@@ -457,16 +478,21 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                     continue
                 model = interpolate(slots[lower], slots[upper], phase - lower)
                 target = model.copy()
+                knot_origin, raw_upper = raw_knots[upper]
                 future=[slots[k] for k in range(upper+1,min(buffer_end+1,upper+math.ceil(rate)+1)) if k in slots] if grasp_offset.enabled else []
                 target,lateral=grasp_offset.apply(target,sample['state'],tick_started,future,rate)
+                if assist:
+                    assist_row = assist.apply(model, raw_upper, sample, tick_started)
+                    target[:5] = [value+delta for value, delta in zip(target, assist_row['offset_deg'])]
                 policy_plan = io.plan(target)
                 requested_ticks = gripper_ticks(policy_plan)
-                knot_origin, raw_upper = raw_knots[upper]
                 gated_points = close_gate.apply(model, sample['state'], clock()-started, policy_knot=raw_upper,
                                                 knot_index=upper, knot_origin=knot_origin, requested_ticks=requested_ticks,
                                                 present_ticks=sample.get('present_raw', {}).get('gripper'))
-                target[-1] = relief.apply(gated_points, sample['state'][-1], phase / MODEL_HZ)
-                closing_relief=target[-1]!=gated_points
+                assist_hold = assist_row and assist_row['holding'] and close_gate.started is None
+                grip_demand = assist.held_points if assist_hold else gated_points
+                target[-1] = relief.apply(grip_demand, sample['state'][-1], phase / MODEL_HZ)
+                closing_relief=target[-1]!=grip_demand
                 target[-1] = opening_guard.apply(target[-1],sample['state'][-1],sample.get('loads',{}).get('gripper',0),tick_started)
                 reference_plan = policy_plan if target[-1] == model[-1] else io.plan(target)
                 close_gate.preserve_held_tick(reference_plan, target[-1], grip_bounds)
@@ -478,6 +504,11 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                                zip(target, compensation['offset_deg'], compensated)]
                 plan = io.plan(compensated)
                 close_gate.preserve_held_tick(plan, compensated[-1], grip_bounds)
+                if (assist_hold and compensated[-1] == assist.held_points and
+                        grip_bounds[0] <= assist.held_tick <= grip_bounds[1] and
+                        plan.get('bounded', compensated)[-1] == compensated[-1]):
+                    plan['wire_raw']['gripper'] = assist.held_tick
+                    plan['wire_normalized'][-1] = assist.held_points
                 plan['clipped_joints'] = sorted(set(plan.get('clipped_joints', ())) |
                                                 set(reference_plan.get('clipped_joints', ())))
                 compensation['uncompensated_raw'] = reference_plan['wire_raw']
@@ -497,6 +528,12 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                     if correction is not None:
                         tick_failed = False
                         break
+                rate_row = None
+                if limiter:
+                    dt = 0. if last_packet_at is None else min(1/hz, send_started-last_packet_at)
+                    rate_row = limiter.apply(plan, sample, last_wire_raw, dt,
+                                             protect_gripper=bool(assist_hold or close_gate.started is not None or
+                                                                  closing_relief or opening_guard.fixed is not None))
                 # Repeat a quantized target when the interpolated motion is smaller
                 # than one motor tick. Model speed must not lower the packet cadence.
                 tick.call('serial_write', io.send, plan['wire_raw'])
@@ -521,7 +558,11 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                      'grip_relief': closing_relief,
                      'gripper_opening':dict(cap_clipped=model[-1]>opening_guard.cap,limited_points=target[-1],load_hold_points=opening_guard.fixed),
                      'lateral_correction':lateral,
-                     'tracking_compensation': compensation, **plan}
+                     'tracking_compensation': compensation, **option_meta, **plan}
+                if assist_row is not None:
+                    goal_record['grasp_assist'] = assist_row
+                if rate_row is not None:
+                    goal_record['data_velocity_limit'] = rate_row
                 log(goal_record)
                 if recorder is not None:
                     event = tick.call('recorder_enqueue', recorder.goal, plan['wire_normalized'][-1], goal_record,
@@ -533,6 +574,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                 last_packet_at, last_wire_raw = sent, plan['wire_raw']
                 last_model, last_wire = model, plan['wire_normalized']
                 last_knot = (upper, knot_origin, raw_upper, requested_ticks)
+                pending_assist_until = assist.release_at if assist_row and assist_row['holding'] else None
                 if monitor is not None:
                     tick.call('preview_enqueue', monitor.status, 'moving', step=count, sample=sample, model=last_model, sent=last_wire,
                                    inference_seconds=inferences[-1] if inferences else None)
@@ -591,7 +633,8 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
             'gripper_close_wait': close_gate.summary(),
             'gripper_close_gap_packets': gap_gripper_packets,
             'gripper_opening_protection': opening_guard.summary(),
-            'lateral_correction':grasp_offset.summary()}
+            'lateral_correction':grasp_offset.summary(), **option_meta,
+            **({'grasp_assist': dict(windows=assist.windows, applied_steps=assist.steps)} if assist else {})}
 
 
 def device_class():
@@ -1220,19 +1263,23 @@ def run_gripper_test(io, monitor, corrections, deadline, log):
             'steps': clip['frames'] if clip else 0}
 
 
-def start_policy_session(io, policy, home, log, duration, speed, monitor=None, allow_corrections=False):
+def start_policy_session(io, policy, home, log, duration, speed, monitor=None, allow_corrections=False, *, motion_options=None):
     summary = live_start.prepare(io, home, log)
     io.motion_ready = True
     print('시작 직전 ' + json.dumps(summary, ensure_ascii=False), flush=True)
-    return stream(io, policy, log, duration, speed, monitor, allow_corrections)
+    return stream(io, policy, log, duration, speed, monitor, allow_corrections,
+                  **({'motion_options': motion_options} if motion_options else {}))
 
 
 def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=False,
-         taught_forward=None, gripper_test=False):
+         taught_forward=None, gripper_test=False, *, assist_grasp=False, vel_limit=None):
     from trial_runtime import static_context
     from run_exit_report import record_run_directory
     import corrections
 
+    options = load_options(assist_grasp, vel_limit, speed)
+    if gripper_test and options:
+        raise ValueError('legacy motion options require a policy session')
     context = static_context()
     forward = corrections.load_forward_profile(taught_forward, context['calibration']) if taught_forward else None
     kinds = (['gripper_open', 'forward'] if forward else ['gripper_open']) if web_corrections or gripper_test else []
@@ -1242,6 +1289,8 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
     record_run_directory(out)
     result = {'status': 'HOLD', 'steps': 0, 'task_success': 'UNVERIFIED',
               'speed': speed, 'playback_hz': MODEL_HZ * speed}
+    if options:
+        result['motion_options'] = options.metadata()
     io = policy = monitor = None
     stats = {'relief':0,'startup':[]}
     with (out / 'steps.jsonl').open('x', encoding='utf-8', buffering=1) as trace:
@@ -1278,7 +1327,8 @@ def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=Fa
                 result = run_gripper_test(io, monitor, corrections, deadline, log)
             else:
                 result = start_policy_session(io, policy, context['home']['state'], log, duration, speed,
-                                              monitor, allow_corrections=web_corrections)
+                                              monitor, allow_corrections=web_corrections,
+                                              **({'motion_options': options} if options else {}))
                 request = result.pop('operator_request')
                 if request is not None:
                     if result['hold']['status'] == 'HOLD_NOT_CONFIRMED':

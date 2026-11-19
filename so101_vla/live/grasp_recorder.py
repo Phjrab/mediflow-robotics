@@ -376,7 +376,8 @@ class GraspRecorder:
         self.last_time_s = time_s
         row = {key: copy.deepcopy(telemetry[key]) for key in
                ('step', 'model_phase', 'playback_s', 'model', 'wire_raw', 'wire_normalized',
-                'lateral_correction', 'tracking_compensation', 'grip_relief', 'gripper_opening')
+                'lateral_correction', 'tracking_compensation', 'grip_relief', 'gripper_opening',
+                'motion_options', 'grasp_assist', 'data_velocity_limit')
                if key in telemetry}
         row.update(time_s=time_s, monotonic_s=now, unix=timestamp,
                    sent_gripper_points=sent_gripper_points,
