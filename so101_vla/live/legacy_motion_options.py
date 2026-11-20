@@ -18,18 +18,22 @@ class MotionOptions:
     assist_grasp: bool
     close_median: tuple
     rates: tuple
+    reject_stale_home: bool = False
 
     def metadata(self):
         return dict(run_label=ASSIST_LABEL if self.assist_grasp else 'VLA',
                     assist_grasp=self.assist_grasp, vel_limit='data' if self.rates else None,
-                    close_median=list(self.close_median), limit_per_s=list(self.rates))
+                    close_median=list(self.close_median), limit_per_s=list(self.rates),
+                    **({'reject_stale_home': True} if self.reject_stale_home else {}))
 
 
-def load_options(assist_grasp, vel_limit, speed):
+def load_options(assist_grasp, vel_limit, speed, reject_stale_home=False):
     if vel_limit not in (None, 'data'):
         raise ValueError('legacy vel_limit must be None or data')
-    if not assist_grasp and vel_limit is None:
+    if not assist_grasp and vel_limit is None and not reject_stale_home:
         return None
+    if reject_stale_home and not assist_grasp and vel_limit is None:
+        return MotionOptions(False, (), (), True)
     data = json.loads(REFERENCE.read_text(encoding='utf-8'))
     if data['joint_names'] != list(JOINTS):
         raise ValueError('training reference joint order mismatch')
@@ -47,7 +51,23 @@ def load_options(assist_grasp, vel_limit, speed):
         if not all(math.isfinite(x) and x > 0 for x in (*p99, reference_speed, speed)):
             raise ValueError('invalid reference or playback rate')
         rates = tuple(value * speed / reference_speed for value in p99)
-    return MotionOptions(assist_grasp, vector('close_median'), rates)
+    return MotionOptions(assist_grasp, vector('close_median'), rates, reject_stale_home)
+
+
+def stale_home_return(home, observed, present, goal, age_s):
+    """Detect an old home observation asking an already extended arm to retract.
+
+    Use both approach axes so a single-axis correction or a return inferred
+    from the extended pose can still pass. All poses use the policy's units.
+    """
+    if age_s < 0.5:
+        return False
+    for axis, outward in ((1, 1), (2, -1)):
+        if (abs(observed[axis] - home[axis]) > 25 or abs(goal[axis] - home[axis]) > 25
+                or outward * (present[axis] - observed[axis]) < 40
+                or outward * (present[axis] - goal[axis]) < 40):
+            return False
+    return True
 
 
 class GraspAssist:

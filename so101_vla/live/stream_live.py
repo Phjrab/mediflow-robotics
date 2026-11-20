@@ -21,7 +21,7 @@ from thermal_window import ThermalWindow
 from gripper_safety import OpeningGuard,recover_overload
 from gripper_arrival import GripperArrivalGate, gripper_ticks, record_gripper_packet
 from grasp_offset import GraspOffset
-from legacy_motion_options import GraspAssist, WireRateLimit, load_options
+from legacy_motion_options import GraspAssist, WireRateLimit, load_options, stale_home_return
 from grasp_recorder import GraspRecorder
 from loop_timing import LoopTiming, terminal_lines
 from communication_retry import CommunicationPolicy,CommunicationHold,confirmed_hold,retryable_write_error
@@ -272,6 +272,11 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     assist = GraspAssist(motion_options.close_median) if motion_options and motion_options.assist_grasp else None
     limiter = WireRateLimit(io, motion_options.rates) if motion_options and motion_options.rates else None
     option_meta = {'motion_options': motion_options.metadata()} if motion_options else {}
+    guard_enabled = motion_options is not None and motion_options.reject_stale_home
+    stale_rejections = 0
+    refresh_requested = False
+    recovery_rate = None
+    recovery_playback_s = 0.
     assist_row = None
     pending_assist_until = None
     grip_bounds = getattr(io, 'raw_bounds', getattr(io, 'arm_bounds', {})).get('gripper')
@@ -349,7 +354,12 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                     track.append(value)
                 buffer_end = max(slots, default=-1)
                 if previous_tick is not None and sent_phase is not None and buffer_end > phase:
-                    phase = min(phase + (tick_started - previous_tick) * rate, buffer_end)
+                    elapsed = tick_started - previous_tick
+                    playback_rate = rate
+                    if recovery_rate is not None:
+                        playback_rate = min(rate, recovery_rate)
+                        recovery_playback_s += min(elapsed, (buffer_end-phase)/playback_rate)
+                    phase = min(phase + elapsed * playback_rate, buffer_end)
                 previous_tick = tick_started
                 first_unused = math.floor(phase) + 1 if sent_phase is not None else 0
                 for index in tuple(slots):
@@ -368,6 +378,23 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                     # An expired chunk cannot bridge the current playback cursor. Refresh
                     # from the held pose if the existing buffer runs out.
                     discarded = skip >= len(incoming) or usable > buffer_end + 1
+                    if guard_enabled and not discarded:
+                        age_s = clock() - requested
+                        if stale_home_return(CONFIG['home']['state'], observation_state,
+                                             sample['state'], incoming[skip], age_s):
+                            discarded = refresh_requested = True
+                            stale_rejections += 1
+                            # Stretch only the still-valid tail over the expected
+                            # replan time. Never append goals or advance past it.
+                            tail = buffer_end - phase
+                            recovery_rate = min(rate, tail / (max(age_s, estimate) * 1.5)) if tail > 0 else None
+                            log(dict(event='stale_home_rejected', time_s=clock()-started,
+                                     origin=origin, first_usable=usable, observation_age_s=age_s,
+                                     retained_actions=tail, recovery_playback_hz=recovery_rate,
+                                     observed=observation_state, present=list(sample['state']),
+                                     rejected_goal=incoming[skip]))
+                        elif recovery_rate is not None:
+                            recovery_rate = None
                     overlap = 0 if discarded else merge(slots, incoming, origin, usable, raw_knots=raw_knots)
                     blend_delta = [max((abs(slots[k][i] - incoming[k-origin][i])
                                         for k in range(usable, usable+overlap)), default=0) for i in range(6)]
@@ -389,21 +416,24 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                     raise base.Stop('정책 추론 응답 시간 초과')
                 buffer_end = max(slots, default=-1)
                 remaining = max(0, buffer_end - first_unused + 1)
-                if (job is None and infer_due(phase, buffer_end, rate, estimate)
-                        and (remaining == 0 or first_unused > last_origin)):
+                if job is None and (refresh_requested or (infer_due(phase, buffer_end, rate, estimate)
+                                    and (remaining == 0 or first_unused > last_origin))):
                     frames = tick.call('camera', io.fresh_frames)
                     if frames is not None:
                         missing_since = None
                         requested = clock()
+                        if guard_enabled:
+                            observation_state = tuple(sample['state'])
+                            refresh_requested = False
                         origin = first_unused
                         last_origin = origin
                         request_moving = sent_phase is not None and buffer_end > phase
-                        request_rate = rate
-                        delay = min(remaining, math.ceil(rate * estimate)) if request_moving else 0
+                        request_rate = min(rate, recovery_rate) if recovery_rate is not None else rate
+                        delay = min(remaining, math.ceil(request_rate * estimate)) if request_moving else 0
                         log(dict(event='inference_requested', time_s=requested-started,
                                  origin=origin, buffer_end=buffer_end, phase=phase,
-                                 remaining_actions=remaining, remaining_wall_s=remaining/rate,
-                                 estimated_inference_s=estimate, playback_hz=rate))
+                                 remaining_actions=remaining, remaining_wall_s=remaining/request_rate,
+                                 estimated_inference_s=estimate, playback_hz=request_rate))
                         job = tick.call('inference_blocking', pool.submit, policy, frames, sample['state'], origin, delay)
                         if monitor is not None:
                             tick.call('preview_enqueue', monitor.capture, frames, sample['state'])
@@ -634,6 +664,8 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
             'gripper_close_gap_packets': gap_gripper_packets,
             'gripper_opening_protection': opening_guard.summary(),
             'lateral_correction':grasp_offset.summary(), **option_meta,
+            **({'stale_home_guard': {'rejected_chunks': stale_rejections,
+                                     'retained_tail_playback_s': recovery_playback_s}} if guard_enabled else {}),
             **({'grasp_assist': dict(windows=assist.windows, applied_steps=assist.steps)} if assist else {})}
 
 
@@ -1272,12 +1304,12 @@ def start_policy_session(io, policy, home, log, duration, speed, monitor=None, a
 
 
 def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=False,
-         taught_forward=None, gripper_test=False, *, assist_grasp=False, vel_limit=None):
+         taught_forward=None, gripper_test=False, *, assist_grasp=False, vel_limit=None, reject_stale_home=False):
     from trial_runtime import static_context
     from run_exit_report import record_run_directory
     import corrections
 
-    options = load_options(assist_grasp, vel_limit, speed)
+    options = load_options(assist_grasp, vel_limit, speed, reject_stale_home)
     if gripper_test and options:
         raise ValueError('legacy motion options require a policy session')
     context = static_context()

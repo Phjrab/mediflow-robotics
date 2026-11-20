@@ -211,7 +211,8 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
                 'port_waits': 0, 'physical_motor_writes': 0}
     def log(row):
         event = row['event']
-        if goal_log is not None and event in ('goal_transmitted', 'gripper_safety_goal', 'gripper_close_wait'):
+        if goal_log is not None and event in ('goal_transmitted', 'gripper_safety_goal', 'gripper_close_wait',
+                                              'stale_home_rejected'):
             goal_log(row)
         if event == 'goal_transmitted':
             if len(evidence['first_targets']) < 10:
@@ -272,7 +273,7 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
     metrics['gripper_open_clip_count']=result['gripper_opening_protection']['policy_open_cap_clips']
     metrics['lateral_correction']=result['lateral_correction']
     metrics['ready']=result.get('ready')
-    for key in ('motion_options', 'grasp_assist'):
+    for key in ('motion_options', 'grasp_assist', 'stale_home_guard'):
         if key in result:
             metrics[key] = result[key]
     metrics['grasp_recording']=result.get('grasp_recording')
@@ -286,12 +287,12 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
     return dict(case=case, passed=passed, **metrics)
 
 
-def run_simulations(duration, speed, *, assist_grasp=False, vel_limit=None):
+def run_simulations(duration, speed, *, assist_grasp=False, vel_limit=None, reject_stale_home=False):
     import numpy as np
     from PIL import Image
     from trial_runtime import static_context
 
-    options = load_options(assist_grasp, vel_limit, speed)
+    options = load_options(assist_grasp, vel_limit, speed, reject_stale_home)
     context = static_context()
     preview = Path(__file__).resolve().parents[1] / 'analysis/vla_v3_blue_eval_preview'
     frames = {name: {'pixels': np.array(Image.open(preview / f'training_{name}.png').convert('RGB'))} for name in CAMERAS}
@@ -309,7 +310,7 @@ def run_simulations(duration, speed, *, assist_grasp=False, vel_limit=None):
     return 0 if passed else 1
 
 
-def run_dry(duration, speed, *, assist_grasp=False, vel_limit=None):
+def run_dry(duration, speed, *, assist_grasp=False, vel_limit=None, reject_stale_home=False):
     from trial_runtime import static_context
 
     out = Path(__file__).resolve().parents[1] / 'runs' / f'DRY_{time.time_ns()}'
@@ -318,7 +319,7 @@ def run_dry(duration, speed, *, assist_grasp=False, vel_limit=None):
     policy = camera_source = monitor = None
     trace = None
     try:
-        options = load_options(assist_grasp, vel_limit, speed)
+        options = load_options(assist_grasp, vel_limit, speed, reject_stale_home)
         kwargs = {}
         if options:
             result['motion_options'] = options.metadata()
