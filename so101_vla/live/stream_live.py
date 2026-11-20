@@ -1296,6 +1296,11 @@ def run_gripper_test(io, monitor, corrections, deadline, log):
 
 
 def start_policy_session(io, policy, home, log, duration, speed, monitor=None, allow_corrections=False, *, motion_options=None):
+    if motion_options and motion_options.precollect:
+        import gc
+        began = time.monotonic()
+        collected = gc.collect(2)
+        log(dict(event='startup_gc_complete', elapsed_s=time.monotonic()-began, collected=collected))
     summary = live_start.prepare(io, home, log)
     io.motion_ready = True
     print('시작 직전 ' + json.dumps(summary, ensure_ascii=False), flush=True)
@@ -1304,12 +1309,12 @@ def start_policy_session(io, policy, home, log, duration, speed, monitor=None, a
 
 
 def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=False,
-         taught_forward=None, gripper_test=False, *, assist_grasp=False, vel_limit=None, reject_stale_home=False):
+         taught_forward=None, gripper_test=False, *, assist_grasp=False, vel_limit=None, reject_stale_home=False, precollect=False):
     from trial_runtime import static_context
     from run_exit_report import record_run_directory
     import corrections
 
-    options = load_options(assist_grasp, vel_limit, speed, reject_stale_home)
+    options = load_options(assist_grasp, vel_limit, speed, reject_stale_home, precollect)
     if gripper_test and options:
         raise ValueError('legacy motion options require a policy session')
     context = static_context()

@@ -19,21 +19,23 @@ class MotionOptions:
     close_median: tuple
     rates: tuple
     reject_stale_home: bool = False
+    precollect: bool = False
 
     def metadata(self):
         return dict(run_label=ASSIST_LABEL if self.assist_grasp else 'VLA',
                     assist_grasp=self.assist_grasp, vel_limit='data' if self.rates else None,
                     close_median=list(self.close_median), limit_per_s=list(self.rates),
-                    **({'reject_stale_home': True} if self.reject_stale_home else {}))
+                    **({'reject_stale_home': True} if self.reject_stale_home else {}),
+                    **({'precollect': True} if self.precollect else {}))
 
 
-def load_options(assist_grasp, vel_limit, speed, reject_stale_home=False):
+def load_options(assist_grasp, vel_limit, speed, reject_stale_home=False, precollect=False):
     if vel_limit not in (None, 'data'):
         raise ValueError('legacy vel_limit must be None or data')
-    if not assist_grasp and vel_limit is None and not reject_stale_home:
+    if not assist_grasp and vel_limit is None:
+        if reject_stale_home or precollect:
+            return MotionOptions(False, (), (), reject_stale_home, precollect)
         return None
-    if reject_stale_home and not assist_grasp and vel_limit is None:
-        return MotionOptions(False, (), (), True)
     data = json.loads(REFERENCE.read_text(encoding='utf-8'))
     if data['joint_names'] != list(JOINTS):
         raise ValueError('training reference joint order mismatch')
@@ -51,7 +53,7 @@ def load_options(assist_grasp, vel_limit, speed, reject_stale_home=False):
         if not all(math.isfinite(x) and x > 0 for x in (*p99, reference_speed, speed)):
             raise ValueError('invalid reference or playback rate')
         rates = tuple(value * speed / reference_speed for value in p99)
-    return MotionOptions(assist_grasp, vector('close_median'), rates, reject_stale_home)
+    return MotionOptions(assist_grasp, vector('close_median'), rates, reject_stale_home, precollect)
 
 
 def stale_home_return(home, observed, present, goal, age_s):

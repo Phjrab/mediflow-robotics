@@ -1,13 +1,28 @@
 import contextlib
 import io
 import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
 
 from legacy_motion_options import load_options, stale_home_return
 from startup_simulation import CONFIG, SimulatedArm
-from stream_live import stream
+from stream_live import start_policy_session, stream
 
 
 class StaleHomeTests(unittest.TestCase):
+    def test_optional_collection_precedes_home_checks_and_policy_control(self):
+        for enabled in (False, True):
+            order = []
+            opts = load_options(False, None, .4, precollect=enabled)
+            with patch('gc.collect', side_effect=lambda gen: order.append(('collect', gen)) or 0), \
+                    patch('live_start.prepare', side_effect=lambda *_: order.append('home') or {}), \
+                    patch('stream_live.stream', side_effect=lambda *a, **kw: order.append('stream')), \
+                    contextlib.redirect_stdout(io.StringIO()):
+                start_policy_session(SimpleNamespace(), None, self.home, lambda row: order.append(row['event']),
+                                     3, .4, motion_options=opts)
+            self.assertEqual(order, ([('collect', 2), 'startup_gc_complete'] if enabled else [])
+                             + ['home', 'stream'])
+
     home = (0, -98, 96, 44, 0, 2)
     reached = (2, -30, 16, 65, -7, 39)
 

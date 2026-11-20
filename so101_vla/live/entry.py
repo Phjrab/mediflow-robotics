@@ -54,9 +54,12 @@ def main():
     p.add_argument('--vel-limit', choices=('data',), help='학습 p99 속도에 재생 배율을 적용')
     p.add_argument('--assist-grasp', action='store_true', help='집기 직전 자세를 최대 5도 보조')
     p.add_argument('--reject-stale-home', action='store_true', help='이전 홈 관측에서 나온 지연 복귀 목표를 폐기하고 재추론')
+    p.add_argument('--precollect', action='store_true', help='홈 검사 전에 Python 전체 메모리 회수를 한 번 수행')
     args=p.parse_args()
     if not 0<args.speed<=1 or not 0<args.duration<=3600:p.error('속도·시간 범위 오류')
     options = {}
+    if args.precollect:
+        options['precollect'] = True
     if args.reject_stale_home:
         options['reject_stale_home'] = True
     if args.vel_limit:
