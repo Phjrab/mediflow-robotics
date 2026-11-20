@@ -287,12 +287,12 @@ def run_case(case, duration, speed, home, frames, policy, *, real_time=False, ca
     return dict(case=case, passed=passed, **metrics)
 
 
-def run_simulations(duration, speed, *, assist_grasp=False, vel_limit=None, reject_stale_home=False, precollect=False):
+def run_simulations(duration, speed, *, assist_grasp=False, vel_limit=None, reject_stale_home=False, precollect=False, smooth_reversals=False):
     import numpy as np
     from PIL import Image
     from trial_runtime import static_context
 
-    options = load_options(assist_grasp, vel_limit, speed, reject_stale_home, precollect)
+    options = load_options(assist_grasp, vel_limit, speed, reject_stale_home, precollect, smooth_reversals)
     context = static_context()
     preview = Path(__file__).resolve().parents[1] / 'analysis/vla_v3_blue_eval_preview'
     frames = {name: {'pixels': np.array(Image.open(preview / f'training_{name}.png').convert('RGB'))} for name in CAMERAS}
@@ -310,7 +310,7 @@ def run_simulations(duration, speed, *, assist_grasp=False, vel_limit=None, reje
     return 0 if passed else 1
 
 
-def run_dry(duration, speed, *, assist_grasp=False, vel_limit=None, reject_stale_home=False, precollect=False):
+def run_dry(duration, speed, *, assist_grasp=False, vel_limit=None, reject_stale_home=False, precollect=False, smooth_reversals=False):
     from trial_runtime import static_context
 
     out = Path(__file__).resolve().parents[1] / 'runs' / f'DRY_{time.time_ns()}'
@@ -319,7 +319,7 @@ def run_dry(duration, speed, *, assist_grasp=False, vel_limit=None, reject_stale
     policy = camera_source = monitor = None
     trace = None
     try:
-        options = load_options(assist_grasp, vel_limit, speed, reject_stale_home, precollect)
+        options = load_options(assist_grasp, vel_limit, speed, reject_stale_home, precollect, smooth_reversals)
         kwargs = {}
         if options:
             result['motion_options'] = options.metadata()

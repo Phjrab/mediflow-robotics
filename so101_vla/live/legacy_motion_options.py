@@ -20,21 +20,23 @@ class MotionOptions:
     rates: tuple
     reject_stale_home: bool = False
     precollect: bool = False
+    smooth_reversals: bool = False
 
     def metadata(self):
         return dict(run_label=ASSIST_LABEL if self.assist_grasp else 'VLA',
                     assist_grasp=self.assist_grasp, vel_limit='data' if self.rates else None,
                     close_median=list(self.close_median), limit_per_s=list(self.rates),
                     **({'reject_stale_home': True} if self.reject_stale_home else {}),
-                    **({'precollect': True} if self.precollect else {}))
+                    **({'precollect': True} if self.precollect else {}),
+                    **({'smooth_reversals': True} if self.smooth_reversals else {}))
 
 
-def load_options(assist_grasp, vel_limit, speed, reject_stale_home=False, precollect=False):
+def load_options(assist_grasp, vel_limit, speed, reject_stale_home=False, precollect=False, smooth_reversals=False):
     if vel_limit not in (None, 'data'):
         raise ValueError('legacy vel_limit must be None or data')
     if not assist_grasp and vel_limit is None:
-        if reject_stale_home or precollect:
-            return MotionOptions(False, (), (), reject_stale_home, precollect)
+        if reject_stale_home or precollect or smooth_reversals:
+            return MotionOptions(False, (), (), reject_stale_home, precollect, smooth_reversals)
         return None
     data = json.loads(REFERENCE.read_text(encoding='utf-8'))
     if data['joint_names'] != list(JOINTS):
@@ -53,7 +55,40 @@ def load_options(assist_grasp, vel_limit, speed, reject_stale_home=False, precol
         if not all(math.isfinite(x) and x > 0 for x in (*p99, reference_speed, speed)):
             raise ValueError('invalid reference or playback rate')
         rates = tuple(value * speed / reference_speed for value in p99)
-    return MotionOptions(assist_grasp, vector('close_median'), rates, reject_stale_home, precollect)
+    return MotionOptions(assist_grasp, vector('close_median'), rates, reject_stale_home, precollect, smooth_reversals)
+
+
+def reversal_offsets(slots, phase):
+    """Attenuate local extrema using only already-buffered policy knots."""
+    lower, upper = math.floor(phase), math.ceil(phase)
+    u = phase - lower
+    weight = u*u*(3.-2.*u)
+    offsets = [0., 0.]
+    for k, share in ((lower, 1.-weight), (upper, weight)):
+        if share == 0 or k-1 not in slots or k+1 not in slots:
+            continue
+        for index, axis in enumerate((1, 2)):
+            mid = slots[k][axis]
+            left, right = slots[k-1][axis]-mid, slots[k+1][axis]-mid
+            if left*right > 0:
+                offsets[index] += share * math.copysign(min(1., .5*abs(left), .5*abs(right)), left)
+    return offsets
+
+
+def smooth_arm_packet(plan, offsets, bounds, normalize):
+    """Apply at most eleven encoder ticks before the existing final wire guard."""
+    delta = {}
+    for joint, degrees in zip(('shoulder_lift', 'elbow_flex'), offsets):
+        original = plan['wire_raw'][joint]
+        lo, hi = bounds[joint]
+        ticks = max(-11, min(11, round(degrees * 4095 / 360)))
+        value = min(hi, max(lo, original+ticks)) if joint not in plan.get('clipped_joints', ()) else original
+        delta[joint] = value-original
+        plan['wire_raw'][joint] = value
+    if any(delta.values()):
+        normalized = normalize(plan['wire_raw'])
+        plan['wire_normalized'][1:3] = normalized[1:3]
+    return delta
 
 
 def stale_home_return(home, observed, present, goal, age_s):

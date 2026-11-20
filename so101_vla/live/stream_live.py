@@ -21,7 +21,7 @@ from thermal_window import ThermalWindow
 from gripper_safety import OpeningGuard,recover_overload
 from gripper_arrival import GripperArrivalGate, gripper_ticks, record_gripper_packet
 from grasp_offset import GraspOffset
-from legacy_motion_options import GraspAssist, WireRateLimit, load_options, stale_home_return
+from legacy_motion_options import GraspAssist, WireRateLimit, load_options, reversal_offsets, smooth_arm_packet, stale_home_return
 from grasp_recorder import GraspRecorder
 from loop_timing import LoopTiming, terminal_lines
 from communication_retry import CommunicationPolicy,CommunicationHold,confirmed_hold,retryable_write_error
@@ -273,6 +273,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     limiter = WireRateLimit(io, motion_options.rates) if motion_options and motion_options.rates else None
     option_meta = {'motion_options': motion_options.metadata()} if motion_options else {}
     guard_enabled = motion_options is not None and motion_options.reject_stale_home
+    smooth = bool(motion_options and motion_options.smooth_reversals)
     stale_rejections = 0
     refresh_requested = False
     recovery_rate = None
@@ -363,7 +364,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                 previous_tick = tick_started
                 first_unused = math.floor(phase) + 1 if sent_phase is not None else 0
                 for index in tuple(slots):
-                    if index < math.floor(phase):
+                    if index < math.floor(phase) - int(smooth):
                         del slots[index]
                         del raw_knots[index]
                 if job is not None and job.done():
@@ -544,6 +545,9 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                 compensation['uncompensated_raw'] = reference_plan['wire_raw']
                 compensation['wire_offset_deg'] = [a-b for a, b in
                                                    zip(plan['wire_normalized'], reference_plan['wire_normalized'])]
+                if smooth:
+                    reversal_ticks = smooth_arm_packet(plan, reversal_offsets(slots, phase),
+                                                       io.raw_bounds, io.normalize)
                 prepared = clock()
                 if last_send is not None:
                     tick.call('cadence_wait', pause, max(0, min(deadline, last_packet_at + 1 / hz) - prepared))
@@ -593,6 +597,8 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                     goal_record['grasp_assist'] = assist_row
                 if rate_row is not None:
                     goal_record['data_velocity_limit'] = rate_row
+                if smooth:
+                    goal_record['reversal_offset_ticks'] = reversal_ticks
                 log(goal_record)
                 if recorder is not None:
                     event = tick.call('recorder_enqueue', recorder.goal, plan['wire_normalized'][-1], goal_record,
@@ -1309,12 +1315,12 @@ def start_policy_session(io, policy, home, log, duration, speed, monitor=None, a
 
 
 def live(duration, supported_home=False, speed=DEFAULT_SPEED, web_corrections=False,
-         taught_forward=None, gripper_test=False, *, assist_grasp=False, vel_limit=None, reject_stale_home=False, precollect=False):
+         taught_forward=None, gripper_test=False, *, assist_grasp=False, vel_limit=None, reject_stale_home=False, precollect=False, smooth_reversals=False):
     from trial_runtime import static_context
     from run_exit_report import record_run_directory
     import corrections
 
-    options = load_options(assist_grasp, vel_limit, speed, reject_stale_home, precollect)
+    options = load_options(assist_grasp, vel_limit, speed, reject_stale_home, precollect, smooth_reversals)
     if gripper_test and options:
         raise ValueError('legacy motion options require a policy session')
     context = static_context()
