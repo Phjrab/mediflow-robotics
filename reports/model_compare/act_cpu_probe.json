@@ -1,0 +1,12 @@
+{
+  "model": "ACT",
+  "seed": 101,
+  "batch": 1,
+  "steps": 1,
+  "wall_update_s": 6.934445800026879,
+  "parameters": 51597190,
+  "train_example": 0,
+  "cameras": 3,
+  "backbone": "random; offline feasibility probe",
+  "loss": 99.89834594726562
+}

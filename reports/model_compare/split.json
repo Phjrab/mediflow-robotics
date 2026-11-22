@@ -1,0 +1,1103 @@
+{
+  "seed": 101,
+  "manifest_sha256": "f46b763224bfa3c0bf60563c7b66fa9a4756b659c1a2d2ae9840e4d6cb155f47",
+  "fps": 30,
+  "episodes": [
+    {
+      "id": 0,
+      "source": "a_to_red_20261102_201029",
+      "source_id": 0,
+      "color": "red",
+      "frames": 551,
+      "fold": "train"
+    },
+    {
+      "id": 1,
+      "source": "a_to_red_20261102_201029",
+      "source_id": 2,
+      "color": "red",
+      "frames": 364,
+      "fold": "train"
+    },
+    {
+      "id": 2,
+      "source": "a_to_red_20261102_201029",
+      "source_id": 3,
+      "color": "red",
+      "frames": 400,
+      "fold": "train"
+    },
+    {
+      "id": 3,
+      "source": "a_to_red_20261102_201029",
+      "source_id": 4,
+      "color": "red",
+      "frames": 505,
+      "fold": "eval"
+    },
+    {
+      "id": 4,
+      "source": "a_to_red_20261102_201029",
+      "source_id": 5,
+      "color": "red",
+      "frames": 444,
+      "fold": "train"
+    },
+    {
+      "id": 5,
+      "source": "a_to_red_20261102_201029",
+      "source_id": 6,
+      "color": "red",
+      "frames": 506,
+      "fold": "train"
+    },
+    {
+      "id": 6,
+      "source": "a_to_red_20261102_201029",
+      "source_id": 7,
+      "color": "red",
+      "frames": 364,
+      "fold": "train"
+    },
+    {
+      "id": 7,
+      "source": "a_to_red_20261102_201029",
+      "source_id": 8,
+      "color": "red",
+      "frames": 446,
+      "fold": "train"
+    },
+    {
+      "id": 8,
+      "source": "a_to_red_20261102_201029",
+      "source_id": 9,
+      "color": "red",
+      "frames": 363,
+      "fold": "train"
+    },
+    {
+      "id": 9,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 0,
+      "color": "red",
+      "frames": 397,
+      "fold": "train"
+    },
+    {
+      "id": 10,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 1,
+      "color": "red",
+      "frames": 608,
+      "fold": "train"
+    },
+    {
+      "id": 11,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 2,
+      "color": "red",
+      "frames": 470,
+      "fold": "train"
+    },
+    {
+      "id": 12,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 3,
+      "color": "red",
+      "frames": 450,
+      "fold": "eval"
+    },
+    {
+      "id": 13,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 4,
+      "color": "red",
+      "frames": 564,
+      "fold": "train"
+    },
+    {
+      "id": 14,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 5,
+      "color": "red",
+      "frames": 490,
+      "fold": "train"
+    },
+    {
+      "id": 15,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 6,
+      "color": "red",
+      "frames": 551,
+      "fold": "train"
+    },
+    {
+      "id": 16,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 7,
+      "color": "red",
+      "frames": 453,
+      "fold": "train"
+    },
+    {
+      "id": 17,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 8,
+      "color": "red",
+      "frames": 434,
+      "fold": "train"
+    },
+    {
+      "id": 18,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 9,
+      "color": "red",
+      "frames": 352,
+      "fold": "train"
+    },
+    {
+      "id": 19,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 10,
+      "color": "red",
+      "frames": 496,
+      "fold": "train"
+    },
+    {
+      "id": 20,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 11,
+      "color": "red",
+      "frames": 497,
+      "fold": "train"
+    },
+    {
+      "id": 21,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 12,
+      "color": "red",
+      "frames": 366,
+      "fold": "train"
+    },
+    {
+      "id": 22,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 13,
+      "color": "red",
+      "frames": 511,
+      "fold": "eval"
+    },
+    {
+      "id": 23,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 14,
+      "color": "red",
+      "frames": 586,
+      "fold": "train"
+    },
+    {
+      "id": 24,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 15,
+      "color": "red",
+      "frames": 345,
+      "fold": "train"
+    },
+    {
+      "id": 25,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 16,
+      "color": "red",
+      "frames": 525,
+      "fold": "train"
+    },
+    {
+      "id": 26,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 17,
+      "color": "red",
+      "frames": 429,
+      "fold": "train"
+    },
+    {
+      "id": 27,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 18,
+      "color": "red",
+      "frames": 268,
+      "fold": "train"
+    },
+    {
+      "id": 28,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 19,
+      "color": "red",
+      "frames": 345,
+      "fold": "train"
+    },
+    {
+      "id": 29,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 20,
+      "color": "red",
+      "frames": 457,
+      "fold": "eval"
+    },
+    {
+      "id": 30,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 21,
+      "color": "red",
+      "frames": 510,
+      "fold": "train"
+    },
+    {
+      "id": 31,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 22,
+      "color": "red",
+      "frames": 520,
+      "fold": "train"
+    },
+    {
+      "id": 32,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 23,
+      "color": "red",
+      "frames": 443,
+      "fold": "eval"
+    },
+    {
+      "id": 33,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 24,
+      "color": "red",
+      "frames": 536,
+      "fold": "train"
+    },
+    {
+      "id": 34,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 25,
+      "color": "red",
+      "frames": 502,
+      "fold": "eval"
+    },
+    {
+      "id": 35,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 26,
+      "color": "red",
+      "frames": 556,
+      "fold": "train"
+    },
+    {
+      "id": 36,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 27,
+      "color": "red",
+      "frames": 414,
+      "fold": "train"
+    },
+    {
+      "id": 37,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 28,
+      "color": "red",
+      "frames": 557,
+      "fold": "eval"
+    },
+    {
+      "id": 38,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 29,
+      "color": "red",
+      "frames": 478,
+      "fold": "train"
+    },
+    {
+      "id": 39,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 30,
+      "color": "red",
+      "frames": 592,
+      "fold": "train"
+    },
+    {
+      "id": 40,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 31,
+      "color": "red",
+      "frames": 522,
+      "fold": "train"
+    },
+    {
+      "id": 41,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 32,
+      "color": "red",
+      "frames": 640,
+      "fold": "train"
+    },
+    {
+      "id": 42,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 33,
+      "color": "red",
+      "frames": 538,
+      "fold": "train"
+    },
+    {
+      "id": 43,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 34,
+      "color": "red",
+      "frames": 482,
+      "fold": "train"
+    },
+    {
+      "id": 44,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 36,
+      "color": "red",
+      "frames": 500,
+      "fold": "train"
+    },
+    {
+      "id": 45,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 37,
+      "color": "red",
+      "frames": 480,
+      "fold": "train"
+    },
+    {
+      "id": 46,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 38,
+      "color": "red",
+      "frames": 490,
+      "fold": "train"
+    },
+    {
+      "id": 47,
+      "source": "a_to_red_20261102_210433",
+      "source_id": 39,
+      "color": "red",
+      "frames": 455,
+      "fold": "train"
+    },
+    {
+      "id": 48,
+      "source": "a_to_green_20261102_201804",
+      "source_id": 0,
+      "color": "green",
+      "frames": 624,
+      "fold": "train"
+    },
+    {
+      "id": 49,
+      "source": "a_to_green_20261102_201804",
+      "source_id": 1,
+      "color": "green",
+      "frames": 588,
+      "fold": "train"
+    },
+    {
+      "id": 50,
+      "source": "a_to_green_20261102_201804",
+      "source_id": 2,
+      "color": "green",
+      "frames": 664,
+      "fold": "train"
+    },
+    {
+      "id": 51,
+      "source": "a_to_green_20261102_201804",
+      "source_id": 3,
+      "color": "green",
+      "frames": 504,
+      "fold": "train"
+    },
+    {
+      "id": 52,
+      "source": "a_to_green_20261102_201804",
+      "source_id": 4,
+      "color": "green",
+      "frames": 502,
+      "fold": "train"
+    },
+    {
+      "id": 53,
+      "source": "a_to_green_20261102_201804",
+      "source_id": 5,
+      "color": "green",
+      "frames": 456,
+      "fold": "train"
+    },
+    {
+      "id": 54,
+      "source": "a_to_green_20261102_201804",
+      "source_id": 6,
+      "color": "green",
+      "frames": 528,
+      "fold": "train"
+    },
+    {
+      "id": 55,
+      "source": "a_to_green_20261102_201804",
+      "source_id": 7,
+      "color": "green",
+      "frames": 592,
+      "fold": "train"
+    },
+    {
+      "id": 56,
+      "source": "a_to_green_20261102_201804",
+      "source_id": 8,
+      "color": "green",
+      "frames": 519,
+      "fold": "train"
+    },
+    {
+      "id": 57,
+      "source": "a_to_green_20261102_201804",
+      "source_id": 9,
+      "color": "green",
+      "frames": 533,
+      "fold": "train"
+    },
+    {
+      "id": 58,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 0,
+      "color": "green",
+      "frames": 516,
+      "fold": "train"
+    },
+    {
+      "id": 59,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 1,
+      "color": "green",
+      "frames": 513,
+      "fold": "train"
+    },
+    {
+      "id": 60,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 2,
+      "color": "green",
+      "frames": 424,
+      "fold": "train"
+    },
+    {
+      "id": 61,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 3,
+      "color": "green",
+      "frames": 487,
+      "fold": "eval"
+    },
+    {
+      "id": 62,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 5,
+      "color": "green",
+      "frames": 403,
+      "fold": "eval"
+    },
+    {
+      "id": 63,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 6,
+      "color": "green",
+      "frames": 568,
+      "fold": "train"
+    },
+    {
+      "id": 64,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 7,
+      "color": "green",
+      "frames": 568,
+      "fold": "train"
+    },
+    {
+      "id": 65,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 8,
+      "color": "green",
+      "frames": 408,
+      "fold": "train"
+    },
+    {
+      "id": 66,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 9,
+      "color": "green",
+      "frames": 499,
+      "fold": "eval"
+    },
+    {
+      "id": 67,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 10,
+      "color": "green",
+      "frames": 417,
+      "fold": "train"
+    },
+    {
+      "id": 68,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 11,
+      "color": "green",
+      "frames": 355,
+      "fold": "train"
+    },
+    {
+      "id": 69,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 12,
+      "color": "green",
+      "frames": 613,
+      "fold": "eval"
+    },
+    {
+      "id": 70,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 13,
+      "color": "green",
+      "frames": 504,
+      "fold": "train"
+    },
+    {
+      "id": 71,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 14,
+      "color": "green",
+      "frames": 506,
+      "fold": "train"
+    },
+    {
+      "id": 72,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 15,
+      "color": "green",
+      "frames": 383,
+      "fold": "train"
+    },
+    {
+      "id": 73,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 16,
+      "color": "green",
+      "frames": 383,
+      "fold": "train"
+    },
+    {
+      "id": 74,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 17,
+      "color": "green",
+      "frames": 553,
+      "fold": "train"
+    },
+    {
+      "id": 75,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 18,
+      "color": "green",
+      "frames": 372,
+      "fold": "train"
+    },
+    {
+      "id": 76,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 19,
+      "color": "green",
+      "frames": 657,
+      "fold": "train"
+    },
+    {
+      "id": 77,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 22,
+      "color": "green",
+      "frames": 479,
+      "fold": "train"
+    },
+    {
+      "id": 78,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 23,
+      "color": "green",
+      "frames": 383,
+      "fold": "train"
+    },
+    {
+      "id": 79,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 24,
+      "color": "green",
+      "frames": 432,
+      "fold": "eval"
+    },
+    {
+      "id": 80,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 25,
+      "color": "green",
+      "frames": 376,
+      "fold": "train"
+    },
+    {
+      "id": 81,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 26,
+      "color": "green",
+      "frames": 604,
+      "fold": "train"
+    },
+    {
+      "id": 82,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 27,
+      "color": "green",
+      "frames": 395,
+      "fold": "train"
+    },
+    {
+      "id": 83,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 29,
+      "color": "green",
+      "frames": 467,
+      "fold": "train"
+    },
+    {
+      "id": 84,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 30,
+      "color": "green",
+      "frames": 440,
+      "fold": "train"
+    },
+    {
+      "id": 85,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 31,
+      "color": "green",
+      "frames": 491,
+      "fold": "train"
+    },
+    {
+      "id": 86,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 32,
+      "color": "green",
+      "frames": 385,
+      "fold": "eval"
+    },
+    {
+      "id": 87,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 33,
+      "color": "green",
+      "frames": 412,
+      "fold": "train"
+    },
+    {
+      "id": 88,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 34,
+      "color": "green",
+      "frames": 503,
+      "fold": "train"
+    },
+    {
+      "id": 89,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 35,
+      "color": "green",
+      "frames": 475,
+      "fold": "train"
+    },
+    {
+      "id": 90,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 36,
+      "color": "green",
+      "frames": 46,
+      "fold": "train"
+    },
+    {
+      "id": 91,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 38,
+      "color": "green",
+      "frames": 405,
+      "fold": "train"
+    },
+    {
+      "id": 92,
+      "source": "a_to_blue_20261102_212958",
+      "source_id": 39,
+      "color": "green",
+      "frames": 435,
+      "fold": "eval"
+    },
+    {
+      "id": 93,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 1,
+      "color": "blue",
+      "frames": 438,
+      "fold": "train"
+    },
+    {
+      "id": 94,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 2,
+      "color": "blue",
+      "frames": 440,
+      "fold": "train"
+    },
+    {
+      "id": 95,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 5,
+      "color": "blue",
+      "frames": 482,
+      "fold": "train"
+    },
+    {
+      "id": 96,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 6,
+      "color": "blue",
+      "frames": 563,
+      "fold": "train"
+    },
+    {
+      "id": 97,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 7,
+      "color": "blue",
+      "frames": 430,
+      "fold": "eval"
+    },
+    {
+      "id": 98,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 8,
+      "color": "blue",
+      "frames": 468,
+      "fold": "eval"
+    },
+    {
+      "id": 99,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 10,
+      "color": "blue",
+      "frames": 472,
+      "fold": "train"
+    },
+    {
+      "id": 100,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 11,
+      "color": "blue",
+      "frames": 474,
+      "fold": "train"
+    },
+    {
+      "id": 101,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 12,
+      "color": "blue",
+      "frames": 489,
+      "fold": "train"
+    },
+    {
+      "id": 102,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 13,
+      "color": "blue",
+      "frames": 591,
+      "fold": "train"
+    },
+    {
+      "id": 103,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 14,
+      "color": "blue",
+      "frames": 452,
+      "fold": "eval"
+    },
+    {
+      "id": 104,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 15,
+      "color": "blue",
+      "frames": 445,
+      "fold": "train"
+    },
+    {
+      "id": 105,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 16,
+      "color": "blue",
+      "frames": 548,
+      "fold": "eval"
+    },
+    {
+      "id": 106,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 17,
+      "color": "blue",
+      "frames": 377,
+      "fold": "train"
+    },
+    {
+      "id": 107,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 18,
+      "color": "blue",
+      "frames": 405,
+      "fold": "train"
+    },
+    {
+      "id": 108,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 19,
+      "color": "blue",
+      "frames": 360,
+      "fold": "train"
+    },
+    {
+      "id": 109,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 21,
+      "color": "blue",
+      "frames": 423,
+      "fold": "eval"
+    },
+    {
+      "id": 110,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 22,
+      "color": "blue",
+      "frames": 437,
+      "fold": "train"
+    },
+    {
+      "id": 111,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 23,
+      "color": "blue",
+      "frames": 495,
+      "fold": "train"
+    },
+    {
+      "id": 112,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 24,
+      "color": "blue",
+      "frames": 395,
+      "fold": "train"
+    },
+    {
+      "id": 113,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 25,
+      "color": "blue",
+      "frames": 342,
+      "fold": "train"
+    },
+    {
+      "id": 114,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 26,
+      "color": "blue",
+      "frames": 383,
+      "fold": "train"
+    },
+    {
+      "id": 115,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 27,
+      "color": "blue",
+      "frames": 493,
+      "fold": "train"
+    },
+    {
+      "id": 116,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 28,
+      "color": "blue",
+      "frames": 443,
+      "fold": "train"
+    },
+    {
+      "id": 117,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 29,
+      "color": "blue",
+      "frames": 514,
+      "fold": "train"
+    },
+    {
+      "id": 118,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 30,
+      "color": "blue",
+      "frames": 413,
+      "fold": "train"
+    },
+    {
+      "id": 119,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 31,
+      "color": "blue",
+      "frames": 428,
+      "fold": "train"
+    },
+    {
+      "id": 120,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 32,
+      "color": "blue",
+      "frames": 409,
+      "fold": "train"
+    },
+    {
+      "id": 121,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 33,
+      "color": "blue",
+      "frames": 474,
+      "fold": "eval"
+    },
+    {
+      "id": 122,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 35,
+      "color": "blue",
+      "frames": 364,
+      "fold": "train"
+    },
+    {
+      "id": 123,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 36,
+      "color": "blue",
+      "frames": 355,
+      "fold": "train"
+    },
+    {
+      "id": 124,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 37,
+      "color": "blue",
+      "frames": 512,
+      "fold": "train"
+    },
+    {
+      "id": 125,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 38,
+      "color": "blue",
+      "frames": 457,
+      "fold": "train"
+    },
+    {
+      "id": 126,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 39,
+      "color": "blue",
+      "frames": 554,
+      "fold": "train"
+    },
+    {
+      "id": 127,
+      "source": "a_to_blue_20261103_193835",
+      "source_id": 40,
+      "color": "blue",
+      "frames": 464,
+      "fold": "train"
+    },
+    {
+      "id": 128,
+      "source": "a_to_blue_20261103_193353",
+      "source_id": 0,
+      "color": "blue",
+      "frames": 433,
+      "fold": "train"
+    },
+    {
+      "id": 129,
+      "source": "a_to_blue_20261103_193353",
+      "source_id": 1,
+      "color": "blue",
+      "frames": 389,
+      "fold": "train"
+    },
+    {
+      "id": 130,
+      "source": "a_to_blue_20261103_193353",
+      "source_id": 2,
+      "color": "blue",
+      "frames": 358,
+      "fold": "train"
+    },
+    {
+      "id": 131,
+      "source": "a_to_blue_20261103_193353",
+      "source_id": 3,
+      "color": "blue",
+      "frames": 430,
+      "fold": "train"
+    },
+    {
+      "id": 132,
+      "source": "a_to_blue_20261103_193353",
+      "source_id": 4,
+      "color": "blue",
+      "frames": 397,
+      "fold": "train"
+    },
+    {
+      "id": 133,
+      "source": "a_to_blue_20261103_193353",
+      "source_id": 5,
+      "color": "blue",
+      "frames": 492,
+      "fold": "train"
+    },
+    {
+      "id": 134,
+      "source": "a_to_blue_20261103_193353",
+      "source_id": 6,
+      "color": "blue",
+      "frames": 393,
+      "fold": "train"
+    },
+    {
+      "id": 135,
+      "source": "a_to_blue_20261103_193353",
+      "source_id": 7,
+      "color": "blue",
+      "frames": 383,
+      "fold": "train"
+    },
+    {
+      "id": 136,
+      "source": "a_to_blue_20261103_193353",
+      "source_id": 8,
+      "color": "blue",
+      "frames": 368,
+      "fold": "eval"
+    }
+  ]
+}

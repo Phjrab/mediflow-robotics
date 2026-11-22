@@ -1,0 +1,518 @@
+{
+  "rgb_mlp": {
+    "matches": 0,
+    "n": 42,
+    "rows": [
+      {
+        "episode": 3,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 3,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 12,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 12,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 22,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 22,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 29,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 29,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 32,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 32,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 34,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 34,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 37,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 37,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 61,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 61,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 62,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 62,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 66,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 66,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 69,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 69,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 79,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 79,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 86,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 86,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 92,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 92,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 97,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 97,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      },
+      {
+        "episode": 98,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 98,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      },
+      {
+        "episode": 103,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 103,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      },
+      {
+        "episode": 105,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 105,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      },
+      {
+        "episode": 109,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 109,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      },
+      {
+        "episode": 121,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 121,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      },
+      {
+        "episode": 136,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 136,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      }
+    ]
+  },
+  "rgb_mlp_task": {
+    "matches": 1,
+    "n": 42,
+    "rows": [
+      {
+        "episode": 3,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 3,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 12,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 12,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 22,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 22,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 29,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "green"
+      },
+      {
+        "episode": 29,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 32,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 32,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 34,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 34,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 37,
+        "recorded": "red",
+        "requested": "green",
+        "nearest": "red"
+      },
+      {
+        "episode": 37,
+        "recorded": "red",
+        "requested": "blue",
+        "nearest": "red"
+      },
+      {
+        "episode": 61,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 61,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 62,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 62,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 66,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 66,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 69,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 69,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 79,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 79,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 86,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 86,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 92,
+        "recorded": "green",
+        "requested": "red",
+        "nearest": "green"
+      },
+      {
+        "episode": 92,
+        "recorded": "green",
+        "requested": "blue",
+        "nearest": "green"
+      },
+      {
+        "episode": 97,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 97,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      },
+      {
+        "episode": 98,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 98,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      },
+      {
+        "episode": 103,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 103,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      },
+      {
+        "episode": 105,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 105,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      },
+      {
+        "episode": 109,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 109,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      },
+      {
+        "episode": 121,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 121,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      },
+      {
+        "episode": 136,
+        "recorded": "blue",
+        "requested": "red",
+        "nearest": "blue"
+      },
+      {
+        "episode": 136,
+        "recorded": "blue",
+        "requested": "green",
+        "nearest": "blue"
+      }
+    ]
+  }
+}

@@ -1,0 +1,551 @@
+{
+  "kind": "ground_truth_metric_check",
+  "episodes": [
+    {
+      "episode": 3,
+      "color": "red",
+      "frames": 505,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 151,
+      "close_pred": 151,
+      "release_true": 231,
+      "nearest": "red",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 12,
+      "color": "red",
+      "frames": 450,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 189,
+      "close_pred": 189,
+      "release_true": 255,
+      "nearest": "red",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 22,
+      "color": "red",
+      "frames": 511,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 210,
+      "close_pred": 210,
+      "release_true": 292,
+      "nearest": "red",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 29,
+      "color": "red",
+      "frames": 457,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 194,
+      "close_pred": 194,
+      "release_true": 306,
+      "nearest": "red",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 32,
+      "color": "red",
+      "frames": 443,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 161,
+      "close_pred": 161,
+      "release_true": 245,
+      "nearest": "red",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 34,
+      "color": "red",
+      "frames": 502,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 248,
+      "close_pred": 248,
+      "release_true": 322,
+      "nearest": "red",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 37,
+      "color": "red",
+      "frames": 557,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 176,
+      "close_pred": 176,
+      "release_true": 273,
+      "nearest": "red",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 61,
+      "color": "green",
+      "frames": 487,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 145,
+      "close_pred": 145,
+      "release_true": 227,
+      "nearest": "green",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 62,
+      "color": "green",
+      "frames": 403,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 164,
+      "close_pred": 164,
+      "release_true": 230,
+      "nearest": "green",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 66,
+      "color": "green",
+      "frames": 499,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 234,
+      "close_pred": 234,
+      "release_true": 306,
+      "nearest": "green",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 69,
+      "color": "green",
+      "frames": 613,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 170,
+      "close_pred": 170,
+      "release_true": 288,
+      "nearest": "green",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 79,
+      "color": "green",
+      "frames": 432,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 167,
+      "close_pred": 167,
+      "release_true": 261,
+      "nearest": "green",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 86,
+      "color": "green",
+      "frames": 385,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 156,
+      "close_pred": 156,
+      "release_true": 223,
+      "nearest": "green",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 92,
+      "color": "green",
+      "frames": 435,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 182,
+      "close_pred": 182,
+      "release_true": 269,
+      "nearest": "green",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 97,
+      "color": "blue",
+      "frames": 430,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 170,
+      "close_pred": 170,
+      "release_true": 249,
+      "nearest": "blue",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 98,
+      "color": "blue",
+      "frames": 468,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 238,
+      "close_pred": 238,
+      "release_true": 324,
+      "nearest": "blue",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 103,
+      "color": "blue",
+      "frames": 452,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 172,
+      "close_pred": 172,
+      "release_true": 274,
+      "nearest": "blue",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 105,
+      "color": "blue",
+      "frames": 548,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 173,
+      "close_pred": 173,
+      "release_true": 230,
+      "nearest": "blue",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 109,
+      "color": "blue",
+      "frames": 423,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 198,
+      "close_pred": 198,
+      "release_true": 255,
+      "nearest": "blue",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 121,
+      "color": "blue",
+      "frames": 474,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 193,
+      "close_pred": 193,
+      "release_true": 268,
+      "nearest": "blue",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "episode": 136,
+      "color": "blue",
+      "frames": 368,
+      "mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "close_true": 141,
+      "close_pred": 141,
+      "release_true": 212,
+      "nearest": "blue",
+      "close_delta_s": 0.0,
+      "close_pose_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "mae": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "close_matched": 21,
+  "close_timing_mae_s": 0.0,
+  "close_pose_deg": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "reference_count": 108,
+  "placement_eligible": 21,
+  "denominator_all": 21,
+  "correct": 21
+}
