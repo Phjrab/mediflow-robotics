@@ -1,5 +1,28 @@
 # 모델별 학습 상태
 
+### 2026-11-23 · 직접 SSH 재시도와 실물 후보 정정
+
+실물 시험 1순위는 기존 배포 SmolVLA다. 투입 3건 중 실행 도중 재배치한 15:30을 제외해 2건을 채택했다. 두 MLP는 최소 기준선이다. [실행별 근거](EVIDENCE_AUDIT.md)
+
+현재 세션에서 직접 연결했다. 일반 SSH는 `ssh -o BatchMode=yes -o ConnectTimeout=7 -o StrictHostKeyChecking=yes chosun@chosun hostname`에서 종료 코드 255와 `ssh: Could not resolve hostname chosun:`를 반환했다. `chosun.local`과 tailnet 정규 이름도 이름 해석에 실패했다. Tailscale의 온라인 피어 목록에는 Jetson만 있었다.
+
+```text
+$ ssh -o BatchMode=yes -o ConnectTimeout=7 -o StrictHostKeyChecking=yes chosun@chosun hostname
+ssh: Could not resolve hostname chosun: \276\313\267\301\301\370 \310\243\275\272\306\256\260\241 \276\370\275\300\264\317\264\331.
+$ tailscale ssh chosun@chosun hostname
+Dial("chosun", 22): unexpected HTTP response: 502 Bad Gateway, resolve failure: lookup chosun: no such host
+
+Connection closed by UNKNOWN port 65535
+$ tailscale ping --c 1 --timeout 5s chosun
+error looking up IP of "chosun": lookup chosun: no such host
+```
+
+| 이번 직접 점검 | PID·프로세스명 | VRAM·GPU 사용률 | 조치 |
+|---|---|---|---|
+| chosun RTX 3060 | 미조회 | 미측정 | 프로세스 종료 0건 |
+
+직접 연결 가능한 주소나 Tailscale 피어가 확보되면 GPU를 재조회한다. SmolVLA 배치 4의 2스텝 시험은 미시작으로, 20,000스텝 학습 시작 시각과 ETA는 미산정이다. 아래의 여유 2,878 MiB·사용률 57%는 이전 세션의 장치 전체 측정값이다.
+
 ### 2026-11-23 · RTX 3060 및 파랑 7회 우선 평가
 
 - 승인된 작업은 약통 A의 파란 바구니 투입이다. seed 101의 기존 3색 학습 116회(53,709프레임), 평가 21회(9,842프레임)를 유지한다. 파랑 평가 회차는 97, 98, 103, 105, 109, 121, 136이고 3,163프레임이다.

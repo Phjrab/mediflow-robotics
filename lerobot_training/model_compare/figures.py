@@ -158,7 +158,7 @@ def render_summary(evaluations, report):
     if not compared:
         return
     fig, panels = plt.subplots(2, 2, figsize=(12, 7.9))
-    plt.subplots_adjust(left=.09, right=.97, top=.83, bottom=.20, wspace=.25, hspace=.52)
+    plt.subplots_adjust(left=.09, right=.97, top=.79, bottom=.20, wspace=.25, hspace=.52)
     panel_specs = (
         ("arm5_mae_deg", "팔 5축 평균 MAE", "°", None),
         ("gripper_mae_points", "그리퍼 MAE", "점", None),
@@ -186,9 +186,13 @@ def render_summary(evaluations, report):
             ax.tick_params(axis="x", labelrotation=22)
         ax.grid(axis="y", alpha=.17)
         ax.margins(y=.38 if denominator else .25)
-    fig.suptitle("MediFlow | 파란 바구니 오프라인 평가", fontsize=20, fontweight="bold", y=.965)
+    fig.suptitle("실물 시험 1순위 · 기존 배포 SmolVLA", fontsize=20, fontweight="bold", y=.98)
+    fig.text(.5, .907, "약통 A → 파란 바구니  |  투입 장면 3건 중 2건 채택 · 실행 중 재배치 1건 제외",
+             ha="center", fontsize=12)
+    fig.text(.5, .867, "오프라인 최소 기준선 MLP 2종 · 지시 교체 일치 0/42, 1/42 · 실물 후보 제외",
+             ha="center", fontsize=11)
     handles, legend = panels[0,0].get_legend_handles_labels()
-    fig.legend(handles, legend, loc="upper center", bbox_to_anchor=(.5,.923), frameon=False, ncols=2)
+    fig.legend(handles, legend, loc="upper center", bbox_to_anchor=(.5,.853), frameon=False, ncols=2)
     basket = "    |    ".join(f"{label} {blue['correct']}/{blue['denominator_all']} · 전체 "
                             f"{whole['correct']}/{whole['denominator_all']}"
                             for _, label, blue, whole in compared)
