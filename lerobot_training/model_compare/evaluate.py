@@ -1,4 +1,4 @@
-"""Score the final official checkpoint on the frozen fold, 16 open-loop actions at a time."""
+"""Score completed checkpoints on the frozen fold using recorded observations only."""
 import argparse
 from contextlib import nullcontext
 import json
@@ -8,103 +8,250 @@ import numpy as np
 import torch
 from torch.utils.data import default_collate
 
-from metrics import score
-from prepare import digest, write
-from train_queue import REPORT, SCHEDULE
+from metrics import FPS, closing, load_fold, placement, release, score
+from prepare import COLORS, write
+from replay_protocol import HISTORICAL, HISTORICAL_SHA, HORIZON, RAW_VIEWS, digest
+from train_queue import REPORT, SCHEDULE, checkpoints
 
 
-def evaluate(args):
-    from lerobot.configs.policies import PreTrainedConfig
+def checkpoint_for(args):
+    root = args.dataset
+    split = json.loads((root/"split.json").read_bytes())
+    if split != json.loads((REPORT/"split.json").read_bytes()):
+        raise ValueError("Dataset does not match the frozen split")
+    if args.model == HISTORICAL:
+        if args.checkpoint is None or digest(args.checkpoint/"model.safetensors") != HISTORICAL_SHA:
+            raise ValueError("Historical SmolVLA requires the exact b84b15c7 weights")
+        if args.step is not None:
+            raise ValueError("--step applies only to official runs")
+        return split, args.checkpoint, None, None
+    if args.checkpoint is not None:
+        raise ValueError("Official checkpoints must come from the verified run directory")
+    name = args.model
+    provenance = json.loads((args.runs/(name+".provenance.json")).read_bytes())
+    if (provenance["split_sha"] != digest(REPORT/"split.json")
+        or provenance["train_stats_sha"] != digest(root/"train/meta/stats.json")
+        or provenance["name"] != name or provenance["steps"] != SCHEDULE[name][0]):
+        raise ValueError("Checkpoint split/stats/schedule mismatch")
+    target = SCHEDULE[name][0]
+    verified = [path for path in checkpoints(args.runs/name, provenance) if 0 < int(path.name) <= target]
+    if args.step is not None:
+        verified = [path for path in verified if int(path.name) == args.step]
+    if not verified:
+        requested = f" at step {args.step}" if args.step is not None else ""
+        raise ValueError(f"No queue-verified checkpoint{requested} for {name}")
+    selected = verified[-1]
+    return split, selected/"pretrained_model", int(selected.name), target
+
+
+def replay_horizon(cfg):
+    horizon = min(HORIZON, cfg.n_action_steps)
+    if horizon < 1:
+        raise ValueError("Policy must deliver at least one action")
+    return horizon
+
+
+class ReplayPolicy:
+    def __init__(self, args, checkpoint, mode="chunk"):
+        from lerobot.configs.policies import PreTrainedConfig
+        from lerobot.policies.factory import get_policy_class, make_pre_post_processors
+
+        self.name, self.mode = args.model, mode
+        self.device = args.device
+        self.adapter = None
+        self.policy = None
+        self.weight_sha = digest(checkpoint/"model.safetensors")
+        source = json.loads((checkpoint/"train_config.json").read_bytes())
+        cfg = PreTrainedConfig.from_pretrained(checkpoint)
+        cfg.device = self.device
+        self.cfg = cfg
+        self.rename = source.get("rename_map") or {}
+        if args.model == HISTORICAL:
+            saved = json.loads((checkpoint/"policy_preprocessor.json").read_bytes())
+            step, = [s for s in saved["steps"] if s["registry_name"] == "rename_observations_processor"]
+            self.rename = step["config"]["rename_map"]
+        if mode == "temporal":
+            if args.model not in {"act", "act_task"}:
+                raise ValueError("Temporal ensembling is supported for ACT only")
+            cfg.temporal_ensemble_coeff = 0.01
+            cfg.n_action_steps = 1
+        if args.model == "xvla":
+            from round2.xvla_bundle import load_cpu_bundle
+
+            if not args.bundle or not args.approved_sha or self.device != "cpu":
+                raise ValueError("X-VLA requires the corrected round2 CPU decoder and an approved bundle")
+            if digest(args.bundle/"checkpoint/model.safetensors") != self.weight_sha:
+                raise ValueError("X-VLA bundle weights differ from the final checkpoint")
+            self.adapter = load_cpu_bundle(args.bundle, args.approved_sha)
+            return
+        self.policy = get_policy_class(cfg.type).from_pretrained(checkpoint, config=cfg).to(self.device).eval()
+        self.pre, self.post = make_pre_post_processors(
+            cfg, str(checkpoint),
+            preprocessor_overrides={"device_processor": {"device": self.device},
+                                    "rename_observations_processor": {"rename_map": self.rename}},
+            postprocessor_overrides={"device_processor": {"device": "cpu"}},
+        )
+
+    def reset(self):
+        if self.policy is not None:
+            self.policy.reset()
+            self.pre.reset()
+            self.post.reset()
+
+    def __call__(self, item, color):
+        task = f"Put medicine bottle A into the {color} basket"
+        if self.adapter:
+            from xvla_adapter import JOINTS, RGBFrame, VIEWS
+
+            imgs = {}
+            for view, key in zip(VIEWS, RAW_VIEWS, strict=True):
+                rgb = item["observation.images."+key]
+                if rgb.dtype != torch.uint8:
+                    rgb = (rgb*255).round().to(torch.uint8)
+                rgb = rgb.reshape(-1, *rgb.shape[-3:])[-1].permute(1,2,0).contiguous().numpy()
+                imgs[view] = RGBFrame(rgb.shape[1], rgb.shape[0], rgb.tobytes())
+            state = dict(zip(JOINTS, item["observation.state"].reshape(-1,6)[-1].tolist(), strict=True))
+            obs = self.adapter.prepare_observation(views=imgs, state=state, task=task)
+            return np.asarray(self.adapter.decode_actions(self.adapter.predict(obs)))
+        obs = {key: value for key, value in item.items()
+               if key.startswith("observation.") and not key.endswith("_is_pad")}
+        if self.name == "act_task":
+            state = obs["observation.state"].clone()
+            if state.shape[-1] != 9:
+                raise ValueError("ACT + task expects 6 joints and 3 one-hot values")
+            state[..., -3:] = state.new_tensor([float(c == color) for c in COLORS])
+            obs["observation.state"] = state
+        for key, val in obs.items():
+            if key.startswith("observation.images.") and val.dtype == torch.uint8:
+                obs[key] = val.float()/255
+        obs["task"] = task
+        batch = self.pre(default_collate([obs]))
+        ctx = torch.autocast("cuda") if self.cfg.use_amp and self.device == "cuda" else nullcontext()
+        with ctx:
+            if self.mode == "temporal":
+                result = self.policy.select_action(batch).unsqueeze(1)
+            else:
+                result = self.policy.predict_action_chunk(batch)
+        return self.post(result.float())[0].detach().cpu().float().numpy()
+
+
+def observations(root, replay, video_backend="pyav"):
     from lerobot.datasets.dataset_metadata import LeRobotDatasetMetadata
     from lerobot.datasets.factory import resolve_delta_timestamps
     from lerobot.datasets.lerobot_dataset import LeRobotDataset
-    from lerobot.policies.factory import get_policy_class, make_pre_post_processors
 
-    name = args.model
-    provenance = json.loads((args.runs/(name+".provenance.json")).read_bytes())
-    root = args.dataset
-    split = json.loads((root/"split.json").read_bytes())
-    if (split != json.loads((REPORT/"split.json").read_bytes()) or provenance["split_sha"] != digest(REPORT/"split.json")
-        or provenance["train_stats_sha"] != digest(root/"train/meta/stats.json") or provenance["name"] != name):
-        raise ValueError("Checkpoint split/stats mismatch")
-    wanted = SCHEDULE[name][0]
-    folders = [p for p in (args.runs/name/"checkpoints").glob("[0-9]*") if int(p.name) == wanted]
-    if len(folders) != 1:
-        raise ValueError(f"Expected final checkpoint {wanted}")
-    checkpoint = folders[0]/"pretrained_model"
-    source = json.loads((checkpoint/"train_config.json").read_bytes())
-    cfg = PreTrainedConfig.from_pretrained(checkpoint)
-    cfg.device = args.device
-    rename = source.get("rename_map", {})
     meta = LeRobotDatasetMetadata("local/model-compare-eval", root=root/"eval")
-    deltas = resolve_delta_timestamps(cfg, meta, rename) or {}
-    deltas = {k:v for k,v in deltas.items() if k.startswith("observation.")}
-    ds = LeRobotDataset("local/model-compare-eval", root=root/"eval", video_backend="pyav",
-                        delta_timestamps=deltas or None)
-    rows = [r for r in split["episodes"] if r["fold"]=="eval"]
-    assert len(ds) == sum(r["frames"] for r in rows)
-    if name == "xvla":
-        from round2.xvla_bundle import load_cpu_bundle
-        from xvla_adapter import JOINTS, RGBFrame, VIEWS
-        if not args.bundle or not args.approved_sha or args.device != "cpu":
-            raise ValueError("X-VLA requires the corrected round2 CPU decoder and an approved bundle")
-        if digest(args.bundle/"checkpoint/model.safetensors") != digest(checkpoint/"model.safetensors"):
-            raise ValueError("X-VLA bundle weights differ from the final checkpoint")
-        adapter = load_cpu_bundle(args.bundle, args.approved_sha)
-    else:
-        policy = get_policy_class(cfg.type).from_pretrained(checkpoint, config=cfg).to(args.device).eval()
-        pre, post = make_pre_post_processors(cfg, str(checkpoint),
-                    preprocessor_overrides={"device_processor":{"device":args.device}},
-                    postprocessor_overrides={"device_processor":{"device":"cpu"}})
-    torch.manual_seed(101)
+    deltas = resolve_delta_timestamps(replay.cfg, meta, replay.rename) or {}
+    deltas = {key: val for key, val in deltas.items() if key.startswith("observation.")}
+    return LeRobotDataset("local/model-compare-eval", root=root/"eval", video_backend=video_backend,
+                          delta_timestamps=deltas or None, return_uint8=True)
+
+
+def predict(replay, item, color, episode, frame, count):
+    replay.reset()
+    # Pair the stochastic initialization across all prompts for this observation.
+    torch.manual_seed(101 + 100000 * episode + frame)
+    chunk = replay(item, color)
+    if chunk.ndim != 2 or chunk.shape[0] < count or chunk.shape[1] != 6 or not np.isfinite(chunk).all():
+        raise ValueError("Expected a finite 6D action chunk")
+    return chunk[:count]
+
+
+def evaluate(args):
+    split, checkpoint, step, target = checkpoint_for(args)
+    root = args.dataset
+    replay = ReplayPolicy(args, checkpoint)
+    horizon = replay_horizon(replay.cfg)
+    dataset = observations(root, replay)
+    rows = [r for r in split["episodes"] if r["fold"] == "eval"]
+    if len(dataset) != sum(r["frames"] for r in rows) or len(rows) != 21:
+        raise ValueError("Incorrect replay fold")
+    if not args.skip_prompt_check:
+        truth = load_fold(root, split, "eval")
+        train = load_fold(root, split, "train")
+        scale = np.maximum(np.concatenate([a[:, :5] for _, a in train.values()]).std(0), 1e-6)
+        refs = []
+        for label, actions in train.values():
+            segment = placement(actions, release(actions, closing(actions)), scale)
+            if segment is not None:
+                refs.append((label, segment))
+        if {label for label, _ in refs} != set(COLORS):
+            raise ValueError("Missing placement reference color")
     args.output.mkdir(parents=True, exist_ok=True)
-    start = 0
+    historical = args.model == HISTORICAL
+    provenance = dict(model=args.model, weight_sha256=replay.weight_sha, historical=historical,
+                      split_sha256=digest(root/"split.json"),
+                      heldout_for_this_model=not historical, open_loop_horizon=horizon,
+                      checkpoint_step=step, target_steps=target)
+    start, swapped = 0, []
     with torch.inference_mode():
-        for row in rows:
-            pred = []
-            for k in range(0, row["frames"], 16):
-                item = ds[start+k]
-                if name == "xvla":
-                    imgs = {}
-                    for view, key in zip(VIEWS, ("end_effector","ceiling_vertical","ceiling_oblique"), strict=True):
-                        rgb = item["observation.images."+key]
-                        if rgb.dtype != torch.uint8:
-                            rgb = (rgb*255).round().to(torch.uint8)
-                        rgb = rgb.reshape(-1,*rgb.shape[-3:])[-1].permute(1,2,0).contiguous().numpy()
-                        imgs[view] = RGBFrame(rgb.shape[1], rgb.shape[0], rgb.tobytes())
-                    state = dict(zip(JOINTS, item["observation.state"].reshape(-1,6)[-1].tolist(), strict=True))
-                    obs = adapter.prepare_observation(views=imgs,state=state,
-                                                      task=item["task"])
-                    chunk = np.asarray(adapter.decode_actions(adapter.predict(obs)))
-                else:
-                    policy.reset()
-                    obs = {rename.get(key,key): val for key,val in item.items()
-                           if key.startswith("observation.") and not key.endswith("_is_pad")}
-                    for key,val in list(obs.items()):
-                        if val.dtype == torch.uint8:
-                            obs[key] = val.float()/255
-                    obs["task"] = item["task"]
-                    batch = pre(default_collate([obs]))
-                    ctx = torch.autocast("cuda") if cfg.use_amp and args.device=="cuda" else nullcontext()
-                    with ctx:
-                        out = policy.predict_action_chunk(batch)
-                    chunk = post(out)[0].cpu().float().numpy()
-                take = min(16, row["frames"]-k)
-                if chunk.ndim != 2 or chunk.shape[0] < take or chunk.shape[1] != 6:
-                    raise ValueError("Expected a full 6D chunk")
-                pred.extend(chunk[:take])
-            np.save(args.output/f"episode_{row['id']}.npy", np.asarray(pred), allow_pickle=False)
-            start += row["frames"]
-    write(args.output/"metrics.json", score(root, args.output))
+        for episode_index, row in enumerate(rows):
+            episode, color, length = row["id"], row["color"], row["frames"]
+            event = None
+            if not args.skip_prompt_check:
+                action = truth[episode][1]
+                event = release(action, closing(action))
+            eligible = event is not None and event >= FPS
+            pairs = {} if args.skip_prompt_check else {c: [] for c in COLORS if c != color}
+            predictions, original_window = [], []
+            for frame in range(0, length, horizon):
+                take = min(horizon, length-frame)
+                intersects = eligible and frame < event and frame+take > event-FPS
+                if args.prompt_only and not intersects:
+                    continue
+                item = dataset[start+frame]
+                if int(item["episode_index"]) != episode_index or int(item["frame_index"]) != frame:
+                    raise ValueError("Replay observation and reference action are misaligned")
+                original = predict(replay, item, color, episode, frame, take)
+                if not args.prompt_only:
+                    predictions.append(original)
+                if intersects:
+                    lo, hi = max(0, event-FPS-frame), min(take, event-frame)
+                    original_window.append(original[lo:hi])
+                    for requested in pairs:
+                        other = predict(replay, item, requested, episode, frame, take)
+                        pairs[requested].append(other[lo:hi])
+            for requested, segments in pairs.items():
+                nearest, change = None, None
+                if segments:
+                    swapped_window = np.concatenate(segments)
+                    normalized = swapped_window[:, :5] / scale
+                    if len(normalized) != FPS:
+                        raise ValueError("Incomplete placement segment")
+                    nearest = min(refs, key=lambda ref: np.square(ref[1]-normalized).mean())[0]
+                    change = float(np.abs(swapped_window[:, :5]-np.concatenate(original_window)[:, :5]).mean())
+                swapped.append(dict(episode=episode, recorded=color, requested=requested,
+                                    nearest=nearest, arm_change_mae_deg=change))
+            if not args.prompt_only:
+                np.save(args.output/f"episode_{episode}.npy", np.concatenate(predictions), allow_pickle=False)
+            start += length
+    if not args.skip_prompt_check:
+        if len(swapped) != 42:
+            raise ValueError("Expected 42 swapped prompts")
+        write(args.output/"prompt_check.json", dict(provenance,
+              matches=sum(r["requested"] == r["nearest"] for r in swapped), n=len(swapped),
+              eligible=sum(r["nearest"] is not None for r in swapped), rows=swapped))
+    if not args.prompt_only:
+        write(args.output/"metrics.json", dict(provenance, **score(root, args.output)))
+        write(args.output/"metrics_blue.json", dict(provenance, **score(root, args.output, "blue")))
+
+
+def add_policy_arguments(parser):
+    parser.add_argument("model", choices=[*SCHEDULE, HISTORICAL])
+    parser.add_argument("dataset", type=Path)
+    parser.add_argument("runs", type=Path)
+    parser.add_argument("output", type=Path)
+    parser.add_argument("--device", choices=["cuda", "cpu"], default="cuda")
+    parser.add_argument("--step", type=int, help="Queue-verified official checkpoint step; default is latest")
+    parser.add_argument("--checkpoint", type=Path, help="Explicit historical SmolVLA checkpoint")
+    parser.add_argument("--bundle", type=Path)
+    parser.add_argument("--approved-sha")
 
 
 if __name__ == "__main__":
-    p = argparse.ArgumentParser()
-    p.add_argument("model", choices=list(SCHEDULE))
-    p.add_argument("dataset", type=Path)
-    p.add_argument("runs", type=Path)
-    p.add_argument("output", type=Path)
-    p.add_argument("--device", choices=["cuda","cpu"], default="cuda")
-    p.add_argument("--bundle", type=Path)
-    p.add_argument("--approved-sha")
+    p = argparse.ArgumentParser(description=__doc__)
+    add_policy_arguments(p)
+    scope = p.add_mutually_exclusive_group()
+    scope.add_argument("--prompt-only", action="store_true")
+    scope.add_argument("--skip-prompt-check", action="store_true")
     evaluate(p.parse_args())

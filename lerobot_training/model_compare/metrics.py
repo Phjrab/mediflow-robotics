@@ -63,7 +63,7 @@ def load_fold(root, split, fold):
     return result
 
 
-def score(root, prediction_dir=None):
+def score(root, prediction_dir=None, color_filter=None):
     split = json.loads((root/"split.json").read_bytes())
     train = load_fold(root, split, "train")
     held = load_fold(root, split, "eval")
@@ -78,6 +78,8 @@ def score(root, prediction_dir=None):
         raise ValueError("Missing placement reference color")
     rows, total = [], np.zeros(6)
     for ep, (color, truth) in held.items():
+        if color_filter is not None and color != color_filter:
+            continue
         pred = np.load(prediction_dir / f"episode_{ep}.npy", allow_pickle=False) if prediction_dir else truth
         if pred.shape != truth.shape or not np.isfinite(pred).all():
             raise ValueError(f"Invalid predictions for episode {ep}")
@@ -94,8 +96,13 @@ def score(root, prediction_dir=None):
     matched = [abs(r["close_delta_s"]) for r in rows if r["close_delta_s"] is not None]
     poses = [r["close_pose_deg"] for r in rows if r["close_pose_deg"] is not None]
     eligible = sum(r["nearest"] is not None for r in rows)
+    mae = total / sum(r["frames"] for r in rows)
     return dict(kind="model" if prediction_dir else "ground_truth_metric_check", episodes=rows,
-                mae=(total/sum(r["frames"] for r in rows)).tolist(), close_matched=len(matched),
+                color=color_filter, arm5_mae_deg=float(mae[:5].mean()), gripper_mae_points=float(mae[5]),
+                close_truth=sum(r["close_true"] is not None for r in rows),
+                close_prediction=sum(r["close_pred"] is not None for r in rows),
+                close_pose_n=len(poses), close_pose_arm5_mae_deg=float(np.mean(poses)) if poses else None,
+                mae=mae.tolist(), close_matched=len(matched),
                 close_timing_mae_s=float(np.mean(matched)) if matched else None,
                 close_pose_deg=np.mean(poses, axis=0).tolist() if poses else None,
                 reference_count=len(refs), placement_eligible=eligible, denominator_all=len(rows),
@@ -107,5 +114,6 @@ if __name__ == "__main__":
     p.add_argument("dataset", type=Path)
     p.add_argument("output", type=Path)
     p.add_argument("--predictions", type=Path)
+    p.add_argument("--color", choices=["red", "green", "blue"])
     args = p.parse_args()
-    write(args.output, score(args.dataset, args.predictions))
+    write(args.output, score(args.dataset, args.predictions, args.color))

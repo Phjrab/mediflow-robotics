@@ -1,5 +1,44 @@
 # MediFlow 약통 A · 정책별 오프라인 비교
 
+### 파란 바구니 1개 작업 · 2026-11-23
+
+현재 완료된 최소 기준선 중 **영상·상태 + 바구니 지시 MLP**를 파란 바구니 입회 시험의 잠정 후보로 선정했다. 파랑에서 두 모델 모두 투입 방향을 7/7 맞혔고, 지시 MLP가 닫힘 시각·자세와 그리퍼 MAE 세 항목에서 더 낮은 오차를 보였다. 새 SmolVLA와 공식 정책들의 재학습 결과가 확보되면 같은 기준으로 후보를 다시 선정한다.
+
+| 평가 범위 | 모델 | 팔 5축 평균 MAE | 그리퍼 MAE | 닫힘 시각 MAE | 닫힘 자세 MAE | 닫힘 매칭 | 바구니 방향 일치 |
+|---|---|---:|---:|---:|---:|---:|---:|
+| 파랑 7회 | 영상·상태 MLP | 2.970° | 3.257점 | 1.024초 | 2.113° | 7/7 | 7/7 |
+| 파랑 7회 | 영상·상태 + 지시 MLP | 3.306° | 3.011점 | 0.890초 | 1.974° | 7/7 | 7/7 |
+| 전체 21회 | 영상·상태 MLP | 2.795° | 3.781점 | 0.733초 | 2.005° | 21/21 | 21/21 |
+| 전체 21회 | 영상·상태 + 지시 MLP | 2.885° | 3.484점 | 0.790초 | 1.900° | 21/21 | 21/21 |
+
+| 파랑 7회 전 구간 MAE | 어깨 회전 | 어깨 들기 | 팔꿈치 | 손목 굽힘 | 손목 회전 |
+|---|---:|---:|---:|---:|---:|
+| 영상·상태 MLP | 1.22° | 4.34° | 5.33° | 2.89° | 1.07° |
+| 영상·상태 + 지시 MLP | 1.20° | 5.52° | 5.79° | 2.94° | 1.07° |
+
+지시 MLP는 파랑에서 닫힘 순간의 자세를 더 가깝게 재현했다. 반면 전 구간의 어깨 들기와 팔꿈치 오차는 기본 MLP 쪽이 작았다.
+
+3색 학습 116회를 유지했다. 파랑 평가는 전체 21회에 포함된 7회(3,163프레임)다. 팔·그리퍼 MAE는 프레임 가중 평균, 닫힘 지표는 매칭 회차 평균이다. 자세 오차는 시연이 닫힌 프레임에서 기록 행동과 예측 행동의 팔 5축 절대 차이다. 바구니 방향은 학습 회차 궤적의 최근접 색을 기준으로 계산했다. 두 MLP의 실물 투입률은 미측정이다. [기본 MLP 파랑·전체 집계](rgb_mlp_color_metrics.json) · [지시 MLP 파랑·전체 집계](rgb_mlp_task_color_metrics.json)
+
+| 공식 정책 | 파랑 방향 일치 | 전체 방향 일치 | 학습 상태 |
+|---|---:|---:|---|
+| 새 SmolVLA | 미측정 / 7 | 미측정 / 21 | RTX 3060 학습 대기 |
+| ACT + 지시 | 미측정 / 7 | 미측정 / 21 | 대기 |
+| 기본 ACT | 미측정 / 7 | 미측정 / 21 | 대기 |
+| Diffusion Policy | 미측정 / 7 | 미측정 / 21 | 대기 |
+| X-VLA | 미측정 / 7 | 미측정 / 21 | 대기 |
+| π0.5 | 미측정 / 7 | 미측정 / 21 | 자원 확인 대기 |
+
+기존 배포 SmolVLA(b84b15c7…)는 평가 21회도 학습에 사용한 참고 모델이다. 보존 영상에서 확인된 파란 바구니 투입은 3건으로, 그중 1건에서 앞선 실패 뒤 사람이 약통을 재배치했다. [세 실행 증거 검증](EVIDENCE_AUDIT.md)
+
+Jetson Orin에서 저장한 3대 카메라 RGB의 전처리부터 CPU 행동 반환까지 다시 측정했다. 16개 행동 청크당 평균/p95는 기본 MLP **6.43/7.11 ms**, 지시 MLP **6.06/6.34 ms**였다. 모델마다 400회 측정했고 카메라 촬영과 영상 파일 해독은 계측 범위 밖이다. [원시 측정](jetson_rgb_latency.json)
+
+참고 시험에서 기존 배포 SmolVLA의 지시 교체 후 요청한 방향과의 일치는 **11/42**였다. 원래 빨강·초록이었던 영상에서 파랑으로 지시를 교체한 결과는 **0/14**다. 이 값은 원래부터 파랑인 7회에서 파란 바구니를 향하는지를 묻는 평가와 분모·조건이 다르다. [교체 지시와 회차별 결과](historical_smolvla_prompt_check.json)
+
+기존 배포 SmolVLA의 Jetson 저장 RGB 지연은 50개 행동 청크당 평균 1,368.70 ms, p95 1,385.15 ms였다. 예열 10회 후 42회를 계측했다. 위 MLP 지연의 청크 길이는 16개다. [배포 모델 지연 원자료](historical_smolvla_jetson_rgb_latency.json)
+
+### 11월 22일 기준선 측정 기록
+
 **파란 바구니 입회 시험의 예비 후보는 영상·상태 + 바구니 지시 MLP다.** 학습을 마친 두 소형 정책 중 닫힘 시점의 팔 자세 오차가 1.90°로 작았고, Jetson 추론 p95는 1.23 ms였다. 반면 팔 전체 구간 오차와 닫힘 시각 오차는 지시 없는 정책이 더 작았다. 지시를 바꾸면서 색을 선택하는 시연에는 근거가 약하다. 같은 기록 영상·상태에서 지시 색만 바꾸면 새 바구니 방향을 맞힌 경우는 42개 중 1개였다.
 
 이 비교에서 학습과 평가를 마친 정책은 CPU용 소형 MLP 2종이다. 요청한 SmolVLA·ACT·Diffusion·π0.5·X-VLA의 정식 GPU 학습은 미실행이다. 운영 체크포인트와 이전 빨강·초록 체크포인트는 비교에서 제외했다. 로봇 쓰기 0회. [실행 상태](STATUS.md)
@@ -101,7 +140,27 @@ SmolVLA 계획은 원래 설정에서 batch 4, seed 101, 50-action chunk, denois
 - 정식 GPU 비교에는 접근 가능한 학습 GPU와 동일한 두 분리본이 필요하다. ACT·Diffusion·SmolVLA부터 자원에 맞춰 순차 학습하고, 대형 모델은 BF16과 VRAM 실측 후 진행한다. Jetson은 추론 전용으로 유지한다.
 - 예비 후보는 운영 실행기에 통합하지 않았다. 실제 시험에 앞서 3대 카메라 전처리를 포함한 종단 지연과 명령 범위를 저장 영상으로 확인한 뒤 운영자 입회하에 진행한다.
 
-### 재현
+### RTX 3060 큐 재현
+
+준비한 `mediflow-split101.tar`는 학습·평가 분리본과 one-hot 변형을 담는다. 영상이 같은 항목은 tar 내부 하드링크를 사용한다. SHA-256은 `11b6657537751e68d4a3bdc7d07ec2de214f197a3d423dd703a3f060541c6abc`이고 용량은 2,433,976,320바이트다. 배포 데이터와 체크포인트는 Git 추적 대상에서 제외했다.
+
+별도 비교 브랜치 체크아웃, LeRobot 0.6.2와 해당 정책 extras가 설치된 CUDA 환경에서 실행한다. 아래 예시는 학습 PC에 보관한 tar가 현재 디렉터리에 있고 `DATA_ROOT`가 새 데이터 폴더이며 `GPU_RUN_ROOT`가 저장소 밖의 실험 출력 폴더일 때 사용한다. 최초 1회 tar 해시를 검증하고 전개한다.
+
+```bash
+echo '11b6657537751e68d4a3bdc7d07ec2de214f197a3d423dd703a3f060541c6abc  mediflow-split101.tar' | sha256sum -c - && mkdir "$DATA_ROOT" && tar -xf mediflow-split101.tar -C "$DATA_ROOT"
+```
+
+아래 명령은 PID별 점유를 STATUS.md에 기록한다. 다른 계산 프로세스가 있으면 학습 명령 앞에서 멈춘다. 점유가 해소된 후 같은 명령으로 재개한다.
+
+```bash
+python lerobot_training/model_compare/gpu_audit.py --status reports/model_compare/STATUS.md --require-free && python lerobot_training/model_compare/train_queue.py "$DATA_ROOT" "$GPU_RUN_ROOT" --probe-steps 2 --max-hours 8 --status reports/model_compare/STATUS.md --models smolvla act_task act diffusion xvla pi05
+```
+
+학습을 중단해야 하는 경우에는 확인된 우리 학습 PID와 해당 작업의 정확한 `--output_dir`만 `gpu_audit.py --stop-stale-pid PID --run-dir DIR`에 지정한다. 단독 계산 PID·현재 사용자 소유·LeRobot 학습 명령·GPU 사용률 0% 표본·로그와 체크포인트 모두 10분 이상 경과를 재검사한다. 시스템·그래픽 또는 판정에 필요한 증거가 부족한 프로세스는 유지한다.
+
+각 모델의 `*.probe.json` 및 로그는 실측 스텝 시간·피크 VRAM 또는 실패를 기록한다. `train_metrics.csv`에는 매 업데이트의 loss·lr·grad_norm을, `validation_metrics.csv`에는 1,000스텝마다 평가 21회 전체의 모델 고유 loss와 물리 단위 MAE 6개를 기록한다. 모델 간 비교에는 공통 물리 지표를 사용한다. 모델별 8시간 예산에는 탐색·저장·검증을 포함한다.
+
+### 기존 기준선 재현
 
 프로젝트 루트에서 아래 명령을 사용한다. 대문자 인자는 로컬의 해당 경로다. DATA_ROOT와 RUN_ROOT는 체크포인트·원본이 커밋되지 않도록 저장소 밖에 둔다. Python 환경은 PyTorch, NumPy, PyArrow, PyAV를 제공해야 하며 공식 학습 큐는 해당 정책 extras가 있는 LeRobot 0.6.2와 CUDA가 필요하다.
 
@@ -109,7 +168,6 @@ SmolVLA 계획은 원래 설정에서 batch 4, seed 101, 50-action chunk, denois
 python lerobot_training/model_compare/prepare.py MANIFEST reports/model_compare/split.json --source ORIGINAL_V3 --dest DATA_ROOT/standard
 python lerobot_training/model_compare/prepare.py MANIFEST reports/model_compare/split.json --source ORIGINAL_V3 --dest DATA_ROOT/onehot --onehot
 python lerobot_training/model_compare/compact.py DATA_ROOT/standard RUN_ROOT --extract --status reports/model_compare/STATUS.md
-python lerobot_training/model_compare/train_queue.py DATA_ROOT GPU_RUN_ROOT --models act act_task diffusion smolvla pi05 xvla
 python lerobot_training/model_compare/evaluate.py act DATA_ROOT/standard GPU_RUN_ROOT PREDICTION_DIR
 ```
 
