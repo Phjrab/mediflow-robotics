@@ -1,6 +1,6 @@
 # SmolVLA 현재 상태
 
-11월 23일 18:00 현장 출력에서 Windows RTX 3060의 여유 VRAM은 11,628 MiB, GPU 사용률은 0%였다. 원격 SSH는 포트 응답을 확인했고 계정의 키 등록을 기다리고 있다. 비교 학습은 아직 시작 전이다. [프로세스별 기록](../../reports/model_compare/STATUS.md)
+11월 23일 18:23 KST에 Windows RTX 3060에서 학습 116회·평가 21회 분할로 SmolVLA 재학습을 시작했다. 배치 4에서 두 번째 시험 스텝은 0.299초였고, 최대 할당 VRAM은 2.56 GB였다. 평가 및 저장을 포함한 총시간은 아직 측정 중이다. [GPU 점유와 실측 기록](../../reports/model_compare/STATUS.md)
 
 ### 11월 23일 · 파란 바구니 후보 선정
 
