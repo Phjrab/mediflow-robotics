@@ -63,6 +63,10 @@ def run(args, trainer_args):
 
         snapshot = snapshot_download(args.base_repo, revision=args.base_revision)
         trainer_args.append(f"--policy.path={snapshot}")
+        if args.base_repo == "lerobot/xvla-base":
+            # All three basket prompts encode to 10 tokens. The base's 1024
+            # padding slots alone overflow its 512-position policy transformer.
+            trainer_args.append("--policy.tokenizer_max_length=64")
     train_csv = args.metrics/"train_metrics.csv"
     validation_csv = args.metrics/"validation_metrics.csv"
     split = json.loads((args.dataset/"split.json").read_bytes())
@@ -169,7 +173,17 @@ def run(args, trainer_args):
             staging.rename(target)
 
     def update_last(path):
-        original_update_last(path)
+        try:
+            original_update_last(path)
+        except OSError as exc:
+            if getattr(exc, "winerror", None) != 1314:
+                raise
+            # Limited Windows accounts may save models but cannot create symlinks.
+            # Queue resume discovers verified numbered directories independently.
+            pointer = path.parent / "last.txt"
+            temporary = pointer.with_suffix(".tmp")
+            temporary.write_text(path.name + "\n", encoding="utf-8")
+            temporary.replace(pointer)
         if stopped or time.monotonic() >= args.soft_deadline:
             raise DeadlineReached
         check_holdout(int(path.name), accelerator)
