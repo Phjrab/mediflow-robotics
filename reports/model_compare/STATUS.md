@@ -1,5 +1,28 @@
 # 모델별 학습 상태
 
+### 2026-11-23 18:00:52 KST · Windows 학습 PC 현장 출력
+
+운영자가 제공한 NVIDIA-SMI에서 RTX 3060 WDDM, 드라이버 616.92, CUDA UMD 13.4, 총 12,288 MiB 중 사용 660 MiB(차이 11,628 MiB), GPU 전체 사용률 0%, 34°C를 확인했다. 아래 19개 행은 전부 C+G였고 PID별 VRAM은 N/A, PID별 GPU 사용률은 미기록이다.
+
+| 프로세스 | PID |
+|---|---|
+| msedgewebview2.exe | 812, 10968 |
+| dwm.exe | 1384 |
+| ChatGPT.exe | 3512, 8008, 13032 |
+| SearchApp.exe | 3804, 10388 |
+| TextInputHost.exe | 4152 |
+| KakaoTalkUI.exe | 6088 |
+| chrome.exe | 6912, 19880 |
+| explorer.exe | 6956 |
+| SystemSettings.exe | 8144 |
+| codex-computer-use-swift.exe | 11396 |
+| ApCent.exe | 11488 |
+| copilotapp.exe | 13392 |
+| OneDrive.exe | 15064 |
+| ShellExperienceHost.exe | 15384 |
+
+표시된 GPU 프로세스에 Python·LeRobot은 없었다. 종료 0건. Tailscale 연결과 Windows SSH 포트 응답을 확인했고, 전용 공개키 로그인은 원격 계정의 키 등록 대기다. 학습 PC 관리자가 실행할 계정별 등록 파일을 해당 PC에 전달했다. 개인 키는 전송하지 않았다. SmolVLA 배치 4의 2스텝 시험과 20,000스텝 학습은 미시작이며 ETA는 미산정이다. 학습 시점에 GPU와 실제 Python/CUDA 환경을 다시 확인한다.
+
 ### 2026-11-23 · 직접 SSH 재시도와 실물 후보 정정
 
 실물 시험 1순위는 기존 배포 SmolVLA다. 투입 3건 중 실행 도중 재배치한 15:30을 제외해 2건을 채택했다. 두 MLP는 최소 기준선이다. [실행별 근거](EVIDENCE_AUDIT.md)

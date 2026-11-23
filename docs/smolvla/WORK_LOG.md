@@ -1,5 +1,9 @@
 # SmolVLA 누적 작업 일지
 
+## 2026-11-23 · Windows 학습 PC 점유 현황과 SSH 연결
+
+운영자의 18:00:52 NVIDIA-SMI 출력에서 GPU 사용 660/12,288 MiB, 이용률 0%와 C+G 프로세스 19개를 기록했다. 작업 PC에서 Tailscale을 통해 Windows SSH 응답을 확인했다. 대상 계정의 공개키 인증은 등록 대기 상태다. 프로세스 종료·학습 시작·로봇 쓰기 0회. [점유 기록](../../reports/model_compare/STATUS.md)
+
 ## 2026-11-23 · 실물 후보 정정 및 GPU 직접 접속
 
 세 실행의 Jetson 원본 READY·시작 이벤트와 커밋별 설정을 다시 읽었다. 15:30 실행은 READY 후 +52.813초·+54.013초에 사람이 약통에 닿아 집계에서 제외했다. 기존 배포 SmolVLA를 실물 시험 1순위로, MLP 두 종을 최소 기준선으로 기록한다. 직접 SSH와 Tailscale에서 chosun 이름을 찾지 못해 PID 조회·종료와 새 GPU 학습은 미실행이다. 로봇 쓰기 0회. [증거](../../reports/model_compare/EVIDENCE_AUDIT.md) · [학습 상태](../../reports/model_compare/STATUS.md)
