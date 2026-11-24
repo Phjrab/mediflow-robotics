@@ -1,5 +1,7 @@
 # SmolVLA 현재 상태
 
+11월 24일 13:15 KST에 SmolVLA 1,000스텝 검증(21회)이 완료됐다. 다음 학습 업데이트를 확인했고 13:16에 1,134스텝이었다. 첫 검증 소요 시간을 포함한 20,000스텝 예상 종료는 오늘 19시 전후다. [검증 수치와 시간 산출](../../reports/model_compare/STATUS.md)
+
 11월 24일 13:01 KST 기준 지시 ACT는 40,163스텝을 저장했고, 40,000스텝에서 전체 21회 평가를 마쳤다. SmolVLA는 1,000스텝 검증이 중단된 뒤 같은 체크포인트에서 재개했다. [야간 학습 기록](../../reports/model_compare/STATUS.md)
 
 11월 23일 19:41 KST에 SmolVLA 학습 큐를 1,000스텝에서 재개했다. SmolVLA, ACT 두 종, Diffusion의 1,000스텝 상태가 보존됐다. Windows의 최신 체크포인트 링크 오류 조치와 X-VLA의 패딩 설정을 실험용 학습기에 반영했다. [재개 기록](../../reports/model_compare/STATUS.md)
