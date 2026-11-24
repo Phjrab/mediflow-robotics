@@ -117,7 +117,8 @@ def run(args, trainer_args):
         return processors
 
     def check_holdout(step, active_accelerator):
-        if not step or step % 1000 or validation_recorded(validation_csv, step):
+        interval = 5000 if cfg.policy.type == "smolvla" else 1000
+        if not step or (step != args.target and step % interval) or validation_recorded(validation_csv, step):
             return
         if stopped or time.monotonic() >= args.soft_deadline:
             raise DeadlineReached
