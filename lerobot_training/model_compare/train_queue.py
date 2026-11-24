@@ -74,6 +74,7 @@ def execute(command, root, metrics, log_path, deadline, steps, initial=0, probe_
     with log_path.open("a", encoding="utf-8") as log:
         process = subprocess.Popen(worker + command, stdout=log, stderr=subprocess.STDOUT,
                                    env=dict(os.environ, PYTHONUNBUFFERED="1"), start_new_session=os.name == "posix",
+                                   creationflags=subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0,
                                    **inherited)
         timed_out = False
         try:

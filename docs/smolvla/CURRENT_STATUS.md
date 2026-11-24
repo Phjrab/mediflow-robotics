@@ -1,5 +1,7 @@
 # SmolVLA 현재 상태
 
+11월 24일 13:01 KST 기준 지시 ACT는 40,163스텝을 저장했고, 40,000스텝에서 전체 21회 평가를 마쳤다. SmolVLA는 1,000스텝 검증이 중단된 뒤 같은 체크포인트에서 재개했다. [야간 학습 기록](../../reports/model_compare/STATUS.md)
+
 11월 23일 19:41 KST에 SmolVLA 학습 큐를 1,000스텝에서 재개했다. SmolVLA, ACT 두 종, Diffusion의 1,000스텝 상태가 보존됐다. Windows의 최신 체크포인트 링크 오류 조치와 X-VLA의 패딩 설정을 실험용 학습기에 반영했다. [재개 기록](../../reports/model_compare/STATUS.md)
 
 11월 23일 18:23 KST에 Windows RTX 3060에서 학습 116회·평가 21회 분할로 SmolVLA 재학습을 시작했다. 배치 4에서 두 번째 시험 스텝은 0.299초였고, 최대 할당 VRAM은 2.56 GB였다. 평가 및 저장을 포함한 총시간은 아직 측정 중이다. [GPU 점유와 실측 기록](../../reports/model_compare/STATUS.md)
