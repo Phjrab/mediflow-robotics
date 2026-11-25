@@ -51,6 +51,60 @@ def replay_horizon(cfg):
     return horizon
 
 
+def verify_native_xvla(dataset, checkpoint, cfg, rename):
+    """Validate the original trained processor path used for CUDA replay only."""
+    from safetensors.torch import load_file
+    from xvla_adapter import JOINTS
+
+    expected_cameras = ("observation.images.image", "observation.images.image2", "observation.images.image3")
+    expected_rename = dict(zip(("observation.images."+view for view in RAW_VIEWS), expected_cameras, strict=True))
+    cfg_json = json.loads((checkpoint/"config.json").read_bytes())
+    if (cfg_json["type"] != "xvla" or cfg.action_mode != "auto" or cfg.max_action_dim != 20
+        or cfg.n_obs_steps != 1 or cfg.num_image_views != 3 or not cfg.use_proprio
+        or tuple(cfg.image_features) != expected_cameras or rename != expected_rename
+        or cfg_json["input_features"]["observation.state"]["shape"] != [6]
+        or cfg_json["output_features"]["action"]["shape"] != [6]):
+        raise ValueError("X-VLA trained three-camera auto action space does not match the replay contract")
+    expected_norms = {"STATE": "IDENTITY", "ACTION": "MEAN_STD", "VISUAL": "IDENTITY"}
+    if cfg_json["normalization_mapping"] != expected_norms:
+        raise ValueError("X-VLA action or state normalization differs from training")
+    for fold in ("train", "eval"):
+        info = json.loads((dataset/fold/"meta/info.json").read_bytes())
+        if info["fps"] != 30 or any(
+            info["features"][key]["names"] != list(JOINTS)
+            or info["features"][key]["shape"] != [6] or info["features"][key]["dtype"] != "float32"
+            for key in ("action", "observation.state")
+        ):
+            raise ValueError(f"X-VLA joint order or timeline differs in {fold}")
+    train_stats = json.loads((dataset/"train/meta/stats.json").read_bytes())["action"]
+    checksums = {}
+    for processor, step_name in (("pre", "normalizer_processor"), ("post", "unnormalizer_processor")):
+        definition = checkpoint/f"policy_{processor}processor.json"
+        document = json.loads(definition.read_bytes())
+        step, = [s for s in document["steps"] if s["registry_name"] == step_name]
+        if step["config"]["norm_map"] != expected_norms or step["config"]["features"]["action"]["shape"] != [6]:
+            raise ValueError(f"Unexpected X-VLA {processor}processor normalization contract")
+        if processor == "pre":
+            stages = {stage["registry_name"]: stage["config"] for stage in document["steps"]}
+            if (stages["rename_observations_processor"]["rename_map"] not in ({}, expected_rename)
+                or stages["xvla_add_domain_id"]["domain_id"] != 0
+                or stages["tokenizer_processor"]["task_key"] != "task"
+                or any(stages[key]["image_keys"] not in (None, list(expected_cameras))
+                       for key in ("xvla_image_to_float", "xvla_imagenet_normalize"))):
+                raise ValueError("Saved X-VLA image, task, or domain processor differs from training")
+        stats_file = checkpoint/step["state_file"]
+        saved_stats = load_file(str(stats_file), device="cpu")
+        for stat in ("mean", "std"):
+            actual = saved_stats["action."+stat]
+            expected = torch.tensor(train_stats[stat], dtype=actual.dtype)
+            if actual.shape != (6,) or not torch.isfinite(actual).all() or not torch.equal(actual, expected):
+                raise ValueError(f"X-VLA {processor}processor {stat} differs from train-only statistics")
+        checksums.update({definition.name: digest(definition), stats_file.name: digest(stats_file)})
+    return dict(path="native_lerobot_offline", joint_order=JOINTS, camera_rename=expected_rename,
+                action_normalization="MEAN_STD", state_normalization="IDENTITY", domain_id=0,
+                processor_sha256=checksums), train_stats
+
+
 class ReplayPolicy:
     def __init__(self, args, checkpoint, mode="chunk"):
         from lerobot.configs.policies import PreTrainedConfig
@@ -60,6 +114,7 @@ class ReplayPolicy:
         self.device = args.device
         self.adapter = None
         self.policy = None
+        self.offline_contract = None
         self.weight_sha = digest(checkpoint/"model.safetensors")
         source = json.loads((checkpoint/"train_config.json").read_bytes())
         cfg = PreTrainedConfig.from_pretrained(checkpoint)
@@ -75,15 +130,19 @@ class ReplayPolicy:
                 raise ValueError("Temporal ensembling is supported for ACT only")
             cfg.temporal_ensemble_coeff = 0.01
             cfg.n_action_steps = 1
-        if args.model == "xvla":
+        if args.model == "xvla" and not args.xvla_native:
             from round2.xvla_bundle import load_cpu_bundle
 
             if not args.bundle or not args.approved_sha or self.device != "cpu":
-                raise ValueError("X-VLA requires the corrected round2 CPU decoder and an approved bundle")
+                raise ValueError("X-VLA requires an approved CPU bundle or --xvla-native for offline CUDA replay")
             if digest(args.bundle/"checkpoint/model.safetensors") != self.weight_sha:
                 raise ValueError("X-VLA bundle weights differ from the final checkpoint")
             self.adapter = load_cpu_bundle(args.bundle, args.approved_sha)
             return
+        if args.xvla_native:
+            if args.model != "xvla" or args.device != "cuda" or args.bundle or args.approved_sha:
+                raise ValueError("--xvla-native is for CUDA X-VLA replay without a deployment bundle")
+            self.offline_contract, native_stats = verify_native_xvla(args.dataset, checkpoint, cfg, self.rename)
         self.policy = get_policy_class(cfg.type).from_pretrained(checkpoint, config=cfg).to(self.device).eval()
         self.pre, self.post = make_pre_post_processors(
             cfg, str(checkpoint),
@@ -91,6 +150,14 @@ class ReplayPolicy:
                                     "rename_observations_processor": {"rename_map": self.rename}},
             postprocessor_overrides={"device_processor": {"device": "cpu"}},
         )
+
+        if self.offline_contract:
+            mean = torch.tensor(native_stats["mean"], dtype=torch.float32)
+            std = torch.tensor(native_stats["std"], dtype=torch.float32)
+            probe = torch.stack((torch.zeros_like(mean), torch.ones_like(mean))).unsqueeze(0).to(self.device)
+            decoded = self.post(probe).cpu()
+            torch.testing.assert_close(decoded, torch.stack((mean, mean+std)).unsqueeze(0))
+            self.offline_contract["unnormalizer_zero_and_one_probe"] = "matched_train_stats"
 
     def reset(self):
         if self.policy is not None:
@@ -183,6 +250,8 @@ def evaluate(args):
                       split_sha256=digest(root/"split.json"),
                       heldout_for_this_model=not historical, open_loop_horizon=horizon,
                       checkpoint_step=step, target_steps=target)
+    if replay.offline_contract:
+        provenance["xvla_offline_contract"] = replay.offline_contract
     start, swapped = 0, []
     with torch.inference_mode():
         for episode_index, row in enumerate(rows):
@@ -225,6 +294,7 @@ def evaluate(args):
             if not args.prompt_only:
                 np.save(args.output/f"episode_{episode}.npy", np.concatenate(predictions), allow_pickle=False)
             start += length
+            print(f"{args.model} step {step}: episode {episode_index+1}/{len(rows)} (id {episode})", flush=True)
     if not args.skip_prompt_check:
         if len(swapped) != 42:
             raise ValueError("Expected 42 swapped prompts")
@@ -246,6 +316,7 @@ def add_policy_arguments(parser):
     parser.add_argument("--checkpoint", type=Path, help="Explicit historical SmolVLA checkpoint")
     parser.add_argument("--bundle", type=Path)
     parser.add_argument("--approved-sha")
+    parser.add_argument("--xvla-native", action="store_true", help="Use the verified training processor path for offline CUDA X-VLA replay")
 
 
 if __name__ == "__main__":

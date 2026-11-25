@@ -1,5 +1,7 @@
 # SmolVLA 현재 상태
 
+11월 25일에 공식 정책 다섯 종의 마지막 저장 가중치로 파랑 7회와 전체 21회 평가를 마쳤다. 파랑에서 기본 ACT의 닫힘 시각 MAE는 0.271초, 닫힘 자세 MAE는 1.533°다. [기본 ACT 회차별 결과](../../reports/model_compare/act/metrics_blue.json) · [파랑 집기 지표](../../reports/model_compare/07_blue_grasp.png)
+
 11월 25일 13:30 KST에 마지막 모델 X-VLA가 20,000스텝과 최종 검증을 완료했다. 기본 ACT와 Diffusion은 각각 40,244·12,194스텝을 저장하고 시간 한도로 종료했다. [모델별 종료 기록](../../reports/model_compare/STATUS.md)
 
 11월 24일 15:57 KST에 비교용 SmolVLA가 20,000스텝 학습과 최종 검증을 완료했다. 전체 평가 21회에서 최종 팔 5축 평균 MAE는 2.545°, 그리퍼 MAE는 3.126점이다. 다음 모델인 기본 ACT의 학습이 진행 중이다. [학습 완료 기록](../../reports/model_compare/STATUS.md)

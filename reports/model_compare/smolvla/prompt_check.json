@@ -1,0 +1,309 @@
+{
+  "model": "smolvla",
+  "weight_sha256": "765908e3ccb3c087c1eb9841248489f2cee320f849ba2272d7d2eb205ad8bcff",
+  "historical": false,
+  "split_sha256": "9c97855b7abf137a5ca50d9af291b7f06556b6cd4b262f71f5bbdda7b8a13ff1",
+  "heldout_for_this_model": true,
+  "open_loop_horizon": 16,
+  "checkpoint_step": 20000,
+  "target_steps": 20000,
+  "matches": 12,
+  "n": 42,
+  "eligible": 42,
+  "rows": [
+    {
+      "episode": 3,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "red",
+      "arm_change_mae_deg": 4.260209083557129
+    },
+    {
+      "episode": 3,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.22145938873291
+    },
+    {
+      "episode": 12,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "green",
+      "arm_change_mae_deg": 5.438313007354736
+    },
+    {
+      "episode": 12,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 5.922390460968018
+    },
+    {
+      "episode": 22,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "red",
+      "arm_change_mae_deg": 4.481999397277832
+    },
+    {
+      "episode": 22,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.988260746002197
+    },
+    {
+      "episode": 29,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.152721881866455
+    },
+    {
+      "episode": 29,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.65860652923584
+    },
+    {
+      "episode": 32,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.6015777587890625
+    },
+    {
+      "episode": 32,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.816074848175049
+    },
+    {
+      "episode": 34,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "green",
+      "arm_change_mae_deg": 3.9759981632232666
+    },
+    {
+      "episode": 34,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 3.995335340499878
+    },
+    {
+      "episode": 37,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "red",
+      "arm_change_mae_deg": 4.5941481590271
+    },
+    {
+      "episode": 37,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.121755599975586
+    },
+    {
+      "episode": 61,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "red",
+      "arm_change_mae_deg": 4.768096446990967
+    },
+    {
+      "episode": 61,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 2.006117343902588
+    },
+    {
+      "episode": 62,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "red",
+      "arm_change_mae_deg": 5.594725131988525
+    },
+    {
+      "episode": 62,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 1.9942647218704224
+    },
+    {
+      "episode": 66,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "red",
+      "arm_change_mae_deg": 6.7052435874938965
+    },
+    {
+      "episode": 66,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 1.899513602256775
+    },
+    {
+      "episode": 69,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "red",
+      "arm_change_mae_deg": 5.177549839019775
+    },
+    {
+      "episode": 69,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 2.561445713043213
+    },
+    {
+      "episode": 79,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "red",
+      "arm_change_mae_deg": 5.6981940269470215
+    },
+    {
+      "episode": 79,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 1.7508502006530762
+    },
+    {
+      "episode": 86,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "red",
+      "arm_change_mae_deg": 5.013216972351074
+    },
+    {
+      "episode": 86,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 2.6601037979125977
+    },
+    {
+      "episode": 92,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.951018333435059
+    },
+    {
+      "episode": 92,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 2.063093662261963
+    },
+    {
+      "episode": 97,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 5.659477710723877
+    },
+    {
+      "episode": 97,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "green",
+      "arm_change_mae_deg": 3.5637450218200684
+    },
+    {
+      "episode": 98,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 5.735771179199219
+    },
+    {
+      "episode": 98,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.037479877471924
+    },
+    {
+      "episode": 103,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 5.6260480880737305
+    },
+    {
+      "episode": 103,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "blue",
+      "arm_change_mae_deg": 3.107215642929077
+    },
+    {
+      "episode": 105,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.355238437652588
+    },
+    {
+      "episode": 105,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "blue",
+      "arm_change_mae_deg": 3.543003797531128
+    },
+    {
+      "episode": 109,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 5.199382305145264
+    },
+    {
+      "episode": 109,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "blue",
+      "arm_change_mae_deg": 4.0556111335754395
+    },
+    {
+      "episode": 121,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 5.522707462310791
+    },
+    {
+      "episode": 121,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "blue",
+      "arm_change_mae_deg": 3.3462281227111816
+    },
+    {
+      "episode": 136,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 5.52358865737915
+    },
+    {
+      "episode": 136,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "blue",
+      "arm_change_mae_deg": 4.545799732208252
+    }
+  ]
+}

@@ -17,6 +17,7 @@ MODELS = ("rgb_mlp", "rgb_mlp_task")
 LABELS = ("영상·상태", "영상·상태 + 지시")
 COLORS = ("#24678D", "#B84F30")
 GRAY = "#263849"
+OFFLINE_NOTE = "저장 영상 오프라인 평가, 실물 성공률 아님"
 
 
 def read(p):
@@ -45,8 +46,7 @@ def render(data, runs, report, font):
     estimates = [np.load(runs/m/f"episode_{rep}.npy") for m in MODELS]
     t = np.arange(len(truth))/30
     def save(f, name):
-        f.savefig(report/(name+".png"),dpi=300,bbox_inches="tight",pad_inches=.22)
-        plt.close(f)
+        save_figure(f, report, name)
     def mae(ax):
         x = np.arange(5)
         for i,s in enumerate(scores):
@@ -105,6 +105,7 @@ def series(path, field):
 
 
 def save_figure(fig, report, name):
+    fig.text(.01, -.035, OFFLINE_NOTE, fontsize=10, color=GRAY, ha="left", va="top")
     fig.savefig(report/(name+".png"), dpi=300, facecolor="white", bbox_inches="tight", pad_inches=.22)
     plt.close(fig)
 
@@ -128,8 +129,13 @@ def render_csv_curves(runs, report):
         for data, color, name in ((train, COLORS[0], "학습"), (val, COLORS[1], "검증")):
             if data:
                 x, y = zip(*data)
-                ax.plot(x, y, color=color, linewidth=1.45, label=name,
+                dense_train = name == "학습" and len(x) > 1000
+                ax.plot(x, y, color=color, linewidth=.55 if dense_train else 1.45,
+                        alpha=.28 if dense_train else 1, label=name,
                         marker="o" if len(x) <= 100 else None, markersize=3)
+                if dense_train:
+                    smooth = np.convolve(y, np.ones(200)/200, mode="valid")
+                    ax.plot(x[199:], smooth, linewidth=1.3, color=color, label="학습 200스텝 평균")
         if all(value > 0 for _, value in train+val):
             ax.set_yscale("log")
             ax.yaxis.set_major_formatter(FuncFormatter(lambda value, _: f"{value:g}"))

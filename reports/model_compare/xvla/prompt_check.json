@@ -1,0 +1,335 @@
+{
+  "model": "xvla",
+  "weight_sha256": "04a7aac7749f40bdbd0c1ebd419d34d10e824b414c35ff71bb09583990a64c6d",
+  "historical": false,
+  "split_sha256": "9c97855b7abf137a5ca50d9af291b7f06556b6cd4b262f71f5bbdda7b8a13ff1",
+  "heldout_for_this_model": true,
+  "open_loop_horizon": 16,
+  "checkpoint_step": 20000,
+  "target_steps": 20000,
+  "xvla_offline_contract": {
+    "path": "native_lerobot_offline",
+    "joint_order": [
+      "shoulder_pan.pos",
+      "shoulder_lift.pos",
+      "elbow_flex.pos",
+      "wrist_flex.pos",
+      "wrist_roll.pos",
+      "gripper.pos"
+    ],
+    "camera_rename": {
+      "observation.images.end_effector": "observation.images.image",
+      "observation.images.ceiling_vertical": "observation.images.image2",
+      "observation.images.ceiling_oblique": "observation.images.image3"
+    },
+    "action_normalization": "MEAN_STD",
+    "state_normalization": "IDENTITY",
+    "domain_id": 0,
+    "processor_sha256": {
+      "policy_preprocessor.json": "641ccdcbd45c7234ff663316ffa62f58dac92c2b91fc5976f56a245183f8367f",
+      "policy_preprocessor_step_7_normalizer_processor.safetensors": "3c02e7abf0409a323422be0619cc5ca263334655b747ce11770506492a854468",
+      "policy_postprocessor.json": "b535ff00a555fa908494d49aebf630310f6ce1b50dbf91f79dd64e31eb7fccf3",
+      "policy_postprocessor_step_0_unnormalizer_processor.safetensors": "3c02e7abf0409a323422be0619cc5ca263334655b747ce11770506492a854468"
+    },
+    "unnormalizer_zero_and_one_probe": "matched_train_stats"
+  },
+  "matches": 2,
+  "n": 42,
+  "eligible": 42,
+  "rows": [
+    {
+      "episode": 3,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "red",
+      "arm_change_mae_deg": 1.1103872060775757
+    },
+    {
+      "episode": 3,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "red",
+      "arm_change_mae_deg": 1.2552965879440308
+    },
+    {
+      "episode": 12,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.051499366760254
+    },
+    {
+      "episode": 12,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.217090129852295
+    },
+    {
+      "episode": 22,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "red",
+      "arm_change_mae_deg": 2.8987722396850586
+    },
+    {
+      "episode": 22,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "red",
+      "arm_change_mae_deg": 3.2835848331451416
+    },
+    {
+      "episode": 29,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "red",
+      "arm_change_mae_deg": 2.403447151184082
+    },
+    {
+      "episode": 29,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "red",
+      "arm_change_mae_deg": 2.6832990646362305
+    },
+    {
+      "episode": 32,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "red",
+      "arm_change_mae_deg": 3.2873153686523438
+    },
+    {
+      "episode": 32,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "red",
+      "arm_change_mae_deg": 3.7914087772369385
+    },
+    {
+      "episode": 34,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "red",
+      "arm_change_mae_deg": 2.6293435096740723
+    },
+    {
+      "episode": 34,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "red",
+      "arm_change_mae_deg": 2.98942232131958
+    },
+    {
+      "episode": 37,
+      "recorded": "red",
+      "requested": "green",
+      "nearest": "red",
+      "arm_change_mae_deg": 0.8006724119186401
+    },
+    {
+      "episode": 37,
+      "recorded": "red",
+      "requested": "blue",
+      "nearest": "red",
+      "arm_change_mae_deg": 0.898440957069397
+    },
+    {
+      "episode": 61,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 6.351772308349609
+    },
+    {
+      "episode": 61,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 0.4438694715499878
+    },
+    {
+      "episode": 62,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "red",
+      "arm_change_mae_deg": 4.688131332397461
+    },
+    {
+      "episode": 62,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 0.24599070847034454
+    },
+    {
+      "episode": 66,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 3.5897903442382812
+    },
+    {
+      "episode": 66,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 0.19021980464458466
+    },
+    {
+      "episode": 69,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.63008975982666
+    },
+    {
+      "episode": 69,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 0.18382374942302704
+    },
+    {
+      "episode": 79,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 5.190247535705566
+    },
+    {
+      "episode": 79,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 0.1512243002653122
+    },
+    {
+      "episode": 86,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 4.678855895996094
+    },
+    {
+      "episode": 86,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 0.19732791185379028
+    },
+    {
+      "episode": 92,
+      "recorded": "green",
+      "requested": "red",
+      "nearest": "green",
+      "arm_change_mae_deg": 5.157681465148926
+    },
+    {
+      "episode": 92,
+      "recorded": "green",
+      "requested": "blue",
+      "nearest": "green",
+      "arm_change_mae_deg": 0.34848764538764954
+    },
+    {
+      "episode": 97,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "blue",
+      "arm_change_mae_deg": 2.958812952041626
+    },
+    {
+      "episode": 97,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "blue",
+      "arm_change_mae_deg": 0.28991109132766724
+    },
+    {
+      "episode": 98,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "blue",
+      "arm_change_mae_deg": 2.640507459640503
+    },
+    {
+      "episode": 98,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "blue",
+      "arm_change_mae_deg": 0.37733200192451477
+    },
+    {
+      "episode": 103,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "blue",
+      "arm_change_mae_deg": 3.476618766784668
+    },
+    {
+      "episode": 103,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "blue",
+      "arm_change_mae_deg": 0.671683132648468
+    },
+    {
+      "episode": 105,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "blue",
+      "arm_change_mae_deg": 2.114741325378418
+    },
+    {
+      "episode": 105,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "blue",
+      "arm_change_mae_deg": 0.39891690015792847
+    },
+    {
+      "episode": 109,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "blue",
+      "arm_change_mae_deg": 2.8219542503356934
+    },
+    {
+      "episode": 109,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "blue",
+      "arm_change_mae_deg": 0.4214964210987091
+    },
+    {
+      "episode": 121,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "blue",
+      "arm_change_mae_deg": 2.9387547969818115
+    },
+    {
+      "episode": 121,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "blue",
+      "arm_change_mae_deg": 0.45733195543289185
+    },
+    {
+      "episode": 136,
+      "recorded": "blue",
+      "requested": "red",
+      "nearest": "blue",
+      "arm_change_mae_deg": 2.5953354835510254
+    },
+    {
+      "episode": 136,
+      "recorded": "blue",
+      "requested": "green",
+      "nearest": "blue",
+      "arm_change_mae_deg": 0.4208764135837555
+    }
+  ]
+}
