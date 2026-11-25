@@ -1,0 +1,99 @@
+--- record.py
++++ record.py
+@@ -35 +35,2 @@
+-from .utils.config import setup_calibration_files, with_lelab_tag
++from .utils.config import with_lelab_tag
++from record_guard import RecordingSession, RecordingStopped, existing_calibration_names as setup_calibration_files
+@@ -346 +347 @@
+-        recording_thread = threading.Thread(target=recording_worker, name="recording-worker", daemon=True)
++        recording_thread = threading.Thread(target=recording_worker, name="recording-worker", daemon=False)
+@@ -738,9 +738,0 @@
+-    # Bring the devices up in the same order as teleoperation: buses, then
+-    # calibration, then cameras and motor configuration.
+-    #
+-    # `robot.connect()` can't be used here. It prompts on stdin when the motors
+-    # disagree with the calibration file (EOFError under the server), and it
+-    # ends with configure(), which leaves torque enabled — writing the
+-    # calibration registers afterwards corrupts the bus a few seconds into the
+-    # recording loop.
+-    # Start with episode 1 - but track it properly
+@@ -748,5 +740,2 @@
+-    saved_episodes = 0  # Track how many episodes we've actually saved
+-
+-    # Setup runs inside the same try as the recording loop: a failure partway
+-    # through it still leaves buses and cameras open, and the teardown below is
+-    # what frees them for the next attempt (see issue #50).
++    saved_episodes = 0
++    guard = RecordingSession(robot, teleop, dataset_id=cfg.dataset.repo_id, events=web_events)
+@@ -754,42 +743,3 @@
+-        logger.info("RECORD_CONTEXT hardware_setup_start thread=%s", threading.current_thread().name)
+-        try:
+-            logger.info("🔧 ROBOT CONNECTION: Attempting to connect robot...")
+-            robot.bus.connect()
+-            logger.info("✅ ROBOT CONNECTION: Robot bus connected successfully")
+-        except Exception as e:
+-            logger.error(f"❌ ROBOT CONNECTION: Failed to connect robot: {e}")
+-            raise
+-
+-        if teleop is not None:
+-            try:
+-                logger.info("🔧 TELEOP CONNECTION: Attempting to connect teleoperator...")
+-                teleop.bus.connect()
+-                logger.info("✅ TELEOP CONNECTION: Teleoperator bus connected successfully")
+-            except Exception as e:
+-                logger.error(f"❌ TELEOP CONNECTION: Failed to connect teleoperator: {e}")
+-                raise
+-
+-        # Torque is still disabled at this point, which is what writing the
+-        # calibration registers requires.
+-        logger.info("Writing calibration to motors...")
+-        robot.bus.write_calibration(robot.calibration)
+-        if teleop is not None:
+-            teleop.bus.write_calibration(teleop.calibration)
+-
+-        try:
+-            logger.info("🔧 CAMERA CONNECTION: Connecting cameras...")
+-            for cam in robot.cameras.values():
+-                cam.connect()
+-            logger.info("✅ CAMERA CONNECTION: Cameras connected successfully")
+-        except Exception as e:
+-            logger.error(f"❌ CAMERA CONNECTION: Failed to connect cameras: {e}")
+-            logger.error("💡 Make sure frontend camera streams are released before recording")
+-            raise
+-
+-        logger.info("Configuring motors...")
+-        robot.configure()
+-        if teleop is not None:
+-            teleop.configure()
+-        logger.info("✅ Devices ready")
+-        logger.info("RECORD_CONTEXT devices_ready thread=%s", threading.current_thread().name)
+-
++        if web_events["stop_recording"]:
++            raise RuntimeError("Recording cancelled before setup")
++        guard.start()
+@@ -802 +752 @@
+-        while saved_episodes < cfg.dataset.num_episodes:
++        while saved_episodes < cfg.dataset.num_episodes and not web_events["stop_recording"]:
+@@ -832,0 +783,2 @@
++            if web_events["stop_recording"]:
++                break
+@@ -980,0 +933,3 @@
++    except RecordingStopped:
++        current_phase = "completed"
++        phase_start_time = None
+@@ -986,4 +941,2 @@
+-            # Writes the parquet footers for meta/episodes/. Without it the
+-            # dataset is invalid on disk, so reopening it (upload,
+-            # /dataset-info) misses meta/episodes and falls back to downloading
+-            # from the Hub — which 404s for a dataset that was never pushed.
++            guard.close()
++        finally:
+@@ -991,8 +943,0 @@
+-        finally:
+-            # safe_disconnect_device force-releases the serial port / cameras if
+-            # a normal disconnect fails, so a flaky teardown can't leave the
+-            # device busy and block the next recording session (see issue #50).
+-            # Nested so a failed finalize can't strand the hardware.
+-            safe_disconnect_device(robot, logger, context="recording cleanup")
+-            if teleop:
+-                safe_disconnect_device(teleop, logger, context="recording cleanup")
