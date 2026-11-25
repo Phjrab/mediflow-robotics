@@ -9,10 +9,29 @@ export LD_LIBRARY_PATH="$HOME/smolvla-cusparselt-W9m8A2/libcusparse_lt-linux-aar
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 mode=--dry-run
 episode_replay=0
+policy_name=
+expect_policy=0
 for argument in "$@"; do
+    if (( expect_policy )); then
+        policy_name=$argument
+        expect_policy=0
+    else
+        case "$argument" in
+            --policy|--policy=*)
+                [[ -z $policy_name ]] || { echo '정책을 한 번만 지정하세요' >&2; exit 2; }
+                if [[ $argument == --policy ]]; then expect_policy=1; else policy_name=${argument#*=}; fi
+                [[ $argument != --policy= ]] || exit 2 ;;
+        esac
+    fi
     case "$argument" in --live|--dry-run|--mock|--simulate|--policy-check|--offline-eval|--camera-check|--recorded-replay) mode=$argument;; esac
     case "$argument" in --replay|--replay=*) episode_replay=1;; esac
 done
+(( ! expect_policy )) || { echo '정책 이름이 필요합니다' >&2; exit 2; }
+case "$policy_name" in
+    ''|smolvla) ;;
+    act) exec "$py" -B "$here/entry.py" "$@" ;;
+    *) echo '지원 정책: smolvla, act' >&2; exit 2 ;;
+esac
 if [[ ( $mode == --live || $mode == --recorded-replay ) && ${SO101_IN_TMUX-} != 1 ]]; then
     command -v tmux >/dev/null || { echo 'tmux 미설치'; exit 2; }
     launch=$(mktemp -d "$root/runs/LAUNCH_XXXXXXXX")

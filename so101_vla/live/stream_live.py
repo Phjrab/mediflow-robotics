@@ -228,7 +228,7 @@ def prime_policy(io, policy, pool, log, monitor=None):
             raise base.Stop('정책 추론 응답 시간 초과')
         pause(.02)
     actions, seconds = job.result()
-    chunk = base.chunk(actions)
+    chunk = getattr(policy, 'validate_chunk', base.chunk)(actions)
     # Re-check before READY; a completed worker is not a health certificate.
     io.checked()
     log(dict(event='policy_prime', wall_s=clock()-began, inference_s=seconds,
@@ -248,14 +248,14 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
     last_send = None
     last_packet_at = last_wire_raw = None
     gap_gripper_packets = 0
-    hz = CONTROL_HZ
+    hz = getattr(policy, 'control_hz', CONTROL_HZ)
     estimate = getattr(policy, 'warm_rtc_estimate', 1.5)
     inferences = []
     waits = []
     periods = []
     underrun = None
     count = 0
-    max_steps = math.ceil(duration * CONTROL_HZ)
+    max_steps = math.ceil(duration * hz)
     job = None
     last_origin = -1
     missing_since = None
@@ -373,7 +373,7 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                     timing.inference(seconds)
                     inferences.append(seconds)
                     estimate = max(seconds, estimate * 0.85)
-                    incoming = base.chunk(actions)
+                    incoming = getattr(policy, 'validate_chunk', base.chunk)(actions)
                     expired, usable = chunk_alignment(origin, seconds, request_rate, first_unused, moving=request_moving)
                     skip = usable - origin
                     # An expired chunk cannot bridge the current playback cursor. Refresh
@@ -409,8 +409,8 @@ def stream(io, policy, log, duration, speed=DEFAULT_SPEED, monitor=None, allow_c
                          'first_unused_at_delivery': first_unused,
                          'skipped_actions': skip, 'discarded': discarded,
                          'blend_max_delta': blend_delta})
-                    if seconds * rate * 1.1 > 50:
-                        rate = min(rate, 50 / (seconds * 1.1))
+                    if seconds * rate * 1.1 > len(incoming):
+                        rate = min(rate, len(incoming) / (seconds * 1.1))
                         log({'event':'playback_rate_reduced','requested_speed':speed,'actual_playback_hz':rate})
                     job = None
                 if job is not None and tick_started - requested > 9:

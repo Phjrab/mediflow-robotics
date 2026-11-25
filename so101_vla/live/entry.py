@@ -50,6 +50,12 @@ def main():
     p.add_argument('--web-corrections',action='store_true')
     p.add_argument('--taught-forward',type=Path)
     p.add_argument('--mode',choices=('legacy','raw'),default='legacy')
+    p.add_argument('--policy', choices=('smolvla', 'act'), default='smolvla')
+    p.add_argument('--act-checkpoint', type=Path)
+    act_source = p.add_mutually_exclusive_group()
+    act_source.add_argument('--act-recorded-inputs', type=Path, help='사전 추출한 세 카메라의 RGB 사용')
+    act_source.add_argument('--act-alignment-preview', action='store_true', help='실행 중인 정렬 서비스의 최신 3카메라 JPEG를 읽기만 함')
+    p.add_argument('--n-action-steps', type=int, choices=(25, 50, 100))
     p.add_argument('--replay', type=int, metavar='EPISODE', help='선택된 시연 action을 정책 없이 한 번 재생')
     p.add_argument('--vel-limit', choices=('data',), help='학습 p99 속도에 재생 배율을 적용')
     p.add_argument('--assist-grasp', action='store_true', help='집기 직전 자세를 최대 5도 보조')
@@ -58,6 +64,16 @@ def main():
     p.add_argument('--smooth-reversals', action='store_true', help='어깨 들기와 팔꿈치의 짧은 목표 반전을 최대 11틱 완화')
     args=p.parse_args()
     if not 0<args.speed<=1 or not 0<args.duration<=3600:p.error('속도·시간 범위 오류')
+    if args.policy == 'act':
+        if (not args.dry_run or args.mode != 'legacy' or args.act_checkpoint is None
+                or args.execute or args.operator_present or args.replay is not None or args.release
+                or args.web_corrections or args.taught_forward or args.vel_limit or args.assist_grasp
+                or args.reject_stale_home or args.precollect or args.smooth_reversals):
+            p.error('ACT 사전 검증은 --mode legacy --dry-run --act-checkpoint 경로로 실행하세요')
+        from act_dry import run
+        return run(args)
+    if args.act_checkpoint or args.act_recorded_inputs or args.act_alignment_preview or args.n_action_steps is not None:
+        p.error('ACT 전용 인자에는 --policy act가 필요합니다')
     options = {}
     if args.smooth_reversals:
         options['smooth_reversals'] = True
