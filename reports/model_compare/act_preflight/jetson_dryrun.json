@@ -1,0 +1,264 @@
+{
+  "policy": "act",
+  "checkpoint_step": 40244,
+  "weights_sha256": "9d15fc76c78db184036b88485e7db4091d8f9e7b82563dac6cbc93a65851b304",
+  "prefix_actions": 25,
+  "native_chunk_actions": 100,
+  "requested_duration_s": 60,
+  "speed": 0.5,
+  "target_control_hz": 30,
+  "entrypoint": "bash live/run.sh --policy act --dry-run --act-checkpoint <checkpoint-dir> --n-action-steps 25 --speed 0.5 --duration 60",
+  "isolated_checkout": true,
+  "forbidden_service_commands_invoked": 0,
+  "physical_motor_writes": 0,
+  "direct_camera": {
+    "status": "HOLD",
+    "passed": false,
+    "frame_source": "camera",
+    "joint_source": "SimulatedArm",
+    "physical_motor_writes": 0,
+    "verified_weight_sha256": "9d15fc76c78db184036b88485e7db4091d8f9e7b82563dac6cbc93a65851b304",
+    "reason": "Stop: end_effector 카메라 열기 실패: Failed to open MeteredCamera(<configured video-device alias>).Run `lerobot-find-cameras opencv` to find available cameras.",
+    "phase": "before READY",
+    "failing_role": "end_effector",
+    "opencv_messages": [
+      "[ WARN:0@3.407] global cap.cpp:215 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name",
+      "  \"reason\": \"Stop: end_effector 카메라 열기 실패: Failed to open MeteredCamera(<configured video-device alias>).Run `lerobot-find-cameras opencv` to find available cameras.\""
+    ],
+    "owner_check_scope": "non-root/query only; inability to open did not establish the cause",
+    "roles": {
+      "end_effector": {
+        "character_device_present": true,
+        "read_access": true,
+        "owner_detected": false,
+        "owner_check_ok": true
+      },
+      "ceiling_vertical": {
+        "character_device_present": true,
+        "read_access": true,
+        "owner_detected": false,
+        "owner_check_ok": true
+      },
+      "ceiling_oblique": {
+        "character_device_present": true,
+        "read_access": true,
+        "owner_detected": false,
+        "owner_check_ok": true
+      }
+    },
+    "device_metadata": {
+      "end_effector": {
+        "alias_resolves_to_video_device": true,
+        "mode": "0o660",
+        "user_read": true,
+        "user_write": true,
+        "v4l_current_query_exit": 0,
+        "current_width_height": "640/480",
+        "current_pixel_format": "'YUYV' (YUYV 4:2:2)",
+        "listed_pixel_formats": [
+          "MJPG",
+          "YUYV"
+        ]
+      },
+      "ceiling_vertical": {
+        "alias_resolves_to_video_device": true,
+        "mode": "0o660",
+        "user_read": true,
+        "user_write": true,
+        "v4l_current_query_exit": 0,
+        "current_width_height": "640/480",
+        "current_pixel_format": "'YUYV' (YUYV 4:2:2)",
+        "listed_pixel_formats": [
+          "YUYV"
+        ]
+      },
+      "ceiling_oblique": {
+        "alias_resolves_to_video_device": true,
+        "mode": "0o660",
+        "user_read": true,
+        "user_write": true,
+        "v4l_current_query_exit": 0,
+        "current_width_height": "640/480",
+        "current_pixel_format": "'YUYV' (YUYV 4:2:2)",
+        "listed_pixel_formats": [
+          "YUYV"
+        ]
+      }
+    },
+    "services": {
+      "so101-camera-alignment.service": "active",
+      "lelab-jetson-py310.service": "active",
+      "so101-camera-preview.service": "inactive",
+      "medicine-yolo-preview.service": "inactive",
+      "astra-v4l2-bridge.service": "active"
+    }
+  },
+  "saved_rgb": {
+    "status": "RUN_COMPLETE",
+    "passed": true,
+    "frame_source": "saved_rgb",
+    "joint_source": "SimulatedArm",
+    "physical_motor_writes": 0,
+    "verified_weight_sha256": "9d15fc76c78db184036b88485e7db4091d8f9e7b82563dac6cbc93a65851b304",
+    "elapsed_s": 60.016719623003155,
+    "steps": 1791,
+    "model_chunks": 48,
+    "chunk_wait_s": {
+      "max": 0,
+      "sum": 0
+    },
+    "transmission_hz": 29.838473654956697,
+    "added_option": "--act-recorded-inputs <saved-rgb-npz>"
+  },
+  "existing_preview_cache": {
+    "read_only_probe": [
+      {
+        "present": true,
+        "phase": "ready",
+        "age_s": 0.387,
+        "changed": null,
+        "images": {
+          "end_effector": {
+            "width": 640,
+            "height": 480,
+            "format": "JPEG"
+          },
+          "ceiling_vertical": {
+            "width": 640,
+            "height": 480,
+            "format": "JPEG"
+          },
+          "ceiling_oblique": {
+            "width": 640,
+            "height": 480,
+            "format": "JPEG"
+          }
+        },
+        "motor_access": false,
+        "register_writes": 0
+      },
+      {
+        "present": true,
+        "phase": "ready",
+        "age_s": 0.531,
+        "changed": true,
+        "images": {
+          "end_effector": {
+            "width": 640,
+            "height": 480,
+            "format": "JPEG"
+          },
+          "ceiling_vertical": {
+            "width": 640,
+            "height": 480,
+            "format": "JPEG"
+          },
+          "ceiling_oblique": {
+            "width": 640,
+            "height": 480,
+            "format": "JPEG"
+          }
+        },
+        "motor_access": false,
+        "register_writes": 0
+      },
+      {
+        "present": true,
+        "phase": "ready",
+        "age_s": 0.212,
+        "changed": true,
+        "images": {
+          "end_effector": {
+            "width": 640,
+            "height": 480,
+            "format": "JPEG"
+          },
+          "ceiling_vertical": {
+            "width": 640,
+            "height": 480,
+            "format": "JPEG"
+          },
+          "ceiling_oblique": {
+            "width": 640,
+            "height": 480,
+            "format": "JPEG"
+          }
+        },
+        "motor_access": false,
+        "register_writes": 0
+      }
+    ]
+  },
+  "initial_regression": {
+    "mock-legacy": {
+      "command": "python -B live/entry.py --mock --mode legacy",
+      "tests": 5,
+      "elapsed_s": 0.214,
+      "status": "PASS"
+    },
+    "mock-raw": {
+      "command": "python -B live/entry.py --mock --mode raw",
+      "tests": 34,
+      "elapsed_s": 0.695,
+      "status": "PASS"
+    },
+    "simulation-discovery": {
+      "command": "python -B -m unittest discover -s sim -p 'test_*.py' -v",
+      "tests": 259,
+      "elapsed_s": 8.082,
+      "status": "PASS"
+    }
+  },
+  "tested_initial_source_sha256": {
+    "act_dry.py": "972dc62a6239edd524ce0eeb63f4bfa1bac88945d5cbdcbe4f61fc120a82c226",
+    "entry.py": "71eaba7e8866aaf14f4d4e04fde35dad57c2b75fd7a1f28c113ea95419e0c9a0",
+    "run.sh": "995f4e787536cb6aff79eb3d5c1dd829248fa9bdd43ea835ee7f2d9a9ca019c1",
+    "stream_live.py": "45c576568f883f06c4c4d6d33577ab78ca808524db91d9b2ac128c8540e0cdb9"
+  },
+  "alignment_preview": {
+    "status": "RUN_COMPLETE",
+    "passed": true,
+    "frame_source": "live_alignment_jpeg",
+    "joint_source": "SimulatedArm",
+    "physical_motor_writes": 0,
+    "verified_weight_sha256": "9d15fc76c78db184036b88485e7db4091d8f9e7b82563dac6cbc93a65851b304",
+    "elapsed_s": 60.000672969035804,
+    "steps": 1790,
+    "model_chunks": 48,
+    "chunk_wait_s": {
+      "max": 0,
+      "sum": 0
+    },
+    "transmission_hz": 29.84083740080067,
+    "distinct_preview_snapshots": 140,
+    "max_preview_publication_age_s": 0.5860323905944824,
+    "added_option": "--act-alignment-preview",
+    "service_interaction": "read existing atomic JPEG snapshot"
+  },
+  "final_regression": {
+    "mock-legacy": {
+      "command": "python -B live/entry.py --mock --mode legacy",
+      "tests": 5,
+      "elapsed_s": 0.213,
+      "status": "PASS"
+    },
+    "mock-raw": {
+      "command": "python -B live/entry.py --mock --mode raw",
+      "tests": 34,
+      "elapsed_s": 0.691,
+      "status": "PASS"
+    },
+    "simulation-discovery": {
+      "command": "python -B -m unittest discover -s sim -p 'test_*.py' -v",
+      "tests": 260,
+      "elapsed_s": 8.049,
+      "status": "PASS"
+    }
+  },
+  "tested_final_source_sha256": {
+    "act_dry.py": "fa0cda3e94f538ba03794a545e6558c9b6449e69211b1be3c8418772de5ee029",
+    "entry.py": "5f195ddcce8edbef485e53f5715a4669dfa891783bef163a6285f811adcd6c1a",
+    "run.sh": "995f4e787536cb6aff79eb3d5c1dd829248fa9bdd43ea835ee7f2d9a9ca019c1",
+    "stream_live.py": "45c576568f883f06c4c4d6d33577ab78ca808524db91d9b2ac128c8540e0cdb9"
+  }
+}

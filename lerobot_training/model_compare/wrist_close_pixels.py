@@ -15,7 +15,7 @@ VIEW = "videos/observation.images.end_effector"
 MODELS = ("smolvla", "act_task", "act", "diffusion", "xvla", "historical_smolvla", "rgb_mlp", "rgb_mlp_task")
 
 
-def measure(dataset, report, models):
+def measure(dataset, report, models, *, metric_records=None):
     root = dataset/"eval"
     info = json.loads((root/"meta/info.json").read_bytes())
     split = json.loads((dataset/"split.json").read_bytes())
@@ -49,7 +49,9 @@ def measure(dataset, report, models):
 
     results = {}
     for model in models:
-        if model.startswith("rgb_mlp"):
+        if metric_records is not None:
+            metrics = metric_records[model]
+        elif model.startswith("rgb_mlp"):
             metrics = json.loads((report/(model+"_color_metrics.json")).read_bytes())["all_21"]
         else:
             metrics = json.loads((report/model/"metrics.json").read_bytes())

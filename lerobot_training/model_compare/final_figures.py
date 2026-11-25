@@ -136,7 +136,10 @@ def render(report, dataset, predictions, font):
     ax.plot(*zip(*val), "-o", ms=4, color="#B75326", label="검증 21회")
     ax.set(xlabel="스텝", ylabel="SmolVLA loss", title="SmolVLA 학습·검증")
     ax.legend(fontsize=8)
-    fig.suptitle("약통 A → 파란 바구니 · 최종 체크포인트 비교", fontsize=18, fontweight="bold")
+    fig.suptitle("약통 A → 파란 바구니 · 최종 체크포인트 비교 (H16)\n"
+                 "기본 ACT: VLA 아님(언어 입력 없음) · ACT + 지시: 3색 one-hot 추가\n"
+                 "배포 SmolVLA 실물 투입 확인 2회 · 영상 3건 중 사람 재배치 1건 제외",
+                 fontsize=14, fontweight="bold")
     save_figure(fig, report, "06_summary")
 
 

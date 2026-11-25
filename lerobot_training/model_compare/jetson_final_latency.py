@@ -72,7 +72,7 @@ def measure(args):
     rename = json.loads(train_config.read_text()).get("rename_map", {}) if train_config.is_file() else {}
     if args.model == "historical_smolvla":
         rename = dict(zip(VIEWS, (f"observation.images.camera{i}" for i in (1, 2, 3))))
-    strict = cfg.type == "xvla"
+    strict = cfg.type == "xvla" or args.act_prefixes
     if cfg.type == "smolvla" and cfg.load_vlm_weights:
         # This controls initialization before loading the full local policy.
         # Require all checkpoint tensors when skipping a redundant Hub load.
@@ -132,6 +132,11 @@ def measure(args):
     blue = [i for i in range(observed) if "blue basket" in str(tasks[i])]
     if args.duration > 0 and not blue:
         raise ValueError("No blue holdout observations")
+    if args.act_prefixes:
+        if args.model != "act" or cfg.type != "act" or cfg.chunk_size != 100 or state.shape[-1] != 6:
+            raise ValueError("Prefix comparison requires the basic ACT policy with 100 actions and six state axes")
+        run_act_prefixes(args, infer, blue, state, sha)
+        return
     if args.temporal_legacy_only:
         if temporal is None:
             raise ValueError("Native temporal mode requires ACT")
@@ -183,6 +188,32 @@ def measure(args):
         scheduler.append(dict(model=args.model, checkpoint_step=args.step, weights_sha256=sha, mode=mode,
                               target_control_hz=30, speed=0.5, duration_s=args.duration, **run))
         filename(args, "scheduler").write_text(json.dumps(scheduler, indent=2) + "\n")
+
+
+def run_act_prefixes(args, infer, blue, state, weights_sha):
+    provenance = dict(
+        model=args.model, checkpoint_step=args.step, weights_sha256=weights_sha,
+        config_sha256=hashlib.sha256((args.checkpoint/"config.json").read_bytes()).hexdigest(),
+        inputs_sha256=hashlib.sha256(args.inputs.read_bytes()).hexdigest(),
+        scheduler_sha256=hashlib.sha256((args.live/"stream_live.py").read_bytes()).hexdigest(),
+        benchmark_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        strict_weight_load=True, duration_s=args.duration, speed=.5, target_control_hz=30,
+        native_chunk_actions=100, prefix_applied_after_full_inference_and_decode=True,
+    )
+    rows = []
+    for horizon in (25, 50, 100):
+        def prefix(index, mode):
+            actions, elapsed = infer(index, mode)
+            if len(actions) != 100:
+                raise ValueError("Expected exactly 100 native actions")
+            return actions[:horizon], elapsed
+
+        for index in range(args.warmup):
+            prefix(blue[index % len(blue)], "chunk")
+        print(f"ACT prefix {horizon}/100", flush=True)
+        run = legacy_scheduler(args.live, prefix, blue, state, args.duration, horizon)
+        rows.append(dict(provenance, prefix_actions=horizon, **run))
+        filename(args, "prefixes").write_text(json.dumps(rows, indent=2) + "\n")
 
 
 def load_policy_config(checkpoint):
@@ -327,6 +358,14 @@ def legacy_scheduler(live, infer, blue, state, duration, horizon, mode="chunk"):
         return packet
 
     io.plan = plan
+    pools = []
+
+    def pool_factory(**options):
+        pool = ThreadPoolExecutor(**options)
+        pools.append(pool)
+        return pool
+
+    io.pool_factory = pool_factory
     used = set()
     phases = []
 
@@ -340,6 +379,8 @@ def legacy_scheduler(live, infer, blue, state, duration, horizon, mode="chunk"):
         report = namespace["stream"](io, lambda i, _, origin, delay: infer(i, mode), log, duration, speed=.5)
     finally:
         legacy.base.chunk = original_chunk
+        for pool in pools:
+            pool.shutdown(wait=True, cancel_futures=True)
     elapsed = report["elapsed_s"]
     ready = report["ready"] is not None
     return dict(status=report["status"], reason=report["reason"], elapsed_s=elapsed, steps=report["steps"],
@@ -407,7 +448,10 @@ if __name__ == "__main__":
     parser.add_argument("--compact", action="store_true")
     parser.add_argument("--temporal-legacy-only", action="store_true")
     parser.add_argument("--temporal-adapter", action="store_true")
+    parser.add_argument("--act-prefixes", action="store_true")
     args = parser.parse_args()
+    if args.act_prefixes and args.duration <= 0:
+        parser.error("--act-prefixes requires a positive duration")
     if args.export:
         export(args.export, args.inputs)
     elif args.compact:

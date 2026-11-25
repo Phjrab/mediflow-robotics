@@ -1,5 +1,7 @@
 # SmolVLA 현재 상태
 
+11월 25일 ACT 입회 전 검증 결과, 운영 기본은 기존 SmolVLA(`b84b15c7`)다. 파랑 장면에서는 두 ACT 모두 7/7이었지만 파랑을 요청한 다른 색 장면에서 파랑 방향은 0/14였다. ACT 후속 후보는 원래 학습 분할의 파랑 37회를 사용한 별도 모델이다. 기본 ACT 25개 묶음은 30Hz 목표·0.5배속에서 180초간 대기 0초와 파랑 7회 닫힘 시각 MAE 0.243초를 보였다. `--policy act` 카메라 dry-run 60초와 Jetson 모의 검사 260건을 통과했다. 실물 시험은 미실행이다. [입회 전 검증](../../reports/model_compare/act_preflight/README.md)
+
 11월 25일 Jetson에서 기본 ACT의 100개 행동 묶음은 평균 175.93ms, 180초 모의 대기는 0초였다. 파란 바구니 고정 작업의 다음 입회 비교 시험 후보로 이 설정을 선정했다. 운영 모델은 실물 투입 근거가 있는 배포 SmolVLA를 유지한다. 새 후보는 실물 시험 전 운영 실행기의 묶음 길이 호환을 확인해야 한다. [모델별 평가표](../../reports/model_compare/COMPARE.md) · [Jetson 실측](../../reports/model_compare/jetson_comparison.json)
 
 11월 25일에 공식 정책 다섯 종의 마지막 저장 가중치로 파랑 7회와 전체 21회 평가를 마쳤다. 파랑에서 기본 ACT의 닫힘 시각 MAE는 0.271초, 닫힘 자세 MAE는 1.533°다. [기본 ACT 회차별 결과](../../reports/model_compare/act/metrics_blue.json) · [파랑 집기 지표](../../reports/model_compare/07_blue_grasp.png)
