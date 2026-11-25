@@ -1,0 +1,2450 @@
+{
+  "path_count": 64,
+  "inspected": 64,
+  "metadata": [
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/00_20260905_174810",
+      "info_sha256": "74597287685e5324f6c7390a234f97b5eaca70914b85208f5cd91f6603e9451a",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-05T17:48:10+09:00",
+      "date_tags_in_path": [
+        "20260905"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {},
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/11111_20260906_163342",
+      "info_sha256": "2b6b6659f7c90515673ac48e22d6c31bb5209933a73885ff030dff5ea349ad46",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T16:33:44+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/11_20260905_215352",
+      "info_sha256": "808cd73d6a1569504756b9d724573b14000f69c208127a6900e1098fcc8178b0",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-05T21:53:54+09:00",
+      "date_tags_in_path": [
+        "20260905"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.camera_0": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/11_20260906_130206",
+      "info_sha256": "808cd73d6a1569504756b9d724573b14000f69c208127a6900e1098fcc8178b0",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T13:02:08+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.camera_0": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/11_20260906_143221",
+      "info_sha256": "808cd73d6a1569504756b9d724573b14000f69c208127a6900e1098fcc8178b0",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T14:32:23+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.camera_0": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/11_20260906_151533",
+      "info_sha256": "808cd73d6a1569504756b9d724573b14000f69c208127a6900e1098fcc8178b0",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T15:15:35+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.camera_0": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/11_20260906_154449",
+      "info_sha256": "808cd73d6a1569504756b9d724573b14000f69c208127a6900e1098fcc8178b0",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T15:44:51+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.camera_0": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/11_20260906_161629",
+      "info_sha256": "808cd73d6a1569504756b9d724573b14000f69c208127a6900e1098fcc8178b0",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T16:16:31+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.camera_0": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/11_20260906_162325",
+      "info_sha256": "808cd73d6a1569504756b9d724573b14000f69c208127a6900e1098fcc8178b0",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T16:23:27+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.camera_0": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/12_20260906_185122",
+      "info_sha256": "2b6b6659f7c90515673ac48e22d6c31bb5209933a73885ff030dff5ea349ad46",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T18:51:24+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/14_20260914_153943",
+      "info_sha256": "45669d018a2a1d56432bfd33db91c3e111e4a9e108da9a17243b206e9a17c4a5",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-27T20:38:54+09:00",
+      "date_tags_in_path": [
+        "20260914"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 14,
+      "frames": 9244,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 2,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "14"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/1_20260905_215319",
+      "info_sha256": "808cd73d6a1569504756b9d724573b14000f69c208127a6900e1098fcc8178b0",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-05T21:53:21+09:00",
+      "date_tags_in_path": [
+        "20260905"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.camera_0": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/1grper_20260912_182316",
+      "info_sha256": "10e5f260d84f5309a3e6b94165a01019eb778964df72a75be0acbd569eeef22a",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-12T18:24:42+09:00",
+      "date_tags_in_path": [
+        "20260912"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 2,
+      "frames": 2009,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 2,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "1grper"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/20_20260909_200738",
+      "info_sha256": "b7ddf1de1b0109d36c062044c5586f24239cf02d9cca84b481b8eaa63bfc3ca8",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-09T20:20:47+09:00",
+      "date_tags_in_path": [
+        "20260909"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 20,
+      "frames": 15948,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 2,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "20"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/28_20260914_153007",
+      "info_sha256": "1273f907b49d73556972545cb2a5d180f4616e41b4da7d145cec5e2a9ff39fa8",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-14T15:38:45+09:00",
+      "date_tags_in_path": [
+        "20260914"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 14,
+      "frames": 10761,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 2,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "28"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/30_20260914_155550",
+      "info_sha256": "03b51310318e43fbf74447445ec4a93c3bfd4b00d5e1399166bb17aee1eff38b",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-14T16:11:05+09:00",
+      "date_tags_in_path": [
+        "20260914"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 30,
+      "frames": 18974,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 3,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "30"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/30try_20260909_194347",
+      "info_sha256": "7bd9b0d4d548fdefa53f00aa1434ee347526943e8d2711a15c28b33acb58edff",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-09T19:46:49+09:00",
+      "date_tags_in_path": [
+        "20260909"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 5,
+      "frames": 3918,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 2,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "30"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/30try_20260909_195028",
+      "info_sha256": "805c8e078cb577ce851333d551f69169d7c6116e8f785cfe9037460a7aa8949f",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-09T19:51:15+09:00",
+      "date_tags_in_path": [
+        "20260909"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 1,
+      "frames": 1238,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 2,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "30th"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/321_20260906_161838",
+      "info_sha256": "808cd73d6a1569504756b9d724573b14000f69c208127a6900e1098fcc8178b0",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T16:18:40+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.camera_0": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/Supermassive111_medicine_a_to_basket_a_3cam_v2_20261002_172539",
+      "info_sha256": "9fec98adde252d0931a7dd2797bede5c4fa87f9d413d76029be3113dd595183d",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-10-02T17:25:41+09:00",
+      "date_tags_in_path": [
+        "20261002"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/Supermassive111_medicine_a_to_basket_a_3cam_v2_20261002_172613",
+      "info_sha256": "9fec98adde252d0931a7dd2797bede5c4fa87f9d413d76029be3113dd595183d",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-10-02T17:26:15+09:00",
+      "date_tags_in_path": [
+        "20261002"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/Supermassive111_medicine_a_to_basket_a_3cam_v2_20261002_173126",
+      "info_sha256": "9fec98adde252d0931a7dd2797bede5c4fa87f9d413d76029be3113dd595183d",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-10-02T17:31:28+09:00",
+      "date_tags_in_path": [
+        "20261002"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/Supermassive111_medicine_a_to_basket_a_3cam_v2_20261002_173204",
+      "info_sha256": "9fec98adde252d0931a7dd2797bede5c4fa87f9d413d76029be3113dd595183d",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-10-02T17:32:06+09:00",
+      "date_tags_in_path": [
+        "20261002"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/Supermassive111_medicine_a_to_basket_a_3cam_v2_20261002_173846",
+      "info_sha256": "e36af1cc406c736578cacc5dd18fa51d498ccc4a511a76140a7ac04da651325f",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-10-02T18:15:12+09:00",
+      "date_tags_in_path": [
+        "20261002"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 60,
+      "frames": 32597,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 7,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Pick up medicine bottle A and place it into basket A."
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/Supermassive111_medicine_b_to_basket_b_3cam_v1_20260928_203749",
+      "info_sha256": "9662a4d05d1ba9eb4ec3717a63b04f7033df5f0bc34dca6f655fd00b6d3b8845",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-28T21:04:21+09:00",
+      "date_tags_in_path": [
+        "20260928"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 60,
+      "frames": 27613,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 6,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Pick up medicine bottle B and place it into basket B."
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_blue_main_20261102_140120",
+      "info_sha256": "9fec98adde252d0931a7dd2797bede5c4fa87f9d413d76029be3113dd595183d",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-02T14:01:22+09:00",
+      "date_tags_in_path": [
+        "20261102"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_blue_main_20261102_192441",
+      "info_sha256": "e81c846f84386cb197fa10c0dbff89691d2ca1b4d3b3dc3e5d476376ac996b44",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-02T19:25:20+09:00",
+      "date_tags_in_path": [
+        "20261102"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 1,
+      "frames": 653,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 3,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Put medicine bottle A into the blue basket"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261102_203057",
+      "info_sha256": "aabdc85d587adbcdc2124ce174e11967c3f4a3ce77da1f23892c0513fe801e71",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-02T20:31:23+09:00",
+      "date_tags_in_path": [
+        "20261102"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 1,
+      "frames": 414,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 3,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Put medicine bottle A into the blue basket"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261102_203209",
+      "info_sha256": "954468a85f37948dee5ad15c7a0c54a03bc702290699b87225d95b502248e554",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-02T20:36:53+09:00",
+      "date_tags_in_path": [
+        "20261102"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 10,
+      "frames": 4011,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 3,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Put medicine bottle A into the blue basket"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261102_212958",
+      "info_sha256": "6466bf67c0f23f8b4108fa31994113d918c7d86e49bc8007c627b381c4f21edb",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-02T21:49:54+09:00",
+      "date_tags_in_path": [
+        "20261102"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 40,
+      "frames": 16752,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 5,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Put medicine bottle A into the green basket"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261103_193353",
+      "info_sha256": "9a04434ecfee44b220bac00d398a27537bbae9f0c737acfd96dba8c649e187b7",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-03T19:37:41+09:00",
+      "date_tags_in_path": [
+        "20261103"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 9,
+      "frames": 3643,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 3,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Put medicine bottle A into the blue basket"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_to_blue_20261103_193835",
+      "info_sha256": "fbacc328c796533728749b05cf31415d4ed4536a091fbfb222df95b486c7bb24",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-03T20:01:09+09:00",
+      "date_tags_in_path": [
+        "20261103"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 41,
+      "frames": 19154,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 5,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Put medicine bottle A into the blue basket"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_to_green_20261102_201727",
+      "info_sha256": "9fec98adde252d0931a7dd2797bede5c4fa87f9d413d76029be3113dd595183d",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-02T20:17:29+09:00",
+      "date_tags_in_path": [
+        "20261102"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_to_green_20261102_201804",
+      "info_sha256": "42bd002bbc7d631194a08c275079041d78bdfc7cb571b8400727a5db23629327",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-02T20:23:39+09:00",
+      "date_tags_in_path": [
+        "20261102"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 10,
+      "frames": 5510,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 3,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Put medicine bottle A into the green basket"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_to_red_20261102_200821",
+      "info_sha256": "9fec98adde252d0931a7dd2797bede5c4fa87f9d413d76029be3113dd595183d",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-02T20:08:23+09:00",
+      "date_tags_in_path": [
+        "20261102"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_to_red_20261102_200929",
+      "info_sha256": "9fec98adde252d0931a7dd2797bede5c4fa87f9d413d76029be3113dd595183d",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-02T20:09:31+09:00",
+      "date_tags_in_path": [
+        "20261102"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_to_red_20261102_201029",
+      "info_sha256": "1cf38fe55dee27ae7ee7822e0c104b4d2835b65c680a76bc8a47fdcb491e1197",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-02T20:15:39+09:00",
+      "date_tags_in_path": [
+        "20261102"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 10,
+      "frames": 4628,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 3,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Put medicine bottle A into the red basket"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/a_to_red_20261102_210433",
+      "info_sha256": "6aa1e63ad4ac286f8f56d990e66d66df38164e2356f86c30d85b1d5f83b3ea17",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-11-02T21:26:51+09:00",
+      "date_tags_in_path": [
+        "20261102"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 40,
+      "frames": 19327,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 5,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Put medicine bottle A into the red basket"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/camera_recovery_regression_20260908_20260908_170150",
+      "info_sha256": "209186e0bb648737cd6b7717de83cff88dbc1c826eaf1e246f1dc5b5d2057efd",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-08T17:02:37+09:00",
+      "date_tags_in_path": [
+        "20260908",
+        "20260908"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 1,
+      "frames": 135,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 2,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "approved camera recovery regression"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/codex_ab_nocam_20260906_112311",
+      "info_sha256": "e62517f4bb4f9c425ca0e9b67a348dc0cab2866913a0225a17f493e348e388b1",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T11:23:11+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {},
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/codex_ab_nocam_rxclear_20260906_114147",
+      "info_sha256": "e62517f4bb4f9c425ca0e9b67a348dc0cab2866913a0225a17f493e348e388b1",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T11:41:47+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {},
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/codex_boundary_nocam_20260906_145811",
+      "info_sha256": "e62517f4bb4f9c425ca0e9b67a348dc0cab2866913a0225a17f493e348e388b1",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T14:58:11+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {},
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/codex_cli_diag_20260906T203342+0900_20260906_203359",
+      "info_sha256": "30f0741ab9db7764fe10337b79f29b5d41d0e93664635710dda38185f488b9d2",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T20:33:59+09:00",
+      "date_tags_in_path": [
+        "20260906",
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {},
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/codex_combined_nocam_20260906_152145",
+      "info_sha256": "e62517f4bb4f9c425ca0e9b67a348dc0cab2866913a0225a17f493e348e388b1",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T15:21:45+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {},
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/codex_retry3_nocam_20260906_143009",
+      "info_sha256": "e62517f4bb4f9c425ca0e9b67a348dc0cab2866913a0225a17f493e348e388b1",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T14:30:09+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {},
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/codex_rx_recovery_nocam_20260906_154053",
+      "info_sha256": "e62517f4bb4f9c425ca0e9b67a348dc0cab2866913a0225a17f493e348e388b1",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T15:40:53+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {},
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/codex_trace_nocam_20260906_143935",
+      "info_sha256": "e62517f4bb4f9c425ca0e9b67a348dc0cab2866913a0225a17f493e348e388b1",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T14:39:35+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {},
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/eopn50_20260913_153725",
+      "info_sha256": "2b6b6659f7c90515673ac48e22d6c31bb5209933a73885ff030dff5ea349ad46",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-13T15:37:27+09:00",
+      "date_tags_in_path": [
+        "20260913"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/firstdata_20260908_171141",
+      "info_sha256": "a6f5d7828b7325edd6a7a43d6b396226ef81b68d3cfdc244d37ed8128b89c920",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-08T17:14:11+09:00",
+      "date_tags_in_path": [
+        "20260908"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 5,
+      "frames": 1790,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 2,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "1st"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/medicine_a_to_basket_a_3cam_v1_20260928_211312",
+      "info_sha256": "c856cd99f45754e81b7c9c354950e917928f10f9d2f0f19064436624f2a2da5e",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-28T21:38:59+09:00",
+      "date_tags_in_path": [
+        "20260928"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 60,
+      "frames": 27519,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 6,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Pick up medicine bottle A and place it into basket A."
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/medicine_c_to_basket_c_3cam_test_20260928_154245",
+      "info_sha256": "7d7ae89416cf93d81ee9a39728d77ee555b132a1cbc00aaa83bccd3c36c76ae6",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-28T16:10:46+09:00",
+      "date_tags_in_path": [
+        "20260928"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 60,
+      "frames": 28966,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 7,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Pick up medicine bottle C and place it into basket C."
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/open100_20260914_144019",
+      "info_sha256": "78bf4a04b0f245457166fb8539ab4a0ac51d20742bfdef15535100901ff4d16d",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-14T15:04:20+09:00",
+      "date_tags_in_path": [
+        "20260914"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 42,
+      "frames": 29313,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 3,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "open100"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/opengrip50_20260913_165317",
+      "info_sha256": "a9cbdfde9fb6aa17a55875b13ba6745b16b6904ea7c16787ff75fef365820a7b",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-13T17:19:22+09:00",
+      "date_tags_in_path": [
+        "20260913"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 50,
+      "frames": 31598,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 4,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "50try"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/opengripper_20260912_181900",
+      "info_sha256": "d0684181b14988d62637283e43c5155655779846610465804010696768560867",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-12T18:19:49+09:00",
+      "date_tags_in_path": [
+        "20260912"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 1,
+      "frames": 1280,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 2,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "opengripper"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/port_map_regression_20260908_20260908_164019",
+      "info_sha256": "2b6b6659f7c90515673ac48e22d6c31bb5209933a73885ff030dff5ea349ad46",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-08T16:40:21+09:00",
+      "date_tags_in_path": [
+        "20260908",
+        "20260908"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/t_20260908_162450",
+      "info_sha256": "2b6b6659f7c90515673ac48e22d6c31bb5209933a73885ff030dff5ea349ad46",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-08T16:24:52+09:00",
+      "date_tags_in_path": [
+        "20260908"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/t_20260908_162526",
+      "info_sha256": "2b6b6659f7c90515673ac48e22d6c31bb5209933a73885ff030dff5ea349ad46",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-08T16:25:28+09:00",
+      "date_tags_in_path": [
+        "20260908"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.312": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.camera_2": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/test10-291_20261029_205247",
+      "info_sha256": "1cdb6ce0df14574bc8e433b26d41d8a98096bc526c0c9984c2b96bfe4f3438ca",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-10-29T20:53:56+09:00",
+      "date_tags_in_path": [
+        "20261029"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 2,
+      "frames": 1053,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 3,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Put medicine bottle A into the blue basket"
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/test10-29_20261029_205045",
+      "info_sha256": "9fec98adde252d0931a7dd2797bede5c4fa87f9d413d76029be3113dd595183d",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-10-29T20:50:47+09:00",
+      "date_tags_in_path": [
+        "20261029"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/test_9_27_8_50_20260927_205320",
+      "info_sha256": "83cc09513ebd44b2e90cb6614f189cba0edf4d8ae54649c726ccb49edcfccf16",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-27T20:54:00+09:00",
+      "date_tags_in_path": [
+        "20260927"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 1,
+      "frames": 855,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 3,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Pick up medicine bottle C and place it into basket C."
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/Supermassive111/test_9_27_8_55_20260927_205551",
+      "info_sha256": "c164dda5600ca58dc37253c15d0ef398e63e2dd52d7db30a7820e4c03d7117aa",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-27T20:58:47+09:00",
+      "date_tags_in_path": [
+        "20260927"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 5,
+      "frames": 1971,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {
+        "observation.images.ceiling_vertical": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.ceiling_oblique": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        },
+        "observation.images.end_effector": {
+          "shape": [
+            480,
+            640,
+            3
+          ],
+          "dtype": "video"
+        }
+      },
+      "aruco_features": [],
+      "video_files": 3,
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Pick up medicine bottle C and place it into basket C."
+        }
+      ],
+      "task_source": "tasks.parquet"
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/local/so101_conditional_trace_test_20260906_155328",
+      "info_sha256": "e62517f4bb4f9c425ca0e9b67a348dc0cab2866913a0225a17f493e348e388b1",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T15:53:28+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {},
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/local/so101_individual_read_test_20260906_160429",
+      "info_sha256": "e62517f4bb4f9c425ca0e9b67a348dc0cab2866913a0225a17f493e348e388b1",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T16:04:29+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {},
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    },
+    {
+      "path": "~/.cache/huggingface/lerobot/local/so101_packet_metadata_test_20260906_160205",
+      "info_sha256": "e62517f4bb4f9c425ca0e9b67a348dc0cab2866913a0225a17f493e348e388b1",
+      "repo_id": null,
+      "metadata_file_mtime_kst": "2026-09-06T16:02:05+09:00",
+      "date_tags_in_path": [
+        "20260906"
+      ],
+      "dataset_version": "v3.0",
+      "episodes": 0,
+      "frames": 0,
+      "fps": 30,
+      "robot_type": "so_follower",
+      "camera_features": {},
+      "aruco_features": [],
+      "video_files": 0,
+      "tasks": null,
+      "task_source": null
+    }
+  ],
+  "errors": []
+}

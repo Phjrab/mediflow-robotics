@@ -1,0 +1,22 @@
+{
+  "models": [
+    "smolvla",
+    "smolvla_b84b15c7"
+  ],
+  "split_sha256": "9c97855b7abf137a5ca50d9af291b7f06556b6cd4b262f71f5bbdda7b8a13ff1",
+  "model_observation_sha256": [
+    "4f65e3ac188964bf2432b5e4f18bd153947ece4ace36819659c98f0b7f736367",
+    "bd8f9a0157165b6dd7d30eb082fbe828d33ecb33defe76bd45251661f50dd4ea"
+  ],
+  "episodes": 21,
+  "all_anchors_aligned": true,
+  "differences": {
+    "recorded": [],
+    "frame": [],
+    "state": [],
+    "rgb_chw_uint8_sha256": [],
+    "noise_seed": [],
+    "noise_sha256": []
+  },
+  "same_runtime": false
+}

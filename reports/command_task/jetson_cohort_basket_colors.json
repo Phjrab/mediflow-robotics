@@ -1,0 +1,2784 @@
+{
+  "method": "All 180 start/end oblique crops inspected in 6 derived grids, with optional timestamp-specific overhead and oblique views.",
+  "marker_detection": "OpenCV ArUco DICT_4X4_50, full oblique frame; color judged by visual material and consistent marker/position.",
+  "endpoint_frames_decoded": 360,
+  "source_recordings_transferred": false,
+  "public_images_included": false,
+  "cohorts": {
+    "a_v1": {
+      "dataset": "medicine_a_to_basket_a_3cam_v1_20260928_211312",
+      "prompt": "Pick up medicine bottle A and place it into basket A.",
+      "order": [
+        "green",
+        "blue-gray",
+        "red"
+      ],
+      "target": "red",
+      "position": "right",
+      "marker": 4,
+      "unconfirmed": 20,
+      "episodes_scanned": 60,
+      "target_color_confirmed": 59,
+      "bottle_visible_at_final": 59,
+      "target_marker_decoded_at_final": 30,
+      "local_contact_sheet_sha256": {
+        "a_v1_ceiling_oblique_0_29.jpg": "6f56bc237e0619b0d02fcac99e5996c25fed29c5ab96bce69d3a24118ce14d38",
+        "a_v1_ceiling_oblique_30_59.jpg": "2e35b231d009c83bb61718e5bc6af9a0cbb62feb409c0333680328f2ba83e0c9"
+      },
+      "rows": [
+        {
+          "episode": 0,
+          "end_frame": 521,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 1,
+          "end_frame": 345,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 2,
+          "end_frame": 306,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 3,
+          "end_frame": 435,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 4,
+          "end_frame": 356,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 5,
+          "end_frame": 369,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 6,
+          "end_frame": 302,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 7,
+          "end_frame": 312,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 8,
+          "end_frame": 316,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 9,
+          "end_frame": 273,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4,
+            6
+          ],
+          "end_marker_ids_in_crop": [
+            4,
+            6
+          ],
+          "note": null
+        },
+        {
+          "episode": 10,
+          "end_frame": 247,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4,
+            6
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            3
+          ],
+          "note": null
+        },
+        {
+          "episode": 11,
+          "end_frame": 500,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            6
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 12,
+          "end_frame": 376,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 13,
+          "end_frame": 294,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 14,
+          "end_frame": 357,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 15,
+          "end_frame": 374,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 16,
+          "end_frame": 352,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 17,
+          "end_frame": 669,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 18,
+          "end_frame": 539,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 19,
+          "end_frame": 374,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 20,
+          "end_frame": 6,
+          "observed_target_color": null,
+          "observed_target_position": null,
+          "bottle_visible_in_target_at_end": null,
+          "evidence": "unconfirmed",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "note": "Seven recorded frames; no placement confirmed in available frames."
+        },
+        {
+          "episode": 21,
+          "end_frame": 521,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 22,
+          "end_frame": 500,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 23,
+          "end_frame": 332,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 24,
+          "end_frame": 358,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 25,
+          "end_frame": 363,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 26,
+          "end_frame": 329,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 27,
+          "end_frame": 332,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 28,
+          "end_frame": 418,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 29,
+          "end_frame": 408,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 30,
+          "end_frame": 236,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 31,
+          "end_frame": 346,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 32,
+          "end_frame": 281,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 33,
+          "end_frame": 325,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 34,
+          "end_frame": 316,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 35,
+          "end_frame": 445,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 36,
+          "end_frame": 342,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 37,
+          "end_frame": 368,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 38,
+          "end_frame": 339,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 39,
+          "end_frame": 677,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 40,
+          "end_frame": 612,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 41,
+          "end_frame": 869,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 42,
+          "end_frame": 652,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 43,
+          "end_frame": 619,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 44,
+          "end_frame": 605,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 45,
+          "end_frame": 646,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 46,
+          "end_frame": 697,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 47,
+          "end_frame": 685,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 48,
+          "end_frame": 736,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 49,
+          "end_frame": 625,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 50,
+          "end_frame": 578,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 51,
+          "end_frame": 569,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 52,
+          "end_frame": 558,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 53,
+          "end_frame": 528,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 54,
+          "end_frame": 546,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 55,
+          "end_frame": 674,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 56,
+          "end_frame": 599,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 57,
+          "end_frame": 589,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 58,
+          "end_frame": 645,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        },
+        {
+          "episode": 59,
+          "end_frame": 568,
+          "observed_target_color": "red",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [
+            0
+          ],
+          "note": null
+        }
+      ]
+    },
+    "a_v2": {
+      "dataset": "Supermassive111_medicine_a_to_basket_a_3cam_v2_20261002_173846",
+      "prompt": "Pick up medicine bottle A and place it into basket A.",
+      "order": [
+        "red",
+        "green",
+        "blue-gray"
+      ],
+      "target": "blue-gray",
+      "position": "right",
+      "marker": 6,
+      "unconfirmed": 12,
+      "episodes_scanned": 60,
+      "target_color_confirmed": 59,
+      "bottle_visible_at_final": 58,
+      "target_marker_decoded_at_final": 3,
+      "local_contact_sheet_sha256": {
+        "a_v2_ceiling_oblique_0_29.jpg": "22976f4e0ba2070f31b3e91dc68320a2cbe68c1d9152f8dbcad96057a156b761",
+        "a_v2_ceiling_oblique_30_59.jpg": "98b30cd7aff3c456ce0df0514340e6cbe51c1be3d402ab55fb2f7c3131720333"
+      },
+      "rows": [
+        {
+          "episode": 0,
+          "end_frame": 885,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 1,
+          "end_frame": 526,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4,
+            5
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 2,
+          "end_frame": 378,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 3,
+          "end_frame": 608,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 4,
+          "end_frame": 600,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 5,
+          "end_frame": 628,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 6,
+          "end_frame": 399,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 7,
+          "end_frame": 585,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 8,
+          "end_frame": 719,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 9,
+          "end_frame": 366,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 10,
+          "end_frame": 378,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 11,
+          "end_frame": 543,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 12,
+          "end_frame": 291,
+          "observed_target_color": null,
+          "observed_target_position": null,
+          "bottle_visible_in_target_at_end": null,
+          "evidence": "unconfirmed",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4,
+            5
+          ],
+          "note": "No placement confirmed in endpoints or seven overhead samples."
+        },
+        {
+          "episode": 13,
+          "end_frame": 447,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 14,
+          "end_frame": 429,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 15,
+          "end_frame": 437,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 16,
+          "end_frame": 515,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 17,
+          "end_frame": 540,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 18,
+          "end_frame": 913,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 19,
+          "end_frame": 706,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 20,
+          "end_frame": 690,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 21,
+          "end_frame": 839,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": false,
+          "evidence": "intermediate_before_reset",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": "Bottle visible in right basket at frames 671 and 755; a hand removes it before frame 839."
+        },
+        {
+          "episode": 22,
+          "end_frame": 486,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 23,
+          "end_frame": 555,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 24,
+          "end_frame": 387,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 25,
+          "end_frame": 560,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 26,
+          "end_frame": 466,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 27,
+          "end_frame": 639,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 28,
+          "end_frame": 622,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            3,
+            6
+          ],
+          "note": null
+        },
+        {
+          "episode": 29,
+          "end_frame": 415,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 30,
+          "end_frame": 436,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 31,
+          "end_frame": 408,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 32,
+          "end_frame": 400,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 33,
+          "end_frame": 354,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            5
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 34,
+          "end_frame": 410,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 35,
+          "end_frame": 421,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 36,
+          "end_frame": 856,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 37,
+          "end_frame": 706,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 38,
+          "end_frame": 490,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "episode": 39,
+          "end_frame": 782,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            5
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 40,
+          "end_frame": 517,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "episode": 41,
+          "end_frame": 382,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 42,
+          "end_frame": 432,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 43,
+          "end_frame": 569,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "episode": 44,
+          "end_frame": 519,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "episode": 45,
+          "end_frame": 601,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "episode": 46,
+          "end_frame": 463,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 47,
+          "end_frame": 489,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 48,
+          "end_frame": 395,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            6
+          ],
+          "note": null
+        },
+        {
+          "episode": 49,
+          "end_frame": 325,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            6
+          ],
+          "note": null
+        },
+        {
+          "episode": 50,
+          "end_frame": 492,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 51,
+          "end_frame": 464,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 52,
+          "end_frame": 579,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "episode": 53,
+          "end_frame": 504,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "episode": 54,
+          "end_frame": 663,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": "Right basket initially occupied, emptied by frame 133, bottle visible again at frame 530 and end."
+        },
+        {
+          "episode": 55,
+          "end_frame": 725,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": "Right basket initially occupied, emptied by frame 145, bottle visible again at frame 580 and end."
+        },
+        {
+          "episode": 56,
+          "end_frame": 1060,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 57,
+          "end_frame": 557,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            6
+          ],
+          "end_marker_ids_in_crop": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "episode": 58,
+          "end_frame": 561,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            6
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        },
+        {
+          "episode": 59,
+          "end_frame": 425,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "right",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            6
+          ],
+          "end_marker_ids_in_crop": [],
+          "note": null
+        }
+      ]
+    },
+    "b_v1": {
+      "dataset": "Supermassive111_medicine_b_to_basket_b_3cam_v1_20260928_203749",
+      "prompt": "Pick up medicine bottle B and place it into basket B.",
+      "order": [
+        "green",
+        "blue-gray",
+        "red"
+      ],
+      "target": "blue-gray",
+      "position": "center",
+      "marker": 6,
+      "unconfirmed": 45,
+      "episodes_scanned": 60,
+      "target_color_confirmed": 59,
+      "bottle_visible_at_final": 59,
+      "target_marker_decoded_at_final": 4,
+      "local_contact_sheet_sha256": {
+        "b_v1_ceiling_oblique_0_29.jpg": "94f055c9c702e4eb766c2733ffe8aef95f664026206563cd9c09700d14b9fc17",
+        "b_v1_ceiling_oblique_30_59.jpg": "cece23cf4d2bcc7cfc258c36959fe759df4c39b0f4ef21caa48e7f32b2011914"
+      },
+      "rows": [
+        {
+          "episode": 0,
+          "end_frame": 961,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 1,
+          "end_frame": 636,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 2,
+          "end_frame": 553,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 3,
+          "end_frame": 423,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 4,
+          "end_frame": 415,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 5,
+          "end_frame": 437,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4,
+            6
+          ],
+          "note": null
+        },
+        {
+          "episode": 6,
+          "end_frame": 499,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4,
+            6
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            3,
+            4,
+            6
+          ],
+          "note": null
+        },
+        {
+          "episode": 7,
+          "end_frame": 493,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4,
+            6
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            3,
+            4,
+            6
+          ],
+          "note": null
+        },
+        {
+          "episode": 8,
+          "end_frame": 518,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4,
+            6
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 9,
+          "end_frame": 372,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 10,
+          "end_frame": 466,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 11,
+          "end_frame": 493,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 12,
+          "end_frame": 654,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 13,
+          "end_frame": 512,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 14,
+          "end_frame": 692,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 15,
+          "end_frame": 489,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 16,
+          "end_frame": 444,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 17,
+          "end_frame": 401,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 18,
+          "end_frame": 370,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 19,
+          "end_frame": 584,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 20,
+          "end_frame": 463,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": "Center basket initially occupied, emptied by frame 185, robot over center at frame 370, bottle body visible at end."
+        },
+        {
+          "episode": 21,
+          "end_frame": 522,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 22,
+          "end_frame": 355,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 23,
+          "end_frame": 446,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 24,
+          "end_frame": 594,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 25,
+          "end_frame": 455,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 26,
+          "end_frame": 392,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 27,
+          "end_frame": 449,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 28,
+          "end_frame": 375,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 29,
+          "end_frame": 356,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 30,
+          "end_frame": 435,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 31,
+          "end_frame": 422,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 32,
+          "end_frame": 297,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 33,
+          "end_frame": 340,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 34,
+          "end_frame": 371,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 35,
+          "end_frame": 733,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 36,
+          "end_frame": 423,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 37,
+          "end_frame": 378,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 38,
+          "end_frame": 349,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 39,
+          "end_frame": 532,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": "Robot over center basket with bottle at frame 319; bottle partially visible inside at end."
+        },
+        {
+          "episode": 40,
+          "end_frame": 528,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 41,
+          "end_frame": 386,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 42,
+          "end_frame": 310,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 43,
+          "end_frame": 341,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 44,
+          "end_frame": 339,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 45,
+          "end_frame": 6,
+          "observed_target_color": null,
+          "observed_target_position": null,
+          "bottle_visible_in_target_at_end": null,
+          "evidence": "unconfirmed",
+          "start_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": "Seven recorded frames; no placement confirmed in available frames."
+        },
+        {
+          "episode": 46,
+          "end_frame": 498,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 47,
+          "end_frame": 413,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 48,
+          "end_frame": 589,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            0,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 49,
+          "end_frame": 390,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 50,
+          "end_frame": 724,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 51,
+          "end_frame": 432,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4,
+            6
+          ],
+          "note": null
+        },
+        {
+          "episode": 52,
+          "end_frame": 383,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 53,
+          "end_frame": 411,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            0,
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 54,
+          "end_frame": 409,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 55,
+          "end_frame": 455,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 56,
+          "end_frame": 450,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 57,
+          "end_frame": 602,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 58,
+          "end_frame": 370,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "episode": 59,
+          "end_frame": 418,
+          "observed_target_color": "blue-gray",
+          "observed_target_position": "center",
+          "bottle_visible_in_target_at_end": true,
+          "evidence": "end",
+          "start_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "end_marker_ids_in_crop": [
+            3,
+            4
+          ],
+          "note": null
+        }
+      ]
+    }
+  }
+}

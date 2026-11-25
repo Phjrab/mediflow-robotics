@@ -1,5 +1,7 @@
 # SmolVLA 현재 상태
 
+11월 25일 명령 기반 분류 준비에서 공정 SmolVLA의 닫힘 직후 RGB·관절값·노이즈를 고정한 지시 교체 42건 중 35건이 요청 색 방향이었다. 잘못된 색으로 끝나는 예측도 남았고 이 관측 구간에는 놓기 시점이 없다. 기존 137회는 약통 A 목표이며, 별도 B·C 녹화와 10월의 고정 배치 교시 기록을 구분했다. [데이터 인벤토리](../../reports/DATASET_INVENTORY.md) · [언어 추종 실험](../../reports/command_task/README.md) · [9조합 설계 초안](../../reports/COMMAND_TASK_PLAN.md)
+
 11월 25일 ACT 입회 전 검증 결과, 운영 기본은 기존 SmolVLA(`b84b15c7`)다. 파랑 장면에서는 두 ACT 모두 7/7이었지만 파랑을 요청한 다른 색 장면에서 파랑 방향은 0/14였다. ACT 후속 후보는 원래 학습 분할의 파랑 37회를 사용한 별도 모델이다. 기본 ACT 25개 묶음은 30Hz 목표·0.5배속에서 180초간 대기 0초와 파랑 7회 닫힘 시각 MAE 0.243초를 보였다. `--policy act` 카메라 dry-run 60초와 Jetson 모의 검사 260건을 통과했다. 실물 시험은 미실행이다. [입회 전 검증](../../reports/model_compare/act_preflight/README.md)
 
 11월 25일 Jetson에서 기본 ACT의 100개 행동 묶음은 평균 175.93ms, 180초 모의 대기는 0초였다. 파란 바구니 고정 작업의 다음 입회 비교 시험 후보로 이 설정을 선정했다. 운영 모델은 실물 투입 근거가 있는 배포 SmolVLA를 유지한다. 새 후보는 실물 시험 전 운영 실행기의 묶음 길이 호환을 확인해야 한다. [모델별 평가표](../../reports/model_compare/COMPARE.md) · [Jetson 실측](../../reports/model_compare/jetson_comparison.json)

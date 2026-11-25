@@ -1,0 +1,17 @@
+{
+  "models": [
+    "historical_smolvla",
+    "smolvla_jetson_archive"
+  ],
+  "historical_b84_heldout": false,
+  "episodes": 21,
+  "prompts_per_episode": 3,
+  "paired_rgb_hashes": 63,
+  "paired_state_hashes": 21,
+  "paired_noise_hashes": 21,
+  "both_native_actions": 50,
+  "canonical_matching_views": 0,
+  "canonical_noise_matching_episodes": 0,
+  "reference_only": "Identical Jetson archive inputs between these two models. Canonical ACT/ChoSun decoded RGB and ChoSun noise hashes differ.",
+  "source_media_transferred": false
+}

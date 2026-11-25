@@ -36,7 +36,7 @@ def direction_features(chunk, start):
     return endpoint, endpoint-start[:5]
 
 
-def training_references(split, train, state):
+def training_references(split, train, state, chunk_size=CHUNK):
     references = []
     start = 0
     for row in split["episodes"]:
@@ -47,11 +47,11 @@ def training_references(split, train, state):
         close = closing(truth)
         opened = release(truth, close)
         frame = close+1 if close is not None else None
-        if frame is not None and frame+CHUNK <= len(truth) and opened is not None and opened >= TAIL:
+        if frame is not None and frame+chunk_size <= len(truth) and opened is not None and opened >= TAIL:
             initial = state[start+frame]
-            endpoint, movement = direction_features(truth[frame:frame+CHUNK], initial)
+            endpoint, movement = direction_features(truth[frame:frame+chunk_size], initial)
             references.append(dict(episode=episode, color=color, endpoint=endpoint, displacement=movement,
-                                   last_action=truth[frame+CHUNK-1, :5],
+                                   last_action=truth[frame+chunk_size-1, :5],
                                    pre_release_endpoint=truth[opened-TAIL:opened, :5].mean(0)))
         start += len(truth)
     if start != len(state) or {entry["color"] for entry in references} != set(COLORS):
@@ -100,9 +100,9 @@ def method_summary(rows, criterion="recorded"):
     return summary
 
 
-def direction_row(episode, recorded, requested, frame, chunk, state, refs, scale):
-    if chunk.shape != (CHUNK, 6):
-        raise ValueError("Expected a full native 100x6 ACT action chunk")
+def direction_row(episode, recorded, requested, frame, chunk, state, refs, scale, chunk_size=CHUNK):
+    if chunk.shape != (chunk_size, 6):
+        raise ValueError(f"Expected a full native {chunk_size}x6 action chunk")
     endpoint, movement = direction_features(chunk, state)
     return dict(episode=episode, recorded=recorded, requested=requested, frame=frame,
                 t_s=frame/FPS, state=state[:6].tolist(), endpoint_arm_degrees=endpoint.tolist(),

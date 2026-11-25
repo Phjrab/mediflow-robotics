@@ -1,0 +1,6377 @@
+{
+  "model": "smolvla_jetson_archive",
+  "weight_sha256": "765908e3ccb3c087c1eb9841248489f2cee320f849ba2272d7d2eb205ad8bcff",
+  "historical": false,
+  "split_sha256": "9c97855b7abf137a5ca50d9af291b7f06556b6cd4b262f71f5bbdda7b8a13ff1",
+  "trial_count": 63,
+  "distinct_episodes": 21,
+  "fps": 30,
+  "chunk_size": 50,
+  "tail_steps": 10,
+  "ambiguous_margin_le": 0.1,
+  "small_movement_normalized_lt": 0.1,
+  "scale_arm_degrees": [
+    7.9120236545239955,
+    44.3765887841411,
+    56.48550517478904,
+    16.785283327779666,
+    5.215475891523446
+  ],
+  "reference_counts": {
+    "red": 38,
+    "green": 33,
+    "blue": 37
+  },
+  "summary": {
+    "all": {
+      "last_action": {
+        "n": 63,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 6,
+            "green": 9,
+            "blue": 6
+          },
+          "green": {
+            "red": 5,
+            "green": 8,
+            "blue": 8
+          },
+          "blue": {
+            "red": 5,
+            "green": 7,
+            "blue": 9
+          }
+        },
+        "matches": 53,
+        "blue_all": 23,
+        "blue_from_nonblue": 14,
+        "nonblue_n": 42,
+        "ambiguous": 4,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 16,
+            "green": 4,
+            "blue": 1
+          },
+          "green": {
+            "red": 0,
+            "green": 18,
+            "blue": 3
+          },
+          "blue": {
+            "red": 0,
+            "green": 2,
+            "blue": 19
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 35
+      },
+      "endpoint": {
+        "n": 63,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 5,
+            "green": 10,
+            "blue": 6
+          },
+          "green": {
+            "red": 4,
+            "green": 9,
+            "blue": 8
+          },
+          "blue": {
+            "red": 4,
+            "green": 6,
+            "blue": 11
+          }
+        },
+        "matches": 48,
+        "blue_all": 25,
+        "blue_from_nonblue": 14,
+        "nonblue_n": 42,
+        "ambiguous": 8,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 13,
+            "green": 5,
+            "blue": 3
+          },
+          "green": {
+            "red": 0,
+            "green": 17,
+            "blue": 4
+          },
+          "blue": {
+            "red": 0,
+            "green": 3,
+            "blue": 18
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 29
+      },
+      "displacement": {
+        "n": 63,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 5,
+            "green": 8,
+            "blue": 8
+          },
+          "green": {
+            "red": 4,
+            "green": 9,
+            "blue": 8
+          },
+          "blue": {
+            "red": 4,
+            "green": 6,
+            "blue": 11
+          }
+        },
+        "matches": 50,
+        "blue_all": 27,
+        "blue_from_nonblue": 16,
+        "nonblue_n": 42,
+        "ambiguous": 5,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 13,
+            "green": 7,
+            "blue": 1
+          },
+          "green": {
+            "red": 0,
+            "green": 16,
+            "blue": 5
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 21
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 34
+      },
+      "pre_release_endpoint": {
+        "n": 63,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 3,
+            "green": 11,
+            "blue": 7
+          },
+          "green": {
+            "red": 2,
+            "green": 10,
+            "blue": 9
+          },
+          "blue": {
+            "red": 4,
+            "green": 5,
+            "blue": 12
+          }
+        },
+        "matches": 45,
+        "blue_all": 28,
+        "blue_from_nonblue": 16,
+        "nonblue_n": 42,
+        "ambiguous": 10,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 9,
+            "green": 9,
+            "blue": 3
+          },
+          "green": {
+            "red": 0,
+            "green": 16,
+            "blue": 5
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 20
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 28
+      }
+    },
+    "original": {
+      "last_action": {
+        "n": 21,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 6,
+            "green": 1,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 6,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          }
+        },
+        "matches": 18,
+        "blue_all": 7,
+        "blue_from_nonblue": 1,
+        "nonblue_n": 14,
+        "ambiguous": 1,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 6,
+            "green": 1,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 6,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 0
+      },
+      "endpoint": {
+        "n": 21,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 5,
+            "green": 2,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 6,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          }
+        },
+        "matches": 17,
+        "blue_all": 7,
+        "blue_from_nonblue": 1,
+        "nonblue_n": 14,
+        "ambiguous": 2,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 5,
+            "green": 2,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 6,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 0
+      },
+      "displacement": {
+        "n": 21,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 5,
+            "green": 2,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 6,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "matches": 18,
+        "blue_all": 8,
+        "blue_from_nonblue": 1,
+        "nonblue_n": 14,
+        "ambiguous": 0,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 5,
+            "green": 2,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 6,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 0
+      },
+      "pre_release_endpoint": {
+        "n": 21,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 3,
+            "green": 4,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 6,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "matches": 16,
+        "blue_all": 8,
+        "blue_from_nonblue": 1,
+        "nonblue_n": 14,
+        "ambiguous": 4,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 3,
+            "green": 4,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 6,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 0
+      }
+    },
+    "swap": {
+      "last_action": {
+        "n": 42,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 8,
+            "blue": 6
+          },
+          "green": {
+            "red": 5,
+            "green": 2,
+            "blue": 7
+          },
+          "blue": {
+            "red": 5,
+            "green": 6,
+            "blue": 3
+          }
+        },
+        "matches": 35,
+        "blue_all": 16,
+        "blue_from_nonblue": 13,
+        "nonblue_n": 28,
+        "ambiguous": 3,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 10,
+            "green": 3,
+            "blue": 1
+          },
+          "green": {
+            "red": 0,
+            "green": 12,
+            "blue": 2
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 13
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 35
+      },
+      "endpoint": {
+        "n": 42,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 8,
+            "blue": 6
+          },
+          "green": {
+            "red": 4,
+            "green": 3,
+            "blue": 7
+          },
+          "blue": {
+            "red": 4,
+            "green": 5,
+            "blue": 5
+          }
+        },
+        "matches": 31,
+        "blue_all": 18,
+        "blue_from_nonblue": 13,
+        "nonblue_n": 28,
+        "ambiguous": 6,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 8,
+            "green": 3,
+            "blue": 3
+          },
+          "green": {
+            "red": 0,
+            "green": 11,
+            "blue": 3
+          },
+          "blue": {
+            "red": 0,
+            "green": 2,
+            "blue": 12
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 29
+      },
+      "displacement": {
+        "n": 42,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 6,
+            "blue": 8
+          },
+          "green": {
+            "red": 4,
+            "green": 3,
+            "blue": 7
+          },
+          "blue": {
+            "red": 4,
+            "green": 6,
+            "blue": 4
+          }
+        },
+        "matches": 32,
+        "blue_all": 19,
+        "blue_from_nonblue": 15,
+        "nonblue_n": 28,
+        "ambiguous": 5,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 8,
+            "green": 5,
+            "blue": 1
+          },
+          "green": {
+            "red": 0,
+            "green": 10,
+            "blue": 4
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 14
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 34
+      },
+      "pre_release_endpoint": {
+        "n": 42,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 7,
+            "blue": 7
+          },
+          "green": {
+            "red": 2,
+            "green": 4,
+            "blue": 8
+          },
+          "blue": {
+            "red": 4,
+            "green": 5,
+            "blue": 5
+          }
+        },
+        "matches": 29,
+        "blue_all": 20,
+        "blue_from_nonblue": 15,
+        "nonblue_n": 28,
+        "ambiguous": 6,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 6,
+            "green": 5,
+            "blue": 3
+          },
+          "green": {
+            "red": 0,
+            "green": 10,
+            "blue": 4
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 13
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 28
+      }
+    },
+    "requested_blue": {
+      "last_action": {
+        "n": 21,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          }
+        },
+        "matches": 19,
+        "blue_all": 19,
+        "blue_from_nonblue": 13,
+        "nonblue_n": 14,
+        "ambiguous": 3,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 2,
+            "blue": 19
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 13
+      },
+      "endpoint": {
+        "n": 21,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          },
+          "green": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          }
+        },
+        "matches": 18,
+        "blue_all": 18,
+        "blue_from_nonblue": 12,
+        "nonblue_n": 14,
+        "ambiguous": 3,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 3,
+            "blue": 18
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 12
+      },
+      "displacement": {
+        "n": 21,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "matches": 21,
+        "blue_all": 21,
+        "blue_from_nonblue": 14,
+        "nonblue_n": 14,
+        "ambiguous": 1,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 21
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 13
+      },
+      "pre_release_endpoint": {
+        "n": 21,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "matches": 20,
+        "blue_all": 20,
+        "blue_from_nonblue": 13,
+        "nonblue_n": 14,
+        "ambiguous": 3,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 20
+          }
+        },
+        "distinct_episodes": 21,
+        "prediction_label_changed_from_original": 13
+      }
+    },
+    "original_blue": {
+      "last_action": {
+        "n": 7,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          }
+        },
+        "matches": 6,
+        "blue_all": 6,
+        "blue_from_nonblue": 0,
+        "nonblue_n": 0,
+        "ambiguous": 1,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          }
+        },
+        "distinct_episodes": 7,
+        "prediction_label_changed_from_original": 0
+      },
+      "endpoint": {
+        "n": 7,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          }
+        },
+        "matches": 6,
+        "blue_all": 6,
+        "blue_from_nonblue": 0,
+        "nonblue_n": 0,
+        "ambiguous": 1,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          }
+        },
+        "distinct_episodes": 7,
+        "prediction_label_changed_from_original": 0
+      },
+      "displacement": {
+        "n": 7,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "matches": 7,
+        "blue_all": 7,
+        "blue_from_nonblue": 0,
+        "nonblue_n": 0,
+        "ambiguous": 0,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "distinct_episodes": 7,
+        "prediction_label_changed_from_original": 0
+      },
+      "pre_release_endpoint": {
+        "n": 7,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "matches": 7,
+        "blue_all": 7,
+        "blue_from_nonblue": 0,
+        "nonblue_n": 0,
+        "ambiguous": 1,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "distinct_episodes": 7,
+        "prediction_label_changed_from_original": 0
+      }
+    },
+    "nonblue_to_blue": {
+      "last_action": {
+        "n": 14,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          }
+        },
+        "matches": 13,
+        "blue_all": 13,
+        "blue_from_nonblue": 13,
+        "nonblue_n": 14,
+        "ambiguous": 2,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 13
+          }
+        },
+        "distinct_episodes": 14,
+        "prediction_label_changed_from_original": 13
+      },
+      "endpoint": {
+        "n": 14,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          },
+          "green": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          }
+        },
+        "matches": 12,
+        "blue_all": 12,
+        "blue_from_nonblue": 12,
+        "nonblue_n": 14,
+        "ambiguous": 2,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 2,
+            "blue": 12
+          }
+        },
+        "distinct_episodes": 14,
+        "prediction_label_changed_from_original": 12
+      },
+      "displacement": {
+        "n": 14,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          }
+        },
+        "matches": 14,
+        "blue_all": 14,
+        "blue_from_nonblue": 14,
+        "nonblue_n": 14,
+        "ambiguous": 1,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 14
+          }
+        },
+        "distinct_episodes": 14,
+        "prediction_label_changed_from_original": 13
+      },
+      "pre_release_endpoint": {
+        "n": 14,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 0,
+            "green": 1,
+            "blue": 6
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          }
+        },
+        "matches": 13,
+        "blue_all": 13,
+        "blue_from_nonblue": 13,
+        "nonblue_n": 14,
+        "ambiguous": 2,
+        "small_movement": 0,
+        "confusion_from_requested": {
+          "red": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 13
+          }
+        },
+        "distinct_episodes": 14,
+        "prediction_label_changed_from_original": 13
+      }
+    }
+  },
+  "heldout_truth_positive_control": {
+    "summary": {
+      "last_action": {
+        "n": 21,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 7,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 6,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "matches": 20,
+        "blue_all": 8,
+        "blue_from_nonblue": 1,
+        "nonblue_n": 14,
+        "ambiguous": 0,
+        "small_movement": 1
+      },
+      "endpoint": {
+        "n": 21,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 7,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 6,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "matches": 20,
+        "blue_all": 8,
+        "blue_from_nonblue": 1,
+        "nonblue_n": 14,
+        "ambiguous": 1,
+        "small_movement": 1
+      },
+      "displacement": {
+        "n": 21,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 7,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 6,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "matches": 20,
+        "blue_all": 8,
+        "blue_from_nonblue": 1,
+        "nonblue_n": 14,
+        "ambiguous": 1,
+        "small_movement": 1
+      },
+      "pre_release_endpoint": {
+        "n": 21,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 7,
+            "green": 0,
+            "blue": 0
+          },
+          "green": {
+            "red": 0,
+            "green": 6,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 7
+          }
+        },
+        "matches": 20,
+        "blue_all": 8,
+        "blue_from_nonblue": 1,
+        "nonblue_n": 14,
+        "ambiguous": 0,
+        "small_movement": 1
+      }
+    }
+  },
+  "train_leave_one_out": {
+    "summary": {
+      "last_action": {
+        "n": 108,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 34,
+            "green": 2,
+            "blue": 2
+          },
+          "green": {
+            "red": 2,
+            "green": 26,
+            "blue": 5
+          },
+          "blue": {
+            "red": 0,
+            "green": 2,
+            "blue": 35
+          }
+        },
+        "matches": 95,
+        "blue_all": 42,
+        "blue_from_nonblue": 7,
+        "nonblue_n": 71,
+        "ambiguous": 7,
+        "small_movement": 2
+      },
+      "endpoint": {
+        "n": 108,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 30,
+            "green": 6,
+            "blue": 2
+          },
+          "green": {
+            "red": 4,
+            "green": 24,
+            "blue": 5
+          },
+          "blue": {
+            "red": 0,
+            "green": 4,
+            "blue": 33
+          }
+        },
+        "matches": 87,
+        "blue_all": 40,
+        "blue_from_nonblue": 7,
+        "nonblue_n": 71,
+        "ambiguous": 15,
+        "small_movement": 2
+      },
+      "displacement": {
+        "n": 108,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 30,
+            "green": 6,
+            "blue": 2
+          },
+          "green": {
+            "red": 5,
+            "green": 22,
+            "blue": 6
+          },
+          "blue": {
+            "red": 0,
+            "green": 1,
+            "blue": 36
+          }
+        },
+        "matches": 88,
+        "blue_all": 44,
+        "blue_from_nonblue": 8,
+        "nonblue_n": 71,
+        "ambiguous": 11,
+        "small_movement": 2
+      },
+      "pre_release_endpoint": {
+        "n": 108,
+        "confusion_from_recorded": {
+          "red": {
+            "red": 37,
+            "green": 0,
+            "blue": 1
+          },
+          "green": {
+            "red": 0,
+            "green": 32,
+            "blue": 1
+          },
+          "blue": {
+            "red": 0,
+            "green": 0,
+            "blue": 37
+          }
+        },
+        "matches": 106,
+        "blue_all": 39,
+        "blue_from_nonblue": 2,
+        "nonblue_n": 71,
+        "ambiguous": 4,
+        "small_movement": 2
+      }
+    }
+  },
+  "trials": [
+    {
+      "episode": 3,
+      "recorded": "red",
+      "requested": "red",
+      "frame": 152,
+      "t_s": 5.066666666666666,
+      "endpoint_arm_degrees": [
+        -17.73068618774414,
+        -2.50810170173645,
+        -32.784847259521484,
+        59.17253875732422,
+        -2.831271171569824
+      ],
+      "final_target_arm_degrees": [
+        -23.26128578186035,
+        5.509883880615234,
+        -41.38389205932617,
+        59.815773010253906,
+        -2.6341845989227295
+      ],
+      "movement_arm_degrees": [
+        -22.87354326248169,
+        24.612776517868042,
+        -57.97166061401367,
+        4.359352111816406,
+        1.344552993774414
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.4127134478703472,
+            "green": 0.9135435697282454,
+            "blue": 1.605526182992644
+          },
+          "margin": 0.5482279537109342,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.4576901685147968,
+            "green": 0.7005833880096454,
+            "blue": 1.3314632885083493
+          },
+          "margin": 0.3467013686763359,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.29240545460524436,
+            "green": 0.6654823279540997,
+            "blue": 1.2982403986111686
+          },
+          "margin": 0.5606112404153691,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.764592254193917,
+            "green": 0.5529276305769639,
+            "blue": 1.356873084985841
+          },
+          "margin": 0.2768333349650575,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.4037549259194826,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 3,
+      "recorded": "red",
+      "requested": "green",
+      "frame": 152,
+      "t_s": 5.066666666666666,
+      "endpoint_arm_degrees": [
+        -5.682143688201904,
+        -10.16315746307373,
+        -26.105051040649414,
+        60.790611267089844,
+        -3.710216999053955
+      ],
+      "final_target_arm_degrees": [
+        -9.345706939697266,
+        -2.9949073791503906,
+        -34.8265495300293,
+        61.730194091796875,
+        -3.7293341159820557
+      ],
+      "movement_arm_degrees": [
+        -10.825000762939453,
+        16.95772075653076,
+        -51.2918643951416,
+        5.977424621582031,
+        0.4656071662902832
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.9009230899066645,
+            "green": 0.32513557386157793,
+            "blue": 0.8709315128475977
+          },
+          "margin": 0.6266806642481972,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.9472011420050475,
+            "green": 0.3522627353757687,
+            "blue": 0.7411342038569505
+          },
+          "margin": 0.5246977759998775,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.8772290643675719,
+            "green": 0.34663320815357423,
+            "blue": 0.6611062134534377
+          },
+          "margin": 0.47567697731525266,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.3521407171272493,
+            "green": 0.5581272493812138,
+            "blue": 0.8350878633427429
+          },
+          "margin": 0.331654459511474,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.7716557375634545,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.0632710456848145,
+      "gripper_change_mae_points": 1.2214291095733643,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 3,
+      "recorded": "red",
+      "requested": "blue",
+      "frame": 152,
+      "t_s": 5.066666666666666,
+      "endpoint_arm_degrees": [
+        4.423083305358887,
+        -0.7792121767997742,
+        -33.875465393066406,
+        64.91950988769531,
+        -3.387355327606201
+      ],
+      "final_target_arm_degrees": [
+        3.860959053039551,
+        7.942146301269531,
+        -45.68477249145508,
+        66.96378326416016,
+        -3.3442373275756836
+      ],
+      "movement_arm_degrees": [
+        -0.7197737693786621,
+        26.341666042804718,
+        -59.062278747558594,
+        10.1063232421875,
+        0.7884688377380371
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.6091399647967835,
+            "green": 0.8249394369157018,
+            "blue": 0.3537794127559127
+          },
+          "margin": 0.5711449872264206,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4767975756451248,
+            "green": 0.7724169252867659,
+            "blue": 0.40837813275587964
+          },
+          "margin": 0.4712983113306767,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4098395255238656,
+            "green": 0.7522602026164233,
+            "blue": 0.2207287107142268
+          },
+          "margin": 0.706579306008062,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8668280945093352,
+            "green": 1.0027558238629095,
+            "blue": 0.5330380549683232
+          },
+          "margin": 0.46842686695659935,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.6065178763168294,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.1519856452941895,
+      "gripper_change_mae_points": 1.0533812046051025,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 12,
+      "recorded": "red",
+      "requested": "red",
+      "frame": 190,
+      "t_s": 6.333333333333333,
+      "endpoint_arm_degrees": [
+        -22.71422576904297,
+        8.052436828613281,
+        -38.269615173339844,
+        61.019020080566406,
+        -7.374978542327881
+      ],
+      "final_target_arm_degrees": [
+        -24.807146072387695,
+        17.394752502441406,
+        -44.3209114074707,
+        60.52015686035156,
+        -7.020785331726074
+      ],
+      "movement_arm_degrees": [
+        -29.6153244972229,
+        27.173315048217773,
+        -53.34653854370117,
+        1.7223167419433594,
+        -0.29805564880371094
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.23089582512851312,
+            "green": 0.9353775171257279,
+            "blue": 1.6558089142494352
+          },
+          "margin": 0.7531522610913071,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.22798445283267343,
+            "green": 0.8811757062287434,
+            "blue": 1.550040685015509
+          },
+          "margin": 0.7412724258951696,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.46659218745515446,
+            "green": 1.068288304410011,
+            "blue": 1.7021142216902467
+          },
+          "margin": 0.5632338334801469,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.3988566526133131,
+            "green": 0.6199633379518966,
+            "blue": 1.5529867414617728
+          },
+          "margin": 0.3566447752685326,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.74878983023199,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 12,
+      "recorded": "red",
+      "requested": "green",
+      "frame": 190,
+      "t_s": 6.333333333333333,
+      "endpoint_arm_degrees": [
+        -2.3277692794799805,
+        -12.135647773742676,
+        -15.766633987426758,
+        60.55107498168945,
+        -7.7338433265686035
+      ],
+      "final_target_arm_degrees": [
+        -7.214676380157471,
+        -2.7116966247558594,
+        -24.255870819091797,
+        60.8300666809082,
+        -7.650436878204346
+      ],
+      "movement_arm_degrees": [
+        -9.228868007659912,
+        6.985230445861816,
+        -30.843557357788086,
+        1.2543716430664062,
+        -0.6569204330444336
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 1.0010256562620008,
+            "green": 0.21437552917245542,
+            "blue": 0.7836312331553827
+          },
+          "margin": 0.7264331485241505,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.1139308479058305,
+            "green": 0.37854469789864087,
+            "blue": 0.632915656415284
+          },
+          "margin": 0.4019034067783261,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 1.0540732988073316,
+            "green": 0.49765186353639834,
+            "blue": 0.7114608864183221
+          },
+          "margin": 0.3005211206455686,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.5285194678926806,
+            "green": 0.6550215555430196,
+            "blue": 0.7719126629672358
+          },
+          "margin": 0.15143048304828466,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.5839457505170733,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 4.582740306854248,
+      "gripper_change_mae_points": 0.8564372062683105,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 12,
+      "recorded": "red",
+      "requested": "blue",
+      "frame": 190,
+      "t_s": 6.333333333333333,
+      "endpoint_arm_degrees": [
+        6.015612602233887,
+        -11.506914138793945,
+        -15.138330459594727,
+        62.908119201660156,
+        -7.2513861656188965
+      ],
+      "final_target_arm_degrees": [
+        4.585751056671143,
+        1.072967529296875,
+        -26.655399322509766,
+        63.288848876953125,
+        -6.965555667877197
+      ],
+      "movement_arm_degrees": [
+        -0.8854861259460449,
+        7.613964080810547,
+        -30.215253829956055,
+        3.6114158630371094,
+        -0.17446327209472656
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.6380423680800233,
+            "green": 0.7882951577807866,
+            "blue": 0.4167086968648996
+          },
+          "margin": 0.4713798597494618,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5617488796373118,
+            "green": 0.800099982619202,
+            "blue": 0.4949544672559221
+          },
+          "margin": 0.38138422946137,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.462329055132202,
+            "green": 0.7695841530511847,
+            "blue": 0.4454058331903287
+          },
+          "margin": 0.4212382993797106,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.9714806622506937,
+            "green": 1.0744134033801607,
+            "blue": 0.6775309391925218
+          },
+          "margin": 0.36939455794112946,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.2740487899059598,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 5.680922985076904,
+      "gripper_change_mae_points": 1.3107408285140991,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 22,
+      "recorded": "red",
+      "requested": "red",
+      "frame": 211,
+      "t_s": 7.033333333333333,
+      "endpoint_arm_degrees": [
+        -23.404159545898438,
+        16.570110321044922,
+        -49.799381256103516,
+        57.58777618408203,
+        -10.126806259155273
+      ],
+      "final_target_arm_degrees": [
+        -26.033405303955078,
+        25.456031799316406,
+        -53.40165328979492,
+        54.62526321411133,
+        -9.84529972076416
+      ],
+      "movement_arm_degrees": [
+        -30.656906604766846,
+        34.8997802734375,
+        -64.61256790161133,
+        -0.3902473449707031,
+        -0.2366962432861328
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.5076447111715063,
+            "green": 1.0991021684709201,
+            "blue": 1.7990922885104412
+          },
+          "margin": 0.5381278231142553,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.4629654386230809,
+            "green": 1.0120734329825996,
+            "blue": 1.6487061505630092
+          },
+          "margin": 0.5425574631885031,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.5357239222811037,
+            "green": 1.1518425598424205,
+            "blue": 1.772852658791252
+          },
+          "margin": 0.534898309058493,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.4753445305164784,
+            "green": 0.7275752102595106,
+            "blue": 1.6353657509139081
+          },
+          "margin": 0.3466729984561553,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.8408172339356952,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 22,
+      "recorded": "red",
+      "requested": "green",
+      "frame": 211,
+      "t_s": 7.033333333333333,
+      "endpoint_arm_degrees": [
+        -8.475065231323242,
+        1.771996259689331,
+        -33.557899475097656,
+        57.14325714111328,
+        -10.977616310119629
+      ],
+      "final_target_arm_degrees": [
+        -10.674886703491211,
+        9.194137573242188,
+        -35.00869369506836,
+        54.113014221191406,
+        -10.914243698120117
+      ],
+      "movement_arm_degrees": [
+        -15.72781229019165,
+        20.10166621208191,
+        -48.37108612060547,
+        -0.8347663879394531,
+        -1.0875062942504883
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.9312898790841758,
+            "green": 0.5126961797932076,
+            "blue": 1.0827059633619744
+          },
+          "margin": 0.4494773417945983,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.8623565317818456,
+            "green": 0.46595874281625405,
+            "blue": 0.9571125832458953
+          },
+          "margin": 0.4596681005552703,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.7458096635410899,
+            "green": 0.545119543026272,
+            "blue": 1.0043151330361066
+          },
+          "margin": 0.26909026568782324,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.2159039820249469,
+            "green": 0.4646029890476648,
+            "blue": 1.0048038367916214
+          },
+          "margin": 0.5376182175705453,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.9935757924862332,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 4.121193885803223,
+      "gripper_change_mae_points": 1.7112019062042236,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 22,
+      "recorded": "red",
+      "requested": "blue",
+      "frame": 211,
+      "t_s": 7.033333333333333,
+      "endpoint_arm_degrees": [
+        5.228728294372559,
+        4.597342491149902,
+        -30.311466217041016,
+        60.312347412109375,
+        -10.549018859863281
+      ],
+      "final_target_arm_degrees": [
+        5.012738227844238,
+        10.488479614257812,
+        -32.009281158447266,
+        59.04901885986328,
+        -10.413832664489746
+      ],
+      "movement_arm_degrees": [
+        -2.0240187644958496,
+        22.92701244354248,
+        -45.12465286254883,
+        2.3343238830566406,
+        -0.6589088439941406
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.7020924630906482,
+            "green": 0.8949070832868553,
+            "blue": 0.609892813739191
+          },
+          "margin": 0.31848476212843346,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.545186408941513,
+            "green": 0.8412386675502822,
+            "blue": 0.5887598690719054
+          },
+          "margin": 0.3001274290132244,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.3888713785579905,
+            "green": 0.741991710239934,
+            "blue": 0.4340416738158152
+          },
+          "margin": 0.4150316400765968,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.9219664382264599,
+            "green": 1.0349306541021175,
+            "blue": 0.6845912016157674
+          },
+          "margin": 0.33851490541682405,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.44852251190100395,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 4.954524993896484,
+      "gripper_change_mae_points": 2.0938398838043213,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 29,
+      "recorded": "red",
+      "requested": "red",
+      "frame": 195,
+      "t_s": 6.5,
+      "endpoint_arm_degrees": [
+        -26.739099502563477,
+        -13.821151733398438,
+        -8.560200691223145,
+        48.858219146728516,
+        -7.45089864730835
+      ],
+      "final_target_arm_degrees": [
+        -28.727069854736328,
+        -3.7286911010742188,
+        -20.147216796875,
+        50.28557205200195,
+        -6.838895797729492
+      ],
+      "movement_arm_degrees": [
+        -31.881956577301025,
+        32.28873825073242,
+        -56.25250720977783,
+        12.682395935058594,
+        7.801848888397217
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.5888081844911213,
+            "green": 1.1945303119588362,
+            "blue": 1.9688870622537078
+          },
+          "margin": 0.5070797462430474,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.6765461597272735,
+            "green": 1.1824557377309193,
+            "blue": 1.904512275243157
+          },
+          "margin": 0.4278465247032959,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.549734088025515,
+            "green": 1.16952243602426,
+            "blue": 1.825553690999224
+          },
+          "margin": 0.529949942735334,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.7268534456467731,
+            "green": 1.0080865076178098,
+            "blue": 1.9446175343045118
+          },
+          "margin": 0.2789771114342292,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 2.028157974172914,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 29,
+      "recorded": "red",
+      "requested": "green",
+      "frame": 195,
+      "t_s": 6.5,
+      "endpoint_arm_degrees": [
+        -6.4441328048706055,
+        -40.32216262817383,
+        20.424230575561523,
+        42.55876541137695,
+        -9.470733642578125
+      ],
+      "final_target_arm_degrees": [
+        -9.738021850585938,
+        -30.575660705566406,
+        6.722377777099609,
+        44.343013763427734,
+        -8.938901901245117
+      ],
+      "movement_arm_degrees": [
+        -11.586989879608154,
+        5.787727355957031,
+        -27.268075942993164,
+        6.382942199707031,
+        5.782013893127441
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 1.1948320630404434,
+            "green": 0.739407388730489,
+            "blue": 1.313807526999426
+          },
+          "margin": 0.3811620799253183,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.2770178684245677,
+            "green": 0.8454807524049999,
+            "blue": 1.3088891763653587
+          },
+          "margin": 0.33792566783105926,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.8920922878603047,
+            "green": 0.20255524959342106,
+            "blue": 0.7424755315923389
+          },
+          "margin": 0.7271893268199505,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.648142840477686,
+            "green": 1.0123830897285846,
+            "blue": 1.44887865593273
+          },
+          "margin": 0.30126440500508794,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.868148381541322,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 6.60653018951416,
+      "gripper_change_mae_points": 1.9205431938171387,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 29,
+      "recorded": "red",
+      "requested": "blue",
+      "frame": 195,
+      "t_s": 6.5,
+      "endpoint_arm_degrees": [
+        4.221348285675049,
+        -40.46449661254883,
+        27.130237579345703,
+        41.351749420166016,
+        -10.787065505981445
+      ],
+      "final_target_arm_degrees": [
+        4.174903392791748,
+        -32.070770263671875,
+        13.312469482421875,
+        43.40415573120117,
+        -10.013256072998047
+      ],
+      "movement_arm_degrees": [
+        -0.9215087890625,
+        5.645393371582031,
+        -20.562068939208984,
+        5.175926208496094,
+        4.465682029724121
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 1.8609005586339533,
+            "green": 1.1075285415841347,
+            "blue": 1.1520570478134042
+          },
+          "margin": 0.038651303174425514,
+          "ambiguous": true
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.7785206423295137,
+            "green": 1.15094590393804,
+            "blue": 1.2577490753080856
+          },
+          "margin": 0.08491611996922681,
+          "ambiguous": true
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4496197191428613,
+            "green": 0.6813503541431263,
+            "blue": 0.3858772318909125
+          },
+          "margin": 0.43365813264132524,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 2.169013807713394,
+            "green": 1.384932506231959,
+            "blue": 1.4189990658004723
+          },
+          "margin": 0.02400745736171146,
+          "ambiguous": true
+        },
+        "movement_rms_normalized": 0.4450820353358632,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 8.27951431274414,
+      "gripper_change_mae_points": 3.9556729793548584,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 32,
+      "recorded": "red",
+      "requested": "red",
+      "frame": 162,
+      "t_s": 5.4,
+      "endpoint_arm_degrees": [
+        -10.317044258117676,
+        -28.156314849853516,
+        -12.702173233032227,
+        75.94761657714844,
+        -4.968276023864746
+      ],
+      "final_target_arm_degrees": [
+        -14.007104873657227,
+        -18.282604217529297,
+        -20.360530853271484,
+        73.86648559570312,
+        -4.34181547164917
+      ],
+      "movement_arm_degrees": [
+        -16.602758407592773,
+        1.8656635284423828,
+        -39.6472282409668,
+        22.98058319091797,
+        6.328427314758301
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.7039603549053852,
+            "green": 0.42573581261686194,
+            "blue": 1.0734673305221973
+          },
+          "margin": 0.39522757261794617,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.7606202186976897,
+            "green": 0.37428911304610707,
+            "blue": 0.9083852657230586
+          },
+          "margin": 0.5079159035675475,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.7059498326309479,
+            "green": 0.5220145155048391,
+            "blue": 1.0334416239884747
+          },
+          "margin": 0.2605501249863818,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.2042210477759718,
+            "green": 0.6089637566432928,
+            "blue": 1.0307536593111333
+          },
+          "margin": 0.4092053410217611,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.2840981089932306,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 32,
+      "recorded": "red",
+      "requested": "green",
+      "frame": 162,
+      "t_s": 5.4,
+      "endpoint_arm_degrees": [
+        1.0437583923339844,
+        -37.94622039794922,
+        2.8676986694335938,
+        66.51109313964844,
+        -7.360299587249756
+      ],
+      "final_target_arm_degrees": [
+        -0.8569389581680298,
+        -29.254695892333984,
+        -3.980976104736328,
+        63.62360763549805,
+        -7.021286487579346
+      ],
+      "movement_arm_degrees": [
+        -5.241955757141113,
+        -7.92424201965332,
+        -24.077356338500977,
+        13.544059753417969,
+        3.936403751373291
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 1.4129492984399383,
+            "green": 0.5756683828150327,
+            "blue": 0.6967707397693975
+          },
+          "margin": 0.17380517011154153,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.3638021117886918,
+            "green": 0.6200261373455583,
+            "blue": 0.6711020403722436
+          },
+          "margin": 0.0761075066890793,
+          "ambiguous": true
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.2274290591986239,
+            "green": 0.5098347545141675,
+            "blue": 0.49633236717553775
+          },
+          "margin": 0.026483850343816704,
+          "ambiguous": true
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8064347381616863,
+            "green": 0.9739225139283412,
+            "blue": 0.8940407144365007
+          },
+          "margin": 0.08202069297036294,
+          "ambiguous": true
+        },
+        "movement_rms_normalized": 0.612090122640567,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 3.4303462505340576,
+      "gripper_change_mae_points": 1.9131807088851929,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 32,
+      "recorded": "red",
+      "requested": "blue",
+      "frame": 162,
+      "t_s": 5.4,
+      "endpoint_arm_degrees": [
+        4.999327182769775,
+        -37.82611846923828,
+        10.210508346557617,
+        63.954124450683594,
+        -8.618496894836426
+      ],
+      "final_target_arm_degrees": [
+        5.179244518280029,
+        -30.548019409179688,
+        4.489780426025391,
+        61.16585159301758,
+        -7.837235450744629
+      ],
+      "movement_arm_degrees": [
+        -1.2863869667053223,
+        -7.804140090942383,
+        -16.734546661376953,
+        10.987091064453125,
+        2.678206443786621
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.7602570125927441,
+            "green": 0.9097721479894755,
+            "blue": 0.7489024259601557
+          },
+          "margin": 0.17682418876509814,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5960073410734479,
+            "green": 0.8460742266674967,
+            "blue": 0.743809745878244
+          },
+          "margin": 0.12086939604820528,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4474525040253214,
+            "green": 0.7148186408103446,
+            "blue": 0.446491797798713
+          },
+          "margin": 0.3753775121301348,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 2.030326443676951,
+            "green": 1.174917614143668,
+            "blue": 0.9644723897376581
+          },
+          "margin": 0.17911487739452403,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.4092151098189409,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 4.5872802734375,
+      "gripper_change_mae_points": 3.327052593231201,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 34,
+      "recorded": "red",
+      "requested": "red",
+      "frame": 249,
+      "t_s": 8.3,
+      "endpoint_arm_degrees": [
+        -13.296806335449219,
+        4.138914585113525,
+        -50.116573333740234,
+        87.41828918457031,
+        -9.876169204711914
+      ],
+      "final_target_arm_degrees": [
+        -21.00339698791504,
+        8.170181274414062,
+        -56.31149673461914,
+        88.74443054199219,
+        -9.794168472290039
+      ],
+      "movement_arm_degrees": [
+        -18.615487575531006,
+        10.336716651916504,
+        -46.116573333740234,
+        13.6160888671875,
+        7.926029205322266
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.6445042502924033,
+            "green": 0.9462430539377416,
+            "blue": 1.4590867789674618
+          },
+          "margin": 0.3188808651114191,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.7365627149320563,
+            "green": 0.7078119163471033,
+            "blue": 1.0532777904346822
+          },
+          "margin": 0.03903374146165557,
+          "ambiguous": true
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.6016417997947984,
+            "green": 0.5013287477127873,
+            "blue": 1.1197770304298147
+          },
+          "margin": 0.16673218535717554,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.0443142770087919,
+            "green": 0.6694298013357165,
+            "blue": 1.0654477116376804
+          },
+          "margin": 0.3589766834815754,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.358241110716249,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 34,
+      "recorded": "red",
+      "requested": "green",
+      "frame": 249,
+      "t_s": 8.3,
+      "endpoint_arm_degrees": [
+        -5.472546577453613,
+        -1.177484154701233,
+        -40.47020721435547,
+        82.67838287353516,
+        -11.055366516113281
+      ],
+      "final_target_arm_degrees": [
+        -11.014242172241211,
+        2.861461639404297,
+        -47.08571243286133,
+        83.68344116210938,
+        -10.993232727050781
+      ],
+      "movement_arm_degrees": [
+        -10.7912278175354,
+        5.020317912101746,
+        -36.47020721435547,
+        8.876182556152344,
+        6.746831893920898
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.9318738555613789,
+            "green": 0.5882572667545976,
+            "blue": 0.9454684711702475
+          },
+          "margin": 0.36873723493377764,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.0385306825365057,
+            "green": 0.5766761243750749,
+            "blue": 0.692139486794628
+          },
+          "margin": 0.16682094378732285,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.933046675355536,
+            "green": 0.258237253897595,
+            "blue": 0.7093166431542054
+          },
+          "margin": 0.6359351547860773,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.4097082140335064,
+            "green": 0.7127184366390696,
+            "blue": 0.7561388797364438
+          },
+          "margin": 0.057423899578485586,
+          "ambiguous": true
+        },
+        "movement_rms_normalized": 0.9211931170423939,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.201165199279785,
+      "gripper_change_mae_points": 1.8514553308486938,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 34,
+      "recorded": "red",
+      "requested": "blue",
+      "frame": 249,
+      "t_s": 8.3,
+      "endpoint_arm_degrees": [
+        3.8176605701446533,
+        4.450675964355469,
+        -42.61211395263672,
+        82.40717315673828,
+        -11.166507720947266
+      ],
+      "final_target_arm_degrees": [
+        2.4844565391540527,
+        7.595977783203125,
+        -50.00583267211914,
+        83.98054504394531,
+        -10.658784866333008
+      ],
+      "movement_arm_degrees": [
+        -1.5010206699371338,
+        10.648478031158447,
+        -38.61211395263672,
+        8.604972839355469,
+        6.635690689086914
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.6028804123089746,
+            "green": 0.8813630967335636,
+            "blue": 0.4464013480382738
+          },
+          "margin": 0.4935102800506508,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.512134020448677,
+            "green": 0.8783219272417389,
+            "blue": 0.45944254150038405
+          },
+          "margin": 0.47690871962720277,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4075256842162593,
+            "green": 0.6547949466421704,
+            "blue": 0.3626925056248351
+          },
+          "margin": 0.44609757988398496,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8850739910963792,
+            "green": 1.07599630648909,
+            "blue": 0.5481485045192427
+          },
+          "margin": 0.4905665556531345,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.6989167911513057,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.5286922454833984,
+      "gripper_change_mae_points": 1.7740347385406494,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 37,
+      "recorded": "red",
+      "requested": "red",
+      "frame": 177,
+      "t_s": 5.9,
+      "endpoint_arm_degrees": [
+        -19.91393280029297,
+        -10.9453706741333,
+        -31.17508316040039,
+        76.00386047363281,
+        -4.198549270629883
+      ],
+      "final_target_arm_degrees": [
+        -22.408828735351562,
+        -0.9539031982421875,
+        -42.25521469116211,
+        81.02732849121094,
+        -4.958489894866943
+      ],
+      "movement_arm_degrees": [
+        -24.001844882965088,
+        12.659024238586426,
+        -54.86739158630371,
+        22.33353042602539,
+        10.175077438354492
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.3921085879570836,
+            "green": 0.8586595455591995,
+            "blue": 1.4792062747161903
+          },
+          "margin": 0.5433480126262104,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.33805215177798775,
+            "green": 0.755037659386428,
+            "blue": 1.359509085860536
+          },
+          "margin": 0.5522711382996424,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.6896511114733087,
+            "green": 0.9241785438762521,
+            "blue": 1.4946374467097627
+          },
+          "margin": 0.25376853201901073,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.6858844743108726,
+            "green": 0.6560533527222334,
+            "blue": 1.395718775148079
+          },
+          "margin": 0.04349292440044131,
+          "ambiguous": true
+        },
+        "movement_rms_normalized": 1.7778687029858893,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 37,
+      "recorded": "red",
+      "requested": "green",
+      "frame": 177,
+      "t_s": 5.9,
+      "endpoint_arm_degrees": [
+        -7.01656436920166,
+        -23.194477081298828,
+        -15.99474811553955,
+        70.78861999511719,
+        -6.428544044494629
+      ],
+      "final_target_arm_degrees": [
+        -7.9199113845825195,
+        -13.00687026977539,
+        -27.994426727294922,
+        75.323974609375,
+        -7.881770133972168
+      ],
+      "movement_arm_degrees": [
+        -11.10447645187378,
+        0.40991783142089844,
+        -39.68705654144287,
+        17.118289947509766,
+        7.945082664489746
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.9765675135953237,
+            "green": 0.25456216317070457,
+            "blue": 0.7302598036244771
+          },
+          "margin": 0.6514087699922088,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.8638248192937045,
+            "green": 0.18623039171285657,
+            "blue": 0.7298026667349568
+          },
+          "margin": 0.7448208944672299,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.9708662618524858,
+            "green": 0.43808098510191845,
+            "blue": 0.7910049768522253
+          },
+          "margin": 0.446171645031558,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.310473766866631,
+            "green": 0.5454632323004172,
+            "blue": 0.8696102851711212
+          },
+          "margin": 0.37274979194492697,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.0792825237028827,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 3.51656174659729,
+      "gripper_change_mae_points": 1.8515056371688843,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 37,
+      "recorded": "red",
+      "requested": "blue",
+      "frame": 177,
+      "t_s": 5.9,
+      "endpoint_arm_degrees": [
+        2.5881175994873047,
+        -21.961193084716797,
+        -13.336997985839844,
+        69.9456787109375,
+        -7.305609703063965
+      ],
+      "final_target_arm_degrees": [
+        2.8706274032592773,
+        -10.634193420410156,
+        -27.313953399658203,
+        74.58583068847656,
+        -8.769624710083008
+      ],
+      "movement_arm_degrees": [
+        -1.4997944831848145,
+        1.6432018280029297,
+        -37.029306411743164,
+        16.275348663330078,
+        7.06801700592041
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5662118610124645,
+            "green": 0.7282529551399424,
+            "blue": 0.37352496518142786
+          },
+          "margin": 0.4870944737743623,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.3823531403203995,
+            "green": 0.616194041140554,
+            "blue": 0.4367795557601078
+          },
+          "margin": 0.2911655637700685,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4325227920460757,
+            "green": 0.7169414575634994,
+            "blue": 0.44648307938380966
+          },
+          "margin": 0.3772391390209643,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8114175621378095,
+            "green": 0.9421000530795828,
+            "blue": 0.6649952710069706
+          },
+          "margin": 0.29413519420447803,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.8054548126317201,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 4.3581061363220215,
+      "gripper_change_mae_points": 2.6523706912994385,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 61,
+      "recorded": "green",
+      "requested": "red",
+      "frame": 146,
+      "t_s": 4.866666666666666,
+      "endpoint_arm_degrees": [
+        -19.172021865844727,
+        -2.0006706714630127,
+        -28.243953704833984,
+        67.96870422363281,
+        -4.186557769775391
+      ],
+      "final_target_arm_degrees": [
+        -22.9503173828125,
+        8.373435974121094,
+        -36.80899429321289,
+        66.99032592773438,
+        -4.151677131652832
+      ],
+      "movement_arm_degrees": [
+        -23.78740644454956,
+        16.241087675094604,
+        -42.26593208312988,
+        5.507164001464844,
+        2.8903651237487793
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.22675146544864216,
+            "green": 0.8280108514183526,
+            "blue": 1.5267744706265824
+          },
+          "margin": 0.7261491621030991,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.2562573236382578,
+            "green": 0.6838711600115632,
+            "blue": 1.3295405776315534
+          },
+          "margin": 0.6252842075780402,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.2615922735391553,
+            "green": 0.6533223581089542,
+            "blue": 1.3405300672905178
+          },
+          "margin": 0.5995969366541567,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.6320135287912974,
+            "green": 0.5237372910338887,
+            "blue": 1.3560694846093988
+          },
+          "margin": 0.17131949368945157,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.4246110887906034,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.9321377277374268,
+      "gripper_change_mae_points": 0.9431623816490173,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 61,
+      "recorded": "green",
+      "requested": "green",
+      "frame": 146,
+      "t_s": 4.866666666666666,
+      "endpoint_arm_degrees": [
+        -4.478419780731201,
+        -12.723838806152344,
+        -21.607833862304688,
+        72.4250717163086,
+        -5.578230857849121
+      ],
+      "final_target_arm_degrees": [
+        -8.26401138305664,
+        -3.0836563110351562,
+        -28.596805572509766,
+        69.43169403076172,
+        -5.613357067108154
+      ],
+      "movement_arm_degrees": [
+        -9.093804359436035,
+        5.517919540405273,
+        -35.629812240600586,
+        9.963531494140625,
+        1.4986920356750488
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.9182490164775212,
+            "green": 0.14442751838408838,
+            "blue": 0.7254393348977639
+          },
+          "margin": 0.8009102740418087,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.976053988970998,
+            "green": 0.26338519802137517,
+            "blue": 0.5458337342243106
+          },
+          "margin": 0.5174625870354562,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.9758775479040318,
+            "green": 0.32231526219796536,
+            "blue": 0.5713972005453026
+          },
+          "margin": 0.4359173235529163,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.4047031532213066,
+            "green": 0.5860451142767241,
+            "blue": 0.6852352107235201
+          },
+          "margin": 0.14475335606596168,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.6586806529165731,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 61,
+      "recorded": "green",
+      "requested": "blue",
+      "frame": 146,
+      "t_s": 4.866666666666666,
+      "endpoint_arm_degrees": [
+        4.298664569854736,
+        -7.419644355773926,
+        -24.65396499633789,
+        75.84082794189453,
+        -5.710987567901611
+      ],
+      "final_target_arm_degrees": [
+        3.9502716064453125,
+        3.5251617431640625,
+        -34.51288986206055,
+        73.53888702392578,
+        -5.571258544921875
+      ],
+      "movement_arm_degrees": [
+        -0.31672000885009766,
+        10.822113990783691,
+        -38.67594337463379,
+        13.379287719726562,
+        1.3659353256225586
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5999599521654744,
+            "green": 0.7776550199247969,
+            "blue": 0.17059954559560395
+          },
+          "margin": 0.780623102501027,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4630414893914576,
+            "green": 0.7325645593166707,
+            "blue": 0.22010065184311434
+          },
+          "margin": 0.6995477749450204,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4441019333628156,
+            "green": 0.7459283522239325,
+            "blue": 0.24802940811411794
+          },
+          "margin": 0.667488965428602,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8719672738028148,
+            "green": 1.0107513518576217,
+            "blue": 0.46244181447355337
+          },
+          "margin": 0.5424771744072872,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.4967559027538358,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 1.4051376581192017,
+      "gripper_change_mae_points": 0.9548967480659485,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 62,
+      "recorded": "green",
+      "requested": "red",
+      "frame": 165,
+      "t_s": 5.5,
+      "endpoint_arm_degrees": [
+        -25.11594581604004,
+        3.017482280731201,
+        -21.40367317199707,
+        49.750511169433594,
+        -4.558963298797607
+      ],
+      "final_target_arm_degrees": [
+        -25.062644958496094,
+        7.513923645019531,
+        -22.38827896118164,
+        49.04502868652344,
+        -4.571564674377441
+      ],
+      "movement_arm_degrees": [
+        -28.236824989318848,
+        25.742757320404053,
+        -40.78828811645508,
+        -8.8428955078125,
+        0.4080696105957031
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.5676500895130794,
+            "green": 1.048435736724678,
+            "blue": 1.7866410920855562
+          },
+          "margin": 0.458574264850583,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.5865152004269366,
+            "green": 1.1078583825616228,
+            "blue": 1.7890785400097995
+          },
+          "margin": 0.4705864850065232,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.6391231948640124,
+            "green": 1.0520943549295523,
+            "blue": 1.6889250230915662
+          },
+          "margin": 0.3925229311711232,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.6184944923098765,
+            "green": 0.8901946867159559,
+            "blue": 1.8040395875821427
+          },
+          "margin": 0.3052143519395929,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.6660312049333694,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 3.6052863597869873,
+      "gripper_change_mae_points": 0.5572441220283508,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 62,
+      "recorded": "green",
+      "requested": "green",
+      "frame": 165,
+      "t_s": 5.5,
+      "endpoint_arm_degrees": [
+        -7.651552677154541,
+        -11.876224517822266,
+        -5.465109825134277,
+        52.54998779296875,
+        -5.053370475769043
+      ],
+      "final_target_arm_degrees": [
+        -1.4733803272247314,
+        -13.939002990722656,
+        -2.0534629821777344,
+        54.650028228759766,
+        -4.97531795501709
+      ],
+      "movement_arm_degrees": [
+        -10.77243185043335,
+        10.849050521850586,
+        -24.849724769592285,
+        -6.043418884277344,
+        -0.08633756637573242
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 1.3979725933449723,
+            "green": 0.6208121881995715,
+            "blue": 0.792411637902405
+          },
+          "margin": 0.21655341932770555,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.93188752919189,
+            "green": 0.45409046735376685,
+            "blue": 0.9755107983524266
+          },
+          "margin": 0.5127196650570666,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 1.0435230091114918,
+            "green": 0.5424730691549189,
+            "blue": 0.8510717624610928
+          },
+          "margin": 0.36260008487860235,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.319923231465957,
+            "green": 0.5873844963437261,
+            "blue": 1.0711662723329363
+          },
+          "margin": 0.45164022475760207,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.6688748936760054,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 62,
+      "recorded": "green",
+      "requested": "blue",
+      "frame": 165,
+      "t_s": 5.5,
+      "endpoint_arm_degrees": [
+        5.689107418060303,
+        -16.01987648010254,
+        -2.47686505317688,
+        60.12627410888672,
+        -4.710151195526123
+      ],
+      "final_target_arm_degrees": [
+        8.037593841552734,
+        -14.353408813476562,
+        -9.565788269042969,
+        62.64106750488281,
+        -4.649636745452881
+      ],
+      "movement_arm_degrees": [
+        2.568228244781494,
+        6.7053985595703125,
+        -21.861479997634888,
+        1.532867431640625,
+        0.2568817138671875
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.86773742994711,
+            "green": 1.01843444191741,
+            "blue": 0.6205197018485451
+          },
+          "margin": 0.39071217909687883,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5798416259997978,
+            "green": 0.8354189878675128,
+            "blue": 0.6162386408846917
+          },
+          "margin": 0.26235978612636035,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.6625805579477553,
+            "green": 0.9442057466133255,
+            "blue": 0.5135879265039704
+          },
+          "margin": 0.4560635451053902,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.991884393641899,
+            "green": 1.1157299707591917,
+            "blue": 0.794649215161617
+          },
+          "margin": 0.28777640111172886,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.2403132382893697,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.178323984146118,
+      "gripper_change_mae_points": 1.2141385078430176,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 66,
+      "recorded": "green",
+      "requested": "red",
+      "frame": 235,
+      "t_s": 7.833333333333333,
+      "endpoint_arm_degrees": [
+        -18.945186614990234,
+        16.293209075927734,
+        -51.535301208496094,
+        72.55262756347656,
+        -4.928745746612549
+      ],
+      "final_target_arm_degrees": [
+        -21.292837142944336,
+        21.08209991455078,
+        -59.13032150268555,
+        76.25131225585938,
+        -4.710240840911865
+      ],
+      "movement_arm_degrees": [
+        -23.208922863006592,
+        37.08441734313965,
+        -67.40343284606934,
+        11.4976806640625,
+        1.9723529815673828
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.3580949613799315,
+            "green": 0.8308605364197683,
+            "blue": 1.4102323269158625
+          },
+          "margin": 0.5690071369582844,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.27984685952127347,
+            "green": 0.7434815011927848,
+            "blue": 1.2901636683977993
+          },
+          "margin": 0.6235994317648675,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.19732637650328927,
+            "green": 0.7172809678015223,
+            "blue": 1.3059499961751753
+          },
+          "margin": 0.7248966787616048,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.5507874741028227,
+            "green": 0.4971122078545944,
+            "blue": 1.2699416240158357
+          },
+          "margin": 0.09745186441587088,
+          "ambiguous": true
+        },
+        "movement_rms_normalized": 1.5059342544430412,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 3.046738386154175,
+      "gripper_change_mae_points": 1.2958743572235107,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 66,
+      "recorded": "green",
+      "requested": "green",
+      "frame": 235,
+      "t_s": 7.833333333333333,
+      "endpoint_arm_degrees": [
+        -4.7004876136779785,
+        6.8616132736206055,
+        -42.930877685546875,
+        73.40138244628906,
+        -5.923977851867676
+      ],
+      "final_target_arm_degrees": [
+        -6.206526756286621,
+        11.218978881835938,
+        -50.87331008911133,
+        77.54774475097656,
+        -5.798920154571533
+      ],
+      "movement_arm_degrees": [
+        -8.964223861694336,
+        27.65282154083252,
+        -58.79900932312012,
+        12.346435546875,
+        0.9771208763122559
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 1.0489082161563228,
+            "green": 0.41526270364877826,
+            "blue": 0.5501899980917326
+          },
+          "margin": 0.2452376359274675,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.9438277744417755,
+            "green": 0.3395119996304138,
+            "blue": 0.47980939675790724
+          },
+          "margin": 0.29240235409203946,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.9462951585270218,
+            "green": 0.4129724925543813,
+            "blue": 0.5255917180809613
+          },
+          "margin": 0.2142713091784911,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.3320359449272923,
+            "green": 0.4994526834733863,
+            "blue": 0.5253858043410743
+          },
+          "margin": 0.04936014763515105,
+          "ambiguous": true
+        },
+        "movement_rms_normalized": 0.8162955538094089,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 66,
+      "recorded": "green",
+      "requested": "blue",
+      "frame": 235,
+      "t_s": 7.833333333333333,
+      "endpoint_arm_degrees": [
+        4.973056793212891,
+        15.330159187316895,
+        -48.512596130371094,
+        75.92646789550781,
+        -5.554327487945557
+      ],
+      "final_target_arm_degrees": [
+        4.916707992553711,
+        21.683395385742188,
+        -58.192569732666016,
+        80.7232894897461,
+        -5.419155597686768
+      ],
+      "movement_arm_degrees": [
+        0.7093205451965332,
+        36.12136745452881,
+        -64.38072776794434,
+        14.87152099609375,
+        1.346771240234375
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.6889880910655075,
+            "green": 0.9540491812772162,
+            "blue": 0.19497144748585388
+          },
+          "margin": 0.7956379489526533,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5012026749528988,
+            "green": 0.8339319292384708,
+            "blue": 0.12505936830632508
+          },
+          "margin": 0.8500364790918528,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4884895843991053,
+            "green": 0.8577015426482812,
+            "blue": 0.23740173475742216
+          },
+          "margin": 0.7232117199831436,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8700647343245522,
+            "green": 1.0208537619295466,
+            "blue": 0.1953174316480907
+          },
+          "margin": 0.8086724671720704,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.751176004002504,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 1.949877142906189,
+      "gripper_change_mae_points": 1.4135756492614746,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 69,
+      "recorded": "green",
+      "requested": "red",
+      "frame": 171,
+      "t_s": 5.7,
+      "endpoint_arm_degrees": [
+        -5.696449279785156,
+        9.5355224609375,
+        -59.182830810546875,
+        90.31121063232422,
+        -9.338922500610352
+      ],
+      "final_target_arm_degrees": [
+        -12.651288986206055,
+        19.158340454101562,
+        -70.72491455078125,
+        91.44755554199219,
+        -9.44466781616211
+      ],
+      "movement_arm_degrees": [
+        -10.839306354522705,
+        22.150907516479492,
+        -61.51250123977661,
+        20.640884399414062,
+        0.5511875152587891
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.9607798374161182,
+            "green": 0.8169184929658957,
+            "blue": 1.0537359602390917
+          },
+          "margin": 0.14973393367320995,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.0922196670890065,
+            "green": 0.7371592730610632,
+            "blue": 0.7118149506861404
+          },
+          "margin": 0.034381067024606735,
+          "ambiguous": true
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.8827698022404776,
+            "green": 0.5110891551049822,
+            "blue": 0.6810273048754256
+          },
+          "margin": 0.24953206509323253,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4228774118106482,
+            "green": 0.8136737991405137,
+            "blue": 0.7139705014722584
+          },
+          "margin": 0.12253472801210052,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.9833867618778109,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.8700358867645264,
+      "gripper_change_mae_points": 0.9025213122367859,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": false,
+        "displacement": true,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 69,
+      "recorded": "green",
+      "requested": "green",
+      "frame": 171,
+      "t_s": 5.7,
+      "endpoint_arm_degrees": [
+        -0.22168640792369843,
+        7.026507377624512,
+        -55.749961853027344,
+        90.41499328613281,
+        -9.924095153808594
+      ],
+      "final_target_arm_degrees": [
+        -3.9757823944091797,
+        16.25750732421875,
+        -67.33377075195312,
+        91.42399597167969,
+        -10.155492782592773
+      ],
+      "movement_arm_degrees": [
+        -5.364543482661247,
+        19.641892433166504,
+        -58.07963228225708,
+        20.744667053222656,
+        -0.033985137939453125
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.348553264513136,
+            "green": 0.8451951295058192,
+            "blue": 0.6952445011149371
+          },
+          "margin": 0.17741539575430046,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.3593754539591096,
+            "green": 0.8482849546556939,
+            "blue": 0.5487138320827669
+          },
+          "margin": 0.3531491640029362,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.1885533505127819,
+            "green": 0.6618546459239929,
+            "blue": 0.4684815272981503
+          },
+          "margin": 0.29216855969316485,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.7108001840483202,
+            "green": 0.9999232710714693,
+            "blue": 0.5810630844267191
+          },
+          "margin": 0.41889232780423236,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.8050242668613892,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 69,
+      "recorded": "green",
+      "requested": "blue",
+      "frame": 171,
+      "t_s": 5.7,
+      "endpoint_arm_degrees": [
+        5.937342643737793,
+        12.637857437133789,
+        -57.688720703125,
+        91.2676010131836,
+        -9.601290702819824
+      ],
+      "final_target_arm_degrees": [
+        5.123977184295654,
+        23.611167907714844,
+        -71.65275573730469,
+        92.50790405273438,
+        -9.685641288757324
+      ],
+      "movement_arm_degrees": [
+        0.7944855690002441,
+        25.25324249267578,
+        -60.018391132354736,
+        21.597274780273438,
+        0.2888193130493164
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8169188248604007,
+            "green": 1.1658625506714666,
+            "blue": 0.5780228699533354
+          },
+          "margin": 0.5042101063968226,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.6785372630447921,
+            "green": 1.090009735220525,
+            "blue": 0.5246251010885304
+          },
+          "margin": 0.5186968665170765,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5211940099732029,
+            "green": 0.9217203625411539,
+            "blue": 0.3726072333782079
+          },
+          "margin": 0.5957480722776466,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 2.031196667715463,
+            "green": 1.2658355722629973,
+            "blue": 0.5469173657203986
+          },
+          "margin": 0.5679396457925043,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.7901306269045428,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 1.0976673364639282,
+      "gripper_change_mae_points": 1.527661919593811,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 79,
+      "recorded": "green",
+      "requested": "red",
+      "frame": 168,
+      "t_s": 5.6,
+      "endpoint_arm_degrees": [
+        -10.060005187988281,
+        -29.833080291748047,
+        -7.83837890625,
+        63.78045654296875,
+        -5.599213123321533
+      ],
+      "final_target_arm_degrees": [
+        -14.254150390625,
+        -26.58941078186035,
+        -12.642963409423828,
+        64.89854431152344,
+        -5.223553657531738
+      ],
+      "movement_arm_degrees": [
+        -15.554510593414307,
+        -0.5143985748291016,
+        -34.08013725280762,
+        8.879356384277344,
+        10.356831073760986
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.722370124600293,
+            "green": 0.4185617043457265,
+            "blue": 1.1589378698216481
+          },
+          "margin": 0.4205716846646613,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.7653870803830601,
+            "green": 0.3085627385676189,
+            "blue": 0.9702528481280424
+          },
+          "margin": 0.5968540017513887,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.9082874433880617,
+            "green": 0.5775327570491523,
+            "blue": 1.0984324032372572
+          },
+          "margin": 0.36415199697701417,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.2094263556322766,
+            "green": 0.5504646615852677,
+            "blue": 1.0961804549541558
+          },
+          "margin": 0.49783390216687534,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.3001725576078975,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.183948040008545,
+      "gripper_change_mae_points": 1.3833434581756592,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 79,
+      "recorded": "green",
+      "requested": "green",
+      "frame": 168,
+      "t_s": 5.6,
+      "endpoint_arm_degrees": [
+        -0.2835172712802887,
+        -37.3996467590332,
+        5.500132083892822,
+        58.03944778442383,
+        -7.001539707183838
+      ],
+      "final_target_arm_degrees": [
+        -1.2412675619125366,
+        -38.2198486328125,
+        2.9677772521972656,
+        57.97297668457031,
+        -6.900979995727539
+      ],
+      "movement_arm_degrees": [
+        -5.778022676706314,
+        -8.080965042114258,
+        -20.741626262664795,
+        3.138347625732422,
+        8.954504489898682
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 1.4540744399914227,
+            "green": 0.664327214224435,
+            "blue": 0.8646651917830335
+          },
+          "margin": 0.23169427827374414,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.3254378365694928,
+            "green": 0.6178774002525154,
+            "blue": 0.8087435105925244
+          },
+          "margin": 0.23600326659829557,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 1.3266030312200399,
+            "green": 0.6300448014622854,
+            "blue": 0.7526475252042658
+          },
+          "margin": 0.1628952725363795,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.7581791257505452,
+            "green": 0.9394236064008414,
+            "blue": 1.0020542828771044
+          },
+          "margin": 0.06250227911449806,
+          "ambiguous": true
+        },
+        "movement_rms_normalized": 0.8583765469784064,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 79,
+      "recorded": "green",
+      "requested": "blue",
+      "frame": 168,
+      "t_s": 5.6,
+      "endpoint_arm_degrees": [
+        3.5306758880615234,
+        -35.85434341430664,
+        9.784907341003418,
+        56.88478469848633,
+        -7.5301055908203125
+      ],
+      "final_target_arm_degrees": [
+        3.8067431449890137,
+        -36.713905334472656,
+        5.876689910888672,
+        57.43921661376953,
+        -7.478266716003418
+      ],
+      "movement_arm_degrees": [
+        -1.963829517364502,
+        -6.535661697387695,
+        -16.4568510055542,
+        1.9836845397949219,
+        8.425938606262207
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.7179384351893434,
+            "green": 0.8885259652466964,
+            "blue": 0.8385549793060291
+          },
+          "margin": 0.05624032149335445,
+          "ambiguous": true
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.5318643812665311,
+            "green": 0.8009728979348539,
+            "blue": 0.810712940126983
+          },
+          "margin": 0.012014168900034455,
+          "ambiguous": true
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5056650076131546,
+            "green": 0.7651071907745782,
+            "blue": 0.6797965765458145
+          },
+          "margin": 0.11150151933926682,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.9590277917476318,
+            "green": 1.111174232679451,
+            "blue": 1.0102794095220353
+          },
+          "margin": 0.09080018253673951,
+          "ambiguous": true
+        },
+        "movement_rms_normalized": 0.7472879489855209,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 1.3608781099319458,
+      "gripper_change_mae_points": 1.9035230875015259,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": false,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 86,
+      "recorded": "green",
+      "requested": "red",
+      "frame": 157,
+      "t_s": 5.233333333333333,
+      "endpoint_arm_degrees": [
+        -22.345714569091797,
+        -12.625175476074219,
+        -21.4896297454834,
+        66.08476257324219,
+        -3.5556273460388184
+      ],
+      "final_target_arm_degrees": [
+        -25.778827667236328,
+        -5.449176788330078,
+        -30.141521453857422,
+        66.34053802490234,
+        -3.996622085571289
+      ],
+      "movement_arm_degrees": [
+        -28.1918683052063,
+        16.25394630432129,
+        -49.4896297454834,
+        13.381465911865234,
+        13.807009220123291
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.302482875898142,
+            "green": 0.9729984022253836,
+            "blue": 1.7011321145828637
+          },
+          "margin": 0.689122946958267,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.3478085518453193,
+            "green": 0.8672524340335833,
+            "blue": 1.5356066039608702
+          },
+          "margin": 0.598953501660797,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.9447915505119491,
+            "green": 1.2233435139362225,
+            "blue": 1.8184092931730014
+          },
+          "margin": 0.2276972577620544,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.6175100924605491,
+            "green": 0.7332096029426775,
+            "blue": 1.5744688093315422
+          },
+          "margin": 0.15779868405675226,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 2.0611542485289234,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.8174099922180176,
+      "gripper_change_mae_points": 1.551395297050476,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 86,
+      "recorded": "green",
+      "requested": "green",
+      "frame": 157,
+      "t_s": 5.233333333333333,
+      "endpoint_arm_degrees": [
+        -10.420679092407227,
+        -20.006484985351562,
+        -9.410722732543945,
+        59.24113082885742,
+        -5.484950065612793
+      ],
+      "final_target_arm_degrees": [
+        -12.45722770690918,
+        -11.47024154663086,
+        -18.20834732055664,
+        58.725582122802734,
+        -6.314562797546387
+      ],
+      "movement_arm_degrees": [
+        -16.26683282852173,
+        8.872636795043945,
+        -37.410722732543945,
+        6.537834167480469,
+        11.877686500549316
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.764662230182803,
+            "green": 0.3174051796356313,
+            "blue": 1.0721053767828546
+          },
+          "margin": 0.5849079932197628,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.7375766881558846,
+            "green": 0.3284407113014867,
+            "blue": 0.9988647293259394
+          },
+          "margin": 0.5547029663821591,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.960600152173433,
+            "green": 0.6944571767145966,
+            "blue": 1.1915775724222064
+          },
+          "margin": 0.27705906027254634,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.1606454515051974,
+            "green": 0.4843404709757272,
+            "blue": 1.1011878378876543
+          },
+          "margin": 0.5601654374381669,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.4173100080342642,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 86,
+      "recorded": "green",
+      "requested": "blue",
+      "frame": 157,
+      "t_s": 5.233333333333333,
+      "endpoint_arm_degrees": [
+        2.4899492263793945,
+        -16.785751342773438,
+        -9.888631820678711,
+        59.595733642578125,
+        -5.540608882904053
+      ],
+      "final_target_arm_degrees": [
+        2.4823665618896484,
+        -6.949703216552734,
+        -21.614521026611328,
+        59.82819366455078,
+        -6.515825271606445
+      ],
+      "movement_arm_degrees": [
+        -3.3562045097351074,
+        12.09337043762207,
+        -37.88863182067871,
+        6.892436981201172,
+        11.822027683258057
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5409577736277547,
+            "green": 0.6933678544275895,
+            "blue": 0.5325320282062678
+          },
+          "margin": 0.23196319990072214,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.393375972874962,
+            "green": 0.6490076647974338,
+            "blue": 0.58391339334562
+          },
+          "margin": 0.1002981551414047,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.478795143255548,
+            "green": 0.8314156934219351,
+            "blue": 0.7877737598020398
+          },
+          "margin": 0.05249111120367977,
+          "ambiguous": true
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8083747032753223,
+            "green": 0.9340939959143552,
+            "blue": 0.7586071740922237
+          },
+          "margin": 0.18786848281831955,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.0964275511891395,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 1.9075937271118164,
+      "gripper_change_mae_points": 2.65535044670105,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 92,
+      "recorded": "green",
+      "requested": "red",
+      "frame": 183,
+      "t_s": 6.1,
+      "endpoint_arm_degrees": [
+        -12.350326538085938,
+        -24.861852645874023,
+        -15.534153938293457,
+        72.626220703125,
+        -5.946982383728027
+      ],
+      "final_target_arm_degrees": [
+        -20.306367874145508,
+        -17.196949005126953,
+        -23.614887237548828,
+        72.773193359375,
+        -5.409333229064941
+      ],
+      "movement_arm_degrees": [
+        -15.11955738067627,
+        -7.1475677490234375,
+        -34.391297340393066,
+        14.296550750732422,
+        12.031039237976074
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.40571029317028123,
+            "green": 0.6731576155970579,
+            "blue": 1.3966834670731478
+          },
+          "margin": 0.39730267656492896,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.6143242094821713,
+            "green": 0.3416954377983248,
+            "blue": 0.9933699474999564
+          },
+          "margin": 0.4437864688966952,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 1.0442311379992355,
+            "green": 0.7430061934264255,
+            "blue": 1.1822526439766305
+          },
+          "margin": 0.2884657750677327,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.0663166393416232,
+            "green": 0.506383327084445,
+            "blue": 1.0965621949109239
+          },
+          "margin": 0.5251097953445595,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.4209267027288568,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.22670316696167,
+      "gripper_change_mae_points": 1.4263339042663574,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 92,
+      "recorded": "green",
+      "requested": "green",
+      "frame": 183,
+      "t_s": 6.1,
+      "endpoint_arm_degrees": [
+        -4.222534656524658,
+        -31.41494369506836,
+        -5.7149176597595215,
+        67.16239166259766,
+        -7.1211113929748535
+      ],
+      "final_target_arm_degrees": [
+        -10.213032722473145,
+        -24.723960876464844,
+        -12.660133361816406,
+        66.7066421508789,
+        -6.827322483062744
+      ],
+      "movement_arm_degrees": [
+        -6.99176549911499,
+        -13.700658798217773,
+        -24.57206106185913,
+        8.832721710205078,
+        10.856910228729248
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.8928039490772481,
+            "green": 0.2474186205912834,
+            "blue": 0.9449032893388164
+          },
+          "margin": 0.7228746346305912,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.052616593258486,
+            "green": 0.3357384569323033,
+            "blue": 0.7159406971954381
+          },
+          "margin": 0.5310526999687334,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 1.3345388633793838,
+            "green": 0.7180703313896949,
+            "blue": 0.8828444127702204
+          },
+          "margin": 0.18664000020512286,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.4987187513437643,
+            "green": 0.702230486941379,
+            "blue": 0.8954781780414955
+          },
+          "margin": 0.21580390883758824,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.0654319314084923,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 92,
+      "recorded": "green",
+      "requested": "blue",
+      "frame": 183,
+      "t_s": 6.1,
+      "endpoint_arm_degrees": [
+        3.010699510574341,
+        -25.278289794921875,
+        -7.80319356918335,
+        66.00749206542969,
+        -7.0823798179626465
+      ],
+      "final_target_arm_degrees": [
+        1.6402735710144043,
+        -18.805816650390625,
+        -15.125167846679688,
+        65.89494323730469,
+        -6.469522476196289
+      ],
+      "movement_arm_degrees": [
+        0.2414686679840088,
+        -7.564004898071289,
+        -26.66033697128296,
+        7.677822113037109,
+        10.895641803741455
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5029743038147911,
+            "green": 0.6411733088946375,
+            "blue": 0.5113088904786226
+          },
+          "margin": 0.20254183481202154,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4188093328116147,
+            "green": 0.650927234736649,
+            "blue": 0.5257747680272753
+          },
+          "margin": 0.19226798331768635,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.65947896031809,
+            "green": 0.9503803468169539,
+            "blue": 0.7737405076246194
+          },
+          "margin": 0.18586226007718135,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8491076832252893,
+            "green": 0.9773752545843759,
+            "blue": 0.7448298186932807
+          },
+          "margin": 0.23792850780735597,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.9824779077277646,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 1.3263493776321411,
+      "gripper_change_mae_points": 0.629122257232666,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 97,
+      "recorded": "blue",
+      "requested": "red",
+      "frame": 171,
+      "t_s": 5.7,
+      "endpoint_arm_degrees": [
+        2.1492063999176025,
+        -12.565285682678223,
+        -32.37592315673828,
+        97.73101806640625,
+        -9.515668869018555
+      ],
+      "final_target_arm_degrees": [
+        2.2166671752929688,
+        -14.321296691894531,
+        -28.28005599975586,
+        98.11976623535156,
+        -8.656861305236816
+      ],
+      "movement_arm_degrees": [
+        -3.960683584213257,
+        -23.68616485595703,
+        -3.4968013763427734,
+        4.500251770019531,
+        0.9898252487182617
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.7186199301539695,
+            "green": 1.0589462800499314,
+            "blue": 0.6981882615895147
+          },
+          "margin": 0.3406764113127686,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5614101510393132,
+            "green": 1.0132573389627528,
+            "blue": 0.6791583997762793
+          },
+          "margin": 0.32972762825333446,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.412742808232671,
+            "green": 0.7398830099875325,
+            "blue": 0.7167819288294264
+          },
+          "margin": 0.031222613367612576,
+          "ambiguous": true
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.9394796062158866,
+            "green": 1.2394853796429073,
+            "blue": 0.7939284622188983
+          },
+          "margin": 0.35946928034953735,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.359782229438316,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.8952935934066772,
+      "gripper_change_mae_points": 0.5529425144195557,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 97,
+      "recorded": "blue",
+      "requested": "green",
+      "frame": 171,
+      "t_s": 5.7,
+      "endpoint_arm_degrees": [
+        3.0062084197998047,
+        -17.42005729675293,
+        -28.301891326904297,
+        97.93428039550781,
+        -9.589268684387207
+      ],
+      "final_target_arm_degrees": [
+        3.3196372985839844,
+        -18.969135284423828,
+        -23.315509796142578,
+        97.71406555175781,
+        -8.933487892150879
+      ],
+      "movement_arm_degrees": [
+        -3.1036815643310547,
+        -28.54093647003174,
+        0.5772304534912109,
+        4.703514099121094,
+        0.9162254333496094
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.7805149187604008,
+            "green": 1.0991987347075438,
+            "blue": 0.7230508018606575
+          },
+          "margin": 0.3422019339814518,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.612979836731324,
+            "green": 1.047718023065083,
+            "blue": 0.7032158496410067
+          },
+          "margin": 0.3288119187033173,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4824325288603384,
+            "green": 0.8116957930207844,
+            "blue": 0.7575462281025618
+          },
+          "margin": 0.0667116490978734,
+          "ambiguous": true
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.9979362407471246,
+            "green": 1.2894158999835952,
+            "blue": 0.8335633630697373
+          },
+          "margin": 0.3535341365960025,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.36797063607789726,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.880815327167511,
+      "gripper_change_mae_points": 0.37466752529144287,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 97,
+      "recorded": "blue",
+      "requested": "blue",
+      "frame": 171,
+      "t_s": 5.7,
+      "endpoint_arm_degrees": [
+        4.612022399902344,
+        -14.931628227233887,
+        -28.31516456604004,
+        97.768310546875,
+        -9.749273300170898
+      ],
+      "final_target_arm_degrees": [
+        5.4277873039245605,
+        -16.683135986328125,
+        -23.949871063232422,
+        97.36573791503906,
+        -8.838149070739746
+      ],
+      "movement_arm_degrees": [
+        -1.4978675842285156,
+        -26.052507400512695,
+        0.5639572143554688,
+        4.537544250488281,
+        0.756220817565918
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8769643518080652,
+            "green": 1.1691014638583983,
+            "blue": 0.7100085064698417
+          },
+          "margin": 0.3926887199964724,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.68764287470701,
+            "green": 1.101772857378996,
+            "blue": 0.6977885512326828
+          },
+          "margin": 0.3666675063200869,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5536729535011733,
+            "green": 0.8665385159602133,
+            "blue": 0.7312342664832922
+          },
+          "margin": 0.1561433761856392,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 2.0719347887169546,
+            "green": 1.3440695181914115,
+            "blue": 0.825313628853089
+          },
+          "margin": 0.38595912065349397,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.30812386758513033,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 98,
+      "recorded": "blue",
+      "requested": "red",
+      "frame": 239,
+      "t_s": 7.966666666666667,
+      "endpoint_arm_degrees": [
+        -21.710552215576172,
+        0.5398613214492798,
+        -44.673831939697266,
+        80.513427734375,
+        -7.685819149017334
+      ],
+      "final_target_arm_degrees": [
+        -24.271554946899414,
+        2.960956573486328,
+        -43.83871078491211,
+        77.92179870605469,
+        -8.159177780151367
+      ],
+      "movement_arm_degrees": [
+        -27.380881786346436,
+        10.42997133731842,
+        -50.34416151046753,
+        12.952987670898438,
+        5.457038402557373
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.29576433443924594,
+            "green": 0.9148755597523722,
+            "blue": 1.5821123407549322
+          },
+          "margin": 0.6767163235628462,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.3433843119355683,
+            "green": 0.8779998028506785,
+            "blue": 1.4456561634934764
+          },
+          "margin": 0.6089016070155454,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.29767496449675085,
+            "green": 0.8659628210681878,
+            "blue": 1.5464513172743979
+          },
+          "margin": 0.6562497173613515,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.5726457056361836,
+            "green": 0.7111868008976806,
+            "blue": 1.4547276716970245
+          },
+          "margin": 0.19480268065524622,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.703884428208138,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 4.80242395401001,
+      "gripper_change_mae_points": 1.4910094738006592,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 98,
+      "recorded": "blue",
+      "requested": "green",
+      "frame": 239,
+      "t_s": 7.966666666666667,
+      "endpoint_arm_degrees": [
+        -6.653013706207275,
+        -14.614206314086914,
+        -28.016571044921875,
+        76.2679672241211,
+        -8.843433380126953
+      ],
+      "final_target_arm_degrees": [
+        -9.87692642211914,
+        -11.963050842285156,
+        -28.176258087158203,
+        74.06150817871094,
+        -9.799459457397461
+      ],
+      "movement_arm_degrees": [
+        -12.323343276977539,
+        -4.724096298217773,
+        -33.68690061569214,
+        8.707527160644531,
+        4.299424171447754
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.90011261591378,
+            "green": 0.311691458455907,
+            "blue": 0.8726614408323187
+          },
+          "margin": 0.6428265947460392,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.89016584331182,
+            "green": 0.30066049768883796,
+            "blue": 0.6776941532050069
+          },
+          "margin": 0.5563478063564078,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.8422313554608335,
+            "green": 0.1991820445072534,
+            "blue": 0.7661203273138254
+          },
+          "margin": 0.7400120615443968,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.3140289979436681,
+            "green": 0.5569917019285507,
+            "blue": 0.7922626828163252
+          },
+          "margin": 0.29696082623939346,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.8650587276715614,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 1.5017619132995605,
+      "gripper_change_mae_points": 0.6738929152488708,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 98,
+      "recorded": "blue",
+      "requested": "blue",
+      "frame": 239,
+      "t_s": 7.966666666666667,
+      "endpoint_arm_degrees": [
+        4.264912128448486,
+        -9.997241020202637,
+        -27.844690322875977,
+        75.18110656738281,
+        -8.689031600952148
+      ],
+      "final_target_arm_degrees": [
+        3.965251922607422,
+        -7.0226898193359375,
+        -31.503192901611328,
+        74.41291046142578,
+        -9.184808731079102
+      ],
+      "movement_arm_degrees": [
+        -1.4054174423217773,
+        -0.1071310043334961,
+        -33.51501989364624,
+        7.62066650390625,
+        4.453825950622559
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.6245138736887426,
+            "green": 0.7913928105107669,
+            "blue": 0.3624357132693077
+          },
+          "margin": 0.5420280441575016,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4679196054687547,
+            "green": 0.7342971729660307,
+            "blue": 0.31230642236457123
+          },
+          "margin": 0.5746866066458098,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4086651259661658,
+            "green": 0.6434489760964939,
+            "blue": 0.3412123124273861
+          },
+          "margin": 0.4697134891761539,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8769110125522892,
+            "green": 1.0098491051996095,
+            "blue": 0.5248108434079717
+          },
+          "margin": 0.4803076611091949,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.5136120233145235,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 103,
+      "recorded": "blue",
+      "requested": "red",
+      "frame": 173,
+      "t_s": 5.766666666666667,
+      "endpoint_arm_degrees": [
+        -25.623031616210938,
+        -4.666798114776611,
+        -23.298404693603516,
+        65.62569427490234,
+        -4.84793758392334
+      ],
+      "final_target_arm_degrees": [
+        -29.12883949279785,
+        6.7802734375,
+        -30.736286163330078,
+        63.43079376220703,
+        -4.291584014892578
+      ],
+      "movement_arm_degrees": [
+        -29.095559120178223,
+        18.937596797943115,
+        -49.27642631530762,
+        14.592727661132812,
+        7.415799140930176
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.3786718801911724,
+            "green": 1.1603545717638224,
+            "blue": 1.8869461024079577
+          },
+          "margin": 0.6736584752576414,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.3347905330926924,
+            "green": 1.0194676177398567,
+            "blue": 1.695386955828693
+          },
+          "margin": 0.671602582301812,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.44707689260017686,
+            "green": 1.001070676374994,
+            "blue": 1.6660825937486157
+          },
+          "margin": 0.5534012701090196,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.4377697588801786,
+            "green": 0.8281147934840444,
+            "blue": 1.718069528855046
+          },
+          "margin": 0.4713658512989561,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.8570879422795963,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 8.234846115112305,
+      "gripper_change_mae_points": 2.2435996532440186,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 103,
+      "recorded": "blue",
+      "requested": "green",
+      "frame": 173,
+      "t_s": 5.766666666666667,
+      "endpoint_arm_degrees": [
+        -8.210274696350098,
+        -27.924030303955078,
+        5.12155294418335,
+        55.61091232299805,
+        -8.349769592285156
+      ],
+      "final_target_arm_degrees": [
+        -12.873189926147461,
+        -16.708110809326172,
+        -2.3832130432128906,
+        53.338775634765625,
+        -8.041640281677246
+      ],
+      "movement_arm_degrees": [
+        -11.682802200317383,
+        -4.319635391235352,
+        -20.856468677520752,
+        4.577945709228516,
+        3.9139671325683594
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.8671925358904039,
+            "green": 0.49444200385695825,
+            "blue": 1.2151910691422143
+          },
+          "margin": 0.4298359552307701,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.9425274912918905,
+            "green": 0.449725062451854,
+            "blue": 1.034641574906107
+          },
+          "margin": 0.5228520477048038,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.9152536431262752,
+            "green": 0.26304962515244407,
+            "blue": 0.7769927570843906
+          },
+          "margin": 0.6614516380570664,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.3557977518191922,
+            "green": 0.6537396902234286,
+            "blue": 1.1668835424895598
+          },
+          "margin": 0.43975583987698785,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.7698944370559455,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.2550249099731445,
+      "gripper_change_mae_points": 0.6511911749839783,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 103,
+      "recorded": "blue",
+      "requested": "blue",
+      "frame": 173,
+      "t_s": 5.766666666666667,
+      "endpoint_arm_degrees": [
+        3.6588242053985596,
+        -30.66107177734375,
+        18.432758331298828,
+        54.29138946533203,
+        -9.515913963317871
+      ],
+      "final_target_arm_degrees": [
+        3.177946090698242,
+        -27.45556640625,
+        16.05111312866211,
+        53.36144256591797,
+        -9.084321975708008
+      ],
+      "movement_arm_degrees": [
+        0.18629670143127441,
+        -7.056676864624023,
+        -7.545263290405273,
+        3.2584228515625,
+        2.7478227615356445
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 1.7162953160130459,
+            "green": 0.9125244098457141,
+            "blue": 0.9285971009758908
+          },
+          "margin": 0.017308573452668917,
+          "ambiguous": true
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.576735178196773,
+            "green": 0.8704183881800234,
+            "blue": 0.9058273924107012
+          },
+          "margin": 0.03909023344551654,
+          "ambiguous": true
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5592445998501827,
+            "green": 0.8103143874305466,
+            "blue": 0.5392827950994671
+          },
+          "margin": 0.33447708264258125,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.9912475897893018,
+            "green": 1.1494727025480092,
+            "blue": 1.0881144368439821
+          },
+          "margin": 0.05337948919362382,
+          "ambiguous": true
+        },
+        "movement_rms_normalized": 0.26793631819758845,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 105,
+      "recorded": "blue",
+      "requested": "red",
+      "frame": 174,
+      "t_s": 5.8,
+      "endpoint_arm_degrees": [
+        -24.131072998046875,
+        19.077117919921875,
+        -58.135948181152344,
+        80.76271057128906,
+        -9.039039611816406
+      ],
+      "final_target_arm_degrees": [
+        -27.990013122558594,
+        20.062583923339844,
+        -58.0137825012207,
+        76.50506591796875,
+        -9.246406555175781
+      ],
+      "movement_arm_degrees": [
+        -29.273930072784424,
+        26.329864978790283,
+        -58.70737677812576,
+        8.718757629394531,
+        -0.3796987533569336
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.41632914128831133,
+            "green": 1.158319304161833,
+            "blue": 1.8014708137377808
+          },
+          "margin": 0.6405748054163962,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.480037050759882,
+            "green": 1.0751386281539828,
+            "blue": 1.6020252538558777
+          },
+          "margin": 0.5535114838315246,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.37837205371163146,
+            "green": 1.0460915517077964,
+            "blue": 1.6656041339321472
+          },
+          "margin": 0.6382992931221743,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.47621966947505684,
+            "green": 0.8384665515462937,
+            "blue": 1.5758779152409845
+          },
+          "margin": 0.43203498267543755,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.7548128472124047,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 3.357863664627075,
+      "gripper_change_mae_points": 0.8925535678863525,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 105,
+      "recorded": "blue",
+      "requested": "green",
+      "frame": 174,
+      "t_s": 5.8,
+      "endpoint_arm_degrees": [
+        -8.552213668823242,
+        9.476049423217773,
+        -50.73169708251953,
+        84.20883178710938,
+        -9.83014965057373
+      ],
+      "final_target_arm_degrees": [
+        -12.631341934204102,
+        9.363883972167969,
+        -51.708065032958984,
+        79.69329071044922,
+        -10.023443222045898
+      ],
+      "movement_arm_degrees": [
+        -13.695070743560791,
+        16.72879648208618,
+        -51.30312567949295,
+        12.164878845214844,
+        -1.1708087921142578
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.7805183507724828,
+            "green": 0.5177042184021942,
+            "blue": 0.9752238377675925
+          },
+          "margin": 0.33671742901391133,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.8807900336443019,
+            "green": 0.586433716251909,
+            "blue": 0.7883365177096192
+          },
+          "margin": 0.25611245568619007,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.7645250693692683,
+            "green": 0.49018758161006104,
+            "blue": 0.8471115122703213
+          },
+          "margin": 0.35883386791427935,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.2207070758992864,
+            "green": 0.6127106604348859,
+            "blue": 0.797867425463072
+          },
+          "margin": 0.23206457503979877,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.9527588901313098,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.0114634037017822,
+      "gripper_change_mae_points": 1.0056482553482056,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 105,
+      "recorded": "blue",
+      "requested": "blue",
+      "frame": 174,
+      "t_s": 5.8,
+      "endpoint_arm_degrees": [
+        3.712954044342041,
+        17.95659828186035,
+        -57.5244255065918,
+        87.58473205566406,
+        -8.869963645935059
+      ],
+      "final_target_arm_degrees": [
+        2.455298900604248,
+        18.4266357421875,
+        -62.17940139770508,
+        84.21334838867188,
+        -8.868232727050781
+      ],
+      "movement_arm_degrees": [
+        -1.4299030303955078,
+        25.20934534072876,
+        -58.095854103565216,
+        15.540779113769531,
+        -0.21062278747558594
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5858371265778008,
+            "green": 0.8884266087591606,
+            "blue": 0.3446937217984621
+          },
+          "margin": 0.6120177869504768,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.523890695282962,
+            "green": 0.9454138801095165,
+            "blue": 0.4060347201187747
+          },
+          "margin": 0.5705217274028812,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.3870519783441444,
+            "green": 0.7799271507043827,
+            "blue": 0.31952064797243934
+          },
+          "margin": 0.5903198809223813,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8721914745134087,
+            "green": 1.099945429303563,
+            "blue": 0.3993886572543064
+          },
+          "margin": 0.63690138927421,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.6740990320739519,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 109,
+      "recorded": "blue",
+      "requested": "red",
+      "frame": 199,
+      "t_s": 6.633333333333334,
+      "endpoint_arm_degrees": [
+        -23.6193790435791,
+        13.65490436553955,
+        -43.30522155761719,
+        65.90498352050781,
+        -7.475380897521973
+      ],
+      "final_target_arm_degrees": [
+        -23.90736961364746,
+        20.171653747558594,
+        -46.213748931884766,
+        65.61236572265625,
+        -7.453712463378906
+      ],
+      "movement_arm_degrees": [
+        -28.234763622283936,
+        30.050509452819824,
+        -51.525001525878906,
+        -1.3917160034179688,
+        0.48066282272338867
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.15570593996743523,
+            "green": 0.8806635133692338,
+            "blue": 1.5793762475550714
+          },
+          "margin": 0.8231947416877339,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.2024929104397861,
+            "green": 0.9334882014605186,
+            "blue": 1.5718847676000915
+          },
+          "margin": 0.783079303923746,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "red",
+          "distance": {
+            "red": 0.4554683058189181,
+            "green": 0.9937004450385741,
+            "blue": 1.6318514037509229
+          },
+          "margin": 0.5416442569860805,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "red",
+          "distance": {
+            "red": 0.2884121676815968,
+            "green": 0.659424096645583,
+            "blue": 1.5627533959042457
+          },
+          "margin": 0.5626302266648772,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.67575846134924,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 3.3375205993652344,
+      "gripper_change_mae_points": 0.8679284453392029,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 109,
+      "recorded": "blue",
+      "requested": "green",
+      "frame": 199,
+      "t_s": 6.633333333333334,
+      "endpoint_arm_degrees": [
+        -9.521652221679688,
+        4.612412452697754,
+        -35.755252838134766,
+        69.55443572998047,
+        -8.288911819458008
+      ],
+      "final_target_arm_degrees": [
+        -9.004718780517578,
+        10.318016052246094,
+        -37.00175857543945,
+        69.52388000488281,
+        -8.412932395935059
+      ],
+      "movement_arm_degrees": [
+        -14.137036800384521,
+        21.008017539978027,
+        -43.975032806396484,
+        2.2577362060546875,
+        -0.3328680992126465
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.8730801594723435,
+            "green": 0.2103609279177477,
+            "blue": 0.7592234426217219
+          },
+          "margin": 0.7229261952300403,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.6741771040085857,
+            "green": 0.23326165310983293,
+            "blue": 0.7912969545182748
+          },
+          "margin": 0.6540053767431676,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.7591241950920926,
+            "green": 0.43179054743951717,
+            "blue": 0.8780698515295065
+          },
+          "margin": 0.43119907094104043,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 1.0725412354657222,
+            "green": 0.24666037854754327,
+            "blue": 0.830433420069592
+          },
+          "margin": 0.7029739259206684,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.8994383244906604,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.241187572479248,
+      "gripper_change_mae_points": 0.7344498634338379,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 109,
+      "recorded": "blue",
+      "requested": "blue",
+      "frame": 199,
+      "t_s": 6.633333333333334,
+      "endpoint_arm_degrees": [
+        2.9345669746398926,
+        13.861564636230469,
+        -41.948036193847656,
+        73.66409301757812,
+        -7.5800652503967285
+      ],
+      "final_target_arm_degrees": [
+        3.455124855041504,
+        19.879127502441406,
+        -46.04826736450195,
+        74.00910949707031,
+        -7.61054801940918
+      ],
+      "movement_arm_degrees": [
+        -1.6808176040649414,
+        30.257169723510742,
+        -50.167816162109375,
+        6.367393493652344,
+        0.3759784698486328
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5750593447363457,
+            "green": 0.7911168447189415,
+            "blue": 0.1545949337558919
+          },
+          "margin": 0.8045864719126103,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.3762390160967235,
+            "green": 0.6943019755150579,
+            "blue": 0.15879058801785653
+          },
+          "margin": 0.7712946331456713,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.370930454396425,
+            "green": 0.7158120396364551,
+            "blue": 0.29925545315159824
+          },
+          "margin": 0.5819357085645229,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.7506293777359536,
+            "green": 0.8811559119690138,
+            "blue": 0.25864728783298113
+          },
+          "margin": 0.7064681921556732,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.5381327480567552,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 121,
+      "recorded": "blue",
+      "requested": "red",
+      "frame": 194,
+      "t_s": 6.466666666666667,
+      "endpoint_arm_degrees": [
+        -13.440885543823242,
+        9.216802597045898,
+        -49.730377197265625,
+        76.74500274658203,
+        -3.582857608795166
+      ],
+      "final_target_arm_degrees": [
+        -20.86496353149414,
+        11.591354370117188,
+        -52.52018356323242,
+        74.95030212402344,
+        -3.4835314750671387
+      ],
+      "movement_arm_degrees": [
+        -17.79253387451172,
+        23.678340911865234,
+        -54.785322189331055,
+        7.602142333984375,
+        1.032526969909668
+      ],
+      "classification": {
+        "last_action": {
+          "color": "red",
+          "distance": {
+            "red": 0.3784815167974681,
+            "green": 0.7954122672916385,
+            "blue": 1.3955584108976478
+          },
+          "margin": 0.5241693743469793,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.5671596552667703,
+            "green": 0.5643778981222504,
+            "blue": 0.9925850286310153
+          },
+          "margin": 0.004904716191795165,
+          "ambiguous": true
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.48163826805950777,
+            "green": 0.4315172235767494,
+            "blue": 1.0092602488944211
+          },
+          "margin": 0.10406366729266163,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "green",
+          "distance": {
+            "red": 0.907218908734501,
+            "green": 0.46851362699786253,
+            "blue": 0.9887431265715674
+          },
+          "margin": 0.4835715806988611,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 1.142524905445544,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 2.428036689758301,
+      "gripper_change_mae_points": 0.8048100471496582,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": true,
+        "displacement": true,
+        "pre_release_endpoint": true
+      }
+    },
+    {
+      "episode": 121,
+      "recorded": "blue",
+      "requested": "green",
+      "frame": 194,
+      "t_s": 6.466666666666667,
+      "endpoint_arm_degrees": [
+        -2.3775248527526855,
+        2.409992218017578,
+        -44.458866119384766,
+        80.62611389160156,
+        -4.105679035186768
+      ],
+      "final_target_arm_degrees": [
+        -8.298812866210938,
+        5.242557525634766,
+        -48.651973724365234,
+        78.55036926269531,
+        -4.100330352783203
+      ],
+      "movement_arm_degrees": [
+        -6.729173183441162,
+        16.871530532836914,
+        -49.513811111450195,
+        11.483253479003906,
+        0.5097055435180664
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 0.9631860726769544,
+            "green": 0.4387782207819279,
+            "blue": 0.6955762304530351
+          },
+          "margin": 0.3691874426241568,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.1335073045530164,
+            "green": 0.5653928320341629,
+            "blue": 0.40373259670439743
+          },
+          "margin": 0.28592551261774296,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.0856435135433506,
+            "green": 0.47082610778225076,
+            "blue": 0.4379271221461219
+          },
+          "margin": 0.06987502411685313,
+          "ambiguous": true
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.516094955470699,
+            "green": 0.754887236337574,
+            "blue": 0.47384237145158575
+          },
+          "margin": 0.37230045940306417,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.6502089557725442,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 1.3340312242507935,
+      "gripper_change_mae_points": 0.5154351592063904,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 121,
+      "recorded": "blue",
+      "requested": "blue",
+      "frame": 194,
+      "t_s": 6.466666666666667,
+      "endpoint_arm_degrees": [
+        4.003392219543457,
+        9.11658763885498,
+        -48.74559783935547,
+        83.11045837402344,
+        -3.7494404315948486
+      ],
+      "final_target_arm_degrees": [
+        2.8764185905456543,
+        14.494903564453125,
+        -55.781612396240234,
+        82.65756225585938,
+        -3.5452868938446045
+      ],
+      "movement_arm_degrees": [
+        -0.34825611114501953,
+        23.578125953674316,
+        -53.8005428314209,
+        13.967597961425781,
+        0.8659441471099854
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.6012069470930685,
+            "green": 0.8988506822918094,
+            "blue": 0.28811823049946367
+          },
+          "margin": 0.6794592959924718,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.5002033863848658,
+            "green": 0.8801759681558629,
+            "blue": 0.2766860176103348
+          },
+          "margin": 0.6856469301359761,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.4305452818221454,
+            "green": 0.7741566691214695,
+            "blue": 0.21147446245340226
+          },
+          "margin": 0.7268324734664001,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8699715102178542,
+            "green": 1.0777056294361718,
+            "blue": 0.3407930639603492
+          },
+          "margin": 0.6837790815487867,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.6182948999643598,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 136,
+      "recorded": "blue",
+      "requested": "red",
+      "frame": 142,
+      "t_s": 4.733333333333333,
+      "endpoint_arm_degrees": [
+        -4.931422233581543,
+        -13.0441312789917,
+        -36.782814025878906,
+        85.48849487304688,
+        5.89705753326416
+      ],
+      "final_target_arm_degrees": [
+        -11.872718811035156,
+        -8.742263793945312,
+        -37.49209976196289,
+        80.83723449707031,
+        5.708324909210205
+      ],
+      "movement_arm_degrees": [
+        -9.1951584815979,
+        2.5602645874023438,
+        -42.013583183288574,
+        12.213768005371094,
+        5.149804770946503
+      ],
+      "classification": {
+        "last_action": {
+          "color": "green",
+          "distance": {
+            "red": 1.3183876935310852,
+            "green": 1.1635797743401939,
+            "blue": 1.3613041975505433
+          },
+          "margin": 0.1174221512765063,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.49460754815959,
+            "green": 1.2158236270823943,
+            "blue": 1.187273436066477
+          },
+          "margin": 0.02348218144471261,
+          "ambiguous": true
+        },
+        "displacement": {
+          "color": "green",
+          "distance": {
+            "red": 0.9752372461063336,
+            "green": 0.2619653194488893,
+            "blue": 0.5798753698863822
+          },
+          "margin": 0.5482385818521359,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.8000908594824236,
+            "green": 1.3451043031833048,
+            "blue": 1.2328767020861093
+          },
+          "margin": 0.08343412539206006,
+          "ambiguous": true
+        },
+        "movement_rms_normalized": 0.8260333855027759,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 1.6630452871322632,
+      "gripper_change_mae_points": 1.4127615690231323,
+      "changed_from_original": {
+        "last_action": true,
+        "endpoint": false,
+        "displacement": true,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 136,
+      "recorded": "blue",
+      "requested": "green",
+      "frame": 142,
+      "t_s": 4.733333333333333,
+      "endpoint_arm_degrees": [
+        0.5531421899795532,
+        -14.9030179977417,
+        -35.19446563720703,
+        86.50138092041016,
+        5.333260536193848
+      ],
+      "final_target_arm_degrees": [
+        -4.690752029418945,
+        -9.3516845703125,
+        -37.27145767211914,
+        81.816650390625,
+        5.193907260894775
+      ],
+      "movement_arm_degrees": [
+        -3.710594058036804,
+        0.7013778686523438,
+        -40.4252347946167,
+        13.226654052734375,
+        4.58600777387619
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 1.548113149176084,
+            "green": 1.1496365758541351,
+            "blue": 1.111865410137822
+          },
+          "margin": 0.03285487475748639,
+          "ambiguous": true
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 1.682140504754196,
+            "green": 1.2651064442797963,
+            "blue": 1.063412870797825
+          },
+          "margin": 0.1594281448758188,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.2705530626860957,
+            "green": 0.534515104272032,
+            "blue": 0.34932609325634856
+          },
+          "margin": 0.3464616987164403,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 2.019735162359456,
+            "green": 1.4459105672569983,
+            "blue": 1.1260584108158307
+          },
+          "margin": 0.2212115767629746,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.652149596942296,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 1.4735912084579468,
+      "gripper_change_mae_points": 0.3856104612350464,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    },
+    {
+      "episode": 136,
+      "recorded": "blue",
+      "requested": "blue",
+      "frame": 142,
+      "t_s": 4.733333333333333,
+      "endpoint_arm_degrees": [
+        6.603421688079834,
+        -8.09988021850586,
+        -39.69440460205078,
+        88.3633804321289,
+        6.884031772613525
+      ],
+      "final_target_arm_degrees": [
+        5.313379764556885,
+        -1.1516036987304688,
+        -44.41488265991211,
+        85.50891876220703,
+        7.321608066558838
+      ],
+      "movement_arm_degrees": [
+        2.3396854400634766,
+        7.504515647888184,
+        -44.92517375946045,
+        15.088653564453125,
+        6.136779010295868
+      ],
+      "classification": {
+        "last_action": {
+          "color": "blue",
+          "distance": {
+            "red": 2.1018853831131814,
+            "green": 1.562401940952055,
+            "blue": 1.1927713442664063
+          },
+          "margin": 0.23657842901834408,
+          "ambiguous": false
+        },
+        "endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 2.02641971390832,
+            "green": 1.5490044984870694,
+            "blue": 1.1858826225413766
+          },
+          "margin": 0.23442273815237993,
+          "ambiguous": false
+        },
+        "displacement": {
+          "color": "blue",
+          "distance": {
+            "red": 1.608324422386146,
+            "green": 0.8784214483626763,
+            "blue": 0.3597113890001527
+          },
+          "margin": 0.5905024977809539,
+          "ambiguous": false
+        },
+        "pre_release_endpoint": {
+          "color": "blue",
+          "distance": {
+            "red": 2.360776024515965,
+            "green": 1.7374340516557216,
+            "blue": 1.2317160961777205
+          },
+          "margin": 0.29107174168485267,
+          "ambiguous": false
+        },
+        "movement_rms_normalized": 0.7669641453437073,
+        "small_movement": false
+      },
+      "arm_change_mae_deg": 0.0,
+      "gripper_change_mae_points": 0.0,
+      "changed_from_original": {
+        "last_action": false,
+        "endpoint": false,
+        "displacement": false,
+        "pre_release_endpoint": false
+      }
+    }
+  ]
+}
