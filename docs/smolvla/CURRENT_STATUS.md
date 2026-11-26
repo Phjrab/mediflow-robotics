@@ -1,5 +1,7 @@
 # SmolVLA 현재 상태
 
+C→초록은 50회 저장됐다. 기본 학습용 44회, 재집기 후 투입 4회, 운영자 제외 2회로 분류했다. 기본 시연 목표까지 6회 남았다. [C→초록 선택 목록](../../reports/recording_selections/medicine_C_green.json)
+
 C→빨강 50회가 저장됐고 화면 번호 46·48회를 제외해 학습용은 48회다. 종료 시 리더 6축은 토크 OFF였고 팔로워 6축은 판독값이 유효하지 않아 OFF 확인이 필요하다. [C→빨강 선택 목록](../../reports/recording_selections/medicine_C_red.json)
 
 B→파랑은 1차 5회와 2차 42회를 합쳐 학습용 47회를 선택했다. 50회 목표까지 3회 남았다. [선택 목록](../../reports/recording_selections/medicine_B_blue.json)
