@@ -1,5 +1,7 @@
 # SmolVLA 현재 상태
 
+11월 26일 B→초록 60회 중 현장 23회만 제외해 59회를 선택했다. B→빨강 50회와 합쳐 두 색의 학습 선택 목록은 109회다. [B→초록 회차 목록](../../reports/recording_selections/medicine_B_green.json)
+
 11월 26일 B→빨강은 최종 50회를 확보했다. 3차 녹화 두 회차 모두 빨간 바구니에 약통이 놓인 마지막 장면을 확인했다. B의 초록·파랑과 C의 세 색을 각각 50회 확보한 후 모아 학습할 계획이다. [최종 회차 목록](../../reports/recording_selections/medicine_B_red.json)
 
 11월 26일 B→빨강 2차 본 녹화는 23회 저장됐다. 현장 5·17회를 제외한 21회를 더해 학습 선택 목록은 48/50회다. 남은 수량은 2회다. [회차 목록](../../reports/recording_selections/medicine_B_red.json)
