@@ -1,4 +1,4 @@
-"""Separate LeLab entry point. Only the recording module is overlaid."""
+"""Separate LeLab entry point for guarded recording and camera previews."""
 import asyncio
 from pathlib import Path
 import lelab
@@ -59,7 +59,7 @@ async def guard_version(request, call_next):
     if (request.method == "GET" and path in ("/", "/recording")
             and server._accepts_html(request.headers.get("accept", ""))):
         # The same SPA shell includes the existing Chromium Astra snapshot workaround.
-        response = await asyncio.to_thread(server.calibration_spa_page)
+        response = await asyncio.to_thread(server.calibration_spa_page, guides=False)
     elif start or discovery or preview or path == "/camera-preview-stop":
         async with camera_handoff:
             if record.recording_active and discovery:

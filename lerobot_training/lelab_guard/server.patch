@@ -1,0 +1,134 @@
+--- server.py
++++ server.py
+@@ -175 +175 @@
+-FRONTEND_DIST = Path(__file__).parent.parent / "frontend" / "dist"
++FRONTEND_DIST = Path(dataset_browser.__file__).parent.parent / "frontend" / "dist"
+@@ -178 +178 @@
+-LEROBOT_PATH = str(Path(__file__).parent.parent.parent.parent)
++LEROBOT_PATH = str(Path(dataset_browser.__file__).parent.parent.parent.parent)
+@@ -1189,52 +1188,0 @@
+-                # Calibration-page-only alignment guide derived from the
+-                # recorded ACT-C episode-0 start frame (640x480).  These marks
+-                # are drawn only into /camera-snapshot/8 and never enter a
+-                # recording, training sample, or policy observation.
+-                sx = frame.shape[1] / 640.0
+-                sy = frame.shape[0] / 480.0
+-
+-                def guide_box(x1: int, y1: int, x2: int, y2: int, color, label: str) -> None:
+-                    p1 = (round(x1 * sx), round(y1 * sy))
+-                    p2 = (round(x2 * sx), round(y2 * sy))
+-                    cv2.rectangle(frame, p1, p2, color, 2, cv2.LINE_AA)
+-                    cv2.putText(
+-                        frame,
+-                        label,
+-                        (p1[0], max(18, p1[1] - 6)),
+-                        cv2.FONT_HERSHEY_SIMPLEX,
+-                        0.42,
+-                        color,
+-                        1,
+-                        cv2.LINE_AA,
+-                    )
+-
+-                # User-confirmed identity mapping: A is the largest bottle,
+-                # B is medium, and C is the smallest. In this recorded camera
+-                # layout the columns are C/B/A, not A/B/C.
+-                guide_box(300, 215, 333, 272, (255, 255, 255), "C-SMALL")
+-                guide_box(367, 215, 402, 272, (255, 255, 255), "B-MID")
+-                guide_box(429, 215, 465, 272, (255, 255, 255), "A-LARGE")
+-                # Use size identities only. Earlier color-based A/C mapping
+-                # was reversed and must not be used for placement.
+-                guide_box(278, 266, 349, 371, (0, 255, 255), "C-BIN")
+-                guide_box(350, 266, 417, 371, (0, 255, 255), "B-BIN")
+-                guide_box(418, 266, 484, 371, (0, 255, 255), "A-BIN")
+-                arm_target = (round(390 * sx), round(177 * sy))
+-                cv2.drawMarker(
+-                    frame,
+-                    arm_target,
+-                    (255, 255, 0),
+-                    markerType=cv2.MARKER_CROSS,
+-                    markerSize=18,
+-                    thickness=2,
+-                )
+-                cv2.putText(
+-                    frame,
+-                    "ARM START",
+-                    (arm_target[0] + 8, arm_target[1] - 8),
+-                    cv2.FONT_HERSHEY_SIMPLEX,
+-                    0.42,
+-                    (255, 255, 0),
+-                    1,
+-                    cv2.LINE_AA,
+-                )
+@@ -1272,0 +1221,57 @@
++def _astra_calibration_jpeg(payload: bytes) -> bytes:
++    import cv2
++    import numpy as np
++
++    frame = cv2.imdecode(np.frombuffer(payload, dtype=np.uint8), cv2.IMREAD_COLOR)
++    sx = frame.shape[1] / 640.0
++    sy = frame.shape[0] / 480.0
++
++    def guide_box(x1: int, y1: int, x2: int, y2: int, color, label: str) -> None:
++        p1 = (round(x1 * sx), round(y1 * sy))
++        p2 = (round(x2 * sx), round(y2 * sy))
++        cv2.rectangle(frame, p1, p2, color, 2, cv2.LINE_AA)
++        cv2.putText(
++            frame,
++            label,
++            (p1[0], max(18, p1[1] - 6)),
++            cv2.FONT_HERSHEY_SIMPLEX,
++            0.42,
++            color,
++            1,
++            cv2.LINE_AA,
++        )
++
++    # User-confirmed identity mapping: A is the largest bottle,
++    # B is medium, and C is the smallest. In this recorded camera
++    # layout the columns are C/B/A, not A/B/C.
++    guide_box(300, 215, 333, 272, (255, 255, 255), "C-SMALL")
++    guide_box(367, 215, 402, 272, (255, 255, 255), "B-MID")
++    guide_box(429, 215, 465, 272, (255, 255, 255), "A-LARGE")
++    # Use size identities only. Earlier color-based A/C mapping
++    # was reversed and must not be used for placement.
++    guide_box(278, 266, 349, 371, (0, 255, 255), "C-BIN")
++    guide_box(350, 266, 417, 371, (0, 255, 255), "B-BIN")
++    guide_box(418, 266, 484, 371, (0, 255, 255), "A-BIN")
++    arm_target = (round(390 * sx), round(177 * sy))
++    cv2.drawMarker(
++        frame,
++        arm_target,
++        (255, 255, 0),
++        markerType=cv2.MARKER_CROSS,
++        markerSize=18,
++        thickness=2,
++    )
++    cv2.putText(
++        frame,
++        "ARM START",
++        (arm_target[0] + 8, arm_target[1] - 8),
++        cv2.FONT_HERSHEY_SIMPLEX,
++        0.42,
++        (255, 255, 0),
++        1,
++        cv2.LINE_AA,
++    )
++    ok, jpeg = cv2.imencode(".jpg", frame, [cv2.IMWRITE_JPEG_QUALITY, 80])
++    return jpeg.tobytes() if ok else payload
++
++
+@@ -1274 +1279 @@
+-def astra_camera_snapshot(width: int = 640, height: int = 480, fps: int = 30):
++def astra_camera_snapshot(width: int = 640, height: int = 480, fps: int = 30, guides: bool = False):
+@@ -1288 +1293 @@
+-        content=payload,
++        content=_astra_calibration_jpeg(payload) if guides else payload,
+@@ -1721 +1726 @@
+-def calibration_spa_page() -> Response:
++def calibration_spa_page(guides: bool = True) -> Response:
+@@ -1732 +1737,4 @@
+-    html = html.replace("</body>", f"{_ASTRA_POLLING_SCRIPT}</body>")
++    script = _ASTRA_POLLING_SCRIPT
++    if guides:
++        script = script.replace("/camera-snapshot/8?", "/camera-snapshot/8?guides=true&")
++    html = html.replace("</body>", f"{script}</body>")
