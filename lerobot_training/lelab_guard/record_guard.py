@@ -6,6 +6,7 @@ from pathlib import Path
 
 LOG = logging.getLogger("lelab.record_guard")
 IDS = set(range(1, 7))
+STARTUP_READ_RETRIES = 2
 
 
 def site_config():
@@ -117,20 +118,20 @@ class RecordingSession:
             if not bus.calibration or not bus.is_calibrated:
                 raise RuntimeError(f"{role}: calibration mismatch")
             for name in bus.motors:
-                if bus.read("Operating_Mode",name,normalize=False) != 0:
+                if bus.read("Operating_Mode",name,normalize=False,num_retry=STARTUP_READ_RETRIES) != 0:
                     raise RuntimeError(f"{role}/{name}: position mode required")
-                if bus.read("Torque_Enable",name,normalize=False) != 0:
+                if bus.read("Torque_Enable",name,normalize=False,num_retry=STARTUP_READ_RETRIES) != 0:
                     raise RuntimeError(f"{role}/{name}: expected initial torque OFF")
         follower = self.buses["follower"]
         for field, limit in (("Max_Torque_Limit",500),("Protection_Current",250),("Overload_Torque",25)):
-            if not 0 < follower.read(field,"gripper",normalize=False) <= limit:
+            if not 0 < follower.read(field,"gripper",normalize=False,num_retry=STARTUP_READ_RETRIES) <= limit:
                 raise RuntimeError(f"gripper: check existing {field}")
         for camera in self.devices["follower"].cameras.values():
             camera.connect()
         for name in follower.motors:
-            actual = follower.read("Present_Position",name,normalize=False)
+            actual = follower.read("Present_Position",name,normalize=False,num_retry=STARTUP_READ_RETRIES)
             follower.write("Goal_Position",name,actual,normalize=False)
-            if follower.read("Goal_Position",name,normalize=False) != actual:
+            if follower.read("Goal_Position",name,normalize=False,num_retry=STARTUP_READ_RETRIES) != actual:
                 raise RuntimeError(f"{name}: hold target mismatch")
         for name in follower.motors:
             follower.write("Torque_Enable",name,1,normalize=False)

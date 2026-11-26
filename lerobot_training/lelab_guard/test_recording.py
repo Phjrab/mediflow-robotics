@@ -8,6 +8,8 @@ from types import SimpleNamespace as NS
 from unittest.mock import MagicMock, patch
 
 from scservo_sdk.protocol_packet_handler import protocol_packet_handler
+from lerobot.motors import Motor, MotorNormMode
+from lerobot.motors.feetech import FeetechMotorsBus
 from lerobot.teleoperators.teleoperator import Teleoperator
 from guarded_app import record
 
@@ -21,10 +23,28 @@ class MemoryEndpoint:
         self.is_using=False
         self.open=False
         self.writes=[]
+        self.reply = b""
+        self.drop_wrist_reads = 0
+        self.wrist_reads = 0
+        self.torque_on_writes = 0
         self.bank={(m,a):v for m in range(1,7) for a,v in [(40,0),(33,0),(56,2048),(16,500),(28,250),(36,25)]}
 
     def clearPort(self):
+        self.reply = b""
+
+    @property
+    def is_open(self):
+        return self.open
+
+    def setPacketTimeout(self, length):
         pass
+
+    def isPacketTimeout(self):
+        return not self.reply
+
+    def readPort(self, size):
+        data, self.reply = self.reply[:size], self.reply[size:]
+        return data
 
     def closePort(self):
         self.open=False
@@ -35,12 +55,21 @@ class MemoryEndpoint:
         if p[4]==3:
             self.writes.append((p[2],p[5],len(p)-7))
             self.bank[p[2],p[5]]=int.from_bytes(p[6:-1],"little")
+            self.torque_on_writes += int(p[5] == 40 and p[6:-1] == bytes([1]))
         elif p[4]==0x83:
             self.writes.append((254,p[5],p[6]))
             for at in range(7,len(p)-1,p[6]+1):
                 self.bank[p[at],p[5]]=int.from_bytes(p[at+1:at+1+p[6]],"little")
         else:
             assert p[4]==2
+            motor, address, width = p[2], p[5], p[6]
+            if (motor, address) == (4, 56):
+                self.wrist_reads += 1
+                if self.wrist_reads <= self.drop_wrist_reads:
+                    return len(p)
+            value = self.bank[motor, address].to_bytes(width, "little")
+            body = bytes([motor, width + 2, 0]) + value
+            self.reply = b"\xff\xff" + body + bytes([(~sum(body)) & 255])
         return len(p)
 
 
@@ -48,7 +77,10 @@ class Bus:
     def __init__(self,role):
         self.port_handler=MemoryEndpoint()
         self.sdk=protocol_packet_handler()
-        self.motors={n:NS(id=i+1) for i,n in enumerate(NAMES)}
+        self.motors={n:Motor(i+1, "sts3215", MotorNormMode.DEGREES) for i,n in enumerate(NAMES)}
+        native = FeetechMotorsBus(port=role, motors=self.motors)
+        native.port_handler = self.port_handler
+        self.read = native.read
         self.port=role
         self.calibration=self.is_calibrated=True
 
@@ -58,13 +90,6 @@ class Bus:
 
     def connect(self):
         self.port_handler.open=True
-
-    def read(self,k,n,**kw):
-        addr,width=ADDR[k]; ident=self.motors[n].id
-        packet=[255,255,ident,4,2,addr,width]
-        packet.append((~sum(packet[2:]))&255)
-        self.port_handler.writePort(packet)
-        return self.port_handler.bank[ident,addr]
 
     def write(self,k,n,value,**kw):
         addr,width=ADDR[k]
@@ -77,6 +102,9 @@ class Bus:
 
 def run(mode,tmp):
     f,l=Bus("follower"),Bus("leader")
+    missing = {"wrist_drop_once": 1, "wrist_drop_twice": 2, "wrist_offline": 10}
+    f.port_handler.drop_wrist_reads = missing.get(mode, 0)
+    save_expected = mode in ("normal", "wrist_drop_once", "wrist_drop_twice")
     keys={n+".pos":float for n in NAMES}
     obs={k:0.0 for k in keys}
     robot=NS(name="so101_follower",bus=f,cameras={},action_features=keys,observation_features=keys,
@@ -104,7 +132,7 @@ def run(mode,tmp):
     def frame(row):
         frames.append(row)
         if len(frames)==3:
-            if mode=="normal":
+            if save_expected:
                 events.update(exit_early=True,_exit_early_triggered=True)
             elif mode=="sigint":
                 os.kill(os.getpid(),signal.SIGINT)
@@ -134,20 +162,25 @@ def run(mode,tmp):
           patch("serial.Serial.open",side_effect=AssertionError("hardware access forbidden"))):
         try:
             record.record_with_web_events(cfg,events)
-            assert mode in ("normal","web_stop","stop_in_flight")
+            assert save_expected or mode in ("web_stop","stop_in_flight")
         except KeyboardInterrupt:
             assert mode=="sigint"
         except PermissionError:
             assert mode=="forbidden"
+        except ConnectionError as exc:
+            assert mode == "wrist_offline" and "id_=4 after 3 tries" in str(exc)
         except OSError:
             assert mode in ("camera_failure","partial_start")
     storage.finalize.assert_called_once()
-    assert storage.save_episode.call_count==int(mode=="normal")
+    assert storage.save_episode.call_count==int(save_expected)
+    if mode in missing:
+        assert f.port_handler.wrist_reads == min(missing[mode] + 1, 3)
+        assert f.port_handler.torque_on_writes == (6 if save_expected else 0)
     result=json.loads(next(tmp.glob("*.json")).read_bytes())
     writes=f.port_handler.writes+l.port_handler.writes
     forbidden=[p for p in writes if (p[1],p[2]) not in ((40,1),(42,2))]
     assert not forbidden and not f.is_connected and not l.is_connected
-    assert len(frames)==(0 if mode in ("partial_start","camera_failure") else 3)
+    assert len(frames)==(0 if mode in ("partial_start","camera_failure","wrist_offline") else 3)
     assert result["all_off_verified"] and not result["errors"]
     assert result["cancelled_motion"] == int(mode == "stop_in_flight")
     assert sum(c["blocked"] for c in result["counts"].values())==int(mode=="forbidden")
@@ -158,7 +191,8 @@ def run(mode,tmp):
 
 if __name__=="__main__":
     results=[]
-    for mode in ("normal","sigint","web_stop","stop_in_flight","forbidden","camera_failure","partial_start"):
+    for mode in ("normal","sigint","web_stop","stop_in_flight","forbidden","camera_failure","partial_start",
+                 "wrist_drop_once","wrist_drop_twice","wrist_offline"):
         with tempfile.TemporaryDirectory() as temp:
             results.append(run(mode,Path(temp)))
     print("GUARD_TEST_RESULT="+json.dumps(results))
