@@ -1,5 +1,7 @@
 # SmolVLA 현재 상태
 
+11월 26일 B→빨강 녹화의 학습 선택 목록은 27회다. 파일럿 7회와 본 녹화 20회이며 목표 50회까지 23회 남았다. 본 녹화 종료 시 팔로워 6축이 응답하지 않아 토크 해제 여부를 확인하지 못했다. [회차 목록](../../reports/recording_selections/medicine_B_red.json)
+
 11월 25일 Jetson LeLab 녹화 전용 쓰기 제한 옵션을 적용하고 서비스 응답에서 활성 상태를 확인했다. 모의 녹화 정상 종료와 SIGINT 중단에서 각각 허용 패킷 27건, 금지 쓰기 송신 0건, 종료 후 리더·팔로워 각각 6축 토크 OFF를 확인했다. 실물 입회 확인은 두 경로 모두 대기 중이다. [모의 시험 및 입회 절차](../../lerobot_training/lelab_guard/README.md)
 
 11월 25일 명령 기반 분류 준비에서 공정 SmolVLA의 닫힘 직후 RGB·관절값·노이즈를 고정한 지시 교체 42건 중 35건이 요청 색 방향이었다. 잘못된 색으로 끝나는 예측도 남았고 이 관측 구간에는 놓기 시점이 없다. 기존 137회는 약통 A 목표이며, 별도 B·C 녹화와 10월의 고정 배치 교시 기록을 구분했다. [데이터 인벤토리](../../reports/DATASET_INVENTORY.md) · [언어 추종 실험](../../reports/command_task/README.md) · [9조합 설계 초안](../../reports/COMMAND_TASK_PLAN.md)
